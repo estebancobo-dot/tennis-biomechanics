@@ -51,16 +51,27 @@ def main() -> None:
     for d in sorted((rec / a.a).glob(f"*{a.match.lower()}*")):
         ia, ib = load(d), load(rec / a.b / d.name)
         ra, rb = ia.get("runs") or [], ib.get("runs") or []
-        lost = []
+        lost, flipped = [], []
         for x, y in zip(ra, rb):
             if x.get("near_is_target") is not None and y.get("near_is_target") is None:
                 lost.append({"antes": {k: x.get(k) for k in KEYS}, "ahora": {k: y.get(k) for k in KEYS}})
+        # 13-11 (F3Set v16 against v15: one point of Azarenka's went to the other player): runs decided both times
+        # but the other way, matched by overlap (the runs need not be the same ones in both)
+        for y in rb:
+            if y.get("near_is_target") is None:
+                continue
+            for x in ra:
+                ov = min(x.get("end", 0), y.get("end", 0)) - max(x.get("start", 0), y.get("start", 0))
+                if ov > 0 and x.get("near_is_target") is not None and x["near_is_target"] != y["near_is_target"]:
+                    flipped.append({"solape_fotogramas": int(ov), "antes": {k: x.get(k) for k in KEYS},
+                                    "ahora": {k: y.get(k) for k in KEYS}})
         rep[d.name] = {"antes": side(ia), "ahora": side(ib), "decididos_antes_y_no_ahora": len(lost),
-                       "ejemplos": lost[:12]}
+                       "ejemplos": lost[:12], "decididos_al_reves": len(flipped), "al_reves": flipped[:12]}
     dst = out / "capturas_diag"
     dst.mkdir(parents=True, exist_ok=True)
     (dst / "diag_identidad_f3set.json").write_text(json.dumps(rep, ensure_ascii=False, indent=1, default=str), encoding="utf-8")
-    print(json.dumps({k: {kk: v[kk] for kk in ("antes", "ahora", "decididos_antes_y_no_ahora")} for k, v in rep.items()},
+    print(json.dumps({k: {kk: v[kk] for kk in ("antes", "ahora", "decididos_antes_y_no_ahora",
+                                                                      "decididos_al_reves")} for k, v in rep.items()},
                      ensure_ascii=False, indent=1, default=str)[:4000])
 
 

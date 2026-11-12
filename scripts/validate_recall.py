@@ -172,6 +172,9 @@ def main():
                                                "se rehace la pasada fina) e informe <nombre>_<tag>.json")
     ap.add_argument("--from", dest="from_tag", default="",
                     help="12-11: copiar de salidas_<from> con sus ventanas (la pose ya calculada se reutiliza)")
+    ap.add_argument("--report-suffix", default="",
+                    help="13-11: añadido al nombre del informe (con --skip-run, volver a evaluar una ejecución sin pisar "
+                         "su informe: --tag v16 --skip-run --report-suffix _e)")
     ap.add_argument("--drop-ball-caches", action="store_true",
                     help="en la copia, sin la bola guardada de cada ventana (para medir otra forma de obtenerla)")
     args = ap.parse_args()
@@ -263,6 +266,12 @@ def main():
                     pspans.append({"t0": s["offset"] + p["a"] / p["fps"] - s["src_t0"],
                                    "t1": s["offset"] + p["b"] / p["fps"] - s["src_t0"], "near_is_target": p["near_is_target"]})
         sm = R.summarize(attr, events, o.strokes, spans, args.tol, o.runs, pspans)
+        gaps = R.filled_court_gaps(mdir)          # 13-11: lost and false strokes in a stretch R16 made play
+        for a in attr:
+            a["filled_gap"] = R.in_filled_gap(gaps, a["t"], args.tol)
+            a["t_clip"] = round(float(a["t"]), 2)          # its time in the compilation (the timeline below shifts it)
+        for x in sm["false"]:
+            x["filled_gap"] = R.in_filled_gap(gaps, x["t"], args.tol)
         per_match.append({"match": name, "points": len(ps), "summary": sm, "misaligned": R.misaligned(sm)})
         bad = per_match[-1]["misaligned"]
         print(f"[{name}] recall {sm['total']['found']}/{sm['total']['gt']}; pérdidas: "
@@ -292,7 +301,7 @@ def main():
     res = {"player": args.player, "tol_s": args.tol, "spotter": args.spotter, "points": sum(m["points"] for m in per_match),
            "matches": [m["match"] for m in per_match], "summary": total, "summary_valid": valid, "excluded": excluded, "per_match": per_match, "notes": notes,
            "strokes": [{k: a.get(k) for k in ("match", "point", "label", "side", "kind", "step", "run_method", "identity_ok",
-                                               "ball_seen", "pred_stroke", "dt")} for a in all_attr],
+                                               "ball_seen", "pred_stroke", "dt", "t_clip", "filled_gap")} for a in all_attr],
            "minutes": round((time.time() - t_start) / 60, 1)}
     rep = root / "reports"
     rep.mkdir(parents=True, exist_ok=True)
@@ -300,6 +309,7 @@ def main():
     if args.tag:
         name += f"_{args.tag}"
         res["set"] = args.set
+    name += args.report_suffix
     (rep / f"{name}.json").write_text(json.dumps(res, ensure_ascii=False, indent=1), encoding="utf-8")
     if args.tag:                           # an A/B: also where the PC uploads it (capturas_diag)
         from tennisbio.config import load_config

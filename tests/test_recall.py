@@ -184,6 +184,8 @@ def test_summary_precision_and_identity():
     assert s["by_side"]["far"]["gt"] == 1 and s["by_kind"]["serve"]["found"] == 0
     assert s["precision"]["predicted_in_points"] == 2 and s["precision"]["opponent_strokes"] == 1
     assert s["steps"]["identidad_equivocada"] == 1
+    # 13-11: the false ones listed, so two runs can be compared stroke by stroke
+    assert s["false"] == [{"t": 3.0, "side": "far", "stroke": "forehand", "opponent": True}]
     idn = s["identity"]
     assert idn["strokes"]["right"] == 2 and idn["strokes"]["wrong"] == 1 and idn["strokes"]["lost_by_identity"] == 1
     assert idn["runs_by_cue"]["cambios de lado"] == {"runs": 2, "right": 1, "wrong": 1, "undecided": 0,
@@ -203,3 +205,21 @@ def test_doubtful_strokes_are_found_but_kept_apart():
     s = R.summarize(attr, evs, out.strokes, [(0, 8)], 0.2, runs, [])
     assert s["total"]["found"] == 0 and s["total"]["found_doubtful"] == 1 and s["total"]["recall_any"] == 0.5
     assert "encontrado_dudoso" not in R.LOST
+
+
+def test_filled_court_gaps_are_the_play_that_only_the_gap_fill_adds(tmp_path):
+    """13-11 (F3Set v16 against v15): a lost or false stroke is said to lie, or not, in a stretch that is play only
+    because play_mask fills a short court gap inside a main-camera shot (R16)."""
+    sc = {"fps": 10.0, "shots": [{"start": 0, "end": 200, "main_camera": True},
+                                 {"start": 200, "end": 300, "main_camera": False}]}
+    court = {"shots": [{"start": 0, "end": 80, "H": [[1, 0, 0], [0, 1, 0], [0, 0, 1]]},
+                       {"start": 80, "end": 100, "H": None},                      # 2 s without lines: filled
+                       {"start": 100, "end": 200, "H": [[1, 0, 0], [0, 1, 0], [0, 0, 1]]}]}
+    (tmp_path / "scenes.json").write_text(json.dumps(sc), encoding="utf-8")
+    (tmp_path / "court.json").write_text(json.dumps(court), encoding="utf-8")
+    gaps = R.filled_court_gaps(tmp_path)
+    assert gaps[0] == 10.0 and gaps[1].sum() == 20
+    assert R.in_filled_gap(gaps, 9.0) is True and R.in_filled_gap(gaps, 5.0) is False
+    assert R.in_filled_gap(gaps, 7.9, tol=0.2) is True                           # within the tolerance
+    assert R.in_filled_gap(gaps, 25.0) is False                                  # not main camera: never play
+    assert R.filled_court_gaps(tmp_path / "nada") is None and R.in_filled_gap(None, 1.0) is None

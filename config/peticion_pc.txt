@@ -1214,3 +1214,22 @@ accion: trabajo
 comando: flujo informe
 # 267 (12-11, R17): auditoria: la bola del partido para el detector, saques por punto de su saque (>= 85 %), pose en
 # el contacto y identidad en Osaka y Pegula, frente a 264 (mismo codigo sin la bola)
+---
+id: 268
+accion: medir
+script: validate_recall
+argumentos: --spotter --tag v15 --skip-run --report-suffix _e
+# 268 (13-11, R22): F3Set v15 evaluado otra vez (sin ejecutar nada): golpes falsos uno a uno y si caen en un hueco de
+# pista rellenado (R16). Informe recall_validation_detector_v15_e.json; el de v15 no se toca
+---
+id: 269
+accion: medir
+script: validate_recall
+argumentos: --spotter --tag v16 --skip-run --report-suffix _e
+# 269 (13-11, R22): lo mismo con v16 (465 de 517, precision 0,936 frente a 467 y 0,945): donde estan los 4 falsos de mas
+---
+id: 270
+accion: medir
+script: diag_identidad_f3set
+argumentos: --match azarenka --a salidas_v15 --b salidas_v16
+# 270 (13-11, R22): el punto de Azarenka que v16 da a la otra jugadora (3 golpes): tramos decididos al reves y por que

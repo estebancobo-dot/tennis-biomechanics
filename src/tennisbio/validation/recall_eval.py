@@ -286,6 +286,9 @@ def summarize(attr: list[dict], events: list[dict], out_strokes: list[dict], spa
     opp_any = [x for x in rest if any(abs(x["t"] - e["t"]) <= tol for e in opp)]
     s["precision"] = {"predicted_in_points": len(inside), "true": len(taken), "opponent_strokes": len(opp_any),
                       "other": len(rest) - len(opp_any), "precision": _rate(len(taken), len(inside))}
+    # 13-11: which ones, so two runs can be compared stroke by stroke (v16 had 4 more than v15 and nothing said where)
+    s["false"] = [{"t": round(float(x["t"]), 2), "side": x.get("side"), "stroke": x.get("stroke"),
+                   "opponent": any(x is y for y in opp_any)} for x in rest]
     # stroke kind of the found ones (overhead = serve or smash)
     conf = {}
     for r in attr:
@@ -515,3 +518,37 @@ def to_markdown(res: dict) -> str:
     L += ["", "Cómo repetirlo: `uv run python scripts/validate_recall.py --root <datasets>` (en el PC: YouTube no deja "
               "descargar desde servidores). Cada arreglo de detección debe subir el recall sin bajar la precisión."]
     return "\n".join(L) + "\n"
+
+
+def filled_court_gaps(mdir: Path):
+    """(fps, mask) of the frames that are play only because play_mask fills a short court gap inside a main-camera shot
+    (R16, 12-11): the main camera with no court found there, inside a shot where it was found and counted as play.
+    None without scenes.json. Validation only: says whether a stroke lost or a false one lies in such a stretch."""
+    import json
+
+    import numpy as np
+
+    from .. import match_files as _mf
+    from ..stages import play_mask
+
+    f = _mf.at(Path(mdir), "scenes.json")
+    if not f.exists():
+        return None
+    sc = json.loads(f.read_text(encoding="utf-8")) or {"shots": []}
+    cf = _mf.at(Path(mdir), "court.json")
+    court = json.loads(cf.read_text(encoding="utf-8")) if cf.exists() else None
+    play = play_mask(sc, court)
+    has = np.zeros(len(play), bool)
+    for o in (court or {}).get("shots") or []:
+        if o.get("H") is not None:
+            has[o["start"]:o["end"]] = True
+    return float(sc.get("fps") or 10.0), play & ~has
+
+
+def in_filled_gap(gaps, t: float, tol: float = 0.2) -> bool | None:
+    """Whether time t (s) lies within tol of a filled court gap (filled_court_gaps); None when unknown."""
+    if gaps is None:
+        return None
+    fps, m = gaps
+    a, b = max(0, int((t - tol) * fps)), int((t + tol) * fps) + 1
+    return bool(m[a:b].any()) if a < len(m) else False
