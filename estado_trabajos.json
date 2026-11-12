@@ -1,32 +1,13 @@
 {
- "at": "2026-11-12 10:28:01",
- "firma": "740bd7a4b738",
+ "at": "2026-11-12 10:28:02",
+ "firma": "802ca39f9e71",
  "ejecutor": {
   "vivo": true,
   "pid": 10328,
   "at": 1794475680.5214894
  },
  "pausa": false,
- "en_curso": [
-  {
-   "id": 80,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script diag_sin_pose --match b8b713 --n 4",
-   "state": "en curso",
-   "message": "",
-   "created": "2026-11-12 10:27:58",
-   "started": "2026-11-12 10:28:00",
-   "finished": null,
-   "args": "[\"script\", \"diag_sin_pose\", \"--match\", \"b8b713\", \"--n\", \"4\"]",
-   "source": "claude 237",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_80.log",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "en_curso": [],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "fine_doubtful",
@@ -39,6 +20,24 @@
  },
  "pendientes": [],
  "recientes": [
+  {
+   "id": 80,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script diag_sin_pose --match b8b713 --n 4",
+   "state": "hecho",
+   "message": "",
+   "created": "2026-11-12 10:27:58",
+   "started": "2026-11-12 10:28:00",
+   "finished": "2026-11-12 10:28:02",
+   "args": "[\"script\", \"diag_sin_pose\", \"--match\", \"b8b713\", \"--n\", \"4\"]",
+   "source": "claude 237",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_80.log",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 79,
    "kind": "comando",
@@ -290,27 +289,16 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_66.log",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 65,
-   "kind": "flujo",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "flujo «prevision»: Que etapas se rehacen en cada partido y cuanto tardarian, sin ejecutar nada",
-   "state": "hecho",
-   "message": "2 pasos",
-   "created": "2026-11-12 03:10:33",
-   "started": "2026-11-12 03:10:37",
-   "finished": "2026-11-12 03:10:41",
-   "args": "[\"prevision\"]",
-   "source": "claude 221",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_65.log",
-   "paso": 2,
-   "pasos": 2
   }
  ],
  "eventos": [
+  {
+   "id": 408,
+   "job": 80,
+   "at": "2026-11-12 10:28:02",
+   "kind": "hecho",
+   "text": "código 0"
+  },
   {
    "id": 407,
    "job": 80,
@@ -513,13 +501,6 @@
    "at": "2026-11-12 09:50:46",
    "kind": "hecho",
    "text": "código 0"
-  },
-  {
-   "id": 378,
-   "job": 77,
-   "at": "2026-11-12 09:50:42",
-   "kind": "empieza",
-   "text": "script diag_serie_ventana 0312430 0925800 0966569 0048549"
   }
  ]
 }
