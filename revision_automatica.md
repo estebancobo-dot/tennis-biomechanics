@@ -1,6 +1,6 @@
 # Revisión automática: FALLOS
 
-386 cumplidos · 26 no cumplidos · 111 sin golpes suficientes · 119 avisos (antes: 383 cumplidos, 29 no cumplidos)
+386 cumplidos · 26 no cumplidos · 111 sin golpes suficientes · 119 avisos (antes: 386 cumplidos, 26 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 135 de 260
 
@@ -171,15 +171,3 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 - **#255 Plano del swing: raqueta al lado o detrás del cuerpo en el armado (Vídeos de entrenadores, 12-10, pendiente)**: SIN HACER según el registro (#255, docs/peticiones_usuario.md)
 - **#257 Comparativa a fondo y catalogada con todo lo que existe: apps profesionales (Hawk-Eye/TennisViz, SwingVision, **: SIN HACER según el registro (#257, docs/peticiones_usuario.md)
 - **#258 Partidos y jugadores automáticos desde un nombre de fichero mínimo: normalizar los nombres, leer la ficha públ**: SIN HACER según el registro (#258, docs/peticiones_usuario.md)
-
-## Mejora
-
-- Aplicación: un partido nuevo de principio a fin: falta → ok
-- Peticiones por GitHub Actions: espera hasta empezar: aviso → ok
-- #160 la app que hiciste completa como se arranca, se puede usar ahora? (Chat, 19-10 08:11): falta → aviso
-- #242 Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femeninos, un análisis po: falta → aviso
-
-## Comprobaciones nuevas
-
-- Aplicación: lo que consume abierta: aviso (sin medir (petición «medir app_recursos» del PC))
-- Vídeos exportados: exportar: ok (8 de 118 vídeos mirados: 8 se reproducen con su duración, 7 con el esqueleto)
