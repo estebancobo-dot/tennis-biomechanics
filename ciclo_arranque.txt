@@ -1,3 +1,2 @@
-arranque: 2026-11-12T08:30:02 (pid 2972)
-2026-11-12T08:30:07 solo la aplicacion al dia (366976b -> b4f62d2) con un trabajo en marcha
-2026-11-12T08:30:07 otro analisis en marcha (6564,7184,15808)
+arranque: 2026-11-12T08:30:44 (pid 12612)
+2026-11-12T08:30:48 otro analisis en marcha (6564,7184,15808)

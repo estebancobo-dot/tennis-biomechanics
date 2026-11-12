@@ -1,7 +1,7 @@
-﻿commit: e51d077
-inicio: 2026-11-12T03:10:42
-fin: 2026-11-12T03:22:35
-codigo: 0
+﻿commit: ef822ad
+inicio: 2026-11-12T08:20:42
+fin: 2026-11-12T08:30:51
+codigo: 1
 ...........................................................s.......ss..s [  6%]
 ss...................................................................... [ 13%]
 ........................................................................ [ 20%]
@@ -14,9 +14,42 @@ ss...................................................................... [ 13%]
 ........................................................................ [ 68%]
 ........................................................................ [ 75%]
 ........................................................................ [ 82%]
-.........................................................ssssss......... [ 89%]
+....................................F....................ssssss......... [ 89%]
 ........................................................................ [ 96%]
-..........s.............................                                 [100%]
+...........s.....F.......................                                [100%]
+================================== FAILURES ===================================
+_________________ test_stage_code_changes_come_with_a_version _________________
+
+    def test_stage_code_changes_come_with_a_version():
+        assert REGISTRY.exists()
+>       assert not check(), check()
+E       AssertionError: ['identity (v12): su cÃ³digo cambiÃ³; sube su versiÃ³n en stages.py o, si el cambio no altera sus resultados, actualiza el registro con `uv run python -m tennisbio.stage_code --update`']
+E       assert not ['identity (v12): su cÃ³digo cambiÃ³; sube su versiÃ³n en stages.py o, si el cambio no altera sus resultados, actualiza el registro con `uv run python -m tennisbio.stage_code --update`']
+E        +  where ['identity (v12): su cÃ³digo cambiÃ³; sube su versiÃ³n en stages.py o, si el cambio no altera sus resultados, actualiza el registro con `uv run python -m tennisbio.stage_code --update`'] = check()
+
+tests\test_stage_code.py:8: AssertionError
+_________________ test_existing_outputs_and_stages_unchanged __________________
+
+tmp_path = WindowsPath('C:/Users/esteb/AppData/Local/Temp/pytest-of-esteb/pytest-125/test_existing_outputs_and_stag0')
+evidence = []
+
+    def test_existing_outputs_and_stages_unchanged(tmp_path, evidence):
+        """The new stages hang off the old ones: candidates and the fine passes keep their dependencies and
+        versions (no re-run of anything already computed) and candidates.json is not touched."""
+        from tennisbio.stage_code import check
+    
+        for n in ("candidates", "fine", "fine_opponent", "fine_doubtful"):
+            assert "views" not in pipeline.STAGES[n].deps and "views_link" not in pipeline.STAGES[n].deps
+        # candidates 11 (03-11): replays need a second sign (stages.run_replay_reasons)
+        assert pipeline.STAGES["candidates"].version == "15" and pipeline.STAGES["fine"].version == "16"   # 14 (07-11): serves by the scoreboard, return after a pause, not a serve
+        assert set(pipeline.STAGES["views"].deps) == {"scenes", "court", "players", "score", "audio", "candidates"}
+        assert set(pipeline.STAGES["views_link"].deps) == {"views", "fine"}
+        assert pipeline.STAGES["views"].resource is None
+>       assert not check()
+E       AssertionError: assert not ['identity (v12): su cÃ³digo cambiÃ³; sube su versiÃ³n en stages.py o, si el cambio no altera sus resultados, actualiza el registro con `uv run python -m tennisbio.stage_code --update`']
+E        +  where ['identity (v12): su cÃ³digo cambiÃ³; sube su versiÃ³n en stages.py o, si el cambio no altera sus resultados, actualiza el registro con `uv run python -m tennisbio.stage_code --update`'] = <function check at 0x000001E0DF8AE020>()
+
+tests\test_views.py:233: AssertionError
 ============================== warnings summary ===============================
 tests/test_body_scale.py::test_court_scale_without_any_face_seen
 tests/test_fine_ranges.py::test_pose_ranges_fall_back_to_the_whole_window_when_her_height_is_not_seen
@@ -41,4 +74,7 @@ tests/test_no_unbounded_calls.py::test_every_module_compiles
     _JS_SCREEN = """(tab) => {
 
 -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-1021 passed, 27 skipped, 24 warnings in 710.00s (0:11:50)
+=========================== short test summary info ===========================
+FAILED tests/test_stage_code.py::test_stage_code_changes_come_with_a_version
+FAILED tests/test_views.py::test_existing_outputs_and_stages_unchanged - Asse...
+2 failed, 1020 passed, 27 skipped, 24 warnings in 596.68s (0:09:56)

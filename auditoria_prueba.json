@@ -3,10 +3,10 @@
  "strokes": 26,
  "near": 13,
  "summary": {
-  "ok": 385,
-  "falta": 30,
-  "pocos datos": 110,
-  "aviso": 117
+  "ok": 384,
+  "falta": 35,
+  "pocos datos": 109,
+  "aviso": 114
  },
  "items": [
   {
@@ -3241,10 +3241,10 @@
    "req": 5,
    "area": "Automático",
    "name": "Pruebas del código en este PC",
-   "status": "ok",
-   "detail": "código e51d077 (2026-11-12T03:22:35): 1021 bien, 0 fallan, 0 errores",
-   "passed": 1021,
-   "failed": 0
+   "status": "falta",
+   "detail": "código ef822ad (2026-11-12T08:30:51): 1020 bien, 2 fallan, 0 errores; fallan: tests/test_stage_code.py::test_stage_code_changes_come_with_a_version, tests/test_views.py::test_existing_outputs_and_stages_unchanged",
+   "passed": 1020,
+   "failed": 2
   },
   {
    "req": 5,
@@ -3468,7 +3468,7 @@
    "area": "Infraestructura",
    "name": "Progreso visible (progreso.json)",
    "status": "ok",
-   "detail": "último: fine_doubtful de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (20/20), 19 s, quedan ≈ 0 s, a las 2026-11-12 03:12:32"
+   "detail": "último: fine_doubtful de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (20/20), 17 s, quedan ≈ 0 s, a las 2026-11-12 08:27:56"
   },
   {
    "req": 5,
@@ -3482,7 +3482,7 @@
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "50 carpetas, 38.1 GB en total (2026-11-12T08:10:42); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB"
+   "detail": "50 carpetas, 38.1 GB en total (2026-11-12T08:30:10); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB"
   },
   {
    "req": 5,
@@ -3538,14 +3538,14 @@
    "area": "Orquestador",
    "name": "Orquestador: ejecutor vivo cuando hay trabajo",
    "status": "ok",
-   "detail": "ejecutor vivo; 0 trabajos esperando"
+   "detail": "ejecutor vivo; 2 trabajos esperando"
   },
   {
    "req": 5,
    "area": "Orquestador",
    "name": "Orquestador: espera hasta empezar cada trabajo",
    "status": "aviso",
-   "detail": "41 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min"
+   "detail": "42 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min"
   },
   {
    "req": 5,
@@ -3573,7 +3573,7 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar",
    "status": "ok",
-   "detail": "terminó el 2026-11-12 08:10:28 en 0 min: 118 vídeos de 118 golpes"
+   "detail": "terminó el 2026-11-12 08:28:51 en 0 min: 118 vídeos de 118 golpes"
   },
   {
    "req": 2,
@@ -3706,7 +3706,7 @@
    "area": "Tiempo por etapa",
    "name": "Tiempo de cada etapa frente a su ritmo en este PC: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "ok",
-   "detail": "1 etapas comparadas con su mediana aquí; las que más tardan: players 48.2 min, score 19.2 min, court 16.6 min, scenes 2.4 min, fine 1.4 min; ninguna pasa de 2 veces su ritmo habitual"
+   "detail": "2 etapas comparadas con su mediana aquí; las que más tardan: players 48.2 min, score 19.2 min, court 16.6 min, scenes 2.4 min, fine 1.5 min; ninguna pasa de 2 veces su ritmo habitual"
   },
   {
    "req": 9,
@@ -3727,14 +3727,14 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "aviso",
-   "detail": "recursos_2026-11-12_0800.csv sin muestras con su etapa (ni las 9 anteriores)"
+   "detail": "recursos_2026-11-12_0824.csv sin muestras con su etapa (ni las 9 anteriores)"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
    "status": "ok",
-   "detail": "petición del 12-11 08:09, empezó a los 0.2 min; el PC estaba con otro trabajo hasta las 08:10 (1.0 min, no cuentan), empezó 0.0 min después de quedar libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
+   "detail": "petición del 12-11 08:24, empezó a los 0.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
   },
   {
    "req": 1,
@@ -3859,8 +3859,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok"
+   "status": "falta",
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código ef822ad (2026-11-12T08:30:51): 1020 bien, 2 fallan, 0 errores; fallan: tests/test_stage_code.py::test_stage_code_)"
   },
   {
    "req": 11,
@@ -3908,8 +3908,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML",
-   "status": "pocos datos",
-   "detail": "3 comprobaciones: 1 pocos datos, 2 ok; la peor: «Tiempo desde cero» (ninguna ejecución desde cero de 20 min de vídeo o más (prueba app_nuevo o poc del PC))"
+   "status": "falta",
+   "detail": "3 comprobaciones: 1 falta, 1 pocos datos, 1 ok; la peor: «Pruebas del código en este PC» (código ef822ad (2026-11-12T08:30:51): 1020 bien, 2 fallan, 0 errores; fallan: tests/test_stage_code.py::test_stage_code_)"
   },
   {
    "req": 11,
@@ -4125,8 +4125,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#51 El código de la prueba es el de los casos reales",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok"
+   "status": "falta",
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código ef822ad (2026-11-12T08:30:51): 1020 bien, 2 fallan, 0 errores; fallan: tests/test_stage_code.py::test_stage_code_)"
   },
   {
    "req": 11,
@@ -4553,7 +4553,7 @@
    "area": "Peticiones",
    "name": "#119 Automatizar todo el ciclo en el PC: el usuario no lanza pruebas ni avisa",
    "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (41 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (42 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min)"
   },
   {
    "req": 11,
@@ -5309,7 +5309,7 @@
    "area": "Peticiones",
    "name": "#230 Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo",
    "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 4 comprobaciones: 1 aviso, 1 pocos datos, 2 ok; la peor: «Uso del PC por etapa (CPU, RAM, iGPU y disco)» (recursos_2026-11-12_0800.csv sin muestras con su etapa (ni las 9 anteriores))"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 4 comprobaciones: 1 aviso, 1 pocos datos, 2 ok; la peor: «Uso del PC por etapa (CPU, RAM, iGPU y disco)» (recursos_2026-11-12_0824.csv sin muestras con su etapa (ni las 9 anteriores))"
   },
   {
    "req": 11,
@@ -5358,7 +5358,7 @@
    "area": "Peticiones",
    "name": "#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min",
    "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (41 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (42 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min)"
   },
   {
    "req": 11,
@@ -5385,8 +5385,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código",
-   "status": "ok",
-   "detail": "2 comprobaciones: 2 ok"
+   "status": "falta",
+   "detail": "2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código ef822ad (2026-11-12T08:30:51): 1020 bien, 2 fallan, 0 errores; fallan: tests/test_stage_code.py::test_stage_code_)"
   },
   {
    "req": 11,
@@ -5421,7 +5421,7 @@
    "area": "Peticiones",
    "name": "#246 Un único orquestador: mismo código y misma fuente de datos para la aplicación y el chat; monitorizar, pausar, ",
    "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (41 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (42 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min)"
   },
   {
    "req": 11,
@@ -5525,8 +5525,8 @@
    "req": 5,
    "area": "Automático",
    "name": "Comprobaciones que saben fallar",
-   "status": "aviso",
-   "detail": "sin el registro de las pruebas en este PC (comprobaciones_pruebas/rec_*.json)"
+   "status": "ok",
+   "detail": "470 de 549 tipos de comprobación con una prueba que las hace fallar; 61 sin ninguna prueba y 18 que nunca fallan en las pruebas; de las pruebas principales de la Base: 0"
   }
  ]
 }
