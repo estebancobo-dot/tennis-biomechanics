@@ -147,22 +147,22 @@
   "rewrote": {}
  },
  "candidates": {
-  "fingerprint": "75eda832c1053921",
-  "version": "15",
-  "seconds": 3.3,
-  "finished": "2026-11-12 12:49:27",
+  "fingerprint": "6c39cb79c3387c72",
+  "version": "16",
+  "seconds": 3.1,
+  "finished": "2026-11-12 15:51:58",
   "summary": {
-   "candidates": 350,
-   "far": 157,
-   "with_audio": 304,
+   "candidates": 378,
+   "far": 167,
+   "with_audio": 324,
    "source": "spotter",
-   "opponent_strokes": 167,
-   "identity_unknown": 14,
-   "replay_strokes_skipped": 13,
-   "replay_runs": 5,
+   "opponent_strokes": 176,
+   "identity_unknown": 18,
+   "replay_strokes_skipped": 8,
+   "replay_runs": 2,
    "audio_track": 3
   },
-  "out_hash": "6acd1ab1969ab5051be1",
+  "out_hash": "5efe657a98fc007ad372",
   "scheme": 2,
   "rewrote": {}
  },
@@ -228,16 +228,16 @@
   "rewrote": {}
  },
  "spotting": {
-  "fingerprint": "b030287a15e70c63",
+  "fingerprint": "607c6fa3d0cef355",
   "version": "1",
-  "seconds": 19.5,
-  "finished": "2026-11-12 12:15:14",
+  "seconds": 17.7,
+  "finished": "2026-11-12 15:51:55",
   "summary": {
    "enabled": true,
-   "strokes": 351,
-   "near": 192,
-   "far": 159,
-   "out_of_play": 2355,
+   "strokes": 372,
+   "near": 209,
+   "far": 163,
+   "out_of_play": 2282,
    "threshold": 0.1,
    "fps": 10.0,
    "model_fps": 10.0,
@@ -245,32 +245,32 @@
    "audio_track": 3,
    "seconds": {
     "jugadores_y_audio": 1.7,
-    "rasgos": 17.7,
-    "bola": 0.0,
-    "modelo": 0.1
+    "rasgos": 15.5,
+    "bola": 0.1,
+    "modelo": 0.4
    }
   },
-  "out_hash": "8e8ed78f84dde2e080a1",
+  "out_hash": "9e0a6580875ada726fa9",
   "scheme": 2,
   "rewrote": {}
  },
  "views": {
-  "fingerprint": "c6d00d573a4f375d",
+  "fingerprint": "683d1e558010dff4",
   "version": "6",
-  "seconds": 138.0,
-  "finished": "2026-11-12 12:51:46",
+  "seconds": 135.4,
+  "finished": "2026-11-12 15:54:14",
   "summary": {
-   "views": 492,
-   "repeticion_principal": 36,
+   "views": 494,
+   "repeticion_principal": 38,
    "lateral": 25,
    "frontal": 6,
    "primer_plano": 408,
    "otra": 17,
-   "links": 881,
-   "linked_views": 402,
-   "slowmo_links": 12
+   "links": 946,
+   "linked_views": 407,
+   "slowmo_links": 17
   },
-  "out_hash": "0126ff844baae8a58b43",
+  "out_hash": "11a95f6097778f24c0e3",
   "scheme": 2,
   "rewrote": {}
  },
