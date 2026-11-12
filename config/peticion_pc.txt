@@ -965,3 +965,10 @@ script: diag_identidad_f3set
 argumentos: --match azarenka
 # 225 (12-11): por que la identidad deja 78 planos sin decidir en la compilacion de Azarenka (F3Set) con el codigo de
 # hoy frente al 08-11: recall 68 % en el recuento 223 (124 golpes dudosos, 122 de ese partido). Solo lee
+---
+id: 226
+accion: control
+orden: cancelar
+trabajo: 68
+# 226 (12-11): se cancela el recuento con la bola reutilizada (trabajo 68): corre con la identidad que hoy deja sin
+# decidir la compilacion de Azarenka; se repite cuando este arreglada. Primero el diagnostico (225)
