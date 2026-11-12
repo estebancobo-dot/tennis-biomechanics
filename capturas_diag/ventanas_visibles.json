@@ -1,0 +1,56 @@
+[
+ {
+  "name": "ApplicationFrameHost",
+  "title": "Settings",
+  "pid": 9560,
+  "cmd": "C:\\WINDOWS\\system32\\ApplicationFrameHost.exe -Embedding",
+  "parent": "svchost.exe",
+  "parent_cmd": null,
+  "start": "11/11/2026 09:26:40"
+ },
+ {
+  "name": "claude",
+  "title": "Claude",
+  "pid": 3864,
+  "cmd": "\"C:\\Program Files\\WindowsApps\\Claude_5.1231.2.0_x64__pzs8sxrjxfjjc\\app\\claude.exe\" ",
+  "parent": "sihost.exe",
+  "parent_cmd": "sihost.exe",
+  "start": "11/11/2026 11:34:25"
+ },
+ {
+  "name": "explorer",
+  "title": "",
+  "pid": 4052,
+  "cmd": "C:\\WINDOWS\\Explorer.EXE",
+  "parent": null,
+  "parent_cmd": null,
+  "start": "11/11/2026 09:24:47"
+ },
+ {
+  "name": "SystemSettings",
+  "title": "Settings",
+  "pid": 16304,
+  "cmd": "\"C:\\Windows\\ImmersiveControlPanel\\SystemSettings.exe\" -ServerName:microsoft.windows.immersivecontrolpanel",
+  "parent": "svchost.exe",
+  "parent_cmd": null,
+  "start": "11/11/2026 11:40:20"
+ },
+ {
+  "name": "TextInputHost",
+  "title": "Windows Input Experience",
+  "pid": 5552,
+  "cmd": "\"C:\\WINDOWS\\SystemApps\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\TextInputHost.exe\" -ServerName:InputApp.AppXk0k6mrh4r2q0ct33a9wgbez0x7v9cz5y.mca",
+  "parent": "svchost.exe",
+  "parent_cmd": null,
+  "start": "11/11/2026 09:38:37"
+ },
+ {
+  "name": "WindowsTerminal",
+  "title": "C:\\tenis\\tennis-biomech\\.venv\\Scripts\\python.exe",
+  "pid": 7592,
+  "cmd": "\"C:\\Program Files\\WindowsApps\\Microsoft.WindowsTerminal_1.24.12741.0_x64__8wekyb3d8bbwe\\WindowsTerminal.exe\" -Embedding",
+  "parent": "svchost.exe",
+  "parent_cmd": null,
+  "start": "11/12/2026 11:08:21"
+ }
+]

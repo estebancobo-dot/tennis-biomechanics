@@ -1,32 +1,13 @@
 {
- "at": "2026-11-12 11:30:08",
- "firma": "33fc6b23eba3",
+ "at": "2026-11-12 11:40:06",
+ "firma": "4446581a5762",
  "ejecutor": {
   "vivo": true,
   "pid": 16604,
-  "at": 1794479399.1440463
+  "at": 1794480003.3195646
  },
  "pausa": false,
- "en_curso": [
-  {
-   "id": 84,
-   "kind": "flujo",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
-   "state": "en curso",
-   "message": "paso 5/6: Auditoria",
-   "created": "2026-11-12 10:37:05",
-   "started": "2026-11-12 11:27:35",
-   "finished": null,
-   "args": "[\"informe\"]",
-   "source": "claude 241",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_84.log",
-   "paso": 4,
-   "pasos": 6
-  }
- ],
+ "en_curso": [],
  "progreso": {
   "partido": "us-open-2026-r4-naomi-osaka-elena-rybakina",
   "etapa": "fine_doubtful",
@@ -37,7 +18,8 @@
   "quedan_s": 0,
   "hora": "2026-11-12 11:03:05"
  },
- "pendientes": [
+ "pendientes": [],
+ "recientes": [
   {
    "id": 85,
    "kind": "comando",
@@ -45,19 +27,35 @@
    "player": null,
    "stroke": null,
    "reason": "script ventanas_visibles",
-   "state": "pendiente",
+   "state": "hecho",
    "message": "",
    "created": "2026-11-12 11:07:28",
-   "started": null,
-   "finished": null,
+   "started": "2026-11-12 11:32:31",
+   "finished": "2026-11-12 11:32:32",
    "args": "[\"script\", \"ventanas_visibles\"]",
    "source": "claude 242",
-   "log": "",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_85.log",
    "paso": 0,
    "pasos": 0
-  }
- ],
- "recientes": [
+  },
+  {
+   "id": 84,
+   "kind": "flujo",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
+   "state": "hecho",
+   "message": "6 pasos",
+   "created": "2026-11-12 10:37:05",
+   "started": "2026-11-12 11:27:35",
+   "finished": "2026-11-12 11:32:30",
+   "args": "[\"informe\"]",
+   "source": "claude 241",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_84.log",
+   "paso": 6,
+   "pasos": 6
+  },
   {
    "id": 83,
    "kind": "comando",
@@ -291,45 +289,37 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_71.log",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 70,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script diag_identidad_f3set --match azaren",
-   "state": "hecho",
-   "message": "",
-   "created": "2026-11-12 08:10:30",
-   "started": "2026-11-12 08:10:32",
-   "finished": "2026-11-12 08:10:33",
-   "args": "[\"script\", \"diag_identidad_f3set\", \"--match\", \"azaren\"]",
-   "source": "claude 227",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_70.log",
-   "paso": 0,
-   "pasos": 0
-  },
-  {
-   "id": 69,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script diag_identidad_f3set --match azarenka",
-   "state": "hecho",
-   "message": "",
-   "created": "2026-11-12 07:50:50",
-   "started": "2026-11-12 07:50:59",
-   "finished": "2026-11-12 07:51:00",
-   "args": "[\"script\", \"diag_identidad_f3set\", \"--match\", \"azarenka\"]",
-   "source": "claude 225",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_69.log",
-   "paso": 0,
-   "pasos": 0
   }
  ],
  "eventos": [
+  {
+   "id": 439,
+   "job": 85,
+   "at": "2026-11-12 11:32:33",
+   "kind": "hecho",
+   "text": "código 0"
+  },
+  {
+   "id": 438,
+   "job": 85,
+   "at": "2026-11-12 11:32:31",
+   "kind": "empieza",
+   "text": "script ventanas_visibles"
+  },
+  {
+   "id": 437,
+   "job": 84,
+   "at": "2026-11-12 11:32:31",
+   "kind": "hecho",
+   "text": "código 0"
+  },
+  {
+   "id": 436,
+   "job": 84,
+   "at": "2026-11-12 11:32:29",
+   "kind": "paso",
+   "text": "6/6 Modelo de calidad"
+  },
   {
    "id": 435,
    "job": 84,
@@ -511,34 +501,6 @@
    "at": "2026-11-12 10:35:22",
    "kind": "ejecutor",
    "text": "se reinicia con el código nuevo"
-  },
-  {
-   "id": 409,
-   "job": null,
-   "at": "2026-11-12 10:35:22",
-   "kind": "reiniciar",
-   "text": "ciclo"
-  },
-  {
-   "id": 408,
-   "job": 80,
-   "at": "2026-11-12 10:28:02",
-   "kind": "hecho",
-   "text": "código 0"
-  },
-  {
-   "id": 407,
-   "job": 80,
-   "at": "2026-11-12 10:28:00",
-   "kind": "empieza",
-   "text": "script diag_sin_pose --match b8b713 --n 4"
-  },
-  {
-   "id": 406,
-   "job": 80,
-   "at": "2026-11-12 10:27:58",
-   "kind": "enviado",
-   "text": "tennisbio script diag_sin_pose --match b8b713 --n 4 (claude 237)"
   }
  ]
 }

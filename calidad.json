@@ -5,16 +5,21 @@
    "caracteristica": "funcional",
    "capa": "pc",
    "ok": 25,
-   "aviso": 3,
-   "falta": 0,
+   "aviso": 4,
+   "falta": 4,
    "pocos datos": 0,
    "fallan": [
     "Golpes encontrados frente al marcador: sin-fecha_f43dd2_rybakina",
     "Saques por punto de su saque: sin-fecha_f43dd2_rybakina",
-    "Saques por punto de su saque: sin-fecha_584c5b_rybakina"
+    "Saques por punto de su saque: sin-fecha_584c5b_rybakina",
+    "Identidad en los cambios de lado: sin-fecha_f43dd2_rybakina",
+    "Golpes con su pose en el contacto: sin-fecha_584c5b_rybakina",
+    "Golpes con su pose en el contacto: sin-fecha_580c6f_rybakina",
+    "Golpes con su pose en el contacto: sin-fecha_b8b713_rybakina",
+    "Golpes con su pose en el contacto: sin-fecha_49723c_rybakina"
    ],
-   "n": 28,
-   "score": 0.8928571428571429,
+   "n": 33,
+   "score": 0.7575757575757576,
    "accepted": false
   },
   {
@@ -50,19 +55,15 @@
    "dominio": "taxonomia",
    "caracteristica": "funcional",
    "capa": "pc",
-   "ok": 168,
-   "aviso": 5,
+   "ok": 172,
+   "aviso": 1,
    "falta": 0,
    "pocos datos": 27,
    "fallan": [
-    "Fotograma clave: inicio de preparación",
-    "Fotograma clave: armado",
-    "Fotograma clave: inicio de aceleración",
-    "Fotograma clave: terminación",
-    "Fotograma clave: recuperación"
+    "Fotograma clave: inicio de preparación"
    ],
    "n": 173,
-   "score": 0.9710982658959537,
+   "score": 0.9942196531791907,
    "accepted": true
   },
   {
@@ -164,9 +165,9 @@
    "pocos datos": 0,
    "fallan": [
     "Golpes dudosos (duda sobre el golpe, no sobre una medida)",
-    "Pruebas del código en este PC",
+    "Registros con fecha y duración",
     "Orquestador: espera hasta empezar cada trabajo",
-    "Peticiones por GitHub Actions: espera hasta empezar"
+    "Comprobaciones que saben fallar"
    ],
    "n": 14,
    "score": 0.7142857142857143,
@@ -371,11 +372,11 @@
  "domains": {
   "golpes": {
    "ok": 26,
-   "n": 29,
+   "n": 34,
    "cells": 2,
    "unmeasured": 0,
    "accepted": 1,
-   "score": 0.896551724137931
+   "score": 0.7647058823529411
   },
   "pantallas": {
    "ok": 53,
@@ -386,12 +387,12 @@
    "score": 0.9636363636363636
   },
   "taxonomia": {
-   "ok": 172,
+   "ok": 176,
    "n": 179,
    "cells": 3,
    "unmeasured": 1,
    "accepted": 1,
-   "score": 0.9608938547486033
+   "score": 0.9832402234636871
   },
   "aprendizaje": {
    "ok": 30,
@@ -444,12 +445,12 @@
  },
  "characteristics": {
   "funcional": {
-   "ok": 259,
-   "n": 269,
+   "ok": 263,
+   "n": 274,
    "cells": 8,
    "unmeasured": 0,
    "accepted": 6,
-   "score": 0.9628252788104089
+   "score": 0.9598540145985401
   },
   "exactitud": {
    "ok": 40,
@@ -502,12 +503,12 @@
  },
  "layers": {
   "pc": {
-   "ok": 264,
-   "n": 282,
+   "ok": 268,
+   "n": 287,
    "cells": 12,
    "unmeasured": 2,
    "accepted": 5,
-   "score": 0.9361702127659575
+   "score": 0.9337979094076655
   },
   "pantallas": {
    "ok": 54,
@@ -537,9 +538,9 @@
  "unmapped": {},
  "threshold": 0.95,
  "total": {
-  "ok": 384,
-  "n": 410,
-  "score": 0.9365853658536586,
+  "ok": 388,
+  "n": 415,
+  "score": 0.9349397590361446,
   "cells": 25,
   "accepted": 10,
   "unmeasured": 7
