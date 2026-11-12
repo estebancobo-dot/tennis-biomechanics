@@ -1002,3 +1002,9 @@ script: validate_recall
 argumentos: --spotter --tag v13bola --from v13 --drop-ball-caches --set fine_pass.ball_from_spotting=true
 # 231 (12-11, R2): el recuento v13 con la bola del detector reutilizada (desde salidas_v13 con la pose guardada y sin la
 # bola de cada ventana): recall, precision e identidad frente al v13 (465 de 517, 0.945)
+---
+id: 232
+accion: medir
+script: diag_export_esqueleto
+# 232 (12-12, R5): por que 2, 5 y 4 de 8 videos exportados (derecha, reves, saque) no muestran el esqueleto en ningun
+# momento: lado, golpe y fotogramas con pose de su serie. Solo lee
