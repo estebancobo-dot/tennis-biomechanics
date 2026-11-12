@@ -1,6 +1,6 @@
-# Revisión automática: REGRESIÓN
+# Revisión automática: FALLOS
 
-384 cumplidos · 30 no cumplidos · 110 sin golpes suficientes · 118 avisos (antes: 386 cumplidos, 26 no cumplidos)
+384 cumplidos · 30 no cumplidos · 110 sin golpes suficientes · 118 avisos (antes: 384 cumplidos, 30 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 135 de 260
 
@@ -175,13 +175,3 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 - **#255 Plano del swing: raqueta al lado o detrás del cuerpo en el armado (Vídeos de entrenadores, 12-10, pendiente)**: SIN HACER según el registro (#255, docs/peticiones_usuario.md)
 - **#257 Comparativa a fondo y catalogada con todo lo que existe: apps profesionales (Hawk-Eye/TennisViz, SwingVision, **: SIN HACER según el registro (#257, docs/peticiones_usuario.md)
 - **#258 Partidos y jugadores automáticos desde un nombre de fichero mínimo: normalizar los nombres, leer la ficha públ**: SIN HACER según el registro (#258, docs/peticiones_usuario.md)
-
-## Empeora respecto a la ejecución anterior
-
-- **Aplicación: lo que consume abierta**: aviso → falta: CPU media 0.03 % (máx 0.06 %; objetivo ≤ 5 %), memoria hasta 1469 MB (objetivo ≤ 800) en 8 procesos; 2026-11-12 01:26:37
-- **Uso del PC por etapa (CPU, RAM, iGPU y disco)**: ok → aviso: recursos_2026-11-12_0311.csv sin muestras con su etapa (ni las 9 anteriores)
-- **Peticiones por GitHub Actions: espera hasta empezar**: ok → aviso: petición del 12-11 02:28, empezó a los 42.3 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)
-- **#160 la app que hiciste completa como se arranca, se puede usar ahora? (Chat, 19-10 08:11)**: aviso → falta: 6 comprobaciones: 1 falta, 5 ok; la peor: «Aplicación: lo que consume abierta» (CPU media 0.03 % (máx 0.06 %; objetivo ≤ 5 %), memoria hasta 1469 MB (objetivo ≤ 800) en 8 procesos; 2026-11-12 01:26:37
-- **#225 La aplicación no se cuelga ni ralentiza el PC**: aviso → falta: a medias según el registro (ver docs/peticiones_usuario.md); 4 comprobaciones: 1 falta, 3 ok; la peor: «Aplicación: lo que consume abierta» (CPU media 0.03 % (máx 0.06 %; objetivo ≤ 5 %), memoria hast
-- **#230 Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo**: pocos datos → aviso: a medias según el registro (ver docs/peticiones_usuario.md); 4 comprobaciones: 1 aviso, 1 pocos datos, 2 ok; la peor: «Uso del PC por etapa (CPU, RAM, iGPU y disco)» (recursos_2026-11-12_0311.csv sin 
-- **#242 Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femeninos, un análisis po**: aviso → falta: a medias según el registro (ver docs/peticiones_usuario.md); 6 comprobaciones: 1 falta, 5 ok; la peor: «Aplicación: lo que consume abierta» (CPU media 0.03 % (máx 0.06 %; objetivo ≤ 5 %), memoria hast
