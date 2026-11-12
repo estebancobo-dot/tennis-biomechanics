@@ -1,10 +1,10 @@
 {
- "at": "2026-11-12 01:21:06",
- "firma": "4da8d761619b",
+ "at": "2026-11-12 01:21:24",
+ "firma": "028addda2fbb",
  "ejecutor": {
   "vivo": true,
   "pid": 7200,
-  "at": 1794442864.3816497
+  "at": 1794442880.3891447
  },
  "pausa": false,
  "en_curso": [
@@ -38,6 +38,24 @@
   "hora": "2026-11-11 17:02:19"
  },
  "pendientes": [
+  {
+   "id": 64,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script bench_fine_fps --match pegula --minutes 15 --tag bola --set fine_pass.ball_from_spotting=true",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-12 01:21:21",
+   "started": null,
+   "finished": null,
+   "args": "[\"script\", \"bench_fine_fps\", \"--match\", \"pegula\", \"--minutes\", \"15\", \"--tag\", \"bola\", \"--set\", \"fine_pass.ball_from_spotting=true\"]",
+   "source": "claude 220",
+   "log": "",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 63,
    "kind": "comando",
@@ -349,6 +367,13 @@
  ],
  "eventos": [
   {
+   "id": 272,
+   "job": 64,
+   "at": "2026-11-12 01:21:21",
+   "kind": "enviado",
+   "text": "tennisbio script bench_fine_fps --match pegula --minutes 15 --tag bola --set fine_pass.ball_from_spotting=true (claude 220)"
+  },
+  {
    "id": 271,
    "job": 63,
    "at": "2026-11-12 01:21:02",
@@ -550,13 +575,6 @@
    "at": "2026-11-11 23:50:10",
    "kind": "ejecutor",
    "text": "arranca el siguiente con el código nuevo (pid 11172)"
-  },
-  {
-   "id": 242,
-   "job": null,
-   "at": "2026-11-11 23:50:10",
-   "kind": "ejecutor",
-   "text": "termina"
   }
  ]
 }
