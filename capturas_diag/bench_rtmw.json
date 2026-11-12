@@ -1,0 +1,166 @@
+{
+ "match": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
+ "start_s": 5952.2,
+ "minutes": 15.0,
+ "max_fps": 30,
+ "set": [
+  "fine_pass.refine=rtmw-x"
+ ],
+ "A": {
+  "seconds": 1938.2,
+  "done": [
+   "probe",
+   "scenes",
+   "court",
+   "score",
+   "players",
+   "audio",
+   "identity",
+   "spotting",
+   "candidates",
+   "views",
+   "fine",
+   "views_link",
+   "view_clips",
+   "slowmo_fine",
+   "fine_opponent",
+   "fine_doubtful"
+  ],
+  "fine_s": 1271.9,
+  "stage_s": {
+   "probe": 0.3,
+   "scenes": 100.3,
+   "court": 24.3,
+   "score": 53.0,
+   "players": 151.9,
+   "audio": 2.4,
+   "identity": 19.1,
+   "spotting": 260.4,
+   "candidates": 0.3,
+   "views": 23.4,
+   "fine": 1004.1,
+   "views_link": 0.0,
+   "view_clips": 82.5,
+   "slowmo_fine": 0.0,
+   "fine_opponent": 0.0,
+   "fine_doubtful": 267.8
+  }
+ },
+ "B": {
+  "seconds": 1261.1,
+  "done": [
+   "fine",
+   "views_link",
+   "view_clips",
+   "slowmo_fine",
+   "fine_opponent",
+   "fine_doubtful"
+  ],
+  "fine_s": 1256.9,
+  "stage_s": {
+   "probe": 0.3,
+   "scenes": 100.3,
+   "court": 24.3,
+   "score": 53.0,
+   "players": 151.9,
+   "audio": 2.4,
+   "identity": 19.1,
+   "spotting": 260.4,
+   "candidates": 0.3,
+   "views": 23.4,
+   "fine": 994.8,
+   "views_link": 0.1,
+   "view_clips": 3.7,
+   "slowmo_fine": 0.0,
+   "fine_opponent": 0.0,
+   "fine_doubtful": 262.1
+  }
+ },
+ "compare": {
+  "A": 43,
+  "B": 43,
+  "matched": 43,
+  "only_A": 0,
+  "only_B": 0,
+  "same_kind": 43,
+  "same_side": 43,
+  "median_dt_s": 0.0,
+  "metrics_close": 26,
+  "metrics": 26,
+  "worst": {
+   "time_ready_to_impact_s": {
+    "n": 43,
+    "median_abs_diff": 0.0,
+    "spread_sd": 0.224,
+    "diff_vs_spread": 0.0
+   },
+   "base_width_loaded_pct": {
+    "n": 20,
+    "median_abs_diff": 0.0,
+    "spread_sd": 19.482,
+    "diff_vs_spread": 0.0
+   },
+   "contact_lateral_pct": {
+    "n": 29,
+    "median_abs_diff": 0.0,
+    "spread_sd": 13.255,
+    "diff_vs_spread": 0.0
+   },
+   "toss_above_head_bh": {
+    "n": 28,
+    "median_abs_diff": 0.0,
+    "spread_sd": 0.173,
+    "diff_vs_spread": 0.0
+   },
+   "elbow_impact_deg": {
+    "n": 28,
+    "median_abs_diff": 0.0,
+    "spread_sd": 26.727,
+    "diff_vs_spread": 0.0
+   },
+   "ball_seen_pre_share": {
+    "n": 20,
+    "median_abs_diff": 0.0,
+    "spread_sd": 0.131,
+    "diff_vs_spread": 0.0
+   },
+   "shoulder_turn_loaded_deg": {
+    "n": 27,
+    "median_abs_diff": 0.0,
+    "spread_sd": 19.81,
+    "diff_vs_spread": 0.0
+   },
+   "time_takeback_to_impact_s": {
+    "n": 25,
+    "median_abs_diff": 0.0,
+    "spread_sd": 0.18,
+    "diff_vs_spread": 0.0
+   },
+   "hip_drop_pct": {
+    "n": 26,
+    "median_abs_diff": 0.0,
+    "spread_sd": 5.314,
+    "diff_vs_spread": 0.0
+   },
+   "time_loaded_to_impact_s": {
+    "n": 29,
+    "median_abs_diff": 0.0,
+    "spread_sd": 0.132,
+    "diff_vs_spread": 0.0
+   },
+   "head_motion_impact_cm": {
+    "n": 29,
+    "median_abs_diff": 0.0,
+    "spread_sd": 5.374,
+    "diff_vs_spread": 0.0
+   },
+   "contact_height_pct": {
+    "n": 31,
+    "median_abs_diff": 0.0,
+    "spread_sd": 23.151,
+    "diff_vs_spread": 0.0
+   }
+  }
+ },
+ "fine_speedup": 1.01
+}

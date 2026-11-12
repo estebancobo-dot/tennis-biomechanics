@@ -1,28 +1,28 @@
 {
- "at": "2026-11-12 02:10:53",
- "firma": "5d526181ca50",
+ "at": "2026-11-12 02:20:09",
+ "firma": "ee2b48bb17b2",
  "ejecutor": {
   "vivo": true,
   "pid": 7200,
-  "at": 1794445842.1979985
+  "at": 1794446402.529636
  },
  "pausa": false,
  "en_curso": [
   {
-   "id": 63,
+   "id": 64,
    "kind": "comando",
    "match": null,
    "player": null,
    "stroke": null,
-   "reason": "script bench_fine_fps --match pegula --minutes 15 --tag rtmw --set fine_pass.refine=rtmw-x",
+   "reason": "script bench_fine_fps --match pegula --minutes 15 --tag bola --set fine_pass.ball_from_spotting=true",
    "state": "en curso",
    "message": "",
-   "created": "2026-11-12 01:21:02",
-   "started": "2026-11-12 01:26:38",
+   "created": "2026-11-12 01:21:21",
+   "started": "2026-11-12 02:20:00",
    "finished": null,
-   "args": "[\"script\", \"bench_fine_fps\", \"--match\", \"pegula\", \"--minutes\", \"15\", \"--tag\", \"rtmw\", \"--set\", \"fine_pass.refine=rtmw-x\"]",
-   "source": "claude 219",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_63.log",
+   "args": "[\"script\", \"bench_fine_fps\", \"--match\", \"pegula\", \"--minutes\", \"15\", \"--tag\", \"bola\", \"--set\", \"fine_pass.ball_from_spotting=true\"]",
+   "source": "claude 220",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_64.log",
    "paso": 0,
    "pasos": 0
   }
@@ -37,27 +37,26 @@
   "quedan_s": 0,
   "hora": "2026-11-11 17:02:19"
  },
- "pendientes": [
+ "pendientes": [],
+ "recientes": [
   {
-   "id": 64,
+   "id": 63,
    "kind": "comando",
    "match": null,
    "player": null,
    "stroke": null,
-   "reason": "script bench_fine_fps --match pegula --minutes 15 --tag bola --set fine_pass.ball_from_spotting=true",
-   "state": "pendiente",
+   "reason": "script bench_fine_fps --match pegula --minutes 15 --tag rtmw --set fine_pass.refine=rtmw-x",
+   "state": "hecho",
    "message": "",
-   "created": "2026-11-12 01:21:21",
-   "started": null,
-   "finished": null,
-   "args": "[\"script\", \"bench_fine_fps\", \"--match\", \"pegula\", \"--minutes\", \"15\", \"--tag\", \"bola\", \"--set\", \"fine_pass.ball_from_spotting=true\"]",
-   "source": "claude 220",
-   "log": "",
+   "created": "2026-11-12 01:21:02",
+   "started": "2026-11-12 01:26:38",
+   "finished": "2026-11-12 02:19:59",
+   "args": "[\"script\", \"bench_fine_fps\", \"--match\", \"pegula\", \"--minutes\", \"15\", \"--tag\", \"rtmw\", \"--set\", \"fine_pass.refine=rtmw-x\"]",
+   "source": "claude 219",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_63.log",
    "paso": 0,
    "pasos": 0
-  }
- ],
- "recientes": [
+  },
   {
    "id": 62,
    "kind": "comando",
@@ -309,27 +308,23 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_49.log",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 48,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script diag_height",
-   "state": "hecho",
-   "message": "",
-   "created": "2026-11-11 15:50:51",
-   "started": "2026-11-11 15:51:00",
-   "finished": "2026-11-11 15:51:19",
-   "args": "[\"script\", \"diag_height\"]",
-   "source": "claude 200",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_48.log",
-   "paso": 0,
-   "pasos": 0
   }
  ],
  "eventos": [
+  {
+   "id": 279,
+   "job": 64,
+   "at": "2026-11-12 02:20:00",
+   "kind": "empieza",
+   "text": "script bench_fine_fps --match pegula --minutes 15 --tag bola --set fine_pass.ball_from_spotting=true"
+  },
+  {
+   "id": 278,
+   "job": 63,
+   "at": "2026-11-12 02:20:00",
+   "kind": "hecho",
+   "text": "código 0"
+  },
   {
    "id": 277,
    "job": 63,
@@ -525,20 +520,6 @@
    "at": "2026-11-12 01:13:39",
    "kind": "reiniciar",
    "text": "ciclo"
-  },
-  {
-   "id": 249,
-   "job": null,
-   "at": "2026-11-11 23:51:02",
-   "kind": "ejecutor",
-   "text": "arranca (pid 6180)"
-  },
-  {
-   "id": 248,
-   "job": null,
-   "at": "2026-11-11 23:51:01",
-   "kind": "ejecutor",
-   "text": "arranca el siguiente con el código nuevo (pid 10036)"
   }
  ]
 }
