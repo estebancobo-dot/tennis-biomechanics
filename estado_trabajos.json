@@ -1,10 +1,10 @@
 {
- "at": "2026-11-12 15:20:09",
- "firma": "a7cbfcf087a5",
+ "at": "2026-11-12 15:35:37",
+ "firma": "b4aae19c5faf",
  "ejecutor": {
   "vivo": true,
-  "pid": 15676,
-  "at": 1794493195.5763643
+  "pid": 14256,
+  "at": 1794494130.5818634
  },
  "pausa": false,
  "en_curso": [],
@@ -18,7 +18,26 @@
   "quedan_s": 0,
   "hora": "2026-11-12 13:25:39"
  },
- "pendientes": [],
+ "pendientes": [
+  {
+   "id": 102,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "run --match us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-12 15:35:33",
+   "started": null,
+   "finished": null,
+   "args": "[\"run\", \"--match\", \"us-open-2026-r4-naomi-osaka-elena-rybakina\"]",
+   "source": "claude 261",
+   "log": "",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "recientes": [
   {
    "id": 101,
@@ -293,6 +312,48 @@
  ],
  "eventos": [
   {
+   "id": 549,
+   "job": 102,
+   "at": "2026-11-12 15:35:33",
+   "kind": "enviado",
+   "text": "tennisbio run --match us-open-2026-r4-naomi-osaka-elena-rybakina (claude 261)"
+  },
+  {
+   "id": 548,
+   "job": null,
+   "at": "2026-11-12 15:34:30",
+   "kind": "ejecutor",
+   "text": "arranca (pid 14256)"
+  },
+  {
+   "id": 547,
+   "job": null,
+   "at": "2026-11-12 15:34:29",
+   "kind": "ejecutor",
+   "text": "arranca el siguiente con el código nuevo (pid 14044)"
+  },
+  {
+   "id": 546,
+   "job": null,
+   "at": "2026-11-12 15:34:29",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 545,
+   "job": null,
+   "at": "2026-11-12 15:34:29",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 544,
+   "job": null,
+   "at": "2026-11-12 15:34:27",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
    "id": 543,
    "job": 101,
    "at": "2026-11-12 15:20:09",
@@ -459,48 +520,6 @@
    "at": "2026-11-12 14:54:15",
    "kind": "paso",
    "text": "2/2 Prevision"
-  },
-  {
-   "id": 519,
-   "job": 97,
-   "at": "2026-11-12 14:54:14",
-   "kind": "paso",
-   "text": "1/2 Registro de partidos"
-  },
-  {
-   "id": 518,
-   "job": 97,
-   "at": "2026-11-12 14:54:13",
-   "kind": "empieza",
-   "text": "flujo «prevision»: Que etapas se rehacen en cada partido y cuanto tardarian, sin ejecutar nada"
-  },
-  {
-   "id": 517,
-   "job": 97,
-   "at": "2026-11-12 14:54:05",
-   "kind": "enviado",
-   "text": "flujo prevision (claude 256)"
-  },
-  {
-   "id": 516,
-   "job": 96,
-   "at": "2026-11-12 14:53:53",
-   "kind": "hecho",
-   "text": "código 0"
-  },
-  {
-   "id": 515,
-   "job": 96,
-   "at": "2026-11-12 14:53:49",
-   "kind": "empieza",
-   "text": "desde-cero"
-  },
-  {
-   "id": 514,
-   "job": 96,
-   "at": "2026-11-12 14:53:49",
-   "kind": "enviado",
-   "text": "tennisbio desde-cero (claude 255)"
   }
  ]
 }
