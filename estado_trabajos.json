@@ -1,10 +1,10 @@
 {
- "at": "2026-11-12 01:19:05",
- "firma": "42e88574db8c",
+ "at": "2026-11-12 01:20:12",
+ "firma": "7466d25477ac",
  "ejecutor": {
   "vivo": true,
-  "pid": 18324,
-  "at": 1794442745.425982
+  "pid": 7200,
+  "at": 1794442796.3386784
  },
  "pausa": false,
  "en_curso": [],
@@ -18,7 +18,26 @@
   "quedan_s": 0,
   "hora": "2026-11-11 17:02:19"
  },
- "pendientes": [],
+ "pendientes": [
+  {
+   "id": 60,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script diag_app_nuevo",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-12 01:20:08",
+   "started": null,
+   "finished": null,
+   "args": "[\"script\", \"diag_app_nuevo\"]",
+   "source": "claude 216",
+   "log": "",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "recientes": [
   {
    "id": 59,
@@ -293,6 +312,48 @@
  ],
  "eventos": [
   {
+   "id": 260,
+   "job": 60,
+   "at": "2026-11-12 01:20:08",
+   "kind": "enviado",
+   "text": "tennisbio script diag_app_nuevo (claude 216)"
+  },
+  {
+   "id": 259,
+   "job": null,
+   "at": "2026-11-12 01:19:56",
+   "kind": "ejecutor",
+   "text": "arranca (pid 7200)"
+  },
+  {
+   "id": 258,
+   "job": null,
+   "at": "2026-11-12 01:19:55",
+   "kind": "ejecutor",
+   "text": "arranca el siguiente con el código nuevo (pid 7256)"
+  },
+  {
+   "id": 257,
+   "job": null,
+   "at": "2026-11-12 01:19:55",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 256,
+   "job": null,
+   "at": "2026-11-12 01:19:55",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 255,
+   "job": null,
+   "at": "2026-11-12 01:19:48",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
    "id": 254,
    "job": null,
    "at": "2026-11-12 01:13:45",
@@ -459,48 +520,6 @@
    "at": "2026-11-11 23:39:32",
    "kind": "enviado",
    "text": "flujo informe (claude 214)"
-  },
-  {
-   "id": 230,
-   "job": 58,
-   "at": "2026-11-11 23:39:24",
-   "kind": "hecho",
-   "text": "código 0"
-  },
-  {
-   "id": 229,
-   "job": 58,
-   "at": "2026-11-11 23:39:22",
-   "kind": "empieza",
-   "text": "script auto_catalog"
-  },
-  {
-   "id": 228,
-   "job": 58,
-   "at": "2026-11-11 23:39:14",
-   "kind": "enviado",
-   "text": "tennisbio script auto_catalog (claude 213)"
-  },
-  {
-   "id": 227,
-   "job": null,
-   "at": "2026-11-11 23:38:52",
-   "kind": "ejecutor",
-   "text": "arranca (pid 15844)"
-  },
-  {
-   "id": 226,
-   "job": null,
-   "at": "2026-11-11 23:38:51",
-   "kind": "ejecutor",
-   "text": "arranca el siguiente con el código nuevo (pid 4176)"
-  },
-  {
-   "id": 225,
-   "job": null,
-   "at": "2026-11-11 23:38:51",
-   "kind": "ejecutor",
-   "text": "termina"
   }
  ]
 }
