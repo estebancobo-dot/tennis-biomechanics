@@ -3824,3 +3824,12 @@
 2026-11-12 19:28:51   fine_doubtful:  90 % (38/42 golpes candidatos · 17 confirmados · 0 ventanas descartadas sin pose) · 12 min · quedan ≈ 78 s
 2026-11-12 19:28:59   ventana w004702102_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.37 s
 2026-11-12 19:28:59   ventana w004702102_3600: pose hybrid en 215 de 215 fotogramas (32 s; modelo 32 s; pies en 199) · bola 6 s · raqueta 49 s (1 de 1 impactos) · 1 golpes posibles · altura 519 px (segments)
+2026-11-12 19:30:32   ventana w005988638_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (1.72 s): puede haber golpe
+2026-11-12 19:30:32   ventana w005988638_3600: pose hybrid en 215 de 215 fotogramas (37 s; modelo 37 s; pies en 104) · bola 6 s · raqueta 52 s (1 de 1 impactos) · 1 golpes posibles · altura 241 px (segments)
+2026-11-12 19:30:32   fine_doubtful:  95 % (40/42 golpes candidatos · 19 confirmados · 0 ventanas descartadas sin pose) · 14 min · quedan ≈ 42 s
+2026-11-12 19:30:34   ventana w006003493_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (1.7 s): puede haber golpe
+2026-11-12 19:30:34   ventana w006003493_3600: pose hybrid en 216 de 216 fotogramas (34 s; modelo 34 s; pies en 157) · bola 6 s · raqueta 52 s (1 de 1 impactos) · 1 golpes posibles · altura 851 px (segments)
+2026-11-12 19:31:47   ventana w006011879_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (2.12 s): puede haber golpe
+2026-11-12 19:31:47   ventana w006011879_3600: pose hybrid en 216 de 216 fotogramas (20 s; modelo 20 s; pies en 133) · bola 5 s · raqueta 47 s (1 de 1 impactos) · 1 golpes posibles · altura 180 px (court)
+2026-11-12 19:31:47   fine_doubtful: 100 % (42/42 golpes candidatos · 21 confirmados · 0 ventanas descartadas sin pose) · 15 min · quedan ≈ 0 s
+2026-11-12 19:31:48 [elena-rybakina-jessica-pegula-miami-2026-quarter-final] fine_doubtful terminada a las 19:31:48 en 15.4 min
