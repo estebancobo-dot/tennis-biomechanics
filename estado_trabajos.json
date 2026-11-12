@@ -1,32 +1,13 @@
 {
- "at": "2026-11-12 13:30:10",
- "firma": "50e63c7d8432",
+ "at": "2026-11-12 14:00:07",
+ "firma": "b14ec730cbfd",
  "ejecutor": {
   "vivo": true,
   "pid": 5732,
-  "at": 1794486610.5720894
+  "at": 1794488407.7834377
  },
  "pausa": false,
- "en_curso": [
-  {
-   "id": 94,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script validate_recall --spotter --tag v15 --from v13r",
-   "state": "en curso",
-   "message": "",
-   "created": "2026-11-12 12:45:39",
-   "started": "2026-11-12 13:25:42",
-   "finished": null,
-   "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"v15\", \"--from\", \"v13r\"]",
-   "source": "claude 253",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_94.log",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "en_curso": [],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "fine_doubtful",
@@ -37,7 +18,8 @@
   "quedan_s": 0,
   "hora": "2026-11-12 13:25:39"
  },
- "pendientes": [
+ "pendientes": [],
+ "recientes": [
   {
    "id": 95,
    "kind": "flujo",
@@ -45,19 +27,35 @@
    "player": null,
    "stroke": null,
    "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
-   "state": "pendiente",
-   "message": "",
+   "state": "hecho",
+   "message": "6 pasos",
    "created": "2026-11-12 12:46:16",
-   "started": null,
-   "finished": null,
+   "started": "2026-11-12 13:50:49",
+   "finished": "2026-11-12 13:55:46",
    "args": "[\"informe\"]",
    "source": "claude 254",
-   "log": "",
-   "paso": 0,
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_95.log",
+   "paso": 6,
    "pasos": 6
-  }
- ],
- "recientes": [
+  },
+  {
+   "id": 94,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script validate_recall --spotter --tag v15 --from v13r",
+   "state": "hecho",
+   "message": "",
+   "created": "2026-11-12 12:45:39",
+   "started": "2026-11-12 13:25:42",
+   "finished": "2026-11-12 13:50:48",
+   "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"v15\", \"--from\", \"v13r\"]",
+   "source": "claude 253",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_94.log",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 93,
    "kind": "comando",
@@ -291,45 +289,72 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_81.log",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 80,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script diag_sin_pose --match b8b713 --n 4",
-   "state": "hecho",
-   "message": "",
-   "created": "2026-11-12 10:27:58",
-   "started": "2026-11-12 10:28:00",
-   "finished": "2026-11-12 10:28:02",
-   "args": "[\"script\", \"diag_sin_pose\", \"--match\", \"b8b713\", \"--n\", \"4\"]",
-   "source": "claude 237",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_80.log",
-   "paso": 0,
-   "pasos": 0
-  },
-  {
-   "id": 79,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script diag_pose_contacto",
-   "state": "hecho",
-   "message": "",
-   "created": "2026-11-12 10:08:24",
-   "started": "2026-11-12 10:08:32",
-   "finished": "2026-11-12 10:08:38",
-   "args": "[\"script\", \"diag_pose_contacto\"]",
-   "source": "claude 236",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_79.log",
-   "paso": 0,
-   "pasos": 0
   }
  ],
  "eventos": [
+  {
+   "id": 508,
+   "job": 95,
+   "at": "2026-11-12 13:55:47",
+   "kind": "hecho",
+   "text": "código 0"
+  },
+  {
+   "id": 507,
+   "job": 95,
+   "at": "2026-11-12 13:55:45",
+   "kind": "paso",
+   "text": "6/6 Modelo de calidad"
+  },
+  {
+   "id": 506,
+   "job": 95,
+   "at": "2026-11-12 13:51:12",
+   "kind": "paso",
+   "text": "5/6 Auditoria"
+  },
+  {
+   "id": 505,
+   "job": 95,
+   "at": "2026-11-12 13:51:05",
+   "kind": "paso",
+   "text": "4/6 Informe del saque"
+  },
+  {
+   "id": 504,
+   "job": 95,
+   "at": "2026-11-12 13:50:59",
+   "kind": "paso",
+   "text": "3/6 Informe del reves"
+  },
+  {
+   "id": 503,
+   "job": 95,
+   "at": "2026-11-12 13:50:51",
+   "kind": "paso",
+   "text": "2/6 Informe de la derecha"
+  },
+  {
+   "id": 502,
+   "job": 95,
+   "at": "2026-11-12 13:50:50",
+   "kind": "paso",
+   "text": "1/6 Registro de partidos"
+  },
+  {
+   "id": 501,
+   "job": 95,
+   "at": "2026-11-12 13:50:49",
+   "kind": "empieza",
+   "text": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)"
+  },
+  {
+   "id": 500,
+   "job": 94,
+   "at": "2026-11-12 13:50:49",
+   "kind": "hecho",
+   "text": "código 0"
+  },
   {
    "id": 499,
    "job": 94,
@@ -476,69 +501,6 @@
    "at": "2026-11-12 12:35:12",
    "kind": "paso",
    "text": "6/6 Modelo de calidad"
-  },
-  {
-   "id": 478,
-   "job": 91,
-   "at": "2026-11-12 12:30:45",
-   "kind": "paso",
-   "text": "5/6 Auditoria"
-  },
-  {
-   "id": 477,
-   "job": 91,
-   "at": "2026-11-12 12:30:41",
-   "kind": "paso",
-   "text": "4/6 Informe del saque"
-  },
-  {
-   "id": 476,
-   "job": 91,
-   "at": "2026-11-12 12:30:36",
-   "kind": "paso",
-   "text": "3/6 Informe del reves"
-  },
-  {
-   "id": 475,
-   "job": 91,
-   "at": "2026-11-12 12:30:28",
-   "kind": "paso",
-   "text": "2/6 Informe de la derecha"
-  },
-  {
-   "id": 474,
-   "job": 91,
-   "at": "2026-11-12 12:30:27",
-   "kind": "paso",
-   "text": "1/6 Registro de partidos"
-  },
-  {
-   "id": 473,
-   "job": 91,
-   "at": "2026-11-12 12:30:26",
-   "kind": "empieza",
-   "text": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)"
-  },
-  {
-   "id": 472,
-   "job": 90,
-   "at": "2026-11-12 12:30:26",
-   "kind": "cancelado",
-   "text": ""
-  },
-  {
-   "id": 471,
-   "job": 90,
-   "at": "2026-11-12 12:30:25",
-   "kind": "cancelar",
-   "text": "claude 250"
-  },
-  {
-   "id": 470,
-   "job": 90,
-   "at": "2026-11-12 12:30:08",
-   "kind": "empieza",
-   "text": "script validate_recall --spotter --tag v14 --from v13r"
   }
  ]
 }
