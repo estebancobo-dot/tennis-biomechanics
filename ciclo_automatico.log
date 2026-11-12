@@ -16,3 +16,19 @@ WSManStackVersion: 3.0
 PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
+Registro enviado a Claude (no hace falta copiar nada).
+git : remote: error: unable to write file /data/repositories/c/nw/c3/83/f8/1268209680/1413471780.git/objects/ghq_oiK6PpJ
+931w/pack/pack-882dd8f1bfad7d5ae593efd71c51bd6cfae19498.pack: No such file or directory        
+At C:\tenis\tennis-biomech\scripts\windows\comun.ps1:241 char:9
++         git -C $d push -q origin pc-logs 2>$null
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (remote: error: ...rectory        :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+remote: fatal: unable to rename temporary '*.pack' file to '/data/repositories/c/nw/c3/83/f8/1268209680/1413471780.git/o
+bjects/ghq_oiK6PpJ931w/pack/pack-882dd8f1bfad7d5ae593efd71c51bd6cfae19498.pack'
+error: remote unpack failed: index-pack failed
+To https://github.com/estebancobo-dot/tennis-biomechanics.git
+ ! [remote rejected]   pc-logs -> pc-logs (failed)
+error: failed to push some refs to 'https://github.com/estebancobo-dot/tennis-biomechanics.git'
+No se pudo enviar el registro a Claude (sin red o sin permiso en GitHub).
+

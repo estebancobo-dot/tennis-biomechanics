@@ -1,10 +1,10 @@
 {
- "at": "2026-11-12 11:57:24",
- "firma": "7eeab1ae6a93",
+ "at": "2026-11-12 11:57:45",
+ "firma": "0de1875a4242",
  "ejecutor": {
-  "vivo": false,
-  "pid": null,
-  "at": 1794481044.4785013
+  "vivo": true,
+  "pid": 11716,
+  "at": 1794481062.2839162
  },
  "pausa": false,
  "en_curso": [],
@@ -20,25 +20,43 @@
  },
  "pendientes": [
   {
-   "id": 86,
+   "id": 87,
    "kind": "comando",
    "match": null,
    "player": null,
    "stroke": null,
-   "reason": "script diag_saques --match f43dd2",
+   "reason": "script ventanas_visibles",
    "state": "pendiente",
    "message": "",
-   "created": "2026-11-12 11:57:21",
+   "created": "2026-11-12 11:57:42",
    "started": null,
    "finished": null,
-   "args": "[\"script\", \"diag_saques\", \"--match\", \"f43dd2\"]",
-   "source": "claude 243",
+   "args": "[\"script\", \"ventanas_visibles\"]",
+   "source": "claude 244",
    "log": "",
    "paso": 0,
    "pasos": 0
   }
  ],
  "recientes": [
+  {
+   "id": 86,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script diag_saques --match f43dd2",
+   "state": "hecho",
+   "message": "",
+   "created": "2026-11-12 11:57:21",
+   "started": "2026-11-12 11:57:26",
+   "finished": "2026-11-12 11:57:31",
+   "args": "[\"script\", \"diag_saques\", \"--match\", \"f43dd2\"]",
+   "source": "claude 243",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_86.log",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 85,
    "kind": "comando",
@@ -290,27 +308,44 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_72.log",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 71,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script validate_recall --spotter --tag v13 --from base",
-   "state": "hecho",
-   "message": "",
-   "created": "2026-11-12 08:25:06",
-   "started": "2026-11-12 08:25:09",
-   "finished": "2026-11-12 08:44:10",
-   "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"v13\", \"--from\", \"base\"]",
-   "source": "claude 228",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_71.log",
-   "paso": 0,
-   "pasos": 0
   }
  ],
  "eventos": [
+  {
+   "id": 453,
+   "job": 87,
+   "at": "2026-11-12 11:57:42",
+   "kind": "enviado",
+   "text": "tennisbio script ventanas_visibles (claude 244)"
+  },
+  {
+   "id": 452,
+   "job": 86,
+   "at": "2026-11-12 11:57:32",
+   "kind": "hecho",
+   "text": "código 0"
+  },
+  {
+   "id": 451,
+   "job": 86,
+   "at": "2026-11-12 11:57:26",
+   "kind": "empieza",
+   "text": "script diag_saques --match f43dd2"
+  },
+  {
+   "id": 450,
+   "job": null,
+   "at": "2026-11-12 11:57:26",
+   "kind": "ejecutor",
+   "text": "arranca (pid 11716)"
+  },
+  {
+   "id": 449,
+   "job": null,
+   "at": "2026-11-12 11:57:24",
+   "kind": "ejecutor",
+   "text": "arranca el siguiente con el código nuevo (pid 15256)"
+  },
   {
    "id": 448,
    "job": null,
@@ -485,41 +520,6 @@
    "at": "2026-11-12 11:08:21",
    "kind": "ejecutor",
    "text": "arranca el siguiente con el código nuevo (pid 13240)"
-  },
-  {
-   "id": 423,
-   "job": null,
-   "at": "2026-11-12 11:08:21",
-   "kind": "ejecutor",
-   "text": "termina"
-  },
-  {
-   "id": 422,
-   "job": null,
-   "at": "2026-11-12 11:08:21",
-   "kind": "ejecutor",
-   "text": "se reinicia con el código nuevo"
-  },
-  {
-   "id": 421,
-   "job": null,
-   "at": "2026-11-12 11:08:21",
-   "kind": "ejecutor",
-   "text": "arranca (pid 4284)"
-  },
-  {
-   "id": 420,
-   "job": 85,
-   "at": "2026-11-12 11:07:29",
-   "kind": "enviado",
-   "text": "tennisbio script ventanas_visibles (claude 242)"
-  },
-  {
-   "id": 419,
-   "job": null,
-   "at": "2026-11-12 11:03:29",
-   "kind": "reiniciar",
-   "text": "ciclo"
   }
  ]
 }

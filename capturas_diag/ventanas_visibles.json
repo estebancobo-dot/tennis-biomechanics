@@ -1,5 +1,5 @@
 {
- "fecha": "2026-11-12 11:57:24",
+ "fecha": "2026-11-12 11:57:46",
  "ventanas": [
   {
    "name": "ApplicationFrameHost",
@@ -45,15 +45,6 @@
    "parent": "svchost.exe",
    "parent_cmd": null,
    "start": "11/11/2026 09:38:37"
-  },
-  {
-   "name": "WindowsTerminal",
-   "title": "C:\\tenis\\tennis-biomech\\.venv\\Scripts\\python.exe",
-   "pid": 7592,
-   "cmd": "\"C:\\Program Files\\WindowsApps\\Microsoft.WindowsTerminal_1.24.12741.0_x64__8wekyb3d8bbwe\\WindowsTerminal.exe\" -Embedding",
-   "parent": "svchost.exe",
-   "parent_cmd": null,
-   "start": "11/12/2026 11:08:21"
   }
  ]
 }

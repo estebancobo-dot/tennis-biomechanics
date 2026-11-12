@@ -1,0 +1,2195 @@
+{
+ "partido": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_f43dd2_rybakina",
+ "puntos_de_su_saque": 38,
+ "con_saque": 27,
+ "no_vistos": 2,
+ "por_causa": {
+  "sin_camara": 0,
+  "sin_golpes": 5,
+  "sin_saque": 6
+ },
+ "saques_caen_en": {
+  "her_points": 33,
+  "opponent_points": 3,
+  "elsewhere": 11
+ },
+ "primer_golpe_sin_saque": {
+  "n": 6,
+  "type": {
+   "backhand/detector": 3,
+   "forehand/detector": 3
+  },
+  "side": {
+   "near": 4,
+   "far": 2
+  },
+  "behind_baseline": 5
+ },
+ "detector_antes_del_primer_golpe": {
+  "saque_suyo_visto_y_perdido": 0,
+  "golpe_suyo_visto_y_perdido": 0,
+  "golpe_de_la_rival_antes": 2,
+  "nada_antes": 4,
+  "sin_primer_golpe": 5
+ },
+ "puntos_sin_golpes": {
+  "golpes_de_alguien": 3,
+  "nadie_golpea": 2,
+  "candidatos": {
+   "suyos_perdidos_despues": 1,
+   "solo_de_la_rival": 2,
+   "identidad_sin_decidir": 0,
+   "sin_candidatos": 2
+  },
+  "suyos_perdidos": {
+   "de_identidad_dudosa": 0,
+   "descartados_en_la_pasada_fina": 1
+  },
+  "motivos_descarte": {
+   "lejana_sin_bola_ni_detector": 1
+  },
+  "camara_principal_s_mediana": 9.2
+ },
+ "huecos": [
+  {
+   "t0": 669.4,
+   "t1": 724.6,
+   "cause": "sin_saque",
+   "shot_start": 673.9,
+   "first_stroke_after_s": 4.5,
+   "first_stroke": {
+    "stroke": "backhand",
+    "source": "detector",
+    "pose": "backhand",
+    "side": "near",
+    "court_y_m": -3.24
+   },
+   "min": 11.16,
+   "planos_camara_principal": [
+    [
+     673.9,
+     683.9
+    ],
+    [
+     696.9,
+     701.2
+    ],
+    [
+     714.5,
+     717.7
+    ],
+    [
+     724.1,
+     729.2
+    ]
+   ],
+   "marcador": [
+    {
+     "t": 674.4,
+     "g": 1,
+     "pts": [
+      0,
+      1
+     ],
+     "saca": 0
+    },
+    {
+     "t": 724.6,
+     "g": 1,
+     "pts": [
+      0,
+      3
+     ],
+     "saca": 0
+    }
+   ],
+   "detector": [
+    {
+     "t": 678.597,
+     "side": "near",
+     "kind": "backhand",
+     "score": 1.0
+    },
+    {
+     "t": 681.598,
+     "side": "near",
+     "kind": "forehand",
+     "score": 0.842
+    },
+    {
+     "t": 714.596,
+     "side": "near",
+     "kind": "backhand",
+     "score": 0.148
+    }
+   ],
+   "candidatos": [
+    {
+     "t": 678.597,
+     "audio": false,
+     "side": "near",
+     "identity": true,
+     "target": true,
+     "kind": "backhand",
+     "score": 1.0,
+     "source": "spotter"
+    },
+    {
+     "t": 681.598,
+     "audio": false,
+     "side": "near",
+     "identity": true,
+     "target": true,
+     "kind": "forehand",
+     "score": 0.842,
+     "source": "spotter"
+    },
+    {
+     "t": 714.596,
+     "audio": false,
+     "side": "near",
+     "identity": false,
+     "target": false,
+     "kind": "backhand",
+     "score": 0.148,
+     "source": "spotter"
+    }
+   ],
+   "golpes_suyos": [
+    {
+     "t": 678.3969999999999,
+     "golpe": "backhand",
+     "lado": "near",
+     "fuente": "detector",
+     "id": "us-open-2026-r4-naomi-osaka-elena-rybakina-0067840"
+    },
+    {
+     "t": 681.3969999999999,
+     "golpe": "forehand",
+     "lado": "near",
+     "fuente": "detector",
+     "id": "us-open-2026-r4-naomi-osaka-elena-rybakina-0068140"
+    }
+   ],
+   "dudosos": [],
+   "descartados": [],
+   "identidad": null,
+   "hoja": "saques_11.16.jpg"
+  },
+  {
+   "t0": 1356.8,
+   "t1": 1385.1,
+   "cause": "sin_golpes",
+   "shot_start": 1361.3,
+   "min": 22.61,
+   "planos_camara_principal": [
+    [
+     1361.3,
+     1370.0
+    ],
+    [
+     1384.6,
+     1394.2
+    ]
+   ],
+   "marcador": [
+    {
+     "t": 1361.8,
+     "g": 5,
+     "pts": [
+      1,
+      0
+     ],
+     "saca": 0
+    },
+    {
+     "t": 1385.1,
+     "g": 5,
+     "pts": [
+      2,
+      0
+     ],
+     "saca": 0
+    }
+   ],
+   "detector": [
+    {
+     "t": 1361.411,
+     "side": "far",
+     "kind": "backhand",
+     "score": 0.767
+    }
+   ],
+   "candidatos": [
+    {
+     "t": 1361.411,
+     "audio": false,
+     "side": "far",
+     "identity": true,
+     "target": false,
+     "kind": "backhand",
+     "score": 0.767,
+     "source": "spotter"
+    }
+   ],
+   "golpes_suyos": [],
+   "dudosos": [],
+   "descartados": [],
+   "identidad": null,
+   "hoja": "saques_22.61.jpg"
+  },
+  {
+   "t0": 1405.6,
+   "t1": 1431.6,
+   "cause": "sin_saque",
+   "shot_start": 1410.1,
+   "first_stroke_after_s": 0.8,
+   "first_stroke": {
+    "stroke": "backhand",
+    "source": "detector",
+    "pose": "backhand",
+    "side": "near",
+    "court_y_m": -1.82
+   },
+   "min": 23.43,
+   "planos_camara_principal": [
+    [
+     1410.1,
+     1416.5
+    ],
+    [
+     1431.1,
+     1434.1
+    ]
+   ],
+   "marcador": [
+    {
+     "t": 1410.6,
+     "g": 5,
+     "pts": [
+      3,
+      0
+     ],
+     "saca": 0
+    },
+    {
+     "t": 1431.6,
+     "g": 5,
+     "pts": [
+      3,
+      1
+     ],
+     "saca": 0
+    }
+   ],
+   "detector": [
+    {
+     "t": 1410.899,
+     "side": "near",
+     "kind": "backhand",
+     "score": 1.0
+    },
+    {
+     "t": 1412.167,
+     "side": "far",
+     "kind": "forehand",
+     "score": 1.0
+    },
+    {
+     "t": 1413.4,
+     "side": "near",
+     "kind": "forehand",
+     "score": 1.0
+    }
+   ],
+   "candidatos": [
+    {
+     "t": 1410.899,
+     "audio": true,
+     "side": "near",
+     "identity": true,
+     "target": true,
+     "kind": "backhand",
+     "score": 1.0,
+     "source": "spotter"
+    },
+    {
+     "t": 1412.167,
+     "audio": true,
+     "side": "far",
+     "identity": true,
+     "target": false,
+     "kind": "forehand",
+     "score": 1.0,
+     "source": "spotter"
+    },
+    {
+     "t": 1413.4,
+     "audio": true,
+     "side": "near",
+     "identity": true,
+     "target": true,
+     "kind": "forehand",
+     "score": 1.0,
+     "source": "spotter"
+    }
+   ],
+   "golpes_suyos": [
+    {
+     "t": 1410.9389999999999,
+     "golpe": "backhand",
+     "lado": "near",
+     "fuente": "detector",
+     "id": "us-open-2026-r4-naomi-osaka-elena-rybakina-0141094"
+    },
+    {
+     "t": 1413.4189999999999,
+     "golpe": "forehand",
+     "lado": "near",
+     "fuente": "detector",
+     "id": "us-open-2026-r4-naomi-osaka-elena-rybakina-0141342"
+    }
+   ],
+   "dudosos": [],
+   "descartados": [],
+   "identidad": null,
+   "hoja": "saques_23.43.jpg"
+  },
+  {
+   "t0": 2230.2,
+   "t1": 2255.9,
+   "cause": "sin_saque",
+   "shot_start": 2234.7,
+   "first_stroke_after_s": 1.9,
+   "first_stroke": {
+    "stroke": "backhand",
+    "source": "detector",
+    "pose": "backhand",
+    "side": "near",
+    "court_y_m": 0.09
+   },
+   "min": 37.17,
+   "planos_camara_principal": [
+    [
+     2234.7,
+     2238.5
+    ],
+    [
+     2255.4,
+     2266.6
+    ]
+   ],
+   "marcador": [
+    {
+     "t": 2235.2,
+     "g": 9,
+     "pts": [
+      1,
+      1
+     ],
+     "saca": 0
+    },
+    {
+     "t": 2255.9,
+     "g": 9,
+     "pts": [
+      1,
+      2
+     ],
+     "saca": 0
+    }
+   ],
+   "detector": [
+    {
+     "t": 2236.731,
+     "side": "near",
+     "kind": "backhand",
+     "score": 0.447
+    }
+   ],
+   "candidatos": [
+    {
+     "t": 2236.731,
+     "audio": true,
+     "side": "near",
+     "identity": true,
+     "target": true,
+     "kind": "backhand",
+     "score": 0.447,
+     "source": "spotter"
+    }
+   ],
+   "golpes_suyos": [
+    {
+     "t": 2236.5710000000004,
+     "golpe": "backhand",
+     "lado": "near",
+     "fuente": "detector",
+     "id": "us-open-2026-r4-naomi-osaka-elena-rybakina-0223657"
+    }
+   ],
+   "dudosos": [],
+   "descartados": [],
+   "identidad": null,
+   "hoja": "saques_37.17.jpg"
+  },
+  {
+   "t0": 2696.3,
+   "t1": 2738.2,
+   "cause": "sin_saque",
+   "shot_start": 2700.8,
+   "first_stroke_after_s": 7.5,
+   "first_stroke": {
+    "stroke": "forehand",
+    "source": "detector",
+    "pose": "backhand",
+    "side": "far",
+    "court_y_m": -2.0
+   },
+   "min": 44.94,
+   "planos_camara_principal": [
+    [
+     2700.8,
+     2719.4
+    ],
+    [
+     2737.7,
+     2743.3
+    ]
+   ],
+   "marcador": [
+    {
+     "t": 2701.3,
+     "g": 11,
+     "pts": [
+      1,
+      0
+     ],
+     "saca": 0
+    },
+    {
+     "t": 2738.2,
+     "g": 11,
+     "pts": [
+      1,
+      1
+     ],
+     "saca": 0
+    }
+   ],
+   "detector": [
+    {
+     "t": 2707.6,
+     "side": "near",
+     "kind": "serve",
+     "score": 1.0
+    },
+    {
+     "t": 2708.4,
+     "side": "far",
+     "kind": "forehand",
+     "score": 1.0
+    },
+    {
+     "t": 2710.335,
+     "side": "near",
+     "kind": "forehand",
+     "score": 1.0
+    },
+    {
+     "t": 2716.07,
+     "side": "near",
+     "kind": "other",
+     "score": 0.87
+    }
+   ],
+   "candidatos": [
+    {
+     "t": 2707.6,
+     "audio": true,
+     "side": "near",
+     "identity": false,
+     "target": false,
+     "kind": "serve",
+     "score": 1.0,
+     "source": "spotter"
+    },
+    {
+     "t": 2708.4,
+     "audio": true,
+     "side": "far",
+     "identity": false,
+     "target": true,
+     "kind": "forehand",
+     "score": 1.0,
+     "source": "spotter"
+    },
+    {
+     "t": 2710.335,
+     "audio": true,
+     "side": "near",
+     "identity": false,
+     "target": false,
+     "kind": "forehand",
+     "score": 1.0,
+     "source": "spotter"
+    },
+    {
+     "t": 2716.07,
+     "audio": true,
+     "side": "near",
+     "identity": false,
+     "target": false,
+     "kind": "other",
+     "score": 0.87,
+     "source": "spotter"
+    }
+   ],
+   "golpes_suyos": [
+    {
+     "t": 2708.28,
+     "golpe": "forehand",
+     "lado": "far",
+     "fuente": "detector",
+     "id": "us-open-2026-r4-naomi-osaka-elena-rybakina-0270828"
+    }
+   ],
+   "dudosos": [],
+   "descartados": [],
+   "identidad": null,
+   "hoja": "saques_44.94.jpg"
+  },
+  {
+   "t0": 2733.2,
+   "t1": 2776.8,
+   "cause": "sin_golpes",
+   "shot_start": 2737.7,
+   "min": 45.55,
+   "planos_camara_principal": [
+    [
+     2737.7,
+     2743.3
+    ],
+    [
+     2749.4,
+     2760.2
+    ],
+    [
+     2776.3,
+     2794.0
+    ]
+   ],
+   "marcador": [
+    {
+     "t": 2738.2,
+     "g": 11,
+     "pts": [
+      1,
+      1
+     ],
+     "saca": 0
+    },
+    {
+     "t": 2776.8,
+     "g": 11,
+     "pts": [
+      2,
+      1
+     ],
+     "saca": 0
+    }
+   ],
+   "detector": [
+    {
+     "t": 2739.25,
+     "side": "near",
+     "kind": "serve",
+     "score": 0.999
+    },
+    {
+     "t": 2743.4,
+     "side": "far",
+     "kind": "serve",
+     "score": 0.92
+    },
+    {
+     "t": 2750.68,
+     "side": "near",
+     "kind": "serve",
+     "score": 1.0
+    },
+    {
+     "t": 2751.574,
+     "side": "far",
+     "kind": "forehand",
+     "score": 0.994
+    },
+    {
+     "t": 2752.897,
+     "side": "near",
+     "kind": "forehand",
+     "score": 1.0
+    },
+    {
+     "t": 2755.148,
+     "side": "near",
+     "kind": "forehand",
+     "score": 0.936
+    },
+    {
+     "t": 2758.6,
+     "side": "near",
+     "kind": "backhand",
+     "score": 1.0
+    }
+   ],
+   "candidatos": [
+    {
+     "t": 2739.25,
+     "audio": true,
+     "side": "near",
+     "identity": false,
+     "target": false,
+     "kind": "serve",
+     "score": 0.999,
+     "source": "spotter"
+    },
+    {
+     "t": 2743.4,
+     "audio": true,
+     "side": "far",
+     "identity": null,
+     "target": null,
+     "kind": "serve",
+     "score": 0.92,
+     "source": "spotter"
+    },
+    {
+     "t": 2750.68,
+     "audio": true,
+     "side": "near",
+     "identity": false,
+     "target": false,
+     "kind": "serve",
+     "score": 1.0,
+     "source": "spotter"
+    },
+    {
+     "t": 2751.574,
+     "audio": true,
+     "side": "far",
+     "identity": false,
+     "target": true,
+     "kind": "forehand",
+     "score": 0.994,
+     "source": "spotter"
+    },
+    {
+     "t": 2752.897,
+     "audio": true,
+     "side": "near",
+     "identity": false,
+     "target": false,
+     "kind": "forehand",
+     "score": 1.0,
+     "source": "spotter"
+    },
+    {
+     "t": 2755.148,
+     "audio": true,
+     "side": "near",
+     "identity": false,
+     "target": false,
+     "kind": "forehand",
+     "score": 0.936,
+     "source": "spotter"
+    },
+    {
+     "t": 2758.6,
+     "audio": true,
+     "side": "near",
+     "identity": false,
+     "target": false,
+     "kind": "backhand",
+     "score": 1.0,
+     "source": "spotter"
+    }
+   ],
+   "golpes_suyos": [],
+   "dudosos": [],
+   "descartados": [
+    {
+     "t": 2751.574,
+     "why": "lejana_sin_bola_ni_detector",
+     "side": "far",
+     "target": true,
+     "source": "spotter",
+     "kind": "forehand"
+    }
+   ],
+   "identidad": null,
+   "hoja": "saques_45.55.jpg"
+  },
+  {
+   "t0": 2771.8,
+   "t1": 2818.0,
+   "cause": "sin_saque",
+   "shot_start": 2776.3,
+   "first_stroke_after_s": 2.1,
+   "first_stroke": {
+    "stroke": "forehand",
+    "source": "detector",
+    "pose": "backhand",
+    "side": "far",
+    "court_y_m": -1.93
+   },
+   "min": 46.2,
+   "planos_camara_principal": [
+    [
+     2776.3,
+     2794.0
+    ],
+    [
+     2817.5,
+     2829.3
+    ]
+   ],
+   "marcador": [
+    {
+     "t": 2776.8,
+     "g": 11,
+     "pts": [
+      2,
+      1
+     ],
+     "saca": 0
+    },
+    {
+     "t": 2818.0,
+     "g": 11,
+     "pts": [
+      2,
+      2
+     ],
+     "saca": 0
+    }
+   ],
+   "detector": [
+    {
+     "t": 2777.7,
+     "side": "near",
+     "kind": "serve",
+     "score": 1.0
+    },
+    {
+     "t": 2778.597,
+     "side": "far",
+     "kind": "forehand",
+     "score": 0.999
+    },
+    {
+     "t": 2779.752,
+     "side": "near",
+     "kind": "backhand",
+     "score": 1.0
+    },
+    {
+     "t": 2780.992,
+     "side": "far",
+     "kind": "backhand",
+     "score": 0.828
+    },
+    {
+     "t": 2782.742,
+     "side": "near",
+     "kind": "forehand",
+     "score": 0.98
+    },
+    {
+     "t": 2787.053,
+     "side": "far",
+     "kind": "backhand",
+     "score": 0.972
+    },
+    {
+     "t": 2788.202,
+     "side": "near",
+     "kind": "backhand",
+     "score": 1.0
+    },
+    {
+     "t": 2789.4,
+     "side": "far",
+     "kind": "backhand",
+     "score": 0.576
+    },
+    {
+     "t": 2790.6,
+     "side": "near",
+     "kind": "backhand",
+     "score": 1.0
+    },
+    {
+     "t": 2791.8,
+     "side": "far",
+     "kind": "forehand",
+     "score": 1.0
+    }
+   ],
+   "candidatos": [
+    {
+     "t": 2777.7,
+     "audio": true,
+     "side": "near",
+     "identity": false,
+     "target": false,
+     "kind": "serve",
+     "score": 1.0,
+     "source": "spotter"
+    },
+    {
+     "t": 2778.597,
+     "audio": true,
+     "side": "far",
+     "identity": false,
+     "target": true,
+     "kind": "forehand",
+     "score": 0.999,
+     "source": "spotter"
+    },
+    {
+     "t": 2779.752,
+     "audio": true,
+     "side": "near",
+     "identity": false,
+     "target": false,
+     "kind": "backhand",
+     "score": 1.0,
+     "source": "spotter"
+    },
+    {
+     "t": 2780.992,
+     "audio": true,
+     "side": "far",
+     "identity": false,
+     "target": true,
+     "kind": "backhand",
+     "score": 0.828,
+     "source": "spotter"
+    },
+    {
+     "t": 2782.742,
+     "audio": true,
+     "side": "near",
+     "identity": false,
+     "target": false,
+     "kind": "forehand",
+     "score": 0.98,
+     "source": "spotter"
+    },
+    {
+     "t": 2787.053,
+     "audio": true,
+     "side": "far",
+     "identity": false,
+     "target": true,
+     "kind": "backhand",
+     "score": 0.972,
+     "source": "spotter"
+    },
+    {
+     "t": 2788.202,
+     "audio": true,
+     "side": "near",
+     "identity": false,
+     "target": false,
+     "kind": "backhand",
+     "score": 1.0,
+     "source": "spotter"
+    },
+    {
+     "t": 2789.4,
+     "audio": true,
+     "side": "far",
+     "identity": false,
+     "target": true,
+     "kind": "backhand",
+     "score": 0.576,
+     "source": "spotter"
+    },
+    {
+     "t": 2790.6,
+     "audio": true,
+     "side": "near",
+     "identity": false,
+     "target": false,
+     "kind": "backhand",
+     "score": 1.0,
+     "source": "spotter"
+    },
+    {
+     "t": 2791.8,
+     "audio": true,
+     "side": "far",
+     "identity": false,
+     "target": true,
+     "kind": "forehand",
+     "score": 1.0,
+     "source": "spotter"
+    }
+   ],
+   "golpes_suyos": [
+    {
+     "t": 2778.4370000000004,
+     "golpe": "forehand",
+     "lado": "far",
+     "fuente": "detector",
+     "id": "us-open-2026-r4-naomi-osaka-elena-rybakina-0277844"
+    },
+    {
+     "t": 2780.9970000000003,
+     "golpe": "backhand",
+     "lado": "far",
+     "fuente": "detector",
+     "id": "us-open-2026-r4-naomi-osaka-elena-rybakina-0278100"
+    },
+    {
+     "t": 2787.073,
+     "golpe": "backhand",
+     "lado": "far",
+     "fuente": "detector",
+     "id": "us-open-2026-r4-naomi-osaka-elena-rybakina-0278707"
+    },
+    {
+     "t": 2789.593,
+     "golpe": "backhand",
+     "lado": "far",
+     "fuente": "detector",
+     "id": "us-open-2026-r4-naomi-osaka-elena-rybakina-0278959"
+    },
+    {
+     "t": 2791.893,
+     "golpe": "forehand",
+     "lado": "far",
+     "fuente": "detector",
+     "id": "us-open-2026-r4-naomi-osaka-elena-rybakina-0279189"
+    }
+   ],
+   "dudosos": [],
+   "descartados": [],
+   "identidad": null,
+   "hoja": "saques_46.20.jpg"
+  },
+  {
+   "t0": 2890.0,
+   "t1": 2919.1,
+   "cause": "sin_golpes",
+   "shot_start": 2894.5,
+   "min": 48.17,
+   "planos_camara_principal": [
+    [
+     2894.5,
+     2900.3
+    ],
+    [
+     2918.6,
+     2922.9
+    ]
+   ],
+   "marcador": [
+    {
+     "t": 2895.0,
+     "g": 11,
+     "pts": [
+      3,
+      3
+     ],
+     "saca": 0
+    },
+    {
+     "t": 2919.1,
+     "g": 11,
+     "pts": [
+      3,
+      4
+     ],
+     "saca": 0
+    }
+   ],
+   "detector": [
+    {
+     "t": 2896.55,
+     "side": "near",
+     "kind": "serve",
+     "score": 1.0
+    }
+   ],
+   "candidatos": [
+    {
+     "t": 2896.55,
+     "audio": true,
+     "side": "near",
+     "identity": false,
+     "target": false,
+     "kind": "serve",
+     "score": 1.0,
+     "source": "spotter"
+    }
+   ],
+   "golpes_suyos": [],
+   "dudosos": [],
+   "descartados": [],
+   "identidad": null,
+   "hoja": "saques_48.17.jpg"
+  },
+  {
+   "t0": 3849.8,
+   "t1": 3884.7,
+   "cause": "sin_saque",
+   "shot_start": 3854.3,
+   "first_stroke_after_s": 8.8,
+   "first_stroke": {
+    "stroke": "forehand",
+    "source": "detector",
+    "pose": "backhand",
+    "side": "near",
+    "court_y_m": 1.44
+   },
+   "min": 64.16,
+   "planos_camara_principal": [
+    [
+     3854.3,
+     3866.5
+    ],
+    [
+     3884.2,
+     3889.2
+    ]
+   ],
+   "marcador": [
+    {
+     "t": 3854.8,
+     "g": 16,
+     "pts": [
+      0,
+      0
+     ],
+     "saca": 0
+    },
+    {
+     "t": 3884.7,
+     "g": 16,
+     "pts": [
+      1,
+      0
+     ],
+     "saca": 0
+    }
+   ],
+   "detector": [
+    {
+     "t": 3863.238,
+     "side": "near",
+     "kind": "forehand",
+     "score": 1.0
+    },
+    {
+     "t": 3865.626,
+     "side": "near",
+     "kind": "serve",
+     "score": 0.915
+    }
+   ],
+   "candidatos": [
+    {
+     "t": 3863.238,
+     "audio": true,
+     "side": "near",
+     "identity": true,
+     "target": true,
+     "kind": "forehand",
+     "score": 1.0,
+     "source": "spotter"
+    },
+    {
+     "t": 3865.626,
+     "audio": false,
+     "side": "near",
+     "identity": null,
+     "target": null,
+     "kind": "serve",
+     "score": 0.915,
+     "source": "spotter"
+    }
+   ],
+   "golpes_suyos": [
+    {
+     "t": 3863.098,
+     "golpe": "forehand",
+     "lado": "near",
+     "fuente": "detector",
+     "id": "us-open-2026-r4-naomi-osaka-elena-rybakina-0386310"
+    }
+   ],
+   "dudosos": [
+    {
+     "impact_frame": 110,
+     "impact_source": "spotter",
+     "stroke": "overhead",
+     "stroke_pose": "backhand",
+     "stroke_source": "detector",
+     "window": "w003863426_3600.mp4",
+     "window_start_s": 3863.4260000000004,
+     "match_time_s": 3865.626,
+     "candidate_audio": false,
+     "identity": null,
+     "target": null,
+     "stroke_id": "us-open-2026-r4-naomi-osaka-elena-rybakina-0386563",
+     "surface": "dura",
+     "court_check": "refit",
+     "side": "near",
+     "camera_pitch_deg": 18.7,
+     "point_won": true,
+     "is_return": false,
+     "series": "series/w003863426_3600_near_110.json",
+     "window_impact_s": 2.2,
+     "shot_in_point": 2,
+     "shots_in_point": 2
+    }
+   ],
+   "descartados": [],
+   "identidad": null,
+   "hoja": "saques_64.16.jpg"
+  }
+ ],
+ "sus_saques": [
+  {
+   "t": 564.9,
+   "min": 9.41,
+   "antes": {
+    "t": 564.4,
+    "g": 0,
+    "pts": [
+     1,
+     2
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 581.2,
+    "g": 0,
+    "pts": [
+     2,
+     2
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 582.4,
+   "min": 9.71,
+   "antes": {
+    "t": 581.2,
+    "g": 0,
+    "pts": [
+     2,
+     2
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 674.4,
+    "g": 1,
+    "pts": [
+     0,
+     1
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 607.5,
+   "min": 10.13,
+   "antes": {
+    "t": 581.2,
+    "g": 0,
+    "pts": [
+     2,
+     2
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 674.4,
+    "g": 1,
+    "pts": [
+     0,
+     1
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 783.7,
+   "min": 13.06,
+   "antes": {
+    "t": 782.5,
+    "g": 2,
+    "pts": [
+     1,
+     0
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 801.1,
+    "g": 2,
+    "pts": [
+     2,
+     0
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 813.5,
+   "min": 13.56,
+   "antes": {
+    "t": 801.1,
+    "g": 2,
+    "pts": [
+     2,
+     0
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 870.8,
+    "g": 2,
+    "pts": [
+     3,
+     1
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 847.2,
+   "min": 14.12,
+   "antes": {
+    "t": 801.1,
+    "g": 2,
+    "pts": [
+     2,
+     0
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 870.8,
+    "g": 2,
+    "pts": [
+     3,
+     1
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 871.3,
+   "min": 14.52,
+   "antes": {
+    "t": 870.8,
+    "g": 2,
+    "pts": [
+     3,
+     1
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 927.0,
+    "g": 3,
+    "pts": [
+     1,
+     0
+    ],
+    "saca": 1
+   }
+  },
+  {
+   "t": 1072.5,
+   "min": 17.88,
+   "antes": {
+    "t": 1001.6,
+    "g": 3,
+    "pts": [
+     3,
+     1
+    ],
+    "saca": 1
+   },
+   "despues": {
+    "t": 1076.9,
+    "g": 4,
+    "pts": [
+     1,
+     0
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 1122.5,
+   "min": 18.71,
+   "antes": {
+    "t": 1109.8,
+    "g": 4,
+    "pts": [
+     2,
+     0
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 1159.2,
+    "g": 4,
+    "pts": [
+     2,
+     1
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 1204.5,
+   "min": 20.07,
+   "antes": {
+    "t": 1192.8,
+    "g": 4,
+    "pts": [
+     2,
+     2
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 1234.3,
+    "g": 4,
+    "pts": [
+     2,
+     3
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 1334.3,
+   "min": 22.24,
+   "antes": {
+    "t": 1332.9,
+    "g": 5,
+    "pts": [
+     0,
+     0
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 1361.8,
+    "g": 5,
+    "pts": [
+     1,
+     0
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 1385.9,
+   "min": 23.1,
+   "antes": {
+    "t": 1385.1,
+    "g": 5,
+    "pts": [
+     2,
+     0
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 1410.6,
+    "g": 5,
+    "pts": [
+     3,
+     0
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 1484.0,
+   "min": 24.73,
+   "antes": {
+    "t": 1431.6,
+    "g": 5,
+    "pts": [
+     3,
+     1
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 1484.4,
+    "g": 6,
+    "pts": [
+     0,
+     0
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 1495.6,
+   "min": 24.93,
+   "antes": {
+    "t": 1484.4,
+    "g": 6,
+    "pts": [
+     0,
+     0
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 1543.2,
+    "g": 6,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 1542.4,
+   "min": 25.71,
+   "antes": {
+    "t": 1484.4,
+    "g": 6,
+    "pts": [
+     0,
+     0
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 1543.2,
+    "g": 6,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 1580.7,
+   "min": 26.34,
+   "antes": {
+    "t": 1580.6,
+    "g": 6,
+    "pts": [
+     2,
+     1
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 1608.9,
+    "g": 6,
+    "pts": [
+     2,
+     2
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 1608.2,
+   "min": 26.8,
+   "antes": {
+    "t": 1580.6,
+    "g": 6,
+    "pts": [
+     2,
+     1
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 1608.9,
+    "g": 6,
+    "pts": [
+     2,
+     2
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 1632.2,
+   "min": 27.2,
+   "antes": {
+    "t": 1632.0,
+    "g": 6,
+    "pts": [
+     3,
+     2
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 1832.2,
+    "g": 7,
+    "pts": [
+     0,
+     1
+    ],
+    "saca": 1
+   }
+  },
+  {
+   "t": 1852.4,
+   "min": 30.87,
+   "antes": {
+    "t": 1832.2,
+    "g": 7,
+    "pts": [
+     0,
+     1
+    ],
+    "saca": 1
+   },
+   "despues": {
+    "t": 1876.0,
+    "g": 7,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 1
+   }
+  },
+  {
+   "t": 2001.3,
+   "min": 33.35,
+   "antes": {
+    "t": 1998.9,
+    "g": 8,
+    "pts": [
+     1,
+     0
+    ],
+    "saca": null
+   },
+   "despues": {
+    "t": 2094.8,
+    "g": 8,
+    "pts": [
+     2,
+     2
+    ],
+    "saca": null
+   }
+  },
+  {
+   "t": 2068.6,
+   "min": 34.48,
+   "antes": {
+    "t": 1998.9,
+    "g": 8,
+    "pts": [
+     1,
+     0
+    ],
+    "saca": null
+   },
+   "despues": {
+    "t": 2094.8,
+    "g": 8,
+    "pts": [
+     2,
+     2
+    ],
+    "saca": null
+   }
+  },
+  {
+   "t": 2169.6,
+   "min": 36.16,
+   "antes": {
+    "t": 2157.4,
+    "g": 9,
+    "pts": [
+     0,
+     0
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 2235.2,
+    "g": 9,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 2263.2,
+   "min": 37.72,
+   "antes": {
+    "t": 2255.9,
+    "g": 9,
+    "pts": [
+     1,
+     2
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 2289.7,
+    "g": 9,
+    "pts": [
+     2,
+     2
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 2441.1,
+   "min": 40.68,
+   "antes": {
+    "t": 2289.7,
+    "g": 9,
+    "pts": [
+     2,
+     2
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 2443.5,
+    "g": 10,
+    "pts": [
+     0,
+     0
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 2465.0,
+   "min": 41.08,
+   "antes": {
+    "t": 2464.1,
+    "g": 10,
+    "pts": [
+     1,
+     0
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 2485.8,
+    "g": 10,
+    "pts": [
+     2,
+     0
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 2498.2,
+   "min": 41.64,
+   "antes": {
+    "t": 2485.8,
+    "g": 10,
+    "pts": [
+     2,
+     0
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 2505.4,
+    "g": 10,
+    "pts": [
+     3,
+     0
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 2541.0,
+   "min": 42.35,
+   "antes": {
+    "t": 2505.4,
+    "g": 10,
+    "pts": [
+     3,
+     0
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 2571.6,
+    "g": 10,
+    "pts": [
+     3,
+     1
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 2575.8,
+   "min": 42.93,
+   "antes": {
+    "t": 2571.6,
+    "g": 10,
+    "pts": [
+     3,
+     1
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 2612.1,
+    "g": 10,
+    "pts": [
+     3,
+     2
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 2585.1,
+   "min": 43.08,
+   "antes": {
+    "t": 2571.6,
+    "g": 10,
+    "pts": [
+     3,
+     1
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 2612.1,
+    "g": 10,
+    "pts": [
+     3,
+     2
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 2611.5,
+   "min": 43.52,
+   "antes": {
+    "t": 2571.6,
+    "g": 10,
+    "pts": [
+     3,
+     1
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 2612.1,
+    "g": 10,
+    "pts": [
+     3,
+     2
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 2671.8,
+   "min": 44.53,
+   "antes": {
+    "t": 2661.0,
+    "g": 11,
+    "pts": [
+     0,
+     0
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 2701.3,
+    "g": 11,
+    "pts": [
+     1,
+     0
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 2678.9,
+   "min": 44.65,
+   "antes": {
+    "t": 2661.0,
+    "g": 11,
+    "pts": [
+     0,
+     0
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 2701.3,
+    "g": 11,
+    "pts": [
+     1,
+     0
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 2848.7,
+   "min": 47.48,
+   "antes": {
+    "t": 2818.0,
+    "g": 11,
+    "pts": [
+     2,
+     2
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 2849.5,
+    "g": 11,
+    "pts": [
+     3,
+     2
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 3016.7,
+   "min": 50.28,
+   "antes": {
+    "t": 2971.8,
+    "g": 12,
+    "pts": [
+     0,
+     0
+    ],
+    "saca": null
+   },
+   "despues": {
+    "t": 3055.2,
+    "g": 12,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": null
+   }
+  },
+  {
+   "t": 3028.3,
+   "min": 50.47,
+   "antes": {
+    "t": 2971.8,
+    "g": 12,
+    "pts": [
+     0,
+     0
+    ],
+    "saca": null
+   },
+   "despues": {
+    "t": 3055.2,
+    "g": 12,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": null
+   }
+  },
+  {
+   "t": 3099.0,
+   "min": 51.65,
+   "antes": {
+    "t": 3098.3,
+    "g": 12,
+    "pts": [
+     2,
+     1
+    ],
+    "saca": null
+   },
+   "despues": {
+    "t": 3124.7,
+    "g": 12,
+    "pts": [
+     3,
+     1
+    ],
+    "saca": null
+   }
+  },
+  {
+   "t": 3167.5,
+   "min": 52.79,
+   "antes": {
+    "t": 3167.0,
+    "g": 13,
+    "pts": [
+     0,
+     0
+    ],
+    "saca": 1
+   },
+   "despues": {
+    "t": 3186.6,
+    "g": 13,
+    "pts": [
+     1,
+     0
+    ],
+    "saca": 1
+   }
+  },
+  {
+   "t": 3306.5,
+   "min": 55.11,
+   "antes": {
+    "t": 3291.2,
+    "g": 13,
+    "pts": [
+     3,
+     1
+    ],
+    "saca": 1
+   },
+   "despues": {
+    "t": 3350.8,
+    "g": 14,
+    "pts": [
+     0,
+     0
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 3384.3,
+   "min": 56.4,
+   "antes": {
+    "t": 3373.6,
+    "g": 14,
+    "pts": [
+     1,
+     0
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 3425.7,
+    "g": 14,
+    "pts": [
+     2,
+     0
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 3427.0,
+   "min": 57.12,
+   "antes": {
+    "t": 3425.7,
+    "g": 14,
+    "pts": [
+     2,
+     0
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 3453.7,
+    "g": 14,
+    "pts": [
+     2,
+     1
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 3454.5,
+   "min": 57.57,
+   "antes": {
+    "t": 3453.7,
+    "g": 14,
+    "pts": [
+     2,
+     1
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 3475.1,
+    "g": 14,
+    "pts": [
+     3,
+     1
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 3676.8,
+   "min": 61.28,
+   "antes": {
+    "t": 3674.3,
+    "g": 15,
+    "pts": [
+     3,
+     2
+    ],
+    "saca": 1
+   },
+   "despues": {
+    "t": 3697.1,
+    "g": 15,
+    "pts": [
+     3,
+     3
+    ],
+    "saca": 1
+   }
+  },
+  {
+   "t": 3885.6,
+   "min": 64.76,
+   "antes": {
+    "t": 3884.7,
+    "g": 16,
+    "pts": [
+     1,
+     0
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 3936.0,
+    "g": 16,
+    "pts": [
+     2,
+     0
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 3897.7,
+   "min": 64.96,
+   "antes": {
+    "t": 3884.7,
+    "g": 16,
+    "pts": [
+     1,
+     0
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 3936.0,
+    "g": 16,
+    "pts": [
+     2,
+     0
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 3935.5,
+   "min": 65.59,
+   "antes": {
+    "t": 3884.7,
+    "g": 16,
+    "pts": [
+     1,
+     0
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 3936.0,
+    "g": 16,
+    "pts": [
+     2,
+     0
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 3947.8,
+   "min": 65.8,
+   "antes": {
+    "t": 3936.0,
+    "g": 16,
+    "pts": [
+     2,
+     0
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 3973.4,
+    "g": 16,
+    "pts": [
+     3,
+     0
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 3974.0,
+   "min": 66.23,
+   "antes": {
+    "t": 3973.4,
+    "g": 16,
+    "pts": [
+     3,
+     0
+    ],
+    "saca": 0
+   },
+   "despues": null
+  }
+ ],
+ "lecturas_marcador": 158,
+ "estados": 76
+}
