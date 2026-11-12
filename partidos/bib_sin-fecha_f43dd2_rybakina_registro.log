@@ -10813,3 +10813,17 @@
 2026-11-12 15:48:46   [players] players:  86 % (8806/10216 fotogramas con jugadoras) · 13 min · quedan ≈ 2 min
 2026-11-12 15:49:16   [players] players:  91 % (9292/10216 fotogramas con jugadoras) · 14 min · quedan ≈ 81 s
 2026-11-12 15:49:46   [players] players:  95 % (9709/10216 fotogramas con jugadoras) · 14 min · quedan ≈ 44 s
+2026-11-12 15:50:16   [players] players: 100 % (10188/10216 fotogramas con jugadoras) · 15 min · quedan ≈ 2 s
+2026-11-12 15:50:18   [players] players: 100 % (10216/10216 fotogramas con jugadoras) · 15 min · quedan ≈ 0 s
+2026-11-12 15:50:18   [players] tiempo: 14.6 min para 10216 fotogramas a 960 px · modelo 13.3 min · leer vídeo y preparar la entrada 11.2 min en otro hilo (espera real 1.3 min) · apariencia 0.2 min en otro hilo
+2026-11-12 15:50:18 [us-open-2026-r4-naomi-osaka-elena-rybakina] players terminada a las 15:50:18 en 14.6 min (9.1 min a la vez que otra etapa)
+2026-11-12 15:50:18 [us-open-2026-r4-naomi-osaka-elena-rybakina] identity… (2026-11-12 15:50:18, etapa 7 de 16)
+2026-11-12 15:50:20   identity:   0 % (1/832 fotogramas (ropa)) · 0 s · quedan ≈ 0 s
+2026-11-12 15:50:51   identity:  40 % (334/832 fotogramas (ropa)) · 30 s · quedan ≈ 45 s
+2026-11-12 15:51:21   identity:  77 % (639/832 fotogramas (ropa)) · 60 s · quedan ≈ 18 s
+2026-11-12 15:51:37   identity: 100 % (832/832 fotogramas (ropa)) · 77 s · quedan ≈ 0 s
+2026-11-12 15:51:37   ropa: 832 fotogramas · leerlos 66 s, medir la ropa 11 s
+2026-11-12 15:51:37   identidad: 140/140 planos · ropa y cambios de lado de acuerdo en 125, solo cambios de lado 0, solo ropa 7, la ropa corrige el marcador en 8, el saque visto en 0, dudosos 0 · ropa: ropa (torso y pantalón o falda, sin la pista), separación 4.46
+2026-11-12 15:51:37   grupos de ropa: dos personas (dos personas (ropa distinta y de acuerdo con los cambios de lado); de acuerdo con los cambios de lado 0.94 en 133 planos, distancia entre su ropa típica 0.848) · clic por la ropa
+2026-11-12 15:51:37 [us-open-2026-r4-naomi-osaka-elena-rybakina] identity terminada a las 15:51:37 en 1.3 min
+2026-11-12 15:51:37 [us-open-2026-r4-naomi-osaka-elena-rybakina] spotting… (2026-11-12 15:51:37, etapa 8 de 16)

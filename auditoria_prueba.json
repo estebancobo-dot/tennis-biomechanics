@@ -3,10 +3,10 @@
  "strokes": 26,
  "near": 13,
  "summary": {
-  "ok": 403,
-  "falta": 30,
+  "ok": 407,
+  "falta": 28,
   "pocos datos": 97,
-  "aviso": 117
+  "aviso": 115
  },
  "items": [
   {
@@ -23,9 +23,9 @@
    "area": "Golpes",
    "name": "Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "ok",
-   "detail": "marcador: 42-48 puntos jugados (7 juegos leídos, 0 sin leer), 16 con su saque. Esperados: 16-36 saques (1 o 2 por punto de saque) y 67-125 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 78 golpes, 24 saques/remates → como mucho 100% de sus golpes y 100% de sus saques (sin 3 puntos en los que nadie juega en la cámara principal: la tele no los enseñó, 1 de su saque) (32 cerca, 46 lejos); además 11 de identidad dudosa, apartados (no cuentan como suyos)",
-   "found": 78,
-   "serves": 24,
+   "detail": "marcador: 42-48 puntos jugados (7 juegos leídos, 0 sin leer), 16 con su saque. Esperados: 16-36 saques (1 o 2 por punto de saque) y 67-125 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 80 golpes, 26 saques/remates → como mucho 100% de sus golpes y 100% de sus saques (sin 3 puntos en los que nadie juega en la cámara principal: la tele no los enseñó, 1 de su saque) (33 cerca, 47 lejos); además 11 de identidad dudosa, apartados (no cuentan como suyos)",
+   "found": 80,
+   "serves": 26,
    "counts": {
     "points": 42,
     "points_high": 48,
@@ -41,15 +41,15 @@
     ]
    },
    "doubtful": 11,
-   "near": 32,
-   "far": 46
+   "near": 33,
+   "far": 47
   },
   {
    "req": 1,
    "area": "Golpes",
    "name": "Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "aviso",
-   "detail": "13 de 16 puntos de su saque vistos con su saque encontrado (81%; objetivo ≥ 85%) (1 puntos más sin nadie jugando en la cámara principal: la tele no los enseñó, no cuentan); sin saque: sin ningún golpe suyo 1, golpes suyos, pero ningún saque 3; sus saques encontrados caen en puntos de su saque 18, de la rival 6, fuera de los puntos leídos 0; en los puntos sin saque, su primer golpe encontrado llega 27.5 s (mediana de 3) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 3): tipo {'backhand/detector': 1, 'backhand/pose': 1, 'forehand/detector': 1}, lado {'far': 3}, 2 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 2, 'golpe_suyo_visto_y_perdido': 0, 'golpe_de_la_rival_antes': 0, 'nada_antes': 1, 'sin_primer_golpe': 1}; en los puntos sin ningún golpe suyo: con golpes de alguien (detector) 0, sin golpes de nadie 1, cámara principal 19.7 s (mediana), candidatos {'suyos_perdidos_despues': 0, 'solo_de_la_rival': 0, 'identidad_sin_decidir': 0, 'sin_candidatos': 1}, golpes suyos perdidos {'de_identidad_dudosa': 0, 'descartados_en_la_pasada_fina': 0}; primeros: 6.1-6.5 min (sin_golpes), 6.4-7.1 min (sin_saque), 8.3-9.2 min (sin_saque), 31.1-31.7 min (sin_saque)",
+   "detail": "13 de 16 puntos de su saque vistos con su saque encontrado (81%; objetivo ≥ 85%) (1 puntos más sin nadie jugando en la cámara principal: la tele no los enseñó, no cuentan); sin saque: sin ningún golpe suyo 1, golpes suyos, pero ningún saque 3; sus saques encontrados caen en puntos de su saque 20, de la rival 6, fuera de los puntos leídos 0; en los puntos sin saque, su primer golpe encontrado llega 27.5 s (mediana de 3) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 3): tipo {'backhand/detector': 1, 'backhand/pose': 1, 'forehand/detector': 1}, lado {'far': 3}, 2 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 2, 'golpe_suyo_visto_y_perdido': 0, 'golpe_de_la_rival_antes': 0, 'nada_antes': 1, 'sin_primer_golpe': 1}; en los puntos sin ningún golpe suyo: con golpes de alguien (detector) 0, sin golpes de nadie 1, cámara principal 19.7 s (mediana), candidatos {'suyos_perdidos_despues': 0, 'solo_de_la_rival': 0, 'identidad_sin_decidir': 0, 'sin_candidatos': 1}, golpes suyos perdidos {'de_identidad_dudosa': 0, 'descartados_en_la_pasada_fina': 0}; primeros: 6.1-6.5 min (sin_golpes), 6.4-7.1 min (sin_saque), 8.3-9.2 min (sin_saque), 31.1-31.7 min (sin_saque)",
    "serve_gaps": {
     "points": 17,
     "found": 13,
@@ -151,7 +151,7 @@
      "under_3": 1
     },
     "serves_at": {
-     "her_points": 18,
+     "her_points": 20,
      "opponent_points": 6,
      "elsewhere": 0
     }
@@ -170,14 +170,14 @@
    "area": "Golpes",
    "name": "Identidad en los cambios de lado: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "aviso",
-   "detail": "66 de 67 planos decididos (99%; objetivo ≥ 95%); cambios de lado del marcador y ropa de acuerdo en 57 de 66 planos con las dos señales (86%; objetivo ≥ 90%); misma ropa dentro de un juego 75% (objetivo ≥ 95%); sus golpes: 32 cerca y 46 lejos (41% en el lado con menos); dudosos 1, sin decidir 0 · falla: cambios de lado y ropa de acuerdo 86% < 90%, ropa igual dentro de un juego 75% < 95%. Sin verdad anotada: coherencia, no validación"
+   "detail": "66 de 67 planos decididos (99%; objetivo ≥ 95%); cambios de lado del marcador y ropa de acuerdo en 57 de 66 planos con las dos señales (86%; objetivo ≥ 90%); misma ropa dentro de un juego 75% (objetivo ≥ 95%); sus golpes: 33 cerca y 47 lejos (41% en el lado con menos); dudosos 1, sin decidir 0 · falla: cambios de lado y ropa de acuerdo 86% < 90%, ropa igual dentro de un juego 75% < 95%. Sin verdad anotada: coherencia, no validación"
   },
   {
    "req": 1,
    "area": "Golpes",
    "name": "Golpes del fondo: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "ok",
-   "detail": "46 de sus 78 golpes en el lado lejano (59%; objetivo ≥ 25%); confirmados 46 de 49 candidatos suyos del fondo (94%); con su posición en la pista 93% (objetivo ≥ 80%; en el fondo solo lo fiable a esa distancia: posición, desplazamiento, altura del impacto, destino); de sus 46 golpes del fondo: desplazamiento 74%, altura del impacto 91%, destino 17%; 7 sin pose en la ventana (confirmados por la bola o el detector)"
+   "detail": "47 de sus 80 golpes en el lado lejano (59%; objetivo ≥ 25%); confirmados 47 de 50 candidatos suyos del fondo (94%); con su posición en la pista 94% (objetivo ≥ 80%; en el fondo solo lo fiable a esa distancia: posición, desplazamiento, altura del impacto, destino); de sus 47 golpes del fondo: desplazamiento 72%, altura del impacto 91%, destino 17%; 7 sin pose en la ventana (confirmados por la bola o el detector)"
   },
   {
    "req": 1,
@@ -191,13 +191,13 @@
    "area": "Repeticiones y otras cámaras",
    "name": "Repeticiones y otras cámaras enlazadas: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "ok",
-   "detail": "33% de sus golpes con repetición enlazada (26 de 78, 2 a cámara lenta) · 85% con otra cámara (66) · tomas: 22 repeticiones, 3 laterales, 1 frontales, 95 primeros planos, 2 otras",
-   "strokes": 78,
-   "with_replay": 26,
-   "with_other_camera": 66,
+   "detail": "34% de sus golpes con repetición enlazada (27 de 80, 2 a cámara lenta) · 85% con otra cámara (68) · tomas: 22 repeticiones, 3 laterales, 1 frontales, 95 primeros planos, 2 otras",
+   "strokes": 80,
+   "with_replay": 27,
+   "with_other_camera": 68,
    "with_slowmo": 2,
-   "replay_share": 0.333,
-   "other_share": 0.846
+   "replay_share": 0.338,
+   "other_share": 0.85
   },
   {
    "req": 2,
@@ -3207,14 +3207,14 @@
    "area": "Rendimiento (información)",
    "name": "Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "pocos datos",
-   "detail": "115 min para 35 min de vídeo ≈ 11.5 h para un partido de 3,5 h, pero no es desde cero: releyeron sus datos guardados spotting. La cifra que cuenta es «Tiempo desde cero»"
+   "detail": "99 min para 35 min de vídeo ≈ 9.9 h para un partido de 3,5 h, pero no es desde cero: releyeron sus datos guardados spotting, fine. La cifra que cuenta es «Tiempo desde cero»"
   },
   {
    "req": 9,
    "area": "Rendimiento",
    "name": "Tomas de cámara: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "ok",
-   "detail": "0.7 min (objetivo ≤ 15 min)"
+   "detail": "0.8 min (objetivo ≤ 15 min)"
   },
   {
    "req": 2,
@@ -3242,8 +3242,8 @@
    "area": "Automático",
    "name": "Pruebas del código en este PC",
    "status": "ok",
-   "detail": "código 34d6b09 (2026-11-12T14:29:52): 1062 bien, 0 fallan, 0 errores",
-   "passed": 1062,
+   "detail": "código 22a46a8 (2026-11-12T15:50:56): 1067 bien, 0 fallan, 0 errores",
+   "passed": 1067,
    "failed": 0
   },
   {
@@ -3468,21 +3468,21 @@
    "area": "Infraestructura",
    "name": "Progreso visible (progreso.json)",
    "status": "ok",
-   "detail": "último: view_clips de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (102/102), 5 s, quedan ≈ 0 s, a las 2026-11-12 14:45:00"
+   "detail": "último: view_clips de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (102/102), 9 s, quedan ≈ 0 s, a las 2026-11-12 15:45:19"
   },
   {
    "req": 5,
    "area": "Infraestructura",
    "name": "Registros con fecha y duración",
-   "status": "falta",
-   "detail": "64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba_completo.log: sin «termina fecha» al final"
+   "status": "ok",
+   "detail": "66 de 66 registros con fecha de inicio y de fin o duración"
   },
   {
    "req": 5,
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "50 carpetas, 38.1 GB en total (2026-11-12T15:10:09); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB"
+   "detail": "50 carpetas, 38.1 GB en total (2026-11-12T15:50:11); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB"
   },
   {
    "req": 5,
@@ -3531,7 +3531,7 @@
    "area": "Automático",
    "name": "Ninguna ventana vacía del análisis en la pantalla del PC",
    "status": "ok",
-   "detail": "ninguna consola nuestra entre las 5 ventanas visibles (2026-11-12 15:15:50)"
+   "detail": "ninguna consola nuestra entre las 5 ventanas visibles (2026-11-12 15:38:25)"
   },
   {
    "req": 5,
@@ -3545,21 +3545,21 @@
    "area": "Orquestador",
    "name": "Orquestador: ejecutor vivo cuando hay trabajo",
    "status": "ok",
-   "detail": "ejecutor vivo; 0 trabajos esperando"
+   "detail": "ejecutor vivo; 3 trabajos esperando"
   },
   {
    "req": 5,
    "area": "Orquestador",
    "name": "Orquestador: espera hasta empezar cada trabajo",
    "status": "aviso",
-   "detail": "70 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 8 esperaron más de 5 min"
+   "detail": "72 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 8 esperaron más de 5 min"
   },
   {
    "req": 5,
    "area": "Ficheros",
    "name": "Partido smoke_tennis-yusipopen-final-sobolenko-rybakin: salida de cada etapa, ventanas y series",
    "status": "ok",
-   "detail": "17 ficheros de etapa, 78 golpes con ventana y serie"
+   "detail": "17 ficheros de etapa, 80 golpes con ventana y serie"
   },
   {
    "req": 5,
@@ -3580,7 +3580,7 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar",
    "status": "ok",
-   "detail": "terminó el 2026-11-12 15:15:59 en 0 min: 118 vídeos de 118 golpes"
+   "detail": "terminó el 2026-11-12 15:46:21 en 0 min: 118 vídeos de 118 golpes"
   },
   {
    "req": 2,
@@ -3706,14 +3706,14 @@
    "area": "Modelos",
    "name": "Golpes del detector aprendido: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "ok",
-   "detail": "182 candidatos del detector entrenado con F3Set (87 cerca, 94 lejos, umbral 0.1)"
+   "detail": "184 candidatos del detector entrenado con F3Set (87 cerca, 94 lejos, umbral 0.1)"
   },
   {
    "req": 9,
    "area": "Tiempo por etapa",
    "name": "Tiempo de cada etapa frente a su ritmo en este PC: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "ok",
-   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: players 48.2 min, fine 21.7 min, score 19.2 min, court 16.6 min, fine_doubtful 4.4 min; ninguna pasa de 2 veces su ritmo habitual"
+   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: players 48.2 min, score 19.2 min, court 16.6 min, fine 6.5 min, fine_doubtful 3.0 min; ninguna pasa de 2 veces su ritmo habitual"
   },
   {
    "req": 9,
@@ -3734,21 +3734,21 @@
    "area": "Golpes",
    "name": "Golpes con su pose en el contacto: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "ok",
-   "detail": "cerca 32 de 32 (100%; objetivo ≥ 95%): reveses 8 de 8, derechas 13 de 13, saques 11 de 11 · lejos (medidas de la pose para medir): reveses 17 de 20, derechas 10 de 13, saques 11 de 13"
+   "detail": "cerca 33 de 33 (100%; objetivo ≥ 95%): reveses 8 de 8, derechas 13 de 13, saques 12 de 12 · lejos (medidas de la pose para medir): reveses 17 de 20, derechas 10 de 13, saques 12 de 14"
   },
   {
    "req": 9,
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-12_1320.csv (mín/media/máx): elena-rybakina-jessica-pegula- fine (0.2 min): CPU 27/27/27 %, iGPU 94/94/94 %, RAM máx 11.7 GB → iGPU al límite; más recientes sin muestras de una etapa en marcha (ejecuciones desde las cachés): recursos_2026-11-12_1515.csv, recursos_2026-11-12_1418.csv, recursos_2026-11-12_1350.csv"
+   "detail": "recursos_2026-11-12_1540.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el score (2.5 min): CPU 17/73/93 %, iGPU 0/82/100 %, RAM máx 14.7 GB → iGPU al límite; us-open-2026-r4-naomi-osaka-el players (6.2 min): CPU 21/55/100 %, iGPU 0/84/100 %, RAM máx 14.7 GB → iGPU al límite; us-open-2026-r4-naomi-osaka-el identity (1.2 min): CPU 29/62/91 %, iGPU 0/0/0 %, RAM máx 9.7 GB → uso medio: margen para repartir trabajo"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
-   "status": "aviso",
-   "detail": "la última petición (12-11 15:15) no empezó por GitHub Actions; el último trabajo por Actions fue el 12-11 15:04"
+   "status": "ok",
+   "detail": "petición del 12-11 15:34, empezó a los 0.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
   },
   {
    "req": 1,
@@ -4216,8 +4216,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#66 Fechas y duración en los registros",
-   "status": "falta",
-   "detail": "2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba)"
+   "status": "ok",
+   "detail": "2 comprobaciones: 2 ok"
   },
   {
    "req": 11,
@@ -4567,7 +4567,7 @@
    "area": "Peticiones",
    "name": "#119 Automatizar todo el ciclo en el PC: el usuario no lanza pruebas ni avisa",
    "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (70 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 8 esperaron más de 5 min)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (72 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 8 esperaron más de 5 min)"
   },
   {
    "req": 11,
@@ -5372,7 +5372,7 @@
    "area": "Peticiones",
    "name": "#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min",
    "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 2 aviso, 1 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (70 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 8 esperaron más de 5 min)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (72 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 8 esperaron más de 5 min)"
   },
   {
    "req": 11,
@@ -5435,7 +5435,7 @@
    "area": "Peticiones",
    "name": "#246 Un único orquestador: mismo código y misma fuente de datos para la aplicación y el chat; monitorizar, pausar, ",
    "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (70 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 8 esperaron más de 5 min)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (72 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 8 esperaron más de 5 min)"
   },
   {
    "req": 11,
@@ -5560,8 +5560,8 @@
    "req": 5,
    "area": "Automático",
    "name": "Comprobaciones que saben fallar",
-   "status": "aviso",
-   "detail": "sin el registro de las pruebas en este PC (comprobaciones_pruebas/rec_*.json)"
+   "status": "ok",
+   "detail": "475 de 554 tipos de comprobación con una prueba que las hace fallar; 61 sin ninguna prueba y 18 que nunca fallan en las pruebas; de las pruebas principales de la Base: 0"
   }
  ]
 }
