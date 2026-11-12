@@ -1,6 +1,6 @@
 {
- "at": "2026-11-12 11:03:47",
- "firma": "fbdca7ecaeb0",
+ "at": "2026-11-12 11:07:31",
+ "firma": "b4f88eef18a8",
  "ejecutor": {
   "vivo": false,
   "pid": 4892,
@@ -19,6 +19,24 @@
   "hora": "2026-11-12 11:03:05"
  },
  "pendientes": [
+  {
+   "id": 85,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script ventanas_visibles",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-12 11:07:28",
+   "started": null,
+   "finished": null,
+   "args": "[\"script\", \"ventanas_visibles\"]",
+   "source": "claude 242",
+   "log": "",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 84,
    "kind": "flujo",
@@ -348,6 +366,13 @@
  ],
  "eventos": [
   {
+   "id": 420,
+   "job": 85,
+   "at": "2026-11-12 11:07:29",
+   "kind": "enviado",
+   "text": "tennisbio script ventanas_visibles (claude 242)"
+  },
+  {
    "id": 419,
    "job": null,
    "at": "2026-11-12 11:03:29",
@@ -549,13 +574,6 @@
    "at": "2026-11-12 10:07:51",
    "kind": "ejecutor",
    "text": "arranca el siguiente con el código nuevo (pid 9200)"
-  },
-  {
-   "id": 390,
-   "job": null,
-   "at": "2026-11-12 10:07:51",
-   "kind": "ejecutor",
-   "text": "termina"
   }
  ]
 }

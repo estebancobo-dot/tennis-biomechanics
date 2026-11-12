@@ -50,3 +50,4 @@
 2026-11-12T10:36:04 peticion 239: trabajo 82 en la cola: tennisbio script diag_pose_contacto
 2026-11-12T10:36:36 peticion 240: trabajo 83 en la cola: tennisbio script validate_recall --spotter --tag v13r --from v13
 2026-11-12T10:37:05 peticion 241: trabajo 84 en la cola: flujo informe
+2026-11-12T11:07:29 peticion 242: trabajo 85 en la cola: tennisbio script ventanas_visibles
