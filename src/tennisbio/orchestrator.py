@@ -206,6 +206,27 @@ def _spawn(job_id: int, log: Path, extra_env: dict | None = None) -> subprocess.
                             stdout=out, stderr=subprocess.STDOUT, env=env, **kw)
 
 
+def worker_log(cfg: dict | None = None) -> Path:
+    """12-12: the worker's own log (datos/trabajos/ejecutor.log): its successor's output and any error of its loop. On
+    12-12 a worker started by its predecessor (output thrown away) died at 11:00 without a trace."""
+    from .app.db import Paths
+    from .config import load_config
+    p = Paths.from_config(cfg if cfg is not None else load_config()).data / "trabajos" / "ejecutor.log"
+    p.parent.mkdir(parents=True, exist_ok=True)
+    return p
+
+
+def _log(cfg: dict | None, msg: str) -> None:
+    try:
+        with open(worker_log(cfg), "a", encoding="utf-8") as f:
+            f.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')} pid {os.getpid()} {msg}\n")
+    except OSError:
+        pass
+
+
+MAX_LOOP_ERRORS = 10        # consecutive errors of the worker's loop (a locked database...) before it gives up
+
+
 def _start_successor() -> subprocess.Popen:
     """11-11 (R7 of the review of the Base): a worker that ends for new code starts the next one itself, detached, once
     its lock is released (a fresh interpreter: it imports the new code). Before, it waited for the cycle to start it:
@@ -213,8 +234,9 @@ def _start_successor() -> subprocess.Popen:
     env = {**os.environ, "PYTHONUTF8": "1", "PYTHONIOENCODING": "utf-8"}
     kw = {"creationflags": getattr(subprocess, "CREATE_NO_WINDOW", 0) | getattr(subprocess, "CREATE_NEW_PROCESS_GROUP", 0)
           | getattr(subprocess, "DETACHED_PROCESS", 0)} if os.name == "nt" else {"start_new_session": True}
+    out = open(worker_log(), "a", encoding="utf-8")
     return subprocess.Popen([sys.executable, "-m", "tennisbio.cli", "worker"], stdin=subprocess.DEVNULL,
-                            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, env=env, **kw)
+                            stdout=out, stderr=subprocess.STDOUT, env=env, **kw)
 
 
 def serve(cfg: dict, once: bool = False, idle_s: float = 10.0, stop=lambda: False, status_file: Path | None = None,
@@ -233,68 +255,103 @@ def serve(cfg: dict, once: bool = False, idle_s: float = 10.0, stop=lambda: Fals
         jobs.recover(db)
         event(db, None, "ejecutor", f"arranca (pid {os.getpid()})")
         last_beat = 0.0
+        errors = 0
         while not stop():
-            if time.time() - last_beat > HEARTBEAT_S:
-                db.set_setting("ejecutor", {"pid": os.getpid(), "at": time.time()})
-                last_beat = time.time()
-                write_status(db, status_file)
-            if db.setting("reiniciar_ejecutor", False):   # new code arrived: exit between jobs, the cycle starts a new one
-                db.set_setting("reiniciar_ejecutor", False)
-                event(db, None, "ejecutor", "se reinicia con el código nuevo")
+            try:
+                done = _serve_step(db, paths, jobs, now, once, idle_s, stop, status_file, last_beat)
+                errors = 0
+            except Exception as e:  # noqa: BLE001 — 12-12: an error of the loop (a locked database...) is logged, not fatal
+                errors += 1
+                import traceback
+                _log(cfg, f"error del bucle ({errors}/{MAX_LOOP_ERRORS}): {e}\n{traceback.format_exc()}")
+                if errors >= MAX_LOOP_ERRORS:
+                    raise
+                time.sleep(min(30.0, 2.0 * errors))
+                continue
+            last_beat = done.get("beat", last_beat)
+            if done.get("renew"):
                 renew = not once
                 break
-            job = jobs.next_job(db)
-            if job is None:
-                if once:
-                    break
-                time.sleep(idle_s)
-                continue
-            log = paths.data / "trabajos" / f"trabajo_{job['id']}.log"
-            db.x("UPDATE jobs SET state='en curso', started=?, log=?, control='' WHERE id=?", now(), str(log), job["id"])
-            event(db, job["id"], "empieza", job.get("reason") or job["kind"])
-            write_status(db, status_file)
-            p = _spawn(job["id"], log)
-            db.x("UPDATE jobs SET pid=? WHERE id=?", p.pid, job["id"])
-            stopped = ""
-            while p.poll() is None:
-                time.sleep(POLL_S)
-                if time.time() - last_beat > HEARTBEAT_S:
-                    db.set_setting("ejecutor", {"pid": os.getpid(), "at": time.time()})
-                    last_beat = time.time()
-                    write_status(db, status_file)
-                ctl = (db.one("SELECT control FROM jobs WHERE id=?", job["id"]) or {}).get("control") or ""
-                if ctl in ("cancelar", "pausar") or stop():
-                    stopped = ctl or "pausar"
-                    _kill_tree(p)
-            row = db.one("SELECT state FROM jobs WHERE id=?", job["id"]) or {}
-            if stopped == "cancelar":
-                db.x("UPDATE jobs SET state='cancelado', pid=NULL, control='', finished=?, message='cancelado' WHERE id=?",
-                     now(), job["id"])
-                event(db, job["id"], "cancelado")
-            elif stopped:
-                db.x("UPDATE jobs SET state='pendiente', pid=NULL, control='', message='parado: sigue donde se quedó' "
-                     "WHERE id=?", job["id"])
-                event(db, job["id"], "parado", "vuelve a la cola; reanuda desde las cachés")
-            elif row.get("state") == "en curso":           # the child died without saying how it ended
-                db.x("UPDATE jobs SET state='error', pid=NULL, finished=?, message=? WHERE id=?", now(),
-                     f"el proceso terminó con código {p.returncode} sin acabar (ver {log.name})", job["id"])
-                event(db, job["id"], "error", f"código {p.returncode}")
-            else:
-                event(db, job["id"], row.get("state") or "terminado", f"código {p.returncode}")
-            write_status(db, status_file)
+            if done.get("stop"):
+                break
     finally:
-        event(db, None, "ejecutor", "termina")
-        db.set_setting("ejecutor", {"pid": None, "at": time.time()})
-        write_status(db, status_file)
+        try:
+            event(db, None, "ejecutor", "termina")
+            db.set_setting("ejecutor", {"pid": None, "at": time.time()})
+            write_status(db, status_file)
+        except Exception as e:  # noqa: BLE001 — the lock is released and the successor started all the same
+            _log(cfg, f"no pudo apuntar su final: {e}")
         lock.release()                     # first: the successor takes the lock (it stops if another worker holds it)
         if renew:
             try:
                 p = successor()
                 event(db, None, "ejecutor", f"arranca el siguiente con el código nuevo (pid {getattr(p, 'pid', '?')})")
             except Exception as e:  # noqa: BLE001 — the cycle starts one if this failed
-                event(db, None, "ejecutor", f"no pudo arrancar el siguiente ({e}): lo arrancará el ciclo")
+                _log(cfg, f"no pudo arrancar el siguiente: {e}")
         db.close()
     return 0
+
+
+def _beat(db, status_file) -> float:
+    db.set_setting("ejecutor", {"pid": os.getpid(), "at": time.time()})
+    write_status(db, status_file)
+    return time.time()
+
+
+def _serve_step(db, paths, jobs, now, once: bool, idle_s: float, stop, status_file, last_beat: float) -> dict:
+    """One turn of the worker's loop: its heartbeat, a restart asked for, or the next job run to its end. Returns
+    {"beat": time of the last heartbeat, "renew": True to restart with new code, "stop": True to end (once)}."""
+    out: dict = {"beat": last_beat}
+    if time.time() - last_beat > HEARTBEAT_S:
+        out["beat"] = _beat(db, status_file)
+    if db.setting("reiniciar_ejecutor", False):       # new code arrived: exit between jobs, the next one starts with it
+        db.set_setting("reiniciar_ejecutor", False)
+        event(db, None, "ejecutor", "se reinicia con el código nuevo")
+        out["renew"] = True
+        return out
+    job = jobs.next_job(db)
+    if job is None:
+        if once:
+            out["stop"] = True
+        else:
+            time.sleep(idle_s)
+        return out
+    log = paths.data / "trabajos" / f"trabajo_{job['id']}.log"
+    db.x("UPDATE jobs SET state='en curso', started=?, log=?, control='' WHERE id=?", now(), str(log), job["id"])
+    event(db, job["id"], "empieza", job.get("reason") or job["kind"])
+    write_status(db, status_file)
+    p = _spawn(job["id"], log)
+    db.x("UPDATE jobs SET pid=? WHERE id=?", p.pid, job["id"])
+    stopped = ""
+    while p.poll() is None:
+        time.sleep(POLL_S)
+        try:
+            if time.time() - out["beat"] > HEARTBEAT_S:
+                out["beat"] = _beat(db, status_file)
+            ctl = (db.one("SELECT control FROM jobs WHERE id=?", job["id"]) or {}).get("control") or ""
+        except Exception as e:  # noqa: BLE001 — 12-12: a locked database while the job runs never kills the worker
+            _log(None, f"latido o control del trabajo {job['id']} no leído: {e}")
+            continue
+        if ctl in ("cancelar", "pausar") or stop():
+            stopped = ctl or "pausar"
+            _kill_tree(p)
+    row = db.one("SELECT state FROM jobs WHERE id=?", job["id"]) or {}
+    if stopped == "cancelar":
+        db.x("UPDATE jobs SET state='cancelado', pid=NULL, control='', finished=?, message='cancelado' WHERE id=?",
+             now(), job["id"])
+        event(db, job["id"], "cancelado")
+    elif stopped:
+        db.x("UPDATE jobs SET state='pendiente', pid=NULL, control='', message='parado: sigue donde se quedó' "
+             "WHERE id=?", job["id"])
+        event(db, job["id"], "parado", "vuelve a la cola; reanuda desde las cachés")
+    elif row.get("state") == "en curso":           # the child died without saying how it ended
+        db.x("UPDATE jobs SET state='error', pid=NULL, finished=?, message=? WHERE id=?", now(),
+             f"el proceso terminó con código {p.returncode} sin acabar (ver {log.name})", job["id"])
+        event(db, job["id"], "error", f"código {p.returncode}")
+    else:
+        event(db, job["id"], row.get("state") or "terminado", f"código {p.returncode}")
+    write_status(db, status_file)
+    return out
 
 
 # TENNISBIO_FLUJOS: another flows file (the tests; the worker's job children inherit it)

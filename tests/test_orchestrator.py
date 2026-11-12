@@ -261,3 +261,21 @@ def test_a_repository_script_as_a_job(env, tmp_path):
     from tennisbio import cli
     assert cli.main(["script", "esperar", "0.1"]) == 0
     assert cli.main(["script", "../evil"]) == 2 and cli.main(["script", "no_existe"]) == 2
+
+
+def test_an_error_of_the_loop_is_logged_and_the_worker_goes_on(env, monkeypatch):
+    # 12-12: a worker died at 11:00 without a trace (its output thrown away); a failing turn is now logged and retried
+    calls = {"n": 0}
+    real = O._serve_step
+
+    def flaky(*a, **k):
+        calls["n"] += 1
+        if calls["n"] == 1:
+            raise RuntimeError("database is locked")
+        return real(*a, **k)
+    monkeypatch.setattr(O, "_serve_step", flaky)
+    monkeypatch.setattr(O.time, "sleep", lambda s: None)
+    assert O.serve(env, once=True, idle_s=0.0) == 0
+    assert calls["n"] >= 2
+    log = O.worker_log(env).read_text(encoding="utf-8")
+    assert "error del bucle (1/10): database is locked" in log

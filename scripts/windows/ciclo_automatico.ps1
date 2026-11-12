@@ -25,8 +25,13 @@ function Esperar-Novedades($minutos = 45) {
     # este ciclo solo espera (06-11, #237): el trabajo de GitHub Actions no lo cuenta como otro analisis
     $esp = "$Out\ciclo_esperando.txt"
     try { "$PID" | Set-Content $esp } catch {}
+    $k = 0
     while ((Get-Date) -lt $fin) {
         Start-Sleep -Seconds 60
+        # 12-12: while it waits, the single worker is kept alive (on 12-12 it died at 11:00 and this cycle, waiting for
+        # new code, left four jobs waiting); every 5 min, the same check as at the start of every cycle
+        $k++
+        if ($k % 5 -eq 0) { try { Orquestador } catch {} }
         git -C $RepoDir fetch -q origin $Rama 2>$null
         $f = (git -C $RepoDir rev-parse FETCH_HEAD 2>$null)
         if ($f -and $h -and "$f".Trim() -ne "$h".Trim()) { Remove-Item $esp -Force -ErrorAction SilentlyContinue; Relanzar }
