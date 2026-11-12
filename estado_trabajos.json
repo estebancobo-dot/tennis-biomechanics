@@ -1,10 +1,10 @@
 {
- "at": "2026-11-13 00:40:47",
- "firma": "81f780e34f7b",
+ "at": "2026-11-13 00:41:08",
+ "firma": "ea2ff163dd5a",
  "ejecutor": {
   "vivo": true,
   "pid": 9640,
-  "at": 1794526847.1588106
+  "at": 1794526863.1844826
  },
  "pausa": false,
  "en_curso": [
@@ -38,6 +38,24 @@
   "hora": "2026-11-13 00:40:36"
  },
  "pendientes": [
+  {
+   "id": 108,
+   "kind": "flujo",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-13 00:41:03",
+   "started": null,
+   "finished": null,
+   "args": "[\"informe\"]",
+   "source": "claude 267",
+   "log": "",
+   "paso": 0,
+   "pasos": 6
+  },
   {
    "id": 107,
    "kind": "comando",
@@ -331,6 +349,13 @@
  ],
  "eventos": [
   {
+   "id": 575,
+   "job": 108,
+   "at": "2026-11-13 00:41:03",
+   "kind": "enviado",
+   "text": "flujo informe (claude 267)"
+  },
+  {
    "id": 574,
    "job": 107,
    "at": "2026-11-13 00:40:36",
@@ -532,13 +557,6 @@
    "at": "2026-11-12 15:34:29",
    "kind": "ejecutor",
    "text": "termina"
-  },
-  {
-   "id": 545,
-   "job": null,
-   "at": "2026-11-12 15:34:29",
-   "kind": "ejecutor",
-   "text": "se reinicia con el código nuevo"
   }
  ]
 }
