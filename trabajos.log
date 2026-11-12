@@ -74,3 +74,4 @@
 2026-11-12T15:37:07 peticion 263: trabajo 104 en la cola: tennisbio script validate_recall --spotter --tag v16 --from v15
 2026-11-12T15:38:11 peticion 264: trabajo 105 en la cola: flujo informe
 2026-11-13T00:40:11 peticion 265: trabajo 106 en la cola: tennisbio run --match us-open-2026-r4-naomi-osaka-elena-rybakina
+2026-11-13T00:40:37 peticion 266: trabajo 107 en la cola: tennisbio run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final
