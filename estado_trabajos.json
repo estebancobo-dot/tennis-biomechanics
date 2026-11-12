@@ -1,10 +1,10 @@
 {
- "at": "2026-11-12 10:02:01",
- "firma": "7ec5892bf002",
+ "at": "2026-11-12 10:08:27",
+ "firma": "0f8fa2d8564c",
  "ejecutor": {
   "vivo": true,
-  "pid": 4792,
-  "at": 1794474121.4105823
+  "pid": 6856,
+  "at": 1794474492.4133663
  },
  "pausa": false,
  "en_curso": [],
@@ -18,7 +18,26 @@
   "quedan_s": 0,
   "hora": "2026-11-12 08:59:52"
  },
- "pendientes": [],
+ "pendientes": [
+  {
+   "id": 79,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script diag_pose_contacto",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-12 10:08:24",
+   "started": null,
+   "finished": null,
+   "args": "[\"script\", \"diag_pose_contacto\"]",
+   "source": "claude 236",
+   "log": "",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "recientes": [
   {
    "id": 78,
@@ -293,6 +312,48 @@
  ],
  "eventos": [
   {
+   "id": 393,
+   "job": 79,
+   "at": "2026-11-12 10:08:24",
+   "kind": "enviado",
+   "text": "tennisbio script diag_pose_contacto (claude 236)"
+  },
+  {
+   "id": 392,
+   "job": null,
+   "at": "2026-11-12 10:07:52",
+   "kind": "ejecutor",
+   "text": "arranca (pid 6856)"
+  },
+  {
+   "id": 391,
+   "job": null,
+   "at": "2026-11-12 10:07:51",
+   "kind": "ejecutor",
+   "text": "arranca el siguiente con el código nuevo (pid 9200)"
+  },
+  {
+   "id": 390,
+   "job": null,
+   "at": "2026-11-12 10:07:51",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 389,
+   "job": null,
+   "at": "2026-11-12 10:07:51",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 388,
+   "job": null,
+   "at": "2026-11-12 10:07:44",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
    "id": 387,
    "job": 78,
    "at": "2026-11-12 10:00:31",
@@ -459,48 +520,6 @@
    "at": "2026-11-12 09:41:47",
    "kind": "reiniciar",
    "text": "ciclo"
-  },
-  {
-   "id": 363,
-   "job": null,
-   "at": "2026-11-12 09:35:34",
-   "kind": "ejecutor",
-   "text": "arranca (pid 8668)"
-  },
-  {
-   "id": 362,
-   "job": null,
-   "at": "2026-11-12 09:35:33",
-   "kind": "ejecutor",
-   "text": "arranca el siguiente con el código nuevo (pid 8568)"
-  },
-  {
-   "id": 361,
-   "job": null,
-   "at": "2026-11-12 09:35:33",
-   "kind": "ejecutor",
-   "text": "termina"
-  },
-  {
-   "id": 360,
-   "job": null,
-   "at": "2026-11-12 09:35:33",
-   "kind": "ejecutor",
-   "text": "se reinicia con el código nuevo"
-  },
-  {
-   "id": 359,
-   "job": null,
-   "at": "2026-11-12 09:35:29",
-   "kind": "reiniciar",
-   "text": "ciclo"
-  },
-  {
-   "id": 358,
-   "job": 75,
-   "at": "2026-11-12 09:28:53",
-   "kind": "hecho",
-   "text": "código 0"
   }
  ]
 }

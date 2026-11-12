@@ -44,3 +44,4 @@
 2026-11-12T09:42:16 peticion 233: trabajo 76 en la cola: tennisbio script export_fotogramas 0312430 0221547 0925800 0048549
 2026-11-12T09:50:41 peticion 234: trabajo 77 en la cola: tennisbio script diag_serie_ventana 0312430 0925800 0966569 0048549
 2026-11-12T10:00:09 peticion 235: trabajo 78 en la cola: tennisbio script diag_export_clip 0312430 0966569 0925800 0048549
+2026-11-12T10:08:24 peticion 236: trabajo 79 en la cola: tennisbio script diag_pose_contacto
