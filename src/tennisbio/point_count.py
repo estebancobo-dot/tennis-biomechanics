@@ -416,9 +416,18 @@ def game_change_servers(a: dict, b: dict) -> set:
     return out
 
 
+GAME_END_CAP_S = 45.0       # 12-11: the end of her game, from its last score shown, at most this long (see her_serve_points)
+
+
 def her_serve_points(readings: list[dict], lead_s: float = 5.0) -> list[tuple[float, float]]:
     """(start, end) of each point on HER serve read on the scoreboard (row 0 serving, same game, one point played):
-    from the first reading that shows its score (lead_s earlier at most) to the reading that shows the next one."""
+    from the first reading that shows its score (lead_s earlier at most) to the reading that shows the next one.
+
+    12-11 (B4, Osaka – Rybakina: in the last points of her games her serve was found in 5 of 11, inside the games in 24
+    of 25, because the rules that recover her serves only looked inside a game): also the end of her game, from its last
+    score shown to the next game's first one, but GAME_END_CAP_S at most, so that the opponent's first point of the
+    next game (its 0-0 is often read late: 57:58 of that match, read after Osaka's serve) never falls in it: her first
+    stroke there must stay her serve for serves_by_rule and serve_identity."""
     st = clean_states(readings)
     out = []
     since = st[0]["t"] if st else 0.0
@@ -426,7 +435,14 @@ def her_serve_points(readings: list[dict], lead_s: float = 5.0) -> list[tuple[fl
         same_score = b["g"] == a["g"] and b["pts"] == a["pts"]
         if not same_score:
             start, since = since, b["t"]
-        if b["g"] != a["g"] or a["tb"] or same_score or a["server"] != 0 or not _in_game(a, b):
+        if a["tb"] or same_score or a["server"] != 0:
+            continue
+        if b["g"] != a["g"]:
+            if b["g"] != a["g"] + 1 or b["tb"]:
+                continue
+            out.append((start - lead_s, min(b["t"], start + GAME_END_CAP_S)))
+            continue
+        if not _in_game(a, b):
             continue
         out.append((start - lead_s, b["t"]))
     return out

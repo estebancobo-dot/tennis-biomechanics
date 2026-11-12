@@ -215,10 +215,18 @@ def _appearances(frame: np.ndarray, boxes: np.ndarray) -> np.ndarray:
     return np.array([appearance(frame, bb) for bb in boxes], np.float32).reshape(len(boxes), 32)
 
 
+COURT_GAP_FILL_S = 6.0      # 12-11: a stretch this short without the court found, inside a main-camera shot that has it
+
+
 def play_mask(sc: dict, court: dict | None) -> np.ndarray:
     """Frames (at the scenes' fps) of match play: main camera AND the court found there. A broadcast
     has long stretches the shot classifier can take for the main camera (anthem, ceremony, practice
-    footage, close-ups on a blue background); without the court lines there is nothing to analyse."""
+    footage, close-ups on a blue background); without the court lines there is nothing to analyse.
+
+    12-11 (B4, Osaka – Rybakina): the main camera does not move inside a shot, so a short stretch (≤ COURT_GAP_FILL_S)
+    where the lines were not found, in a shot where they were, is play too: a graphic over the court («SERVING FOR THE
+    MATCH» on a dissolve) or the last second of a short shot left her serve out of play, its features zero and the
+    detector blind (64:17 and 33:04 of that match). A shot where the court is never found stays out."""
     n = max([s["end"] for s in sc["shots"]] + [0])
     main = np.zeros(n, bool)
     for s in sc["shots"]:
@@ -229,6 +237,22 @@ def play_mask(sc: dict, court: dict | None) -> np.ndarray:
     for o in court["shots"]:
         if o["H"] is not None:
             has[o["start"]:o["end"]] = True
+    fill = int(round(COURT_GAP_FILL_S * float(sc.get("fps") or 10.0)))
+    for s in sc["shots"]:
+        a, b = int(s["start"]), int(s["end"])
+        if not s["main_camera"] or not has[a:b].any():
+            continue
+        i = a
+        while i < b:
+            if has[i]:
+                i += 1
+                continue
+            j = i
+            while j < b and not has[j]:
+                j += 1
+            if j - i <= fill:
+                has[i:j] = True
+            i = j
     return main & has
 
 
@@ -239,7 +263,7 @@ def _fp16_setting(c) -> dict:
     return {"fp16": True} if uses_fp16(c) else {}
 
 
-@stage("players", "4", deps=("scenes", "court"),
+@stage("players", "5", deps=("scenes", "court"),   # 5 (12-11): short court gaps inside a main-camera shot are play
        settings=lambda c: {"fps": c["cheap_pass"]["fps"], "imgsz": c["cheap_pass"].get("imgsz", 960), **_fp16_setting(c)},
        outputs=("players.npz",), resource=lambda c: "gpu" if c.get("device", "cpu") == "dml" else "cpu")
 def st_players(ctx: Context):
@@ -891,7 +915,8 @@ def add_serve_candidates(cands: list[dict], score: dict, identity: dict, fps: fl
     return len(added)
 
 
-@stage("candidates", "15", deps=("players", "audio", "identity", "court", "score"), outputs=("candidates.json", "audio_track.json"),
+# candidates 16 (12-11): her serve points also at the end of her games (point_count.her_serve_points)
+@stage("candidates", "16", deps=("players", "audio", "identity", "court", "score"), outputs=("candidates.json", "audio_track.json"),
        reviews=("identidad_clic.json",),
        # with the learned spotter (off by default) it reads spotting.json; off, its fingerprint is the one it always was
        settings=lambda c: {"spotter": True} if spotter_on(c) else {},
@@ -1368,7 +1393,7 @@ def _surname(name: str) -> str:
     return name.strip().split()[-1] if name and name.strip() else ""
 
 
-@stage("score", "11",  # 9 (11-11): games stacked in one OCR box split between the rows; 10 (12-11): server by alternation; 11: voted by games
+@stage("score", "12",  # 9 (11-11): games stacked in one OCR box split between the rows; 10 (12-11): server by alternation; 11: voted by games; 12: play_mask
        deps=("scenes", "court"), settings=lambda c: {"every_s": (c.get("score") or {}).get("every_s", 5.0)},
        outputs=("score.json",), match_fields=lambda m: {"player": m.player.name, "opponent": m.opponent}, resource="cpu")
 def st_score(ctx: Context):
@@ -1714,7 +1739,9 @@ def ball_track_key(cfg: dict) -> str:
     bcfg = cfg.get("ball") or {}
     return hashlib.sha1(json.dumps([model_state(bcfg.get("onnx")), bool(bcfg.get("fp16")),
                                     code_fingerprint(("ball", "io.video")),
-                                    function_fingerprint("ball_features", "track_play")]).encode()).hexdigest()[:16]
+                                    function_fingerprint("ball_features", "track_play"),
+                                    # the stretches it follows come from stages.play_mask (ball_features.play_segments)
+                                    function_fingerprint("stages", "play_mask")]).encode()).hexdigest()[:16]
 
 
 def available_ram_gb() -> float | None:

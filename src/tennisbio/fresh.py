@@ -7,6 +7,7 @@ inside the fine pass (pose, ball and racket of each window, the match's ball tra
 
     tennisbio desde-cero              # what would move, nothing moved (also <output>/capturas_diag/desde_cero.json)
     tennisbio desde-cero --ejecutar   # moves it (the PC's flow «desde_cero», only with the user's approval, #262)
+    tennisbio desde-cero --ejecutar --match osaka pegula   # a batch of matches (then run --match with the same ones)
 """
 from __future__ import annotations
 
@@ -21,6 +22,14 @@ from . import match_files as _mf
 # relative to a library match folder (etapas/ holds the cheap pass); a flat folder has them at its root
 KEEP_LIBRARY = ("partido.json", "etapas/identidad_clic.json", "etapas/source.mkv", "etapas/source.json")
 KEEP_FLAT = ("identidad_clic.json", "source.mkv", "source.json", "partido.json")
+
+
+def select(matches: list, wanted: list[str] | None) -> list:
+    """The matches whose id contains any of `wanted` (all of them without it)."""
+    if not wanted:
+        return list(matches)
+    w = [x.lower() for x in wanted]
+    return [m for m in matches if any(x in m.id.lower() for x in w)]
 
 
 def keep_of(d: Path) -> set[str]:

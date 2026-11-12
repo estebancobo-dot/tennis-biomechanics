@@ -363,9 +363,15 @@ def test_a_skipped_game_a_tiebreak_or_an_unknown_server_adds_nothing():
     assert game_change_servers(a, b) == set()
 
 
-def test_her_serve_points_for_the_rules_stay_inside_a_game():
-    """The rules that make her first stroke a serve keep their stretches inside one game: across a game change the
-    opponent's first point could be in the stretch when its 0-0 is read late."""
-    from tennisbio.point_count import her_serve_points
+def test_her_serve_points_for_the_rules_cover_the_end_of_her_game_capped():
+    """12-11: the rules that recover her serves also look at the end of her game, at most GAME_END_CAP_S from its last
+    score shown: the opponent's first point of the next game (its 0-0 read late) never falls in it."""
+    from tennisbio.point_count import GAME_END_CAP_S, her_serve_points
     readings = [_r(0, (40, 15)), _r(40, (0, 0), server=1, games=((3, 1),))]
-    assert her_serve_points(readings) == []
+    assert her_serve_points(readings) == [(-5.0, 40.0)]
+    late = [_r(0, (40, 15)), _r(120, (0, 0), server=1, games=((3, 1),))]                  # 0-0 read after a changeover
+    assert her_serve_points(late) == [(-5.0, GAME_END_CAP_S)]
+    # the opponent's game ending, a game skipped or a tie-break: nothing
+    assert her_serve_points([_r(0, (40, 15), server=1), _r(40, (0, 0), games=((3, 1),))]) == []
+    assert her_serve_points([_r(0, (40, 15)), _r(40, (0, 0), server=1, games=((4, 1),))]) == []
+    assert her_serve_points([_r(0, (40, 15), games=((5, 6),)), _r(40, (0, 0), server=1, games=((6, 6),))]) == []

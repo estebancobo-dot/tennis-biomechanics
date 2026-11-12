@@ -65,3 +65,13 @@ def test_the_flow_archives_before_running_and_then_runs_the_whole_completo_flow(
     assert steps.index(["desde-cero", "--ejecutar"]) < steps.index(["run", "--all"])
     completo = [s.get("tennisbio") or s.get("script") for s in flows["completo"]["pasos"]]
     assert [s for s in steps if s != ["desde-cero", "--ejecutar"]] == completo
+
+
+def test_a_batch_of_matches_by_part_of_their_id():
+    class M:
+        def __init__(self, i):
+            self.id = i
+    ms = [M("us-open-2026-r4-naomi-osaka-elena-rybakina"), M("elena-rybakina-jessica-pegula-miami-2026"),
+          M("zheng-qinwen-elena-rybakina")]
+    assert [m.id for m in fresh.select(ms, ["osaka", "PEGULA"])] == [ms[0].id, ms[1].id]
+    assert fresh.select(ms, None) == ms and fresh.select(ms, ["nadal"]) == []

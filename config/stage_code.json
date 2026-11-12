@@ -27,8 +27,8 @@
   ]
  },
  "players": {
-  "version": "4",
-  "hash": "a7841d73a938f9d0",
+  "version": "5",
+  "hash": "122f3d771af2f2d7",
   "modules": [
    "io.video",
    "pipeline",
@@ -52,7 +52,7 @@
  },
  "spotting": {
   "version": "1",
-  "hash": "2443ed90047c5ad0",
+  "hash": "815d2c4ce8b33e11",
   "modules": [
    "ball",
    "ball_features",
@@ -67,8 +67,8 @@
   ]
  },
  "candidates": {
-  "version": "15",
-  "hash": "9cb32fc1f45a663d",
+  "version": "16",
+  "hash": "23339d5e8cb00733",
   "modules": [
    "court_metrics",
    "identity",
@@ -114,8 +114,8 @@
   ]
  },
  "score": {
-  "version": "11",
-  "hash": "400e2994ca4bba19",
+  "version": "12",
+  "hash": "7834072407c14f5c",
   "modules": [
    "io.video",
    "pipeline",
