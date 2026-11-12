@@ -1,6 +1,6 @@
 # Revisión automática: REGRESIÓN
 
-384 cumplidos · 35 no cumplidos · 110 sin golpes suficientes · 113 avisos (antes: 384 cumplidos, 35 no cumplidos)
+383 cumplidos · 35 no cumplidos · 110 sin golpes suficientes · 114 avisos (antes: 384 cumplidos, 35 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 135 de 260
 
@@ -183,9 +183,4 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 
 ## Empeora respecto a la ejecución anterior
 
-- **Comprobaciones que saben fallar**: ok → aviso: sin el registro de las pruebas en este PC (comprobaciones_pruebas/rec_*.json)
-
-## Mejora
-
-- Uso del PC por etapa (CPU, RAM, iGPU y disco): aviso → ok
-- #230 Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo: aviso → pocos datos
+- **Peticiones por GitHub Actions: espera hasta empezar**: ok → aviso: petición del 12-11 09:15, empezó a los 13.0 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)
