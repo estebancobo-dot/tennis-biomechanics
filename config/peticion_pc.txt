@@ -1116,3 +1116,24 @@ accion: control
 orden: cancelar
 trabajo: 90
 # 250 (12-11, R11): se cancela F3Set con v10 (247), por lo mismo; la auditoria 248 de Osaka sigue
+---
+id: 251
+accion: trabajo
+comando: run --match us-open-2026-r4-naomi-osaka-elena-rybakina
+# 251 (12-11, R11): Osaka con el marcador v11 (primer saque votado por juegos; con v10, 248 dio 24 de 25 = 96 %)
+---
+id: 252
+accion: trabajo
+comando: run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final
+# 252 (12-11, R11): Pegula con el marcador v11 (su identidad debe seguir >= 95 %)
+---
+id: 253
+accion: medir
+script: validate_recall
+argumentos: --spotter --tag v15 --from v13r
+# 253 (12-11, R11): F3Set con el marcador v11: no debe perder golpes ni identidad (465 de 517, identidad 489 bien de 494)
+---
+id: 254
+accion: trabajo
+comando: flujo informe
+# 254 (12-11, R11): auditoria con v11 y la comprobacion de saques que cuenta tambien el final y el principio de cada juego
