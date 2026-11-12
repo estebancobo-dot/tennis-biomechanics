@@ -42,7 +42,7 @@ paquetes:
   B8:
     nombre: "Base · orquestador único (aplicación y chat con el mismo código y los mismos datos)"
     cierre: "Fases A-F de docs/orquestador.md; un trabajo enviado desde el chat, pausado en la aplicación y reanudado desde el chat en el PC"
-    peticiones: [246, 247, 248, 249, 250, 251, 259, 260, 261, 262, 263]
+    peticiones: [246, 247, 248, 249, 250, 251, 259, 260, 261, 262, 263, 264]
     prueba: ["^Orquestador: "]
   P0:
     # 11-11 (usuario): justo después de la Base y antes de las medidas

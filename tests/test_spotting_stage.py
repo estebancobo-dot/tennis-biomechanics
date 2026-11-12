@@ -350,3 +350,5 @@ def test_spotting_stops_when_the_match_ball_is_missing(tmp_path, monkeypatch):
     monkeypatch.setattr(BF, "cached_track", lambda *a, **k: tr)
     res = stages.st_spotting(ctx)
     assert res["ball"] == {"min": 2.0, "seen": 1.0, "play_min": 2.0}
+    # #264 (R19): what it had of each player during play (no one in these features)
+    assert res["inputs"] == {"near_seen": 0.0, "far_seen": 0.0, "play_min": 2.0}

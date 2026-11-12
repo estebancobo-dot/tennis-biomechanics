@@ -265,3 +265,26 @@ def test_a_stage_that_really_computed_is_judged_against_the_slowest_run_not_the_
     (d / "manifest.json").write_text(json.dumps({"probe": {"summary": {"duration_min": 120}},
                                                  "fine": {"seconds": 900}}), encoding="utf-8")
     assert stage_time_items([d], out)[0]["status"] == "aviso"       # 7.5 s/min > 2 × 3.5
+
+
+def test_inputs_of_the_models_per_match():
+    """#264 (12-11, R19): an input the models did not have shows in the audit (R17: the ball, three weeks unseen)."""
+    good = {"probe": {"summary": {"duration_min": 71.4}},
+            "scenes": {"summary": {"detector": "transnetv2", "main_camera_min": 18.9}},
+            "court": {"summary": {"court_share": 0.806}}, "audio": {"summary": {"onsets": 4332}},
+            "score": {"summary": {"readings": 185, "server_read": 185}},
+            "spotting": {"summary": {"enabled": True, "inputs": {"near_seen": 0.9, "far_seen": 0.7, "play_min": 17.0}}}}
+    it = A.inputs_item("osaka", good)
+    assert it["status"] == "ok" and it["name"] == f"{A.INPUTS_ITEM}: osaka" and "TransNetV2" in it["detail"]
+    bad = lambda **k: A.inputs_item("m", {**good, **k})
+    assert "sin TransNetV2" in bad(scenes={"summary": {"detector": "histograms", "main_camera_min": 18.9}})["detail"]
+    assert bad(scenes={"summary": {"detector": "transnetv2", "main_camera_min": 2.0}})["status"] == "aviso"
+    assert bad(court={"summary": {"court_share": 0.2}})["status"] == "aviso"
+    assert "no se cargó" in bad(court={"summary": {"court_share": 0.9, "detector": "lineas"}})["detail"]
+    assert bad(court={"summary": {"court_share": 0.9, "detector": "tcd14"}})["status"] == "ok"
+    assert bad(audio={"summary": {"onsets": 10}})["status"] == "aviso"
+    assert bad(score={"summary": {"readings": 0}})["status"] == "aviso"
+    no_far = bad(spotting={"summary": {"enabled": True, "inputs": {"near_seen": 0.9, "far_seen": 0.0}}})
+    assert no_far["status"] == "aviso" and "jugadora lejana vista solo en el 0 %" in no_far["detail"]
+    assert "anterior al 12-11" in bad(spotting={"summary": {"enabled": True}})["detail"]
+    assert A.inputs_item("m", {"probe": {"summary": {"duration_min": 10}}}) is None      # no cheap pass yet

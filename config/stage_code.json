@@ -52,7 +52,7 @@
  },
  "spotting": {
   "version": "2",
-  "hash": "3b07a769805e5408",
+  "hash": "ca6c5e5d7f257e50",
   "modules": [
    "ball",
    "ball_features",
@@ -106,8 +106,8 @@
   ]
  },
  "court": {
-  "version": "5",
-  "hash": "1d3e237e1bbb2471",
+  "version": "6",
+  "hash": "859052ef52ca8d3d",
   "modules": [
    "court",
    "pipeline"

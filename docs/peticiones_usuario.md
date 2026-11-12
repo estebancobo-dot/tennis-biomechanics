@@ -54,11 +54,11 @@ la auditoría las marcará «sin comprobación automática asignada».
 | Estado | Nº |
 |---|---|
 | HECHO | 115 |
-| PARCIAL | 116 |
+| PARCIAL | 117 |
 | FALTA | 21 |
 | NO MEDIBLE | 3 |
 | NO APLICA | 8 |
-| **Total** | **263** |
+| **Total** | **264** |
 
 **27-10:** filas 220-245 nuevas: todo lo pedido en el chat del 19-10 al 27-10 (releídos los mensajes) y lo que
 salió en la prueba de valor; ninguna fila borrada.
@@ -351,6 +351,7 @@ lateral (entreno)» · ≥12 = solo se muestra con 12 golpes o más (`model.MIN_
 | 261 | Que no se quede abierta en la pantalla del PC una ventana vacía de PowerShell mientras trabaja (Chat, 11-11 y 12-11: «hay un terminal abierto de powershell sin nada», «la shell vacía sigue saliendo») | PARCIAL | `orchestrator.background_kwargs`, `orchestrator.leave_visible_console`, `scripts/ventanas_visibles.py` (el ciclo la ejecuta) | — | «Ninguna ventana vacía del análisis en la pantalla del PC», `tests/test_worker_hidden.py` | Causa hallada por la petición 242: el ejecutor arrancaba a su sucesor con DETACHED_PROCESS (Windows Terminal abría una consola para el intérprete). Arreglado 12-11; HECHO cuando la comprobación salga ok en el PC (244). |
 | 262 | El análisis completo de los 6 partidos se lanza solo con su aprobación (dura mucho): Claude lo prepara, dice qué hará y cuánto tardará, y espera (Chat, 12-11) | HECHO (12-11) | `docs/estado_proyecto.md` (tarea 11), `CLAUDE.md` | — | — | Regla de trabajo: nada largo en el PC sin su visto bueno. |
 | 263 | Antes de los 6 partidos: el código de la base es el último y está subido; el análisis es desde cero, sin nada de análisis anteriores; todo versionado de verdad; se usan todas las funciones (Chat, 12-11) | PARCIAL | `stage_code.reachable` (auxiliares de cada etapa), cachés de ventana y de la bola con la huella de su código, ejecución desde cero en carpetas nuevas (las anteriores al archivo, solo se copia su clic) | — | pruebas de las cachés y del archivo | Se cumple al lanzar la tarea 11 desde cero con su aprobación. |
+| 264 | Que no vuelvan a pasar fallos de este tamaño sin que se vean (Chat, 12-11, tras R17, el detector sin la bola en todos los partidos reales: «cómo puedes tener fallos tan grandes y demenciales… una persona normal programando no hace estos fallos»). Antes de los 6 partidos: (1) ningún dato que falta se convierte en «vacío» en silencio: es un error o una comprobación de la auditoría; (2) la cobertura de cada entrada de los modelos en los partidos reales (pose, pista, audio, marcador, bola) en la auditoría; (3) cada etapa da lo mismo en una carpeta de la biblioteca que en una plana (lo validado con F3Set es lo que corre en los partidos) | PARCIAL | R17 (bola: error y comprobación), tareas R18-R20 en `docs/estado_proyecto.md` | — | «La bola del partido para el detector»; pruebas de R18-R20 | Se cierra con las tres tareas hechas y su prueba, antes de proponer la tarea 11. |
 
 ## Lo más grave que falta (por impacto en «copiar su derecha»)
 

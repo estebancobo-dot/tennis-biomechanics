@@ -788,6 +788,14 @@ def st_spotting(ctx: Context):
     # nothing to see outside play (rows of zeros): a stroke there is noise of the model (the last column of the
     # cheap pass's features; read before the ball's columns are added after it)
     play = feats["X"][:, -1] > 0
+    # 12-11 (#264, R19): what the model had of each player during play (a missing input must show in the audit, not
+    # only in the strokes it does not find): seen flag of each person block (spotting._person, column 54)
+    from .spotting import PERSON_DIM
+    Xp = feats["X"][play]
+    inputs = {"near_seen": round(float((Xp[:, 54] > 0).mean()), 3) if len(Xp) else 0.0,
+              "far_seen": round(float((Xp[:, PERSON_DIM + 54] > 0).mean()), 3) if len(Xp) else 0.0,
+              "play_min": round(float(play.sum()) / fps / 60, 1)}
+    del Xp
     if ball:
         from .ball_features import cached_track, features as ball_feats
         t_ = time.time()
@@ -829,7 +837,7 @@ def st_spotting(ctx: Context):
     return {"enabled": True, "strokes": len(strokes), "near": n_near, "far": len(strokes) - n_near,
             "out_of_play": len(found) - len(strokes), "threshold": thr, "fps": fps, "model_fps": mfps,
             "feature_dim": F, "audio_track": track, "seconds": {k: round(v, 1) for k, v in took.items()},
-            **({"ball": ball_cov} if ball else {})}
+            "inputs": inputs, **({"ball": ball_cov} if ball else {})}
 
 
 def spotter_candidates(spotted: list[dict], identity: dict, fps: float, runs: list[tuple], no_board: list,
@@ -1252,7 +1260,8 @@ def _same_view(a, b, tol=12.0) -> bool:
     return a is not None and b is not None and float(np.abs(a - b).mean()) <= tol
 
 
-@stage("court", "5", deps=("scenes",), outputs=("court.json",))   # 5 (03-11): 14-point detector first (court.fit_court)
+# 6 (12-11, #264): the summary says whether the 14-point detector was really loaded (its failure only printed a warning)
+@stage("court", "6", deps=("scenes",), outputs=("court.json",))   # 5 (03-11): 14-point detector first (court.fit_court)
 def st_court(ctx: Context, n_fit=6, min_score=0.5, every_s=8.0, step_s=2.0, refine_s=0.5, fill_score=0.3,
              max_known=64):
     """Court homography of the main camera, decided on frames sampled every `step_s` seconds of
@@ -1393,7 +1402,9 @@ def st_court(ctx: Context, n_fit=6, min_score=0.5, every_s=8.0, step_s=2.0, refi
     ok = [o for o in out if o["H"] is not None]
     main_f = sum(s["end"] - s["start"] for s in main)
     court_f = sum(o["end"] - o["start"] for o in ok)
-    return {"segments": len(out), "with_court": len(ok), "known_court_reused": cnt["known"], "searched": cnt["search"],
+    from .court import _tcd
+    return {"detector": "tcd14" if _tcd() is not None else "lineas",
+            "segments": len(out), "with_court": len(ok), "known_court_reused": cnt["known"], "searched": cnt["search"],
             "filled_same_view": cnt["filled"], "samples": len(samples), "court_presets": len(known),
             "main_camera_min": round(main_f / fps / 60, 1), "court_min": round(court_f / fps / 60, 1),
             "court_share": round(court_f / max(main_f, 1), 3),

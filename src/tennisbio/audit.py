@@ -1909,6 +1909,69 @@ def ball_for_spotter_item(match: str, ball: dict | None) -> dict:
                  + ("" if ok else " (debe cubrir al menos el 90 % del juego)"))
 
 
+INPUTS_ITEM = "Entradas de los modelos"
+# 12-11 (#264, R19): the floor of each input of a real match; below it the input is missing, not weak (R17: the ball was
+# empty in every library match for three weeks and nothing said it). Thresholds for a broken input, not for quality.
+INPUT_FLOORS = {"main_camera": 0.10, "court": 0.50, "onsets_per_min": 5.0, "server_read": 0.50, "near_seen": 0.25,
+                "far_seen": 0.25}
+
+
+def inputs_item(match: str, man: dict) -> dict | None:
+    """Per match, from its manifest: each input the models had (cuts by TransNetV2, main camera, court, sound,
+    scoreboard and its server, both players during play). None when the cheap pass has not run."""
+    summ = lambda st: (man.get(st) or {}).get("summary") or {}
+    pr, sc, co, au, so, sp = (summ(k) for k in ("probe", "scenes", "court", "audio", "score", "spotting"))
+    dur = float(pr.get("duration_min") or 0)
+    if not dur or not sc:
+        return None
+    bad, ok = [], []
+
+    def check(cond: bool, good: str, wrong: str):
+        (ok if cond else bad).append(good if cond else wrong)
+
+    check(sc.get("detector") == "transnetv2", "cortes con TransNetV2", f"cortes sin TransNetV2 ({sc.get('detector')})")
+    main = float(sc.get("main_camera_min") or 0)
+    check(main >= INPUT_FLOORS["main_camera"] * dur, f"cámara principal {main:.1f} de {dur:.0f} min",
+          f"cámara principal solo {main:.1f} de {dur:.0f} min")
+    if co and "detector" in co:
+        check(co["detector"] == "tcd14", "pista con el detector de 14 puntos",
+              f"pista sin el detector de 14 puntos ({co['detector']}: no se cargó)")
+    if co:
+        check(float(co.get("court_share") or 0) >= INPUT_FLOORS["court"], f"pista en el {100 * float(co.get('court_share') or 0):.0f} %",
+              f"pista solo en el {100 * float(co.get('court_share') or 0):.0f} % de la cámara principal")
+    if au:
+        rate = float(au.get("onsets") or 0) / dur
+        check(rate >= INPUT_FLOORS["onsets_per_min"], f"sonido {rate:.0f} golpes/min", f"sonido: {rate:.1f} golpes por minuto")
+    if so:
+        n = int(so.get("readings") or 0)
+        share = int(so.get("server_read") or 0) / n if n else 0.0
+        check(n > 0 and share >= INPUT_FLOORS["server_read"], f"marcador {n} lecturas, saque en el {100 * share:.0f} %",
+              f"marcador: {n} lecturas, quién saca en el {100 * share:.0f} %")
+    inp = sp.get("inputs") or {}
+    for k, label in (("near_seen", "jugadora cercana"), ("far_seen", "jugadora lejana")):
+        if k in inp:
+            check(float(inp[k]) >= INPUT_FLOORS[k], f"{label} vista en el {100 * float(inp[k]):.0f} % del juego",
+                  f"{label} vista solo en el {100 * float(inp[k]):.0f} % del juego")
+    if sp.get("enabled") and not inp:
+        bad.append("el detector no dice qué vio de cada jugadora (análisis anterior al 12-11)")
+    return _item(12, "Modelos", f"{INPUTS_ITEM}: {match}", "aviso" if bad else "ok",
+                 ("FALTA: " + "; ".join(bad) + ". " if bad else "") + "; ".join(ok))
+
+
+def inputs_items(match_dirs: list[Path]) -> list[dict]:
+    out = []
+    for d in match_dirs:
+        f = _mf.at(d, "manifest.json")
+        try:
+            man = json.loads(f.read_text(encoding="utf-8")) if f.exists() else {}
+        except (OSError, ValueError):
+            continue
+        it = inputs_item(d.name, man)
+        if it:
+            out.append(it)
+    return out
+
+
 def stage_time_items(match_dirs: list[Path], out_root: Path) -> list[dict]:
     """#231 (a match cannot take twice as long without knowing why): per match, each stage that really computed
     (≥ budget.REAL_RUN_S) in seconds per minute of video, against the slowest of its rates on this PC
@@ -2339,6 +2402,7 @@ def base_items(match_dirs: list[Path], out_root: Path, cfg: dict | None = None) 
     """Every check of the Base packages B1 and B3 that is not in audit() itself (cli.run_audit)."""
     items = []
     for fn in (lambda: candidate_items(out_root), lambda: models_in_use_items(cfg), lambda: spotter_items(match_dirs),
+               lambda: inputs_items(match_dirs),          # #264 (12-11): every input of the models per match
                lambda: stage_time_items(match_dirs, out_root), lambda: parallel_items(match_dirs),
                lambda: [_scratch_time(out_root, cfg)], lambda: pose_at_contact_items(match_dirs),
                lambda: resources_items(out_root), lambda: [actions_item(out_root)],
