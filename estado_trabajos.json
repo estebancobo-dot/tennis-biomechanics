@@ -1,10 +1,10 @@
 {
- "at": "2026-11-12 12:41:35",
- "firma": "93e1ca3aa9ab",
+ "at": "2026-11-12 12:44:21",
+ "firma": "6e5621b5d318",
  "ejecutor": {
   "vivo": true,
-  "pid": 19084,
-  "at": 1794483695.668073
+  "pid": 5732,
+  "at": 1794483856.4558303
  },
  "pausa": false,
  "en_curso": [],
@@ -18,7 +18,26 @@
   "quedan_s": 95,
   "hora": "2026-11-12 12:29:42"
  },
- "pendientes": [],
+ "pendientes": [
+  {
+   "id": 92,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "run --match us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-12 12:44:18",
+   "started": null,
+   "finished": null,
+   "args": "[\"run\", \"--match\", \"us-open-2026-r4-naomi-osaka-elena-rybakina\"]",
+   "source": "claude 251",
+   "log": "",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "recientes": [
   {
    "id": 91,
@@ -293,6 +312,48 @@
  ],
  "eventos": [
   {
+   "id": 491,
+   "job": 92,
+   "at": "2026-11-12 12:44:18",
+   "kind": "enviado",
+   "text": "tennisbio run --match us-open-2026-r4-naomi-osaka-elena-rybakina (claude 251)"
+  },
+  {
+   "id": 490,
+   "job": null,
+   "at": "2026-11-12 12:43:36",
+   "kind": "ejecutor",
+   "text": "arranca (pid 5732)"
+  },
+  {
+   "id": 489,
+   "job": null,
+   "at": "2026-11-12 12:43:35",
+   "kind": "ejecutor",
+   "text": "arranca el siguiente con el código nuevo (pid 13792)"
+  },
+  {
+   "id": 488,
+   "job": null,
+   "at": "2026-11-12 12:43:35",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 487,
+   "job": null,
+   "at": "2026-11-12 12:43:35",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 486,
+   "job": null,
+   "at": "2026-11-12 12:43:26",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
    "id": 485,
    "job": null,
    "at": "2026-11-12 12:35:55",
@@ -459,48 +520,6 @@
    "at": "2026-11-12 12:09:35",
    "kind": "empieza",
    "text": "run --match us-open-2026-r4-naomi-osaka-elena-rybakina"
-  },
-  {
-   "id": 461,
-   "job": 88,
-   "at": "2026-11-12 12:09:30",
-   "kind": "enviado",
-   "text": "tennisbio run --match us-open-2026-r4-naomi-osaka-elena-rybakina (claude 245)"
-  },
-  {
-   "id": 460,
-   "job": null,
-   "at": "2026-11-12 12:09:25",
-   "kind": "ejecutor",
-   "text": "arranca (pid 11456)"
-  },
-  {
-   "id": 459,
-   "job": null,
-   "at": "2026-11-12 12:09:24",
-   "kind": "ejecutor",
-   "text": "arranca el siguiente con el código nuevo (pid 352)"
-  },
-  {
-   "id": 458,
-   "job": null,
-   "at": "2026-11-12 12:09:24",
-   "kind": "ejecutor",
-   "text": "termina"
-  },
-  {
-   "id": 457,
-   "job": null,
-   "at": "2026-11-12 12:09:24",
-   "kind": "ejecutor",
-   "text": "se reinicia con el código nuevo"
-  },
-  {
-   "id": 456,
-   "job": null,
-   "at": "2026-11-12 12:09:15",
-   "kind": "reiniciar",
-   "text": "ciclo"
   }
  ]
 }
