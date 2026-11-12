@@ -1,6 +1,6 @@
 # Revisión automática: REGRESIÓN
 
-406 cumplidos · 28 no cumplidos · 97 sin golpes suficientes · 112 avisos (antes: 386 cumplidos, 32 no cumplidos)
+404 cumplidos · 32 no cumplidos · 97 sin golpes suficientes · 110 avisos (antes: 406 cumplidos, 28 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 135 de 260
 
@@ -148,6 +148,8 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 - **Primera pantalla, anchura y nombres (diseño definitivo)**: vídeo de la lección en y=805–1159 de 900; al abrir 2 títulos, 609 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=1159 (más abajo que la primera pantalla, 900)
 - **Lista de partidos: rival, torneo, ronda y fecha**: 6 partidos; sin torneo: 1 (zheng-qinwen-elena-rybakina); sin ronda: 1 (zheng-qinwen-elena-rybakina); sin fecha: 1 (zheng-qinwen-elena-rybakina)
 - **Aplicación: lo que consume abierta**: CPU media 0.03 % (máx 0.06 %; objetivo ≤ 5 %), memoria hasta 1469 MB (objetivo ≤ 800) en 8 procesos; 2026-11-12 01:26:37
+- **Orquestador: ejecutor vivo cuando hay trabajo**: ejecutor parado; 3 trabajos esperando
+- **#119 Automatizar todo el ciclo en el PC: el usuario no lanza pruebas ni avisa**: a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 falta, 1 aviso; la peor: «Orquestador: ejecutor vivo cuando hay trabajo» (ejecutor parado; 3 trabajos esperando)
 - **#160 la app que hiciste completa como se arranca, se puede usar ahora? (Chat, 19-10 08:11)**: 6 comprobaciones: 1 falta, 5 ok; la peor: «Aplicación: lo que consume abierta» (CPU media 0.03 % (máx 0.06 %; objetivo ≤ 5 %), memoria hasta 1469 MB (objetivo ≤ 800) en 8 procesos; 2026-11-12 01:26:37)
 - **#176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3)**: SIN HACER según el registro (#176, docs/peticiones_usuario.md)
 - **#189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4)**: SIN HACER según el registro (#189, docs/peticiones_usuario.md)
@@ -164,10 +166,12 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 - **#224 Saques: plano, cortado o kick; primero o segundo**: SIN HACER según el registro (#224, docs/peticiones_usuario.md)
 - **#225 La aplicación no se cuelga ni ralentiza el PC**: a medias según el registro (ver docs/peticiones_usuario.md); 4 comprobaciones: 1 falta, 3 ok; la peor: «Aplicación: lo que consume abierta» (CPU media 0.03 % (máx 0.06 %; objetivo ≤ 5 %), memoria hasta 1469 MB (objetivo ≤ 800) en 8 procesos; 2026-11-12 01:26:37)
 - **#226 Lista de partidos profesional: nombres normalizados, torneo, ronda, fecha, fotos; sin pruebas (24-10, 25-10)**: a medias según el registro (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 falta; la peor: «Lista de partidos: rival, torneo, ronda y fecha» (6 partidos; sin torneo: 1 (zheng-qinwen-elena-rybakina); sin ronda: 1 (zheng-qinwen-elena-rybakina); sin fecha: 1 (zheng)
+- **#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min**: a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 falta, 1 aviso, 1 ok; la peor: «Orquestador: ejecutor vivo cuando hay trabajo» (ejecutor parado; 3 trabajos esperando)
 - **#240 Comparar la aplicación con las profesionales una vez estén los golpes**: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
 - **#242 Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femeninos, un análisis po**: a medias según el registro (ver docs/peticiones_usuario.md); 6 comprobaciones: 1 falta, 5 ok; la peor: «Aplicación: lo que consume abierta» (CPU media 0.03 % (máx 0.06 %; objetivo ≤ 5 %), memoria hasta 1469 MB (objetivo ≤ 800) en 8 procesos; 2026-11-12 01:26:37)
 - **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
+- **#246 Un único orquestador: mismo código y misma fuente de datos para la aplicación y el chat; monitorizar, pausar, **: a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 falta, 1 aviso, 1 ok; la peor: «Orquestador: ejecutor vivo cuando hay trabajo» (ejecutor parado; 3 trabajos esperando)
 - **#252 Rehacer la aplicación por completo como una profesional: comparativa a fondo con las apps profesionales, UX y **: SIN HACER según el registro (#252, docs/peticiones_usuario.md)
 - **#254 Validar los giros del tronco (cadera, hombros, X-factor 2D y 3D) con una referencia: vista lateral de entreno **: SIN HACER según el registro (#254, docs/peticiones_usuario.md)
 - **#255 Plano del swing: raqueta al lado o detrás del cuerpo en el armado (Vídeos de entrenadores, 12-10, pendiente)**: SIN HACER según el registro (#255, docs/peticiones_usuario.md)
@@ -176,37 +180,8 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 
 ## Empeora respecto a la ejecución anterior
 
-- **R2 Dos manos en la raqueta en la espera (≥ 80 %)**: pocos datos → aviso: refuta: dos manos 77%
-- **R21 El peso pasa del pie de atrás al de delante**: pocos datos → aviso: refuta: cambio mediano -0.04
-- **R23 La cadera llega a su máximo giro antes que los hombros**: pocos datos → aviso: refuta: hombros -0.06 s después de la cadera; orden completo de la cadena en el 83%
-- **#71 El conocimiento de los vídeos de entrenadores en la web**: pocos datos → aviso: a medias según el registro (ver docs/peticiones_usuario.md); 21 comprobaciones: 3 aviso, 7 pocos datos, 11 ok; la peor: «R2 Dos manos en la raqueta en la espera (≥ 80 %)» (refuta: dos manos 77%)
-- **#113 Mejora 15: examen interno con las afirmaciones de entrenadores (R1-R25)**: pocos datos → aviso: a medias según el registro (ver docs/peticiones_usuario.md); 19 comprobaciones: 3 aviso, 7 pocos datos, 9 ok; la peor: «R2 Dos manos en la raqueta en la espera (≥ 80 %)» (refuta: dos manos 77%)
-
-## Mejora
-
-- R1 Golpe liftado de trayectoria moderada, no extrema: pocos datos → ok
-- R7 La mano libre pasa al lado del brazo en el armado: pocos datos → ok
-- R13 La mano cae antes de acelerar en la mayoría: pocos datos → ok
-- R14 La cadera gira hacia la pista entre armado e impacto (> 10°): pocos datos → ok
-- R17 La terminación más frecuente es sobre el hombro: pocos datos → ok
-- R20 Más apoyos cerrados o neutros que el circuito (~16 %): pocos datos → ok
-- Fotograma clave: inicio de preparación: aviso → ok
-- Fotograma clave: armado: aviso → ok
-- Fotograma clave: inicio de aceleración: aviso → ok
-- Fotograma clave: terminación: aviso → ok
-- Fotograma clave: recuperación: aviso → ok
-- Punta de la raqueta respecto a la cabeza en el armado: pocos datos → ok
-- Registros con fecha y duración: falta → ok
-- Golpes con su pose en el contacto: smoke_tennis-yusipopen-final-sobolenko-rybakin: falta → ok
-- #1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final: falta → aviso
-- #26 Fases y cadena completa, del salto inicial a la terminación: aviso → ok
-- #33 Capturas de los mejores golpes de cada tipo y N imágenes de un golpe: aviso → ok
-- #59 Diferencias solo por encima del error y en situaciones equivalentes: pocos datos → ok
-- #66 Fechas y duración en los registros: falta → ok
-- #102 Mejora 4: punta de la raqueta respecto a la cabeza en el armado: pocos datos → ok
-- Comprobaciones que saben fallar: aviso → ok
-
-## Fiabilidad de las medidas
-
-- ahora: 80 medidas: 3 dudosa, 56 fiable, 14 no comprobable, 1 ruido, 3 sesgo, 3 sin juzgar. No se dan como valor suyo (ruido): impact.face_tilt ±5.65. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga
-- antes: 80 medidas: 4 dudosa, 52 fiable, 13 no comprobable, 2 ruido, 1 sesgo, 8 sin juzgar. No se dan como valor suyo (ruido): impact.face_tilt ±5.85, takeback.shoulder_turn ±3.3. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga
+- **Orquestador: ejecutor vivo cuando hay trabajo**: ok → falta: ejecutor parado; 3 trabajos esperando
+- **#119 Automatizar todo el ciclo en el PC: el usuario no lanza pruebas ni avisa**: aviso → falta: a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 falta, 1 aviso; la peor: «Orquestador: ejecutor vivo cuando hay trabajo» (ejecutor parado; 3 trabajos esperando)
+- **#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min**: aviso → falta: a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 falta, 1 aviso, 1 ok; la peor: «Orquestador: ejecutor vivo cuando hay trabajo» (ejecutor parado; 3 trabajos esperando)
+- **#246 Un único orquestador: mismo código y misma fuente de datos para la aplicación y el chat; monitorizar, pausar, **: aviso → falta: a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 falta, 1 aviso, 1 ok; la peor: «Orquestador: ejecutor vivo cuando hay trabajo» (ejecutor parado; 3 trabajos esperando)
+- **Comprobaciones que saben fallar**: ok → aviso: sin el registro de las pruebas en este PC (comprobaciones_pruebas/rec_*.json)

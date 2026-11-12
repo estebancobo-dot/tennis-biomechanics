@@ -1,5 +1,5 @@
 {
- "at": "2026-11-12 11:03:17",
+ "at": "2026-11-12 11:03:47",
  "firma": "fbdca7ecaeb0",
  "ejecutor": {
   "vivo": false,
@@ -348,6 +348,13 @@
  ],
  "eventos": [
   {
+   "id": 419,
+   "job": null,
+   "at": "2026-11-12 11:03:29",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
    "id": 418,
    "job": 84,
    "at": "2026-11-12 10:37:05",
@@ -549,13 +556,6 @@
    "at": "2026-11-12 10:07:51",
    "kind": "ejecutor",
    "text": "termina"
-  },
-  {
-   "id": 389,
-   "job": null,
-   "at": "2026-11-12 10:07:51",
-   "kind": "ejecutor",
-   "text": "se reinicia con el código nuevo"
   }
  ]
 }
