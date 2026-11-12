@@ -2646,84 +2646,88 @@
   ]
  },
  {
-  "impact_frame": 272,
+  "impact_frame": 270,
   "impact_source": "audio+ball+swing",
   "stroke": "backhand",
   "phases": {
    "ready": {
     "frame": 215,
-    "t_rel": -1.14,
+    "t_rel": -1.1,
     "method": "fallback_before_takeback",
     "confidence": 0.2
    },
    "takeback": {
     "frame": 227,
-    "t_rel": -0.9,
+    "t_rel": -0.86,
     "method": "shoulders_start_turning",
     "confidence": 0.57
    },
    "loaded": {
-    "frame": 266,
-    "t_rel": -0.12,
+    "frame": 259,
+    "t_rel": -0.22,
     "method": "wrist_pause_before_forward_swing",
-    "confidence": 0.69
+    "confidence": 0.65
    },
    "acceleration": {
-    "frame": 271,
-    "t_rel": -0.02,
-    "method": "wrist_speed_ramp",
-    "confidence": 0.5
+    "frame": 265,
+    "t_rel": -0.1,
+    "method": "wrist_low_point",
+    "confidence": 0.51
    },
    "impact": {
-    "frame": 272,
+    "frame": 270,
     "t_rel": 0.0,
     "method": "given",
-    "confidence": 0.69
+    "confidence": 0.72
    },
    "extension": {
-    "frame": 274,
+    "frame": 272,
     "t_rel": 0.04,
     "method": "impact_plus_50ms",
     "confidence": 0.55
    },
    "finish": {
     "frame": 288,
-    "t_rel": 0.32,
+    "t_rel": 0.36,
     "method": "wrist_high_point",
     "confidence": 0.68
    },
    "recovery": {
     "frame": 293,
-    "t_rel": 0.42,
+    "t_rel": 0.46,
     "method": "first_step",
     "confidence": 0.66
    }
   },
   "metrics": {
-   "shoulder_turn_loaded_deg": 83.03203789122183,
-   "hip_turn_loaded_deg": 86.33212752844783,
-   "x_factor_deg": -3.3000896372259945,
-   "elbow_impact_deg": 106.26824026057429,
-   "non_elbow_impact_deg": 112.6432243355984,
-   "non_arm_extension_loaded_deg": 132.26523591698717,
-   "contact_height_pct": 53.281078886288725,
-   "contact_lateral_pct": 9.697542779613737,
+   "shoulder_turn_loaded_deg": 96.00171056512076,
+   "hip_turn_loaded_deg": 114.11413000582945,
+   "x_factor_deg": -18.112419440708692,
+   "elbow_impact_deg": 131.9325150055792,
+   "non_elbow_impact_deg": 157.30257222164374,
+   "non_arm_extension_loaded_deg": 71.17788024602498,
+   "contact_height_pct": 51.522996465620906,
+   "contact_lateral_pct": 19.587803102528817,
    "toss_above_head_bh": -0.1917972165161735,
-   "base_width_loaded_pct": 14.641727889395314,
-   "hip_drop_pct": -5.103859385895299,
+   "base_width_loaded_pct": 10.133355691029477,
+   "hip_drop_pct": -3.8677345829851664,
    "finish_wrist_height_pct": 31.937142929479577,
-   "head_motion_impact_cm": 5.45269803143356,
-   "time_ready_to_impact_s": 1.14,
-   "time_takeback_to_impact_s": 0.9,
-   "time_loaded_to_impact_s": 0.12,
-   "time_acceleration_to_impact_s": 0.02,
-   "time_impact_to_finish_s": 0.32,
-   "ball_seen_pre_share": 0.808,
-   "ball_gap_pre_s": 0.22,
-   "bounce_to_impact_s": 0.76,
-   "time_available_s": 0.64,
+   "head_motion_impact_cm": 3.3101303371497286,
+   "time_ready_to_impact_s": 1.1,
+   "time_takeback_to_impact_s": 0.86,
+   "time_loaded_to_impact_s": 0.22,
+   "time_acceleration_to_impact_s": 0.1,
+   "time_impact_to_finish_s": 0.36,
+   "ball_seen_pre_share": 0.781,
+   "ball_gap_pre_s": 0.26,
+   "bounce_to_impact_s": 0.72,
+   "time_available_s": 0.6,
    "opponent_hit_source": "audio",
-   "trunk3d_unobservable": true,
+   "shoulder_turn_3d_deg": -73.8,
+   "hip_turn_3d_deg": -82.0,
+   "x_factor_3d_deg": 8.2,
+   "trunk3d_readings": 3,
+   "trunk3d_rigid": true,
    "trunk3d_model": "motionagformer"
   },
   "racket": {
@@ -2743,9 +2747,9 @@
     "head_above_wrist_cm": null
    },
    "acceleration": {
-    "detected": false,
-    "elevation_deg": null,
-    "head_above_wrist_cm": null
+    "detected": true,
+    "elevation_deg": -78.8,
+    "head_above_wrist_cm": -14.6
    },
    "impact": {
     "detected": false,
@@ -2769,16 +2773,6 @@
    }
   },
   "racket_track": [
-   [
-    -1.14,
-    null,
-    null
-   ],
-   [
-    -1.12,
-    null,
-    null
-   ],
    [
     -1.1,
     null,
@@ -2881,8 +2875,8 @@
    ],
    [
     -0.7,
-    76.6,
-    56.4
+    81.2,
+    53.6
    ],
    [
     -0.68,
@@ -2891,7 +2885,7 @@
    ],
    [
     -0.66,
-    78.2,
+    76.6,
     56.4
    ],
    [
@@ -2901,8 +2895,8 @@
    ],
    [
     -0.62,
-    81.2,
-    57.1
+    78.2,
+    56.4
    ],
    [
     -0.6,
@@ -2911,8 +2905,8 @@
    ],
    [
     -0.58,
-    81.3,
-    56.6
+    81.2,
+    57.1
    ],
    [
     -0.56,
@@ -2921,8 +2915,8 @@
    ],
    [
     -0.54,
-    83.3,
-    57.1
+    81.3,
+    56.6
    ],
    [
     -0.52,
@@ -2931,8 +2925,8 @@
    ],
    [
     -0.5,
-    83.5,
-    60.0
+    83.3,
+    57.1
    ],
    [
     -0.48,
@@ -2941,8 +2935,8 @@
    ],
    [
     -0.46,
-    84.3,
-    54.5
+    83.5,
+    60.0
    ],
    [
     -0.44,
@@ -2951,8 +2945,8 @@
    ],
    [
     -0.42,
-    85.9,
-    54.0
+    84.3,
+    54.5
    ],
    [
     -0.4,
@@ -2961,8 +2955,8 @@
    ],
    [
     -0.38,
-    83.9,
-    55.4
+    85.9,
+    54.0
    ],
    [
     -0.36,
@@ -2971,8 +2965,8 @@
    ],
    [
     -0.34,
-    83.1,
-    48.6
+    83.9,
+    55.4
    ],
    [
     -0.32,
@@ -2981,8 +2975,8 @@
    ],
    [
     -0.3,
-    null,
-    null
+    83.1,
+    48.6
    ],
    [
     -0.28,
@@ -3021,8 +3015,8 @@
    ],
    [
     -0.14,
-    -78.8,
-    -14.6
+    null,
+    null
    ],
    [
     -0.12,
@@ -3031,8 +3025,8 @@
    ],
    [
     -0.1,
-    -60.9,
-    -13.9
+    -78.8,
+    -14.6
    ],
    [
     -0.08,
@@ -3041,8 +3035,8 @@
    ],
    [
     -0.06,
-    -73.6,
-    -17.5
+    -60.9,
+    -13.9
    ],
    [
     -0.04,
@@ -3051,8 +3045,8 @@
    ],
    [
     -0.02,
-    null,
-    null
+    -73.6,
+    -17.5
    ],
    [
     0.0,
@@ -3091,8 +3085,8 @@
    ],
    [
     0.14,
-    83.9,
-    20.2
+    null,
+    null
    ],
    [
     0.16,
@@ -3101,8 +3095,8 @@
    ],
    [
     0.18,
-    null,
-    null
+    83.9,
+    20.2
    ],
    [
     0.2,
@@ -3141,8 +3135,8 @@
    ],
    [
     0.34,
-    -15.0,
-    -22.7
+    null,
+    null
    ],
    [
     0.36,
@@ -3151,8 +3145,8 @@
    ],
    [
     0.38,
-    -17.8,
-    -16.0
+    -15.0,
+    -22.7
    ],
    [
     0.4,
@@ -3161,8 +3155,8 @@
    ],
    [
     0.42,
-    null,
-    null
+    -17.8,
+    -16.0
    ],
    [
     0.44,
@@ -3181,8 +3175,8 @@
    ],
    [
     0.5,
-    34.9,
-    24.0
+    null,
+    null
    ],
    [
     0.52,
@@ -3269,9 +3263,9 @@
   },
   "chain": {
    "peaks_s": {
-    "pelvis": -0.1,
-    "trunk": -0.1,
-    "arm": 0.02
+    "pelvis": -0.06,
+    "trunk": -0.06,
+    "arm": 0.04
    },
    "order": [
     "pelvis",
@@ -3289,11 +3283,11 @@
   "stroke_source": "detector",
   "window": "w000015434_6854.mp4",
   "window_start_s": 15.434000000000001,
-  "match_time_s": 20.874000000000002,
+  "match_time_s": 20.834000000000003,
   "candidate_audio": true,
   "identity": true,
   "target": true,
-  "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0002087",
+  "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0002083",
   "surface": "dura",
   "score": {
    "games": [
@@ -3329,84 +3323,84 @@
    "pose_ratio": 0.846
   },
   "court_pos_m": [
-   -3.87,
-   -0.53
+   -3.81,
+   -0.72
   ],
-  "stance_width_m": 0.46,
+  "stance_width_m": 0.67,
   "stance": "cerrado",
-  "stance_angle_deg": 147.9,
-  "displacement_m": 1.44,
+  "stance_angle_deg": 134.7,
+  "displacement_m": 1.32,
   "pos_at_opp_m": [
-   -2.89,
-   -1.58
+   -2.85,
+   -1.64
   ],
-  "camera_pitch_deg": 10.6,
+  "camera_pitch_deg": 10.3,
   "bounce_court_m": [
-   -3.6,
-   7.71
+   -3.53,
+   7.81
   ],
   "outcome": "rally",
   "face": {
    "ready": {
-    "points_to": "valla izquierda",
-    "tilt_deg": -16.7,
-    "yaw_deg": -86.6,
+    "points_to": "valla derecha",
+    "tilt_deg": 16.1,
+    "yaw_deg": 92.5,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "takeback": {
-    "points_to": "valla trasera",
-    "tilt_deg": 39.6,
-    "yaw_deg": -169.8,
+    "points_to": "valla derecha",
+    "tilt_deg": -4.1,
+    "yaw_deg": 60.9,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "loaded": {
-    "points_to": "valla derecha",
-    "tilt_deg": -2.4,
-    "yaw_deg": 90.0,
-    "observed": false,
-    "hand_evidence": true,
-    "ambiguous": false
-   },
-   "acceleration": {
-    "points_to": "red",
-    "tilt_deg": -20.4,
-    "yaw_deg": 20.6,
+    "points_to": "cielo",
+    "tilt_deg": -51.3,
+    "yaw_deg": -67.3,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
+   "acceleration": {
+    "points_to": "valla izquierda",
+    "tilt_deg": -31.0,
+    "yaw_deg": -81.4,
+    "observed": true,
+    "hand_evidence": false,
+    "ambiguous": true
+   },
    "impact": {
     "points_to": "red",
-    "tilt_deg": -13.8,
-    "yaw_deg": 11.0,
+    "tilt_deg": -5.1,
+    "yaw_deg": -7.7,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "extension": {
     "points_to": "red",
-    "tilt_deg": -5.2,
-    "yaw_deg": 19.9,
+    "tilt_deg": -1.5,
+    "yaw_deg": 4.3,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "finish": {
     "points_to": "valla trasera",
-    "tilt_deg": -36.3,
-    "yaw_deg": 152.9,
+    "tilt_deg": -38.4,
+    "yaw_deg": 154.0,
     "observed": false,
-    "hand_evidence": false,
+    "hand_evidence": true,
     "ambiguous": false
    },
    "recovery": {
-    "points_to": "cielo",
-    "tilt_deg": -47.2,
-    "yaw_deg": 138.7,
+    "points_to": "valla trasera",
+    "tilt_deg": -34.4,
+    "yaw_deg": 149.0,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
@@ -3416,11 +3410,11 @@
   "is_return": false,
   "ball_flight": {
    "fit_rms_m": 0.23,
-   "rise_speed_mps": 4.68,
+   "rise_speed_mps": 4.7,
    "apex_frame": 258,
-   "apex_height_m": 1.11,
-   "bounce_to_apex_s": 0.477,
-   "contact_height_m": 1.06,
+   "apex_height_m": 1.12,
+   "bounce_to_apex_s": 0.479,
+   "contact_height_m": 1.03,
    "contact_phase": "cayendo"
   },
   "technique": {
@@ -3448,17 +3442,17 @@
      "wrist_non_lateral": -11.7,
      "hands_apart": 7.9,
      "arm_extension": 81.1,
-     "shoulder_turn": 42.9,
-     "hip_turn": 41.7,
+     "shoulder_turn": 42.4,
+     "hip_turn": 41.3,
      "racket_head_vs_wrist": 14.8,
      "racket_angle": 73.4,
      "racket_forearm": 138.6,
      "racket_tip_height": 74.6,
      "racket_tip_vs_head": -1.4,
      "racket_head_lateral": -19.2,
-     "face_tilt": -16.7,
-     "face_yaw": -86.6,
-     "face_points_to": "valla izquierda",
+     "face_tilt": 16.1,
+     "face_yaw": 92.5,
+     "face_points_to": "valla derecha",
      "face_observed": false
     },
     "takeback": {
@@ -3485,90 +3479,122 @@
      "wrist_non_lateral": -12.1,
      "hands_apart": 7.1,
      "arm_extension": 77.9,
-     "shoulder_turn": 46.6,
-     "hip_turn": 55.6,
+     "shoulder_turn": 46.2,
+     "hip_turn": 55.2,
      "x_factor": -9.0,
-     "face_points_to": "valla trasera",
+     "face_points_to": "valla derecha",
      "face_observed": false
     },
     "loaded": {
-     "body_height": 89.7,
-     "hip_height": 49.2,
-     "head_over_base": -18.9,
-     "head_vs_hips": -12.3,
-     "trunk_tilt": -16.7,
-     "com_over_feet": -0.33,
-     "knee_non": 137.5,
-     "base_width": 14.6,
-     "elbow_dom": 170.8,
-     "shoulder_abd_dom": 47.8,
-     "elbow_non": 132.3,
-     "shoulder_abd_non": 7.8,
-     "wrist_dom_height": 52.2,
-     "wrist_dom_vs_hip": 3.0,
-     "wrist_dom_lateral": -18.4,
-     "wrist_dom_vs_shoulder": -23.5,
-     "elbow_dom_vs_shoulder": -11.8,
-     "elbow_dom_lateral": -7.1,
-     "wrist_non_height": 49.4,
-     "wrist_non_lateral": -15.0,
-     "hands_apart": 4.4,
-     "arm_extension": 99.7,
-     "shoulder_turn": 108.4,
-     "hip_turn": 110.5,
-     "x_factor": -2.1,
-     "racket_head_vs_wrist": -3.2,
-     "racket_angle": 75.2,
-     "racket_forearm": 172.9,
-     "racket_tip_height": 50.0,
-     "racket_tip_vs_head": -33.0,
-     "racket_head_lateral": -5.4,
-     "face_tilt": -2.4,
-     "face_yaw": 90.0,
-     "face_points_to": "valla derecha",
+     "body_height": 89.1,
+     "hip_height": 48.0,
+     "head_over_base": -13.0,
+     "head_vs_hips": -12.0,
+     "trunk_tilt": -14.1,
+     "com_over_feet": -0.29,
+     "knee_non": 109.5,
+     "base_width": 10.1,
+     "elbow_non": 71.2,
+     "shoulder_abd_non": 5.2,
+     "wrist_dom_height": 61.7,
+     "wrist_dom_vs_hip": 13.7,
+     "wrist_dom_lateral": -15.0,
+     "wrist_dom_vs_shoulder": -15.0,
+     "elbow_dom_vs_shoulder": -10.4,
+     "elbow_dom_lateral": -2.3,
+     "wrist_non_height": 60.8,
+     "wrist_non_lateral": -12.3,
+     "hands_apart": 2.9,
+     "arm_extension": 96.1,
+     "shoulder_turn": 118.9,
+     "hip_turn": 136.1,
+     "x_factor": -17.2,
+     "face_points_to": "cielo",
      "face_observed": false,
-     "base_court_m": 1.07,
-     "stance_angle": 128.8,
-     "base_m": 1.07
+     "back_foot_angle_deg": -3.5,
+     "base_court_m": 1.0,
+     "stance_angle": 124.1,
+     "base_m": 1.0
     },
     "acceleration": {
-     "body_height": 82.1,
-     "hip_height": 44.0,
-     "head_over_base": -23.1,
-     "head_vs_hips": -11.0,
-     "trunk_tilt": -20.6,
-     "shoulder_tilt": 2.9,
-     "hip_tilt": -8.3,
-     "com_over_feet": -0.5,
-     "knee_dom": 160.4,
-     "knee_non": 145.8,
-     "base_width": 8.6,
-     "elbow_dom": 125.4,
-     "shoulder_abd_dom": 40.7,
-     "shoulder_abd_non": 43.4,
-     "wrist_dom_height": 51.8,
-     "wrist_dom_vs_hip": 7.8,
-     "wrist_dom_lateral": -17.2,
-     "wrist_dom_vs_shoulder": -15.8,
-     "elbow_dom_vs_shoulder": -12.3,
-     "elbow_dom_lateral": -4.5,
-     "wrist_non_height": 49.5,
-     "wrist_non_lateral": -26.3,
-     "hands_apart": 9.4,
-     "arm_extension": 88.9,
-     "shoulder_turn": 50.4,
-     "hip_turn": 57.2,
-     "x_factor": -6.8,
-     "racket_head_vs_wrist": -14.3,
-     "racket_angle": -86.6,
-     "racket_forearm": 78.1,
-     "racket_tip_height": 34.7,
-     "racket_tip_vs_head": -41.4,
-     "racket_head_lateral": -27.3,
-     "face_points_to": "red",
-     "face_observed": false
+     "body_height": 90.2,
+     "hip_height": 50.0,
+     "head_over_base": -18.1,
+     "head_vs_hips": -12.2,
+     "trunk_tilt": -16.8,
+     "com_over_feet": -0.22,
+     "knee_non": 132.5,
+     "base_width": 16.3,
+     "elbow_dom": 162.9,
+     "shoulder_abd_dom": 48.1,
+     "elbow_non": 125.3,
+     "shoulder_abd_non": 1.2,
+     "wrist_dom_height": 52.2,
+     "wrist_dom_vs_hip": 2.2,
+     "wrist_dom_lateral": -18.3,
+     "wrist_dom_vs_shoulder": -23.7,
+     "elbow_dom_vs_shoulder": -11.5,
+     "elbow_dom_lateral": -7.0,
+     "wrist_non_height": 50.2,
+     "wrist_non_lateral": -10.7,
+     "hands_apart": 7.8,
+     "arm_extension": 98.9,
+     "shoulder_turn": 117.4,
+     "hip_turn": 123.6,
+     "x_factor": -6.2,
+     "racket_head_vs_wrist": -2.1,
+     "racket_angle": 75.2,
+     "racket_forearm": 179.4,
+     "racket_tip_height": 51.1,
+     "racket_tip_vs_head": -32.4,
+     "racket_head_lateral": -4.3,
+     "face_tilt": -31.0,
+     "face_yaw": -81.4,
+     "face_points_to": "valla izquierda",
+     "face_observed": true
     },
     "impact": {
+     "body_height": 84.6,
+     "hip_height": 45.9,
+     "head_over_base": -21.5,
+     "head_vs_hips": -11.1,
+     "trunk_tilt": -20.6,
+     "shoulder_tilt": 2.8,
+     "hip_tilt": -6.1,
+     "com_over_feet": -0.5,
+     "knee_non": 145.8,
+     "base_width": 9.6,
+     "elbow_dom": 131.9,
+     "shoulder_abd_dom": 40.3,
+     "elbow_non": 157.3,
+     "shoulder_abd_non": 40.5,
+     "wrist_dom_height": 51.5,
+     "wrist_dom_vs_hip": 5.6,
+     "wrist_dom_lateral": -19.6,
+     "wrist_dom_vs_shoulder": -18.5,
+     "elbow_dom_vs_shoulder": -13.0,
+     "elbow_dom_lateral": -4.7,
+     "wrist_non_height": 48.9,
+     "wrist_non_lateral": -29.0,
+     "hands_apart": 9.8,
+     "arm_extension": 91.3,
+     "shoulder_turn": 63.7,
+     "hip_turn": 60.5,
+     "racket_head_vs_wrist": -11.1,
+     "racket_angle": -86.6,
+     "racket_forearm": 71.2,
+     "racket_tip_height": 37.6,
+     "racket_tip_vs_head": -40.8,
+     "racket_head_lateral": -26.9,
+     "face_tilt": -5.1,
+     "face_yaw": -7.7,
+     "face_points_to": "red",
+     "face_observed": false,
+     "base_court_m": 0.67,
+     "stance_angle": 134.7,
+     "base_m": 0.67
+    },
+    "extension": {
      "body_height": 79.8,
      "hip_height": 42.4,
      "head_over_base": -25.1,
@@ -3591,39 +3617,8 @@
      "wrist_non_lateral": -20.1,
      "hands_apart": 10.5,
      "arm_extension": 80.2,
-     "shoulder_turn": 35.7,
-     "hip_turn": 52.0,
-     "face_tilt": -13.8,
-     "face_yaw": 11.0,
-     "face_points_to": "red",
-     "face_observed": false,
-     "base_court_m": 0.46,
-     "stance_angle": 147.9,
-     "base_m": 0.46
-    },
-    "extension": {
-     "body_height": 79.3,
-     "hip_height": 43.6,
-     "head_over_base": -28.4,
-     "head_vs_hips": -9.7,
-     "trunk_tilt": -18.3,
-     "shoulder_tilt": -4.4,
-     "hip_tilt": -15.5,
-     "com_over_feet": -0.5,
-     "knee_dom": 160.7,
-     "base_width": 6.3,
-     "wrist_dom_height": 61.3,
-     "wrist_dom_vs_hip": 17.7,
-     "wrist_dom_lateral": 0.1,
-     "wrist_dom_vs_shoulder": -5.9,
-     "elbow_dom_vs_shoulder": -8.6,
-     "elbow_dom_lateral": 4.2,
-     "wrist_non_height": 61.9,
-     "wrist_non_lateral": -6.3,
-     "hands_apart": 6.4,
-     "arm_extension": 38.3,
-     "shoulder_turn": 36.0,
-     "hip_turn": 38.7,
+     "shoulder_turn": 35.2,
+     "hip_turn": 51.5,
      "face_points_to": "red",
      "face_observed": false
     },
@@ -3651,19 +3646,19 @@
      "wrist_non_lateral": -4.9,
      "hands_apart": 12.9,
      "arm_extension": 38.5,
-     "shoulder_turn": 74.9,
-     "hip_turn": 49.3,
+     "shoulder_turn": 74.3,
+     "hip_turn": 48.8,
      "racket_head_vs_wrist": -11.3,
      "racket_angle": -24.6,
      "racket_forearm": 90.0,
      "racket_tip_height": 67.7,
      "racket_tip_vs_head": -15.6,
      "racket_head_lateral": -22.0,
-     "face_tilt": -36.3,
-     "face_yaw": 152.9,
+     "face_tilt": -38.4,
+     "face_yaw": 154.0,
      "face_points_to": "valla trasera",
      "face_observed": false,
-     "base_court_m": 0.91,
+     "base_court_m": 0.9,
      "shoulder_width_ratio": 0.62,
      "dom_shoulder_ahead": 2.6
     },
@@ -3690,17 +3685,17 @@
      "wrist_non_lateral": 3.0,
      "hands_apart": 10.7,
      "arm_extension": 48.0,
-     "shoulder_turn": 78.8,
-     "hip_turn": 51.3,
+     "shoulder_turn": 78.3,
+     "hip_turn": 50.8,
      "racket_head_vs_wrist": -3.4,
      "racket_angle": -23.9,
      "racket_forearm": 111.9,
      "racket_tip_height": 68.6,
      "racket_tip_vs_head": -12.8,
      "racket_head_lateral": -19.5,
-     "face_tilt": -47.2,
-     "face_yaw": 138.7,
-     "face_points_to": "cielo",
+     "face_tilt": -34.4,
+     "face_yaw": 149.0,
+     "face_points_to": "valla trasera",
      "face_observed": false
     },
     "ball_bounce": {
@@ -3725,10 +3720,18 @@
      "wrist_non_lateral": -32.5,
      "hands_apart": 2.3,
      "arm_extension": 91.3,
-     "shoulder_turn": 71.2,
-     "face_points_to": "suelo",
+     "shoulder_turn": 70.7,
+     "racket_head_vs_wrist": 27.7,
+     "racket_angle": 76.0,
+     "racket_forearm": 104.1,
+     "racket_tip_height": 91.9,
+     "racket_tip_vs_head": 15.2,
+     "racket_head_lateral": -27.9,
+     "face_tilt": -11.5,
+     "face_yaw": 6.2,
+     "face_points_to": "red",
      "face_observed": false,
-     "t_to_contact": 0.76
+     "t_to_contact": 0.72
     },
     "ball_top": {
      "body_height": 89.4,
@@ -3751,54 +3754,54 @@
      "wrist_non_lateral": -14.7,
      "hands_apart": 1.9,
      "arm_extension": 91.9,
-     "shoulder_turn": 118.1,
-     "face_points_to": "valla derecha",
+     "shoulder_turn": 117.6,
+     "face_points_to": "valla izquierda",
      "face_observed": false,
-     "t_to_contact": 0.28
+     "t_to_contact": 0.24
     }
    },
    "stroke": {
-    "hip_drop_pct": 0.7,
+    "hip_drop_pct": 1.0,
     "hip_rise_after_pct": 11.0,
-    "t_hip_lowest": -0.4,
-    "t_hip_highest": 0.28,
-    "hip_drop_cm": 1.0,
+    "t_hip_lowest": -0.36,
+    "t_hip_highest": 0.32,
+    "hip_drop_cm": 2.0,
     "hip_rise_after_cm": 20.0,
-    "feet_move_m": 0.68,
-    "t_trunk_finish": 0.42,
+    "feet_move_m": 0.53,
+    "t_trunk_finish": 0.46,
     "racket_lag_deg": 5.6,
-    "t_racket_lag": -0.1,
-    "t_takeback": 0.9,
-    "t_loaded": 0.12,
-    "t_acceleration": 0.02,
-    "t_finish": 0.32,
-    "dur_preparation": 0.78,
-    "dur_forward": 0.12,
-    "tempo_ratio": 6.5,
-    "head_motion_cm": 5.5,
-    "head_still_after_cm": 2.7,
+    "t_racket_lag": -0.06,
+    "t_takeback": 0.86,
+    "t_loaded": 0.22,
+    "t_acceleration": 0.1,
+    "t_finish": 0.36,
+    "dur_preparation": 0.64,
+    "dur_forward": 0.22,
+    "tempo_ratio": 2.91,
+    "head_motion_cm": 3.3,
+    "head_still_after_cm": 3.3,
     "takeback_after_opp": -0.26,
     "takeback_vs_bounce": -0.14,
-    "contact_vs_top": 0.28,
-    "loaded_vs_top": 0.16,
-    "contact_height_m": 1.06,
-    "apex_height_m": 1.11,
-    "bounce_to_apex_s": 0.477,
-    "takeback_path": 66.8,
+    "contact_vs_top": 0.24,
+    "loaded_vs_top": 0.02,
+    "contact_height_m": 1.03,
+    "apex_height_m": 1.12,
+    "bounce_to_apex_s": 0.479,
+    "takeback_path": 49.5,
     "takeback_peak_vs_shoulder": -13.6,
-    "swing_low_to_high": 38.4,
-    "swing_rise_after": 17.5,
-    "wrist_drop": -4.8,
-    "t_max_shoulder_turn": 0.18,
-    "t_max_hip_turn": 0.2,
-    "loaded_vs_bounce": 0.64,
+    "swing_low_to_high": 70.0,
+    "swing_rise_after": 22.6,
+    "wrist_drop": 11.5,
+    "t_max_shoulder_turn": 0.14,
+    "t_max_hip_turn": 0.16,
+    "loaded_vs_bounce": 0.5,
     "shoulders_open_first": -0.02,
-    "acceleration_vs_bounce": 0.74,
-    "shoulder_brake": 33.0,
-    "hip_rise": -1.6,
-    "weight_shift": -0.17,
+    "acceleration_vs_bounce": 0.62,
+    "shoulder_brake": 0.0,
+    "hip_rise": -2.1,
+    "weight_shift": -0.21,
     "pause_at_loaded": 0.0,
-    "hand_on_handle": 29.7,
+    "hand_on_handle": 25.1,
     "racket_speed_rel": 3.23
    },
    "classes": {
@@ -3806,10 +3809,9 @@
     "finish": "sobre el hombro",
     "ball_phase": "bola cayendo",
     "swing": "liftado (de abajo arriba)",
+    "arm": "doble flexión",
     "takeback": "amplia",
     "takeback_loop": "recto atrás",
-    "takeback_face": "cara vertical",
-    "racket_plane": "por detrás de la espalda",
     "catch_racket": true,
     "finish_3x90": false,
     "ready_hands": "dos manos en la raqueta",
@@ -3831,16 +3833,16 @@
    "footwork": {
     "airborne_at_impact": false,
     "one_foot_at_impact": false,
-    "speed_at_impact_mps": 4.72,
-    "forward_speed_at_impact_mps": 4.53,
-    "approach_speed_mps": 3.09,
-    "path_m": 1.61,
-    "move_dx_m": -1.06,
-    "move_dy_m": 1.12,
-    "peak_speed_mps": 3.33,
-    "recovery_dx_m": -1.31,
-    "recovery_dy_m": 0.93,
-    "recovery_to_centre_m": -1.31,
+    "speed_at_impact_mps": 3.64,
+    "forward_speed_at_impact_mps": 3.57,
+    "approach_speed_mps": 3.27,
+    "path_m": 1.49,
+    "move_dx_m": -1.01,
+    "move_dy_m": 1.02,
+    "peak_speed_mps": 3.34,
+    "recovery_dx_m": -1.37,
+    "recovery_dy_m": 1.05,
+    "recovery_to_centre_m": -1.37,
     "move_direction": "hacia delante",
     "direction_changes": 0,
     "step_kinds": [
@@ -3850,9 +3852,10 @@
      "lateral",
      "hacia delante"
     ],
-    "back_heel_lift": false,
+    "back_heel_lift": true,
+    "back_heel_lift_s": -0.06,
     "movement": "en carrera",
-    "feet_still_share": 0.22,
+    "feet_still_share": 0.23,
     "steps_reliable": false
    },
    "jitter": {
@@ -3878,7 +3881,7 @@
     "ready.wrist_non_lateral": 0.25,
     "ready.hands_apart": 2.15,
     "ready.arm_extension": 1.0,
-    "ready.shoulder_turn": 0.65,
+    "ready.shoulder_turn": 0.7,
     "ready.hip_turn": 1.25,
     "ready.racket_head_vs_wrist": 0.2,
     "ready.racket_angle": 4.85,
@@ -3886,8 +3889,8 @@
     "ready.racket_tip_height": 0.45,
     "ready.racket_tip_vs_head": 0.55,
     "ready.racket_head_lateral": 3.25,
-    "ready.face_tilt": 2.7,
-    "ready.face_yaw": 0.1,
+    "ready.face_tilt": 2.75,
+    "ready.face_yaw": 0.2,
     "takeback.body_height": 0.75,
     "takeback.hip_height": 1.15,
     "takeback.head_over_base": 1.25,
@@ -3911,123 +3914,124 @@
     "takeback.wrist_non_lateral": 3.25,
     "takeback.hands_apart": 0.85,
     "takeback.arm_extension": 1.05,
-    "takeback.shoulder_turn": 5.5,
-    "takeback.hip_turn": 4.7,
+    "takeback.shoulder_turn": 5.55,
+    "takeback.hip_turn": 4.75,
     "takeback.x_factor": 0.85,
-    "loaded.body_height": 0.75,
-    "loaded.hip_height": 0.75,
-    "loaded.head_over_base": 0.95,
-    "loaded.head_vs_hips": 0.35,
-    "loaded.trunk_tilt": 0.4,
-    "loaded.com_over_feet": 0.15,
-    "loaded.knee_non": 6.6,
-    "loaded.base_width": 2.1,
-    "loaded.elbow_dom": 8.5,
-    "loaded.shoulder_abd_dom": 3.45,
-    "loaded.elbow_non": 7.2,
-    "loaded.shoulder_abd_non": 7.2,
-    "loaded.wrist_dom_height": 0.2,
-    "loaded.wrist_dom_vs_hip": 0.6,
-    "loaded.wrist_dom_lateral": 1.05,
-    "loaded.wrist_dom_vs_shoulder": 0.7,
-    "loaded.elbow_dom_vs_shoulder": 0.3,
-    "loaded.elbow_dom_lateral": 1.05,
-    "loaded.wrist_non_height": 0.6,
-    "loaded.wrist_non_lateral": 5.85,
-    "loaded.hands_apart": 1.75,
-    "loaded.arm_extension": 0.9,
-    "loaded.shoulder_turn": 13.35,
-    "loaded.hip_turn": 19.75,
-    "loaded.x_factor": 6.4,
-    "loaded.racket_head_vs_wrist": 2.35,
-    "loaded.racket_angle": 68.0,
-    "loaded.racket_forearm": 80.35,
-    "loaded.racket_tip_height": 5.5,
-    "loaded.racket_tip_vs_head": 4.85,
-    "loaded.racket_head_lateral": 7.15,
-    "loaded.face_tilt": 10.1,
-    "loaded.face_yaw": 1.1,
-    "acceleration.body_height": 3.05,
-    "acceleration.hip_height": 1.9,
-    "acceleration.head_over_base": 2.3,
-    "acceleration.head_vs_hips": 0.3,
-    "acceleration.trunk_tilt": 0.65,
-    "acceleration.shoulder_tilt": 1.3,
-    "acceleration.hip_tilt": 2.8,
-    "acceleration.com_over_feet": 0.0,
-    "acceleration.knee_dom": 0.4,
-    "acceleration.knee_non": 0.1,
-    "acceleration.base_width": 1.2,
-    "acceleration.elbow_dom": 12.1,
-    "acceleration.shoulder_abd_dom": 0.95,
-    "acceleration.shoulder_abd_non": 4.1,
-    "acceleration.wrist_dom_height": 0.9,
-    "acceleration.wrist_dom_vs_hip": 3.35,
-    "acceleration.wrist_dom_lateral": 5.65,
-    "acceleration.wrist_dom_vs_shoulder": 4.05,
-    "acceleration.elbow_dom_vs_shoulder": 0.85,
-    "acceleration.elbow_dom_lateral": 1.75,
-    "acceleration.wrist_non_height": 1.6,
+    "loaded.body_height": 0.3,
+    "loaded.hip_height": 0.5,
+    "loaded.head_over_base": 1.05,
+    "loaded.head_vs_hips": 0.5,
+    "loaded.trunk_tilt": 0.55,
+    "loaded.com_over_feet": 0.14,
+    "loaded.knee_non": 2.45,
+    "loaded.base_width": 3.1,
+    "loaded.elbow_non": 3.75,
+    "loaded.shoulder_abd_non": 5.3,
+    "loaded.wrist_dom_height": 0.45,
+    "loaded.wrist_dom_vs_hip": 0.8,
+    "loaded.wrist_dom_lateral": 1.5,
+    "loaded.wrist_dom_vs_shoulder": 0.4,
+    "loaded.elbow_dom_vs_shoulder": 0.4,
+    "loaded.elbow_dom_lateral": 0.85,
+    "loaded.wrist_non_height": 0.85,
+    "loaded.wrist_non_lateral": 3.5,
+    "loaded.hands_apart": 1.5,
+    "loaded.arm_extension": 4.05,
+    "loaded.shoulder_turn": 2.25,
+    "loaded.hip_turn": 0.3,
+    "loaded.x_factor": 2.0,
+    "loaded.back_foot_angle_deg": 4.35,
+    "acceleration.body_height": 0.35,
+    "acceleration.hip_height": 0.7,
+    "acceleration.head_over_base": 1.1,
+    "acceleration.head_vs_hips": 0.25,
+    "acceleration.trunk_tilt": 0.25,
+    "acceleration.com_over_feet": 0.1,
+    "acceleration.knee_non": 6.75,
+    "acceleration.base_width": 1.25,
+    "acceleration.elbow_dom": 7.9,
+    "acceleration.shoulder_abd_dom": 6.65,
+    "acceleration.elbow_non": 9.1,
+    "acceleration.shoulder_abd_non": 8.95,
+    "acceleration.wrist_dom_height": 0.65,
+    "acceleration.wrist_dom_vs_hip": 1.0,
+    "acceleration.wrist_dom_lateral": 2.45,
+    "acceleration.wrist_dom_vs_shoulder": 0.9,
+    "acceleration.elbow_dom_vs_shoulder": 0.3,
+    "acceleration.elbow_dom_lateral": 1.7,
+    "acceleration.wrist_non_height": 1.5,
     "acceleration.wrist_non_lateral": 4.45,
-    "acceleration.hands_apart": 1.2,
-    "acceleration.arm_extension": 7.35,
-    "acceleration.shoulder_turn": 19.8,
-    "acceleration.hip_turn": 7.6,
-    "acceleration.x_factor": 10.05,
-    "acceleration.racket_head_vs_wrist": 4.45,
+    "acceleration.hands_apart": 2.45,
+    "acceleration.arm_extension": 0.55,
+    "acceleration.shoulder_turn": 10.15,
+    "acceleration.hip_turn": 13.0,
+    "acceleration.x_factor": 3.05,
+    "acceleration.racket_head_vs_wrist": 1.2,
     "acceleration.racket_angle": 0.0,
-    "acceleration.racket_forearm": 11.35,
-    "acceleration.racket_tip_height": 4.2,
-    "acceleration.racket_tip_vs_head": 1.0,
-    "acceleration.racket_head_lateral": 0.7,
-    "impact.body_height": 1.8,
-    "impact.hip_height": 1.4,
-    "impact.head_over_base": 2.65,
-    "impact.head_vs_hips": 0.5,
-    "impact.trunk_tilt": 0.95,
-    "impact.shoulder_tilt": 1.8,
-    "impact.hip_tilt": 3.1,
+    "acceleration.racket_forearm": 15.3,
+    "acceleration.racket_tip_height": 1.35,
+    "acceleration.racket_tip_vs_head": 1.2,
+    "acceleration.racket_head_lateral": 0.9,
+    "acceleration.face_tilt": 7.6,
+    "acceleration.face_yaw": 16.9,
+    "impact.body_height": 2.95,
+    "impact.hip_height": 2.25,
+    "impact.head_over_base": 1.55,
+    "impact.head_vs_hips": 0.3,
+    "impact.trunk_tilt": 0.65,
+    "impact.shoulder_tilt": 0.65,
+    "impact.hip_tilt": 2.2,
     "impact.com_over_feet": 0.0,
-    "impact.knee_dom": 0.4,
     "impact.knee_non": 0.1,
-    "impact.base_width": 1.15,
-    "impact.shoulder_abd_non": 2.65,
-    "impact.wrist_dom_height": 2.3,
-    "impact.wrist_dom_vs_hip": 4.25,
-    "impact.wrist_dom_lateral": 8.65,
-    "impact.wrist_dom_vs_shoulder": 4.65,
-    "impact.elbow_dom_vs_shoulder": 1.65,
-    "impact.elbow_dom_lateral": 2.95,
-    "impact.wrist_non_height": 3.8,
-    "impact.wrist_non_lateral": 8.25,
-    "impact.hands_apart": 1.75,
-    "impact.arm_extension": 13.35,
-    "impact.shoulder_turn": 12.45,
-    "impact.hip_turn": 9.3,
-    "impact.face_tilt": 7.6,
-    "impact.face_yaw": 9.25,
-    "extension.body_height": 0.9,
+    "impact.base_width": 1.35,
+    "impact.elbow_dom": 11.2,
+    "impact.shoulder_abd_dom": 1.9,
+    "impact.elbow_non": 13.9,
+    "impact.shoulder_abd_non": 4.7,
+    "impact.wrist_dom_height": 0.6,
+    "impact.wrist_dom_vs_hip": 1.95,
+    "impact.wrist_dom_lateral": 1.9,
+    "impact.wrist_dom_vs_shoulder": 3.0,
+    "impact.elbow_dom_vs_shoulder": 0.55,
+    "impact.elbow_dom_lateral": 0.8,
+    "impact.wrist_non_height": 0.75,
+    "impact.wrist_non_lateral": 3.7,
+    "impact.hands_apart": 1.55,
+    "impact.arm_extension": 5.1,
+    "impact.shoulder_turn": 18.35,
+    "impact.hip_turn": 7.6,
+    "impact.racket_head_vs_wrist": 2.6,
+    "impact.racket_angle": 0.0,
+    "impact.racket_forearm": 8.9,
+    "impact.racket_tip_height": 2.6,
+    "impact.racket_tip_vs_head": 0.8,
+    "impact.racket_head_lateral": 0.6,
+    "impact.face_tilt": 4.3,
+    "impact.face_yaw": 10.9,
+    "extension.body_height": 1.8,
     "extension.hip_height": 1.4,
-    "extension.head_over_base": 1.65,
+    "extension.head_over_base": 2.65,
     "extension.head_vs_hips": 0.5,
-    "extension.trunk_tilt": 1.2,
-    "extension.shoulder_tilt": 5.1,
-    "extension.hip_tilt": 4.45,
+    "extension.trunk_tilt": 0.95,
+    "extension.shoulder_tilt": 1.8,
+    "extension.hip_tilt": 3.1,
     "extension.com_over_feet": 0.0,
-    "extension.knee_dom": 0.85,
-    "extension.base_width": 1.35,
-    "extension.wrist_dom_height": 6.85,
-    "extension.wrist_dom_vs_hip": 5.6,
-    "extension.wrist_dom_lateral": 6.05,
-    "extension.wrist_dom_vs_shoulder": 5.2,
-    "extension.elbow_dom_vs_shoulder": 1.25,
-    "extension.elbow_dom_lateral": 4.45,
-    "extension.wrist_non_height": 4.35,
-    "extension.wrist_non_lateral": 4.5,
-    "extension.hands_apart": 3.3,
-    "extension.arm_extension": 24.1,
-    "extension.shoulder_turn": 12.2,
-    "extension.hip_turn": 7.9,
+    "extension.knee_dom": 0.4,
+    "extension.knee_non": 0.1,
+    "extension.base_width": 1.15,
+    "extension.shoulder_abd_non": 2.65,
+    "extension.wrist_dom_height": 2.3,
+    "extension.wrist_dom_vs_hip": 4.25,
+    "extension.wrist_dom_lateral": 8.65,
+    "extension.wrist_dom_vs_shoulder": 4.65,
+    "extension.elbow_dom_vs_shoulder": 1.65,
+    "extension.elbow_dom_lateral": 2.95,
+    "extension.wrist_non_height": 3.8,
+    "extension.wrist_non_lateral": 8.25,
+    "extension.hands_apart": 1.75,
+    "extension.arm_extension": 13.35,
+    "extension.shoulder_turn": 12.45,
+    "extension.hip_turn": 9.35,
     "finish.body_height": 0.4,
     "finish.hip_height": 0.5,
     "finish.head_over_base": 3.65,
@@ -4051,16 +4055,16 @@
     "finish.wrist_non_lateral": 0.4,
     "finish.hands_apart": 0.8,
     "finish.arm_extension": 1.35,
-    "finish.shoulder_turn": 1.1,
-    "finish.hip_turn": 3.4,
+    "finish.shoulder_turn": 1.05,
+    "finish.hip_turn": 3.45,
     "finish.racket_head_vs_wrist": 0.7,
     "finish.racket_angle": 0.0,
     "finish.racket_forearm": 2.1,
     "finish.racket_tip_height": 0.4,
     "finish.racket_tip_vs_head": 0.1,
     "finish.racket_head_lateral": 0.4,
-    "finish.face_tilt": 1.0,
-    "finish.face_yaw": 1.7,
+    "finish.face_tilt": 1.7,
+    "finish.face_yaw": 0.8,
     "recovery.body_height": 0.5,
     "recovery.hip_height": 0.7,
     "recovery.head_over_base": 1.65,
@@ -4084,23 +4088,23 @@
     "recovery.hands_apart": 0.8,
     "recovery.arm_extension": 2.0,
     "recovery.shoulder_turn": 1.55,
-    "recovery.hip_turn": 0.9,
-    "recovery.racket_head_vs_wrist": 4.2,
+    "recovery.hip_turn": 0.85,
+    "recovery.racket_head_vs_wrist": 3.2,
     "recovery.racket_angle": 0.0,
-    "recovery.racket_forearm": 14.7,
-    "recovery.racket_tip_height": 0.5,
-    "recovery.racket_tip_vs_head": 1.2,
-    "recovery.racket_head_lateral": 1.2,
-    "recovery.face_tilt": 6.0,
-    "recovery.face_yaw": 14.2,
-    "stroke.head_still_after_cm": 0.68,
+    "recovery.racket_forearm": 11.35,
+    "recovery.racket_tip_height": 0.3,
+    "recovery.racket_tip_vs_head": 0.85,
+    "recovery.racket_head_lateral": 0.8,
+    "recovery.face_tilt": 1.6,
+    "recovery.face_yaw": 2.95,
+    "stroke.head_still_after_cm": 0.53,
     "stroke.hip_drop_pct": 0.15,
     "stroke.hip_rise_after_pct": 0.0,
     "stroke.t_hip_lowest": 0.0,
     "stroke.t_hip_highest": 0.0,
     "stroke.hip_drop_cm": 0.5,
     "stroke.hip_rise_after_cm": 0.0,
-    "stroke.feet_move_m": 0.17,
+    "stroke.feet_move_m": 0.18,
     "stroke.t_trunk_finish": 0.0,
     "stroke.racket_lag_deg": 0.0,
     "stroke.t_racket_lag": 0.0,
@@ -4110,7 +4114,7 @@
     "stroke.t_finish": 0.03,
     "stroke.dur_preparation": 0.0,
     "stroke.dur_forward": 0.03,
-    "stroke.tempo_ratio": 1.46,
+    "stroke.tempo_ratio": 0.37,
     "stroke.head_motion_cm": 0.0,
     "stroke.takeback_after_opp": 0.03,
     "stroke.takeback_vs_bounce": 0.03,
@@ -4119,19 +4123,19 @@
     "stroke.contact_height_m": 0.0,
     "stroke.apex_height_m": 0.0,
     "stroke.bounce_to_apex_s": 0.0,
-    "stroke.takeback_path": 2.85,
+    "stroke.takeback_path": 1.7,
     "stroke.takeback_peak_vs_shoulder": 0.35,
     "stroke.swing_low_to_high": 0.0,
     "stroke.swing_rise_after": 0.0,
-    "stroke.wrist_drop": 3.05,
+    "stroke.wrist_drop": 1.85,
     "stroke.t_max_shoulder_turn": 0.0,
     "stroke.t_max_hip_turn": 0.0,
     "stroke.loaded_vs_bounce": 0.03,
     "stroke.shoulders_open_first": 0.0,
     "stroke.acceleration_vs_bounce": 0.03,
     "stroke.shoulder_brake": 0.0,
-    "stroke.hip_rise": 0.8,
-    "stroke.weight_shift": 0.155,
+    "stroke.hip_rise": 2.75,
+    "stroke.weight_shift": 0.14,
     "stroke.pause_at_loaded": 0.0,
     "stroke.hand_on_handle": 0.0,
     "stroke.racket_speed_rel": 0.0,
@@ -4149,7 +4153,8 @@
     "footwork.recovery_to_centre_m": 0.0,
     "footwork.move_direction": 0.0,
     "footwork.direction_changes": 0.0,
-    "footwork.back_heel_lift": 0.25,
+    "footwork.back_heel_lift": 0.0,
+    "footwork.back_heel_lift_s": 0.0,
     "footwork.movement": 0.0,
     "footwork.feet_still_share": 0.0,
     "footwork.steps_reliable": 0.0,
@@ -4157,17 +4162,16 @@
     "class.finish": 0.0,
     "class.ball_phase": 0.0,
     "class.swing": 0.0,
+    "class.arm": 0.75,
     "class.takeback": 0.0,
     "class.takeback_loop": 0.0,
-    "class.takeback_face": 0.5,
-    "class.racket_plane": 0.0,
     "class.catch_racket": 0.0,
     "class.finish_3x90": 0.0,
     "class.ready_hands": 0.0,
     "class.back_at_impact": 0.0,
     "class.movement": 0.0,
     "class.stance_loaded": 0.0,
-    "class.stance_impact": 0.25,
+    "class.stance_impact": 0.0,
     "class.move_direction": 0.0,
     "class.ball_speed": 0.0,
     "class.ball_height": 0.0,
@@ -4177,7 +4181,7 @@
     "class.intent": 0.0,
     "class.play": 0.0,
     "class.contact_type": 0.0,
-    "class.stance_role": 0.25
+    "class.stance_role": 0.0
    },
    "pose": {
     "ready": [
@@ -4322,145 +4326,215 @@
     ],
     "loaded": [
      [
-      -0.123,
-      0.338
-     ],
-     [
-      -0.127,
+      -0.12,
       0.345
      ],
      [
-      -0.135,
-      0.349
-     ],
-     [
-      -0.123,
-      0.333
-     ],
-     [
-      -0.081,
-      0.344
-     ],
-     [
-      -0.088,
-      0.251
-     ],
-     [
-      -0.067,
-      0.265
-     ],
-     [
-      -0.066,
-      0.107
+      -0.124,
+      0.351
      ],
      [
       -0.138,
-      0.147
+      0.354
+     ],
+     [
+      -0.098,
+      0.342
+     ],
+     [
+      -0.096,
+      0.345
+     ],
+     [
+      -0.061,
+      0.275
+     ],
+     [
+      -0.08,
+      0.287
+     ],
+     [
+      -0.01,
+      0.129
+     ],
+     [
+      -0.103,
+      0.182
+     ],
+     [
+      -0.123,
+      0.128
      ],
      [
       -0.15,
-      0.002
+      0.137
      ],
      [
-      -0.184,
-      0.03
+      0.023,
+      -0.01
      ],
      [
-      -0.004,
-      -0.005
+      -0.023,
+      0.01
      ],
      [
-      0.004,
-      0.005
+      -0.121,
+      -0.282
      ],
      [
-      -0.016,
-      -0.308
+      -0.111,
+      -0.142
      ],
      [
-      -0.088,
-      -0.149
+      0.061,
+      -0.48
      ],
      [
-      0.139,
-      -0.492
-     ],
-     [
-      -0.007,
-      -0.345
+      -0.041,
+      -0.323
      ]
     ],
     "acceleration": [
      [
-      -0.11,
-      0.32
+      -0.122,
+      0.336
      ],
      [
-      -0.128,
-      0.328
+      -0.127,
+      0.341
      ],
      [
-      -0.079,
-      0.326
+      -0.139,
+      0.346
      ],
      [
-      -0.14,
-      0.322
+      -0.117,
+      0.329
      ],
      [
-      -0.052,
-      0.32
+      -0.089,
+      0.341
      ],
      [
-      -0.179,
-      0.245
+      -0.071,
+      0.249
      ],
      [
-      -0.001,
-      0.236
+      -0.083,
+      0.26
      ],
      [
-      -0.237,
-      0.108
+      -0.026,
+      0.111
      ],
      [
-      -0.046,
-      0.112
+      -0.152,
+      0.145
      ],
      [
-      -0.263,
-      0.055
+      -0.107,
+      0.002
      ],
      [
-      -0.172,
-      0.078
+      -0.183,
+      0.022
      ],
      [
-      -0.048,
-      -0.007
+      0.01,
+      -0.005
      ],
      [
-      0.048,
-      0.007
+      -0.01,
+      0.005
      ],
      [
-      0.027,
-      -0.316
+      -0.024,
+      -0.311
      ],
      [
-      0.028,
-      -0.199
+      -0.099,
+      -0.147
      ],
      [
-      0.164,
-      -0.44
+      0.141,
+      -0.5
      ],
      [
-      0.078,
-      -0.397
+      -0.022,
+      -0.341
      ]
     ],
     "impact": [
+     [
+      -0.111,
+      0.325
+     ],
+     [
+      -0.123,
+      0.334
+     ],
+     [
+      -0.086,
+      0.333
+     ],
+     [
+      -0.139,
+      0.326
+     ],
+     [
+      -0.056,
+      0.325
+     ],
+     [
+      -0.169,
+      0.249
+     ],
+     [
+      -0.015,
+      0.241
+     ],
+     [
+      -0.22,
+      0.107
+     ],
+     [
+      -0.062,
+      0.111
+     ],
+     [
+      -0.29,
+      0.031
+     ],
+     [
+      -0.196,
+      0.056
+     ],
+     [
+      -0.046,
+      -0.005
+     ],
+     [
+      0.046,
+      0.005
+     ],
+     [
+      0.014,
+      -0.321
+     ],
+     [
+      0.013,
+      -0.194
+     ],
+     [
+      0.152,
+      -0.459
+     ],
+     [
+      0.056,
+      -0.389
+     ]
+    ],
+    "extension": [
      [
       -0.108,
       0.315
@@ -4528,76 +4602,6 @@
      [
       0.103,
       -0.407
-     ]
-    ],
-    "extension": [
-     [
-      -0.097,
-      0.299
-     ],
-     [
-      -0.121,
-      0.308
-     ],
-     [
-      -0.074,
-      0.308
-     ],
-     [
-      -0.135,
-      0.299
-     ],
-     [
-      -0.047,
-      0.304
-     ],
-     [
-      -0.173,
-      0.221
-     ],
-     [
-      0.021,
-      0.237
-     ],
-     [
-      -0.143,
-      0.142
-     ],
-     [
-      0.063,
-      0.151
-     ],
-     [
-      -0.063,
-      0.184
-     ],
-     [
-      0.001,
-      0.177
-     ],
-     [
-      -0.056,
-      -0.015
-     ],
-     [
-      0.056,
-      0.015
-     ],
-     [
-      0.074,
-      -0.312
-     ],
-     [
-      0.072,
-      -0.238
-     ],
-     [
-      0.218,
-      -0.406
-     ],
-     [
-      0.155,
-      -0.436
      ]
     ],
     "finish": [
@@ -4747,6 +4751,7 @@
    },
    "curves": {
     "head": [
+     79.7,
      77.9,
      76.2,
      75.4,
@@ -4796,10 +4801,10 @@
      92.5,
      93.6,
      94.0,
-     93.9,
-     93.4
+     93.9
     ],
     "hip": [
+     46.0,
      45.2,
      44.2,
      43.9,
@@ -4849,10 +4854,10 @@
      54.4,
      55.6,
      57.0,
-     57.2,
-     56.4
+     57.2
     ],
     "hand": [
+     57.0,
      56.1,
      55.3,
      54.7,
@@ -4902,23 +4907,23 @@
      66.7,
      63.9,
      62.1,
-     60.2,
-     58.5
+     60.2
     ],
     "racket": [
+     null,
      71.2,
      70.4,
      69.6,
      70.5,
-     72.1,
+     72.2,
      null,
      null,
      null,
      null,
      null,
-     null,
-     84.0,
-     85.7,
+     82.8,
+     84.6,
+     86.0,
      87.0,
      87.4,
      87.9,
@@ -4946,9 +4951,8 @@
      78.4,
      75.9,
      74.9,
-     77.3,
-     81.6,
-     85.8,
+     null,
+     null,
      null,
      null,
      null,
@@ -4960,14 +4964,14 @@
     ]
    },
    "feet_check": {
-    "loaded.front": "incoherente",
-    "loaded.back": "punta_oculta",
+    "loaded.front": "punta_oculta",
+    "loaded.back": "medido",
     "impact.front": "incoherente",
     "impact.back": "incoherente"
    }
   },
-  "series": "series/w000015434_6854_near_272.json",
-  "window_impact_s": 5.44,
+  "series": "series/w000015434_6854_near_270.json",
+  "window_impact_s": 5.4,
   "shot_in_point": 2,
   "shots_in_point": 2,
   "views": [
@@ -5974,10 +5978,10 @@
   "is_return": true,
   "ball_flight": {
    "fit_rms_m": 0.01,
-   "rise_speed_mps": 4.86,
+   "rise_speed_mps": 4.88,
    "apex_frame": 123,
-   "apex_height_m": 1.2,
-   "bounce_to_apex_s": 0.495,
+   "apex_height_m": 1.21,
+   "bounce_to_apex_s": 0.497,
    "contact_height_m": 0.97,
    "contact_phase": "subiendo"
   },
@@ -6311,8 +6315,8 @@
     "contact_vs_top": -0.22,
     "loaded_vs_top": -0.42,
     "contact_height_m": 0.97,
-    "apex_height_m": 1.2,
-    "bounce_to_apex_s": 0.495,
+    "apex_height_m": 1.21,
+    "bounce_to_apex_s": 0.497,
     "takeback_path": 33.6,
     "takeback_peak_vs_shoulder": -12.4,
     "swing_low_to_high": 33.3,
@@ -20358,9 +20362,9 @@
    }
   },
   "metrics": {
-   "shoulder_turn_loaded_deg": 64.89177076013627,
-   "hip_turn_loaded_deg": 54.364265570814744,
-   "x_factor_deg": 10.527505189321523,
+   "shoulder_turn_loaded_deg": 64.89427998869378,
+   "hip_turn_loaded_deg": 54.39917203645437,
+   "x_factor_deg": 10.495107952239415,
    "elbow_impact_deg": 116.47960441695285,
    "non_elbow_impact_deg": 174.58787712461375,
    "non_arm_extension_loaded_deg": 121.82594819388673,
@@ -20376,9 +20380,9 @@
    "time_loaded_to_impact_s": 0.36,
    "time_acceleration_to_impact_s": 0.12,
    "time_impact_to_finish_s": 0.18,
-   "ball_seen_pre_share": 0.915,
+   "ball_seen_pre_share": 0.909,
    "ball_gap_pre_s": 0.1,
-   "time_available_s": 1.28,
+   "time_available_s": 1.2,
    "opponent_hit_source": "ball",
    "shoulder_turn_3d_deg": -40.7,
    "hip_turn_3d_deg": -49.0,
@@ -20430,26 +20434,6 @@
    }
   },
   "racket_track": [
-   [
-    -1.78,
-    null,
-    null
-   ],
-   [
-    -1.76,
-    null,
-    null
-   ],
-   [
-    -1.74,
-    null,
-    null
-   ],
-   [
-    -1.72,
-    null,
-    null
-   ],
    [
     -1.7,
     null,
@@ -21157,10 +21141,10 @@
   "stance_width_m": 0.94,
   "stance": "semiabierto",
   "stance_angle_deg": 38.4,
-  "displacement_m": 1.78,
+  "displacement_m": 1.69,
   "pos_at_opp_m": [
-   -0.99,
-   -1.86
+   -1.07,
+   -1.92
   ],
   "camera_pitch_deg": 18.5,
   "shot_bounce_m": [
@@ -21523,7 +21507,7 @@
     "tempo_ratio": 1.06,
     "head_motion_cm": 5.1,
     "head_still_after_cm": 1.9,
-    "takeback_after_opp": 0.54,
+    "takeback_after_opp": 0.46,
     "takeback_path": 36.5,
     "takeback_peak_vs_shoulder": -15.7,
     "swing_low_to_high": 67.3,
@@ -21540,8 +21524,8 @@
     "racket_speed_rel": 1.16,
     "takeback_vs_first_step": 0.14,
     "loaded_vs_last_plant": -0.22,
-    "return_ready_depth_m": -1.86,
-    "return_step_in_m": -0.42
+    "return_ready_depth_m": -1.92,
+    "return_step_in_m": -0.36
    },
    "classes": {
     "finish": "sobre el hombro",
@@ -21574,17 +21558,8 @@
     "return_side": "ventaja"
    },
    "footwork": {
-    "steps_to_impact": 3,
+    "steps_to_impact": 2,
     "steps": [
-     {
-      "foot": "dom",
-      "t_start": -1.24,
-      "t_land": -1.0,
-      "length_m": 0.46,
-      "dx": -0.14,
-      "dy": -0.43,
-      "crossover": false
-     },
      {
       "foot": "dom",
       "t_start": -0.88,
@@ -21657,9 +21632,9 @@
     "forward_speed_at_impact_mps": -0.21,
     "approach_speed_mps": 2.32,
     "feet_at_impact": "un pie apoyado",
-    "path_m": 2.11,
-    "move_dx_m": -1.72,
-    "move_dy_m": -0.38,
+    "path_m": 2.0,
+    "move_dx_m": -1.66,
+    "move_dy_m": -0.29,
     "peak_speed_mps": 2.77,
     "recovery_dx_m": 1.08,
     "recovery_dy_m": 0.49,
@@ -21670,7 +21645,6 @@
     "direction_changes": 1,
     "rear_leg_step_after": true,
     "step_kinds": [
-     "hacia atrás",
      "lateral",
      "lateral",
      "lateral",
@@ -31861,9 +31835,9 @@
    }
   },
   "metrics": {
-   "shoulder_turn_loaded_deg": 93.20188477941375,
-   "hip_turn_loaded_deg": 73.93751290434831,
-   "x_factor_deg": 19.264371875065436,
+   "shoulder_turn_loaded_deg": 93.19954367627369,
+   "hip_turn_loaded_deg": 73.94827094763957,
+   "x_factor_deg": 19.25127272863412,
    "elbow_impact_deg": 172.30215804769213,
    "non_elbow_impact_deg": 161.36836625736882,
    "non_arm_extension_loaded_deg": 12.285134312374026,
@@ -31879,7 +31853,7 @@
    "time_loaded_to_impact_s": 0.14,
    "time_acceleration_to_impact_s": 0.04,
    "time_impact_to_finish_s": 0.64,
-   "time_available_s": 0.88,
+   "time_available_s": 0.86,
    "opponent_hit_source": "ball"
   },
   "racket": {},
@@ -31951,10 +31925,10 @@
    -0.06,
    6.13
   ],
-  "displacement_m": 2.54,
+  "displacement_m": 2.46,
   "pos_at_opp_m": [
-   -1.9,
-   4.38
+   -1.83,
+   4.43
   ],
   "camera_pitch_deg": 18.4,
   "point_won": false,
@@ -35087,15 +35061,15 @@
   ]
  },
  {
-  "impact_frame": 100,
+  "impact_frame": 101,
   "impact_source": "spotter+ball",
   "stroke": "backhand",
   "phases": {
    "ready": {
-    "frame": 58,
+    "frame": 59,
     "t_rel": -0.84,
     "method": "fallback_before_takeback",
-    "confidence": 0.27
+    "confidence": 0.26
    },
    "takeback": {
     "frame": null,
@@ -35105,37 +35079,37 @@
    },
    "loaded": {
     "frame": 90,
-    "t_rel": -0.2,
+    "t_rel": -0.22,
     "method": "wrist_pause_before_forward_swing",
     "confidence": 0.82
    },
    "acceleration": {
     "frame": 96,
-    "t_rel": -0.08,
+    "t_rel": -0.1,
     "method": "wrist_low_point",
     "confidence": 0.64
    },
    "impact": {
-    "frame": 100,
+    "frame": 101,
     "t_rel": 0.0,
     "method": "given",
     "confidence": 0.91
    },
    "extension": {
-    "frame": 102,
+    "frame": 103,
     "t_rel": 0.04,
     "method": "impact_plus_50ms",
-    "confidence": 0.73
+    "confidence": 0.71
    },
    "finish": {
     "frame": 116,
-    "t_rel": 0.32,
+    "t_rel": 0.3,
     "method": "wrist_high_point",
     "confidence": 0.8
    },
    "recovery": {
     "frame": 131,
-    "t_rel": 0.62,
+    "t_rel": 0.6,
     "method": "fallback_after_finish",
     "confidence": 0.27
    }
@@ -35144,35 +35118,35 @@
    "shoulder_turn_loaded_deg": 13.43552045202678,
    "hip_turn_loaded_deg": 14.565287941305492,
    "x_factor_deg": -1.129767489278711,
-   "elbow_impact_deg": 163.90494024340163,
-   "non_elbow_impact_deg": 154.34828733885195,
+   "elbow_impact_deg": 164.5958200643416,
+   "non_elbow_impact_deg": 154.28158952350557,
    "non_arm_extension_loaded_deg": 153.91498379149527,
-   "contact_height_pct": 49.65738833772455,
-   "contact_lateral_pct": 10.759914106426152,
+   "contact_height_pct": 49.54139982346525,
+   "contact_lateral_pct": 10.819101349077027,
    "toss_above_head_bh": -0.30314324847078133,
    "base_width_loaded_pct": 14.653330084004573,
-   "hip_drop_pct": 0.06615639821733188,
+   "hip_drop_pct": 0.07771423072588934,
    "finish_wrist_height_pct": 5.496342185682685,
-   "head_motion_impact_cm": 0.22117060019740745,
+   "head_motion_impact_cm": 0.4369124047795541,
    "time_ready_to_impact_s": 0.84,
-   "time_loaded_to_impact_s": 0.2,
-   "time_acceleration_to_impact_s": 0.08,
-   "time_impact_to_finish_s": 0.32,
-   "ball_seen_pre_share": 0.452,
-   "ball_gap_pre_s": 0.42
+   "time_loaded_to_impact_s": 0.22,
+   "time_acceleration_to_impact_s": 0.1,
+   "time_impact_to_finish_s": 0.3,
+   "ball_seen_pre_share": 0.466,
+   "ball_gap_pre_s": 0.4
   },
   "racket": {},
   "racket_track": [],
   "ball": {},
   "chain": {
    "peaks_s": {
-    "pelvis": -0.38,
+    "pelvis": -0.4,
     "trunk": -0.4,
-    "arm": -0.38
+    "arm": -0.4
    },
    "order": [
-    "trunk",
     "pelvis",
+    "trunk",
     "arm"
    ],
    "version": 2,
@@ -35187,11 +35161,11 @@
   "stroke_source": "detector",
   "window": "w001170500_4792.mp4",
   "window_start_s": 1170.5,
-  "match_time_s": 1172.5,
+  "match_time_s": 1172.52,
   "candidate_audio": true,
   "identity": false,
   "target": true,
-  "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0117250",
+  "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0117252",
   "surface": "dura",
   "score": {
    "games": [
@@ -35232,7 +35206,7 @@
   },
   "court_pos_m": [
    -6.24,
-   -8.79
+   -8.8
   ],
   "camera_pitch_deg": 18.4,
   "outcome": "rally",
@@ -35250,8 +35224,8 @@
    "stroke": {},
    "footwork": {}
   },
-  "series": "series/w001170500_4792_far_100.json",
-  "window_impact_s": 2.0,
+  "series": "series/w001170500_4792_far_101.json",
+  "window_impact_s": 2.02,
   "shot_in_point": 1,
   "shots_in_point": 2,
   "is_return": true,
@@ -39447,64 +39421,64 @@
   "face": {
    "ready": {
     "points_to": "valla trasera",
-    "tilt_deg": 18.2,
-    "yaw_deg": -164.6,
+    "tilt_deg": 18.4,
+    "yaw_deg": -162.7,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "takeback": {
     "points_to": "valla trasera",
-    "tilt_deg": 28.7,
-    "yaw_deg": -146.5,
+    "tilt_deg": 27.8,
+    "yaw_deg": -137.0,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "loaded": {
-    "points_to": "valla izquierda",
-    "tilt_deg": 37.1,
-    "yaw_deg": -93.2,
+    "points_to": "valla derecha",
+    "tilt_deg": -23.9,
+    "yaw_deg": 69.0,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "acceleration": {
     "points_to": "red",
-    "tilt_deg": 16.3,
-    "yaw_deg": -28.7,
+    "tilt_deg": -6.1,
+    "yaw_deg": 16.8,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "impact": {
     "points_to": "red",
-    "tilt_deg": 4.1,
-    "yaw_deg": -12.9,
+    "tilt_deg": -2.6,
+    "yaw_deg": 2.0,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "extension": {
     "points_to": "red",
-    "tilt_deg": 16.4,
-    "yaw_deg": -27.1,
+    "tilt_deg": 1.4,
+    "yaw_deg": 13.9,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "finish": {
-    "points_to": "valla izquierda",
-    "tilt_deg": 28.5,
-    "yaw_deg": -88.3,
+    "points_to": "valla derecha",
+    "tilt_deg": -6.2,
+    "yaw_deg": 68.8,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "recovery": {
-    "points_to": "valla izquierda",
-    "tilt_deg": 15.8,
-    "yaw_deg": -93.1,
+    "points_to": "valla derecha",
+    "tilt_deg": -10.2,
+    "yaw_deg": 81.9,
     "observed": true,
     "hand_evidence": false,
     "ambiguous": true
@@ -39589,9 +39563,9 @@
      "racket_tip_height": 111.7,
      "racket_tip_vs_head": 22.3,
      "racket_head_lateral": 3.4,
-     "face_tilt": 37.1,
-     "face_yaw": -93.2,
-     "face_points_to": "valla izquierda",
+     "face_tilt": -23.9,
+     "face_yaw": 69.0,
+     "face_points_to": "valla derecha",
      "face_observed": false,
      "front_foot_angle_deg": 9.7,
      "back_foot_angle_deg": -15.7,
@@ -39657,8 +39631,8 @@
      "racket_tip_height": 99.3,
      "racket_tip_vs_head": 12.7,
      "racket_head_lateral": 7.4,
-     "face_tilt": 4.1,
-     "face_yaw": -12.9,
+     "face_tilt": -2.6,
+     "face_yaw": 2.0,
      "face_points_to": "red",
      "face_observed": false,
      "front_foot_angle_deg": 15.4,
@@ -39723,9 +39697,9 @@
      "racket_tip_height": 91.2,
      "racket_tip_vs_head": 5.6,
      "racket_head_lateral": 8.5,
-     "face_tilt": 28.5,
-     "face_yaw": -88.3,
-     "face_points_to": "valla izquierda",
+     "face_tilt": -6.2,
+     "face_yaw": 68.8,
+     "face_points_to": "valla derecha",
      "face_observed": false,
      "base_court_m": 0.58,
      "shoulder_width_ratio": 0.56,
@@ -39757,9 +39731,9 @@
      "racket_tip_height": 73.0,
      "racket_tip_vs_head": -10.8,
      "racket_head_lateral": 9.8,
-     "face_tilt": 15.8,
-     "face_yaw": -93.1,
-     "face_points_to": "valla izquierda",
+     "face_tilt": -10.2,
+     "face_yaw": 81.9,
+     "face_points_to": "valla derecha",
      "face_observed": true
     }
    },
@@ -39794,7 +39768,7 @@
     "hip_rise": -0.8,
     "weight_shift": -0.21,
     "pause_at_loaded": 0.24,
-    "hand_on_handle": 14.1,
+    "hand_on_handle": 13.4,
     "racket_speed_rel": 0.79,
     "takeback_vs_first_step": 0.0,
     "loaded_vs_last_plant": 0.36
@@ -39805,7 +39779,7 @@
     "swing": "cortado (de arriba abajo)",
     "takeback": "compacta",
     "takeback_loop": "loop falso (para arriba)",
-    "takeback_face": "cara cerrada",
+    "takeback_face": "cara abierta",
     "racket_plane": "a la altura del hombro",
     "ready_hands": "dos manos en la raqueta",
     "back_at_impact": false,
@@ -39966,8 +39940,8 @@
     "loaded.racket_tip_height": 0.2,
     "loaded.racket_tip_vs_head": 0.35,
     "loaded.racket_head_lateral": 0.5,
-    "loaded.face_tilt": 0.45,
-    "loaded.face_yaw": 1.05,
+    "loaded.face_tilt": 0.2,
+    "loaded.face_yaw": 0.55,
     "loaded.front_foot_angle_deg": 1.95,
     "loaded.back_foot_angle_deg": 3.8,
     "acceleration.body_height": 0.3,
@@ -40023,8 +39997,8 @@
     "impact.racket_tip_height": 3.1,
     "impact.racket_tip_vs_head": 2.55,
     "impact.racket_head_lateral": 0.7,
-    "impact.face_tilt": 7.85,
-    "impact.face_yaw": 9.25,
+    "impact.face_tilt": 2.75,
+    "impact.face_yaw": 8.05,
     "impact.front_foot_angle_deg": 1.2,
     "impact.back_foot_angle_deg": 0.8,
     "extension.body_height": 0.3,
@@ -40078,8 +40052,8 @@
     "finish.racket_tip_height": 3.05,
     "finish.racket_tip_vs_head": 2.65,
     "finish.racket_head_lateral": 0.35,
-    "finish.face_tilt": 4.2,
-    "finish.face_yaw": 8.2,
+    "finish.face_tilt": 3.95,
+    "finish.face_yaw": 7.4,
     "recovery.body_height": 0.05,
     "recovery.hip_height": 0.0,
     "recovery.head_over_base": 0.3,
@@ -40105,8 +40079,8 @@
     "recovery.racket_tip_height": 1.9,
     "recovery.racket_tip_vs_head": 1.8,
     "recovery.racket_head_lateral": 0.15,
-    "recovery.face_tilt": 0.7,
-    "recovery.face_yaw": 0.95,
+    "recovery.face_tilt": 0.6,
+    "recovery.face_yaw": 1.05,
     "stroke.head_still_after_cm": 0.09,
     "stroke.hip_drop_pct": 0.0,
     "stroke.hip_rise_after_pct": 0.0,
@@ -40925,9 +40899,9 @@
      null,
      null,
      null,
-     85.3,
-     89.6,
-     93.7,
+     null,
+     89.8,
+     93.0,
      95.7,
      98.2,
      100.3,
@@ -41861,57 +41835,57 @@
   "face": {
    "ready": {
     "points_to": "red",
-    "tilt_deg": 37.9,
-    "yaw_deg": -32.4,
+    "tilt_deg": 35.5,
+    "yaw_deg": -34.2,
     "observed": true,
     "hand_evidence": true,
-    "ambiguous": false
+    "ambiguous": true
    },
    "takeback": null,
    "loaded": {
-    "points_to": "red",
-    "tilt_deg": -37.2,
-    "yaw_deg": -13.4,
+    "points_to": "cielo",
+    "tilt_deg": -71.3,
+    "yaw_deg": -144.7,
     "observed": true,
     "hand_evidence": false,
-    "ambiguous": false
+    "ambiguous": true
    },
    "acceleration": {
-    "points_to": "cielo",
-    "tilt_deg": -59.5,
-    "yaw_deg": -68.7,
+    "points_to": "red",
+    "tilt_deg": -19.8,
+    "yaw_deg": -27.1,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "impact": {
     "points_to": "red",
-    "tilt_deg": -16.9,
-    "yaw_deg": -5.2,
+    "tilt_deg": -7.6,
+    "yaw_deg": -5.0,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "extension": {
     "points_to": "red",
-    "tilt_deg": -20.5,
-    "yaw_deg": -0.1,
+    "tilt_deg": -5.2,
+    "yaw_deg": -4.1,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "finish": {
-    "points_to": "valla trasera",
-    "tilt_deg": -29.0,
-    "yaw_deg": -164.5,
+    "points_to": "red",
+    "tilt_deg": 25.3,
+    "yaw_deg": -15.1,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "recovery": {
     "points_to": "valla izquierda",
-    "tilt_deg": 17.7,
-    "yaw_deg": -95.6,
+    "tilt_deg": 17.5,
+    "yaw_deg": -96.3,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
@@ -41947,8 +41921,8 @@
      "racket_tip_height": 64.8,
      "racket_tip_vs_head": -10.2,
      "racket_head_lateral": 24.6,
-     "face_tilt": 37.9,
-     "face_yaw": -32.4,
+     "face_tilt": 35.5,
+     "face_yaw": -34.2,
      "face_points_to": "red",
      "face_observed": true
     },
@@ -41980,9 +41954,9 @@
      "racket_tip_height": 25.4,
      "racket_tip_vs_head": -51.8,
      "racket_head_lateral": -24.8,
-     "face_tilt": -37.2,
-     "face_yaw": -13.4,
-     "face_points_to": "red",
+     "face_tilt": -71.3,
+     "face_yaw": -144.7,
+     "face_points_to": "cielo",
      "face_observed": true,
      "base_court_m": 0.43,
      "stance_angle": -63.0,
@@ -42015,9 +41989,9 @@
      "racket_tip_height": 34.8,
      "racket_tip_vs_head": -46.8,
      "racket_head_lateral": -25.1,
-     "face_tilt": -59.5,
-     "face_yaw": -68.7,
-     "face_points_to": "cielo",
+     "face_tilt": -19.8,
+     "face_yaw": -27.1,
+     "face_points_to": "red",
      "face_observed": false
     },
     "impact": {
@@ -42047,8 +42021,8 @@
      "racket_tip_height": 31.0,
      "racket_tip_vs_head": -51.4,
      "racket_head_lateral": -22.3,
-     "face_tilt": -16.9,
-     "face_yaw": -5.2,
+     "face_tilt": -7.6,
+     "face_yaw": -5.0,
      "face_points_to": "red",
      "face_observed": false,
      "front_foot_angle_deg": 121.2,
@@ -42114,9 +42088,9 @@
      "racket_tip_height": 55.0,
      "racket_tip_vs_head": -30.3,
      "racket_head_lateral": 1.7,
-     "face_tilt": -29.0,
-     "face_yaw": -164.5,
-     "face_points_to": "valla trasera",
+     "face_tilt": 25.3,
+     "face_yaw": -15.1,
+     "face_points_to": "red",
      "face_observed": false,
      "base_court_m": 0.54,
      "shoulder_width_ratio": 0.74,
@@ -42149,8 +42123,8 @@
      "racket_tip_height": 11.7,
      "racket_tip_vs_head": -77.2,
      "racket_head_lateral": 15.6,
-     "face_tilt": 17.7,
-     "face_yaw": -95.6,
+     "face_tilt": 17.5,
+     "face_yaw": -96.3,
      "face_points_to": "valla izquierda",
      "face_observed": false
     }
@@ -42382,8 +42356,8 @@
     "ready.racket_tip_height": 0.85,
     "ready.racket_tip_vs_head": 0.65,
     "ready.racket_head_lateral": 1.5,
-    "ready.face_tilt": 3.55,
-    "ready.face_yaw": 4.95,
+    "ready.face_tilt": 3.2,
+    "ready.face_yaw": 4.35,
     "loaded.body_height": 0.6,
     "loaded.hip_height": 0.5,
     "loaded.head_over_base": 3.7,
@@ -42411,8 +42385,8 @@
     "loaded.racket_tip_height": 0.75,
     "loaded.racket_tip_vs_head": 0.45,
     "loaded.racket_head_lateral": 0.2,
-    "loaded.face_tilt": 7.3,
-    "loaded.face_yaw": 15.7,
+    "loaded.face_tilt": 3.3,
+    "loaded.face_yaw": 40.65,
     "acceleration.body_height": 0.35,
     "acceleration.hip_height": 0.2,
     "acceleration.head_over_base": 0.85,
@@ -42439,8 +42413,8 @@
     "acceleration.racket_tip_height": 0.25,
     "acceleration.racket_tip_vs_head": 0.1,
     "acceleration.racket_head_lateral": 0.7,
-    "acceleration.face_tilt": 8.1,
-    "acceleration.face_yaw": 18.5,
+    "acceleration.face_tilt": 8.8,
+    "acceleration.face_yaw": 5.8,
     "impact.body_height": 0.75,
     "impact.hip_height": 0.9,
     "impact.head_over_base": 0.4,
@@ -42467,8 +42441,8 @@
     "impact.racket_tip_height": 1.5,
     "impact.racket_tip_vs_head": 2.55,
     "impact.racket_head_lateral": 1.5,
-    "impact.face_tilt": 5.65,
-    "impact.face_yaw": 6.45,
+    "impact.face_tilt": 1.85,
+    "impact.face_yaw": 2.7,
     "impact.front_foot_angle_deg": 0.3,
     "impact.back_foot_angle_deg": 0.65,
     "extension.body_height": 0.6,
@@ -42523,8 +42497,8 @@
     "finish.racket_tip_height": 0.1,
     "finish.racket_tip_vs_head": 0.25,
     "finish.racket_head_lateral": 0.05,
-    "finish.face_tilt": 36.55,
-    "finish.face_yaw": 6.05,
+    "finish.face_tilt": 21.1,
+    "finish.face_yaw": 16.55,
     "recovery.body_height": 0.15,
     "recovery.hip_height": 0.15,
     "recovery.head_over_base": 0.7,
@@ -42551,8 +42525,8 @@
     "recovery.racket_tip_height": 0.95,
     "recovery.racket_tip_vs_head": 1.15,
     "recovery.racket_head_lateral": 1.8,
-    "recovery.face_tilt": 3.3,
-    "recovery.face_yaw": 1.85,
+    "recovery.face_tilt": 3.85,
+    "recovery.face_yaw": 1.3,
     "stroke.head_still_after_cm": 0.31,
     "stroke.hip_drop_pct": 0.0,
     "stroke.hip_rise_after_pct": 0.2,
@@ -43309,12 +43283,12 @@
      68.3,
      68.7,
      69.0,
-     78.0,
-     95.8,
-     113.5,
-     131.3,
-     149.0,
-     137.6,
+     76.9,
+     92.4,
+     107.9,
+     123.4,
+     138.9,
+     134.9,
      108.3,
      78.3,
      48.4,
@@ -44688,64 +44662,64 @@
   "face": {
    "ready": {
     "points_to": "valla izquierda",
-    "tilt_deg": -11.4,
-    "yaw_deg": -84.4,
+    "tilt_deg": -11.9,
+    "yaw_deg": -84.8,
     "observed": true,
     "hand_evidence": true,
     "ambiguous": false
    },
    "takeback": {
-    "points_to": "valla izquierda",
-    "tilt_deg": -26.6,
-    "yaw_deg": -71.9,
-    "observed": true,
+    "points_to": "cielo",
+    "tilt_deg": -48.4,
+    "yaw_deg": -52.1,
+    "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "loaded": {
-    "points_to": "valla izquierda",
-    "tilt_deg": 32.8,
-    "yaw_deg": -53.9,
+    "points_to": "valla derecha",
+    "tilt_deg": -4.1,
+    "yaw_deg": 126.4,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "acceleration": {
-    "points_to": "red",
-    "tilt_deg": 32.2,
-    "yaw_deg": -40.6,
+    "points_to": "valla trasera",
+    "tilt_deg": -27.1,
+    "yaw_deg": 135.7,
     "observed": true,
     "hand_evidence": false,
     "ambiguous": false
    },
    "impact": {
     "points_to": "red",
-    "tilt_deg": -1.8,
-    "yaw_deg": -1.0,
+    "tilt_deg": -21.9,
+    "yaw_deg": 8.6,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "extension": {
-    "points_to": "red",
-    "tilt_deg": 12.2,
-    "yaw_deg": 9.2,
+    "points_to": "valla derecha",
+    "tilt_deg": -33.7,
+    "yaw_deg": 47.8,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "finish": {
     "points_to": "cielo",
-    "tilt_deg": -63.2,
-    "yaw_deg": 100.7,
+    "tilt_deg": -47.3,
+    "yaw_deg": 38.2,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "recovery": {
     "points_to": "valla izquierda",
-    "tilt_deg": 29.6,
-    "yaw_deg": -100.5,
+    "tilt_deg": 33.8,
+    "yaw_deg": -89.4,
     "observed": true,
     "hand_evidence": false,
     "ambiguous": false
@@ -44783,8 +44757,8 @@
      "racket_tip_height": 81.6,
      "racket_tip_vs_head": -8.7,
      "racket_head_lateral": 23.0,
-     "face_tilt": -11.4,
-     "face_yaw": -84.4,
+     "face_tilt": -11.9,
+     "face_yaw": -84.8,
      "face_points_to": "valla izquierda",
      "face_observed": true
     },
@@ -44814,16 +44788,8 @@
      "shoulder_turn": 57.8,
      "hip_turn": 66.7,
      "x_factor": -8.9,
-     "racket_head_vs_wrist": -1.2,
-     "racket_angle": 29.0,
-     "racket_forearm": 71.2,
-     "racket_tip_height": 49.2,
-     "racket_tip_vs_head": -38.7,
-     "racket_head_lateral": 24.0,
-     "face_tilt": -26.6,
-     "face_yaw": -71.9,
-     "face_points_to": "valla izquierda",
-     "face_observed": true
+     "face_points_to": "cielo",
+     "face_observed": false
     },
     "loaded": {
      "body_height": 101.0,
@@ -44857,9 +44823,9 @@
      "racket_tip_height": 58.2,
      "racket_tip_vs_head": -35.3,
      "racket_head_lateral": 34.1,
-     "face_tilt": 32.8,
-     "face_yaw": -53.9,
-     "face_points_to": "valla izquierda",
+     "face_tilt": -4.1,
+     "face_yaw": 126.4,
+     "face_points_to": "valla derecha",
      "face_observed": false,
      "front_foot_angle_deg": 56.7,
      "back_foot_angle_deg": 9.5,
@@ -44899,9 +44865,9 @@
      "racket_tip_height": 73.7,
      "racket_tip_vs_head": -20.5,
      "racket_head_lateral": 36.4,
-     "face_tilt": 32.2,
-     "face_yaw": -40.6,
-     "face_points_to": "red",
+     "face_tilt": -27.1,
+     "face_yaw": 135.7,
+     "face_points_to": "valla trasera",
      "face_observed": true
     },
     "impact": {
@@ -44934,8 +44900,8 @@
      "racket_tip_height": 98.2,
      "racket_tip_vs_head": 4.8,
      "racket_head_lateral": 24.5,
-     "face_tilt": -1.8,
-     "face_yaw": -1.0,
+     "face_tilt": -21.9,
+     "face_yaw": 8.6,
      "face_points_to": "red",
      "face_observed": false,
      "front_foot_angle_deg": 19.7,
@@ -44975,7 +44941,7 @@
      "racket_tip_height": 99.7,
      "racket_tip_vs_head": 8.1,
      "racket_head_lateral": 21.1,
-     "face_points_to": "red",
+     "face_points_to": "valla derecha",
      "face_observed": false
     },
     "finish": {
@@ -45039,8 +45005,8 @@
      "racket_tip_height": 159.5,
      "racket_tip_vs_head": 76.2,
      "racket_head_lateral": -3.1,
-     "face_tilt": 29.6,
-     "face_yaw": -100.5,
+     "face_tilt": 33.8,
+     "face_yaw": -89.4,
      "face_points_to": "valla izquierda",
      "face_observed": true
     }
@@ -45076,7 +45042,7 @@
     "hip_rise": -0.2,
     "weight_shift": 0.16,
     "pause_at_loaded": 0.04,
-    "hand_on_handle": 26.8,
+    "hand_on_handle": 23.8,
     "racket_speed_rel": 0.91
    },
    "classes": {
@@ -45085,7 +45051,7 @@
     "swing": "liftado (de abajo arriba)",
     "takeback": "compacta",
     "takeback_loop": "recto atrás",
-    "takeback_face": "cara cerrada",
+    "takeback_face": "cara vertical",
     "racket_plane": "al lado del cuerpo",
     "catch_racket": true,
     "ready_hands": "dos manos en la raqueta",
@@ -45196,8 +45162,8 @@
     "ready.racket_tip_height": 5.5,
     "ready.racket_tip_vs_head": 4.65,
     "ready.racket_head_lateral": 0.9,
-    "ready.face_tilt": 2.35,
-    "ready.face_yaw": 0.6,
+    "ready.face_tilt": 2.5,
+    "ready.face_yaw": 0.55,
     "takeback.body_height": 0.15,
     "takeback.hip_height": 0.5,
     "takeback.head_over_base": 0.75,
@@ -45223,14 +45189,6 @@
     "takeback.shoulder_turn": 0.8,
     "takeback.hip_turn": 0.2,
     "takeback.x_factor": 0.85,
-    "takeback.racket_head_vs_wrist": 1.25,
-    "takeback.racket_angle": 15.5,
-    "takeback.racket_forearm": 12.45,
-    "takeback.racket_tip_height": 3.95,
-    "takeback.racket_tip_vs_head": 3.7,
-    "takeback.racket_head_lateral": 0.7,
-    "takeback.face_tilt": 25.45,
-    "takeback.face_yaw": 11.15,
     "loaded.body_height": 0.15,
     "loaded.hip_height": 0.7,
     "loaded.head_over_base": 0.35,
@@ -45262,8 +45220,8 @@
     "loaded.racket_tip_height": 7.4,
     "loaded.racket_tip_vs_head": 7.3,
     "loaded.racket_head_lateral": 1.85,
-    "loaded.face_tilt": 1.55,
-    "loaded.face_yaw": 5.5,
+    "loaded.face_tilt": 5.1,
+    "loaded.face_yaw": 1.9,
     "loaded.front_foot_angle_deg": 1.9,
     "loaded.back_foot_angle_deg": 0.9,
     "acceleration.body_height": 0.65,
@@ -45297,8 +45255,8 @@
     "acceleration.racket_tip_height": 6.8,
     "acceleration.racket_tip_vs_head": 6.15,
     "acceleration.racket_head_lateral": 0.35,
-    "acceleration.face_tilt": 1.5,
-    "acceleration.face_yaw": 3.0,
+    "acceleration.face_tilt": 13.6,
+    "acceleration.face_yaw": 7.95,
     "impact.body_height": 1.45,
     "impact.hip_height": 0.8,
     "impact.head_over_base": 0.3,
@@ -45328,8 +45286,8 @@
     "impact.racket_tip_height": 1.4,
     "impact.racket_tip_vs_head": 3.1,
     "impact.racket_head_lateral": 2.95,
-    "impact.face_tilt": 4.8,
-    "impact.face_yaw": 7.35,
+    "impact.face_tilt": 9.15,
+    "impact.face_yaw": 8.75,
     "impact.front_foot_angle_deg": 3.0,
     "impact.back_foot_angle_deg": 8.45,
     "extension.body_height": 1.5,
@@ -45415,8 +45373,8 @@
     "recovery.racket_tip_height": 5.9,
     "recovery.racket_tip_vs_head": 7.45,
     "recovery.racket_head_lateral": 6.2,
-    "recovery.face_tilt": 24.4,
-    "recovery.face_yaw": 31.8,
+    "recovery.face_tilt": 13.8,
+    "recovery.face_yaw": 39.1,
     "stroke.head_still_after_cm": 0.66,
     "stroke.hip_drop_pct": 0.4,
     "stroke.hip_rise_after_pct": 0.0,
@@ -45480,7 +45438,7 @@
     "class.swing": 0.0,
     "class.takeback": 0.0,
     "class.takeback_loop": 0.0,
-    "class.takeback_face": 0.0,
+    "class.takeback_face": 0.25,
     "class.racket_plane": 0.0,
     "class.catch_racket": 0.5,
     "class.ready_hands": 0.0,
@@ -46227,11 +46185,11 @@
      71.3,
      65.4,
      59.5,
-     51.7,
-     43.3,
-     39.0,
-     34.7,
-     30.3,
+     53.8,
+     48.1,
+     null,
+     36.7,
+     31.0,
      27.3,
      26.2,
      26.5,
@@ -46987,64 +46945,64 @@
   "face": {
    "ready": {
     "points_to": "red",
-    "tilt_deg": 23.2,
-    "yaw_deg": 21.8,
+    "tilt_deg": 34.1,
+    "yaw_deg": 30.5,
     "observed": true,
     "hand_evidence": true,
     "ambiguous": true
    },
    "takeback": {
     "points_to": "red",
-    "tilt_deg": 23.2,
-    "yaw_deg": 21.8,
+    "tilt_deg": 34.1,
+    "yaw_deg": 30.5,
     "observed": true,
     "hand_evidence": true,
     "ambiguous": true
    },
    "loaded": {
     "points_to": "valla izquierda",
-    "tilt_deg": 4.1,
-    "yaw_deg": -88.8,
+    "tilt_deg": 2.6,
+    "yaw_deg": -90.4,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "acceleration": {
     "points_to": "valla izquierda",
-    "tilt_deg": 3.9,
-    "yaw_deg": -122.7,
+    "tilt_deg": 12.7,
+    "yaw_deg": -70.2,
     "observed": true,
     "hand_evidence": false,
     "ambiguous": true
    },
    "impact": {
     "points_to": "red",
-    "tilt_deg": -7.0,
-    "yaw_deg": 6.5,
+    "tilt_deg": -15.6,
+    "yaw_deg": 3.3,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "extension": {
     "points_to": "red",
-    "tilt_deg": -30.1,
-    "yaw_deg": 17.8,
+    "tilt_deg": 6.9,
+    "yaw_deg": 18.5,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "finish": {
-    "points_to": "cielo",
-    "tilt_deg": -59.6,
-    "yaw_deg": -104.5,
+    "points_to": "valla izquierda",
+    "tilt_deg": 36.6,
+    "yaw_deg": -50.5,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "recovery": {
     "points_to": "valla izquierda",
-    "tilt_deg": 5.7,
-    "yaw_deg": -105.6,
+    "tilt_deg": 20.8,
+    "yaw_deg": -102.8,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
@@ -47084,8 +47042,8 @@
      "racket_tip_height": 64.7,
      "racket_tip_vs_head": -26.9,
      "racket_head_lateral": 36.2,
-     "face_tilt": 23.2,
-     "face_yaw": 21.8,
+     "face_tilt": 34.1,
+     "face_yaw": 30.5,
      "face_points_to": "red",
      "face_observed": true
     },
@@ -47118,8 +47076,8 @@
      "racket_tip_height": 64.7,
      "racket_tip_vs_head": -26.9,
      "racket_head_lateral": 36.2,
-     "face_tilt": 23.2,
-     "face_yaw": 21.8,
+     "face_tilt": 34.1,
+     "face_yaw": 30.5,
      "face_points_to": "red",
      "face_observed": true
     },
@@ -47152,8 +47110,8 @@
      "racket_tip_height": 106.0,
      "racket_tip_vs_head": 22.6,
      "racket_head_lateral": -13.5,
-     "face_tilt": 4.1,
-     "face_yaw": -88.8,
+     "face_tilt": 2.6,
+     "face_yaw": -90.4,
      "face_points_to": "valla izquierda",
      "face_observed": false,
      "back_foot_angle_deg": -23.2,
@@ -47190,8 +47148,8 @@
      "racket_tip_height": 48.8,
      "racket_tip_vs_head": -44.0,
      "racket_head_lateral": -19.7,
-     "face_tilt": 3.9,
-     "face_yaw": -122.7,
+     "face_tilt": 12.7,
+     "face_yaw": -70.2,
      "face_points_to": "valla izquierda",
      "face_observed": true
     },
@@ -47223,8 +47181,8 @@
      "racket_tip_height": 121.7,
      "racket_tip_vs_head": 31.3,
      "racket_head_lateral": 2.2,
-     "face_tilt": -7.0,
-     "face_yaw": 6.5,
+     "face_tilt": -15.6,
+     "face_yaw": 3.3,
      "face_points_to": "red",
      "face_observed": false,
      "base_court_m": 0.76,
@@ -47284,7 +47242,7 @@
      "arm_extension": 88.6,
      "shoulder_turn": 82.6,
      "hip_turn": 81.6,
-     "face_points_to": "cielo",
+     "face_points_to": "valla izquierda",
      "face_observed": false,
      "base_court_m": 0.78,
      "shoulder_width_ratio": 0.06,
@@ -47317,8 +47275,8 @@
      "racket_tip_height": 39.0,
      "racket_tip_vs_head": -44.5,
      "racket_head_lateral": -26.9,
-     "face_tilt": 5.7,
-     "face_yaw": -105.6,
+     "face_tilt": 20.8,
+     "face_yaw": -102.8,
      "face_points_to": "valla izquierda",
      "face_observed": false
     }
@@ -47356,7 +47314,7 @@
     "hip_rise": 11.4,
     "weight_shift": 0.72,
     "pause_at_loaded": 0.16,
-    "hand_on_handle": 25.4,
+    "hand_on_handle": 23.6,
     "racket_speed_rel": 2.62
    },
    "classes": {
@@ -47442,8 +47400,8 @@
     "ready.racket_tip_height": 6.15,
     "ready.racket_tip_vs_head": 6.1,
     "ready.racket_head_lateral": 0.5,
-    "ready.face_tilt": 37.85,
-    "ready.face_yaw": 17.15,
+    "ready.face_tilt": 11.8,
+    "ready.face_yaw": 7.5,
     "takeback.body_height": 0.15,
     "takeback.hip_height": 0.35,
     "takeback.head_over_base": 0.45,
@@ -47472,8 +47430,8 @@
     "takeback.racket_tip_height": 6.15,
     "takeback.racket_tip_vs_head": 6.1,
     "takeback.racket_head_lateral": 0.5,
-    "takeback.face_tilt": 37.85,
-    "takeback.face_yaw": 17.15,
+    "takeback.face_tilt": 11.8,
+    "takeback.face_yaw": 7.5,
     "loaded.body_height": 0.7,
     "loaded.hip_height": 0.5,
     "loaded.head_over_base": 1.55,
@@ -47502,8 +47460,8 @@
     "loaded.racket_tip_height": 2.7,
     "loaded.racket_tip_vs_head": 2.6,
     "loaded.racket_head_lateral": 4.9,
-    "loaded.face_tilt": 12.2,
-    "loaded.face_yaw": 2.55,
+    "loaded.face_tilt": 9.45,
+    "loaded.face_yaw": 7.1,
     "loaded.back_foot_angle_deg": 4.7,
     "acceleration.body_height": 1.4,
     "acceleration.hip_height": 2.55,
@@ -47533,8 +47491,8 @@
     "acceleration.racket_tip_height": 10.55,
     "acceleration.racket_tip_vs_head": 11.05,
     "acceleration.racket_head_lateral": 3.55,
-    "acceleration.face_tilt": 10.2,
-    "acceleration.face_yaw": 10.7,
+    "acceleration.face_tilt": 15.0,
+    "acceleration.face_yaw": 5.0,
     "impact.body_height": 1.65,
     "impact.hip_height": 0.75,
     "impact.head_over_base": 1.55,
@@ -47562,8 +47520,8 @@
     "impact.racket_tip_height": 5.4,
     "impact.racket_tip_vs_head": 5.25,
     "impact.racket_head_lateral": 7.0,
-    "impact.face_tilt": 7.95,
-    "impact.face_yaw": 12.05,
+    "impact.face_tilt": 8.2,
+    "impact.face_yaw": 16.8,
     "extension.body_height": 1.95,
     "extension.hip_height": 0.2,
     "extension.head_over_base": 2.15,
@@ -47638,8 +47596,8 @@
     "recovery.racket_tip_height": 2.3,
     "recovery.racket_tip_vs_head": 1.8,
     "recovery.racket_head_lateral": 1.0,
-    "recovery.face_tilt": 9.6,
-    "recovery.face_yaw": 11.9,
+    "recovery.face_tilt": 6.3,
+    "recovery.face_yaw": 5.2,
     "stroke.head_still_after_cm": 1.24,
     "stroke.hip_drop_pct": 0.9,
     "stroke.hip_rise_after_pct": 0.0,
@@ -48450,11 +48408,11 @@
      61.2,
      67.8,
      73.3,
-     77.3,
-     76.7,
-     69.8,
-     89.3,
-     91.6,
+     76.8,
+     80.4,
+     null,
+     87.4,
+     91.0,
      91.0,
      87.6,
      90.2,
@@ -49166,7 +49124,7 @@
   ],
   "ball": {
    "bounce_px": [
-    1072.5,
+    1074.4,
     731.2
    ],
    "bounce_frame": 216,
@@ -49265,71 +49223,71 @@
   "impact_to_shot_bounce_s": 0.82,
   "shot_side": "izquierda",
   "bounce_court_m": [
-   1.18,
+   1.19,
    3.07
   ],
   "outcome": "rally",
   "face": {
    "ready": {
     "points_to": "valla izquierda",
-    "tilt_deg": 12.6,
-    "yaw_deg": -61.2,
+    "tilt_deg": 12.1,
+    "yaw_deg": -62.5,
     "observed": true,
     "hand_evidence": true,
     "ambiguous": true
    },
    "takeback": {
-    "points_to": "valla derecha",
-    "tilt_deg": -35.9,
-    "yaw_deg": 60.7,
+    "points_to": "red",
+    "tilt_deg": 6.6,
+    "yaw_deg": -9.9,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "loaded": {
-    "points_to": "valla derecha",
-    "tilt_deg": -9.3,
-    "yaw_deg": 90.3,
+    "points_to": "valla izquierda",
+    "tilt_deg": 3.5,
+    "yaw_deg": -99.8,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "acceleration": {
     "points_to": "red",
-    "tilt_deg": -4.7,
-    "yaw_deg": -17.7,
+    "tilt_deg": 17.3,
+    "yaw_deg": -10.9,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "impact": {
     "points_to": "red",
-    "tilt_deg": -3.0,
-    "yaw_deg": -12.5,
+    "tilt_deg": -7.1,
+    "yaw_deg": -5.5,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "extension": {
     "points_to": "red",
-    "tilt_deg": -0.9,
-    "yaw_deg": -27.8,
+    "tilt_deg": -31.2,
+    "yaw_deg": 5.8,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "finish": {
-    "points_to": "red",
-    "tilt_deg": 38.6,
-    "yaw_deg": 20.2,
+    "points_to": "suelo",
+    "tilt_deg": 67.7,
+    "yaw_deg": 13.9,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "recovery": {
     "points_to": "valla trasera",
-    "tilt_deg": 29.4,
-    "yaw_deg": 172.0,
+    "tilt_deg": 43.5,
+    "yaw_deg": 162.6,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
@@ -49378,8 +49336,8 @@
      "racket_tip_height": 79.0,
      "racket_tip_vs_head": 4.7,
      "racket_head_lateral": 17.1,
-     "face_tilt": 12.6,
-     "face_yaw": -61.2,
+     "face_tilt": 12.1,
+     "face_yaw": -62.5,
      "face_points_to": "valla izquierda",
      "face_observed": true
     },
@@ -49405,7 +49363,7 @@
      "shoulder_turn": 86.8,
      "hip_turn": 85.0,
      "x_factor": 1.8,
-     "face_points_to": "valla derecha",
+     "face_points_to": "red",
      "face_observed": false
     },
     "loaded": {
@@ -49437,9 +49395,9 @@
      "racket_tip_height": 105.0,
      "racket_tip_vs_head": 24.0,
      "racket_head_lateral": 21.9,
-     "face_tilt": -9.3,
-     "face_yaw": 90.3,
-     "face_points_to": "valla derecha",
+     "face_tilt": 3.5,
+     "face_yaw": -99.8,
+     "face_points_to": "valla izquierda",
      "face_observed": false,
      "front_foot_angle_deg": -17.1,
      "base_court_m": 0.4,
@@ -49494,8 +49452,8 @@
      "arm_extension": 90.4,
      "shoulder_turn": 89.4,
      "hip_turn": 85.7,
-     "face_tilt": -3.0,
-     "face_yaw": -12.5,
+     "face_tilt": -7.1,
+     "face_yaw": -5.5,
      "face_points_to": "red",
      "face_observed": false,
      "back_foot_angle_deg": 43.6,
@@ -49556,7 +49514,7 @@
      "arm_extension": 96.9,
      "shoulder_turn": 86.9,
      "hip_turn": 85.0,
-     "face_points_to": "red",
+     "face_points_to": "suelo",
      "face_observed": false,
      "base_court_m": 0.65,
      "shoulder_width_ratio": 0.02,
@@ -49613,9 +49571,9 @@
      "racket_tip_height": 96.5,
      "racket_tip_vs_head": 10.8,
      "racket_head_lateral": 26.2,
-     "face_tilt": -4.9,
-     "face_yaw": 83.6,
-     "face_points_to": "valla derecha",
+     "face_tilt": 6.6,
+     "face_yaw": -88.4,
+     "face_points_to": "valla izquierda",
      "face_observed": true,
      "t_to_contact": 0.42
     },
@@ -49685,7 +49643,7 @@
     "hip_rise": 1.6,
     "weight_shift": -1.05,
     "pause_at_loaded": 0.44,
-    "hand_on_handle": 21.4,
+    "hand_on_handle": 15.7,
     "racket_speed_rel": 2.26,
     "takeback_vs_first_step": -0.38,
     "last_plant_vs_bounce": 0.38,
@@ -49920,8 +49878,8 @@
     "ready.racket_tip_height": 2.2,
     "ready.racket_tip_vs_head": 2.4,
     "ready.racket_head_lateral": 1.6,
-    "ready.face_tilt": 5.9,
-    "ready.face_yaw": 3.8,
+    "ready.face_tilt": 6.15,
+    "ready.face_yaw": 4.6,
     "takeback.body_height": 0.8,
     "takeback.hip_height": 0.55,
     "takeback.head_over_base": 1.3,
@@ -49971,8 +49929,8 @@
     "loaded.racket_tip_height": 2.0,
     "loaded.racket_tip_vs_head": 0.65,
     "loaded.racket_head_lateral": 2.0,
-    "loaded.face_tilt": 1.0,
-    "loaded.face_yaw": 6.65,
+    "loaded.face_tilt": 3.75,
+    "loaded.face_yaw": 8.4,
     "loaded.front_foot_angle_deg": 5.1,
     "acceleration.body_height": 1.15,
     "acceleration.hip_height": 1.0,
@@ -50017,8 +49975,8 @@
     "impact.arm_extension": 0.7,
     "impact.shoulder_turn": 0.95,
     "impact.hip_turn": 0.45,
-    "impact.face_tilt": 1.2,
-    "impact.face_yaw": 5.2,
+    "impact.face_tilt": 17.6,
+    "impact.face_yaw": 5.15,
     "impact.back_foot_angle_deg": 2.1,
     "extension.body_height": 2.9,
     "extension.hip_height": 1.45,
@@ -50930,17 +50888,17 @@
     "racket": [
      71.3,
      76.1,
-     78.1,
-     79.4,
-     80.7,
-     82.0,
-     83.3,
-     84.6,
-     87.5,
-     89.0,
-     90.9,
-     92.5,
-     96.7,
+     78.5,
+     80.4,
+     82.4,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     96.0,
+     97.9,
      98.8,
      99.4,
      98.2,
@@ -51974,64 +51932,64 @@
   "face": {
    "ready": {
     "points_to": "valla trasera",
-    "tilt_deg": -0.3,
-    "yaw_deg": -152.1,
+    "tilt_deg": -1.9,
+    "yaw_deg": -152.6,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "takeback": {
-    "points_to": "valla izquierda",
-    "tilt_deg": -19.7,
-    "yaw_deg": -79.2,
-    "observed": true,
+    "points_to": "red",
+    "tilt_deg": 25.4,
+    "yaw_deg": -34.9,
+    "observed": false,
     "hand_evidence": false,
-    "ambiguous": true
+    "ambiguous": false
    },
    "loaded": {
     "points_to": "valla izquierda",
     "tilt_deg": -16.8,
-    "yaw_deg": -83.6,
+    "yaw_deg": -83.9,
     "observed": true,
     "hand_evidence": false,
     "ambiguous": true
    },
    "acceleration": {
     "points_to": "valla izquierda",
-    "tilt_deg": -11.2,
-    "yaw_deg": -82.6,
+    "tilt_deg": -9.2,
+    "yaw_deg": -81.8,
     "observed": true,
     "hand_evidence": false,
     "ambiguous": true
    },
    "impact": {
     "points_to": "red",
-    "tilt_deg": -2.2,
-    "yaw_deg": -4.8,
+    "tilt_deg": -1.9,
+    "yaw_deg": -4.6,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "extension": {
     "points_to": "red",
-    "tilt_deg": 10.4,
-    "yaw_deg": -9.8,
+    "tilt_deg": 9.4,
+    "yaw_deg": -10.4,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "finish": {
     "points_to": "red",
-    "tilt_deg": 40.0,
-    "yaw_deg": -8.4,
+    "tilt_deg": 37.5,
+    "yaw_deg": -6.9,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "recovery": {
     "points_to": "cielo",
-    "tilt_deg": -59.6,
-    "yaw_deg": -122.9,
+    "tilt_deg": -41.4,
+    "yaw_deg": -61.0,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
@@ -52088,16 +52046,8 @@
      "shoulder_turn": 88.9,
      "hip_turn": 87.8,
      "x_factor": 1.1,
-     "racket_head_vs_wrist": 6.5,
-     "racket_angle": 63.1,
-     "racket_forearm": 115.2,
-     "racket_tip_height": 63.5,
-     "racket_tip_vs_head": -29.5,
-     "racket_head_lateral": 13.2,
-     "face_tilt": -19.7,
-     "face_yaw": -79.2,
-     "face_points_to": "valla izquierda",
-     "face_observed": true
+     "face_points_to": "red",
+     "face_observed": false
     },
     "loaded": {
      "body_height": 91.7,
@@ -52129,7 +52079,7 @@
      "racket_tip_vs_head": -84.0,
      "racket_head_lateral": -17.2,
      "face_tilt": -16.8,
-     "face_yaw": -83.6,
+     "face_yaw": -83.9,
      "face_points_to": "valla izquierda",
      "face_observed": true,
      "back_foot_angle_deg": -23.8,
@@ -52166,8 +52116,8 @@
      "racket_tip_height": -2.3,
      "racket_tip_vs_head": -86.2,
      "racket_head_lateral": -12.7,
-     "face_tilt": -11.2,
-     "face_yaw": -82.6,
+     "face_tilt": -9.2,
+     "face_yaw": -81.8,
      "face_points_to": "valla izquierda",
      "face_observed": true
     },
@@ -52199,8 +52149,8 @@
      "racket_tip_height": -6.3,
      "racket_tip_vs_head": -88.3,
      "racket_head_lateral": 3.3,
-     "face_tilt": -2.2,
-     "face_yaw": -4.8,
+     "face_tilt": -1.9,
+     "face_yaw": -4.6,
      "face_points_to": "red",
      "face_observed": false,
      "back_foot_angle_deg": -30.3,
@@ -52490,14 +52440,6 @@
     "takeback.shoulder_turn": 0.15,
     "takeback.hip_turn": 0.25,
     "takeback.x_factor": 0.1,
-    "takeback.racket_head_vs_wrist": 3.15,
-    "takeback.racket_angle": 12.95,
-    "takeback.racket_forearm": 13.25,
-    "takeback.racket_tip_height": 4.7,
-    "takeback.racket_tip_vs_head": 4.75,
-    "takeback.racket_head_lateral": 1.35,
-    "takeback.face_tilt": 20.9,
-    "takeback.face_yaw": 2.5,
     "loaded.body_height": 0.5,
     "loaded.hip_height": 0.65,
     "loaded.head_over_base": 0.55,
@@ -52526,7 +52468,7 @@
     "loaded.racket_tip_height": 0.7,
     "loaded.racket_tip_vs_head": 0.2,
     "loaded.racket_head_lateral": 1.25,
-    "loaded.face_tilt": 1.05,
+    "loaded.face_tilt": 0.85,
     "loaded.face_yaw": 1.05,
     "loaded.back_foot_angle_deg": 0.15,
     "acceleration.body_height": 0.4,
@@ -52557,8 +52499,8 @@
     "acceleration.racket_tip_height": 1.7,
     "acceleration.racket_tip_vs_head": 1.35,
     "acceleration.racket_head_lateral": 2.2,
-    "acceleration.face_tilt": 2.8,
-    "acceleration.face_yaw": 2.65,
+    "acceleration.face_tilt": 5.25,
+    "acceleration.face_yaw": 3.35,
     "impact.body_height": 0.3,
     "impact.hip_height": 0.2,
     "impact.head_over_base": 1.0,
@@ -52586,8 +52528,8 @@
     "impact.racket_tip_height": 2.8,
     "impact.racket_tip_vs_head": 2.7,
     "impact.racket_head_lateral": 4.0,
-    "impact.face_tilt": 3.55,
-    "impact.face_yaw": 6.2,
+    "impact.face_tilt": 2.4,
+    "impact.face_yaw": 6.3,
     "impact.back_foot_angle_deg": 0.15,
     "extension.body_height": 0.7,
     "extension.hip_height": 0.5,
@@ -53392,19 +53334,19 @@
     "racket": [
      null,
      null,
-     70.6,
-     67.0,
-     62.4,
-     57.2,
-     49.8,
-     46.8,
-     43.8,
      null,
      null,
      null,
-     31.7,
-     28.7,
-     25.7,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
      24.2,
      24.2,
      24.1,
@@ -65972,8 +65914,8 @@
   "face": {
    "ready": {
     "points_to": "valla izquierda",
-    "tilt_deg": 31.7,
-    "yaw_deg": -101.7,
+    "tilt_deg": 32.1,
+    "yaw_deg": -100.7,
     "observed": true,
     "hand_evidence": true,
     "ambiguous": true
@@ -65981,7 +65923,7 @@
    "takeback": null,
    "loaded": {
     "points_to": "valla izquierda",
-    "tilt_deg": 21.4,
+    "tilt_deg": 21.3,
     "yaw_deg": -99.5,
     "observed": false,
     "hand_evidence": false,
@@ -65989,40 +65931,40 @@
    },
    "acceleration": {
     "points_to": "red",
-    "tilt_deg": 3.8,
-    "yaw_deg": -39.6,
+    "tilt_deg": 4.8,
+    "yaw_deg": -39.0,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "impact": {
     "points_to": "red",
-    "tilt_deg": -3.0,
-    "yaw_deg": -18.5,
+    "tilt_deg": -2.9,
+    "yaw_deg": -18.2,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "extension": {
     "points_to": "red",
-    "tilt_deg": 4.0,
-    "yaw_deg": -41.2,
+    "tilt_deg": 4.6,
+    "yaw_deg": -40.6,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "finish": {
     "points_to": "valla izquierda",
-    "tilt_deg": 32.6,
-    "yaw_deg": -102.1,
+    "tilt_deg": 31.6,
+    "yaw_deg": -101.8,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "recovery": {
     "points_to": "suelo",
-    "tilt_deg": 67.4,
-    "yaw_deg": 135.9,
+    "tilt_deg": 66.8,
+    "yaw_deg": 134.1,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
@@ -66064,8 +66006,8 @@
      "racket_tip_height": 23.2,
      "racket_tip_vs_head": 1.5,
      "racket_head_lateral": -6.2,
-     "face_tilt": 31.7,
-     "face_yaw": -101.7,
+     "face_tilt": 32.1,
+     "face_yaw": -100.7,
      "face_points_to": "valla izquierda",
      "face_observed": true
     },
@@ -66102,7 +66044,7 @@
      "racket_tip_height": 22.7,
      "racket_tip_vs_head": 1.3,
      "racket_head_lateral": -6.4,
-     "face_tilt": 21.4,
+     "face_tilt": 21.3,
      "face_yaw": -99.5,
      "face_points_to": "valla izquierda",
      "face_observed": false,
@@ -66180,8 +66122,8 @@
      "racket_tip_height": 22.5,
      "racket_tip_vs_head": 1.3,
      "racket_head_lateral": -6.2,
-     "face_tilt": -3.0,
-     "face_yaw": -18.5,
+     "face_tilt": -2.9,
+     "face_yaw": -18.2,
      "face_points_to": "red",
      "face_observed": false,
      "front_foot_angle_deg": 74.6,
@@ -66257,8 +66199,8 @@
      "racket_tip_height": 22.1,
      "racket_tip_vs_head": 1.2,
      "racket_head_lateral": -6.0,
-     "face_tilt": 32.6,
-     "face_yaw": -102.1,
+     "face_tilt": 31.6,
+     "face_yaw": -101.8,
      "face_points_to": "valla izquierda",
      "face_observed": false,
      "base_court_m": 1.17,
@@ -66407,8 +66349,8 @@
     "ready.racket_tip_height": 0.0,
     "ready.racket_tip_vs_head": 0.05,
     "ready.racket_head_lateral": 0.0,
-    "ready.face_tilt": 1.2,
-    "ready.face_yaw": 1.25,
+    "ready.face_tilt": 0.45,
+    "ready.face_yaw": 1.3,
     "loaded.body_height": 0.0,
     "loaded.hip_height": 0.05,
     "loaded.head_over_base": 0.0,
@@ -66442,7 +66384,7 @@
     "loaded.racket_tip_vs_head": 0.1,
     "loaded.racket_head_lateral": 0.0,
     "loaded.face_tilt": 2.0,
-    "loaded.face_yaw": 3.2,
+    "loaded.face_yaw": 3.25,
     "loaded.front_foot_angle_deg": 0.35,
     "loaded.back_foot_angle_deg": 0.0,
     "acceleration.body_height": 0.0,
@@ -66508,8 +66450,8 @@
     "impact.racket_tip_height": 1.1,
     "impact.racket_tip_vs_head": 1.0,
     "impact.racket_head_lateral": 0.05,
-    "impact.face_tilt": 4.35,
-    "impact.face_yaw": 13.7,
+    "impact.face_tilt": 4.9,
+    "impact.face_yaw": 13.55,
     "impact.front_foot_angle_deg": 0.3,
     "impact.back_foot_angle_deg": 0.3,
     "extension.body_height": 0.05,
@@ -66574,8 +66516,8 @@
     "finish.racket_tip_height": 1.35,
     "finish.racket_tip_vs_head": 1.25,
     "finish.racket_head_lateral": 0.1,
-    "finish.face_tilt": 10.3,
-    "finish.face_yaw": 8.4,
+    "finish.face_tilt": 9.5,
+    "finish.face_yaw": 7.75,
     "recovery.body_height": 0.05,
     "recovery.hip_height": 0.05,
     "recovery.head_over_base": 0.05,
@@ -82800,7 +82742,7 @@
    "ready": {
     "points_to": "valla izquierda",
     "tilt_deg": -9.6,
-    "yaw_deg": -53.1,
+    "yaw_deg": -53.2,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
@@ -82860,7 +82802,7 @@
    "phases": {
     "ready": {
      "face_tilt": -9.6,
-     "face_yaw": -53.1,
+     "face_yaw": -53.2,
      "face_points_to": "valla izquierda",
      "face_observed": false
     },
@@ -83117,7 +83059,7 @@
     "shoulder_brake": 99.0,
     "hip_rise": 6.9,
     "weight_shift": -0.01,
-    "hand_on_handle": 104.0,
+    "hand_on_handle": 98.9,
     "racket_speed_rel": 0.58,
     "loaded_vs_last_plant": -0.08
    },

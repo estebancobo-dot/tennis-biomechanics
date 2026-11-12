@@ -1,10 +1,10 @@
-# Revisión automática: FALLOS
+# Revisión automática: REGRESIÓN
 
-406 cumplidos · 28 no cumplidos · 97 sin golpes suficientes · 114 avisos (antes: 404 cumplidos, 30 no cumplidos)
+404 cumplidos · 30 no cumplidos · 97 sin golpes suficientes · 116 avisos (antes: 406 cumplidos, 28 no cumplidos)
 
-## Peticiones del usuario SIN TERMINAR: 136 de 261
+## Peticiones del usuario SIN TERMINAR: 137 de 263
 
-Registro `docs/peticiones_usuario.md`: 114 hechas · 115 a medias · 21 sin hacer · 3 no medibles desde la tele · 8 no aplican. Que las comprobaciones de abajo pasen **no** significa que estas estén hechas.
+Registro `docs/peticiones_usuario.md`: 115 hechas · 116 a medias · 21 sin hacer · 3 no medibles desde la tele · 8 no aplican. Que las comprobaciones de abajo pasen **no** significa que estas estén hechas.
 
 - **#176 [FALTA]** Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3) — falta: La ventana acaba 0,8 s tras el impacto: medible alargándola.
 - **#189 [FALTA]** «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4) — falta: No está en `learn.py`.
@@ -142,13 +142,16 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 115 a medias · 21 sin hace
 - **#256 [PARCIAL]** Modelo de calidad de la aplicación como un cubo: dominio (taxonomía del golpe, situaciones, identidad, catálogo y registro, aprendizaje, pa… — falta: Hecho el cálculo (dominio × característica × capa, «sin medir» para las casillas vacías; tras cada auditoría en los flujos). Falta: métricas para las 7 casilla…
 - **#259 [PARCIAL]** Saber dónde se va el tiempo de cada etapa, medido desde cero, y demostrar con medidas si cada etapa puede ir más rápido sin perder calidad … — falta: Tabla de tiempos de la prueba desde cero (petición 207) + por cada etapa pesada: alternativas medidas (tiempo y calidad); el indicador «Tiempo» de la auditoría…
 - **#261 [PARCIAL]** Que no se quede abierta en la pantalla del PC una ventana vacía de PowerShell mientras trabaja (Chat, 11-11 y 12-11: «hay un terminal abier… — falta: Causa hallada por la petición 242: el ejecutor arrancaba a su sucesor con DETACHED_PROCESS (Windows Terminal abría una consola para el intérprete). Arreglado 1…
+- **#263 [PARCIAL]** Antes de los 6 partidos: el código de la base es el último y está subido; el análisis es desde cero, sin nada de análisis anteriores; todo … — falta: Se cumple al lanzar la tarea 11 desde cero con su aprobación.
 
 
 ## No cumplidos
 
 - **Primera pantalla, anchura y nombres (diseño definitivo)**: vídeo de la lección en y=805–1159 de 900; al abrir 2 títulos, 609 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=1159 (más abajo que la primera pantalla, 900)
+- **Registros con fecha y duración**: 64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba_completo.log: sin «termina fecha» al final
 - **Lista de partidos: rival, torneo, ronda y fecha**: 6 partidos; sin torneo: 1 (zheng-qinwen-elena-rybakina); sin ronda: 1 (zheng-qinwen-elena-rybakina); sin fecha: 1 (zheng-qinwen-elena-rybakina)
 - **Aplicación: lo que consume abierta**: CPU media 0.03 % (máx 0.06 %; objetivo ≤ 5 %), memoria hasta 1469 MB (objetivo ≤ 800) en 8 procesos; 2026-11-12 01:26:37
+- **#66 Fechas y duración en los registros**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba)
 - **#160 la app que hiciste completa como se arranca, se puede usar ahora? (Chat, 19-10 08:11)**: 6 comprobaciones: 1 falta, 5 ok; la peor: «Aplicación: lo que consume abierta» (CPU media 0.03 % (máx 0.06 %; objetivo ≤ 5 %), memoria hasta 1469 MB (objetivo ≤ 800) en 8 procesos; 2026-11-12 01:26:37)
 - **#176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3)**: SIN HACER según el registro (#176, docs/peticiones_usuario.md)
 - **#189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4)**: SIN HACER según el registro (#189, docs/peticiones_usuario.md)
@@ -175,7 +178,22 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 115 a medias · 21 sin hace
 - **#257 Comparativa a fondo y catalogada con todo lo que existe: apps profesionales (Hawk-Eye/TennisViz, SwingVision, **: SIN HACER según el registro (#257, docs/peticiones_usuario.md)
 - **#258 Partidos y jugadores automáticos desde un nombre de fichero mínimo: normalizar los nombres, leer la ficha públ**: SIN HACER según el registro (#258, docs/peticiones_usuario.md)
 
+## Empeora respecto a la ejecución anterior
+
+- **Registros con fecha y duración**: ok → falta: 64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba_completo.log: sin «termina fecha» al final
+- **Peticiones por GitHub Actions: espera hasta empezar**: ok → aviso: la última petición (12-11 14:18) no empezó por GitHub Actions; el último trabajo por Actions fue el 12-11 12:43
+- **#66 Fechas y duración en los registros**: ok → falta: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba)
+
 ## Mejora
 
-- Registros con fecha y duración: falta → ok
-- #66 Fechas y duración en los registros: falta → ok
+- Comprobaciones que saben fallar: aviso → ok
+
+## Comprobaciones nuevas
+
+- #262 El análisis completo de los 6 partidos se lanza solo con su aprobación (dura mucho): Claude lo prepara, dice q: aviso (sin comprobación automática asignada)
+- #263 Antes de los 6 partidos: el código de la base es el último y está subido; el análisis es desde cero, sin nada : aviso (A MEDIAS según el registro (#263); sin comprobación automática asignada)
+
+## Fiabilidad de las medidas
+
+- ahora: 80 medidas: 3 dudosa, 56 fiable, 14 no comprobable, 1 ruido, 3 sesgo, 3 sin juzgar. No se dan como valor suyo (ruido): impact.face_tilt ±5.85. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga
+- antes: 80 medidas: 3 dudosa, 56 fiable, 14 no comprobable, 1 ruido, 3 sesgo, 3 sin juzgar. No se dan como valor suyo (ruido): impact.face_tilt ±5.65. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga
