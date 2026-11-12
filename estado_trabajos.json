@@ -1,5 +1,5 @@
 {
- "at": "2026-11-12 09:50:45",
+ "at": "2026-11-12 09:50:46",
  "firma": "2e0da6300730",
  "ejecutor": {
   "vivo": true,
@@ -293,6 +293,13 @@
  ],
  "eventos": [
   {
+   "id": 379,
+   "job": 77,
+   "at": "2026-11-12 09:50:46",
+   "kind": "hecho",
+   "text": "código 0"
+  },
+  {
    "id": 378,
    "job": 77,
    "at": "2026-11-12 09:50:42",
@@ -494,13 +501,6 @@
    "at": "2026-11-12 09:27:54",
    "kind": "hecho",
    "text": "código 0"
-  },
-  {
-   "id": 349,
-   "job": 74,
-   "at": "2026-11-12 09:04:37",
-   "kind": "empieza",
-   "text": "script validate_recall --spotter --tag v13bola --from v13 --drop-ball-caches --set fine_pass.ball_from_spotting=true"
   }
  ]
 }
