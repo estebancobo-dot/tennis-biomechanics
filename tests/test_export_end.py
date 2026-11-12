@@ -89,3 +89,19 @@ def test_request_232_sees_the_backhand_export(tmp_path):
     assert any(i["name"] == "Exportación terminada: exportar_reves" and i["status"] == "falta" for i in items)
     p = next(i for i in petition_items(items) if i["name"].startswith("#232 "))
     assert p["status"] == "falta" and "exportar_reves" in p["detail"]
+
+
+def test_the_export_summary_fails_with_an_empty_video_or_no_pdf(tmp_path):
+    # 11-12 (R1 of the review of the Base): «Exportación: resumen PDF y un vídeo por golpe» had never been seen failing
+    rep = tmp_path / "informe_derecha"
+    rep.mkdir()
+    g = tmp_path / "exportar_derecha" / "golpes"
+    g.mkdir(parents=True)
+    (g / "a.mp4").write_bytes(b"x" * 10)
+    (g / "b.mp4").write_bytes(b"")                                    # empty: the export did not write it
+    name = "Exportación: resumen PDF y un vídeo por golpe"
+    it = next(i for i in file_tree_items([], rep, tmp_path) if i["name"] == name)
+    assert it["status"] == "falta" and "vacíos: b.mp4" in it["detail"] and "falta resumen.pdf" in it["detail"]
+    (g / "b.mp4").write_bytes(b"x" * 10)
+    (tmp_path / "exportar_derecha" / "resumen.pdf").write_bytes(b"%PDF-1.4 x")
+    assert next(i for i in file_tree_items([], rep, tmp_path) if i["name"] == name)["status"] == "ok"
