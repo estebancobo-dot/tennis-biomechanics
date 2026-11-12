@@ -1,10 +1,10 @@
 {
- "at": "2026-11-12 09:49:25",
- "firma": "f40f09d9abbb",
+ "at": "2026-11-12 09:50:45",
+ "firma": "2e0da6300730",
  "ejecutor": {
   "vivo": true,
-  "pid": 3632,
-  "at": 1794473351.4357035
+  "pid": 11488,
+  "at": 1794473442.349775
  },
  "pausa": false,
  "en_curso": [],
@@ -20,6 +20,24 @@
  },
  "pendientes": [],
  "recientes": [
+  {
+   "id": 77,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script diag_serie_ventana 0312430 0925800 0966569 0048549",
+   "state": "hecho",
+   "message": "",
+   "created": "2026-11-12 09:50:41",
+   "started": "2026-11-12 09:50:42",
+   "finished": "2026-11-12 09:50:44",
+   "args": "[\"script\", \"diag_serie_ventana\", \"0312430\", \"0925800\", \"0966569\", \"0048549\"]",
+   "source": "claude 234",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_77.log",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 76,
    "kind": "comando",
@@ -271,27 +289,58 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_63.log",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 62,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script app_recursos",
-   "state": "hecho",
-   "message": "",
-   "created": "2026-11-12 01:20:44",
-   "started": "2026-11-12 01:25:08",
-   "finished": "2026-11-12 01:26:37",
-   "args": "[\"script\", \"app_recursos\"]",
-   "source": "claude 218",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_62.log",
-   "paso": 0,
-   "pasos": 0
   }
  ],
  "eventos": [
+  {
+   "id": 378,
+   "job": 77,
+   "at": "2026-11-12 09:50:42",
+   "kind": "empieza",
+   "text": "script diag_serie_ventana 0312430 0925800 0966569 0048549"
+  },
+  {
+   "id": 377,
+   "job": 77,
+   "at": "2026-11-12 09:50:41",
+   "kind": "enviado",
+   "text": "tennisbio script diag_serie_ventana 0312430 0925800 0966569 0048549 (claude 234)"
+  },
+  {
+   "id": 376,
+   "job": null,
+   "at": "2026-11-12 09:50:22",
+   "kind": "ejecutor",
+   "text": "arranca (pid 11488)"
+  },
+  {
+   "id": 375,
+   "job": null,
+   "at": "2026-11-12 09:50:21",
+   "kind": "ejecutor",
+   "text": "arranca el siguiente con el código nuevo (pid 12576)"
+  },
+  {
+   "id": 374,
+   "job": null,
+   "at": "2026-11-12 09:50:21",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 373,
+   "job": null,
+   "at": "2026-11-12 09:50:21",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 372,
+   "job": null,
+   "at": "2026-11-12 09:50:12",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
   {
    "id": 371,
    "job": 76,
@@ -452,55 +501,6 @@
    "at": "2026-11-12 09:04:37",
    "kind": "empieza",
    "text": "script validate_recall --spotter --tag v13bola --from v13 --drop-ball-caches --set fine_pass.ball_from_spotting=true"
-  },
-  {
-   "id": 348,
-   "job": 73,
-   "at": "2026-11-12 09:04:37",
-   "kind": "hecho",
-   "text": "código 0"
-  },
-  {
-   "id": 347,
-   "job": 73,
-   "at": "2026-11-12 09:04:34",
-   "kind": "paso",
-   "text": "6/6 Modelo de calidad"
-  },
-  {
-   "id": 346,
-   "job": 73,
-   "at": "2026-11-12 09:00:10",
-   "kind": "paso",
-   "text": "5/6 Auditoria"
-  },
-  {
-   "id": 345,
-   "job": 73,
-   "at": "2026-11-12 09:00:06",
-   "kind": "paso",
-   "text": "4/6 Informe del saque"
-  },
-  {
-   "id": 344,
-   "job": 73,
-   "at": "2026-11-12 09:00:01",
-   "kind": "paso",
-   "text": "3/6 Informe del reves"
-  },
-  {
-   "id": 343,
-   "job": 73,
-   "at": "2026-11-12 08:59:55",
-   "kind": "paso",
-   "text": "2/6 Informe de la derecha"
-  },
-  {
-   "id": 342,
-   "job": 73,
-   "at": "2026-11-12 08:59:54",
-   "kind": "paso",
-   "text": "1/6 Registro de partidos"
   }
  ]
 }

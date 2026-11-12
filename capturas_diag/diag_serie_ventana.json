@@ -1,0 +1,146 @@
+[
+ {
+  "stroke": "elena-rybakina-jessica-pegula-miami-2026-quarter-final-0048549",
+  "side": "near",
+  "kind": "forehand",
+  "window": "w000483200_5702.mp4",
+  "window_size": [
+   1920,
+   1080
+  ],
+  "window_frames": 340,
+  "window_fps": 59.4732361516035,
+  "series": {
+   "fps": 59.4732361516035,
+   "first": 0,
+   "impact": 136,
+   "n": 196
+  },
+  "kp_x": [
+   1247.0,
+   1592.0
+  ],
+  "kp_y": [
+   627.0,
+   886.0
+  ],
+  "box_x": [
+   1216,
+   1620
+  ],
+  "box_y": [
+   604,
+   908
+  ],
+  "frame_read": true,
+  "image": "serie_0048549.jpg"
+ },
+ {
+  "stroke": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5-0925800",
+  "side": "far",
+  "kind": "backhand",
+  "window": "w009255799_4401.mp4",
+  "window_size": [
+   1920,
+   1080
+  ],
+  "window_frames": 220,
+  "window_fps": 50.0,
+  "series": {
+   "fps": 50.0,
+   "first": 0,
+   "impact": 110,
+   "n": 161
+  },
+  "kp_x": [
+   957.0,
+   1037.0
+  ],
+  "kp_y": [
+   166.0,
+   242.0
+  ],
+  "box_x": [
+   953,
+   1042
+  ],
+  "box_y": [
+   136,
+   234
+  ],
+  "frame_read": true,
+  "image": "serie_0925800.jpg"
+ },
+ {
+  "stroke": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5-0966569",
+  "side": "near",
+  "kind": "overhead",
+  "window": "w009663451_5094.mp4",
+  "window_size": [
+   1920,
+   1080
+  ],
+  "window_frames": 254,
+  "window_fps": 50.0,
+  "series": {
+   "fps": 50.0,
+   "first": 0,
+   "impact": 112,
+   "n": 163
+  },
+  "kp_x": [
+   475.0,
+   1308.0
+  ],
+  "kp_y": [
+   347.0,
+   1053.0
+  ],
+  "box_x": [
+   363,
+   1437
+  ],
+  "box_y": [
+   226,
+   1078
+  ],
+  "frame_read": true,
+  "image": "serie_0966569.jpg"
+ },
+ {
+  "stroke": "us-open-2026-r4-naomi-osaka-elena-rybakina-0312430",
+  "side": "near",
+  "kind": "forehand",
+  "window": "w003122098_3600.mp4",
+  "window_size": [
+   1920,
+   1080
+  ],
+  "window_frames": 145,
+  "window_fps": 50.0,
+  "series": {
+   "fps": 50.0,
+   "first": 0,
+   "impact": 110,
+   "n": 145
+  },
+  "kp_x": [
+   792.0,
+   1149.0
+  ],
+  "kp_y": [
+   302.0,
+   873.0
+  ],
+  "box_x": [
+   734,
+   1185
+  ],
+  "box_y": [
+   243,
+   935
+  ],
+  "frame_read": true,
+  "image": "serie_0312430.jpg"
+ }
+]
