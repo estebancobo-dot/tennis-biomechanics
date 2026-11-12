@@ -1,13 +1,32 @@
 {
- "at": "2026-11-12 11:57:45",
- "firma": "0de1875a4242",
+ "at": "2026-11-12 11:57:52",
+ "firma": "1f50233245e4",
  "ejecutor": {
   "vivo": true,
   "pid": 11716,
   "at": 1794481062.2839162
  },
  "pausa": false,
- "en_curso": [],
+ "en_curso": [
+  {
+   "id": 87,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script ventanas_visibles",
+   "state": "en curso",
+   "message": "",
+   "created": "2026-11-12 11:57:42",
+   "started": "2026-11-12 11:57:52",
+   "finished": null,
+   "args": "[\"script\", \"ventanas_visibles\"]",
+   "source": "claude 244",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_87.log",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "progreso": {
   "partido": "us-open-2026-r4-naomi-osaka-elena-rybakina",
   "etapa": "fine_doubtful",
@@ -18,26 +37,7 @@
   "quedan_s": 0,
   "hora": "2026-11-12 11:03:05"
  },
- "pendientes": [
-  {
-   "id": 87,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script ventanas_visibles",
-   "state": "pendiente",
-   "message": "",
-   "created": "2026-11-12 11:57:42",
-   "started": null,
-   "finished": null,
-   "args": "[\"script\", \"ventanas_visibles\"]",
-   "source": "claude 244",
-   "log": "",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "pendientes": [],
  "recientes": [
   {
    "id": 86,
@@ -312,6 +312,13 @@
  ],
  "eventos": [
   {
+   "id": 454,
+   "job": 87,
+   "at": "2026-11-12 11:57:52",
+   "kind": "empieza",
+   "text": "script ventanas_visibles"
+  },
+  {
    "id": 453,
    "job": 87,
    "at": "2026-11-12 11:57:42",
@@ -513,13 +520,6 @@
    "at": "2026-11-12 11:08:22",
    "kind": "ejecutor",
    "text": "arranca (pid 16604)"
-  },
-  {
-   "id": 424,
-   "job": null,
-   "at": "2026-11-12 11:08:21",
-   "kind": "ejecutor",
-   "text": "arranca el siguiente con el código nuevo (pid 13240)"
   }
  ]
 }

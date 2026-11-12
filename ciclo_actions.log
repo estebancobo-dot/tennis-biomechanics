@@ -96,3 +96,15 @@ yolo11m-pose_1280.onnx OK 85 MB
 yolo11m-pose_1920.onnx OK 86 MB
 Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (ya estaba)
 el ejecutor se reinicia al acabar el trabajo en curso
+git : To https://github.com/estebancobo-dot/tennis-biomechanics.git
+At C:\tenis\tennis-biomech\scripts\windows\comun.ps1:241 char:9
++         git -C $d push -q origin pc-logs 2>$null
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (To https://gith...iomechanics.git:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ ! [remote rejected]   pc-logs -> pc-logs (failed)
+error: failed to push some refs to 'https://github.com/estebancobo-dot/tennis-biomechanics.git'
+No se pudo enviar el registro a Claude (sin red o sin permiso en GitHub).
+    (paso terminado en 36 s)
+
+==> [2026-11-12 11:57:47] Que hace falta: medidas
