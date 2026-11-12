@@ -1,41 +1,22 @@
 {
- "at": "2026-11-12 11:00:10",
- "firma": "13b8e407370d",
+ "at": "2026-11-12 11:03:17",
+ "firma": "fbdca7ecaeb0",
  "ejecutor": {
-  "vivo": true,
+  "vivo": false,
   "pid": 4892,
   "at": 1794477600.4702315
  },
  "pausa": false,
- "en_curso": [
-  {
-   "id": 81,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "run --match us-open-2026-r4-naomi-osaka-elena-rybakina",
-   "state": "en curso",
-   "message": "",
-   "created": "2026-11-12 10:35:40",
-   "started": "2026-11-12 10:35:43",
-   "finished": null,
-   "args": "[\"run\", \"--match\", \"us-open-2026-r4-naomi-osaka-elena-rybakina\"]",
-   "source": "claude 238",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_81.log",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "en_curso": [],
  "progreso": {
   "partido": "us-open-2026-r4-naomi-osaka-elena-rybakina",
-  "etapa": "fine",
-  "hecho": 147,
-  "total": 170,
-  "porcentaje": 86.5,
-  "segundos": 493,
-  "quedan_s": 77,
-  "hora": "2026-11-12 10:59:53"
+  "etapa": "fine_doubtful",
+  "hecho": 14,
+  "total": 14,
+  "porcentaje": 100.0,
+  "segundos": 24,
+  "quedan_s": 0,
+  "hora": "2026-11-12 11:03:05"
  },
  "pendientes": [
   {
@@ -94,6 +75,24 @@
   }
  ],
  "recientes": [
+  {
+   "id": 81,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "run --match us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "state": "hecho",
+   "message": "",
+   "created": "2026-11-12 10:35:40",
+   "started": "2026-11-12 10:35:43",
+   "finished": "2026-11-12 11:03:06",
+   "args": "[\"run\", \"--match\", \"us-open-2026-r4-naomi-osaka-elena-rybakina\"]",
+   "source": "claude 238",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_81.log",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 80,
    "kind": "comando",
@@ -343,24 +342,6 @@
    "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"base\"]",
    "source": "claude 223",
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_67.log",
-   "paso": 0,
-   "pasos": 0
-  },
-  {
-   "id": 66,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script bench_fine_fps --match pegula --minutes 15 --tag rtmw2 --set fine_pass.refine=rtmw-x",
-   "state": "hecho",
-   "message": "",
-   "created": "2026-11-12 03:10:49",
-   "started": "2026-11-12 03:10:53",
-   "finished": "2026-11-12 04:05:54",
-   "args": "[\"script\", \"bench_fine_fps\", \"--match\", \"pegula\", \"--minutes\", \"15\", \"--tag\", \"rtmw2\", \"--set\", \"fine_pass.refine=rtmw-x\"]",
-   "source": "claude 222",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_66.log",
    "paso": 0,
    "pasos": 0
   }
