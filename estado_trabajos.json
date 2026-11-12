@@ -1,32 +1,13 @@
 {
- "at": "2026-11-12 07:50:59",
- "firma": "73c151aed1a3",
+ "at": "2026-11-12 07:52:02",
+ "firma": "313f741ddf2a",
  "ejecutor": {
   "vivo": true,
   "pid": 12532,
-  "at": 1794466259.4945927
+  "at": 1794466321.5276568
  },
  "pausa": false,
- "en_curso": [
-  {
-   "id": 69,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script diag_identidad_f3set --match azarenka",
-   "state": "en curso",
-   "message": "",
-   "created": "2026-11-12 07:50:50",
-   "started": "2026-11-12 07:50:59",
-   "finished": null,
-   "args": "[\"script\", \"diag_identidad_f3set\", \"--match\", \"azarenka\"]",
-   "source": "claude 225",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_69.log",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "en_curso": [],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "fine_doubtful",
@@ -39,6 +20,24 @@
  },
  "pendientes": [],
  "recientes": [
+  {
+   "id": 69,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script diag_identidad_f3set --match azarenka",
+   "state": "hecho",
+   "message": "",
+   "created": "2026-11-12 07:50:50",
+   "started": "2026-11-12 07:50:59",
+   "finished": "2026-11-12 07:51:00",
+   "args": "[\"script\", \"diag_identidad_f3set\", \"--match\", \"azarenka\"]",
+   "source": "claude 225",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_69.log",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 68,
    "kind": "comando",
@@ -290,27 +289,16 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_55.log",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 54,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script tiempos_etapas",
-   "state": "hecho",
-   "message": "",
-   "created": "2026-11-11 21:02:29",
-   "started": "2026-11-11 21:13:00",
-   "finished": "2026-11-11 21:13:02",
-   "args": "[\"script\", \"tiempos_etapas\"]",
-   "source": "claude 208",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_54.log",
-   "paso": 0,
-   "pasos": 0
   }
  ],
  "eventos": [
+  {
+   "id": 313,
+   "job": 69,
+   "at": "2026-11-12 07:51:01",
+   "kind": "hecho",
+   "text": "código 0"
+  },
   {
    "id": 312,
    "job": 69,
@@ -513,13 +501,6 @@
    "at": "2026-11-12 03:10:26",
    "kind": "ejecutor",
    "text": "arranca el siguiente con el código nuevo (pid 8488)"
-  },
-  {
-   "id": 283,
-   "job": null,
-   "at": "2026-11-12 03:10:26",
-   "kind": "ejecutor",
-   "text": "termina"
   }
  ]
 }
