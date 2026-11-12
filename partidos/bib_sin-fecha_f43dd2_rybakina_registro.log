@@ -9884,3 +9884,35 @@
 2026-11-12 10:38:54   [score] score:  34 % (79/234 muestras · 37 lecturas · 65 OCR) · 3 min · quedan ≈ 6 min
 2026-11-12 10:39:25   [score] score:  42 % (98/234 muestras · 49 lecturas · 83 OCR) · 4 min · quedan ≈ 5 min
 2026-11-12 10:39:56   [score] score:  50 % (118/234 muestras · 58 lecturas · 102 OCR) · 4 min · quedan ≈ 4 min
+2026-11-12 10:40:26   [score] score:  58 % (136/234 muestras · 69 lecturas · 117 OCR) · 5 min · quedan ≈ 3 min
+2026-11-12 10:40:57   [score] score:  67 % (156/234 muestras · 89 lecturas · 137 OCR) · 5 min · quedan ≈ 3 min
+2026-11-12 10:41:28   [score] score:  76 % (179/234 muestras · 108 lecturas · 155 OCR) · 6 min · quedan ≈ 2 min
+2026-11-12 10:41:58   [score] score:  84 % (197/234 muestras · 125 lecturas · 173 OCR) · 6 min · quedan ≈ 70 s
+2026-11-12 10:42:29   [score] score:  94 % (220/234 muestras · 146 lecturas · 194 OCR) · 7 min · quedan ≈ 26 s
+2026-11-12 10:42:48   [score] score: 100 % (234/234 muestras · 157 lecturas · 207 OCR) · 7 min · quedan ≈ 0 s
+2026-11-12 10:42:51   [score] marcador: 234 muestras en juego, 208 OCR (158 lecturas)
+2026-11-12 10:42:51   [score] saque en el marcador: 109 de 158 lecturas (marker + aprendido; marca de color 57, sigue la alternancia en 100% de 57; aprendida sí, sigue la alternancia en 87% de 95)
+2026-11-12 10:42:51 [us-open-2026-r4-naomi-osaka-elena-rybakina] score terminada a las 10:42:51 en 7.1 min
+2026-11-12 10:42:52 [us-open-2026-r4-naomi-osaka-elena-rybakina] identity… (2026-11-12 10:42:52, etapa 7 de 16)
+2026-11-12 10:43:04   identity:   0 % (1/880 fotogramas (ropa)) · 0 s · quedan ≈ 0 s
+2026-11-12 10:43:34   identity:  35 % (304/880 fotogramas (ropa)) · 30 s · quedan ≈ 57 s
+2026-11-12 10:44:04   identity:  66 % (582/880 fotogramas (ropa)) · 60 s · quedan ≈ 31 s
+2026-11-12 10:44:34   identity:  95 % (836/880 fotogramas (ropa)) · 2 min · quedan ≈ 5 s
+2026-11-12 10:44:38   identity: 100 % (880/880 fotogramas (ropa)) · 2 min · quedan ≈ 0 s
+2026-11-12 10:44:38   ropa: 880 fotogramas · leerlos 81 s, medir la ropa 14 s
+2026-11-12 10:44:38   identidad: 0/148 planos · ropa y cambios de lado de acuerdo en 0, solo cambios de lado 0, solo ropa 0, la ropa corrige el marcador en 0, el saque visto en 0, dudosos 0 · ropa: ropa (torso y pantalón o falda, sin la pista), separación 4.4
+2026-11-12 10:44:38   grupos de ropa: dos personas (dos personas (ropa distinta y de acuerdo con los cambios de lado); de acuerdo con los cambios de lado 0.95 en 140 planos, distancia entre su ropa típica 0.845) · clic por la ropa
+2026-11-12 10:44:38 [us-open-2026-r4-naomi-osaka-elena-rybakina] identity terminada a las 10:44:38 en 1.8 min
+2026-11-12 10:44:39 [us-open-2026-r4-naomi-osaka-elena-rybakina] spotting… (2026-11-12 10:44:39, etapa 8 de 16)
+2026-11-12 10:46:16   detector entrenado: 351 golpes (192 cercanos, 159 lejanos) en 71 min de vídeo · umbral 0.1 · 96 s (jugadores_y_audio 2 s, rasgos 95 s, bola 0 s, modelo 0 s)
+2026-11-12 10:46:16 [us-open-2026-r4-naomi-osaka-elena-rybakina] spotting terminada a las 10:46:16 en 1.6 min
+2026-11-12 10:46:17 [us-open-2026-r4-naomi-osaka-elena-rybakina] candidates… (2026-11-12 10:46:17, etapa 9 de 16)
+2026-11-12 10:46:40   sonido: pista 4 de 4 (la que coincide con los golpes)
+2026-11-12 10:46:40   identidad con el clic: {'pick': 'aplicado', 'her_cluster': 0, 'changed': 148, 'by_click': 148}
+2026-11-12 10:46:42   tramos que son repeticiones: 2 lenta, 3 sin marcador
+2026-11-12 10:46:42   identidad por el marcador (su saque, primer golpe del punto, identidad sin decidir): 3
+2026-11-12 10:46:42   saques añadidos por el marcador (su saque no visto, el resto de la rival sí): 13
+2026-11-12 10:46:42   candidatos del detector entrenado: 351 (157 lejanos; 13 en repeticiones, fuera)
+2026-11-12 10:46:42 [us-open-2026-r4-naomi-osaka-elena-rybakina] candidates terminada a las 10:46:42 en 25 s
+2026-11-12 10:46:42 [us-open-2026-r4-naomi-osaka-elena-rybakina] views… (2026-11-12 10:46:42, etapa 10 de 16)
+2026-11-12 10:46:55   views:   0 % (1/964 fotogramas de otras tomas) · 0 s · quedan ≈ 0 s

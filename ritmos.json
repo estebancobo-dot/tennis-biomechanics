@@ -365,12 +365,6 @@
  ],
  "identity:minuto": [
   {
-   "s": 1.043,
-   "video_min": 210.4,
-   "match": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
-   "date": "2026-11-04 17:14"
-  },
-  {
    "s": 11.179,
    "video_min": 71.4,
    "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
@@ -543,6 +537,12 @@
    "video_min": 112.2,
    "match": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
    "date": "2026-11-12 08:51"
+  },
+  {
+   "s": 1.496,
+   "video_min": 71.4,
+   "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "date": "2026-11-12 10:44"
   }
  ],
  "views:unidad": [
@@ -911,12 +911,6 @@
  ],
  "identity:unidad": [
   {
-   "s": 0.1024,
-   "units": 2027,
-   "match": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
-   "date": "2026-11-04 17:14"
-  },
-  {
    "s": 0.9043,
    "units": 880,
    "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
@@ -1089,6 +1083,12 @@
    "units": 1892,
    "match": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
    "date": "2026-11-12 08:51"
+  },
+  {
+   "s": 0.1075,
+   "units": 880,
+   "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "date": "2026-11-12 10:44"
   }
  ],
  "fine_doubtful:unidad": [
@@ -1445,6 +1445,12 @@
    "units": 522,
    "match": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
    "date": "2026-11-12 08:48"
+  },
+  {
+   "s": 1.8109,
+   "units": 234,
+   "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "date": "2026-11-12 10:42"
   }
  ],
  "score:minuto": [
@@ -1537,6 +1543,12 @@
    "video_min": 112.2,
    "match": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
    "date": "2026-11-12 08:48"
+  },
+  {
+   "s": 5.986,
+   "video_min": 71.4,
+   "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "date": "2026-11-12 10:42"
   }
  ],
  "players:unidad": [
@@ -1647,6 +1659,14 @@
    "video_min": 71.0,
    "match": "zverev-alexander-sinner-jannik-indian-wells-2026-semi-final",
    "date": "2026-11-09 10:21"
+  }
+ ],
+ "spotting:minuto": [
+  {
+   "s": 1.372,
+   "video_min": 71.4,
+   "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "date": "2026-11-12 10:46"
   }
  ]
 }

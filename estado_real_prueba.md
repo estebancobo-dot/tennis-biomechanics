@@ -6,8 +6,8 @@
 |---|---|
 | 0 sin construir | 21 |
 | 1 construido, sin comprobar | 71 |
-| 2 comprobación que falla | 85 |
-| 3 comprobado en salidas | 75 |
+| 2 comprobación que falla | 80 |
+| 3 comprobado en salidas | 80 |
 | 4 validado con verdad | 0 |
 
 ## Por paquete del plan (en el orden de ejecución)
@@ -21,19 +21,19 @@
 | B3 Base · mejores modelos (estado del arte medido) | 10 | 0 | 0 | 1 | 9 | 0 | Cada candidato medido frente al actual (precisión con datos anotados y fotogramas/s en el PC) | ok | no |
 | B4 Base · no perder golpes | 6 | 0 | 0 | 5 | 1 | 0 | Recall F3Set y RacketVision por lado y tipo, sin bajar la precisión | falla | no |
 | B5 Base · exportación | 1 | 0 | 0 | 1 | 0 | 0 | Vídeos por golpe en ≤ 20 min sin cuelgues | ok | no |
-| B6 Base · referencia definitiva de los 4 partidos | 4 | 0 | 0 | 4 | 0 | 0 | 4 partidos sin errores de etapa; auditoría generada | falla | no |
-| B7 Base · aplicación autónoma e infraestructura | 36 | 0 | 0 | 11 | 25 | 0 | Un partido nuevo de principio a fin sin el ciclo ni el chat; capturas de cada pantalla sin fallos | ok | no |
+| B6 Base · referencia definitiva de los 4 partidos | 4 | 0 | 0 | 4 | 0 | 0 | 4 partidos sin errores de etapa; auditoría generada | ok | no |
+| B7 Base · aplicación autónoma e infraestructura | 36 | 0 | 0 | 10 | 26 | 0 | Un partido nuevo de principio a fin sin el ciclo ni el chat; capturas de cada pantalla sin fallos | ok | no |
 | B8 Base · orquestador único (aplicación y chat con el mismo código y los mismos datos) | 8 | 0 | 6 | 2 | 0 | 0 | Fases A-F de docs/orquestador.md; un trabajo enviado desde el chat, pausado en la aplicación y reanudado desde el chat en el PC | falla | no |
 | P0 Producto · rediseño completo de la aplicación (comparativa profesional, UX, aprendizaje, gestión, gráficos) | 4 | 3 | 1 | 0 | 0 | 0 | Diseño desde la comparativa con las apps profesionales; capturas de cada pantalla comparadas con las de referencia, sin restos inútiles ni nada fijo en el código | sin medir | no |
-| M1 Medidas · fases, cadena cinética y ritmo | 12 | 0 | 7 | 4 | 1 | 0 | Cada medida: fiable en la auditoría (ruido < variación) y sin depender de la cámara | — | — |
+| M1 Medidas · fases, cadena cinética y ritmo | 12 | 0 | 7 | 3 | 2 | 0 | Cada medida: fiable en la auditoría (ruido < variación) y sin depender de la cámara | — | — |
 | M2 Medidas · pies y apoyos | 20 | 2 | 10 | 3 | 5 | 0 | Pasos y apoyos medidos en la mayoría de golpes; fiables en la auditoría | — | — |
 | M3 Medidas · cuerpo | 15 | 2 | 2 | 4 | 7 | 0 | Fiables en la auditoría y sin depender de la cámara | — | — |
-| M4 Medidas · raqueta, mano y empuñadura | 19 | 3 | 8 | 7 | 1 | 0 | Fiables o «no medible desde la tele» dicho; cara del impacto marcada como estimación | — | — |
-| M5 Medidas · bola y situación del golpe | 18 | 0 | 4 | 12 | 2 | 0 | Cada situación con golpes suficientes o «pocos datos» dicho; diferencias solo por encima del ruido | — | — |
+| M4 Medidas · raqueta, mano y empuñadura | 19 | 3 | 8 | 6 | 2 | 0 | Fiables o «no medible desde la tele» dicho; cara del impacto marcada como estimación | — | — |
+| M5 Medidas · bola y situación del golpe | 18 | 0 | 4 | 11 | 3 | 0 | Cada situación con golpes suficientes o «pocos datos» dicho; diferencias solo por encima del ruido | — | — |
 | M6 Medidas · tipos de golpe | 11 | 4 | 3 | 4 | 0 | 0 | Recall por tipo con datos anotados | — | — |
 | M7 Medidas · contexto del punto | 7 | 3 | 2 | 0 | 2 | 0 | Resultado del punto coherente con el marcador; nombres y fechas correctos | — | — |
 | P1 Producto · contenido para copiar su golpe (Cópiala / Aprende) | 32 | 2 | 11 | 10 | 9 | 0 | Cada consigna con su medida, su fuente y su vídeo; examen interno R1-R25 pasado | — | — |
-| P2 Producto · pantallas e informe | 18 | 0 | 5 | 3 | 10 | 0 | Capturas automáticas de todas las pantallas sin fallos; nada borrado de lo anterior | — | — |
+| P2 Producto · pantallas e informe | 18 | 0 | 5 | 2 | 11 | 0 | Capturas automáticas de todas las pantallas sin fallos; nada borrado de lo anterior | — | — |
 | P3 Producto · validación automática | 6 | 0 | 2 | 4 | 0 | 0 | Cada medida y cada petición con una prueba automática y su umbral | — | — |
 | P4 Producto · comparación con las apps profesionales | 3 | 1 | 2 | 0 | 0 | 0 | Cada diferencia con su decisión y su prueba | — | — |
 | P5 Producto · escenarios y genericidad | 4 | 0 | 4 | 0 | 0 | 0 | Cada escenario de docs/escenarios_producto.md con su prueba | — | — |
@@ -47,8 +47,8 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 - **B3**: peticiones sin comprobar o que fallan: #58
 - **B4**: prueba principal: Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin: aviso, Cobertura del saque dicha en el informe: aviso; peticiones sin comprobar o que fallan: #23, #151, #155, #205, #218
 - **B5**: peticiones sin comprobar o que fallan: #41
-- **B6**: prueba principal: Golpes con su pose en el contacto: smoke_tennis-yusipopen-final-sobolenko-rybakin: falta; peticiones sin comprobar o que fallan: #1, #134, #233, #234
-- **B7**: peticiones sin comprobar o que fallan: #18, #20, #21, #22, #37, #51, #66, #119, #160, #226, #242
+- **B6**: peticiones sin comprobar o que fallan: #1, #134, #233, #234
+- **B7**: peticiones sin comprobar o que fallan: #18, #20, #21, #22, #37, #51, #119, #160, #226, #242
 - **B8**: prueba principal: Orquestador: espera hasta empezar cada trabajo: aviso; peticiones sin comprobar o que fallan: #246, #247, #248, #249, #250, #251, #259, #260
 - **P0**: prueba principal: Aplicación: rediseño : sin medir; peticiones sin comprobar o que fallan: #256, #257, #252, #258
 
@@ -56,7 +56,7 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 
 | # | Petición | Paquete | Registro | Nivel | Lo que comprueba la auditoría |
 |---|---|---|---|---|---|
-| 1 | Derecha de Rybakina en sus 4 partidos completos, una vez y al final (10-10 17:27; 11-10 19 | B6 | HECHO | 2 comprobación que falla | 6 comprobaciones: 1 falta, 1 aviso, 1 pocos datos, 3 ok; la peor: «Golpes con su pose en el contacto: smoke_tennis-yusipopen-final-sobolenko |
+| 1 | Derecha de Rybakina en sus 4 partidos completos, una vez y al final (10-10 17:27; 11-10 19 | B6 | HECHO | 2 comprobación que falla | 6 comprobaciones: 1 aviso, 1 pocos datos, 4 ok; la peor: «Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin» (10  |
 | 2 | Ver informe y salidas en el móvil (11-10 18:21, 18:29, 18:33) | P6 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#2); no se comprueba en las salidas: aplazado por el usuario (móvil al final) |
 | 4 | Responder de forma profesional a «¿qué hay que hacer para pegar como X?», con todas las po | P1 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 201 comprobaciones: 33 pocos datos, 168 ok; la peor: «1. Fases · Golpe del riva |
 | 5 | Taxonomía completa con todas las variantes (bola rápida/lenta, alta/baja, corta/profunda,  | M5 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 32 comprobaciones: 17 pocos datos, 15 ok; la peor: «Golpe angulado (#132)» (0 g |
@@ -80,14 +80,14 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 | 23 | Seguir a la jugadora en los cambios de lado (10-10 17:27) | B4 | HECHO | 2 comprobación que falla | 2 comprobaciones: 1 aviso, 1 ok; la peor: «Identidad en los cambios de lado: smoke_tennis-yusipopen-final-sobolenko-rybakin» (66 de 67 plano |
 | 24 | OCR del marcador y presión (10-10 17:27) | M7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 25 | Métricas por derecha: apoyo, base, rodillas, cadera, hombros, X-factor, codo, impacto, cad | M1 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 5 comprobaciones: 5 ok |
-| 26 | Fases y cadena completa, del salto inicial a la terminación (10-10 17:27; 11-10 08:22) | M1 | HECHO | 2 comprobación que falla | 8 comprobaciones: 5 aviso, 3 ok; la peor: «Fotograma clave: inicio de preparación» (encontrado en el 69% de los golpes) |
+| 26 | Fases y cadena completa, del salto inicial a la terminación (10-10 17:27; 11-10 08:22) | M1 | HECHO | 3 comprobado en salidas | 8 comprobaciones: 8 ok |
 | 27 | Agregados por partido y set, fatiga, ganadores y errores, presión (10-10 17:27) | M5 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 28 | Informe HTML con gráficos y esqueleto (10-10 17:27) | P2 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
 | 29 | Fase 0: entorno y fps reales, con YOLO (10-10 17:27; 11-10 08:49) | B1 | HECHO | 2 comprobación que falla | 2 comprobaciones: 1 pocos datos, 1 ok; la peor: «Tiempo desde cero» (ninguna ejecución desde cero de 20 min de vídeo o más (prueba app_nuevo |
 | 30 | Estado del arte: igual, mejor o peor que otras apps (10-10 17:40; 11-10 09:05, 18:06) | B3 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 31 | Procesado incremental al añadir vídeos (10-10 18:05) | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 32 | Ampliable a otros golpes y jugadores (10-10 18:07) | B7 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
-| 33 | Capturas de los mejores golpes de cada tipo y N imágenes de un golpe (10-10 18:12) | P2 | HECHO | 2 comprobación que falla | 8 comprobaciones: 5 aviso, 3 ok; la peor: «Fotograma clave: inicio de preparación» (encontrado en el 69% de los golpes) |
+| 33 | Capturas de los mejores golpes de cada tipo y N imágenes de un golpe (10-10 18:12) | P2 | HECHO | 3 comprobado en salidas | 8 comprobaciones: 8 ok |
 | 34 | Maqueta con datos inventados, con apoyos (10-10 18:13; 12-10 17:21) | P2 | HECHO | 1 construido, sin comprobar | no se comprueba en las salidas: maqueta (docs/maqueta-informe.html), no una salida |
 | 35 | Medidas de la raqueta (altura, ángulos) en todo el golpe; qué miden los profesionales (11- | M4 | HECHO | 2 comprobación que falla | 11 comprobaciones: 2 pocos datos, 9 ok; la peor: «6. Matriz del usuario · Caída de la raqueta por debajo de la bola» (vista lateral de entre |
 | 36 | Mano y antebrazo, cierre de la muñeca (11-10 09:56, 10:19) | M4 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok |
@@ -113,20 +113,20 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 | 56 | Barras horizontales con la diferencia de altura de la cabeza (12-10 17:40) | M3 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 57 | Nada de gráficas de muchas líneas ni tablas sin frases (12-10 17:10) | P1 | HECHO | 3 comprobado en salidas | 9 comprobaciones: 9 ok |
 | 58 | La IA más moderna posible (11-10 09:05) | B3 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 15 comprobaciones: 15 ok |
-| 59 | Diferencias solo por encima del error y en situaciones equivalentes (10-10 18:05) | M5 | HECHO | 2 comprobación que falla | 6 comprobaciones: 1 pocos datos, 5 ok; la peor: «Punta de la raqueta respecto a la cabeza en el armado» (medido en 6 de 13 golpes; en «Apren |
+| 59 | Diferencias solo por encima del error y en situaciones equivalentes (10-10 18:05) | M5 | HECHO | 3 comprobado en salidas | 6 comprobaciones: 6 ok |
 | 64 | Todos los tipos de desplazamiento, del split step a la recuperación, con cada tipo de paso | M2 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 10 comprobaciones: 10 ok |
 | 65 | El play del vídeo funciona (no solo un fotograma) (12-10 18:14, 21:03, 21:14) | P2 | HECHO | 3 comprobado en salidas | 11 comprobaciones: 11 ok |
-| 66 | Fechas y duración en los registros (12-10 18:25) | B7 | HECHO | 2 comprobación que falla | 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (64 de 66 registros con fecha de inicio y de fin o duración; sin  |
+| 66 | Fechas y duración en los registros (12-10 18:25) | B7 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
 | 67 | No borrar el trabajo hecho: lo complejo como extra (12-10 22:35; 13-10 05:48 p6) | P2 | HECHO | 3 comprobado en salidas | 13 comprobaciones: 13 ok |
 | 68 | La meta: mejorar mi derecha tomando la de X como base (12-10 22:25; 13-10 05:48 p5) | P1 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 8 comprobaciones: 1 pocos datos, 7 ok; la peor: «Tu ejemplo: derecha paralela,  |
 | 69 | Ejemplo: «derecha paralela, apoyo cerrado, parada, bola plana, lado derecho» (cómo lo hace | M5 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 pocos datos; la peor: «Tu ejemplo: derecha paralela, apoyo  |
 | 70 | Las 2000 y pico combinaciones, usables y validadas (13-10 05:48 p2; 06:00) | M5 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 10 comprobaciones: 9 pocos datos, 1 ok; la peor: «Bola rápida / lenta: cada med |
-| 71 | El conocimiento de los vídeos de entrenadores en la web (12-10 21:31; 13-10 05:48 p3) | P1 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 21 comprobaciones: 16 pocos datos, 5 ok; la peor: «R1 Golpe liftado de trayecto |
+| 71 | El conocimiento de los vídeos de entrenadores en la web (12-10 21:31; 13-10 05:48 p3) | P1 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 21 comprobaciones: 3 aviso, 7 pocos datos, 11 ok; la peor: «R2 Dos manos en la  |
 | 72 | El conocimiento del chat (modelo técnico, taxonomía, matriz) implementado en la web, no so | P1 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 170 comprobaciones: 16 pocos datos, 154 ok; la peor: «1. Fases · Golpe del riva |
 | 73 | Revisar la web de arriba abajo para que aporte valor (13-10 05:48 p6) | P2 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 22 comprobaciones: 22 ok |
 | 74 | ¿El análisis de las apps de pago y libres fue profundo o superficial? (13-10 05:48 p7) | P4 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#74); no se comprueba en las salidas: análisis documental (docs/comparativa_apps.md), no una salida |
 | 75 | Velocidad: «10 golpes en 5 horas es absurdo» (13-10 05:48 p10) | B1 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 pocos datos, 1 ok; la peor: «Tiempo desde cero» (ninguna ej |
-| 76 | «Un 50 % de golpes dudosos» (13-10 05:48 p10) | P3 | HECHO | 2 comprobación que falla | 1 comprobaciones: 1 aviso; la peor: «Golpes dudosos (duda sobre el golpe, no sobre una medida)» (8 de 13 del lado cercano (62%); motivos: ph |
+| 76 | «Un 50 % de golpes dudosos» (13-10 05:48 p10) | P3 | HECHO | 2 comprobación que falla | 1 comprobaciones: 1 aviso; la peor: «Golpes dudosos (duda sobre el golpe, no sobre una medida)» (6 de 13 del lado cercano (46%); motivos: el |
 | 77 | No lanzar pruebas de 6 h para validar (13-10 06:01) | B1 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
 | 78 | No depender de que al usuario se le ocurran funciones (13-10 06:09) | P5 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#78); no se comprueba en las salidas: proceso: Claude propone las funciones desde la matriz y los entrenadores |
 | 79 | Vídeos de entrenamiento con otras cámaras, en un apartado aparte y marcado (12-10 21:31, 2 | P1 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 20 comprobaciones: 11 pocos datos, 9 ok; la peor: «Derechas filmadas de lado» ( |
@@ -152,7 +152,7 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 | 99 | Mejora 1 (entrenadores): líneas dibujadas sobre el fotograma | P1 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 100 | Mejora 2: raqueta al lado del cuerpo o detrás de la espalda, y adónde apunta la punta | M4 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok |
 | 101 | Mejora 3: altura y separación del codo | M3 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
-| 102 | Mejora 4: punta de la raqueta respecto a la cabeza en el armado | M4 | HECHO | 2 comprobación que falla | 1 comprobaciones: 1 pocos datos; la peor: «Punta de la raqueta respecto a la cabeza en el armado» (medido en 6 de 13 golpes; en «Aprende»; f |
+| 102 | Mejora 4: punta de la raqueta respecto a la cabeza en el armado | M4 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 103 | Mejora 5: transferencia de peso en una frase | M2 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 104 | Mejora 6: empuje de piernas («bajar y subir») | M2 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
 | 105 | Mejora 7: ritmo con la bola (caída al subir la bola) | M5 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
@@ -163,7 +163,7 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 | 110 | Mejora 12: «Lo que la distingue» (2-3 rasgos frente a la literatura, con vídeo) | P1 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 111 | Mejora 13: consigna «para imitarla» y error que evita, por fase | P1 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 112 | Mejora 14: clase descriptiva de estilo (`fh_style`) | P1 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
-| 113 | Mejora 15: examen interno con las afirmaciones de entrenadores (R1-R25) | P1 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 19 comprobaciones: 16 pocos datos, 3 ok; la peor: «R1 Golpe liftado de trayecto |
+| 113 | Mejora 15: examen interno con las afirmaciones de entrenadores (R1-R25) | P1 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 19 comprobaciones: 3 aviso, 7 pocos datos, 9 ok; la peor: «R2 Dos manos en la r |
 | 114 | Cuerpo respecto a la bola en cada momento (golpe rival, cruza la red, cae, bota, sube, gol | M3 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
 | 115 | Cuánto baja y sube el cuerpo, con fotogramas y barras horizontales: de la espera al punto  | M3 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 116 | Distancia entre las piernas en los golpes: base y estabilidad (13-10 11:50) | M2 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
@@ -181,7 +181,7 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 | 128 | Glosario de términos (13-10 14:00) | P2 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
 | 130 | Resto de derecha (devolver el saque) con todas sus variantes, en la matriz y en la aplicac | M6 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 12 comprobaciones: 12 ok |
 | 131 | detectar impactos de bola por AUDIO (Chat, 10-10 17:27) | M5 | HECHO | 1 construido, sin comprobar | sin comprobación automática asignada |
-| 132 | ángulos (golpe angulado) — repetido el 19-10 08:11: «golpe angulado ... te lo he dicho muc | M5 | HECHO | 2 comprobación que falla | 2 comprobaciones: 1 pocos datos, 1 ok; la peor: «Golpe angulado (#132)» (0 golpes de 13 (la clase «Golpe angulado» se pudo decidir en 5; sin |
+| 132 | ángulos (golpe angulado) — repetido el 19-10 08:11: «golpe angulado ... te lo he dicho muc | M5 | HECHO | 2 comprobación que falla | 2 comprobaciones: 1 pocos datos, 1 ok; la peor: «Golpe angulado (#132)» (0 golpes de 13 (la clase «Golpe angulado» se pudo decidir en 7; sin |
 | 134 | prefiero una baseline completa a cerrar más golpes (Chat, 11-10 18:06) | B6 | HECHO | 2 comprobación que falla | 2 comprobaciones: 1 pocos datos, 1 ok; la peor: «forehand: golpes analizados» (13 del lado cercano (con todo el detalle), 13 del lejano; con |
 | 135 | distancia al fondo, red (Chat, 11-10 19:23) | M5 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#135); sin comprobación automática asignada |
 | 136 | lo puedes añadir al contexto o fichero base? (Chat, 13-10 09:47) | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |

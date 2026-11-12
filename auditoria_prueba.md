@@ -1,6 +1,6 @@
 # Auditoría de requisitos (forehand)
 
-13 golpes del lado cercano. ✔ 386 cumplidos · ✘ 32 no cumplidos · … 111 sin golpes suficientes en esta ejecución · ! 114 avisos
+13 golpes del lado cercano. ✔ 406 cumplidos · ✘ 28 no cumplidos · … 97 sin golpes suficientes en esta ejecución · ! 112 avisos
 
 ## Peticiones del usuario SIN TERMINAR: 135 de 260
 
@@ -145,25 +145,19 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 
 ## 1. Toda la taxonomía del golpe y todas sus variantes (situaciones)
 
-- ✘ **Golpes con su pose en el contacto: smoke_tennis-yusipopen-final-sobolenko-rybakin**: cerca 21 de 32 (66%; objetivo ≥ 95%): reveses 7 de 8, derechas 10 de 13, saques 4 de 11 · lejos (medidas de la pose para medir): reveses 17 de 20, derechas 10 de 13, saques 11 de 13
 - ! **Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 10 de 13 puntos de su saque vistos con su saque encontrado (77%; objetivo ≥ 85%) (1 puntos más sin nadie jugando en la cámara principal: la tele no los enseñó, no cuentan); sin saque: sin ningún golpe suyo 1, golpes suyos, pero ningún saque 3; sus saques encontrados caen en puntos de su saque 15, de la rival 5, fuera de los puntos leídos 4; en los puntos sin saque, su primer golpe encontrado llega 27.5 s (mediana de 3) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 3): tipo {'backhand/detector': 1, 'backhand/pose': 1, 'forehand/detector': 1}, lado {'far': 3}, 2 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 2, 'golpe_suyo_visto_y_perdido': 0, 'golpe_de_la_rival_antes': 0, 'nada_antes': 1, 'sin_primer_golpe': 1}; en los puntos sin ningún golpe suyo: con golpes de alguien (detector) 0, sin golpes de nadie 1, cámara principal 19.7 s (mediana), candidatos {'suyos_perdidos_despues': 0, 'solo_de_la_rival': 0, 'identidad_sin_decidir': 0, 'sin_candidatos': 1}, golpes suyos perdidos {'de_identidad_dudosa': 0, 'descartados_en_la_pasada_fina': 0}; primeros: 6.1-6.5 min (sin_golpes), 6.4-7.1 min (sin_saque), 8.3-9.2 min (sin_saque), 31.1-31.7 min (sin_saque)
 - ! **Volumen: forehand analizados en los partidos**: 26 golpes (13 cerca con todo el detalle, 13 lejos) en 1 partidos; objetivo ≥ 400 (docs/comparativa_apps.md §4.3)
 - ! **Identidad en los cambios de lado: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 66 de 67 planos decididos (99%; objetivo ≥ 95%); cambios de lado del marcador y ropa de acuerdo en 57 de 66 planos con las dos señales (86%; objetivo ≥ 90%); misma ropa dentro de un juego 75% (objetivo ≥ 95%); sus golpes: 32 cerca y 46 lejos (41% en el lado con menos); dudosos 1, sin decidir 0 · falla: cambios de lado y ropa de acuerdo 86% < 90%, ropa igual dentro de un juego 75% < 95%. Sin verdad anotada: coherencia, no validación
 - ! **Cobertura del saque dicha en el informe**: no se encontró el informe del saque (C:\tenis\output\_smoke\informe_saque\index.html)
-- ! **Fotograma clave: inicio de preparación**: encontrado en el 69% de los golpes
-- ! **Fotograma clave: armado**: encontrado en el 77% de los golpes
-- ! **Fotograma clave: inicio de aceleración**: encontrado en el 77% de los golpes
-- ! **Fotograma clave: terminación**: encontrado en el 77% de los golpes
-- ! **Fotograma clave: recuperación**: encontrado en el 77% de los golpes
 - … **forehand: golpes analizados**: 13 del lado cercano (con todo el detalle), 13 del lejano; con menos de 20 muchas situaciones no se pueden describir
 - … **1. Fases · Golpe del rival → split step**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
-- … **1. Fases · Final del armado (máximo giro, raqueta más atrás)**: se mide (77% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
-- … **1. Fases · Inicio del swing hacia delante**: se mide (77% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- … **1. Fases · Final del armado (máximo giro, raqueta más atrás)**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- … **1. Fases · Inicio del swing hacia delante**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
 - … **1. Fases · Final de la extensión**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
-- … **1. Fases · Primer paso de recuperación**: se mide (77% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- … **1. Fases · Primer paso de recuperación**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
 - … **3. Pies y desplazamiento · Presencia del split**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
 - … **5. Bola, resultado y contexto · Bote: profundidad, anchura, dentro/fuera**: se mide (69% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
-- … **5. Bola, resultado y contexto · Velocidad media de la bola en pista**: se mide (54% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- … **5. Bola, resultado y contexto · Velocidad media de la bola en pista**: se mide (69% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
 - … **5. Bola, resultado y contexto · Calidad del golpe (sustituto: profundidad, anchura, velocidad media)**: se mide (54% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
 - … **5. Bola, resultado y contexto · Longitud del peloteo**: se mide (92% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
 - … **6. Matriz del usuario · Caída de la raqueta por debajo de la bola**: vista lateral de entrenamiento: racket_drop_below_contact_cm en 6 derechas de lado; se resume con 12 o más
@@ -172,22 +166,22 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 - … **6. Matriz del usuario · Ángulo real del swing de abajo arriba (+10° a +45°)**: vista lateral de entrenamiento: swing_angle_deg en 6 derechas de lado; se resume con 12 o más
 - … **6. Matriz del usuario · Rodilla de atrás en la carga (110–130°) y de delante en el impacto**: vista lateral de entrenamiento: back_knee_loaded_deg en 6 derechas de lado, front_knee_impact_deg en 6 derechas de lado; se resume con 12 o más
 - … **6. Matriz del usuario · Inclinación del tronco hacia delante o atrás en el impacto**: vista lateral de entrenamiento: trunk_lean_impact_deg en 6 derechas de lado; se resume con 12 o más
-- … **Golpe angulado (#132)**: 0 golpes de 13 (la clase «Golpe angulado» se pudo decidir en 5; sin señal, ninguna clase: nunca se inventa); sin golpes suficientes (se enseña con ≥ 12)
+- … **Golpe angulado (#132)**: 0 golpes de 13 (la clase «Golpe angulado» se pudo decidir en 7; sin señal, ninguna clase: nunca se inventa); sin golpes suficientes (se enseña con ≥ 12)
 - … **Bola corta baja cerca de la red (#157)**: 0 golpes de 13 (la clase «Bola corta cerca de la red» se pudo decidir en 0; sin señal, ninguna clase: nunca se inventa); sin golpes suficientes (se enseña con ≥ 12)
 - … **Bola corta alta cerca de la red (#158)**: 0 golpes de 13 (la clase «Bola corta cerca de la red» se pudo decidir en 0; sin señal, ninguna clase: nunca se inventa); sin golpes suficientes (se enseña con ≥ 12)
 - … **Volea a media pista con golpe de fondo (#159)**: 0 golpes de 13 (la clase «Contacto» se pudo decidir en 10; sin señal, ninguna clase: nunca se inventa); sin golpes suficientes (se enseña con ≥ 12)
 - … **Volea fuera de la línea de saque**: 0 golpes de 13 (la clase «Contacto» se pudo decidir en 10; sin señal, ninguna clase: nunca se inventa); sin golpes suficientes (se enseña con ≥ 12)
 - … **Botepronto / media volea: casos (#16)**: 1 golpes de 13 (la clase «Contacto» se pudo decidir en 10; sin señal, ninguna clase: nunca se inventa); candidatos marcados por la misma regla: 1; golpes sin bote visto: 3 (la bola no deja ver un bote a menos de 0,06 s del impacto a 50 fps, 0,08 s a 25: ball.min_bounce_to_impact_s); sin golpes suficientes (se enseña con ≥ 12)
-- … **Dirección del golpe**: cruzada 1, paralela 1, al centro 3, invertida cruzada 0, invertida paralela 1, invertida al centro 1 (se muestra con ≥ 12 golpes)
+- … **Dirección del golpe**: cruzada 2, paralela 1, al centro 3, invertida cruzada 0, invertida paralela 1, invertida al centro 1 (se muestra con ≥ 12 golpes)
 - … **Bola rápida / lenta: cada medida en cada nivel**: 73 medidas × 4 niveles = 292 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: lenta 0, media 5, rápida 2, muy rápida 6
-- … **Bola alta / baja: cada medida en cada nivel**: 73 medidas × 5 niveles = 365 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: rodilla 1, cadera 2, cintura-pecho 4, pecho-hombro 3, por encima del hombro 0
-- … **Bola corta / profunda: cada medida en cada nivel**: 73 medidas × 5 niveles = 365 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: dentro de la pista 1, sobre la línea 4, 1-2 m detrás 4, 2-4 m detrás 1, muy atrás 0
-- … **En carrera / parada / en salto: cada medida en cada nivel**: 73 medidas × 5 niveles = 365 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: parada 1, en movimiento 5, en carrera 4, deslizando 0, en el aire 0
-- … **Cada apoyo: cada medida en cada nivel**: 73 medidas × 4 niveles = 292 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: abierto 4, semiabierto 1, neutro 2, cerrado 3
-- … **Dirección del golpe: cada medida en cada nivel**: 73 medidas × 6 niveles = 438 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: cruzada 1, paralela 1, al centro 3, invertida cruzada 0, invertida paralela 1, invertida al centro 1
-- … **Ataque / defensa: cada medida en cada nivel**: 73 medidas × 3 niveles = 219 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: ataque 1, neutra 5, defensa 7
-- … **Bola subiendo / arriba / cayendo: cada medida en cada nivel**: 73 medidas × 3 niveles = 219 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: bola subiendo 6, bola arriba 0, bola cayendo 1
-- … **Bola centrada / abierta: cada medida en cada nivel**: 73 medidas × 3 niveles = 219 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: centrada 5, abierta 4, muy abierta 1
+- … **Bola alta / baja: cada medida en cada nivel**: 73 medidas × 5 niveles = 365 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: rodilla 1, cadera 4, cintura-pecho 5, pecho-hombro 3, por encima del hombro 0
+- … **Bola corta / profunda: cada medida en cada nivel**: 73 medidas × 5 niveles = 365 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: dentro de la pista 2, sobre la línea 4, 1-2 m detrás 5, 2-4 m detrás 2, muy atrás 0
+- … **En carrera / parada / en salto: cada medida en cada nivel**: 73 medidas × 5 niveles = 365 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: parada 1, en movimiento 7, en carrera 5, deslizando 0, en el aire 0
+- … **Cada apoyo: cada medida en cada nivel**: 73 medidas × 4 niveles = 292 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: abierto 6, semiabierto 2, neutro 2, cerrado 3
+- … **Dirección del golpe: cada medida en cada nivel**: 73 medidas × 6 niveles = 438 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: cruzada 2, paralela 1, al centro 3, invertida cruzada 0, invertida paralela 1, invertida al centro 1
+- … **Ataque / defensa: cada medida en cada nivel**: 73 medidas × 3 niveles = 219 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: ataque 2, neutra 4, defensa 7
+- … **Bola subiendo / arriba / cayendo: cada medida en cada nivel**: 73 medidas × 3 niveles = 219 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: bola subiendo 6, bola arriba 2, bola cayendo 1
+- … **Bola centrada / abierta: cada medida en cada nivel**: 73 medidas × 3 niveles = 219 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: centrada 7, abierta 4, muy abierta 2
 - … **Impacto delante de la cadera**: 6 derechas de lado con esta medida
 - … **Ángulo del swing (de abajo arriba)**: 6 derechas de lado con esta medida
 - … **Codo en el impacto**: 6 derechas de lado con esta medida
@@ -202,74 +196,74 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 - ✔ **Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin**: marcador: 42-48 puntos jugados (7 juegos leídos, 0 sin leer), 16 con su saque. Esperados: 16-36 saques (1 o 2 por punto de saque) y 67-125 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 78 golpes, 24 saques/remates → como mucho 100% de sus golpes y 100% de sus saques (sin 3 puntos en los que nadie juega en la cámara principal: la tele no los enseñó, 1 de su saque) (32 cerca, 46 lejos); además 11 de identidad dudosa, apartados (no cuentan como suyos)
 - ✔ **Golpes del fondo: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 46 de sus 78 golpes en el lado lejano (59%; objetivo ≥ 25%); confirmados 46 de 49 candidatos suyos del fondo (94%); con su posición en la pista 93% (objetivo ≥ 80%; en el fondo solo lo fiable a esa distancia: posición, desplazamiento, altura del impacto, destino); de sus 46 golpes del fondo: desplazamiento 74%, altura del impacto 91%, destino 17%; 7 sin pose en la ventana (confirmados por la bola o el detector)
 - ✔ **Repeticiones y otras cámaras enlazadas: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 33% de sus golpes con repetición enlazada (26 de 78, 2 a cámara lenta) · 85% con otra cámara (66) · tomas: 22 repeticiones, 3 laterales, 1 frontales, 95 primeros planos, 2 otras
-- ✔ **1. Fases · Inicio del giro de bloque (preparación)**: medido en el 69% de los golpes y en el informe
+- ✔ **1. Fases · Inicio del giro de bloque (preparación)**: medido en el 85% de los golpes y en el informe
 - ✔ **1. Fases · Impacto**: implementado (sin nombre de dato en la matriz)
-- ✔ **1. Fases · Final de la terminación**: medido en el 77% de los golpes y en el informe
-- ✔ **2. Cuerpo · Postura de espera (rodillas, base, peso)**: medido en el 85% de los golpes y en el informe
-- ✔ **2. Cuerpo · Mano libre en la garganta de la raqueta en la espera / giro de bloque**: medido en el 85% de los golpes y en el informe
-- ✔ **2. Cuerpo · Momento del armado respecto al bote ("armado completo al botar")**: medido en el 62% de los golpes y en el informe
-- ✔ **2. Cuerpo · Giro de cadera y de hombros al final del armado**: medido en el 85% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **2. Cuerpo · Separación cadera–hombros (X-factor)**: medido en el 77% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **2. Cuerpo · Brazo libre extendido y cruzado**: medido en el 85% de los golpes y en el informe
-- ✔ **2. Cuerpo · Carga de la pierna exterior / descenso de cadera**: medido en el 85% de los golpes y en el informe
-- ✔ **2. Cuerpo · Peso entre los pies / equilibrio**: medido en el 85% de los golpes y en el informe
+- ✔ **1. Fases · Final de la terminación**: medido en el 100% de los golpes y en el informe
+- ✔ **2. Cuerpo · Postura de espera (rodillas, base, peso)**: medido en el 100% de los golpes y en el informe
+- ✔ **2. Cuerpo · Mano libre en la garganta de la raqueta en la espera / giro de bloque**: medido en el 100% de los golpes y en el informe
+- ✔ **2. Cuerpo · Momento del armado respecto al bote ("armado completo al botar")**: medido en el 77% de los golpes y en el informe
+- ✔ **2. Cuerpo · Giro de cadera y de hombros al final del armado**: medido en el 100% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **2. Cuerpo · Separación cadera–hombros (X-factor)**: medido en el 100% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **2. Cuerpo · Brazo libre extendido y cruzado**: medido en el 100% de los golpes y en el informe
+- ✔ **2. Cuerpo · Carga de la pierna exterior / descenso de cadera**: medido en el 100% de los golpes y en el informe
+- ✔ **2. Cuerpo · Peso entre los pies / equilibrio**: medido en el 100% de los golpes y en el informe
 - ✔ **2. Cuerpo · Cadena cinética (orden pelvis → tronco → brazo → antebrazo)**: implementado (sin nombre de dato en la matriz)
-- ✔ **2. Cuerpo · Altura del contacto (respecto a rodilla, cadera, hombro)**: medido en el 85% de los golpes y en el informe
-- ✔ **2. Cuerpo · Separación lateral del contacto**: medido en el 77% de los golpes y en el informe
+- ✔ **2. Cuerpo · Altura del contacto (respecto a rodilla, cadera, hombro)**: medido en el 100% de los golpes y en el informe
+- ✔ **2. Cuerpo · Separación lateral del contacto**: medido en el 100% de los golpes y en el informe
 - ✔ **2. Cuerpo · Ángulo del codo en el impacto (brazo recto / doble flexión)**: medido en el 38% de los golpes y en el informe
-- ✔ **2. Cuerpo · Cabeza estable en el impacto**: medido en el 77% de los golpes y en el informe
-- ✔ **2. Cuerpo · Cabeza quieta tras el impacto**: medido en el 77% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **2. Cuerpo · Hombros más girados que la cadera en el impacto**: medido en el 85% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **2. Cuerpo · Extensión tras el contacto**: medido en el 77% de los golpes y en el informe
-- ✔ **2. Cuerpo · Terminación sobre el hombro / limpiaparabrisas / alrededor / invertida**: medido en el 77% de los golpes y en el informe
-- ✔ **2. Cuerpo · "3 × 90°" al final**: medido en el 46% de los golpes y en el informe
-- ✔ **2. Cuerpo · Paso adelante de la pierna trasera tras el impacto**: medido en el 62% de los golpes y en el informe
-- ✔ **2. Cuerpo · Altura y separación del codo (armado e impacto)**: medido en el 85% de los golpes y en el informe
-- ✔ **2. Cuerpo · Transferencia de peso del armado al impacto**: medido en el 85% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **2. Cuerpo · Empuje de piernas («bajar y subir»)**: medido en el 77% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **2. Cuerpo · Cabeza estable en el impacto**: medido en el 100% de los golpes y en el informe
+- ✔ **2. Cuerpo · Cabeza quieta tras el impacto**: medido en el 100% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **2. Cuerpo · Hombros más girados que la cadera en el impacto**: medido en el 100% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **2. Cuerpo · Extensión tras el contacto**: medido en el 100% de los golpes y en el informe
+- ✔ **2. Cuerpo · Terminación sobre el hombro / limpiaparabrisas / alrededor / invertida**: medido en el 100% de los golpes y en el informe
+- ✔ **2. Cuerpo · "3 × 90°" al final**: medido en el 54% de los golpes y en el informe
+- ✔ **2. Cuerpo · Paso adelante de la pierna trasera tras el impacto**: medido en el 77% de los golpes y en el informe
+- ✔ **2. Cuerpo · Altura y separación del codo (armado e impacto)**: medido en el 100% de los golpes y en el informe
+- ✔ **2. Cuerpo · Transferencia de peso del armado al impacto**: medido en el 100% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **2. Cuerpo · Empuje de piernas («bajar y subir»)**: medido en el 100% de los golpes y en el informe (parcial: ver la matriz)
 - ✔ **3. Pies y desplazamiento · Split step: aterrizaje respecto al golpe del rival**: medido en el 100% de los golpes y en el informe
-- ✔ **3. Pies y desplazamiento · Split step: despegue y aterrizaje respecto al golpe del rival**: medido en el 46% de los golpes y en el informe
-- ✔ **3. Pies y desplazamiento · Velocidad 0,2 s antes y después del split**: medido en el 69% de los golpes y en el informe
-- ✔ **3. Pies y desplazamiento · Primer paso: momento (reacción)**: medido en el 54% de los golpes y en el informe
+- ✔ **3. Pies y desplazamiento · Split step: despegue y aterrizaje respecto al golpe del rival**: medido en el 54% de los golpes y en el informe
+- ✔ **3. Pies y desplazamiento · Velocidad 0,2 s antes y después del split**: medido en el 77% de los golpes y en el informe
+- ✔ **3. Pies y desplazamiento · Primer paso: momento (reacción)**: medido en el 77% de los golpes y en el informe
 - ✔ **3. Pies y desplazamiento · Primer paso: tipo (gravity, jab, pivot, counter, cruzado, lateral)**: implementado (sin nombre de dato en la matriz) (parcial: ver la matriz)
-- ✔ **3. Pies y desplazamiento · Primer paso: dirección correcta respecto a la bola**: medido en el 31% de los golpes y en el informe
-- ✔ **3. Pies y desplazamiento · Número de pasos hasta la bola**: medido en el 62% de los golpes y en el informe
-- ✔ **3. Pies y desplazamiento · Longitud de cada paso; anchura del primero**: medido en el 54% de los golpes y en el informe
-- ✔ **3. Pies y desplazamiento · Pasos de ajuste**: medido en el 62% de los golpes y en el informe
-- ✔ **3. Pies y desplazamiento · Distribución lateral / delante / atrás**: medido en el 77% de los golpes y en el informe
-- ✔ **3. Pies y desplazamiento · Cambios de dirección**: medido en el 77% de los golpes y en el informe
-- ✔ **3. Pies y desplazamiento · Velocidad media y máxima de carrera**: medido en el 77% de los golpes y en el informe
-- ✔ **3. Pies y desplazamiento · Recorrido hasta la bola**: medido en el 77% de los golpes y en el informe
-- ✔ **3. Pies y desplazamiento · Tipo de apoyo (abierto, semiabierto, neutro, cerrado)**: medido en el 77% de los golpes y en el informe
-- ✔ **3. Pies y desplazamiento · Subtipos: abierto de ataque, abierto defensivo, neutro de ataque**: medido en el 77% de los golpes y en el informe
-- ✔ **3. Pies y desplazamiento · Pierna que carga**: medido en el 46% de los golpes y en el informe
-- ✔ **3. Pies y desplazamiento · En carrera, en salto, a un pie, deslizando**: medido en el 77% de los golpes y en el informe
-- ✔ **3. Pies y desplazamiento · Última zancada más larga en carrera**: medido en el 46% de los golpes y en el informe
-- ✔ **3. Pies y desplazamiento · Recuperación: distancia, dirección, tiempo**: medido en el 77% de los golpes y en el informe
-- ✔ **3. Pies y desplazamiento · Cada paso nombrado: lateral (sin cruzar), cruzado, de carrera, hacia delante, hacia atrás, de ajuste**: medido en el 62% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **3. Pies y desplazamiento · Primer paso: dirección correcta respecto a la bola**: medido en el 54% de los golpes y en el informe
+- ✔ **3. Pies y desplazamiento · Número de pasos hasta la bola**: medido en el 77% de los golpes y en el informe
+- ✔ **3. Pies y desplazamiento · Longitud de cada paso; anchura del primero**: medido en el 77% de los golpes y en el informe
+- ✔ **3. Pies y desplazamiento · Pasos de ajuste**: medido en el 77% de los golpes y en el informe
+- ✔ **3. Pies y desplazamiento · Distribución lateral / delante / atrás**: medido en el 100% de los golpes y en el informe
+- ✔ **3. Pies y desplazamiento · Cambios de dirección**: medido en el 100% de los golpes y en el informe
+- ✔ **3. Pies y desplazamiento · Velocidad media y máxima de carrera**: medido en el 100% de los golpes y en el informe
+- ✔ **3. Pies y desplazamiento · Recorrido hasta la bola**: medido en el 100% de los golpes y en el informe
+- ✔ **3. Pies y desplazamiento · Tipo de apoyo (abierto, semiabierto, neutro, cerrado)**: medido en el 100% de los golpes y en el informe
+- ✔ **3. Pies y desplazamiento · Subtipos: abierto de ataque, abierto defensivo, neutro de ataque**: medido en el 100% de los golpes y en el informe
+- ✔ **3. Pies y desplazamiento · Pierna que carga**: medido en el 69% de los golpes y en el informe
+- ✔ **3. Pies y desplazamiento · En carrera, en salto, a un pie, deslizando**: medido en el 100% de los golpes y en el informe
+- ✔ **3. Pies y desplazamiento · Última zancada más larga en carrera**: medido en el 69% de los golpes y en el informe
+- ✔ **3. Pies y desplazamiento · Recuperación: distancia, dirección, tiempo**: medido en el 100% de los golpes y en el informe
+- ✔ **3. Pies y desplazamiento · Cada paso nombrado: lateral (sin cruzar), cruzado, de carrera, hacia delante, hacia atrás, de ajuste**: medido en el 77% de los golpes y en el informe (parcial: ver la matriz)
 - ✔ **3. Pies y desplazamiento · Rodear la bola para la derecha invertida**: medido en el 38% de los golpes y en el informe
-- ✔ **3. Pies y desplazamiento · Frenado: último paso largo con caída de la velocidad**: medido en el 38% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **3. Pies y desplazamiento · Patada atrás (tijera) tras el impacto**: medido en el 62% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **3. Pies y desplazamiento · Recuperación: tipo de cada paso de vuelta, cuándo empieza**: medido en el 62% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **3. Pies y desplazamiento · Orientación del pie (talón → dedo gordo respecto a la línea de fondo) en el armado y el impacto**: medido en el 46% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **3. Pies y desplazamiento · Pivote sobre la punta del pie de atrás (talón arriba, punta apoyada)**: medido en el 62% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **3. Pies y desplazamiento · Base y anchura de la base sobre la pista**: medido en el 77% de los golpes y en el informe
-- ✔ **4. Raqueta, swing y empuñadura · Forma del armado: bucle, recto, "pat the dog"**: medido en el 69% de los golpes y en el informe
-- ✔ **4. Raqueta, swing y empuñadura · Raqueta al lado del cuerpo o por detrás de la espalda en el armado (debate WTA/ATP)**: medido en el 46% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **4. Raqueta, swing y empuñadura · Inicio de la aceleración respecto al bote; girar mientras se desplaza**: medido en el 62% de los golpes y en el informe
-- ✔ **4. Raqueta, swing y empuñadura · Altura de la mano en el armado (no por encima de la cabeza)**: medido en el 77% de los golpes y en el informe
-- ✔ **4. Raqueta, swing y empuñadura · Cara de la raqueta al final del armado**: medido en el 46% de los golpes y en el informe
-- ✔ **4. Raqueta, swing y empuñadura · Caída de la raqueta antes de acelerar**: medido en el 77% de los golpes y en el informe
-- ✔ **4. Raqueta, swing y empuñadura · Retraso de la muñeca (lag)**: medido en el 62% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **4. Raqueta, swing y empuñadura · Trayectoria de abajo arriba (signo) / liftado-plano-cortado**: medido en el 77% de los golpes y en el informe
+- ✔ **3. Pies y desplazamiento · Frenado: último paso largo con caída de la velocidad**: medido en el 62% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **3. Pies y desplazamiento · Patada atrás (tijera) tras el impacto**: medido en el 77% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **3. Pies y desplazamiento · Recuperación: tipo de cada paso de vuelta, cuándo empieza**: medido en el 77% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **3. Pies y desplazamiento · Orientación del pie (talón → dedo gordo respecto a la línea de fondo) en el armado y el impacto**: medido en el 54% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **3. Pies y desplazamiento · Pivote sobre la punta del pie de atrás (talón arriba, punta apoyada)**: medido en el 85% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **3. Pies y desplazamiento · Base y anchura de la base sobre la pista**: medido en el 100% de los golpes y en el informe
+- ✔ **4. Raqueta, swing y empuñadura · Forma del armado: bucle, recto, "pat the dog"**: medido en el 85% de los golpes y en el informe
+- ✔ **4. Raqueta, swing y empuñadura · Raqueta al lado del cuerpo o por detrás de la espalda en el armado (debate WTA/ATP)**: medido en el 62% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **4. Raqueta, swing y empuñadura · Inicio de la aceleración respecto al bote; girar mientras se desplaza**: medido en el 77% de los golpes y en el informe
+- ✔ **4. Raqueta, swing y empuñadura · Altura de la mano en el armado (no por encima de la cabeza)**: medido en el 100% de los golpes y en el informe
+- ✔ **4. Raqueta, swing y empuñadura · Cara de la raqueta al final del armado**: medido en el 62% de los golpes y en el informe
+- ✔ **4. Raqueta, swing y empuñadura · Caída de la raqueta antes de acelerar**: medido en el 100% de los golpes y en el informe
+- ✔ **4. Raqueta, swing y empuñadura · Retraso de la muñeca (lag)**: medido en el 77% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **4. Raqueta, swing y empuñadura · Trayectoria de abajo arriba (signo) / liftado-plano-cortado**: medido en el 100% de los golpes y en el informe
 - ✔ **4. Raqueta, swing y empuñadura · Cara en el impacto**: implementado (sin nombre de dato en la matriz) (parcial: ver la matriz)
-- ✔ **4. Raqueta, swing y empuñadura · Velocidad de la raqueta relativa entre golpes**: medido en el 54% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **4. Raqueta, swing y empuñadura · Posición de la mano en el mango**: medido en el 77% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **4. Raqueta, swing y empuñadura · Velocidad de la raqueta relativa entre golpes**: medido en el 77% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **4. Raqueta, swing y empuñadura · Posición de la mano en el mango**: medido en el 100% de los golpes y en el informe (parcial: ver la matriz)
 - ✔ **4. Raqueta, swing y empuñadura · Empuñadura: "compatible con este / semioccidental-occidental"**: implementado (sin nombre de dato en la matriz)
-- ✔ **5. Bola, resultado y contexto · Dirección cruzada, paralela, al centro, invertidas**: medido en el 54% de los golpes y en el informe
-- ✔ **5. Bola, resultado y contexto · Golpe angulado (cruzado, corto y junto al lateral)**: medido en el 38% de los golpes y en el informe
-- ✔ **5. Bola, resultado y contexto · Bola corta cerca de la red: baja, media, alta**: medido en el 77% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **5. Bola, resultado y contexto · Altura de la bola en su vuelo, bote, punto más alto; contacto subiendo / arriba / cayendo**: medido en el 54% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **5. Bola, resultado y contexto · Dirección cruzada, paralela, al centro, invertidas**: medido en el 62% de los golpes y en el informe
+- ✔ **5. Bola, resultado y contexto · Golpe angulado (cruzado, corto y junto al lateral)**: medido en el 54% de los golpes y en el informe
+- ✔ **5. Bola, resultado y contexto · Bola corta cerca de la red: baja, media, alta**: medido en el 100% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **5. Bola, resultado y contexto · Altura de la bola en su vuelo, bote, punto más alto; contacto subiendo / arriba / cayendo**: medido en el 69% de los golpes y en el informe (parcial: ver la matriz)
 - ✔ **5. Bola, resultado y contexto · Qué hace ella en cada momento de la bola (cruza la red, bota, punto más alto)**: medido en el 77% de los golpes y en el informe
 - ✔ **5. Bola, resultado y contexto · Curvas de altura (cabeza, cadera, mano, cabeza de la raqueta) a lo largo del golpe, con su curva típica y su franja**: implementado (sin nombre de dato en la matriz)
 - ✔ **5. Bola, resultado y contexto · Fase ataque / neutra / defensa**: medido en el 100% de los golpes y en el informe
@@ -283,61 +277,66 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 - ✔ **5b. Resto de derecha · Lado del resto: iguales / ventaja**: medido en el 54% de los golpes y en el informe
 - ✔ **5b. Resto de derecha · Resto: posición de espera**: medido en el 54% de los golpes y en el informe
 - ✔ **5b. Resto de derecha · Resto: entrar hacia la bola**: medido en el 54% de los golpes y en el informe
-- ✔ **5b. Resto de derecha · Resto: split step respecto al saque**: medido en el 46% de los golpes y en el informe
-- ✔ **5b. Resto de derecha · Resto: armado corto (bloqueo) o swing completo; terminación**: medido en el 77% de los golpes y en el informe
+- ✔ **5b. Resto de derecha · Resto: split step respecto al saque**: medido en el 54% de los golpes y en el informe
+- ✔ **5b. Resto de derecha · Resto: armado corto (bloqueo) o swing completo; terminación**: medido en el 100% de los golpes y en el informe
 - ✔ **5b. Resto de derecha · Resto: dirección y profundidad de su resto**: medido en el 69% de los golpes y en el informe
 - ✔ **5b. Resto de derecha · Resto: tiempo que tiene desde el saque**: medido en el 100% de los golpes y en el informe
-- ✔ **6. Matriz del usuario · Empuje de piernas / extensión triple (tobillo, rodilla, cadera)**: medido en el 85% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **6. Matriz del usuario · Rotación pélvica**: medido en el 85% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **6. Matriz del usuario · Separación cadera–hombro (torque)**: medido en el 77% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **6. Matriz del usuario · Giro de hombros (unit turn)**: medido en el 85% de los golpes y en el informe
-- ✔ **6. Matriz del usuario · Extensión del codo**: medido en el 85% de los golpes y en el informe
-- ✔ **6. Matriz del usuario · Retraso de la muñeca (lag) y su liberación**: medido en el 62% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **6. Matriz del usuario · Cabeza estable y eje vertical**: medido en el 85% de los golpes y en el informe
-- ✔ **6. Matriz del usuario · Brazo recto o doble flexión**: medido en el 69% de los golpes y en el informe
-- ✔ **6. Matriz del usuario · Brazo libre paralelo a la línea de fondo en el giro; distancia a la bola**: medido en el 85% de los golpes y en el informe
-- ✔ **6. Matriz del usuario · Brazo libre recogido al pecho tras el contacto («catch»)**: medido en el 77% de los golpes y en el informe
-- ✔ **6. Matriz del usuario · Inclinación lateral del tronco**: medido en el 85% de los golpes y en el informe
-- ✔ **6. Matriz del usuario · Carga: flexión de rodillas**: medido en el 85% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **6. Matriz del usuario · Pie de arrastre (pie trasero que se arrastra)**: medido en el 54% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **6. Matriz del usuario · Bucle de la preparación (forma)**: medido en el 69% de los golpes y en el informe
-- ✔ **6. Matriz del usuario · Caída de la raqueta por debajo de la mano**: medido en el 77% de los golpes y en el informe
-- ✔ **6. Matriz del usuario · Cara de la raqueta en la caída y en el impacto**: medido en el 85% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **6. Matriz del usuario · Trayectoria vertical del swing (de abajo arriba)**: medido en el 77% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **6. Matriz del usuario · Apoyos abierto, semiabierto, neutro, cerrado**: medido en el 77% de los golpes y en el informe
-- ✔ **6. Matriz del usuario · Apoyo en suspensión (salto)**: medido en el 77% de los golpes y en el informe
-- ✔ **6. Matriz del usuario · Apoyo abierto extremo defensivo**: medido en el 77% de los golpes y en el informe
-- ✔ **6. Matriz del usuario · Split step**: medido en el 46% de los golpes y en el informe
-- ✔ **6. Matriz del usuario · Pasos de ajuste**: medido en el 62% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Empuje de piernas / extensión triple (tobillo, rodilla, cadera)**: medido en el 100% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **6. Matriz del usuario · Rotación pélvica**: medido en el 100% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **6. Matriz del usuario · Separación cadera–hombro (torque)**: medido en el 100% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **6. Matriz del usuario · Giro de hombros (unit turn)**: medido en el 100% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Extensión del codo**: medido en el 100% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Retraso de la muñeca (lag) y su liberación**: medido en el 77% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **6. Matriz del usuario · Cabeza estable y eje vertical**: medido en el 100% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Brazo recto o doble flexión**: medido en el 77% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Brazo libre paralelo a la línea de fondo en el giro; distancia a la bola**: medido en el 100% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Brazo libre recogido al pecho tras el contacto («catch»)**: medido en el 100% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Inclinación lateral del tronco**: medido en el 100% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Carga: flexión de rodillas**: medido en el 100% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **6. Matriz del usuario · Pie de arrastre (pie trasero que se arrastra)**: medido en el 77% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **6. Matriz del usuario · Bucle de la preparación (forma)**: medido en el 85% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Caída de la raqueta por debajo de la mano**: medido en el 100% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Cara de la raqueta en la caída y en el impacto**: medido en el 100% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **6. Matriz del usuario · Trayectoria vertical del swing (de abajo arriba)**: medido en el 100% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **6. Matriz del usuario · Apoyos abierto, semiabierto, neutro, cerrado**: medido en el 100% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Apoyo en suspensión (salto)**: medido en el 100% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Apoyo abierto extremo defensivo**: medido en el 100% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Split step**: medido en el 54% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Pasos de ajuste**: medido en el 77% de los golpes y en el informe
 - ✔ **6. Matriz del usuario · Pasos cruzados**: medido en el 100% de los golpes y en el informe
-- ✔ **6. Matriz del usuario · Paso de ataque hacia dentro de la pista (step-in)**: medido en el 62% de los golpes y en el informe
-- ✔ **6. Matriz del usuario · Pasos de recuperación (laterales o cruzados)**: medido en el 54% de los golpes y en el informe
-- ✔ **6. Matriz del usuario · Golpe plano, liftado o cortado**: medido en el 77% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **6. Matriz del usuario · Paso de ataque hacia dentro de la pista (step-in)**: medido en el 77% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Pasos de recuperación (laterales o cruzados)**: medido en el 77% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Golpe plano, liftado o cortado**: medido en el 100% de los golpes y en el informe (parcial: ver la matriz)
 - ✔ **6. Matriz del usuario · Botepronto (media volea)**: medido en el 77% de los golpes y en el informe (parcial: ver la matriz)
 - ✔ **6. Matriz del usuario · Volea de derecha**: medido en el 77% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **6. Matriz del usuario · Terminación sobre el hombro contrario**: medido en el 77% de los golpes y en el informe
-- ✔ **6. Matriz del usuario · Terminación en látigo sobre el mismo hombro (buggy whip)**: medido en el 77% de los golpes y en el informe
-- ✔ **6. Matriz del usuario · Terminación baja, a la cintura contraria**: medido en el 77% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Terminación sobre el hombro contrario**: medido en el 100% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Terminación en látigo sobre el mismo hombro (buggy whip)**: medido en el 100% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Terminación baja, a la cintura contraria**: medido en el 100% de los golpes y en el informe
 - ✔ **6. Matriz del usuario · Adaptación a bola rápida, corta, alta, abierta**: medido en el 100% de los golpes y en el informe
-- ✔ **6. Matriz del usuario · Dirección: cruzado, paralelo, dentro-fuera, dentro-dentro**: medido en el 54% de los golpes y en el informe
-- ✔ **6. Matriz del usuario · Zona de impacto: altura y separación lateral**: medido en el 85% de los golpes y en el informe
-- ✔ **6. Matriz del usuario · Equilibrio al terminar**: medido en el 77% de los golpes y en el informe
-- ✔ **6. Matriz del usuario · Latencia de reacción al golpe de la rival**: medido en el 54% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **6. Matriz del usuario · Apertura prematura de hombros (fuga de energía)**: medido en el 85% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **6. Matriz del usuario · Fuerza en dirección incorrecta (horizontal o descendente)**: medido en el 77% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **6. Matriz del usuario · Dirección: cruzado, paralelo, dentro-fuera, dentro-dentro**: medido en el 62% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Zona de impacto: altura y separación lateral**: medido en el 100% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Equilibrio al terminar**: medido en el 100% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Latencia de reacción al golpe de la rival**: medido en el 77% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **6. Matriz del usuario · Apertura prematura de hombros (fuga de energía)**: medido en el 100% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **6. Matriz del usuario · Fuerza en dirección incorrecta (horizontal o descendente)**: medido en el 100% de los golpes y en el informe (parcial: ver la matriz)
 - ✔ **6. Matriz del usuario · Superficie de la pista**: medido en el 100% de los golpes y en el informe
 - ✔ **Cada punto de la matriz del usuario tiene su sitio en la pantalla**: 59 de 59
 - ✔ **Bola rápida / lenta**: lenta 0, media 5, rápida 2, muy rápida 6 (se muestra con ≥ 12 golpes)
-- ✔ **Bola alta / baja**: rodilla 1, cadera 2, cintura-pecho 4, pecho-hombro 3, por encima del hombro 0 (se muestra con ≥ 12 golpes)
-- ✔ **Bola corta / profunda**: dentro de la pista 1, sobre la línea 4, 1-2 m detrás 4, 2-4 m detrás 1, muy atrás 0 (se muestra con ≥ 12 golpes)
-- ✔ **En carrera / parada / en salto**: parada 1, en movimiento 5, en carrera 4, deslizando 0, en el aire 0 (se muestra con ≥ 12 golpes)
-- ✔ **Cada apoyo**: abierto 4, semiabierto 1, neutro 2, cerrado 3 (se muestra con ≥ 12 golpes)
-- ✔ **Ataque / defensa**: ataque 1, neutra 5, defensa 7 (se muestra con ≥ 12 golpes)
-- ✔ **Bola subiendo / arriba / cayendo**: bola subiendo 6, bola arriba 0, bola cayendo 1 (se muestra con ≥ 12 golpes)
-- ✔ **Bola centrada / abierta**: centrada 5, abierta 4, muy abierta 1 (se muestra con ≥ 12 golpes)
+- ✔ **Bola alta / baja**: rodilla 1, cadera 4, cintura-pecho 5, pecho-hombro 3, por encima del hombro 0 (se muestra con ≥ 12 golpes)
+- ✔ **Bola corta / profunda**: dentro de la pista 2, sobre la línea 4, 1-2 m detrás 5, 2-4 m detrás 2, muy atrás 0 (se muestra con ≥ 12 golpes)
+- ✔ **En carrera / parada / en salto**: parada 1, en movimiento 7, en carrera 5, deslizando 0, en el aire 0 (se muestra con ≥ 12 golpes)
+- ✔ **Cada apoyo**: abierto 6, semiabierto 2, neutro 2, cerrado 3 (se muestra con ≥ 12 golpes)
+- ✔ **Ataque / defensa**: ataque 2, neutra 4, defensa 7 (se muestra con ≥ 12 golpes)
+- ✔ **Bola subiendo / arriba / cayendo**: bola subiendo 6, bola arriba 2, bola cayendo 1 (se muestra con ≥ 12 golpes)
+- ✔ **Bola centrada / abierta**: centrada 7, abierta 4, muy abierta 2 (se muestra con ≥ 12 golpes)
 - ✔ **Fotograma clave: espera / split step**: encontrado en el 100% de los golpes
+- ✔ **Fotograma clave: inicio de preparación**: encontrado en el 85% de los golpes
+- ✔ **Fotograma clave: armado**: encontrado en el 100% de los golpes
+- ✔ **Fotograma clave: inicio de aceleración**: encontrado en el 100% de los golpes
 - ✔ **Fotograma clave: impacto**: encontrado en el 100% de los golpes
 - ✔ **Fotograma clave: extensión**: encontrado en el 100% de los golpes
+- ✔ **Fotograma clave: terminación**: encontrado en el 100% de los golpes
+- ✔ **Fotograma clave: recuperación**: encontrado en el 100% de los golpes
 - ✔ **Impacto delante de la cadera (3D)**: 12 derechas con estimación 3D con esta medida; mediana 26.8
 - ✔ **Ángulo del swing (3D)**: 12 derechas con estimación 3D con esta medida; mediana 37.6
 - ✔ **Codo en el impacto (3D)**: 12 derechas con estimación 3D con esta medida; mediana 95.65
@@ -349,6 +348,7 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 - ✔ **Puntos de «Aprende» con su valor medido (todas sus derechas)**: 87 de 90; el resto dice por qué falta
 - ✔ **«Tu objetivo»: la consigna con su número en cada medida suya fiable**: 54 medidas con su número para copiar (las ruidosas o sesgadas no lo llevan); 76 palabras con su explicación al tocarlas; guía de primer uso y glosario comprobados
 - ✔ **La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo**: 9 de 9 fases con claves suyas fiables
+- ✔ **Golpes con su pose en el contacto: smoke_tennis-yusipopen-final-sobolenko-rybakin**: cerca 32 de 32 (100%; objetivo ≥ 95%): reveses 8 de 8, derechas 13 de 13, saques 11 de 11 · lejos (medidas de la pose para medir): reveses 17 de 20, derechas 10 de 13, saques 11 de 13
 - ✔ **Golpes inventados: precisión en F3Set ≥ 0.94**: precisión 0.942, encontrados 466 de 517 (90%) en recall_validation_detector.json
 - ✔ **Golpes encontrados frente a F3Set (detector del análisis)**: 466 de 517 golpes suyos anotados encontrados (90%; objetivo ≥ 85%) en recall_validation_detector.json
 - ✔ **Tipo de golpe frente a F3Set (anotado)**: derecha/revés con su tipo 327 de 336 (97.3%), saques 129 de 129 (100.0%); objetivo ≥ 95%; confusiones: forehand→backhand 5, forehand→overhead 2, backhand→forehand 2 (recall_validation_detector.json)
@@ -364,7 +364,7 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 - ✔ **Cada golpe tiene su vídeo**: 67 de 67 golpes con vídeo
 - ✔ **Cada golpe tiene su esqueleto fotograma a fotograma**: 67 de 67
 - ✔ **El navegador puede reproducir los vídeos**: formatos: h264
-- ✔ **Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»**: 3105 caracteres de texto, 15 vídeos, 21 gráficos
+- ✔ **Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»**: 3105 caracteres de texto, 16 vídeos, 21 gráficos
 - ✔ **Pantalla «Sus golpes (Videoteca y pista)»**: 8866 caracteres de texto, 16 vídeos, 1 gráficos
 - ✔ **Pantalla «Análisis de golpe»**: 6151 caracteres de texto, 17 vídeos, 33 gráficos
 - ✔ **Pantalla «Comparar dos golpes»**: 16472 caracteres de texto, 16 vídeos, 2 gráficos
@@ -372,7 +372,7 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 - ✔ **Pantalla «Tabla de golpes (Explorador)»**: 4815 caracteres de texto, 16 vídeos, 0 gráficos
 - ✔ **Pantalla «Vista lateral (entreno)»**: 7620 caracteres de texto, 16 vídeos, 0 gráficos
 - ✔ **Pantalla «Fiabilidad de las medidas»**: 2541 caracteres de texto, 16 vídeos, 0 gráficos
-- ✔ **Pantalla «Datos del análisis»**: 2159 caracteres de texto, 16 vídeos, 0 gráficos
+- ✔ **Pantalla «Datos del análisis»**: 2156 caracteres de texto, 16 vídeos, 0 gráficos
 - ✔ **Reproducir: «Su derecha» → ▶ Ver sus golpes típicos**: el vídeo arranca y avanza
 - ✔ **Reproducir: Videoteca → ▶ Reproducir todos**: el vídeo arranca y avanza
 - ✔ **Reproducir: Análisis de golpe → ▶**: el vídeo arranca y avanza
@@ -404,24 +404,17 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 
 ## 3. Nada inventado: valores posibles, respaldados por sus golpes; lo no medible se dice
 
+- ! **R2 Dos manos en la raqueta en la espera (≥ 80 %)**: refuta: dos manos 77%
+- ! **R21 El peso pasa del pie de atrás al de delante**: refuta: cambio mediano -0.04
+- ! **R23 La cadera llega a su máximo giro antes que los hombros**: refuta: hombros -0.06 s después de la cadera; orden completo de la cadena en el 83%
 - … **forehand: medidas que dependen de la cámara (la cámara explica ≥ 10% de su variación)**: 13 golpes con la homografía de su ventana: hacen falta al menos 40
-- … **R1 Golpe liftado de trayectoria moderada, no extrema**: pocos datos: 10 golpes con el dato (hacen falta 12)
-- … **R2 Dos manos en la raqueta en la espera (≥ 80 %)**: pocos datos: 11 golpes con el dato (hacen falta 12)
-- … **R4 Empieza a preparar antes del bote**: pocos datos: 8 golpes con el dato (hacen falta 12)
+- … **R4 Empieza a preparar antes del bote**: pocos datos: 10 golpes con el dato (hacen falta 12)
 - … **R6 Brazo libre casi extendido en el armado (codo 130-170°)**: pocos datos: 2 golpes con el dato (hacen falta 12)
-- … **R7 La mano libre pasa al lado del brazo en el armado**: pocos datos: 10 golpes con el dato (hacen falta 12)
-- … **R10 Armado completo cuando bota la bola (±0,1 s)**: pocos datos: 8 golpes con el dato (hacen falta 12)
-- … **R11 Con bola rápida sigue armando a tiempo (no más de 0,1 s más tarde)**: pocos datos: 2 golpes con el dato (hacen falta 12)
+- … **R10 Armado completo cuando bota la bola (±0,1 s)**: pocos datos: 10 golpes con el dato (hacen falta 12)
+- … **R11 Con bola rápida sigue armando a tiempo (no más de 0,1 s más tarde)**: pocos datos: 3 golpes con el dato (hacen falta 12)
 - … **R12 Con bola alta se va más hacia atrás**: pocos datos: 3 golpes con el dato (hacen falta 12)
-- … **R13 La mano cae antes de acelerar en la mayoría**: pocos datos: 10 golpes con el dato (hacen falta 12)
-- … **R14 La cadera gira hacia la pista entre armado e impacto (> 10°)**: pocos datos: 10 golpes con el dato (hacen falta 12)
 - … **R15 Contacto con el codo flexionado (doble flexión mayoritaria)**: pocos datos: 5 golpes con el dato (hacen falta 12)
-- … **R17 La terminación más frecuente es sobre el hombro**: pocos datos: 10 golpes con el dato (hacen falta 12)
-- … **R18 Preparación compacta**: pocos datos: 9 golpes con el dato (hacen falta 12)
-- … **R20 Más apoyos cerrados o neutros que el circuito (~16 %)**: pocos datos: 10 golpes con el dato (hacen falta 12)
-- … **R21 El peso pasa del pie de atrás al de delante**: pocos datos: 9 golpes con el dato (hacen falta 12)
-- … **R23 La cadera llega a su máximo giro antes que los hombros**: pocos datos: 11 golpes con el dato (hacen falta 12)
-- … **Punta de la raqueta respecto a la cabeza en el armado**: medido en 6 de 13 golpes; en «Aprende»; fiabilidad: fiable
+- … **R18 Preparación compacta**: pocos datos: 11 golpes con el dato (hacen falta 12)
 - ✔ **2. Cuerpo · Pausa entre armado y swing**: no observable desde la tele; el informe lo dice
 - ✔ **2. Cuerpo · Momento de los picos en ms**: no observable desde la tele; el informe lo dice
 - ✔ **2. Cuerpo · Rotación interna del hombro, pronación, desviaciones de la muñeca**: no observable desde la tele; el informe lo dice
@@ -451,36 +444,41 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 - ✔ **6. Matriz del usuario · Activación muscular (electromiografía)**: no observable desde la tele; el informe lo dice
 - ✔ **6. Matriz del usuario · Rangos articulares de muñeca, codo y hombro; cargas del codo**: no observable desde la tele; el informe lo dice
 - ✔ **6. Matriz del usuario · Aerodinámica, altitud, temperatura, humedad**: no observable desde la tele; el informe lo dice
+- ✔ **R1 Golpe liftado de trayectoria moderada, no extrema**: confirma: liftado 69%, inclinación mediana 44°
+- ✔ **R7 La mano libre pasa al lado del brazo en el armado**: confirma: posición lateral mediana +5
+- ✔ **R13 La mano cae antes de acelerar en la mayoría**: confirma: cae en el 62%
+- ✔ **R14 La cadera gira hacia la pista entre armado e impacto (> 10°)**: confirma: giro mediano 15°
+- ✔ **R17 La terminación más frecuente es sobre el hombro**: confirma: la más frecuente: sobre el hombro
+- ✔ **R20 Más apoyos cerrados o neutros que el circuito (~16 %)**: confirma: cerrado o neutro 38%
 - ✔ **R5 Brazo relajado (tensión muscular)**: no decidible: no se ve desde la tele: la app no lo afirma
 - ✔ **R16 Cuerdas casi hacia el suelo en el contacto**: no decidible: no se ve desde la tele: la app no lo afirma
 - ✔ **R3 Empuñadura semioccidental exacta**: no decidible: no se ve desde la tele: la app no lo afirma
 - ✔ **Valores dentro de límites físicos**: 23 medidas comprobadas en 13 golpes
-- ✔ **Cada medida comprobada: técnica o ruido (fotogramas vecinos frente a diferencias entre golpes)**: 80 medidas: 4 dudosa, 52 fiable, 13 no comprobable, 2 ruido, 1 sesgo, 8 sin juzgar. No se dan como valor suyo (ruido): impact.face_tilt ±5.85, takeback.shoulder_turn ±3.3. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga
-- ✔ **Frenado de los hombros antes del contacto**: medido en 10 de 13 golpes; en «Aprende»; fiabilidad: no comprobable
+- ✔ **Cada medida comprobada: técnica o ruido (fotogramas vecinos frente a diferencias entre golpes)**: 80 medidas: 3 dudosa, 56 fiable, 14 no comprobable, 1 ruido, 3 sesgo, 3 sin juzgar. No se dan como valor suyo (ruido): impact.face_tilt ±5.65. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga
+- ✔ **Punta de la raqueta respecto a la cabeza en el armado**: medido en 8 de 13 golpes; en «Aprende»; fiabilidad: fiable
+- ✔ **Frenado de los hombros antes del contacto**: medido en 12 de 13 golpes; en «Aprende»; fiabilidad: no comprobable
 - ✔ **Cada frase lleva cuántos golpes la respaldan y su fiabilidad**: 98 frases
 - ✔ **Lo no medible se dice**: 17 elementos en «Lo que la tele no permite medir»
 - ✔ **Validación con clips anotados (F3Set)**: camino antiguo (run_clip, no el detector del análisis; el del análisis: recall_validation) — golpes: precisión 0.917, recall 0.647; derecha/revés 0.969; dirección 0.885. Solo detección y clases: el valor de cada medida (codo, rodillas, pasos…) aún no tiene clips anotados con los que compararse
 
 ## 4. Cuerdas / orientación de la cara de la raqueta
 
-- ✔ **Cara de la raqueta: espera / split step**: en el 85% de los golpes
-- ✔ **Cara de la raqueta: inicio de preparación**: en el 69% de los golpes
-- ✔ **Cara de la raqueta: armado**: en el 77% de los golpes
-- ✔ **Cara de la raqueta: impacto**: en el 85% de los golpes (estimación interpolada, se marca así)
-- ✔ **Cara de la raqueta: terminación**: en el 77% de los golpes
+- ✔ **Cara de la raqueta: espera / split step**: en el 100% de los golpes
+- ✔ **Cara de la raqueta: inicio de preparación**: en el 85% de los golpes
+- ✔ **Cara de la raqueta: armado**: en el 100% de los golpes
+- ✔ **Cara de la raqueta: impacto**: en el 100% de los golpes (estimación interpolada, se marca así)
+- ✔ **Cara de la raqueta: terminación**: en el 100% de los golpes
 
 ## 5. 100 % automático
 
-- ✘ **Registros con fecha y duración**: 64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba_completo.log: sin «termina fecha» al final
 - ✘ **Lista de partidos: rival, torneo, ronda y fecha**: 6 partidos; sin torneo: 1 (zheng-qinwen-elena-rybakina); sin ronda: 1 (zheng-qinwen-elena-rybakina); sin fecha: 1 (zheng-qinwen-elena-rybakina)
 - ✘ **Aplicación: lo que consume abierta**: CPU media 0.03 % (máx 0.06 %; objetivo ≤ 5 %), memoria hasta 1469 MB (objetivo ≤ 800) en 8 procesos; 2026-11-12 01:26:37
-- ! **Golpes dudosos (duda sobre el golpe, no sobre una medida)**: 8 de 13 del lado cercano (62%); motivos: phase 20, elbow_implausible_at_impact 3, impact_without_audio 2, half_volley_candidate 1. Otros 5 golpes solo tienen una medida que falta (raqueta no vista, valor imposible descartado): son válidos y no cuentan como dudosos
-- ! **Orquestador: espera hasta empezar cada trabajo**: 50 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min
-- ! **Comprobaciones que saben fallar**: sin el registro de las pruebas en este PC (comprobaciones_pruebas/rec_*.json)
+- ! **Golpes dudosos (duda sobre el golpe, no sobre una medida)**: 6 de 13 del lado cercano (46%); motivos: elbow_implausible_at_impact 3, phase 3, impact_without_audio 2, half_volley_candidate 1. Otros 7 golpes solo tienen una medida que falta (raqueta no vista, valor imposible descartado): son válidos y no cuentan como dudosos
+- ! **Orquestador: espera hasta empezar cada trabajo**: 52 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min
 - ✔ **Golpes que fallaron al procesarse**: ninguno
-- ✔ **Golpes con dudas marcadas (se enseñan, no se piden)**: 20 golpes llevan dudas marcadas; el informe las enseña, no se piden al usuario
+- ✔ **Golpes con dudas marcadas (se enseñan, no se piden)**: 18 golpes llevan dudas marcadas; el informe las enseña, no se piden al usuario
 - ✔ **Nada pide revisión manual**: ningún trabajo espera al usuario en la aplicación (el clic de quién es ella no cuenta)
-- ✔ **Pruebas del código en este PC**: código 1e07b84 (2026-11-12T09:46:39): 1023 bien, 0 fallan, 0 errores
+- ✔ **Pruebas del código en este PC**: código 368c681 (2026-11-12T10:43:24): 1027 bien, 0 fallan, 0 errores
 - ✔ **Pruebas en este PC: test_pipeline**: 17 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_auto_cycle**: 15 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_pc_requests**: 9 bien, 0 fallan, 0 omitidas
@@ -511,20 +509,22 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 - ✔ **Pruebas en este PC: test_project_context**: 3 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_speed_keeps_quality**: 4 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_export_end**: 7 bien, 0 fallan, 0 omitidas
-- ✔ **Progreso visible (progreso.json)**: último: fine_doubtful de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (20/20), 17 s, quedan ≈ 0 s, a las 2026-11-12 08:27:56
-- ✔ **Tamaño de la salida (tamanos.txt)**: 50 carpetas, 38.1 GB en total (2026-11-12T10:22:16); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB
+- ✔ **Progreso visible (progreso.json)**: último: view_clips de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (102/102), 5 s, quedan ≈ 0 s, a las 2026-11-12 10:42:55
+- ✔ **Registros con fecha y duración**: 66 de 66 registros con fecha de inicio y de fin o duración
+- ✔ **Tamaño de la salida (tamanos.txt)**: 50 carpetas, 38.1 GB en total (2026-11-12T10:40:08); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB
 - ✔ **Carpetas de pruebas antiguas**: ninguna carpeta de pruebas con más de 14 días sin usar
 - ✔ **Aplicación: ventana real y pantallas**: 66 pantallas pintadas, 0 problemas; ventana real: carga
 - ✔ **Aplicación: análisis en su índice**: 2 análisis y 30 partidos en el índice de la aplicación (leído del índice, datos/tennisbio.db)
 - ✔ **Aplicación: un partido nuevo de principio a fin**: terminó 2026-11-12T01:12:58 en 78.7 min; análisis actualizado
 - ✔ **Orquestador: prueba de extremo a extremo**: 5 de 5 comprobaciones bien; termina 2026-11-11T17:19:19
-- ✔ **Orquestador: ejecutor vivo cuando hay trabajo**: ejecutor vivo; 0 trabajos esperando
+- ✔ **Orquestador: ejecutor vivo cuando hay trabajo**: ejecutor vivo; 3 trabajos esperando
 - ✔ **Partido smoke_tennis-yusipopen-final-sobolenko-rybakin: salida de cada etapa, ventanas y series**: 17 ficheros de etapa, 78 golpes con ventana y serie
 - ✔ **Informe: index.html, series y miniaturas**: 118 golpes; series que faltan 0, miniaturas que faltan 0
 - ✔ **Exportación: resumen PDF y un vídeo por golpe**: 118 vídeos
-- ✔ **Exportación terminada: exportar**: terminó el 2026-11-12 10:24:24 en 0 min: 118 vídeos de 118 golpes
+- ✔ **Exportación terminada: exportar**: terminó el 2026-11-12 10:43:37 en 0 min: 118 vídeos de 118 golpes
 - ✔ **Vista lateral: entrenamiento.json y un vídeo con esqueleto por golpe**: 91 de 91 vídeos
-- ✔ **Peticiones por GitHub Actions: espera hasta empezar**: petición del 12-11 10:23, empezó a los 0.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)
+- ✔ **Peticiones por GitHub Actions: espera hasta empezar**: petición del 12-11 10:35, empezó a los 0.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)
+- ✔ **Comprobaciones que saben fallar**: 471 de 550 tipos de comprobación con una prueba que las hace fallar; 61 sin ninguna prueba y 18 que nunca fallan en las pruebas; de las pruebas principales de la Base: 0
 
 ## 6. Sin fuentes externas (nada de vídeos de otros)
 
@@ -535,16 +535,14 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 ## 9. Rendimiento: un partido en horas, no días
 
 - ! **Etapas a la vez: smoke_tennis-yusipopen-final-sobolenko-rybakin**: todas las etapas de su última ejecución corrieron en serie
-- … **Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 91 min para 35 min de vídeo ≈ 9.1 h para un partido de 3,5 h, pero no es desde cero: releyeron sus datos guardados spotting, fine. La cifra que cuenta es «Tiempo desde cero»
+- … **Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 96 min para 35 min de vídeo ≈ 9.6 h para un partido de 3,5 h, pero no es desde cero: releyeron sus datos guardados spotting, fine. La cifra que cuenta es «Tiempo desde cero»
 - … **Tiempo desde cero**: ninguna ejecución desde cero de 20 min de vídeo o más (prueba app_nuevo o poc del PC)
 - ✔ **Tomas de cámara: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 0.7 min (objetivo ≤ 15 min)
-- ✔ **Tiempo de cada etapa frente a su ritmo en este PC: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 2 etapas comparadas con su mediana aquí; las que más tardan: players 48.2 min, score 19.2 min, court 16.6 min, scenes 2.4 min, fine 1.5 min; ninguna pasa de 2 veces su ritmo habitual
-- ✔ **Uso del PC por etapa (CPU, RAM, iGPU y disco)**: recursos_2026-11-12_0853.csv (mín/media/máx): elena-rybakina-jessica-pegula- fine (4.5 min): CPU 25/47/86 %, iGPU 0/27/94 %, RAM máx 8.8 GB → uso medio: margen para repartir trabajo; elena-rybakina-jessica-pegula- fine_doubtful (2.0 min): CPU 2/23/39 %, iGPU 0/34/100 %, RAM máx 8.4 GB → equipo infrautilizado: trabajo en serie (se puede repartir); 28.0 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa); más recientes sin muestras de una etapa en marcha (ejecuciones desde las cachés): recursos_2026-11-12_1018.csv, recursos_2026-11-12_0950.csv, recursos_2026-11-12_0938.csv
+- ✔ **Tiempo de cada etapa frente a su ritmo en este PC: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 2 etapas comparadas con su mediana aquí; las que más tardan: players 48.2 min, score 19.2 min, court 16.6 min, fine 6.4 min, scenes 2.4 min; ninguna pasa de 2 veces su ritmo habitual
+- ✔ **Uso del PC por etapa (CPU, RAM, iGPU y disco)**: recursos_2026-11-12_1035.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el score (6.5 min): CPU 20/67/100 %, iGPU 0/36/100 %, RAM máx 11.1 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el identity (2.2 min): CPU 15/49/89 %, iGPU 0/0/0 %, RAM máx 9.4 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el views (0.2 min): CPU 18/18/18 %, iGPU 0/0/0 %, RAM máx 7.5 GB → equipo infrautilizado: trabajo en serie (se puede repartir); 1.7 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa)
 
 ## 11. Cada petición del usuario en el chat (docs/peticiones_usuario.md), una a una
 
-- ✘ **#1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final**: 6 comprobaciones: 1 falta, 1 aviso, 1 pocos datos, 3 ok; la peor: «Golpes con su pose en el contacto: smoke_tennis-yusipopen-final-sobolenko-rybakin» (cerca 21 de 32 (66%; objetivo ≥ 95%): reveses 7 de 8, derechas 10 de 13, saques 4 de 11 · lejos (medidas de la pose para)
-- ✘ **#66 Fechas y duración en los registros**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba)
 - ✘ **#160 la app que hiciste completa como se arranca, se puede usar ahora? (Chat, 19-10 08:11)**: 6 comprobaciones: 1 falta, 5 ok; la peor: «Aplicación: lo que consume abierta» (CPU media 0.03 % (máx 0.06 %; objetivo ≤ 5 %), memoria hasta 1469 MB (objetivo ≤ 800) en 8 procesos; 2026-11-12 01:26:37)
 - ✘ **#176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3)**: SIN HACER según el registro (#176, docs/peticiones_usuario.md)
 - ✘ **#189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4)**: SIN HACER según el registro (#189, docs/peticiones_usuario.md)
@@ -570,6 +568,7 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 - ✘ **#255 Plano del swing: raqueta al lado o detrás del cuerpo en el armado (Vídeos de entrenadores, 12-10, pendiente)**: SIN HACER según el registro (#255, docs/peticiones_usuario.md)
 - ✘ **#257 Comparativa a fondo y catalogada con todo lo que existe: apps profesionales (Hawk-Eye/TennisViz, SwingVision, **: SIN HACER según el registro (#257, docs/peticiones_usuario.md)
 - ✘ **#258 Partidos y jugadores automáticos desde un nombre de fichero mínimo: normalizar los nombres, leer la ficha públ**: SIN HACER según el registro (#258, docs/peticiones_usuario.md)
+- ! **#1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final**: 6 comprobaciones: 1 aviso, 1 pocos datos, 4 ok; la peor: «Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin» (10 de 13 puntos de su saque vistos con su saque encontrado (77%; objetivo ≥ 85%) (1 puntos más sin nadie jugando en la c)
 - ! **#2 Ver informe y salidas en el móvil**: A MEDIAS según el registro (#2); no se comprueba en las salidas: aplazado por el usuario (móvil al final)
 - ! **#7 Empuñadura en la espera y al golpear**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 5 comprobaciones: 5 ok
 - ! **#9 Información, no tablas; profesional, «con sentido humano», nivel de las apps punteras**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 9 comprobaciones: 9 ok
@@ -578,24 +577,24 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 - ! **#15 Bajar y analizar vídeos de entrenadores de YouTube para aprender y encontrar huecos**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
 - ! **#23 Seguir a la jugadora en los cambios de lado**: 2 comprobaciones: 1 aviso, 1 ok; la peor: «Identidad en los cambios de lado: smoke_tennis-yusipopen-final-sobolenko-rybakin» (66 de 67 planos decididos (99%; objetivo ≥ 95%); cambios de lado del marcador y ropa de acuerdo en 57 de 66 planos con l)
 - ! **#25 Métricas por derecha: apoyo, base, rodillas, cadera, hombros, X-factor, codo, impacto, cadena, pista**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 5 comprobaciones: 5 ok
-- ! **#26 Fases y cadena completa, del salto inicial a la terminación**: 8 comprobaciones: 5 aviso, 3 ok; la peor: «Fotograma clave: inicio de preparación» (encontrado en el 69% de los golpes)
-- ! **#33 Capturas de los mejores golpes de cada tipo y N imágenes de un golpe**: 8 comprobaciones: 5 aviso, 3 ok; la peor: «Fotograma clave: inicio de preparación» (encontrado en el 69% de los golpes)
 - ! **#36 Mano y antebrazo, cierre de la muñeca**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok
 - ! **#41 Exportación: cómo se ven y se graban**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok
 - ! **#51 El código de la prueba es el de los casos reales**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
 - ! **#55 Ver una bola cerca de la red y un apoyo cerrado con golpe paralelo**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
 - ! **#58 La IA más moderna posible**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 15 comprobaciones: 15 ok
 - ! **#64 Todos los tipos de desplazamiento, del split step a la recuperación, con cada tipo de paso; «hay que hacer la **: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 10 comprobaciones: 10 ok
+- ! **#71 El conocimiento de los vídeos de entrenadores en la web**: a medias según el registro (ver docs/peticiones_usuario.md); 21 comprobaciones: 3 aviso, 7 pocos datos, 11 ok; la peor: «R2 Dos manos en la raqueta en la espera (≥ 80 %)» (refuta: dos manos 77%)
 - ! **#73 Revisar la web de arriba abajo para que aporte valor**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 22 comprobaciones: 22 ok
 - ! **#74 ¿El análisis de las apps de pago y libres fue profundo o superficial?**: A MEDIAS según el registro (#74); no se comprueba en las salidas: análisis documental (docs/comparativa_apps.md), no una salida
-- ! **#76 «Un 50 % de golpes dudosos»**: 1 comprobaciones: 1 aviso; la peor: «Golpes dudosos (duda sobre el golpe, no sobre una medida)» (8 de 13 del lado cercano (62%); motivos: phase 20, elbow_implausible_at_impact 3, impact_without_audio 2, half_volley_ca)
+- ! **#76 «Un 50 % de golpes dudosos»**: 1 comprobaciones: 1 aviso; la peor: «Golpes dudosos (duda sobre el golpe, no sobre una medida)» (6 de 13 del lado cercano (46%); motivos: elbow_implausible_at_impact 3, phase 3, impact_without_audio 2, half_volley_can)
 - ! **#78 No depender de que al usuario se le ocurran funciones**: A MEDIAS según el registro (#78); no se comprueba en las salidas: proceso: Claude propone las funciones desde la matriz y los entrenadores
 - ! **#84 Matriz §1 Cadena cinética (suelo → pelvis → separación → tronco → codo → muñeca)**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 10 comprobaciones: 10 ok
 - ! **#88 Matriz §5 Pies (split, ajuste, cruzado, paso de ataque, recuperación)**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 8 comprobaciones: 8 ok
 - ! **#95 Matriz §12 Neuro y visión (latencia, mirada, EMG)**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok
 - ! **#100 Mejora 2: raqueta al lado del cuerpo o detrás de la espalda, y adónde apunta la punta**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
 - ! **#109 Mejora 11: frases con datos existentes (mano libre, terminación, base al terminar, desplazarse bajo)**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 4 comprobaciones: 4 ok
-- ! **#119 Automatizar todo el ciclo en el PC: el usuario no lanza pruebas ni avisa**: a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (50 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min)
+- ! **#113 Mejora 15: examen interno con las afirmaciones de entrenadores (R1-R25)**: a medias según el registro (ver docs/peticiones_usuario.md); 19 comprobaciones: 3 aviso, 7 pocos datos, 9 ok; la peor: «R2 Dos manos en la raqueta en la espera (≥ 80 %)» (refuta: dos manos 77%)
+- ! **#119 Automatizar todo el ciclo en el PC: el usuario no lanza pruebas ni avisa**: a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (52 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min)
 - ! **#124 Hacia dónde mira el tronco y las manos en la espera, medidas fiables**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
 - ! **#130 Resto de derecha (devolver el saque) con todas sus variantes, en la matriz y en la aplicación**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 12 comprobaciones: 12 ok
 - ! **#131 detectar impactos de bola por AUDIO (Chat, 10-10 17:27)**: sin comprobación automática asignada
@@ -656,11 +655,11 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 - ! **#234 Prueba de valor de la aplicación con los datos reales**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok
 - ! **#235 Cadena cinética, footwork y timing: lo que define el golpe**: A MEDIAS según el registro (#235); sin comprobación automática asignada
 - ! **#236 Huellas numeradas sobre los pies y patrones de pasos**: A MEDIAS según el registro (#236); sin comprobación automática asignada
-- ! **#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min**: a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (50 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min)
+- ! **#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min**: a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (52 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min)
 - ! **#238 La validación es siempre automática; el usuario no valida la aplicación**: A MEDIAS según el registro (#238); sin comprobación automática asignada
 - ! **#239 No se descarta ninguna petición**: sin comprobación automática asignada
 - ! **#243 Todos los escenarios del producto los contempla Claude sin esperar a que se pidan**: A MEDIAS según el registro (#243); sin comprobación automática asignada
-- ! **#246 Un único orquestador: mismo código y misma fuente de datos para la aplicación y el chat; monitorizar, pausar, **: a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (50 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min)
+- ! **#246 Un único orquestador: mismo código y misma fuente de datos para la aplicación y el chat; monitorizar, pausar, **: a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (52 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min)
 - ! **#247 No lanzar los partidos completos con fallos conocidos: arreglar todo antes (Chat, 09-11)**: A MEDIAS según el registro (#247); sin comprobación automática asignada
 - ! **#248 Velocidad sin perder calidad ni puntuación: un partido de 3,5 h desde cero en una noche (≤ 8 h) (Chat, 10-11)**: A MEDIAS según el registro (#248); sin comprobación automática asignada
 - ! **#249 Parar el PC a distancia al momento, sin tener que apagarlo (Chat, 09-11)**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
@@ -671,7 +670,7 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 - ! **#259 Saber dónde se va el tiempo de cada etapa, medido desde cero, y demostrar con medidas si cada etapa puede ir m**: A MEDIAS según el registro (#259); sin comprobación automática asignada
 - ! **#260 Revisar de verdad todo el bloque Base, no solo la velocidad: en cada tarea, si su prueba mide lo pedido, si fa**: sin comprobación automática asignada
 - … **#4 Responder de forma profesional a «¿qué hay que hacer para pegar como X?», con todas las posibilidades y como b**: a medias según el registro (ver docs/peticiones_usuario.md); 201 comprobaciones: 33 pocos datos, 168 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)
-- … **#5 Taxonomía completa con todas las variantes (bola rápida/lenta, alta/baja, corta/profunda, carrera/parada/salto**: a medias según el registro (ver docs/peticiones_usuario.md); 32 comprobaciones: 17 pocos datos, 15 ok; la peor: «Golpe angulado (#132)» (0 golpes de 13 (la clase «Golpe angulado» se pudo decidir en 5; sin señal, ninguna clase: nunca se inventa); sin golpes )
+- … **#5 Taxonomía completa con todas las variantes (bola rápida/lenta, alta/baja, corta/profunda, carrera/parada/salto**: a medias según el registro (ver docs/peticiones_usuario.md); 32 comprobaciones: 17 pocos datos, 15 ok; la peor: «Golpe angulado (#132)» (0 golpes de 13 (la clase «Golpe angulado» se pudo decidir en 7; sin señal, ninguna clase: nunca se inventa); sin golpes )
 - … **#6 Juego de pies: split step, primer paso, ajuste, reacción, recuperación**: a medias según el registro (ver docs/peticiones_usuario.md); 35 comprobaciones: 1 pocos datos, 34 ok; la peor: «3. Pies y desplazamiento · Presencia del split» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)
 - … **#11 Validar solo que las salidas reales tienen todo lo pedido y todos los casos del modelo y la taxonomía**: a medias según el registro (ver docs/peticiones_usuario.md); 191 comprobaciones: 25 pocos datos, 166 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)
 - … **#14 Rendimiento: un partido en horas, no días**: a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 pocos datos, 1 ok; la peor: «Tiempo desde cero» (ninguna ejecución desde cero de 20 min de vídeo o más (prueba app_nuevo o poc del PC))
@@ -687,27 +686,23 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 - … **#38 Dirección y profundidad del golpe**: 6 comprobaciones: 3 pocos datos, 3 ok; la peor: «5. Bola, resultado y contexto · Bote: profundidad, anchura, dentro/fuera» (se mide (69% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)
 - … **#39 Lado del fondo de la pista**: 1 comprobaciones: 1 pocos datos; la peor: «forehand: golpes analizados» (13 del lado cercano (con todo el detalle), 13 del lejano; con menos de 20 muchas situaciones no se pueden describir)
 - … **#47 Modelo técnico con fuentes; cómo saber si está completo**: 169 comprobaciones: 16 pocos datos, 153 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)
-- … **#59 Diferencias solo por encima del error y en situaciones equivalentes**: 6 comprobaciones: 1 pocos datos, 5 ok; la peor: «Punta de la raqueta respecto a la cabeza en el armado» (medido en 6 de 13 golpes; en «Aprende»; fiabilidad: fiable)
 - … **#68 La meta: mejorar mi derecha tomando la de X como base**: a medias según el registro (ver docs/peticiones_usuario.md); 8 comprobaciones: 1 pocos datos, 7 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 7 parecidos; 87 de 90 puntos con su valor medido)
 - … **#69 Ejemplo: «derecha paralela, apoyo cerrado, parada, bola plana, lado derecho» (cómo lo hace ella y cómo replica**: a medias según el registro (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 pocos datos; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 7 parecidos; 87 de 90 puntos con su valor medido)
 - … **#70 Las 2000 y pico combinaciones, usables y validadas**: a medias según el registro (ver docs/peticiones_usuario.md); 10 comprobaciones: 9 pocos datos, 1 ok; la peor: «Bola rápida / lenta: cada medida en cada nivel» (73 medidas × 4 niveles = 292 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: lenta 0, media 5, ráp)
-- … **#71 El conocimiento de los vídeos de entrenadores en la web**: a medias según el registro (ver docs/peticiones_usuario.md); 21 comprobaciones: 16 pocos datos, 5 ok; la peor: «R1 Golpe liftado de trayectoria moderada, no extrema» (pocos datos: 10 golpes con el dato (hacen falta 12))
 - … **#72 El conocimiento del chat (modelo técnico, taxonomía, matriz) implementado en la web, no solo en documentos**: a medias según el registro (ver docs/peticiones_usuario.md); 170 comprobaciones: 16 pocos datos, 154 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)
 - … **#75 Velocidad: «10 golpes en 5 horas es absurdo»**: a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 pocos datos, 1 ok; la peor: «Tiempo desde cero» (ninguna ejecución desde cero de 20 min de vídeo o más (prueba app_nuevo o poc del PC))
 - … **#79 Vídeos de entrenamiento con otras cámaras, en un apartado aparte y marcado**: a medias según el registro (ver docs/peticiones_usuario.md); 20 comprobaciones: 11 pocos datos, 9 ok; la peor: «Derechas filmadas de lado» (6 (se resume cada medida con 12 o más))
 - … **#85 Matriz §2 Cuerpo (cabeza, brazos, tronco, piernas, pie de arrastre)**: a medias según el registro (ver docs/peticiones_usuario.md); 14 comprobaciones: 4 pocos datos, 10 ok; la peor: «6. Matriz del usuario · Rodilla de atrás en la carga (110–130°) y de delante en el impacto» (vista lateral de entrenamiento: back_knee_loaded_deg en 6 derechas de lado, front_knee_impact_deg en 6 derechas de lado;)
 - … **#86 Matriz §3 Raqueta (bucle, caída, cara, trayectoria)**: a medias según el registro (ver docs/peticiones_usuario.md); 13 comprobaciones: 2 pocos datos, 11 ok; la peor: «6. Matriz del usuario · Caída de la raqueta por debajo de la bola» (vista lateral de entrenamiento: racket_drop_below_contact_cm en 6 derechas de lado; se resume con 12 o más)
 - … **#89 Matriz §6 Modalidades (plano, liftado, cortado, botepronto, volea, 3 terminaciones)**: a medias según el registro (ver docs/peticiones_usuario.md); 8 comprobaciones: 1 pocos datos, 7 ok; la peor: «Botepronto / media volea: casos (#16)» (1 golpes de 13 (la clase «Contacto» se pudo decidir en 10; sin señal, ninguna clase: nunca se inventa); candidatos marca)
-- … **#90 Matriz §7 Adaptación a la bola (rápida, corta, alta, lateral)**: a medias según el registro (ver docs/peticiones_usuario.md); 16 comprobaciones: 7 pocos datos, 9 ok; la peor: «Golpe angulado (#132)» (0 golpes de 13 (la clase «Golpe angulado» se pudo decidir en 5; sin señal, ninguna clase: nunca se inventa); sin golpes )
-- … **#91 Matriz §8 Dirección (cruzado, paralelo, dentro-fuera, dentro-dentro)**: a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 2 pocos datos, 1 ok; la peor: «Dirección del golpe» (cruzada 1, paralela 1, al centro 3, invertida cruzada 0, invertida paralela 1, invertida al centro 1 (se muestra con ≥ 1)
+- … **#90 Matriz §7 Adaptación a la bola (rápida, corta, alta, lateral)**: a medias según el registro (ver docs/peticiones_usuario.md); 16 comprobaciones: 7 pocos datos, 9 ok; la peor: «Golpe angulado (#132)» (0 golpes de 13 (la clase «Golpe angulado» se pudo decidir en 7; sin señal, ninguna clase: nunca se inventa); sin golpes )
+- … **#91 Matriz §8 Dirección (cruzado, paralelo, dentro-fuera, dentro-dentro)**: a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 2 pocos datos, 1 ok; la peor: «Dirección del golpe» (cruzada 2, paralela 1, al centro 3, invertida cruzada 0, invertida paralela 1, invertida al centro 1 (se muestra con ≥ 1)
 - … **#92 Matriz §9 Control (zona de impacto, relajación, equilibrio)**: a medias según el registro (ver docs/peticiones_usuario.md); 4 comprobaciones: 1 pocos datos, 3 ok; la peor: «6. Matriz del usuario · Zona de impacto: delante de la cadera» (vista lateral de entrenamiento: contact_in_front_pct en 6 derechas de lado; se resume con 12 o más)
 - … **#97 Matriz §14 Fugas de energía (apertura prematura, casting, vector)**: a medias según el registro (ver docs/peticiones_usuario.md); 4 comprobaciones: 1 pocos datos, 3 ok; la peor: «6. Matriz del usuario · Liberación anticipada de la muñeca («casting»)» (vista lateral de entrenamiento: lag_accel_deg en 5 derechas de lado, lag_pre_impact_deg en 6 derechas de lado; se resume)
-- … **#102 Mejora 4: punta de la raqueta respecto a la cabeza en el armado**: 1 comprobaciones: 1 pocos datos; la peor: «Punta de la raqueta respecto a la cabeza en el armado» (medido en 6 de 13 golpes; en «Aprende»; fiabilidad: fiable)
 - … **#107 Mejora 9: caída por debajo de la bola**: a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 pocos datos; la peor: «6. Matriz del usuario · Caída de la raqueta por debajo de la bola» (vista lateral de entrenamiento: racket_drop_below_contact_cm en 6 derechas de lado; se resume con 12 o más)
-- … **#113 Mejora 15: examen interno con las afirmaciones de entrenadores (R1-R25)**: a medias según el registro (ver docs/peticiones_usuario.md); 19 comprobaciones: 16 pocos datos, 3 ok; la peor: «R1 Golpe liftado de trayectoria moderada, no extrema» (pocos datos: 10 golpes con el dato (hacen falta 12))
 - … **#118 Validar cada medida de forma automática, no a mano: ¿técnica o ruido?**: 2 comprobaciones: 1 pocos datos, 1 ok; la peor: «forehand: medidas que dependen de la cámara (la cámara explica ≥ 10% de su variación)» (13 golpes con la homografía de su ventana: hacen falta al menos 40)
 - … **#125 Velocidad, rendimiento y algoritmia antes del tramo largo nocturno**: a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 pocos datos, 1 ok; la peor: «Tiempo desde cero» (ninguna ejecución desde cero de 20 min de vídeo o más (prueba app_nuevo o poc del PC))
-- … **#132 ángulos (golpe angulado) — repetido el 19-10 08:11: «golpe angulado ... te lo he dicho muchas veces» (Chat, 10**: 2 comprobaciones: 1 pocos datos, 1 ok; la peor: «Golpe angulado (#132)» (0 golpes de 13 (la clase «Golpe angulado» se pudo decidir en 5; sin señal, ninguna clase: nunca se inventa); sin golpes )
+- … **#132 ángulos (golpe angulado) — repetido el 19-10 08:11: «golpe angulado ... te lo he dicho muchas veces» (Chat, 10**: 2 comprobaciones: 1 pocos datos, 1 ok; la peor: «Golpe angulado (#132)» (0 golpes de 13 (la clase «Golpe angulado» se pudo decidir en 7; sin señal, ninguna clase: nunca se inventa); sin golpes )
 - … **#134 prefiero una baseline completa a cerrar más golpes (Chat, 11-10 18:06)**: 2 comprobaciones: 1 pocos datos, 1 ok; la peor: «forehand: golpes analizados» (13 del lado cercano (con todo el detalle), 13 del lejano; con menos de 20 muchas situaciones no se pueden describir)
 - … **#151 como se separan los golpes (derecha, reves, saque, voleas), los jugadores, los partidos (Chat, 17-10 17:25)**: a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 pocos datos, 2 ok; la peor: «forehand: golpes analizados» (13 del lado cercano (con todo el detalle), 13 del lejano; con menos de 20 muchas situaciones no se pueden describir)
 - … **#157 bola corta baja cerca de la red (Chat, 19-10 08:11)**: 1 comprobaciones: 1 pocos datos; la peor: «Bola corta baja cerca de la red (#157)» (0 golpes de 13 (la clase «Bola corta cerca de la red» se pudo decidir en 0; sin señal, ninguna clase: nunca se inventa);)
@@ -720,11 +715,13 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 - ✔ **#10 Ver los cambios en la prueba rápida, sin 1 h**: 12 comprobaciones: 12 ok
 - ✔ **#19 Vídeos y salidas fuera del repo, rutas por configuración**: 1 comprobaciones: 1 ok
 - ✔ **#24 OCR del marcador y presión**: 1 comprobaciones: 1 ok
+- ✔ **#26 Fases y cadena completa, del salto inicial a la terminación**: 8 comprobaciones: 8 ok
 - ✔ **#27 Agregados por partido y set, fatiga, ganadores y errores, presión**: 1 comprobaciones: 1 ok
 - ✔ **#28 Informe HTML con gráficos y esqueleto**: 2 comprobaciones: 2 ok
 - ✔ **#30 Estado del arte: igual, mejor o peor que otras apps**: 1 comprobaciones: 1 ok
 - ✔ **#31 Procesado incremental al añadir vídeos**: 1 comprobaciones: 1 ok
 - ✔ **#32 Ampliable a otros golpes y jugadores**: 2 comprobaciones: 2 ok
+- ✔ **#33 Capturas de los mejores golpes de cada tipo y N imágenes de un golpe**: 8 comprobaciones: 8 ok
 - ✔ **#34 Maqueta con datos inventados, con apoyos**: no se comprueba en las salidas: maqueta (docs/maqueta-informe.html), no una salida
 - ✔ **#40 Scripts de instalación, uso rápido y completo, sin leer nada**: 1 comprobaciones: 1 ok
 - ✔ **#42 Un golpe no son 8 pantallazos: vídeo y más**: 11 comprobaciones: 11 ok
@@ -740,7 +737,9 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 - ✔ **#54 Qué hace ella cuando la rival golpea, la bola cruza la red, bota y llega arriba**: 2 comprobaciones: 2 ok
 - ✔ **#56 Barras horizontales con la diferencia de altura de la cabeza**: 1 comprobaciones: 1 ok
 - ✔ **#57 Nada de gráficas de muchas líneas ni tablas sin frases**: 9 comprobaciones: 9 ok
+- ✔ **#59 Diferencias solo por encima del error y en situaciones equivalentes**: 6 comprobaciones: 6 ok
 - ✔ **#65 El play del vídeo funciona (no solo un fotograma)**: 11 comprobaciones: 11 ok
+- ✔ **#66 Fechas y duración en los registros**: 2 comprobaciones: 2 ok
 - ✔ **#67 No borrar el trabajo hecho: lo complejo como extra**: 13 comprobaciones: 13 ok
 - ✔ **#77 No lanzar pruebas de 6 h para validar**: 2 comprobaciones: 2 ok
 - ✔ **#80 Encadenar solo la prueba y las comprobaciones; que Claude lo monitorice**: 1 comprobaciones: 1 ok
@@ -751,6 +750,7 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 - ✔ **#98 Matriz §15 Contexto y ambiente (superficie, aerodinámica)**: 2 comprobaciones: 2 ok
 - ✔ **#99 Mejora 1 (entrenadores): líneas dibujadas sobre el fotograma**: 1 comprobaciones: 1 ok
 - ✔ **#101 Mejora 3: altura y separación del codo**: 1 comprobaciones: 1 ok
+- ✔ **#102 Mejora 4: punta de la raqueta respecto a la cabeza en el armado**: 1 comprobaciones: 1 ok
 - ✔ **#103 Mejora 5: transferencia de peso en una frase**: 1 comprobaciones: 1 ok
 - ✔ **#104 Mejora 6: empuje de piernas («bajar y subir»)**: 2 comprobaciones: 2 ok
 - ✔ **#105 Mejora 7: ritmo con la bola (caída al subir la bola)**: 1 comprobaciones: 1 ok
