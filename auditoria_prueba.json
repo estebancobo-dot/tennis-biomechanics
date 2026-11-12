@@ -5,8 +5,8 @@
  "summary": {
   "ok": 384,
   "falta": 35,
-  "pocos datos": 109,
-  "aviso": 114
+  "pocos datos": 110,
+  "aviso": 113
  },
  "items": [
   {
@@ -2940,7 +2940,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "2156 caracteres de texto, 16 vídeos, 0 gráficos",
+   "detail": "2159 caracteres de texto, 16 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -3482,7 +3482,7 @@
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "50 carpetas, 38.1 GB en total (2026-11-12T08:30:10); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB"
+   "detail": "50 carpetas, 38.1 GB en total (2026-11-12T09:30:09); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB"
   },
   {
    "req": 5,
@@ -3538,14 +3538,14 @@
    "area": "Orquestador",
    "name": "Orquestador: ejecutor vivo cuando hay trabajo",
    "status": "ok",
-   "detail": "ejecutor vivo; 2 trabajos esperando"
+   "detail": "ejecutor vivo; 0 trabajos esperando"
   },
   {
    "req": 5,
    "area": "Orquestador",
    "name": "Orquestador: espera hasta empezar cada trabajo",
    "status": "aviso",
-   "detail": "42 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min"
+   "detail": "46 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min"
   },
   {
    "req": 5,
@@ -3573,7 +3573,7 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar",
    "status": "ok",
-   "detail": "terminó el 2026-11-12 08:28:51 en 0 min: 118 vídeos de 118 golpes"
+   "detail": "terminó el 2026-11-12 09:28:57 en 0 min: 118 vídeos de 118 golpes"
   },
   {
    "req": 2,
@@ -3726,15 +3726,15 @@
    "req": 9,
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
-   "status": "aviso",
-   "detail": "recursos_2026-11-12_0824.csv sin muestras con su etapa (ni las 9 anteriores)"
+   "status": "ok",
+   "detail": "recursos_2026-11-12_0853.csv (mín/media/máx): elena-rybakina-jessica-pegula- fine (4.5 min): CPU 25/47/86 %, iGPU 0/27/94 %, RAM máx 8.8 GB → uso medio: margen para repartir trabajo; elena-rybakina-jessica-pegula- fine_doubtful (2.0 min): CPU 2/23/39 %, iGPU 0/34/100 %, RAM máx 8.4 GB → equipo infrautilizado: trabajo en serie (se puede repartir); 27.8 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa)"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
    "status": "ok",
-   "detail": "petición del 12-11 08:24, empezó a los 0.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
+   "detail": "petición del 12-11 09:15, empezó a los 13.0 min; el PC estaba con otro trabajo hasta las 09:28 (13.2 min, no cuentan), empezó 0.0 min después de quedar libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
   },
   {
    "req": 1,
@@ -4553,7 +4553,7 @@
    "area": "Peticiones",
    "name": "#119 Automatizar todo el ciclo en el PC: el usuario no lanza pruebas ni avisa",
    "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (42 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (46 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min)"
   },
   {
    "req": 11,
@@ -5308,8 +5308,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#230 Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo",
-   "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 4 comprobaciones: 1 aviso, 1 pocos datos, 2 ok; la peor: «Uso del PC por etapa (CPU, RAM, iGPU y disco)» (recursos_2026-11-12_0824.csv sin muestras con su etapa (ni las 9 anteriores))"
+   "status": "pocos datos",
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 4 comprobaciones: 1 pocos datos, 3 ok; la peor: «Tiempo desde cero» (ninguna ejecución desde cero de 20 min de vídeo o más (prueba app_nuevo o poc del PC))"
   },
   {
    "req": 11,
@@ -5358,7 +5358,7 @@
    "area": "Peticiones",
    "name": "#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min",
    "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (42 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (46 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min)"
   },
   {
    "req": 11,
@@ -5421,7 +5421,7 @@
    "area": "Peticiones",
    "name": "#246 Un único orquestador: mismo código y misma fuente de datos para la aplicación y el chat; monitorizar, pausar, ",
    "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (42 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (46 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min)"
   },
   {
    "req": 11,
@@ -5525,8 +5525,8 @@
    "req": 5,
    "area": "Automático",
    "name": "Comprobaciones que saben fallar",
-   "status": "ok",
-   "detail": "470 de 549 tipos de comprobación con una prueba que las hace fallar; 61 sin ninguna prueba y 18 que nunca fallan en las pruebas; de las pruebas principales de la Base: 0"
+   "status": "aviso",
+   "detail": "sin el registro de las pruebas en este PC (comprobaciones_pruebas/rec_*.json)"
   }
  ]
 }

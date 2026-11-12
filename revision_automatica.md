@@ -1,6 +1,6 @@
 # Revisión automática: REGRESIÓN
 
-384 cumplidos · 35 no cumplidos · 109 sin golpes suficientes · 114 avisos (antes: 385 cumplidos, 30 no cumplidos)
+384 cumplidos · 35 no cumplidos · 110 sin golpes suficientes · 113 avisos (antes: 384 cumplidos, 35 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 135 de 260
 
@@ -183,12 +183,9 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 
 ## Empeora respecto a la ejecución anterior
 
-- **Pruebas del código en este PC**: ok → falta: código ef822ad (2026-11-12T08:30:51): 1020 bien, 2 fallan, 0 errores; fallan: tests/test_stage_code.py::test_stage_code_changes_come_with_a_version, tests/test_views.py::test_existing_outputs_and_stag
-- **#13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe**: aviso → falta: a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código ef822ad (2026-11-12T08:30:51): 1020 bien, 2 fallan, 0 err
-- **#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML**: pocos datos → falta: 3 comprobaciones: 1 falta, 1 pocos datos, 1 ok; la peor: «Pruebas del código en este PC» (código ef822ad (2026-11-12T08:30:51): 1020 bien, 2 fallan, 0 errores; fallan: tests/test_stage_code.py::test_s
-- **#51 El código de la prueba es el de los casos reales**: aviso → falta: a medias según el registro (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código ef822ad (2026-11-12T08:30:51): 1020 bien, 2 fallan, 0 errores; 
-- **#241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código**: ok → falta: 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código ef822ad (2026-11-12T08:30:51): 1020 bien, 2 fallan, 0 errores; fallan: tests/test_stage_code.py::test_stage_code_)
+- **Comprobaciones que saben fallar**: ok → aviso: sin el registro de las pruebas en este PC (comprobaciones_pruebas/rec_*.json)
 
 ## Mejora
 
-- Comprobaciones que saben fallar: aviso → ok
+- Uso del PC por etapa (CPU, RAM, iGPU y disco): aviso → ok
+- #230 Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo: aviso → pocos datos

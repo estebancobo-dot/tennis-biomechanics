@@ -42,7 +42,7 @@
 
 Lo que le falta a cada paquete de la Base para cerrarse:
 
-- **B1**: prueba principal: Tiempo desde cero: pocos datos, Uso del PC por etapa (CPU, RAM, iGPU y disco): aviso; peticiones sin comprobar o que fallan: #14, #29, #75, #125, #137, #230, #231, #237
+- **B1**: prueba principal: Tiempo desde cero: pocos datos; peticiones sin comprobar o que fallan: #14, #29, #75, #125, #137, #230, #231, #237
 - **B2**: peticiones sin comprobar o que fallan: #13, #225
 - **B3**: peticiones sin comprobar o que fallan: #58
 - **B4**: prueba principal: Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin: aviso, Cobertura del saque dicha en el informe: aviso; peticiones sin comprobar o que fallan: #23, #151, #155, #205, #218
@@ -277,7 +277,7 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 | 226 | Lista de partidos profesional: nombres normalizados, torneo, ronda, fecha, fotos; sin prue | B7 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 falta; la peor: «Lista de partidos: rival, torneo, ronda y  |
 | 227 | Pantalla completa en la aplicación (24-10 10:36) | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 229 | Renombrar el vídeo no rompe nada; el partido se identifica por su contenido (25-10 13:21-1 | B7 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
-| 230 | Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo (26-10 12 | B1 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 4 comprobaciones: 1 aviso, 1 pocos datos, 2 ok; la peor: «Uso del PC por etapa  |
+| 230 | Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo (26-10 12 | B1 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 4 comprobaciones: 1 pocos datos, 3 ok; la peor: «Tiempo desde cero» (ninguna ej |
 | 231 | Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta (26-10 11: | B1 | HECHO | 2 comprobación que falla | 4 comprobaciones: 1 pocos datos, 3 ok; la peor: «Tiempo desde cero» (ninguna ejecución desde cero de 20 min de vídeo o más (prueba app_nuevo |
 | 232 | Ningún proceso que se pueda colgar sin probar; la exportación del revés se colgó (27-10 09 | B2 | HECHO | 3 comprobado en salidas | 5 comprobaciones: 5 ok |
 | 233 | Una referencia completa y medida antes de validar nada (26-10 11:09) | B6 | HECHO | 2 comprobación que falla | 2 comprobaciones: 1 pocos datos, 1 ok; la peor: «forehand: golpes analizados» (13 del lado cercano (con todo el detalle), 13 del lejano; con |
