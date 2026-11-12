@@ -1,13 +1,32 @@
 {
- "at": "2026-11-12 08:20:36",
- "firma": "c984f07571c6",
+ "at": "2026-11-12 08:25:11",
+ "firma": "b5e64c2e6459",
  "ejecutor": {
   "vivo": true,
-  "pid": 10440,
-  "at": 1794468028.8010166
+  "pid": 5712,
+  "at": 1794468309.7851634
  },
  "pausa": false,
- "en_curso": [],
+ "en_curso": [
+  {
+   "id": 71,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script validate_recall --spotter --tag v13 --from base",
+   "state": "en curso",
+   "message": "",
+   "created": "2026-11-12 08:25:06",
+   "started": "2026-11-12 08:25:09",
+   "finished": null,
+   "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"v13\", \"--from\", \"base\"]",
+   "source": "claude 228",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_71.log",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "fine_doubtful",
@@ -293,6 +312,55 @@
  ],
  "eventos": [
   {
+   "id": 334,
+   "job": 71,
+   "at": "2026-11-12 08:25:09",
+   "kind": "empieza",
+   "text": "script validate_recall --spotter --tag v13 --from base"
+  },
+  {
+   "id": 333,
+   "job": 71,
+   "at": "2026-11-12 08:25:06",
+   "kind": "enviado",
+   "text": "tennisbio script validate_recall --spotter --tag v13 --from base (claude 228)"
+  },
+  {
+   "id": 332,
+   "job": null,
+   "at": "2026-11-12 08:24:29",
+   "kind": "ejecutor",
+   "text": "arranca (pid 5712)"
+  },
+  {
+   "id": 331,
+   "job": null,
+   "at": "2026-11-12 08:24:28",
+   "kind": "ejecutor",
+   "text": "arranca el siguiente con el código nuevo (pid 18952)"
+  },
+  {
+   "id": 330,
+   "job": null,
+   "at": "2026-11-12 08:24:28",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 329,
+   "job": null,
+   "at": "2026-11-12 08:24:28",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 328,
+   "job": null,
+   "at": "2026-11-12 08:24:25",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
    "id": 327,
    "job": null,
    "at": "2026-11-12 08:20:28",
@@ -452,55 +520,6 @@
    "at": "2026-11-12 07:50:08",
    "kind": "cancelado",
    "text": ""
-  },
-  {
-   "id": 304,
-   "job": 68,
-   "at": "2026-11-12 07:50:07",
-   "kind": "cancelar",
-   "text": "claude 226"
-  },
-  {
-   "id": 303,
-   "job": 68,
-   "at": "2026-11-12 07:26:17",
-   "kind": "empieza",
-   "text": "script validate_recall --spotter --tag bola --set fine_pass.ball_from_spotting=true"
-  },
-  {
-   "id": 302,
-   "job": 67,
-   "at": "2026-11-12 07:26:17",
-   "kind": "hecho",
-   "text": "código 0"
-  },
-  {
-   "id": 301,
-   "job": 68,
-   "at": "2026-11-12 04:07:14",
-   "kind": "enviado",
-   "text": "tennisbio script validate_recall --spotter --tag bola --set fine_pass.ball_from_spotting=true (claude 224)"
-  },
-  {
-   "id": 300,
-   "job": 67,
-   "at": "2026-11-12 04:06:58",
-   "kind": "empieza",
-   "text": "script validate_recall --spotter --tag base"
-  },
-  {
-   "id": 299,
-   "job": 67,
-   "at": "2026-11-12 04:06:54",
-   "kind": "enviado",
-   "text": "tennisbio script validate_recall --spotter --tag base (claude 223)"
-  },
-  {
-   "id": 298,
-   "job": null,
-   "at": "2026-11-12 04:06:38",
-   "kind": "ejecutor",
-   "text": "arranca (pid 13008)"
   }
  ]
 }
