@@ -1,24 +1,13 @@
 {
- "at": "2026-11-12 15:35:37",
- "firma": "b4aae19c5faf",
+ "at": "2026-11-12 15:35:46",
+ "firma": "5df062afdcec",
  "ejecutor": {
   "vivo": true,
   "pid": 14256,
-  "at": 1794494130.5818634
+  "at": 1794494146.6129
  },
  "pausa": false,
- "en_curso": [],
- "progreso": {
-  "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
-  "etapa": "fine_doubtful",
-  "hecho": 47,
-  "total": 47,
-  "porcentaje": 100.0,
-  "segundos": 98,
-  "quedan_s": 0,
-  "hora": "2026-11-12 13:25:39"
- },
- "pendientes": [
+ "en_curso": [
   {
    "id": 102,
    "kind": "comando",
@@ -26,18 +15,29 @@
    "player": null,
    "stroke": null,
    "reason": "run --match us-open-2026-r4-naomi-osaka-elena-rybakina",
-   "state": "pendiente",
+   "state": "en curso",
    "message": "",
    "created": "2026-11-12 15:35:33",
-   "started": null,
+   "started": "2026-11-12 15:35:40",
    "finished": null,
    "args": "[\"run\", \"--match\", \"us-open-2026-r4-naomi-osaka-elena-rybakina\"]",
    "source": "claude 261",
-   "log": "",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_102.log",
    "paso": 0,
    "pasos": 0
   }
  ],
+ "progreso": {
+  "partido": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+  "etapa": "players",
+  "hecho": 1,
+  "total": 10216,
+  "porcentaje": 0.0,
+  "segundos": 0,
+  "quedan_s": 0,
+  "hora": "2026-11-12 15:35:44"
+ },
+ "pendientes": [],
  "recientes": [
   {
    "id": 101,
@@ -312,6 +312,13 @@
  ],
  "eventos": [
   {
+   "id": 550,
+   "job": 102,
+   "at": "2026-11-12 15:35:40",
+   "kind": "empieza",
+   "text": "run --match us-open-2026-r4-naomi-osaka-elena-rybakina"
+  },
+  {
    "id": 549,
    "job": 102,
    "at": "2026-11-12 15:35:33",
@@ -513,13 +520,6 @@
    "at": "2026-11-12 14:54:19",
    "kind": "hecho",
    "text": "código 0"
-  },
-  {
-   "id": 520,
-   "job": 97,
-   "at": "2026-11-12 14:54:15",
-   "kind": "paso",
-   "text": "2/2 Prevision"
   }
  ]
 }
