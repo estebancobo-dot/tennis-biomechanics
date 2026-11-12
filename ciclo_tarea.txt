@@ -1,7 +1,7 @@
-fecha: 2026-11-12T07:50:11
+fecha: 2026-11-12T07:50:55
 estado: Running
 descripcion: Tenis (ciclo v5): trae el codigo nuevo, recalcula lo necesario, revisa y sube los registros
-ultima ejecucion: 11/12/2026 07:50:02
+ultima ejecucion: 11/12/2026 07:50:44
 resultado (0 = bien, 267009 = en marcha, 267011 = nunca, 2147946720 = rechazada porque la anterior seguia trabajando): 267009
 proxima: 11/12/2026 08:00:00
 perdidas: 0

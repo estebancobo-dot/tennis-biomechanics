@@ -1,10 +1,10 @@
 {
- "at": "2026-11-12 07:50:10",
- "firma": "c79fffe046b5",
+ "at": "2026-11-12 07:50:53",
+ "firma": "2c36a9ebbb64",
  "ejecutor": {
   "vivo": true,
-  "pid": 13008,
-  "at": 1794466202.3759272
+  "pid": 12532,
+  "at": 1794466239.4913757
  },
  "pausa": false,
  "en_curso": [],
@@ -18,7 +18,26 @@
   "quedan_s": 0,
   "hora": "2026-11-11 17:02:19"
  },
- "pendientes": [],
+ "pendientes": [
+  {
+   "id": 69,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script diag_identidad_f3set --match azarenka",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-12 07:50:50",
+   "started": null,
+   "finished": null,
+   "args": "[\"script\", \"diag_identidad_f3set\", \"--match\", \"azarenka\"]",
+   "source": "claude 225",
+   "log": "",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "recientes": [
   {
    "id": 68,
@@ -293,6 +312,48 @@
  ],
  "eventos": [
   {
+   "id": 311,
+   "job": 69,
+   "at": "2026-11-12 07:50:50",
+   "kind": "enviado",
+   "text": "tennisbio script diag_identidad_f3set --match azarenka (claude 225)"
+  },
+  {
+   "id": 310,
+   "job": null,
+   "at": "2026-11-12 07:50:39",
+   "kind": "ejecutor",
+   "text": "arranca (pid 12532)"
+  },
+  {
+   "id": 309,
+   "job": null,
+   "at": "2026-11-12 07:50:38",
+   "kind": "ejecutor",
+   "text": "arranca el siguiente con el código nuevo (pid 11708)"
+  },
+  {
+   "id": 308,
+   "job": null,
+   "at": "2026-11-12 07:50:38",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 307,
+   "job": null,
+   "at": "2026-11-12 07:50:38",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 306,
+   "job": null,
+   "at": "2026-11-12 07:50:31",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
    "id": 305,
    "job": 68,
    "at": "2026-11-12 07:50:08",
@@ -459,48 +520,6 @@
    "at": "2026-11-12 03:10:26",
    "kind": "ejecutor",
    "text": "se reinicia con el código nuevo"
-  },
-  {
-   "id": 281,
-   "job": null,
-   "at": "2026-11-12 03:10:18",
-   "kind": "reiniciar",
-   "text": "ciclo"
-  },
-  {
-   "id": 280,
-   "job": 64,
-   "at": "2026-11-12 03:09:56",
-   "kind": "hecho",
-   "text": "código 0"
-  },
-  {
-   "id": 279,
-   "job": 64,
-   "at": "2026-11-12 02:20:00",
-   "kind": "empieza",
-   "text": "script bench_fine_fps --match pegula --minutes 15 --tag bola --set fine_pass.ball_from_spotting=true"
-  },
-  {
-   "id": 278,
-   "job": 63,
-   "at": "2026-11-12 02:20:00",
-   "kind": "hecho",
-   "text": "código 0"
-  },
-  {
-   "id": 277,
-   "job": 63,
-   "at": "2026-11-12 01:26:38",
-   "kind": "empieza",
-   "text": "script bench_fine_fps --match pegula --minutes 15 --tag rtmw --set fine_pass.refine=rtmw-x"
-  },
-  {
-   "id": 276,
-   "job": 62,
-   "at": "2026-11-12 01:26:38",
-   "kind": "hecho",
-   "text": "código 0"
   }
  ]
 }
