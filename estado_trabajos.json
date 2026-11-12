@@ -1,32 +1,13 @@
 {
- "at": "2026-11-12 11:57:52",
- "firma": "1f50233245e4",
+ "at": "2026-11-12 12:00:06",
+ "firma": "f0094c6d5c05",
  "ejecutor": {
   "vivo": true,
   "pid": 11716,
-  "at": 1794481062.2839162
+  "at": 1794481204.3353815
  },
  "pausa": false,
- "en_curso": [
-  {
-   "id": 87,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script ventanas_visibles",
-   "state": "en curso",
-   "message": "",
-   "created": "2026-11-12 11:57:42",
-   "started": "2026-11-12 11:57:52",
-   "finished": null,
-   "args": "[\"script\", \"ventanas_visibles\"]",
-   "source": "claude 244",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_87.log",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "en_curso": [],
  "progreso": {
   "partido": "us-open-2026-r4-naomi-osaka-elena-rybakina",
   "etapa": "fine_doubtful",
@@ -39,6 +20,24 @@
  },
  "pendientes": [],
  "recientes": [
+  {
+   "id": 87,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script ventanas_visibles",
+   "state": "hecho",
+   "message": "",
+   "created": "2026-11-12 11:57:42",
+   "started": "2026-11-12 11:57:52",
+   "finished": "2026-11-12 11:57:53",
+   "args": "[\"script\", \"ventanas_visibles\"]",
+   "source": "claude 244",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_87.log",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 86,
    "kind": "comando",
@@ -290,27 +289,16 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_73.log",
    "paso": 6,
    "pasos": 6
-  },
-  {
-   "id": 72,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final",
-   "state": "hecho",
-   "message": "",
-   "created": "2026-11-12 08:25:32",
-   "started": "2026-11-12 08:44:12",
-   "finished": "2026-11-12 08:59:52",
-   "args": "[\"run\", \"--match\", \"elena-rybakina-jessica-pegula-miami-2026-quarter-final\"]",
-   "source": "claude 229",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_72.log",
-   "paso": 0,
-   "pasos": 0
   }
  ],
  "eventos": [
+  {
+   "id": 455,
+   "job": 87,
+   "at": "2026-11-12 11:57:54",
+   "kind": "hecho",
+   "text": "código 0"
+  },
   {
    "id": 454,
    "job": 87,
@@ -513,13 +501,6 @@
    "at": "2026-11-12 11:08:22",
    "kind": "empieza",
    "text": "script diag_pose_contacto"
-  },
-  {
-   "id": 425,
-   "job": null,
-   "at": "2026-11-12 11:08:22",
-   "kind": "ejecutor",
-   "text": "arranca (pid 16604)"
   }
  ]
 }
