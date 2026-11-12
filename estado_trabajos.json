@@ -1,32 +1,13 @@
 {
- "at": "2026-11-12 15:19:49",
- "firma": "0be13d0499a0",
+ "at": "2026-11-12 15:20:09",
+ "firma": "a7cbfcf087a5",
  "ejecutor": {
   "vivo": true,
   "pid": 15676,
-  "at": 1794493179.563493
+  "at": 1794493195.5763643
  },
  "pausa": false,
- "en_curso": [
-  {
-   "id": 101,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script diag_detector --match f43dd2 --t 2096.0 2124.5 2777.7 1410.9",
-   "state": "en curso",
-   "message": "",
-   "created": "2026-11-12 15:19:43",
-   "started": "2026-11-12 15:19:49",
-   "finished": null,
-   "args": "[\"script\", \"diag_detector\", \"--match\", \"f43dd2\", \"--t\", \"2096.0\", \"2124.5\", \"2777.7\", \"1410.9\"]",
-   "source": "claude 260",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_101.log",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "en_curso": [],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "fine_doubtful",
@@ -39,6 +20,24 @@
  },
  "pendientes": [],
  "recientes": [
+  {
+   "id": 101,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script diag_detector --match f43dd2 --t 2096.0 2124.5 2777.7 1410.9",
+   "state": "hecho",
+   "message": "",
+   "created": "2026-11-12 15:19:43",
+   "started": "2026-11-12 15:19:49",
+   "finished": "2026-11-12 15:20:07",
+   "args": "[\"script\", \"diag_detector\", \"--match\", \"f43dd2\", \"--t\", \"2096.0\", \"2124.5\", \"2777.7\", \"1410.9\"]",
+   "source": "claude 260",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_101.log",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 100,
    "kind": "comando",
@@ -290,27 +289,16 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_87.log",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 86,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script diag_saques --match f43dd2",
-   "state": "hecho",
-   "message": "",
-   "created": "2026-11-12 11:57:21",
-   "started": "2026-11-12 11:57:26",
-   "finished": "2026-11-12 11:57:31",
-   "args": "[\"script\", \"diag_saques\", \"--match\", \"f43dd2\"]",
-   "source": "claude 243",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_86.log",
-   "paso": 0,
-   "pasos": 0
   }
  ],
  "eventos": [
+  {
+   "id": 543,
+   "job": 101,
+   "at": "2026-11-12 15:20:09",
+   "kind": "hecho",
+   "text": "código 0"
+  },
   {
    "id": 542,
    "job": 101,
@@ -513,13 +501,6 @@
    "at": "2026-11-12 14:53:49",
    "kind": "enviado",
    "text": "tennisbio desde-cero (claude 255)"
-  },
-  {
-   "id": 513,
-   "job": null,
-   "at": "2026-11-12 14:18:28",
-   "kind": "ejecutor",
-   "text": "arranca (pid 5056)"
   }
  ]
 }
