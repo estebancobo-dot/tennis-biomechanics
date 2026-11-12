@@ -1,6 +1,6 @@
-# Revisión automática: REGRESIÓN
+# Revisión automática: FALLOS
 
-386 cumplidos · 32 no cumplidos · 111 sin golpes suficientes · 114 avisos (antes: 386 cumplidos, 30 no cumplidos)
+386 cumplidos · 32 no cumplidos · 111 sin golpes suficientes · 114 avisos (antes: 386 cumplidos, 32 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 135 de 260
 
@@ -177,11 +177,3 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 - **#255 Plano del swing: raqueta al lado o detrás del cuerpo en el armado (Vídeos de entrenadores, 12-10, pendiente)**: SIN HACER según el registro (#255, docs/peticiones_usuario.md)
 - **#257 Comparativa a fondo y catalogada con todo lo que existe: apps profesionales (Hawk-Eye/TennisViz, SwingVision, **: SIN HACER según el registro (#257, docs/peticiones_usuario.md)
 - **#258 Partidos y jugadores automáticos desde un nombre de fichero mínimo: normalizar los nombres, leer la ficha públ**: SIN HACER según el registro (#258, docs/peticiones_usuario.md)
-
-## Empeora respecto a la ejecución anterior
-
-- **#1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final**: aviso → falta: 6 comprobaciones: 1 falta, 1 aviso, 1 pocos datos, 3 ok; la peor: «Golpes con su pose en el contacto: smoke_tennis-yusipopen-final-sobolenko-rybakin» (cerca 21 de 32 (66%; objetivo ≥ 95%): reveses 7 d
-
-## Comprobaciones nuevas
-
-- Golpes con su pose en el contacto: smoke_tennis-yusipopen-final-sobolenko-rybakin: falta (cerca 21 de 32 (66%; objetivo ≥ 95%): reveses 7 de 8, derechas 10 de 13, saques 4 de 11 · lejos (medidas de la pose para medir): reveses 17 de 20, derechas 10 d)
