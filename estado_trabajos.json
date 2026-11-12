@@ -1,32 +1,13 @@
 {
- "at": "2026-11-12 10:00:17",
- "firma": "6f461f550a4d",
+ "at": "2026-11-12 10:01:04",
+ "firma": "7ec5892bf002",
  "ejecutor": {
   "vivo": true,
   "pid": 4792,
-  "at": 1794474007.369628
+  "at": 1794474061.3979776
  },
  "pausa": false,
- "en_curso": [
-  {
-   "id": 78,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script diag_export_clip 0312430 0966569 0925800 0048549",
-   "state": "en curso",
-   "message": "",
-   "created": "2026-11-12 10:00:09",
-   "started": "2026-11-12 10:00:17",
-   "finished": null,
-   "args": "[\"script\", \"diag_export_clip\", \"0312430\", \"0966569\", \"0925800\", \"0048549\"]",
-   "source": "claude 235",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_78.log",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "en_curso": [],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "fine_doubtful",
@@ -39,6 +20,24 @@
  },
  "pendientes": [],
  "recientes": [
+  {
+   "id": 78,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script diag_export_clip 0312430 0966569 0925800 0048549",
+   "state": "hecho",
+   "message": "",
+   "created": "2026-11-12 10:00:09",
+   "started": "2026-11-12 10:00:17",
+   "finished": "2026-11-12 10:00:30",
+   "args": "[\"script\", \"diag_export_clip\", \"0312430\", \"0966569\", \"0925800\", \"0048549\"]",
+   "source": "claude 235",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_78.log",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 77,
    "kind": "comando",
@@ -290,27 +289,16 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_64.log",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 63,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script bench_fine_fps --match pegula --minutes 15 --tag rtmw --set fine_pass.refine=rtmw-x",
-   "state": "hecho",
-   "message": "",
-   "created": "2026-11-12 01:21:02",
-   "started": "2026-11-12 01:26:38",
-   "finished": "2026-11-12 02:19:59",
-   "args": "[\"script\", \"bench_fine_fps\", \"--match\", \"pegula\", \"--minutes\", \"15\", \"--tag\", \"rtmw\", \"--set\", \"fine_pass.refine=rtmw-x\"]",
-   "source": "claude 219",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_63.log",
-   "paso": 0,
-   "pasos": 0
   }
  ],
  "eventos": [
+  {
+   "id": 387,
+   "job": 78,
+   "at": "2026-11-12 10:00:31",
+   "kind": "hecho",
+   "text": "código 0"
+  },
   {
    "id": 386,
    "job": 78,
@@ -513,13 +501,6 @@
    "at": "2026-11-12 09:28:53",
    "kind": "hecho",
    "text": "código 0"
-  },
-  {
-   "id": 357,
-   "job": 75,
-   "at": "2026-11-12 09:28:35",
-   "kind": "empieza",
-   "text": "script diag_export_esqueleto"
   }
  ]
 }

@@ -1,0 +1,126 @@
+[
+ {
+  "stroke": "elena-rybakina-jessica-pegula-miami-2026-quarter-final-0048549",
+  "frame": 136,
+  "impact": 136,
+  "first": 0,
+  "n": 196,
+  "start_time": 0.0,
+  "fps": 59.4732361516035,
+  "size": [
+   1920,
+   1080
+  ],
+  "crop": [
+   1068.8,
+   506.15555555555557,
+   1.5037593984962405
+  ],
+  "kp_at_frame": [
+   1519.0,
+   635.0,
+   1488.0,
+   662.0,
+   1536.0,
+   663.0,
+   1458.0,
+   705.0,
+   1565.0,
+   671.0
+  ],
+  "image": "expclip_0048549.jpg"
+ },
+ {
+  "stroke": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5-0925800",
+  "frame": 110,
+  "impact": 110,
+  "first": 0,
+  "n": 161,
+  "start_time": 0.02,
+  "fps": 50.0,
+  "size": [
+   1920,
+   1080
+  ],
+  "crop": [
+   816.7999999999997,
+   85.20000000000005,
+   3.571428571428571
+  ],
+  "kp_at_frame": [
+   NaN,
+   NaN,
+   NaN,
+   NaN,
+   NaN,
+   NaN,
+   NaN,
+   NaN,
+   NaN,
+   NaN
+  ],
+  "image": "expclip_0925800.jpg"
+ },
+ {
+  "stroke": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5-0966569",
+  "frame": 112,
+  "impact": 112,
+  "first": 0,
+  "n": 163,
+  "start_time": 0.02,
+  "fps": 50.0,
+  "size": [
+   1920,
+   1080
+  ],
+  "crop": [
+   0.0,
+   0.0,
+   0.6666666666666666
+  ],
+  "kp_at_frame": [
+   NaN,
+   NaN,
+   NaN,
+   NaN,
+   NaN,
+   NaN,
+   NaN,
+   NaN,
+   NaN,
+   NaN
+  ],
+  "image": "expclip_0966569.jpg"
+ },
+ {
+  "stroke": "us-open-2026-r4-naomi-osaka-elena-rybakina-0312430",
+  "frame": 110,
+  "impact": 110,
+  "first": 0,
+  "n": 145,
+  "start_time": 0.7,
+  "fps": 50.0,
+  "size": [
+   1920,
+   1080
+  ],
+  "crop": [
+   0.0,
+   0.0,
+   0.6666666666666666
+  ],
+  "kp_at_frame": [
+   NaN,
+   NaN,
+   NaN,
+   NaN,
+   NaN,
+   NaN,
+   NaN,
+   NaN,
+   NaN,
+   NaN
+  ],
+  "image": "expclip_0312430.jpg"
+ }
+]
