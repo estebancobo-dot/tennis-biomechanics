@@ -16,3 +16,13 @@ WSManStackVersion: 3.0
 PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
+git : To https://github.com/estebancobo-dot/tennis-biomechanics.git
+At C:\tenis\tennis-biomech\scripts\windows\comun.ps1:241 char:9
++         git -C $d push -q origin pc-logs 2>$null
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (To https://gith...iomechanics.git:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ ! [remote rejected]   pc-logs -> pc-logs (cannot lock ref 'refs/heads/pc-logs': is at 
+b615a8277ec0d4c8a719d93f0e8d54ca68b813ef but expected e7ec6717fb16e4464017afd8e2eef4b667aa095c)
+error: failed to push some refs to 'https://github.com/estebancobo-dot/tennis-biomechanics.git'
+No se pudo enviar el registro a Claude (sin red o sin permiso en GitHub).

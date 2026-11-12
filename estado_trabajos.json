@@ -1,13 +1,32 @@
 {
- "at": "2026-11-12 03:10:36",
- "firma": "307eab44b7a0",
+ "at": "2026-11-12 03:10:37",
+ "firma": "62e7756c1c67",
  "ejecutor": {
   "vivo": true,
   "pid": 13256,
   "at": 1794449427.3342357
  },
  "pausa": false,
- "en_curso": [],
+ "en_curso": [
+  {
+   "id": 65,
+   "kind": "flujo",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "flujo «prevision»: Que etapas se rehacen en cada partido y cuanto tardarian, sin ejecutar nada",
+   "state": "en curso",
+   "message": "",
+   "created": "2026-11-12 03:10:33",
+   "started": "2026-11-12 03:10:37",
+   "finished": null,
+   "args": "[\"prevision\"]",
+   "source": "claude 221",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_65.log",
+   "paso": 0,
+   "pasos": 2
+  }
+ ],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "fine_doubtful",
@@ -18,26 +37,7 @@
   "quedan_s": 0,
   "hora": "2026-11-11 17:02:19"
  },
- "pendientes": [
-  {
-   "id": 65,
-   "kind": "flujo",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "flujo «prevision»: Que etapas se rehacen en cada partido y cuanto tardarian, sin ejecutar nada",
-   "state": "pendiente",
-   "message": "",
-   "created": "2026-11-12 03:10:33",
-   "started": null,
-   "finished": null,
-   "args": "[\"prevision\"]",
-   "source": "claude 221",
-   "log": "",
-   "paso": 0,
-   "pasos": 2
-  }
- ],
+ "pendientes": [],
  "recientes": [
   {
    "id": 64,
@@ -312,6 +312,13 @@
  ],
  "eventos": [
   {
+   "id": 287,
+   "job": 65,
+   "at": "2026-11-12 03:10:37",
+   "kind": "empieza",
+   "text": "flujo «prevision»: Que etapas se rehacen en cada partido y cuanto tardarian, sin ejecutar nada"
+  },
+  {
    "id": 286,
    "job": 65,
    "at": "2026-11-12 03:10:33",
@@ -513,13 +520,6 @@
    "at": "2026-11-12 01:19:55",
    "kind": "ejecutor",
    "text": "arranca el siguiente con el código nuevo (pid 7256)"
-  },
-  {
-   "id": 257,
-   "job": null,
-   "at": "2026-11-12 01:19:55",
-   "kind": "ejecutor",
-   "text": "termina"
   }
  ]
 }

@@ -1,14 +1,7 @@
-fecha: 2026-11-12T03:10:38
-     450.2 MB  \output\entrenamiento
-         0 MB  \output\esperando
-     874.9 MB  \output\exportar_derecha
-     636.3 MB  \output\exportar_reves
-     636.3 MB  \output\exportar_saque
-      95.5 MB  \output\informe_derecha
+fecha: 2026-11-12T03:10:44
      265.6 MB  \output\analisis
        4.2 MB  \output\auditoria
        5.7 MB  \output\benchmark
-      63.4 MB  \output\informe_reves
        2.4 MB  \output\capturas_app
       10.8 MB  \output\capturas_diag
        0.1 MB  \output\capturas_identidad
@@ -16,71 +9,37 @@ fecha: 2026-11-12T03:10:38
        0.2 MB  \output\elena-rybakina-jessica-pegula-miami-2026-quarter-final
      450.2 MB  \output\entrenamiento
          0 MB  \output\esperando
-      61.4 MB  \output\informe_saque
-       0.1 MB  \output\investigacion
      874.9 MB  \output\exportar_derecha
-         0 MB  \output\investigacion_15
-       1.3 MB  \output\investigacion_16
-       3.4 MB  \output\investigacion_17
      636.3 MB  \output\exportar_reves
-       3.3 MB  \output\investigacion_25
      636.3 MB  \output\exportar_saque
-     145.5 MB  \output\movil_prueba
-       5.4 MB  \output\recursos
       95.5 MB  \output\informe_derecha
-    7650.8 MB  \output\tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5
       63.4 MB  \output\informe_reves
-    5546.1 MB  \output\tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5
-     331.3 MB  \output\us-open-2026-r4-naomi-osaka-elena-rybakina
       61.4 MB  \output\informe_saque
        0.1 MB  \output\investigacion
-    1751.8 MB  \output\zheng-qinwen-elena-rybakina
          0 MB  \output\investigacion_15
        1.3 MB  \output\investigacion_16
        3.4 MB  \output\investigacion_17
        3.3 MB  \output\investigacion_25
-    2236.1 MB  \output\_app_nuevo
      145.5 MB  \output\movil_prueba
        5.4 MB  \output\recursos
-    1354.8 MB  \output\_bench_bola
     7650.8 MB  \output\tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5
-    1373.8 MB  \output\_bench_fps
     5546.1 MB  \output\tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5
      331.3 MB  \output\us-open-2026-r4-naomi-osaka-elena-rybakina
-    1354.8 MB  \output\_bench_rtmw
     1751.8 MB  \output\zheng-qinwen-elena-rybakina
-    2025.7 MB  \output\_poc211_35
-     486.5 MB  \output\_poc211_4
     2236.1 MB  \output\_app_nuevo
-    1373.2 MB  \output\_poc67_35
-     167.9 MB  \output\_poc67_4
     1354.8 MB  \output\_bench_bola
-    1300.4 MB  \output\_poc70_35
-     167.9 MB  \output\_poc70_4
     1373.8 MB  \output\_bench_fps
-    1300.4 MB  \output\_poc71_35
-     167.9 MB  \output\_poc71_4
     1354.8 MB  \output\_bench_rtmw
-    1300.5 MB  \output\_poc74_35
-     167.9 MB  \output\_poc74_4
     2025.7 MB  \output\_poc211_35
-    1383.8 MB  \output\_poc76_35
-       168 MB  \output\_poc76_4
      486.5 MB  \output\_poc211_4
     1373.2 MB  \output\_poc67_35
      167.9 MB  \output\_poc67_4
     1300.4 MB  \output\_poc70_35
-    2786.9 MB  \output\_smoke
      167.9 MB  \output\_poc70_4
-         4 MB  \output\_smoke\auditoria
-       2.5 MB  \output\_smoke\diag
-     286.5 MB  \output\_smoke\exportar
-      20.2 MB  \output\_smoke\informe
     1300.4 MB  \output\_poc71_35
      167.9 MB  \output\_poc71_4
     1300.5 MB  \output\_poc74_35
      167.9 MB  \output\_poc74_4
-    1416.9 MB  \output\_smoke\smoke_tennis-yusipopen-final-sobolenko-rybakin
     1383.8 MB  \output\_poc76_35
        168 MB  \output\_poc76_4
     2786.9 MB  \output\_smoke
