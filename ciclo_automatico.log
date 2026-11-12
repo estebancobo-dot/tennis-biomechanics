@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261112124417
+Start time: 20261112141821
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
 Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 4764
+Process ID: 7332
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -16,18 +16,68 @@ WSManStackVersion: 3.0
 PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
-Registro enviado a Claude (no hace falta copiar nada).
-Registro enviado a Claude (no hace falta copiar nada).
 
-Registro enviado a Claude (no hace falta copiar nada).
-Registro enviado a Claude (no hace falta copiar nada).
-
-Registro enviado a Claude (no hace falta copiar nada).
-Registro enviado a Claude (no hace falta copiar nada).
-
-Registro enviado a Claude (no hace falta copiar nada).
-Empezado 2026-11-12 12:44:11 - terminado 2026-11-12 12:46:39 - duracion total 2 min 27 s
-**********************
-Windows PowerShell transcript end
-End time: 20261112124639
-**********************
+==> [2026-11-12 14:18:21] Codigo nuevo (cedd875 -> 34d6b09): 21 ficheros
+    CLAUDE.md
+    config/flujos.yaml
+    config/peticion_pc.txt
+    config/plan_peticiones.yaml
+    config/stage_code.json
+    docs/estado_proyecto.md
+    docs/peticiones_usuario.md
+    scripts/diag_saques.py
+    src/tennisbio/ball_features.py
+    src/tennisbio/cli.py
+    src/tennisbio/export.py
+    src/tennisbio/fresh.py
+    src/tennisbio/pipeline.py
+    src/tennisbio/stages.py
+    tests/test_cache_code_keys.py
+    tests/test_diag_saques.py
+    tests/test_export.py
+    tests/test_fine_ranges.py
+    tests/test_fresh.py
+    tests/test_orchestrator.py
+    tests/test_spotting_stage.py
+Updating cedd875..34d6b09
+Fast-forward
+ CLAUDE.md                      |   5 ++
+ config/flujos.yaml             |  19 ++++++++
+ config/peticion_pc.txt         |  23 ++++++++++
+ config/plan_peticiones.yaml    |   2 +-
+ config/stage_code.json         |  22 ++++-----
+ docs/estado_proyecto.md        |   6 ++-
+ docs/peticiones_usuario.md     |   8 ++--
+ scripts/diag_saques.py         |   9 ++--
+ src/tennisbio/ball_features.py |  14 ++++--
+ src/tennisbio/cli.py           |  12 +++++
+ src/tennisbio/export.py        |   8 +++-
+ src/tennisbio/fresh.py         | 101 +++++++++++++++++++++++++++++++++++++++++
+ src/tennisbio/pipeline.py      |  11 +++++
+ src/tennisbio/stages.py        |  29 ++++++++++--
+ tests/test_cache_code_keys.py  |  58 +++++++++++++++++++++++
+ tests/test_diag_saques.py      |   4 +-
+ tests/test_export.py           |  10 ++++
+ tests/test_fine_ranges.py      |   8 +++-
+ tests/test_fresh.py            |  67 +++++++++++++++++++++++++++
+ tests/test_orchestrator.py     |   2 +-
+ tests/test_spotting_stage.py   |   5 +-
+ 21 files changed, 386 insertions(+), 37 deletions(-)
+ create mode 100644 src/tennisbio/fresh.py
+ create mode 100644 tests/test_cache_code_keys.py
+ create mode 100644 tests/test_fresh.py
+Resolved 126 packages in 17ms
+Checked 91 packages in 12ms
+balltrack.onnx     OK 45 MB
+racketpose.onnx    OK 53 MB
+transnetv2.onnx    OK 31 MB
+rtmw3d-x.onnx      OK 369 MB
+rtmw-x_384x288.onnx OK 229 MB
+court_tcd.onnx     OK 42 MB
+motionagformer_xs.onnx OK 9 MB
+yolo11m-pose_640.onnx OK 84 MB
+yolo11m-pose_960.onnx OK 84 MB
+yolo11m-pose_1280.onnx OK 85 MB
+yolo11m-pose_1920.onnx OK 86 MB
+Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (ya estaba)
+el ejecutor se reinicia al acabar el trabajo en curso
