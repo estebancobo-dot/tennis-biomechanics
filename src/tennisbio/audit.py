@@ -1669,6 +1669,8 @@ PETITIONS.update({
     246: r"^Orquestador: ", 249: r"^Orquestador: prueba de extremo a extremo",
     226: r"^Lista de partidos: rival, torneo, ronda y fecha",
     41: r"Resumen PDF|^Vídeos exportados: |^Exportación terminada: ",
+    1: r"golpes analizados|^Partido .*: salida de cada etapa|Etapas con errores|^Golpes que fallaron al procesarse|"
+       r"^Golpes encontrados frente al marcador|^Saques por punto de su saque|^Golpes con su pose en el contacto: ",
     225: r"^Aplicación: lo que consume abierta|Golpes que fallaron|Etapas con errores|Pruebas en este PC: (test_no_unbounded_calls|test_app_window)$",
     237: r"^Peticiones por GitHub Actions|^Orquestador: espera hasta empezar|^Orquestador: ejecutor vivo",
     119: r"^Orquestador: ejecutor vivo|^Orquestador: espera hasta empezar",
@@ -2228,6 +2230,56 @@ def comparison_doc_item(items: list[dict], out_root: Path, doc: Path | None = No
                  else "; ".join(good))
 
 
+STROKE_NAMES = {"forehand": "derechas", "backhand": "reveses", "overhead": "saques"}
+POSE_CONTACT_MIN = 0.95          # 12-12 (R10): her near strokes with her pose at the contact
+POSE_CONTACT_S = 0.3
+
+
+def _pose_near_contact(ser: dict, span_s: float = POSE_CONTACT_S) -> bool:
+    kps, imp, first = ser.get("kp") or [], int(ser.get("impact") or 0), int(ser.get("first") or 0)
+    w = int(round(span_s * float(ser.get("fps") or 25)))
+    a, b = max(0, imp - first - w), min(len(kps), imp - first + w + 1)
+    return any(kps[i] and any(v is not None for v in kps[i]) for i in range(a, b))
+
+
+def pose_at_contact_items(match_dirs: list[Path]) -> list[dict]:
+    """12-12 (R10 of the review of the Base): a stroke kept without her pose at the contact has no body measure and its
+    exported video no skeleton. In the library analyses (09-11) 15 % of her near forehands, 21 % of backhands and 41 % of
+    serves were so (the strokes B4 added from the detector and the scoreboard), while the audit called them valid
+    («solo les falta una medida»). Per match: her near strokes with a keypoint within ±0.3 s of the impact (≥ 95 %);
+    the far ones are said (their measures come from the far measuring pose, #219)."""
+    out = []
+    for d in match_dirs:
+        f = _mf.at(d, "strokes.json")
+        if not f.exists():
+            continue
+        try:
+            strokes = json.loads(f.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        by = {}
+        for s in strokes:
+            try:
+                ser = json.loads(_mf.at(d, s["series"]).read_text(encoding="utf-8")) if s.get("series") else {}
+            except (OSError, ValueError):
+                ser = {}
+            k = (s.get("side") or "near", s.get("stroke") or "?")
+            n, ok = by.get(k, (0, 0))
+            by[k] = (n + 1, ok + bool(ser and _pose_near_contact(ser)))
+        near = [(k[1], n, ok) for k, (n, ok) in by.items() if k[0] != "far"]
+        far = [(k[1], n, ok) for k, (n, ok) in by.items() if k[0] == "far"]
+        tn, tok = sum(n for _, n, _ in near), sum(ok for _, _, ok in near)
+        if not tn:
+            continue
+        share = tok / tn
+        txt = lambda xs: ", ".join(f"{STROKE_NAMES.get(kind, kind)} {ok} de {n}" for kind, n, ok in sorted(xs))
+        out.append(_item(1, "Golpes", f"Golpes con su pose en el contacto: {d.name}",
+                         "ok" if share >= POSE_CONTACT_MIN else "falta",
+                         f"cerca {tok} de {tn} ({share:.0%}; objetivo ≥ {POSE_CONTACT_MIN:.0%}): {txt(near)}"
+                         + (f" · lejos (medidas de la pose para medir): {txt(far)}" if far else "")))
+    return out
+
+
 SCRATCH_TIME_ITEM = "Tiempo desde cero"
 SCRATCH_MAX_DAYS = 14          # a run from scratch older than this was made with other code
 SCRATCH_RECENT_DAYS = 3        # the runs whose slowest counts (the same code, different videos)
@@ -2264,7 +2316,7 @@ def base_items(match_dirs: list[Path], out_root: Path, cfg: dict | None = None) 
     items = []
     for fn in (lambda: candidate_items(out_root), lambda: models_in_use_items(cfg), lambda: spotter_items(match_dirs),
                lambda: stage_time_items(match_dirs, out_root), lambda: parallel_items(match_dirs),
-               lambda: [_scratch_time(out_root, cfg)],
+               lambda: [_scratch_time(out_root, cfg)], lambda: pose_at_contact_items(match_dirs),
                lambda: resources_items(out_root), lambda: [actions_item(out_root)],
                lambda: [f3set_precision_item(out_root)], lambda: f3set_detector_items(out_root),
                lambda: f3set_sides_items(out_root),          # B4 (08-11): identity and far end against F3Set

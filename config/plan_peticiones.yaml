@@ -32,7 +32,7 @@ paquetes:
     nombre: "Base · referencia definitiva de los 4 partidos"
     cierre: "4 partidos sin errores de etapa; auditoría generada"
     peticiones: [1, 134, 233, 234]
-    prueba: ["^Partido .*: salida de cada etapa", "?^Etapas con errores", "^Golpes que fallaron al procesarse"]
+    prueba: ["^Partido .*: salida de cada etapa", "?^Etapas con errores", "^Golpes que fallaron al procesarse", "^Golpes con su pose en el contacto: "]
   B7:
     nombre: "Base · aplicación autónoma e infraestructura"
     cierre: "Un partido nuevo de principio a fin sin el ciclo ni el chat; capturas de cada pantalla sin fallos"
