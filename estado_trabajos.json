@@ -1,10 +1,10 @@
 {
- "at": "2026-11-12 08:25:11",
- "firma": "b5e64c2e6459",
+ "at": "2026-11-12 08:25:41",
+ "firma": "6c3fc7737213",
  "ejecutor": {
   "vivo": true,
   "pid": 5712,
-  "at": 1794468309.7851634
+  "at": 1794468341.840659
  },
  "pausa": false,
  "en_curso": [
@@ -37,7 +37,26 @@
   "quedan_s": 0,
   "hora": "2026-11-11 17:02:19"
  },
- "pendientes": [],
+ "pendientes": [
+  {
+   "id": 72,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-12 08:25:32",
+   "started": null,
+   "finished": null,
+   "args": "[\"run\", \"--match\", \"elena-rybakina-jessica-pegula-miami-2026-quarter-final\"]",
+   "source": "claude 229",
+   "log": "",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "recientes": [
   {
    "id": 70,
@@ -312,6 +331,13 @@
  ],
  "eventos": [
   {
+   "id": 335,
+   "job": 72,
+   "at": "2026-11-12 08:25:32",
+   "kind": "enviado",
+   "text": "tennisbio run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final (claude 229)"
+  },
+  {
    "id": 334,
    "job": 71,
    "at": "2026-11-12 08:25:09",
@@ -513,13 +539,6 @@
    "at": "2026-11-12 07:50:31",
    "kind": "reiniciar",
    "text": "ciclo"
-  },
-  {
-   "id": 305,
-   "job": 68,
-   "at": "2026-11-12 07:50:08",
-   "kind": "cancelado",
-   "text": ""
   }
  ]
 }
