@@ -28,8 +28,10 @@ PS = ("$ids=@({pid}); $all=Get-CimInstance Win32_Process; $n=0; while($n -ne $id
 
 def sample(pid: int) -> tuple[float, float, int] | None:
     try:
-        r = subprocess.run(["powershell.exe", "-NoProfile", "-Command", PS.format(pid=pid)], capture_output=True,
-                           text=True, timeout=30)
+        # 12-12: without a window of its own (a console could stay visible on the PC's screen)
+        r = subprocess.run(["powershell.exe", "-NoProfile", "-NonInteractive", "-WindowStyle", "Hidden", "-Command",
+                            PS.format(pid=pid)], capture_output=True, text=True, timeout=30,
+                           creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
         cpu, mem, n = r.stdout.strip().split(";")
         return float(cpu or 0), float(mem or 0) / 1e6, int(n or 0)
     except (OSError, subprocess.SubprocessError, ValueError):
@@ -69,7 +71,8 @@ def main() -> None:
             time.sleep(5)
     finally:
         if os.name == "nt":
-            subprocess.run(["taskkill", "/T", "/F", "/PID", str(p.pid)], capture_output=True, timeout=30)
+            subprocess.run(["taskkill", "/T", "/F", "/PID", str(p.pid)], capture_output=True, timeout=30,
+                           creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
         else:
             p.kill()
     rep = {"fecha": time.strftime("%Y-%m-%d %H:%M:%S"), "nucleos": os.cpu_count(), "espera_s": a.espera,
