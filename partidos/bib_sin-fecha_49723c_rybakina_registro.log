@@ -3089,3 +3089,12 @@
 2026-11-12 13:25:39   ventana w003766098_3600: pose hybrid en 216 de 216 fotogramas (0 s; modelo 0 s; pies en 216) · bola 0 s · raqueta 24 s (1 de 2 impactos) · 2 golpes posibles · altura 173 px (segments)
 2026-11-12 13:25:39   fine_doubtful: 100 % (47/47 golpes candidatos · 24 confirmados · 0 ventanas descartadas sin pose) · 2 min · quedan ≈ 0 s
 2026-11-12 13:25:40 [elena-rybakina-jessica-pegula-miami-2026-quarter-final] fine_doubtful terminada a las 13:25:40 en 1.7 min
+2026-11-12 16:49:05 [elena-rybakina-jessica-pegula-miami-2026-quarter-final] players… (2026-11-12 16:49:05, etapa 4 de 16)
+2026-11-12 16:49:05   [players] juego con pista: 36.2 min de 39.9 min de cámara principal
+2026-11-12 16:49:05 [elena-rybakina-jessica-pegula-miami-2026-quarter-final] score… (2026-11-12 16:49:05, etapa 5 de 16, a la vez que players)
+2026-11-12 16:49:06   [score] score:   0 % (1/543 muestras · 0 lecturas · 0 OCR) · 0 s · quedan ≈ 0 s
+2026-11-12 16:49:07   [players] players:   0 % (1/21715 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+2026-11-12 16:49:36   [score] score:   6 % (31/543 muestras · 30 lecturas · 23 OCR) · 30 s · quedan ≈ 8 min
+2026-11-12 16:49:37   [players] players:   1 % (296/21715 fotogramas con jugadoras) · 30 s · quedan ≈ 36 min
+2026-11-12 16:50:07   [players] players:   3 % (595/21715 fotogramas con jugadoras) · 60 s · quedan ≈ 36 min
+2026-11-12 16:50:07   [score] score:  13 % (68/543 muestras · 62 lecturas · 47 OCR) · 61 s · quedan ≈ 7 min
