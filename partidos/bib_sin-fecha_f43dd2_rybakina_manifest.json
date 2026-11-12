@@ -65,19 +65,19 @@
   "scheme": 2
  },
  "score": {
-  "fingerprint": "fe2ff679202dbb91",
-  "version": "9",
-  "seconds": 427.2,
-  "finished": "2026-11-12 10:42:51",
+  "fingerprint": "89b19fbd35739e15",
+  "version": "10",
+  "seconds": 227.1,
+  "finished": "2026-11-12 12:13:23",
   "summary": {
    "readings": 158,
    "pressure": 24,
    "samples": 234,
    "ocr_calls": 208,
-   "server_read": 109,
-   "server_source": "marker + aprendido"
+   "server_read": 158,
+   "server_source": "marker + aprendido + alternancia"
   },
-  "out_hash": "2c70fedd7c74bda6fb63",
+  "out_hash": "772fafb6064a98aff83d",
   "scheme": 2,
   "rewrote": {}
  },
@@ -99,27 +99,27 @@
   "scheme": 2
  },
  "identity": {
-  "fingerprint": "481c05138cd684e4",
+  "fingerprint": "1ed0e7253ede1486",
   "version": "13",
-  "seconds": 106.8,
-  "finished": "2026-11-12 10:44:38",
+  "seconds": 91.1,
+  "finished": "2026-11-12 12:14:54",
   "summary": {
    "runs": 148,
-   "confidence": 0.61,
-   "votes": 54,
-   "agree": 0,
+   "confidence": 0.95,
+   "votes": 140,
+   "agree": 133,
    "ends_only": 0,
-   "clothes_only": 0,
+   "clothes_only": 8,
    "ends_won": 0,
-   "clothes_won": 0,
+   "clothes_won": 7,
    "doubtful": 0,
-   "none": 148,
+   "none": 0,
    "click_by": "clothes",
-   "by_end_changes": 0,
-   "by_clothes": 0,
+   "by_end_changes": 133,
+   "by_clothes": 148,
    "conflicts": 0,
-   "conflicts_resolved": 0,
-   "decided": 0,
+   "conflicts_resolved": 7,
+   "decided": 148,
    "clothes": {
     "source": "ropa (torso y pantalón o falda, sin la pista)",
     "runs": 148,
@@ -136,22 +136,22 @@
      "parity_runs": 140,
      "parity_agree": 0.95,
      "centroid_dist": 0.845,
-     "vote_runs": 54,
-     "vote_agree": 0.61
+     "vote_runs": 85,
+     "vote_agree": 0.99
     }
    }
   },
-  "out_hash": "4eb5d32a413671341604",
+  "out_hash": "bd81b28c67bec18bd39f",
   "scheme": 2,
   "rewrote": {}
  },
  "candidates": {
-  "fingerprint": "b8ac6205c454c8a1",
+  "fingerprint": "29d4f93de271ecdf",
   "version": "15",
-  "seconds": 25.0,
-  "finished": "2026-11-12 10:46:42",
+  "seconds": 3.1,
+  "finished": "2026-11-12 12:15:17",
   "summary": {
-   "candidates": 351,
+   "candidates": 350,
    "far": 157,
    "with_audio": 304,
    "source": "spotter",
@@ -161,7 +161,7 @@
    "replay_runs": 5,
    "audio_track": 3
   },
-  "out_hash": "77fc0c64ea45d07e45a9",
+  "out_hash": "6acd1ab1969ab5051be1",
   "scheme": 2,
   "rewrote": {}
  },
@@ -231,10 +231,10 @@
   "rewrote": {}
  },
  "spotting": {
-  "fingerprint": "9c9c47b7be3b1a0f",
+  "fingerprint": "b030287a15e70c63",
   "version": "1",
-  "seconds": 97.9,
-  "finished": "2026-11-12 10:46:16",
+  "seconds": 19.5,
+  "finished": "2026-11-12 12:15:14",
   "summary": {
    "enabled": true,
    "strokes": 351,
@@ -247,8 +247,8 @@
    "feature_dim": 122,
    "audio_track": 3,
    "seconds": {
-    "jugadores_y_audio": 2.3,
-    "rasgos": 95.4,
+    "jugadores_y_audio": 1.7,
+    "rasgos": 17.7,
     "bola": 0.0,
     "modelo": 0.1
    }
@@ -258,10 +258,10 @@
   "rewrote": {}
  },
  "views": {
-  "fingerprint": "88f6d70786d53887",
+  "fingerprint": "24e38c99cc21bc88",
   "version": "6",
-  "seconds": 280.9,
-  "finished": "2026-11-12 10:51:23",
+  "seconds": 157.4,
+  "finished": "2026-11-12 12:17:54",
   "summary": {
    "views": 492,
    "repeticion_principal": 36,
@@ -269,11 +269,11 @@
    "frontal": 6,
    "primer_plano": 408,
    "otra": 17,
-   "links": 897,
+   "links": 881,
    "linked_views": 402,
    "slowmo_links": 12
   },
-  "out_hash": "1813dedbc8ce249d0382",
+  "out_hash": "0126ff844baae8a58b43",
   "scheme": 2,
   "rewrote": {}
  },
