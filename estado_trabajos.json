@@ -1,6 +1,6 @@
 {
- "at": "2026-11-12 14:53:53",
- "firma": "96a159f5cc91",
+ "at": "2026-11-12 14:54:08",
+ "firma": "9092cb4a1838",
  "ejecutor": {
   "vivo": true,
   "pid": 5056,
@@ -18,7 +18,26 @@
   "quedan_s": 0,
   "hora": "2026-11-12 13:25:39"
  },
- "pendientes": [],
+ "pendientes": [
+  {
+   "id": 97,
+   "kind": "flujo",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "flujo «prevision»: Que etapas se rehacen en cada partido y cuanto tardarian, sin ejecutar nada",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-12 14:54:05",
+   "started": null,
+   "finished": null,
+   "args": "[\"prevision\"]",
+   "source": "claude 256",
+   "log": "",
+   "paso": 0,
+   "pasos": 2
+  }
+ ],
  "recientes": [
   {
    "id": 96,
@@ -293,6 +312,13 @@
  ],
  "eventos": [
   {
+   "id": 517,
+   "job": 97,
+   "at": "2026-11-12 14:54:05",
+   "kind": "enviado",
+   "text": "flujo prevision (claude 256)"
+  },
+  {
    "id": 516,
    "job": 96,
    "at": "2026-11-12 14:53:53",
@@ -494,13 +520,6 @@
    "at": "2026-11-12 12:43:35",
    "kind": "ejecutor",
    "text": "termina"
-  },
-  {
-   "id": 487,
-   "job": null,
-   "at": "2026-11-12 12:43:35",
-   "kind": "ejecutor",
-   "text": "se reinicia con el código nuevo"
   }
  ]
 }
