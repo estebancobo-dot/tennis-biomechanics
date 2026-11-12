@@ -1,13 +1,32 @@
 {
- "at": "2026-11-12 10:30:06",
- "firma": "802ca39f9e71",
+ "at": "2026-11-12 10:35:43",
+ "firma": "cf8c6037c217",
  "ejecutor": {
   "vivo": true,
-  "pid": 10328,
-  "at": 1794475802.559173
+  "pid": 4892,
+  "at": 1794476143.5382395
  },
  "pausa": false,
- "en_curso": [],
+ "en_curso": [
+  {
+   "id": 81,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "run --match us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "state": "en curso",
+   "message": "",
+   "created": "2026-11-12 10:35:40",
+   "started": "2026-11-12 10:35:43",
+   "finished": null,
+   "args": "[\"run\", \"--match\", \"us-open-2026-r4-naomi-osaka-elena-rybakina\"]",
+   "source": "claude 238",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_81.log",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "fine_doubtful",
@@ -293,6 +312,55 @@
  ],
  "eventos": [
   {
+   "id": 415,
+   "job": 81,
+   "at": "2026-11-12 10:35:43",
+   "kind": "empieza",
+   "text": "run --match us-open-2026-r4-naomi-osaka-elena-rybakina"
+  },
+  {
+   "id": 414,
+   "job": 81,
+   "at": "2026-11-12 10:35:40",
+   "kind": "enviado",
+   "text": "tennisbio run --match us-open-2026-r4-naomi-osaka-elena-rybakina (claude 238)"
+  },
+  {
+   "id": 413,
+   "job": null,
+   "at": "2026-11-12 10:35:23",
+   "kind": "ejecutor",
+   "text": "arranca (pid 4892)"
+  },
+  {
+   "id": 412,
+   "job": null,
+   "at": "2026-11-12 10:35:22",
+   "kind": "ejecutor",
+   "text": "arranca el siguiente con el código nuevo (pid 3888)"
+  },
+  {
+   "id": 411,
+   "job": null,
+   "at": "2026-11-12 10:35:22",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 410,
+   "job": null,
+   "at": "2026-11-12 10:35:22",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 409,
+   "job": null,
+   "at": "2026-11-12 10:35:22",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
    "id": 408,
    "job": 80,
    "at": "2026-11-12 10:28:02",
@@ -452,55 +520,6 @@
    "at": "2026-11-12 10:00:17",
    "kind": "empieza",
    "text": "script diag_export_clip 0312430 0966569 0925800 0048549"
-  },
-  {
-   "id": 385,
-   "job": 78,
-   "at": "2026-11-12 10:00:09",
-   "kind": "enviado",
-   "text": "tennisbio script diag_export_clip 0312430 0966569 0925800 0048549 (claude 235)"
-  },
-  {
-   "id": 384,
-   "job": null,
-   "at": "2026-11-12 09:58:27",
-   "kind": "ejecutor",
-   "text": "arranca (pid 4792)"
-  },
-  {
-   "id": 383,
-   "job": null,
-   "at": "2026-11-12 09:58:26",
-   "kind": "ejecutor",
-   "text": "arranca el siguiente con el código nuevo (pid 17780)"
-  },
-  {
-   "id": 382,
-   "job": null,
-   "at": "2026-11-12 09:58:26",
-   "kind": "ejecutor",
-   "text": "termina"
-  },
-  {
-   "id": 381,
-   "job": null,
-   "at": "2026-11-12 09:58:26",
-   "kind": "ejecutor",
-   "text": "se reinicia con el código nuevo"
-  },
-  {
-   "id": 380,
-   "job": null,
-   "at": "2026-11-12 09:58:23",
-   "kind": "reiniciar",
-   "text": "ciclo"
-  },
-  {
-   "id": 379,
-   "job": 77,
-   "at": "2026-11-12 09:50:46",
-   "kind": "hecho",
-   "text": "código 0"
   }
  ]
 }

@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261112102757
+Start time: 20261112103517
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
-Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 4828
+Host Application: powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
+Process ID: 14164
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -16,9 +16,32 @@ WSManStackVersion: 3.0
 PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
-Registro enviado a Claude (no hace falta copiar nada).
-Empezado 2026-11-12 10:27:52 - terminado 2026-11-12 10:28:07 - duracion total 15 s
-**********************
-Windows PowerShell transcript end
-End time: 20261112102807
-**********************
+
+==> [2026-11-12 10:35:17] Codigo nuevo (98f4b10 -> 368c681): 4 ficheros
+    config/peticion_pc.txt
+    docs/estado_proyecto.md
+    src/tennisbio/clip_pipeline.py
+    tests/test_refind_at_contact.py
+Updating 98f4b10..368c681
+Fast-forward
+ config/peticion_pc.txt          | 22 +++++++++++++++
+ docs/estado_proyecto.md         |  2 +-
+ src/tennisbio/clip_pipeline.py  | 61 ++++++++++++++++++++++++++++++++++++++++-
+ tests/test_refind_at_contact.py | 30 ++++++++++++++++++++
+ 4 files changed, 113 insertions(+), 2 deletions(-)
+ create mode 100644 tests/test_refind_at_contact.py
+Resolved 126 packages in 0.94ms
+Checked 91 packages in 4ms
+balltrack.onnx     OK 45 MB
+racketpose.onnx    OK 53 MB
+transnetv2.onnx    OK 31 MB
+rtmw3d-x.onnx      OK 369 MB
+rtmw-x_384x288.onnx OK 229 MB
+court_tcd.onnx     OK 42 MB
+motionagformer_xs.onnx OK 9 MB
+yolo11m-pose_640.onnx OK 84 MB
+yolo11m-pose_960.onnx OK 84 MB
+yolo11m-pose_1280.onnx OK 85 MB
+yolo11m-pose_1920.onnx OK 86 MB
+Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (ya estaba)
+el ejecutor se reinicia al acabar el trabajo en curso
