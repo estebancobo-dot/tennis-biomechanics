@@ -1,32 +1,13 @@
 {
- "at": "2026-11-13 00:10:16",
- "firma": "b7b4c672493a",
+ "at": "2026-11-13 00:39:10",
+ "firma": "4ad8797a87b7",
  "ejecutor": {
   "vivo": true,
   "pid": 14256,
-  "at": 1794525013.2378206
+  "at": 1794526744.323978
  },
  "pausa": false,
- "en_curso": [
-  {
-   "id": 104,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script validate_recall --spotter --tag v16 --from v15",
-   "state": "en curso",
-   "message": "",
-   "created": "2026-11-12 15:37:06",
-   "started": "2026-11-12 19:31:49",
-   "finished": null,
-   "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"v16\", \"--from\", \"v15\"]",
-   "source": "claude 263",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_104.log",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "en_curso": [],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "fine_doubtful",
@@ -37,7 +18,8 @@
   "quedan_s": 0,
   "hora": "2026-11-12 19:31:47"
  },
- "pendientes": [
+ "pendientes": [],
+ "recientes": [
   {
    "id": 105,
    "kind": "flujo",
@@ -45,19 +27,35 @@
    "player": null,
    "stroke": null,
    "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
-   "state": "pendiente",
-   "message": "",
+   "state": "hecho",
+   "message": "6 pasos",
    "created": "2026-11-12 15:38:10",
-   "started": null,
-   "finished": null,
+   "started": "2026-11-13 00:33:50",
+   "finished": "2026-11-13 00:39:03",
    "args": "[\"informe\"]",
    "source": "claude 264",
-   "log": "",
-   "paso": 0,
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_105.log",
+   "paso": 6,
    "pasos": 6
-  }
- ],
- "recientes": [
+  },
+  {
+   "id": 104,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script validate_recall --spotter --tag v16 --from v15",
+   "state": "hecho",
+   "message": "",
+   "created": "2026-11-12 15:37:06",
+   "started": "2026-11-12 19:31:49",
+   "finished": "2026-11-13 00:33:48",
+   "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"v16\", \"--from\", \"v15\"]",
+   "source": "claude 263",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_104.log",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 103,
    "kind": "comando",
@@ -291,45 +289,72 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_91.log",
    "paso": 6,
    "pasos": 6
-  },
-  {
-   "id": 90,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script validate_recall --spotter --tag v14 --from v13r",
-   "state": "cancelado",
-   "message": "cancelado",
-   "created": "2026-11-12 12:10:24",
-   "started": "2026-11-12 12:30:08",
-   "finished": "2026-11-12 12:30:26",
-   "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"v14\", \"--from\", \"v13r\"]",
-   "source": "claude 247",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_90.log",
-   "paso": 0,
-   "pasos": 0
-  },
-  {
-   "id": 89,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final",
-   "state": "cancelado",
-   "message": "cancelado",
-   "created": "2026-11-12 12:09:46",
-   "started": "2026-11-12 12:23:49",
-   "finished": "2026-11-12 12:30:08",
-   "args": "[\"run\", \"--match\", \"elena-rybakina-jessica-pegula-miami-2026-quarter-final\"]",
-   "source": "claude 246",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_89.log",
-   "paso": 0,
-   "pasos": 0
   }
  ],
  "eventos": [
+  {
+   "id": 566,
+   "job": 105,
+   "at": "2026-11-13 00:39:04",
+   "kind": "hecho",
+   "text": "código 0"
+  },
+  {
+   "id": 565,
+   "job": 105,
+   "at": "2026-11-13 00:39:02",
+   "kind": "paso",
+   "text": "6/6 Modelo de calidad"
+  },
+  {
+   "id": 564,
+   "job": 105,
+   "at": "2026-11-13 00:34:32",
+   "kind": "paso",
+   "text": "5/6 Auditoria"
+  },
+  {
+   "id": 563,
+   "job": 105,
+   "at": "2026-11-13 00:34:21",
+   "kind": "paso",
+   "text": "4/6 Informe del saque"
+  },
+  {
+   "id": 562,
+   "job": 105,
+   "at": "2026-11-13 00:34:09",
+   "kind": "paso",
+   "text": "3/6 Informe del reves"
+  },
+  {
+   "id": 561,
+   "job": 105,
+   "at": "2026-11-13 00:33:51",
+   "kind": "paso",
+   "text": "2/6 Informe de la derecha"
+  },
+  {
+   "id": 560,
+   "job": 105,
+   "at": "2026-11-13 00:33:50",
+   "kind": "paso",
+   "text": "1/6 Registro de partidos"
+  },
+  {
+   "id": 559,
+   "job": 105,
+   "at": "2026-11-13 00:33:50",
+   "kind": "empieza",
+   "text": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)"
+  },
+  {
+   "id": 558,
+   "job": 104,
+   "at": "2026-11-13 00:33:50",
+   "kind": "hecho",
+   "text": "código 0"
+  },
   {
    "id": 557,
    "job": 104,
@@ -476,69 +501,6 @@
    "at": "2026-11-12 15:15:38",
    "kind": "ejecutor",
    "text": "se reinicia con el código nuevo"
-  },
-  {
-   "id": 536,
-   "job": null,
-   "at": "2026-11-12 15:15:32",
-   "kind": "reiniciar",
-   "text": "ciclo"
-  },
-  {
-   "id": 535,
-   "job": 100,
-   "at": "2026-11-12 15:05:48",
-   "kind": "hecho",
-   "text": "código 0"
-  },
-  {
-   "id": 534,
-   "job": 100,
-   "at": "2026-11-12 15:05:26",
-   "kind": "empieza",
-   "text": "script diag_detector --match f43dd2 --t 2096.0 2124.5 1984.0 3856.8 2777.7"
-  },
-  {
-   "id": 533,
-   "job": 100,
-   "at": "2026-11-12 15:05:23",
-   "kind": "enviado",
-   "text": "tennisbio script diag_detector --match f43dd2 --t 2096.0 2124.5 1984.0 3856.8 2777.7 (claude 259)"
-  },
-  {
-   "id": 532,
-   "job": null,
-   "at": "2026-11-12 15:04:36",
-   "kind": "ejecutor",
-   "text": "arranca (pid 16424)"
-  },
-  {
-   "id": 531,
-   "job": null,
-   "at": "2026-11-12 15:04:35",
-   "kind": "ejecutor",
-   "text": "arranca el siguiente con el código nuevo (pid 16216)"
-  },
-  {
-   "id": 530,
-   "job": null,
-   "at": "2026-11-12 15:04:35",
-   "kind": "ejecutor",
-   "text": "termina"
-  },
-  {
-   "id": 529,
-   "job": null,
-   "at": "2026-11-12 15:04:35",
-   "kind": "ejecutor",
-   "text": "se reinicia con el código nuevo"
-  },
-  {
-   "id": 528,
-   "job": null,
-   "at": "2026-11-12 15:04:31",
-   "kind": "reiniciar",
-   "text": "ciclo"
   }
  ]
 }
