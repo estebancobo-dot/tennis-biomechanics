@@ -1,10 +1,10 @@
 {
- "at": "2026-11-12 01:20:29",
- "firma": "6de5c6c009d0",
+ "at": "2026-11-12 01:20:32",
+ "firma": "2eff4f43371c",
  "ejecutor": {
   "vivo": true,
   "pid": 7200,
-  "at": 1794442816.3418272
+  "at": 1794442832.3692062
  },
  "pausa": false,
  "en_curso": [
@@ -16,14 +16,14 @@
    "stroke": null,
    "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
    "state": "en curso",
-   "message": "paso 1/6: Registro de partidos",
+   "message": "paso 2/6: Informe de la derecha",
    "created": "2026-11-12 01:20:26",
    "started": "2026-11-12 01:20:28",
    "finished": null,
    "args": "[\"informe\"]",
    "source": "claude 217",
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_61.log",
-   "paso": 0,
+   "paso": 1,
    "pasos": 6
   }
  ],
@@ -312,6 +312,13 @@
  ],
  "eventos": [
   {
+   "id": 266,
+   "job": 61,
+   "at": "2026-11-12 01:20:30",
+   "kind": "paso",
+   "text": "2/6 Informe de la derecha"
+  },
+  {
    "id": 265,
    "job": 61,
    "at": "2026-11-12 01:20:29",
@@ -513,13 +520,6 @@
    "at": "2026-11-11 23:39:53",
    "kind": "paso",
    "text": "5/6 Auditoria"
-  },
-  {
-   "id": 236,
-   "job": 59,
-   "at": "2026-11-11 23:39:49",
-   "kind": "paso",
-   "text": "4/6 Informe del saque"
   }
  ]
 }
