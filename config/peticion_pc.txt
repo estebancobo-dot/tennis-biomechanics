@@ -1008,3 +1008,9 @@ accion: medir
 script: diag_export_esqueleto
 # 232 (12-12, R5): por que 2, 5 y 4 de 8 videos exportados (derecha, reves, saque) no muestran el esqueleto en ningun
 # momento: lado, golpe y fotogramas con pose de su serie. Solo lee
+---
+id: 233
+accion: medir
+script: export_fotogramas
+argumentos: 0312430 0221547 0925800 0048549
+# 233 (12-12, R5): fotogramas de 3 videos exportados sin los colores del esqueleto y de 1 con ellos, para mirarlos
