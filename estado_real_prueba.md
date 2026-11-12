@@ -1,12 +1,12 @@
 # Estado real de las peticiones (generado por `scripts/real_status.py`; no editar a mano)
 
-252 peticiones (sin las que no aplican). «HECHO» en el registro es la etiqueta de Claude; aquí cuenta solo lo que se comprueba. «Comprobado en salidas» = existe y es coherente con los datos reales, no que sea correcto; eso es «validado con verdad».
+253 peticiones (sin las que no aplican). «HECHO» en el registro es la etiqueta de Claude; aquí cuenta solo lo que se comprueba. «Comprobado en salidas» = existe y es coherente con los datos reales, no que sea correcto; eso es «validado con verdad».
 
 | Nivel | Peticiones |
 |---|---|
 | 0 sin construir | 21 |
 | 1 construido, sin comprobar | 71 |
-| 2 comprobación que falla | 81 |
+| 2 comprobación que falla | 82 |
 | 3 comprobado en salidas | 79 |
 | 4 validado con verdad | 0 |
 
@@ -23,7 +23,7 @@
 | B5 Base · exportación | 1 | 0 | 0 | 1 | 0 | 0 | Vídeos por golpe en ≤ 20 min sin cuelgues | ok | no |
 | B6 Base · referencia definitiva de los 4 partidos | 4 | 0 | 0 | 4 | 0 | 0 | 4 partidos sin errores de etapa; auditoría generada | ok | no |
 | B7 Base · aplicación autónoma e infraestructura | 36 | 0 | 0 | 11 | 25 | 0 | Un partido nuevo de principio a fin sin el ciclo ni el chat; capturas de cada pantalla sin fallos | ok | no |
-| B8 Base · orquestador único (aplicación y chat con el mismo código y los mismos datos) | 8 | 0 | 6 | 2 | 0 | 0 | Fases A-F de docs/orquestador.md; un trabajo enviado desde el chat, pausado en la aplicación y reanudado desde el chat en el PC | falla | no |
+| B8 Base · orquestador único (aplicación y chat con el mismo código y los mismos datos) | 9 | 0 | 6 | 3 | 0 | 0 | Fases A-F de docs/orquestador.md; un trabajo enviado desde el chat, pausado en la aplicación y reanudado desde el chat en el PC | falla | no |
 | P0 Producto · rediseño completo de la aplicación (comparativa profesional, UX, aprendizaje, gestión, gráficos) | 4 | 3 | 1 | 0 | 0 | 0 | Diseño desde la comparativa con las apps profesionales; capturas de cada pantalla comparadas con las de referencia, sin restos inútiles ni nada fijo en el código | sin medir | no |
 | M1 Medidas · fases, cadena cinética y ritmo | 12 | 0 | 7 | 3 | 2 | 0 | Cada medida: fiable en la auditoría (ruido < variación) y sin depender de la cámara | — | — |
 | M2 Medidas · pies y apoyos | 20 | 2 | 10 | 3 | 5 | 0 | Pasos y apoyos medidos en la mayoría de golpes; fiables en la auditoría | — | — |
@@ -49,7 +49,7 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 - **B5**: peticiones sin comprobar o que fallan: #41
 - **B6**: peticiones sin comprobar o que fallan: #1, #134, #233, #234
 - **B7**: peticiones sin comprobar o que fallan: #18, #20, #21, #22, #37, #51, #66, #119, #160, #226, #242
-- **B8**: prueba principal: Orquestador: espera hasta empezar cada trabajo: aviso; peticiones sin comprobar o que fallan: #246, #247, #248, #249, #250, #251, #259, #260
+- **B8**: prueba principal: Orquestador: espera hasta empezar cada trabajo: aviso; peticiones sin comprobar o que fallan: #246, #247, #248, #249, #250, #251, #259, #260, #261
 - **P0**: prueba principal: Aplicación: rediseño : sin medir; peticiones sin comprobar o que fallan: #256, #257, #252, #258
 
 ## Cada petición
@@ -308,3 +308,4 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 | 258 | Partidos y jugadores automáticos desde un nombre de fichero mínimo: normalizar los nombres | P0 | FALTA | 0 sin construir | SIN HACER según el registro (#258, docs/peticiones_usuario.md) |
 | 259 | Saber dónde se va el tiempo de cada etapa, medido desde cero, y demostrar con medidas si c | B8 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#259); sin comprobación automática asignada |
 | 260 | Revisar de verdad todo el bloque Base, no solo la velocidad: en cada tarea, si su prueba m | B8 | HECHO | 1 construido, sin comprobar | sin comprobación automática asignada |
+| 261 | Que no se quede abierta en la pantalla del PC una ventana vacía de PowerShell mientras tra | B8 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok |

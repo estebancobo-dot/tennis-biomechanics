@@ -1,10 +1,10 @@
-# Revisión automática: REGRESIÓN
+# Revisión automática: FALLOS
 
-403 cumplidos · 30 no cumplidos · 97 sin golpes suficientes · 113 avisos (antes: 404 cumplidos, 32 no cumplidos)
+404 cumplidos · 30 no cumplidos · 97 sin golpes suficientes · 114 avisos (antes: 403 cumplidos, 30 no cumplidos)
 
-## Peticiones del usuario SIN TERMINAR: 135 de 260
+## Peticiones del usuario SIN TERMINAR: 136 de 261
 
-Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hacer · 3 no medibles desde la tele · 8 no aplican. Que las comprobaciones de abajo pasen **no** significa que estas estén hechas.
+Registro `docs/peticiones_usuario.md`: 114 hechas · 115 a medias · 21 sin hacer · 3 no medibles desde la tele · 8 no aplican. Que las comprobaciones de abajo pasen **no** significa que estas estén hechas.
 
 - **#176 [FALTA]** Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3) — falta: La ventana acaba 0,8 s tras el impacto: medible alargándola.
 - **#189 [FALTA]** «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4) — falta: No está en `learn.py`.
@@ -141,6 +141,7 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 - **#251 [PARCIAL]** Tareas nuevas asociadas a peticiones y al plan, encadenadas sin olvidarse (Chat, 10-11) — falta: Mantener B8 y la tabla al día en cada cambio.
 - **#256 [PARCIAL]** Modelo de calidad de la aplicación como un cubo: dominio (taxonomía del golpe, situaciones, identidad, catálogo y registro, aprendizaje, pa… — falta: Hecho el cálculo (dominio × característica × capa, «sin medir» para las casillas vacías; tras cada auditoría en los flujos). Falta: métricas para las 7 casilla…
 - **#259 [PARCIAL]** Saber dónde se va el tiempo de cada etapa, medido desde cero, y demostrar con medidas si cada etapa puede ir más rápido sin perder calidad … — falta: Tabla de tiempos de la prueba desde cero (petición 207) + por cada etapa pesada: alternativas medidas (tiempo y calidad); el indicador «Tiempo» de la auditoría…
+- **#261 [PARCIAL]** Que no se quede abierta en la pantalla del PC una ventana vacía de PowerShell mientras trabaja (Chat, 11-11 y 12-11: «hay un terminal abier… — falta: Causa hallada por la petición 242: el ejecutor arrancaba a su sucesor con DETACHED_PROCESS (Windows Terminal abría una consola para el intérprete). Arreglado 1…
 
 
 ## No cumplidos
@@ -176,14 +177,7 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 - **#257 Comparativa a fondo y catalogada con todo lo que existe: apps profesionales (Hawk-Eye/TennisViz, SwingVision, **: SIN HACER según el registro (#257, docs/peticiones_usuario.md)
 - **#258 Partidos y jugadores automáticos desde un nombre de fichero mínimo: normalizar los nombres, leer la ficha públ**: SIN HACER según el registro (#258, docs/peticiones_usuario.md)
 
-## Empeora respecto a la ejecución anterior
+## Comprobaciones nuevas
 
-- **Registros con fecha y duración**: ok → falta: 64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba_completo.log: sin «termina fecha» al final
-- **#66 Fechas y duración en los registros**: ok → falta: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba)
-
-## Mejora
-
-- Orquestador: ejecutor vivo cuando hay trabajo: falta → ok
-- #119 Automatizar todo el ciclo en el PC: el usuario no lanza pruebas ni avisa: falta → aviso
-- #237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min: falta → aviso
-- #246 Un único orquestador: mismo código y misma fuente de datos para la aplicación y el chat; monitorizar, pausar, : falta → aviso
+- Ninguna ventana vacía del análisis en la pantalla del PC: ok (ninguna consola nuestra entre las 5 ventanas visibles (2026-11-12 12:00:07))
+- #261 Que no se quede abierta en la pantalla del PC una ventana vacía de PowerShell mientras trabaja (Chat, 11-11 y : aviso (sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok)
