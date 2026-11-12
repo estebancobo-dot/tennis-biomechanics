@@ -139,10 +139,10 @@
   "rewrote": {}
  },
  "fine": {
-  "fingerprint": "2846aa82a60d4022",
+  "fingerprint": "6fde9b6c935adcbf",
   "version": "16",
-  "seconds": 248.8,
-  "finished": "2026-11-12 12:13:53",
+  "seconds": 80.1,
+  "finished": "2026-11-12 12:37:33",
   "summary": {
    "candidates": 81,
    "confirmed": 78,
@@ -162,16 +162,14 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "pista_ventana": 39.3,
-    "cuerdas_y_3d": 36.2,
-    "jugadora_lejana": 35.7,
-    "analisis_ventana": 30.2,
-    "recorte": 8.0,
-    "cribado": 5.0,
-    "pose_medida_lejana": 0.7,
-    "pose": 0.5,
-    "bola_en_paralelo_cpu": 0,
-    "espera_bola_en_paralelo": 0.0
+    "jugadora_lejana": 29.8,
+    "pista_ventana": 22.2,
+    "analisis_ventana": 18.0,
+    "cuerdas_y_3d": 17.4,
+    "recorte": 5.0,
+    "cribado": 2.9,
+    "pose": 0.4,
+    "pose_medida_lejana": 0.4
    },
    "counts": {
     "overlap_s": 0.0,
@@ -182,8 +180,7 @@
     "racket_frames": 0,
     "whole_window_again": 0,
     "frames_960_far": 0,
-    "far_measure_windows": 7,
-    "windows_ball_ahead": 59
+    "far_measure_windows": 7
    }
   },
   "out_hash": "ed8118c9405d6fbd2ceb",
@@ -191,10 +188,10 @@
   "rewrote": {}
  },
  "fine_opponent": {
-  "fingerprint": "97b203b112414368",
+  "fingerprint": "46fb0fe89b39b329",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-12 12:13:53",
+  "finished": "2026-11-12 12:37:33",
   "summary": {
    "enabled": false
   },
@@ -203,10 +200,10 @@
   "rewrote": {}
  },
  "fine_doubtful": {
-  "fingerprint": "226972df3776b10f",
+  "fingerprint": "c8241a887294b8c3",
   "version": "1",
-  "seconds": 31.1,
-  "finished": "2026-11-12 12:14:25",
+  "seconds": 16.3,
+  "finished": "2026-11-12 12:37:49",
   "summary": {
    "candidates": 20,
    "confirmed": 11,
@@ -225,12 +222,12 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "cuerdas_y_3d": 12.7,
-    "analisis_ventana": 7.4,
-    "recorte": 1.7,
-    "jugadora_lejana": 1.5,
-    "pista_ventana": 0.6,
-    "cribado": 0.5,
+    "cuerdas_y_3d": 6.3,
+    "analisis_ventana": 4.1,
+    "recorte": 1.1,
+    "jugadora_lejana": 0.7,
+    "cribado": 0.4,
+    "pista_ventana": 0.4,
     "pose": 0.1
    },
    "counts": {
@@ -271,8 +268,8 @@
  "views_link": {
   "fingerprint": "3b5519ef4977d711",
   "version": "1",
-  "seconds": 0.2,
-  "finished": "2026-11-12 12:14:25",
+  "seconds": 0.1,
+  "finished": "2026-11-12 12:37:50",
   "summary": {
    "strokes": 78,
    "with_replay": 26,
