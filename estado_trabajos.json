@@ -1,30 +1,30 @@
 {
- "at": "2026-11-12 12:30:10",
- "firma": "02d05fbc3249",
+ "at": "2026-11-12 12:30:28",
+ "firma": "a83587516b2e",
  "ejecutor": {
   "vivo": true,
   "pid": 11456,
-  "at": 1794482998.2907367
+  "at": 1794483014.4234142
  },
  "pausa": false,
  "en_curso": [
   {
-   "id": 90,
-   "kind": "comando",
+   "id": 91,
+   "kind": "flujo",
    "match": null,
    "player": null,
    "stroke": null,
-   "reason": "script validate_recall --spotter --tag v14 --from v13r",
+   "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
    "state": "en curso",
-   "message": "",
-   "created": "2026-11-12 12:10:24",
-   "started": "2026-11-12 12:30:08",
+   "message": "paso 2/6: Informe de la derecha",
+   "created": "2026-11-12 12:11:05",
+   "started": "2026-11-12 12:30:26",
    "finished": null,
-   "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"v14\", \"--from\", \"v13r\"]",
-   "source": "claude 247",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_90.log",
-   "paso": 0,
-   "pasos": 0
+   "args": "[\"informe\"]",
+   "source": "claude 248",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_91.log",
+   "paso": 1,
+   "pasos": 6
   }
  ],
  "progreso": {
@@ -37,27 +37,26 @@
   "quedan_s": 95,
   "hora": "2026-11-12 12:29:42"
  },
- "pendientes": [
+ "pendientes": [],
+ "recientes": [
   {
-   "id": 91,
-   "kind": "flujo",
+   "id": 90,
+   "kind": "comando",
    "match": null,
    "player": null,
    "stroke": null,
-   "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
-   "state": "pendiente",
-   "message": "",
-   "created": "2026-11-12 12:11:05",
-   "started": null,
-   "finished": null,
-   "args": "[\"informe\"]",
-   "source": "claude 248",
-   "log": "",
+   "reason": "script validate_recall --spotter --tag v14 --from v13r",
+   "state": "cancelado",
+   "message": "cancelado",
+   "created": "2026-11-12 12:10:24",
+   "started": "2026-11-12 12:30:08",
+   "finished": "2026-11-12 12:30:26",
+   "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"v14\", \"--from\", \"v13r\"]",
+   "source": "claude 247",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_90.log",
    "paso": 0,
-   "pasos": 6
-  }
- ],
- "recientes": [
+   "pasos": 0
+  },
   {
    "id": 89,
    "kind": "comando",
@@ -309,27 +308,44 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_76.log",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 75,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script diag_export_esqueleto",
-   "state": "hecho",
-   "message": "",
-   "created": "2026-11-12 09:28:25",
-   "started": "2026-11-12 09:28:35",
-   "finished": "2026-11-12 09:28:52",
-   "args": "[\"script\", \"diag_export_esqueleto\"]",
-   "source": "claude 232",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_75.log",
-   "paso": 0,
-   "pasos": 0
   }
  ],
  "eventos": [
+  {
+   "id": 475,
+   "job": 91,
+   "at": "2026-11-12 12:30:28",
+   "kind": "paso",
+   "text": "2/6 Informe de la derecha"
+  },
+  {
+   "id": 474,
+   "job": 91,
+   "at": "2026-11-12 12:30:27",
+   "kind": "paso",
+   "text": "1/6 Registro de partidos"
+  },
+  {
+   "id": 473,
+   "job": 91,
+   "at": "2026-11-12 12:30:26",
+   "kind": "empieza",
+   "text": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)"
+  },
+  {
+   "id": 472,
+   "job": 90,
+   "at": "2026-11-12 12:30:26",
+   "kind": "cancelado",
+   "text": ""
+  },
+  {
+   "id": 471,
+   "job": 90,
+   "at": "2026-11-12 12:30:25",
+   "kind": "cancelar",
+   "text": "claude 250"
+  },
   {
    "id": 470,
    "job": 90,
@@ -504,41 +520,6 @@
    "at": "2026-11-12 11:57:21",
    "kind": "enviado",
    "text": "tennisbio script diag_saques --match f43dd2 (claude 243)"
-  },
-  {
-   "id": 445,
-   "job": null,
-   "at": "2026-11-12 11:57:16",
-   "kind": "reiniciar",
-   "text": "ciclo"
-  },
-  {
-   "id": 444,
-   "job": null,
-   "at": "2026-11-12 11:40:24",
-   "kind": "ejecutor",
-   "text": "arranca (pid 13200)"
-  },
-  {
-   "id": 443,
-   "job": null,
-   "at": "2026-11-12 11:40:23",
-   "kind": "ejecutor",
-   "text": "arranca el siguiente con el código nuevo (pid 11848)"
-  },
-  {
-   "id": 442,
-   "job": null,
-   "at": "2026-11-12 11:40:23",
-   "kind": "ejecutor",
-   "text": "termina"
-  },
-  {
-   "id": 441,
-   "job": null,
-   "at": "2026-11-12 11:40:23",
-   "kind": "ejecutor",
-   "text": "se reinicia con el código nuevo"
   }
  ]
 }
