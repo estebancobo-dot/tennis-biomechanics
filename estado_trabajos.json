@@ -1,28 +1,28 @@
 {
- "at": "2026-11-12 07:21:24",
- "firma": "96477dd52b62",
+ "at": "2026-11-12 07:30:10",
+ "firma": "b4f23a6810e1",
  "ejecutor": {
   "vivo": true,
   "pid": 13008,
-  "at": 1794464473.3566914
+  "at": 1794465001.7463481
  },
  "pausa": false,
  "en_curso": [
   {
-   "id": 67,
+   "id": 68,
    "kind": "comando",
    "match": null,
    "player": null,
    "stroke": null,
-   "reason": "script validate_recall --spotter --tag base",
+   "reason": "script validate_recall --spotter --tag bola --set fine_pass.ball_from_spotting=true",
    "state": "en curso",
    "message": "",
-   "created": "2026-11-12 04:06:54",
-   "started": "2026-11-12 04:06:58",
+   "created": "2026-11-12 04:07:14",
+   "started": "2026-11-12 07:26:17",
    "finished": null,
-   "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"base\"]",
-   "source": "claude 223",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_67.log",
+   "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"bola\", \"--set\", \"fine_pass.ball_from_spotting=true\"]",
+   "source": "claude 224",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_68.log",
    "paso": 0,
    "pasos": 0
   }
@@ -37,27 +37,26 @@
   "quedan_s": 0,
   "hora": "2026-11-11 17:02:19"
  },
- "pendientes": [
+ "pendientes": [],
+ "recientes": [
   {
-   "id": 68,
+   "id": 67,
    "kind": "comando",
    "match": null,
    "player": null,
    "stroke": null,
-   "reason": "script validate_recall --spotter --tag bola --set fine_pass.ball_from_spotting=true",
-   "state": "pendiente",
+   "reason": "script validate_recall --spotter --tag base",
+   "state": "hecho",
    "message": "",
-   "created": "2026-11-12 04:07:14",
-   "started": null,
-   "finished": null,
-   "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"bola\", \"--set\", \"fine_pass.ball_from_spotting=true\"]",
-   "source": "claude 224",
-   "log": "",
+   "created": "2026-11-12 04:06:54",
+   "started": "2026-11-12 04:06:58",
+   "finished": "2026-11-12 07:26:15",
+   "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"base\"]",
+   "source": "claude 223",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_67.log",
    "paso": 0,
    "pasos": 0
-  }
- ],
- "recientes": [
+  },
   {
    "id": 66,
    "kind": "comando",
@@ -309,27 +308,23 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_53.log",
    "paso": 3,
    "pasos": 3
-  },
-  {
-   "id": 52,
-   "kind": "flujo",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
-   "state": "hecho",
-   "message": "6 pasos",
-   "created": "2026-11-11 16:29:38",
-   "started": "2026-11-11 17:02:21",
-   "finished": "2026-11-11 17:06:52",
-   "args": "[\"informe\"]",
-   "source": "claude 204",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_52.log",
-   "paso": 6,
-   "pasos": 6
   }
  ],
  "eventos": [
+  {
+   "id": 303,
+   "job": 68,
+   "at": "2026-11-12 07:26:17",
+   "kind": "empieza",
+   "text": "script validate_recall --spotter --tag bola --set fine_pass.ball_from_spotting=true"
+  },
+  {
+   "id": 302,
+   "job": 67,
+   "at": "2026-11-12 07:26:17",
+   "kind": "hecho",
+   "text": "código 0"
+  },
   {
    "id": 301,
    "job": 68,
@@ -525,20 +520,6 @@
    "at": "2026-11-12 01:25:08",
    "kind": "hecho",
    "text": "código 0"
-  },
-  {
-   "id": 273,
-   "job": 61,
-   "at": "2026-11-12 01:25:05",
-   "kind": "paso",
-   "text": "6/6 Modelo de calidad"
-  },
-  {
-   "id": 272,
-   "job": 64,
-   "at": "2026-11-12 01:21:21",
-   "kind": "enviado",
-   "text": "tennisbio script bench_fine_fps --match pegula --minutes 15 --tag bola --set fine_pass.ball_from_spotting=true (claude 220)"
   }
  ]
 }
