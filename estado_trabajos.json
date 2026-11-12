@@ -1,32 +1,13 @@
 {
- "at": "2026-11-12 07:41:49",
- "firma": "b4f23a6810e1",
+ "at": "2026-11-12 07:50:10",
+ "firma": "c79fffe046b5",
  "ejecutor": {
   "vivo": true,
   "pid": 13008,
-  "at": 1794465706.123451
+  "at": 1794466202.3759272
  },
  "pausa": false,
- "en_curso": [
-  {
-   "id": 68,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script validate_recall --spotter --tag bola --set fine_pass.ball_from_spotting=true",
-   "state": "en curso",
-   "message": "",
-   "created": "2026-11-12 04:07:14",
-   "started": "2026-11-12 07:26:17",
-   "finished": null,
-   "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"bola\", \"--set\", \"fine_pass.ball_from_spotting=true\"]",
-   "source": "claude 224",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_68.log",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "en_curso": [],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "fine_doubtful",
@@ -39,6 +20,24 @@
  },
  "pendientes": [],
  "recientes": [
+  {
+   "id": 68,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script validate_recall --spotter --tag bola --set fine_pass.ball_from_spotting=true",
+   "state": "cancelado",
+   "message": "cancelado",
+   "created": "2026-11-12 04:07:14",
+   "started": "2026-11-12 07:26:17",
+   "finished": "2026-11-12 07:50:08",
+   "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"bola\", \"--set\", \"fine_pass.ball_from_spotting=true\"]",
+   "source": "claude 224",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_68.log",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 67,
    "kind": "comando",
@@ -290,27 +289,23 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_54.log",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 53,
-   "kind": "flujo",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "flujo «prueba_pausa»: Comprobacion de extremo a extremo: un paso largo para pausar el flujo a mitad y reanudarlo",
-   "state": "hecho",
-   "message": "3 pasos",
-   "created": "2026-11-11 17:17:24",
-   "started": "2026-11-11 17:17:47",
-   "finished": "2026-11-11 17:19:19",
-   "args": "[\"prueba_pausa\"]",
-   "source": "claude e2e",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_53.log",
-   "paso": 3,
-   "pasos": 3
   }
  ],
  "eventos": [
+  {
+   "id": 305,
+   "job": 68,
+   "at": "2026-11-12 07:50:08",
+   "kind": "cancelado",
+   "text": ""
+  },
+  {
+   "id": 304,
+   "job": 68,
+   "at": "2026-11-12 07:50:07",
+   "kind": "cancelar",
+   "text": "claude 226"
+  },
   {
    "id": 303,
    "job": 68,
@@ -504,20 +499,6 @@
    "id": 276,
    "job": 62,
    "at": "2026-11-12 01:26:38",
-   "kind": "hecho",
-   "text": "código 0"
-  },
-  {
-   "id": 275,
-   "job": 62,
-   "at": "2026-11-12 01:25:08",
-   "kind": "empieza",
-   "text": "script app_recursos"
-  },
-  {
-   "id": 274,
-   "job": 61,
-   "at": "2026-11-12 01:25:08",
    "kind": "hecho",
    "text": "código 0"
   }
