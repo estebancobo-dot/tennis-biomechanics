@@ -1,0 +1,3807 @@
+{
+ "us-open-2026-r4-naomi-osaka-elena-rybakina": {
+  "fps": 10.0,
+  "rasgos": 122,
+  "presentes": [
+   "cerca",
+   "lejos"
+  ],
+  "momentos": {
+   "2096.0": {
+    "planos": [
+     [
+      2083.8,
+      2094.3,
+      false
+     ],
+     [
+      2094.3,
+      2101.8,
+      true
+     ]
+    ],
+    "pista": [
+     [
+      2094.3,
+      2100.6,
+      true
+     ]
+    ],
+    "linea": [
+     {
+      "t": 2092.0,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.057,
+      "saque_lejos": 0.066,
+      "clase": "none",
+      "p": 0.56
+     },
+     {
+      "t": 2092.1,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.048,
+      "saque_lejos": 0.064,
+      "clase": "none",
+      "p": 0.574
+     },
+     {
+      "t": 2092.2,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.062,
+      "saque_lejos": 0.057,
+      "clase": "none",
+      "p": 0.618
+     },
+     {
+      "t": 2092.3,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.061,
+      "saque_lejos": 0.026,
+      "clase": "none",
+      "p": 0.833
+     },
+     {
+      "t": 2092.4,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.03,
+      "saque_lejos": 0.01,
+      "clase": "none",
+      "p": 0.911
+     },
+     {
+      "t": 2092.5,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.012,
+      "saque_lejos": 0.006,
+      "clase": "none",
+      "p": 0.968
+     },
+     {
+      "t": 2092.6,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.018,
+      "saque_lejos": 0.013,
+      "clase": "none",
+      "p": 0.945
+     },
+     {
+      "t": 2092.7,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.009,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.953
+     },
+     {
+      "t": 2092.8,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.014,
+      "saque_lejos": 0.001,
+      "clase": "none",
+      "p": 0.973
+     },
+     {
+      "t": 2092.9,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.021,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.978
+     },
+     {
+      "t": 2093.0,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.008,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.983
+     },
+     {
+      "t": 2093.1,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.998
+     },
+     {
+      "t": 2093.2,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.999
+     },
+     {
+      "t": 2093.3,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.997
+     },
+     {
+      "t": 2093.4,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.999
+     },
+     {
+      "t": 2093.5,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.999
+     },
+     {
+      "t": 2093.6,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.999
+     },
+     {
+      "t": 2093.7,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2093.8,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2093.9,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2094.0,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2094.1,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2094.2,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2094.3,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2094.4,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2094.5,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2094.6,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2094.7,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2094.8,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2094.9,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2095.0,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2095.1,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2095.2,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2095.3,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2095.4,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2095.5,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2095.6,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2095.7,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2095.8,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2095.9,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2096.0,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2096.1,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2096.2,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2096.3,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.01,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.989
+     },
+     {
+      "t": 2096.4,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.006,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.98
+     },
+     {
+      "t": 2096.5,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.002,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.998
+     },
+     {
+      "t": 2096.6,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2096.7,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2096.8,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2096.9,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2097.0,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2097.1,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2097.2,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.002,
+      "clase": "none",
+      "p": 0.991
+     },
+     {
+      "t": 2097.3,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2097.4,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.001,
+      "clase": "none",
+      "p": 0.999
+     },
+     {
+      "t": 2097.5,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2097.6,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2097.7,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2097.8,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2097.9,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2098.0,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     }
+    ]
+   },
+   "2124.5": {
+    "planos": [
+     [
+      2116.8,
+      2122.0,
+      false
+     ],
+     [
+      2122.0,
+      2130.9,
+      true
+     ]
+    ],
+    "pista": [
+     [
+      2122.0,
+      2130.9,
+      true
+     ]
+    ],
+    "linea": [
+     {
+      "t": 2120.5,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.021,
+      "saque_lejos": 0.005,
+      "clase": "none",
+      "p": 0.822
+     },
+     {
+      "t": 2120.6,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.006,
+      "saque_lejos": 0.002,
+      "clase": "none",
+      "p": 0.788
+     },
+     {
+      "t": 2120.7,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.002,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.716
+     },
+     {
+      "t": 2120.8,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.001,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.757
+     },
+     {
+      "t": 2120.9,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.001,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.891
+     },
+     {
+      "t": 2121.0,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.913
+     },
+     {
+      "t": 2121.1,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.622
+     },
+     {
+      "t": 2121.2,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.897
+     },
+     {
+      "t": 2121.3,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.001,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.92
+     },
+     {
+      "t": 2121.4,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.999
+     },
+     {
+      "t": 2121.5,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.001,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.999
+     },
+     {
+      "t": 2121.6,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2121.7,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2121.8,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2121.9,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2122.0,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.999
+     },
+     {
+      "t": 2122.1,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2122.2,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2122.3,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2122.4,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2122.5,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2122.6,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2122.7,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2122.8,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2122.9,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2123.0,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2123.1,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2123.2,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2123.3,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2123.4,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2123.5,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2123.6,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.999
+     },
+     {
+      "t": 2123.7,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.997
+     },
+     {
+      "t": 2123.8,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.999
+     },
+     {
+      "t": 2123.9,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2124.0,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2124.1,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2124.2,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2124.3,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2124.4,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2124.5,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.031,
+      "clase": "none",
+      "p": 0.969
+     },
+     {
+      "t": 2124.6,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2124.7,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2124.8,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2124.9,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2125.0,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2125.1,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2125.2,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2125.3,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2125.4,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2125.5,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2125.6,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2125.7,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2125.8,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2125.9,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2126.0,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2126.1,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2126.2,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2126.3,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2126.4,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2126.5,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     }
+    ]
+   },
+   "1984.0": {
+    "planos": [
+     [
+      1951.8,
+      1983.2,
+      false
+     ],
+     [
+      1983.2,
+      1985.8,
+      true
+     ],
+     [
+      1985.8,
+      1990.2,
+      false
+     ]
+    ],
+    "pista": [
+     [
+      1983.2,
+      1984.0,
+      true
+     ],
+     [
+      1984.0,
+      1984.7,
+      true
+     ],
+     [
+      1984.7,
+      1985.8,
+      false
+     ]
+    ],
+    "linea": [
+     {
+      "t": 1980.0,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.933,
+      "saque_lejos": 0.0,
+      "clase": "near_serve",
+      "p": 0.933
+     },
+     {
+      "t": 1980.1,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.407,
+      "saque_lejos": 0.014,
+      "clase": "none",
+      "p": 0.57
+     },
+     {
+      "t": 1980.2,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.292,
+      "saque_lejos": 0.003,
+      "clase": "none",
+      "p": 0.696
+     },
+     {
+      "t": 1980.3,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.211,
+      "saque_lejos": 0.113,
+      "clase": "none",
+      "p": 0.622
+     },
+     {
+      "t": 1980.4,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.121,
+      "saque_lejos": 0.079,
+      "clase": "far_forehand",
+      "p": 0.403
+     },
+     {
+      "t": 1980.5,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.002,
+      "saque_lejos": 0.011,
+      "clase": "far_forehand",
+      "p": 0.649
+     },
+     {
+      "t": 1980.6,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.017,
+      "clase": "none",
+      "p": 0.496
+     },
+     {
+      "t": 1980.7,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.003,
+      "saque_lejos": 0.014,
+      "clase": "none",
+      "p": 0.767
+     },
+     {
+      "t": 1980.8,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.04,
+      "saque_lejos": 0.016,
+      "clase": "none",
+      "p": 0.885
+     },
+     {
+      "t": 1980.9,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.025,
+      "saque_lejos": 0.007,
+      "clase": "none",
+      "p": 0.873
+     },
+     {
+      "t": 1981.0,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.005,
+      "saque_lejos": 0.004,
+      "clase": "none",
+      "p": 0.9
+     },
+     {
+      "t": 1981.1,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.001,
+      "saque_lejos": 0.001,
+      "clase": "none",
+      "p": 0.956
+     },
+     {
+      "t": 1981.2,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.002,
+      "saque_lejos": 0.001,
+      "clase": "none",
+      "p": 0.926
+     },
+     {
+      "t": 1981.3,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.03,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.969
+     },
+     {
+      "t": 1981.4,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.022,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.977
+     },
+     {
+      "t": 1981.5,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 1981.6,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 1981.7,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 1981.8,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 1981.9,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 1982.0,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 1982.1,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 1982.2,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 1982.3,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 1982.4,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 1982.5,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 1982.6,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 1982.7,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 1982.8,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 1982.9,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 1983.0,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 1983.1,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 1983.2,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 1983.3,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.059,
+      "clase": "none",
+      "p": 0.935
+     },
+     {
+      "t": 1983.4,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.007,
+      "clase": "none",
+      "p": 0.993
+     },
+     {
+      "t": 1983.5,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 1983.6,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 1983.7,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 1983.8,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 1983.9,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 1984.0,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 1984.1,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 1984.2,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 1984.3,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 1984.4,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 1984.5,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 1984.6,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 1984.7,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 1984.8,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 1984.9,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 1985.0,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 1985.1,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 1985.2,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 1985.3,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 1985.4,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 1985.5,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.001,
+      "clase": "none",
+      "p": 0.998
+     },
+     {
+      "t": 1985.6,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.997
+     },
+     {
+      "t": 1985.7,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 1985.8,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.951
+     },
+     {
+      "t": 1985.9,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 1986.0,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     }
+    ]
+   },
+   "3856.8": {
+    "planos": [
+     [
+      3846.9,
+      3854.3,
+      false
+     ],
+     [
+      3854.3,
+      3866.5,
+      true
+     ]
+    ],
+    "pista": [
+     [
+      3854.3,
+      3855.4,
+      true
+     ],
+     [
+      3855.4,
+      3860.2,
+      false
+     ]
+    ],
+    "linea": [
+     {
+      "t": 3852.8,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3852.9,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3853.0,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3853.1,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3853.2,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3853.3,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3853.4,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3853.5,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3853.6,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3853.7,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3853.8,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3853.9,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3854.0,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3854.1,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3854.2,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3854.3,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3854.4,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3854.5,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3854.6,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3854.7,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3854.8,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3854.9,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3855.0,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3855.1,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3855.2,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3855.3,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3855.4,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3855.5,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3855.6,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3855.7,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3855.8,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3855.9,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3856.0,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3856.1,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3856.2,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3856.3,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3856.4,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3856.5,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3856.6,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3856.7,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3856.8,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3856.9,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3857.0,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3857.1,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3857.2,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3857.3,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3857.4,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3857.5,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3857.6,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3857.7,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3857.8,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.999
+     },
+     {
+      "t": 3857.9,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 3858.0,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.985
+     },
+     {
+      "t": 3858.1,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.996
+     },
+     {
+      "t": 3858.2,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.005,
+      "saque_lejos": 0.001,
+      "clase": "none",
+      "p": 0.988
+     },
+     {
+      "t": 3858.3,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.998
+     },
+     {
+      "t": 3858.4,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.876
+     },
+     {
+      "t": 3858.5,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.989
+     },
+     {
+      "t": 3858.6,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.991
+     },
+     {
+      "t": 3858.7,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.998
+     },
+     {
+      "t": 3858.8,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     }
+    ]
+   },
+   "2777.7": {
+    "planos": [
+     [
+      2760.2,
+      2776.3,
+      false
+     ],
+     [
+      2776.3,
+      2794.0,
+      true
+     ]
+    ],
+    "pista": [
+     [
+      2776.3,
+      2794.0,
+      true
+     ]
+    ],
+    "linea": [
+     {
+      "t": 2773.7,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.124,
+      "saque_lejos": 0.001,
+      "clase": "none",
+      "p": 0.799
+     },
+     {
+      "t": 2773.8,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.01,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.961
+     },
+     {
+      "t": 2773.9,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.016,
+      "saque_lejos": 0.006,
+      "clase": "none",
+      "p": 0.896
+     },
+     {
+      "t": 2774.0,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.01,
+      "saque_lejos": 0.073,
+      "clase": "none",
+      "p": 0.902
+     },
+     {
+      "t": 2774.1,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.02,
+      "saque_lejos": 0.007,
+      "clase": "none",
+      "p": 0.801
+     },
+     {
+      "t": 2774.2,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.127,
+      "clase": "none",
+      "p": 0.869
+     },
+     {
+      "t": 2774.3,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.007,
+      "clase": "none",
+      "p": 0.991
+     },
+     {
+      "t": 2774.4,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.999
+     },
+     {
+      "t": 2774.5,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2774.6,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.993
+     },
+     {
+      "t": 2774.7,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.99
+     },
+     {
+      "t": 2774.8,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.992
+     },
+     {
+      "t": 2774.9,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.994
+     },
+     {
+      "t": 2775.0,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2775.1,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2775.2,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2775.3,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2775.4,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2775.5,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2775.6,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2775.7,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2775.8,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2775.9,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2776.0,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2776.1,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2776.2,
+      "juego": false,
+      "presentes": [
+       0.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2776.3,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2776.4,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2776.5,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2776.6,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2776.7,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2776.8,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2776.9,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2777.0,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2777.1,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2777.2,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2777.3,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2777.4,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2777.5,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2777.6,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 1.0,
+      "saque_lejos": 0.0,
+      "clase": "near_serve",
+      "p": 1.0
+     },
+     {
+      "t": 2777.7,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 1.0,
+      "saque_lejos": 0.0,
+      "clase": "near_serve",
+      "p": 1.0
+     },
+     {
+      "t": 2777.8,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 1.0,
+      "saque_lejos": 0.0,
+      "clase": "near_serve",
+      "p": 1.0
+     },
+     {
+      "t": 2777.9,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2778.0,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2778.1,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2778.2,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2778.3,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2778.4,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 0.907
+     },
+     {
+      "t": 2778.5,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "far_forehand",
+      "p": 0.63
+     },
+     {
+      "t": 2778.6,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "far_forehand",
+      "p": 0.569
+     },
+     {
+      "t": 2778.7,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "far_backhand",
+      "p": 0.899
+     },
+     {
+      "t": 2778.8,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2778.9,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2779.0,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2779.1,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2779.2,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2779.3,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2779.4,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2779.5,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "none",
+      "p": 1.0
+     },
+     {
+      "t": 2779.6,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "near_backhand",
+      "p": 1.0
+     },
+     {
+      "t": 2779.7,
+      "juego": true,
+      "presentes": [
+       1.0,
+       0.0
+      ],
+      "saque_cerca": 0.0,
+      "saque_lejos": 0.0,
+      "clase": "near_backhand",
+      "p": 1.0
+     }
+    ]
+   }
+  }
+ }
+}

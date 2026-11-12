@@ -1,6 +1,6 @@
 # Revisión automática: REGRESIÓN
 
-404 cumplidos · 30 no cumplidos · 97 sin golpes suficientes · 116 avisos (antes: 406 cumplidos, 28 no cumplidos)
+404 cumplidos · 30 no cumplidos · 97 sin golpes suficientes · 116 avisos (antes: 404 cumplidos, 30 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 137 de 263
 
@@ -180,20 +180,8 @@ Registro `docs/peticiones_usuario.md`: 115 hechas · 116 a medias · 21 sin hace
 
 ## Empeora respecto a la ejecución anterior
 
-- **Registros con fecha y duración**: ok → falta: 64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba_completo.log: sin «termina fecha» al final
-- **Peticiones por GitHub Actions: espera hasta empezar**: ok → aviso: la última petición (12-11 14:18) no empezó por GitHub Actions; el último trabajo por Actions fue el 12-11 12:43
-- **#66 Fechas y duración en los registros**: ok → falta: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba)
+- **Comprobaciones que saben fallar**: ok → aviso: sin el registro de las pruebas en este PC (comprobaciones_pruebas/rec_*.json)
 
 ## Mejora
 
-- Comprobaciones que saben fallar: aviso → ok
-
-## Comprobaciones nuevas
-
-- #262 El análisis completo de los 6 partidos se lanza solo con su aprobación (dura mucho): Claude lo prepara, dice q: aviso (sin comprobación automática asignada)
-- #263 Antes de los 6 partidos: el código de la base es el último y está subido; el análisis es desde cero, sin nada : aviso (A MEDIAS según el registro (#263); sin comprobación automática asignada)
-
-## Fiabilidad de las medidas
-
-- ahora: 80 medidas: 3 dudosa, 56 fiable, 14 no comprobable, 1 ruido, 3 sesgo, 3 sin juzgar. No se dan como valor suyo (ruido): impact.face_tilt ±5.85. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga
-- antes: 80 medidas: 3 dudosa, 56 fiable, 14 no comprobable, 1 ruido, 3 sesgo, 3 sin juzgar. No se dan como valor suyo (ruido): impact.face_tilt ±5.65. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga
+- Peticiones por GitHub Actions: espera hasta empezar: aviso → ok
