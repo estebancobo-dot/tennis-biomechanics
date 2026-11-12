@@ -62,8 +62,10 @@ function Prueba-Modelos {
 # accion y sus parametros; se hacen en orden, uno detras de otro en el mismo ciclo. Un solo bloque (sin "---")
 # funciona igual que antes. Ids hechos: output\peticiones_hechas.txt (uno por linea) y el antiguo
 # output\peticion_hecha.txt (un id). La misma lectura en Python: scripts/pc_requests.py
+$script:PeticionesFichero = $null
 function Leer-Peticiones {
     $f = Join-Path $RepoDir "config\peticion_pc.txt"
+    if ($script:PeticionesFichero) { $f = $script:PeticionesFichero }
     $bloques = New-Object System.Collections.ArrayList
     if (-not (Test-Path $f)) { return ,$bloques }
     $p = @{}
@@ -203,6 +205,18 @@ function Hacer-Peticiones-De-Cola {
         $n++
     }
     if ($n) { Orquestador }
+    return $n
+}
+# only the orders of the queue (accion: control), wherever they are among the pending requests (12-11)
+function Hacer-Controles {
+    $ErrorActionPreference = "Continue"
+    $hechas = Peticiones-Hechas
+    $n = 0
+    foreach ($p in (Leer-Peticiones)) {
+        if ("$($p['accion'])" -ne "control" -or -not $p["id"] -or $hechas -contains $p["id"]) { continue }
+        Hacer-Peticion $p
+        $n++
+    }
     return $n
 }
 function Hacer-Peticion($p) {
@@ -717,8 +731,19 @@ if ($ocupado -and -not @($ocupado | Where-Object { $_.CommandLine -notmatch "job
             if ($files.Count -and -not $otros.Count) { git -C $RepoDir merge -q --ff-only $f 2>&1 | Out-Null }
         }
         Set-Location $RepoDir
-        $hechas = Hacer-Peticiones-De-Cola
-        if ($hechas) { "$(Get-Date -Format s) $hechas peticiones de cola con el ejecutor ocupado" | Add-Content "$Out\ciclo_arranque.txt" }
+        if ($f -and $h -ne $f -and $otros.Count) {
+            # 12-11: code waits for the queue to be free, and the requests with it (they must run with that code); the
+            # orders of the queue (pause, resume, cancel) cannot wait: read from the download, without the code
+            $tmp = "$Out\peticion_pc_remota.txt"
+            (git -C $RepoDir show "FETCH_HEAD:config/peticion_pc.txt" 2>$null) | Set-Content $tmp -Encoding UTF8
+            $script:PeticionesFichero = $tmp
+            $hechas = Hacer-Controles
+            $script:PeticionesFichero = $null
+            if ($hechas) { "$(Get-Date -Format s) $hechas ordenes de la cola con codigo nuevo en espera" | Add-Content "$Out\ciclo_arranque.txt" }
+        } else {
+            $hechas = Hacer-Peticiones-De-Cola
+            if ($hechas) { "$(Get-Date -Format s) $hechas peticiones de cola con el ejecutor ocupado" | Add-Content "$Out\ciclo_arranque.txt" }
+        }
         Orquestador
     } catch { Write-Host "peticiones de cola: $_" -ForegroundColor Yellow }
 }
