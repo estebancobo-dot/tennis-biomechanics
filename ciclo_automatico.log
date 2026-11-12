@@ -62,3 +62,4 @@ hint: use 'git pull' before pushing again.
 hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 No se pudo enviar el registro a Claude (sin red o sin permiso en GitHub).
 
+Registro enviado a Claude (no hace falta copiar nada).
