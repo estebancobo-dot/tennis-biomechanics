@@ -164,9 +164,9 @@
    "pocos datos": 0,
    "fallan": [
     "Golpes dudosos (duda sobre el golpe, no sobre una medida)",
-    "Registros con fecha y duración",
+    "Pruebas del código en este PC",
     "Orquestador: espera hasta empezar cada trabajo",
-    "Comprobaciones que saben fallar"
+    "Peticiones por GitHub Actions: espera hasta empezar"
    ],
    "n": 14,
    "score": 0.7142857142857143,
@@ -176,16 +176,14 @@
    "dominio": "plataforma",
    "caracteristica": "rendimiento",
    "capa": "pc",
-   "ok": 16,
-   "aviso": 1,
+   "ok": 17,
+   "aviso": 0,
    "falta": 0,
    "pocos datos": 5,
-   "fallan": [
-    "Tiempo desde cero"
-   ],
+   "fallan": [],
    "n": 17,
-   "score": 0.9411764705882353,
-   "accepted": false
+   "score": 1.0,
+   "accepted": true
   },
   {
    "dominio": "exportacion",
@@ -231,8 +229,8 @@
    "caracteristica": "funcional",
    "capa": "pc",
    "ok": 3,
-   "aviso": 1,
-   "falta": 1,
+   "aviso": 0,
+   "falta": 2,
    "pocos datos": 0,
    "fallan": [
     "Lista de partidos: rival, torneo, ronda y fecha",
@@ -412,12 +410,12 @@
    "score": 1.0
   },
   "plataforma": {
-   "ok": 56,
+   "ok": 57,
    "n": 61,
    "cells": 4,
    "unmeasured": 1,
-   "accepted": 1,
-   "score": 0.9180327868852459
+   "accepted": 2,
+   "score": 0.9344262295081968
   },
   "exportacion": {
    "ok": 1,
@@ -478,12 +476,12 @@
    "score": 0.7857142857142857
   },
   "rendimiento": {
-   "ok": 16,
+   "ok": 17,
    "n": 17,
    "cells": 3,
    "unmeasured": 2,
-   "accepted": 0,
-   "score": 0.9411764705882353
+   "accepted": 1,
+   "score": 1.0
   },
   "mantenibilidad": {
    "ok": 30,
@@ -504,12 +502,12 @@
  },
  "layers": {
   "pc": {
-   "ok": 263,
+   "ok": 264,
    "n": 282,
    "cells": 12,
    "unmeasured": 2,
-   "accepted": 4,
-   "score": 0.9326241134751773
+   "accepted": 5,
+   "score": 0.9361702127659575
   },
   "pantallas": {
    "ok": 54,
@@ -539,11 +537,11 @@
  "unmapped": {},
  "threshold": 0.95,
  "total": {
-  "ok": 383,
+  "ok": 384,
   "n": 410,
-  "score": 0.9341463414634147,
+  "score": 0.9365853658536586,
   "cells": 25,
-  "accepted": 9,
+  "accepted": 10,
   "unmeasured": 7
  }
 }

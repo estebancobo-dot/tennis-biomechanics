@@ -3,10 +3,10 @@
  "strokes": 561,
  "near": 324,
  "summary": {
-  "ok": 456,
-  "falta": 38,
+  "ok": 459,
+  "falta": 45,
   "pocos datos": 61,
-  "aviso": 144
+  "aviso": 134
  },
  "items": [
   {
@@ -8455,7 +8455,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "2747 caracteres de texto, 12 vídeos, 0 gráficos",
+   "detail": "2750 caracteres de texto, 12 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -8778,7 +8778,7 @@
    "area": "Rendimiento (información)",
    "name": "Tiempo: sin-fecha_49723c_rybakina",
    "status": "pocos datos",
-   "detail": "67 min para 112 min de vídeo ≈ 2.1 h para un partido de 3,5 h, pero no es desde cero: releyeron sus datos guardados spotting. La cifra que cuenta es «Tiempo desde cero»"
+   "detail": "55 min para 112 min de vídeo ≈ 1.7 h para un partido de 3,5 h, pero no es desde cero: releyeron sus datos guardados spotting, fine. La cifra que cuenta es «Tiempo desde cero»"
   },
   {
    "req": 9,
@@ -8812,10 +8812,10 @@
    "req": 5,
    "area": "Automático",
    "name": "Pruebas del código en este PC",
-   "status": "ok",
-   "detail": "código a221380 (2026-11-11T23:57:48): 1010 bien, 0 fallan, 0 errores",
-   "passed": 1010,
-   "failed": 0
+   "status": "falta",
+   "detail": "código ef822ad (2026-11-12T08:30:51): 1020 bien, 2 fallan, 0 errores; fallan: tests/test_stage_code.py::test_stage_code_changes_come_with_a_version, tests/test_views.py::test_existing_outputs_and_stages_unchanged",
+   "passed": 1020,
+   "failed": 2
   },
   {
    "req": 5,
@@ -8934,7 +8934,7 @@
    "area": "Pruebas en este PC",
    "name": "Pruebas en este PC: test_hybrid_pose",
    "status": "ok",
-   "detail": "13 bien, 0 fallan, 0 omitidas"
+   "detail": "15 bien, 0 fallan, 0 omitidas"
   },
   {
    "req": 5,
@@ -9025,7 +9025,7 @@
    "area": "Pruebas en este PC",
    "name": "Pruebas en este PC: test_export_end",
    "status": "ok",
-   "detail": "6 bien, 0 fallan, 0 omitidas"
+   "detail": "7 bien, 0 fallan, 0 omitidas"
   },
   {
    "req": 6,
@@ -9039,21 +9039,21 @@
    "area": "Infraestructura",
    "name": "Progreso visible (progreso.json)",
    "status": "ok",
-   "detail": "último: fine_doubtful de elena-rybakina-jessica-pegula-miami-2026-quarter-final al 100.0 % (47/47), 112 s, quedan ≈ 0 s, a las 2026-11-11 17:02:19"
+   "detail": "último: fine_doubtful de elena-rybakina-jessica-pegula-miami-2026-quarter-final al 100.0 % (47/47), 72 s, quedan ≈ 0 s, a las 2026-11-12 08:59:52"
   },
   {
    "req": 5,
    "area": "Infraestructura",
    "name": "Registros con fecha y duración",
-   "status": "falta",
-   "detail": "64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba_completo.log: sin «termina fecha» al final"
+   "status": "ok",
+   "detail": "66 de 66 registros con fecha de inicio y de fin o duración"
   },
   {
    "req": 5,
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "47 carpetas, 34.1 GB en total (2026-11-12T01:23:38); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB"
+   "detail": "50 carpetas, 38.1 GB en total (2026-11-12T09:00:51); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB"
   },
   {
    "req": 5,
@@ -9074,7 +9074,7 @@
    "area": "Aplicación",
    "name": "Aplicación: análisis en su índice",
    "status": "ok",
-   "detail": "2 análisis y 24 partidos en el índice de la aplicación (leído del índice, datos/tennisbio.db)"
+   "detail": "2 análisis y 30 partidos en el índice de la aplicación (leído del índice, datos/tennisbio.db)"
   },
   {
    "req": 5,
@@ -9094,8 +9094,8 @@
    "req": 5,
    "area": "Aplicación",
    "name": "Aplicación: lo que consume abierta",
-   "status": "aviso",
-   "detail": "sin medir (petición «medir app_recursos» del PC)"
+   "status": "falta",
+   "detail": "CPU media 0.03 % (máx 0.06 %; objetivo ≤ 5 %), memoria hasta 1469 MB (objetivo ≤ 800) en 8 procesos; 2026-11-12 01:26:37"
   },
   {
    "req": 5,
@@ -9109,14 +9109,14 @@
    "area": "Orquestador",
    "name": "Orquestador: ejecutor vivo cuando hay trabajo",
    "status": "ok",
-   "detail": "ejecutor vivo; 3 trabajos esperando"
+   "detail": "ejecutor vivo; 1 trabajos esperando"
   },
   {
    "req": 5,
    "area": "Orquestador",
    "name": "Orquestador: espera hasta empezar cada trabajo",
    "status": "aviso",
-   "detail": "32 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min"
+   "detail": "44 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min"
   },
   {
    "req": 5,
@@ -9193,21 +9193,21 @@
    "area": "Ficheros",
    "name": "Vídeos exportados: exportar_derecha",
    "status": "ok",
-   "detail": "8 de 540 vídeos mirados: 8 se reproducen con su duración, 6 con el esqueleto"
+   "detail": "8 de 540 vídeos mirados: 8 se reproducen con su duración, 6 con el esqueleto; sin esqueleto: us-open-2026-r4-naomi-osaka-elena-rybakina-0312430.mp4, zheng-qinwen-elena-rybakina-0221547.mp4"
   },
   {
    "req": 2,
    "area": "Ficheros",
    "name": "Vídeos exportados: exportar_reves",
    "status": "falta",
-   "detail": "8 de 365 vídeos mirados: 8 se reproducen con su duración, 3 con el esqueleto"
+   "detail": "8 de 365 vídeos mirados: 8 se reproducen con su duración, 3 con el esqueleto; sin esqueleto: elena-rybakina-jessica-pegula-miami-2026-quarter-final-0056758.mp4, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5-0925800.mp4, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5-0410088.mp4, zheng-qinwen-elena-rybakina-0202610.mp4"
   },
   {
    "req": 2,
    "area": "Ficheros",
    "name": "Vídeos exportados: exportar_saque",
    "status": "falta",
-   "detail": "8 de 382 vídeos mirados: 8 se reproducen con su duración, 4 con el esqueleto"
+   "detail": "8 de 382 vídeos mirados: 8 se reproducen con su duración, 4 con el esqueleto; sin esqueleto: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5-0966569.mp4, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5-0481594.mp4, us-open-2026-r4-naomi-osaka-elena-rybakina-0180814.mp4, zheng-qinwen-elena-rybakina-0163078.mp4"
   },
   {
    "req": 5,
@@ -9389,7 +9389,7 @@
    "area": "Tiempo por etapa",
    "name": "Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_49723c_rybakina",
    "status": "ok",
-   "detail": "9 etapas comparadas con su mediana aquí; las que más tardan: players 24.6 min, fine 16.4 min, scenes 14.8 min, score 5.2 min, court 4.2 min; ninguna pasa de 2 veces su ritmo habitual"
+   "detail": "9 etapas comparadas con su mediana aquí; las que más tardan: players 24.6 min, scenes 14.8 min, fine 6.5 min, score 4.2 min, court 4.2 min; ninguna pasa de 2 veces su ritmo habitual"
   },
   {
    "req": 9,
@@ -9430,22 +9430,22 @@
    "req": 9,
    "area": "Rendimiento",
    "name": "Tiempo desde cero",
-   "status": "aviso",
-   "detail": "117 min para 35 min de vídeo (3.33 veces) ≈ 11.7 h para un partido de 3,5 h (objetivo ≤ 8.0 h); smoke_tennis-yusipopen-final-sobolenko-rybakin, 2026-10-29 12:28:43; las que más tardan: spotting 50 min, fine 43 min, players 7 min, identity 5 min"
+   "status": "ok",
+   "detail": "76 min para 35 min de vídeo (2.16 veces) ≈ 7.6 h para un partido de 3,5 h (objetivo ≤ 8.0 h); prueba-app-35m, 2026-11-12 01:10:02; las que más tardan: fine 34 min, spotting 13 min, fine_doubtful 10 min, players 8 min"
   },
   {
    "req": 9,
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-11_1700.csv (mín/media/máx): elena-rybakina-jessica-pegula- fine_doubtful (0.2 min): CPU 32/32/32 %, iGPU 99/99/99 %, RAM máx 10.3 GB → iGPU al límite; más recientes sin muestras de una etapa en marcha (ejecuciones desde las cachés): recursos_2026-11-12_0120.csv, recursos_2026-11-11_2350.csv, recursos_2026-11-11_2339.csv"
+   "detail": "recursos_2026-11-12_0853.csv (mín/media/máx): elena-rybakina-jessica-pegula- fine (4.5 min): CPU 25/47/86 %, iGPU 0/27/94 %, RAM máx 8.8 GB → uso medio: margen para repartir trabajo; elena-rybakina-jessica-pegula- fine_doubtful (2.0 min): CPU 2/23/39 %, iGPU 0/34/100 %, RAM máx 8.4 GB → equipo infrautilizado: trabajo en serie (se puede repartir); 3.2 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa)"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
-   "status": "ok",
-   "detail": "petición del 12-11 01:19, empezó a los 0.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
+   "status": "aviso",
+   "detail": "la última petición (12-11 08:53) no empezó por GitHub Actions; el último trabajo por Actions fue el 12-11 08:24"
   },
   {
    "req": 1,
@@ -9570,15 +9570,15 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok"
+   "status": "falta",
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código ef822ad (2026-11-12T08:30:51): 1020 bien, 2 fallan, 0 errores; fallan: tests/test_stage_code.py::test_stage_code_)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#14 Rendimiento: un partido en horas, no días",
    "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 6 comprobaciones: 1 aviso, 5 ok; la peor: «Tiempo desde cero» (117 min para 35 min de vídeo (3.33 veces) ≈ 11.7 h para un partido de 3,5 h (objetivo ≤ 8.0 h); smoke_tennis-yusipopen-f)"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 6 comprobaciones: 6 ok"
   },
   {
    "req": 11,
@@ -9619,8 +9619,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML",
-   "status": "aviso",
-   "detail": "7 comprobaciones: 1 aviso, 6 ok; la peor: «Tiempo desde cero» (117 min para 35 min de vídeo (3.33 veces) ≈ 11.7 h para un partido de 3,5 h (objetivo ≤ 8.0 h); smoke_tennis-yusipopen-f)"
+   "status": "falta",
+   "detail": "7 comprobaciones: 1 falta, 6 ok; la peor: «Pruebas del código en este PC» (código ef822ad (2026-11-12T08:30:51): 1020 bien, 2 fallan, 0 errores; fallan: tests/test_stage_code.py::test_stage_code_)"
   },
   {
    "req": 11,
@@ -9682,8 +9682,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#29 Fase 0: entorno y fps reales, con YOLO",
-   "status": "aviso",
-   "detail": "6 comprobaciones: 1 aviso, 5 ok; la peor: «Tiempo desde cero» (117 min para 35 min de vídeo (3.33 veces) ≈ 11.7 h para un partido de 3,5 h (objetivo ≤ 8.0 h); smoke_tennis-yusipopen-f)"
+   "status": "ok",
+   "detail": "6 comprobaciones: 6 ok"
   },
   {
    "req": 11,
@@ -9767,7 +9767,7 @@
    "area": "Peticiones",
    "name": "#41 Exportación: cómo se ven y se graban",
    "status": "falta",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 7 comprobaciones: 2 falta, 5 ok; la peor: «Vídeos exportados: exportar_reves» (8 de 365 vídeos mirados: 8 se reproducen con su duración, 3 con el esqueleto)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 7 comprobaciones: 2 falta, 5 ok; la peor: «Vídeos exportados: exportar_reves» (8 de 365 vídeos mirados: 8 se reproducen con su duración, 3 con el esqueleto; sin esqueleto: elena-rybakina-jessica-pegu)"
   },
   {
    "req": 11,
@@ -9836,8 +9836,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#51 El código de la prueba es el de los casos reales",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok"
+   "status": "falta",
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código ef822ad (2026-11-12T08:30:51): 1020 bien, 2 fallan, 0 errores; fallan: tests/test_stage_code.py::test_stage_code_)"
   },
   {
    "req": 11,
@@ -9913,8 +9913,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#66 Fechas y duración en los registros",
-   "status": "falta",
-   "detail": "2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba)"
+   "status": "ok",
+   "detail": "2 comprobaciones: 2 ok"
   },
   {
    "req": 11,
@@ -9977,7 +9977,7 @@
    "area": "Peticiones",
    "name": "#75 Velocidad: «10 golpes en 5 horas es absurdo»",
    "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 6 comprobaciones: 1 aviso, 5 ok; la peor: «Tiempo desde cero» (117 min para 35 min de vídeo (3.33 veces) ≈ 11.7 h para un partido de 3,5 h (objetivo ≤ 8.0 h); smoke_tennis-yusipopen-f)"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 6 comprobaciones: 6 ok"
   },
   {
    "req": 11,
@@ -10033,7 +10033,7 @@
    "area": "Peticiones",
    "name": "#83 Árbol de ficheros generados y validados",
    "status": "falta",
-   "detail": "14 comprobaciones: 2 falta, 12 ok; la peor: «Vídeos exportados: exportar_reves» (8 de 365 vídeos mirados: 8 se reproducen con su duración, 3 con el esqueleto)"
+   "detail": "14 comprobaciones: 2 falta, 12 ok; la peor: «Vídeos exportados: exportar_reves» (8 de 365 vídeos mirados: 8 se reproducen con su duración, 3 con el esqueleto; sin esqueleto: elena-rybakina-jessica-pegu)"
   },
   {
    "req": 11,
@@ -10264,7 +10264,7 @@
    "area": "Peticiones",
    "name": "#119 Automatizar todo el ciclo en el PC: el usuario no lanza pruebas ni avisa",
    "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (32 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (44 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min)"
   },
   {
    "req": 11,
@@ -10306,7 +10306,7 @@
    "area": "Peticiones",
    "name": "#125 Velocidad, rendimiento y algoritmia antes del tramo largo nocturno",
    "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 6 comprobaciones: 1 aviso, 5 ok; la peor: «Tiempo desde cero» (117 min para 35 min de vídeo (3.33 veces) ≈ 11.7 h para un partido de 3,5 h (objetivo ≤ 8.0 h); smoke_tennis-yusipopen-f)"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 6 comprobaciones: 6 ok"
   },
   {
    "req": 11,
@@ -10376,7 +10376,7 @@
    "area": "Peticiones",
    "name": "#137 hay algo que se pueda paralelizar ... threading (Chat, 13-10 18:31)",
    "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 14 comprobaciones: 1 aviso, 13 ok; la peor: «Tiempo desde cero» (117 min para 35 min de vídeo (3.33 veces) ≈ 11.7 h para un partido de 3,5 h (objetivo ≤ 8.0 h); smoke_tennis-yusipopen-f)"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 14 comprobaciones: 14 ok"
   },
   {
    "req": 11,
@@ -10536,8 +10536,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#160 la app que hiciste completa como se arranca, se puede usar ahora? (Chat, 19-10 08:11)",
-   "status": "aviso",
-   "detail": "6 comprobaciones: 1 aviso, 5 ok; la peor: «Aplicación: lo que consume abierta» (sin medir (petición «medir app_recursos» del PC))"
+   "status": "falta",
+   "detail": "6 comprobaciones: 1 falta, 5 ok; la peor: «Aplicación: lo que consume abierta» (CPU media 0.03 % (máx 0.06 %; objetivo ≤ 5 %), memoria hasta 1469 MB (objetivo ≤ 800) en 8 procesos; 2026-11-12 01:26:37)"
   },
   {
    "req": 11,
@@ -10991,8 +10991,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#225 La aplicación no se cuelga ni ralentiza el PC",
-   "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 4 comprobaciones: 1 aviso, 3 ok; la peor: «Aplicación: lo que consume abierta» (sin medir (petición «medir app_recursos» del PC))"
+   "status": "falta",
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 4 comprobaciones: 1 falta, 3 ok; la peor: «Aplicación: lo que consume abierta» (CPU media 0.03 % (máx 0.06 %; objetivo ≤ 5 %), memoria hasta 1469 MB (objetivo ≤ 800) en 8 procesos; 2026-11-12 01:26:37)"
   },
   {
    "req": 11,
@@ -11020,14 +11020,14 @@
    "area": "Peticiones",
    "name": "#230 Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo",
    "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 8 comprobaciones: 1 aviso, 7 ok; la peor: «Tiempo desde cero» (117 min para 35 min de vídeo (3.33 veces) ≈ 11.7 h para un partido de 3,5 h (objetivo ≤ 8.0 h); smoke_tennis-yusipopen-f)"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 8 comprobaciones: 8 ok"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#231 Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta",
-   "status": "aviso",
-   "detail": "12 comprobaciones: 1 aviso, 11 ok; la peor: «Tiempo desde cero» (117 min para 35 min de vídeo (3.33 veces) ≈ 11.7 h para un partido de 3,5 h (objetivo ≤ 8.0 h); smoke_tennis-yusipopen-f)"
+   "status": "ok",
+   "detail": "12 comprobaciones: 12 ok"
   },
   {
    "req": 11,
@@ -11069,7 +11069,7 @@
    "area": "Peticiones",
    "name": "#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min",
    "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (32 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 2 aviso, 1 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (44 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min)"
   },
   {
    "req": 11,
@@ -11096,15 +11096,15 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código",
-   "status": "ok",
-   "detail": "2 comprobaciones: 2 ok"
+   "status": "falta",
+   "detail": "2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código ef822ad (2026-11-12T08:30:51): 1020 bien, 2 fallan, 0 errores; fallan: tests/test_stage_code.py::test_stage_code_)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#242 Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femeninos, un análisis po",
-   "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 6 comprobaciones: 1 aviso, 5 ok; la peor: «Aplicación: lo que consume abierta» (sin medir (petición «medir app_recursos» del PC))"
+   "status": "falta",
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 6 comprobaciones: 1 falta, 5 ok; la peor: «Aplicación: lo que consume abierta» (CPU media 0.03 % (máx 0.06 %; objetivo ≤ 5 %), memoria hasta 1469 MB (objetivo ≤ 800) en 8 procesos; 2026-11-12 01:26:37)"
   },
   {
    "req": 11,
@@ -11132,7 +11132,7 @@
    "area": "Peticiones",
    "name": "#246 Un único orquestador: mismo código y misma fuente de datos para la aplicación y el chat; monitorizar, pausar, ",
    "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (32 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (44 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min)"
   },
   {
    "req": 11,
@@ -11236,8 +11236,8 @@
    "req": 5,
    "area": "Automático",
    "name": "Comprobaciones que saben fallar",
-   "status": "aviso",
-   "detail": "sin el registro de las pruebas en este PC (comprobaciones_pruebas/rec_*.json)"
+   "status": "ok",
+   "detail": "470 de 550 tipos de comprobación con una prueba que las hace fallar; 62 sin ninguna prueba y 18 que nunca fallan en las pruebas; de las pruebas principales de la Base: 0"
   }
  ]
 }
