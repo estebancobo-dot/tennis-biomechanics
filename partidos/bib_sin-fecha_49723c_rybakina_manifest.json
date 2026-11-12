@@ -104,14 +104,14 @@
   "rewrote": {}
  },
  "identity": {
-  "fingerprint": "694cb766286ff365",
+  "fingerprint": "3ef0cbc7287359a4",
   "version": "13",
-  "seconds": 192.4,
-  "finished": "2026-11-12 08:51:40",
+  "seconds": 193.3,
+  "finished": "2026-11-12 13:01:57",
   "summary": {
    "runs": 320,
    "confidence": 0.54,
-   "votes": 157,
+   "votes": 169,
    "agree": 0,
    "ends_only": 313,
    "clothes_only": 0,
@@ -141,20 +141,20 @@
      "parity_runs": 281,
      "parity_agree": 0.56,
      "centroid_dist": 0.59,
-     "vote_runs": 149,
-     "vote_agree": 0.54
+     "vote_runs": 161,
+     "vote_agree": 0.55
     }
    }
   },
-  "out_hash": "08c8f45fca91fe501f7b",
+  "out_hash": "c1f0070ceda21491dcb2",
   "scheme": 2,
   "rewrote": {}
  },
  "spotting": {
-  "fingerprint": "2dbc531fc81e73f0",
+  "fingerprint": "7a67f09c95a8f2b9",
   "version": "1",
-  "seconds": 22.9,
-  "finished": "2026-11-12 08:52:03",
+  "seconds": 22.1,
+  "finished": "2026-11-12 13:02:20",
   "summary": {
    "enabled": true,
    "strokes": 671,
@@ -168,7 +168,7 @@
    "audio_track": 0,
    "seconds": {
     "jugadores_y_audio": 0.1,
-    "rasgos": 22.6,
+    "rasgos": 21.8,
     "bola": 0.0,
     "modelo": 0.1
    }
@@ -178,10 +178,10 @@
   "rewrote": {}
  },
  "candidates": {
-  "fingerprint": "e19f9bda731a64f0",
+  "fingerprint": "bb7da8f3d87ed018",
   "version": "15",
   "seconds": 3.3,
-  "finished": "2026-11-12 08:52:07",
+  "finished": "2026-11-12 13:02:23",
   "summary": {
    "candidates": 681,
    "far": 322,
@@ -198,10 +198,10 @@
   "rewrote": {}
  },
  "views": {
-  "fingerprint": "ac6e0c6090f9186b",
+  "fingerprint": "58201c3fff698284",
   "version": "6",
-  "seconds": 194.8,
-  "finished": "2026-11-11 16:41:40",
+  "seconds": 201.2,
+  "finished": "2026-11-12 13:05:44",
   "summary": {
    "views": 886,
    "repeticion_principal": 41,
@@ -218,16 +218,16 @@
   "rewrote": {}
  },
  "fine": {
-  "fingerprint": "363548afa66f09eb",
+  "fingerprint": "62cfcd7bcb0f0e95",
   "version": "16",
-  "seconds": 388.1,
-  "finished": "2026-11-12 08:58:35",
+  "seconds": 1061.4,
+  "finished": "2026-11-12 13:23:26",
   "summary": {
    "candidates": 331,
    "confirmed": 316,
    "errors": 0,
    "warnings": [],
-   "forehands": 122,
+   "forehands": 123,
    "windows": 215,
    "gate": {
     "windows_gated": 0,
@@ -241,36 +241,37 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "jugadora_lejana": 226.0,
-    "cuerdas_y_3d": 77.1,
-    "pista_ventana": 73.8,
-    "analisis_ventana": 47.1,
-    "recorte": 14.5,
-    "cribado": 9.2,
-    "pose": 1.5,
-    "pose_medida_lejana": 0.8
+    "raqueta": 1129.2,
+    "cuerdas_y_3d": 241.1,
+    "jugadora_lejana": 226.7,
+    "pista_ventana": 83.3,
+    "analisis_ventana": 50.8,
+    "recorte": 15.7,
+    "cribado": 9.6,
+    "pose": 1.0,
+    "pose_medida_lejana": 0.7
    },
    "counts": {
     "overlap_s": 1.7,
     "frames": 61371,
     "posed_frames": 61371,
-    "impacts": 365,
+    "impacts": 392,
     "kept_impacts": 324,
-    "racket_frames": 0,
+    "racket_frames": 2769,
     "whole_window_again": 0,
     "frames_960_far": 0,
     "far_measure_windows": 17
    }
   },
-  "out_hash": "f43705087700f3153890",
+  "out_hash": "955aff20a2032dca072c",
   "scheme": 2,
   "rewrote": {}
  },
  "views_link": {
-  "fingerprint": "2af7cae9c42d7fb2",
+  "fingerprint": "3c6b8d8200a953b6",
   "version": "1",
-  "seconds": 0.4,
-  "finished": "2026-11-12 08:58:36",
+  "seconds": 0.5,
+  "finished": "2026-11-12 13:23:27",
   "summary": {
    "strokes": 316,
    "with_replay": 45,
@@ -282,52 +283,52 @@
   "out_hash": "9c24d74db9d6118f1746",
   "scheme": 2,
   "rewrote": {
-   "fine": "ed2ef250c5a98c4eba65"
+   "fine": "4e76a08a37fbd25b3737"
   }
  },
  "view_clips": {
-  "fingerprint": "e0ef38375be0e431",
+  "fingerprint": "d8bc3714d8669024",
   "version": "1",
-  "seconds": 132.6,
-  "finished": "2026-11-11 17:00:21",
+  "seconds": 27.8,
+  "finished": "2026-11-12 13:23:56",
   "summary": {
    "enabled": true,
    "linked_strokes": 306,
    "views": 926,
    "clips": 613,
-   "cut": 117,
-   "reused": 496,
+   "cut": 0,
+   "reused": 613,
    "failed": 0,
-   "seconds": 132.5,
+   "seconds": 27.7,
    "clip_seconds": 3195.0,
    "strokes_with_clip": 306
   },
-  "out_hash": "42656c38286fa195eddd",
+  "out_hash": "e34f4340d1ef9a20ad35",
   "scheme": 2,
   "rewrote": {}
  },
  "slowmo_fine": {
-  "fingerprint": "bf4768804d3250ae",
+  "fingerprint": "4eccfac92cdedbf4",
   "version": "1",
-  "seconds": 1.8,
-  "finished": "2026-11-11 17:00:24",
+  "seconds": 1.7,
+  "finished": "2026-11-12 13:23:58",
   "summary": {
    "enabled": true,
    "slowmo_strokes": 5,
    "measured": 5,
    "failed": 0,
    "frames": 312,
-   "seconds": 1.7
+   "seconds": 1.6
   },
-  "out_hash": "01a04b1bbc2a4f2c658b",
+  "out_hash": "3da189dcba3a8aa3e724",
   "scheme": 2,
   "rewrote": {}
  },
  "fine_opponent": {
-  "fingerprint": "dd9cfaaaa73da2c6",
+  "fingerprint": "66535e98eef67e2f",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-12 08:58:37",
+  "finished": "2026-11-12 13:23:59",
   "summary": {
    "enabled": false
   },
@@ -336,10 +337,10 @@
   "rewrote": {}
  },
  "fine_doubtful": {
-  "fingerprint": "8561839479e15841",
+  "fingerprint": "4099e261cc771e5b",
   "version": "1",
-  "seconds": 75.3,
-  "finished": "2026-11-12 08:59:52",
+  "seconds": 101.1,
+  "finished": "2026-11-12 13:25:40",
   "summary": {
    "candidates": 47,
    "confirmed": 24,
@@ -359,12 +360,13 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "jugadora_lejana": 94.6,
-    "cuerdas_y_3d": 7.5,
-    "analisis_ventana": 7.1,
-    "pista_ventana": 4.9,
-    "recorte": 3.2,
-    "cribado": 0.9,
+    "jugadora_lejana": 93.5,
+    "raqueta": 38.8,
+    "cuerdas_y_3d": 14.4,
+    "analisis_ventana": 7.3,
+    "pista_ventana": 5.0,
+    "recorte": 3.0,
+    "cribado": 1.0,
     "pose": 0.1,
     "pose_medida_lejana": 0.1
    },
@@ -372,15 +374,15 @@
     "overlap_s": 0.0,
     "frames": 5621,
     "posed_frames": 5621,
-    "impacts": 33,
+    "impacts": 34,
     "kept_impacts": 26,
-    "racket_frames": 0,
+    "racket_frames": 108,
     "whole_window_again": 0,
     "frames_960_far": 0,
     "far_measure_windows": 2
    }
   },
-  "out_hash": "1c800eb54c88c2450e48",
+  "out_hash": "be5856889a7f16e88e10",
   "scheme": 2,
   "rewrote": {}
  }
