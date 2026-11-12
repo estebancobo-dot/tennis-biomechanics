@@ -1027,3 +1027,9 @@ accion: medir
 script: diag_export_clip
 argumentos: 0312430 0966569 0925800 0048549
 # 235 (12-12, R5): lo que lee y dibuja la exportacion (StrokeClip) en el impacto frente al fotograma crudo de la ventana
+---
+id: 236
+accion: medir
+script: diag_pose_contacto
+# 236 (12-12, R5): cuantos golpes analizados no tienen su pose en el contacto (por partido, lado y golpe) y si aun llevan
+# medidas del cuerpo. Solo lee
