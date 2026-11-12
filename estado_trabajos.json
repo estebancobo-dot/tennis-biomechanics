@@ -1,32 +1,13 @@
 {
- "at": "2026-11-12 02:55:13",
- "firma": "ee2b48bb17b2",
+ "at": "2026-11-12 03:10:06",
+ "firma": "a014f9f43e7a",
  "ejecutor": {
   "vivo": true,
   "pid": 7200,
-  "at": 1794448499.8632889
+  "at": 1794449396.3910391
  },
  "pausa": false,
- "en_curso": [
-  {
-   "id": 64,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script bench_fine_fps --match pegula --minutes 15 --tag bola --set fine_pass.ball_from_spotting=true",
-   "state": "en curso",
-   "message": "",
-   "created": "2026-11-12 01:21:21",
-   "started": "2026-11-12 02:20:00",
-   "finished": null,
-   "args": "[\"script\", \"bench_fine_fps\", \"--match\", \"pegula\", \"--minutes\", \"15\", \"--tag\", \"bola\", \"--set\", \"fine_pass.ball_from_spotting=true\"]",
-   "source": "claude 220",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_64.log",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "en_curso": [],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "fine_doubtful",
@@ -39,6 +20,24 @@
  },
  "pendientes": [],
  "recientes": [
+  {
+   "id": 64,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script bench_fine_fps --match pegula --minutes 15 --tag bola --set fine_pass.ball_from_spotting=true",
+   "state": "hecho",
+   "message": "",
+   "created": "2026-11-12 01:21:21",
+   "started": "2026-11-12 02:20:00",
+   "finished": "2026-11-12 03:09:54",
+   "args": "[\"script\", \"bench_fine_fps\", \"--match\", \"pegula\", \"--minutes\", \"15\", \"--tag\", \"bola\", \"--set\", \"fine_pass.ball_from_spotting=true\"]",
+   "source": "claude 220",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_64.log",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 63,
    "kind": "comando",
@@ -290,27 +289,16 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_50.log",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 49,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script diag_scoreboard --match pegula --times 120,300,700,900,1100,1250",
-   "state": "hecho",
-   "message": "",
-   "created": "2026-11-11 16:10:50",
-   "started": "2026-11-11 16:11:00",
-   "finished": "2026-11-11 16:11:06",
-   "args": "[\"script\", \"diag_scoreboard\", \"--match\", \"pegula\", \"--times\", \"120,300,700,900,1100,1250\"]",
-   "source": "claude 201",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_49.log",
-   "paso": 0,
-   "pasos": 0
   }
  ],
  "eventos": [
+  {
+   "id": 280,
+   "job": 64,
+   "at": "2026-11-12 03:09:56",
+   "kind": "hecho",
+   "text": "código 0"
+  },
   {
    "id": 279,
    "job": 64,
@@ -513,13 +501,6 @@
    "at": "2026-11-12 01:13:44",
    "kind": "ejecutor",
    "text": "se reinicia con el código nuevo"
-  },
-  {
-   "id": 250,
-   "job": null,
-   "at": "2026-11-12 01:13:39",
-   "kind": "reiniciar",
-   "text": "ciclo"
   }
  ]
 }
