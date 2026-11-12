@@ -1,6 +1,6 @@
-# Revisión automática: REGRESIÓN
+# Revisión automática: FALLOS
 
-383 cumplidos · 35 no cumplidos · 110 sin golpes suficientes · 114 avisos (antes: 384 cumplidos, 35 no cumplidos)
+384 cumplidos · 35 no cumplidos · 110 sin golpes suficientes · 113 avisos (antes: 383 cumplidos, 35 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 135 de 260
 
@@ -181,6 +181,6 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 - **#257 Comparativa a fondo y catalogada con todo lo que existe: apps profesionales (Hawk-Eye/TennisViz, SwingVision, **: SIN HACER según el registro (#257, docs/peticiones_usuario.md)
 - **#258 Partidos y jugadores automáticos desde un nombre de fichero mínimo: normalizar los nombres, leer la ficha públ**: SIN HACER según el registro (#258, docs/peticiones_usuario.md)
 
-## Empeora respecto a la ejecución anterior
+## Mejora
 
-- **Peticiones por GitHub Actions: espera hasta empezar**: ok → aviso: petición del 12-11 09:15, empezó a los 13.0 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)
+- Peticiones por GitHub Actions: espera hasta empezar: aviso → ok

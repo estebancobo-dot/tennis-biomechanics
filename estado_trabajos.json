@@ -1,32 +1,13 @@
 {
- "at": "2026-11-12 09:42:25",
- "firma": "d154fbfbd931",
+ "at": "2026-11-12 09:45:31",
+ "firma": "f40f09d9abbb",
  "ejecutor": {
   "vivo": true,
   "pid": 3632,
-  "at": 1794472935.3179429
+  "at": 1794473131.385303
  },
  "pausa": false,
- "en_curso": [
-  {
-   "id": 76,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script export_fotogramas 0312430 0221547 0925800 0048549",
-   "state": "en curso",
-   "message": "",
-   "created": "2026-11-12 09:42:16",
-   "started": "2026-11-12 09:42:25",
-   "finished": null,
-   "args": "[\"script\", \"export_fotogramas\", \"0312430\", \"0221547\", \"0925800\", \"0048549\"]",
-   "source": "claude 233",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_76.log",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "en_curso": [],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "fine_doubtful",
@@ -39,6 +20,24 @@
  },
  "pendientes": [],
  "recientes": [
+  {
+   "id": 76,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script export_fotogramas 0312430 0221547 0925800 0048549",
+   "state": "hecho",
+   "message": "",
+   "created": "2026-11-12 09:42:16",
+   "started": "2026-11-12 09:42:25",
+   "finished": "2026-11-12 09:42:30",
+   "args": "[\"script\", \"export_fotogramas\", \"0312430\", \"0221547\", \"0925800\", \"0048549\"]",
+   "source": "claude 233",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_76.log",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 75,
    "kind": "comando",
@@ -290,27 +289,16 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_62.log",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 61,
-   "kind": "flujo",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
-   "state": "hecho",
-   "message": "6 pasos",
-   "created": "2026-11-12 01:20:26",
-   "started": "2026-11-12 01:20:28",
-   "finished": "2026-11-12 01:25:06",
-   "args": "[\"informe\"]",
-   "source": "claude 217",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_61.log",
-   "paso": 6,
-   "pasos": 6
   }
  ],
  "eventos": [
+  {
+   "id": 371,
+   "job": 76,
+   "at": "2026-11-12 09:42:31",
+   "kind": "hecho",
+   "text": "código 0"
+  },
   {
    "id": 370,
    "job": 76,
@@ -513,13 +501,6 @@
    "at": "2026-11-12 08:59:54",
    "kind": "paso",
    "text": "1/6 Registro de partidos"
-  },
-  {
-   "id": 341,
-   "job": 73,
-   "at": "2026-11-12 08:59:53",
-   "kind": "empieza",
-   "text": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)"
   }
  ]
 }
