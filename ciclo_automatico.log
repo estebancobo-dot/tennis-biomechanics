@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261112100823
+Start time: 20261112101826
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
 Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 9204
+Process ID: 4940
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -16,9 +16,32 @@ WSManStackVersion: 3.0
 PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
-Registro enviado a Claude (no hace falta copiar nada).
-Empezado 2026-11-12 10:08:17 - terminado 2026-11-12 10:08:34 - duracion total 18 s
-**********************
-Windows PowerShell transcript end
-End time: 20261112100834
-**********************
+
+==> [2026-11-12 10:18:26] Codigo nuevo (3116476 -> f4b9cc4): 4 ficheros
+    config/plan_peticiones.yaml
+    docs/estado_proyecto.md
+    src/tennisbio/audit.py
+    tests/test_pose_at_contact.py
+Updating 3116476..f4b9cc4
+Fast-forward
+ config/plan_peticiones.yaml   |  2 +-
+ docs/estado_proyecto.md       |  3 ++-
+ src/tennisbio/audit.py        | 54 ++++++++++++++++++++++++++++++++++++++++++-
+ tests/test_pose_at_contact.py | 30 ++++++++++++++++++++++++
+ 4 files changed, 86 insertions(+), 3 deletions(-)
+ create mode 100644 tests/test_pose_at_contact.py
+Resolved 126 packages in 0.95ms
+Checked 91 packages in 3ms
+balltrack.onnx     OK 45 MB
+racketpose.onnx    OK 53 MB
+transnetv2.onnx    OK 31 MB
+rtmw3d-x.onnx      OK 369 MB
+rtmw-x_384x288.onnx OK 229 MB
+court_tcd.onnx     OK 42 MB
+motionagformer_xs.onnx OK 9 MB
+yolo11m-pose_640.onnx OK 84 MB
+yolo11m-pose_960.onnx OK 84 MB
+yolo11m-pose_1280.onnx OK 85 MB
+yolo11m-pose_1920.onnx OK 86 MB
+Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (ya estaba)
+el ejecutor se reinicia al acabar el trabajo en curso

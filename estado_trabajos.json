@@ -1,10 +1,10 @@
 {
- "at": "2026-11-12 10:11:28",
+ "at": "2026-11-12 10:18:39",
  "firma": "92c024e3efde",
  "ejecutor": {
   "vivo": true,
-  "pid": 6856,
-  "at": 1794474688.4715574
+  "pid": 14620,
+  "at": 1794475119.4768379
  },
  "pausa": false,
  "en_curso": [],
@@ -293,6 +293,41 @@
  ],
  "eventos": [
   {
+   "id": 400,
+   "job": null,
+   "at": "2026-11-12 10:18:39",
+   "kind": "ejecutor",
+   "text": "arranca (pid 14620)"
+  },
+  {
+   "id": 399,
+   "job": null,
+   "at": "2026-11-12 10:18:38",
+   "kind": "ejecutor",
+   "text": "arranca el siguiente con el código nuevo (pid 10980)"
+  },
+  {
+   "id": 398,
+   "job": null,
+   "at": "2026-11-12 10:18:38",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 397,
+   "job": null,
+   "at": "2026-11-12 10:18:38",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 396,
+   "job": null,
+   "at": "2026-11-12 10:18:31",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
    "id": 395,
    "job": 79,
    "at": "2026-11-12 10:08:38",
@@ -466,41 +501,6 @@
    "at": "2026-11-12 09:42:31",
    "kind": "hecho",
    "text": "código 0"
-  },
-  {
-   "id": 370,
-   "job": 76,
-   "at": "2026-11-12 09:42:25",
-   "kind": "empieza",
-   "text": "script export_fotogramas 0312430 0221547 0925800 0048549"
-  },
-  {
-   "id": 369,
-   "job": 76,
-   "at": "2026-11-12 09:42:16",
-   "kind": "enviado",
-   "text": "tennisbio script export_fotogramas 0312430 0221547 0925800 0048549 (claude 233)"
-  },
-  {
-   "id": 368,
-   "job": null,
-   "at": "2026-11-12 09:41:55",
-   "kind": "ejecutor",
-   "text": "arranca (pid 3632)"
-  },
-  {
-   "id": 367,
-   "job": null,
-   "at": "2026-11-12 09:41:54",
-   "kind": "ejecutor",
-   "text": "arranca el siguiente con el código nuevo (pid 13564)"
-  },
-  {
-   "id": 366,
-   "job": null,
-   "at": "2026-11-12 09:41:54",
-   "kind": "ejecutor",
-   "text": "termina"
   }
  ]
 }
