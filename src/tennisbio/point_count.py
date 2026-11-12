@@ -251,7 +251,8 @@ def serve_gaps(readings: list[dict], strokes: list[dict], main_shots: list[tuple
                lead_s: float = 25.0, spotted: list[dict] | None = None, candidates: list[dict] | None = None,
                doubtful: list[dict] | None = None, dropped: list[dict] | None = None) -> dict:
     """B4 (04-11): the points played on HER serve (scoreboard row 0 serving, a point counted between two readings of
-    the same game) with no serve of hers found, and why: no main-camera shot in that stretch (the broadcast did not
+    the same game, and since 12-11 also from the last reading of a game to the first of the next, game_change_servers)
+    with no serve of hers found, and why: no main-camera shot in that stretch (the broadcast did not
     show it), none of her strokes at all (detection), or strokes but no serve (stroke type). The stretch of a point is
     from the first reading that shows its score (5 s earlier at most) to the reading that shows the next one. Returns {"points": n, "found": n, "gaps": [{"t0", "t1", "cause"}], "by_cause": {cause: n}}."""
     st = clean_states(readings)
@@ -272,13 +273,19 @@ def serve_gaps(readings: list[dict], strokes: list[dict], main_shots: list[tuple
         same_score = b["g"] == a["g"] and b["pts"] == a["pts"]
         if not same_score:
             start, since = since, b["t"]
-        if b["g"] != a["g"] or a["tb"] or same_score or not _in_game(a, b):
+        if a["tb"] or same_score:
+            continue
+        if b["g"] != a["g"]:
+            servers = game_change_servers(a, b)          # 12-11: the end of a game and the start of the next count too
+        else:
+            servers = {a["server"]} if _in_game(a, b) else set()
+        if not servers:
             continue
         # the point starts once its score is on the board (a few seconds of slack for the reading rate)
         t0, t1 = start - min(lead_s, 5.0), b["t"]
-        if a["server"] != 0:
-            if a["server"] == 1:
-                opp_w.append((t0, t1))
+        if 1 in servers:
+            opp_w.append((t0, t1))
+        if 0 not in servers:
             continue
         her_w.append((t0, t1))
         out["points"] += 1
@@ -392,6 +399,20 @@ def serve_gaps(readings: list[dict], strokes: list[dict], main_shots: list[tuple
     out["serves_at"] = {"her_points": sum(within(t, her_w) for t in serve_t),
                         "opponent_points": sum(within(t, opp_w) and not within(t, her_w) for t in serve_t),
                         "elsewhere": sum(not within(t, her_w) and not within(t, opp_w) for t in serve_t)}
+    return out
+
+
+def game_change_servers(a: dict, b: dict) -> set:
+    """Who served between the last reading of a game (a) and the first of the next one (b), 12-11. Until then the
+    stretch from one game to the next was never counted: on Osaka – Rybakina the check of her serve looked at 36 of the
+    62 points of her serve. a's server served the end of a's game; b's server too when b is read after its first point
+    (15-0 or 0-15, its 0-0 never read). Nothing when a game was skipped, the server is unknown or a tie-break is involved
+    (its serve changes every two points)."""
+    if b["g"] != a["g"] + 1 or a["tb"] or b["tb"]:
+        return set()
+    out = {a["server"]} if a["server"] in (0, 1) else set()
+    if sum(b["pts"]) == 1 and b["server"] in (0, 1):
+        out.add(b["server"])
     return out
 
 

@@ -3,8 +3,10 @@ their version number, so a change to their code must come with a new version, or
 that does not change their results. Putting the code into their fingerprint instead would recompute
 every analysed match (hours) the day it is adopted.
 
-The code of a stage = its function in stages.py and the project modules it imports there, compared
-as normalised syntax (comments, docstrings and formatting do not count)."""
+The code of a stage = its function in stages.py, every function, class or constant of stages.py it reaches by name
+(transitively), and the project modules all of those import, compared as normalised syntax (comments, docstrings and
+formatting do not count). 12-11: only the stage's own function and its own imports counted, so a change to a helper
+it calls (candidates → add_serve_candidates → point_count.her_serve_points) left old results passing for new ones."""
 from __future__ import annotations
 
 import ast
@@ -32,12 +34,41 @@ def _module_code(mod: str) -> str:
     return _norm(ast.parse(f.read_text(encoding="utf-8"))) if f.exists() else ""
 
 
-def stage_code() -> dict[str, dict]:
-    """stage → {version, hash} for every stage without `code=`."""
+def reachable(tree: ast.Module, entry: str) -> list[ast.AST]:
+    """The top-level nodes of a module that its function `entry` reaches by name, transitively: functions, classes,
+    constants, and the module-level «from .x import y» lines of the names it uses (entry first, then by name)."""
+    defs: dict[str, list] = {}
+    for n in tree.body:
+        if isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
+            defs.setdefault(n.name, []).append(n)
+        elif isinstance(n, (ast.Assign, ast.AnnAssign)):
+            for t in (n.targets if isinstance(n, ast.Assign) else [n.target]):
+                for x in ast.walk(t):
+                    if isinstance(x, ast.Name):
+                        defs.setdefault(x.id, []).append(n)
+        elif isinstance(n, ast.ImportFrom) and n.level == 1:
+            for a in n.names:
+                defs.setdefault(a.asname or a.name, []).append(n)
+    seen, todo = set(), [entry]
+    while todo:
+        k = todo.pop()
+        if k in seen or k not in defs:
+            continue
+        seen.add(k)
+        for node in defs[k]:
+            todo += [x.id for x in ast.walk(node) if isinstance(x, ast.Name) and x.id in defs]
+    out = list(defs.get(entry, []))
+    for k in sorted(seen - {entry}):
+        out += [n for n in defs[k] if n not in out]
+    return out
+
+
+def stage_code(src: str | None = None) -> dict[str, dict]:
+    """stage → {version, hash} for every stage without `code=` (src: another text of stages.py, for the tests)."""
     from .pipeline import STAGES
     from . import stages  # noqa: F401  (registers the stages)
 
-    tree = ast.parse((ROOT / "stages.py").read_text(encoding="utf-8"))
+    tree = ast.parse((ROOT / "stages.py").read_text(encoding="utf-8") if src is None else src)
     funcs = {n.name: n for n in tree.body if isinstance(n, ast.FunctionDef)}
     out = {}
     for name, st in STAGES.items():
@@ -46,8 +77,10 @@ def stage_code() -> dict[str, dict]:
         fn = funcs.get(st.run.__name__)
         if fn is None:
             continue
-        mods = sorted({n.module for n in ast.walk(fn) if isinstance(n, ast.ImportFrom) and n.level == 1 and n.module})
-        h = hashlib.sha1(_norm(ast.parse(ast.unparse(fn))).encode())
+        nodes = reachable(tree, fn.name)
+        mods = sorted({n.module for node in nodes for n in ast.walk(node)
+                       if isinstance(n, ast.ImportFrom) and n.level == 1 and n.module})
+        h = hashlib.sha1("\n".join(_norm(ast.parse(ast.unparse(node))) for node in nodes).encode())
         for m in mods:
             h.update(m.encode())
             h.update(_module_code(m).encode())

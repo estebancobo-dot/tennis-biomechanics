@@ -337,3 +337,35 @@ def test_the_serve_threshold_is_85_and_the_far_gap_is_accepted_and_said():
     from tennisbio.audit import SERVE_FAR_GAP, SERVE_FAR_GAP_ACCEPTED, SERVE_POINTS_MIN, serve_coverage_text
     assert SERVE_POINTS_MIN == 0.85 and SERVE_FAR_GAP_ACCEPTED and "lado lejano" in SERVE_FAR_GAP
     assert serve_coverage_text([])["limitation"] == SERVE_FAR_GAP
+
+
+def test_the_end_of_her_game_and_the_start_of_the_next_are_checked_too():
+    """12-11 (Osaka – Rybakina: the check looked at 36 of the 62 points of her serve): from the last reading of her game
+    to the next game read at 0-0, she served the end of her game; from the opponent's last reading to her game read at
+    15-0 (its 0-0 never read), she served its first point."""
+    readings = [_r(0, (40, 15)), _r(40, (0, 0), server=1, games=((3, 1),)),                  # end of her game
+                _r(80, (40, 30), server=1, games=((3, 1),)), _r(120, (15, 0), games=((3, 2),))]  # start of hers
+    strokes = [{"stroke": "overhead", "match_time_s": 20}, {"stroke": "forehand", "match_time_s": 110}]
+    g = serve_gaps(readings, strokes, [(0, 200)])
+    assert g["points"] == 2 and g["found"] == 1
+    assert [(x["t0"], x["t1"], x["cause"]) for x in g["gaps"]] == [(75.0, 120.0, "sin_saque")]
+    # the opponent's points: from 0-0 to 40-30 of her game and the stretch with her first point (both served in it)
+    assert g["serves_at"] == {"her_points": 1, "opponent_points": 0, "elsewhere": 0}
+
+
+def test_a_skipped_game_a_tiebreak_or_an_unknown_server_adds_nothing():
+    from tennisbio.point_count import clean_states, game_change_servers
+    a, b = clean_states([_r(0, (40, 15)), _r(40, (0, 0), server=1, games=((4, 2),))])     # two games later
+    assert game_change_servers(a, b) == set()
+    a, b = clean_states([_r(0, (40, 15), games=((5, 6),)), _r(40, (0, 0), server=1, games=((6, 6),))])
+    assert b["tb"] and game_change_servers(a, b) == set()                                   # into a tie-break
+    a, b = clean_states([_r(0, (40, 15), server=None), _r(40, (0, 0), server=None, games=((3, 1),))])
+    assert game_change_servers(a, b) == set()
+
+
+def test_her_serve_points_for_the_rules_stay_inside_a_game():
+    """The rules that make her first stroke a serve keep their stretches inside one game: across a game change the
+    opponent's first point could be in the stretch when its 0-0 is read late."""
+    from tennisbio.point_count import her_serve_points
+    readings = [_r(0, (40, 15)), _r(40, (0, 0), server=1, games=((3, 1),))]
+    assert her_serve_points(readings) == []

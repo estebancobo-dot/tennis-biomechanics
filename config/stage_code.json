@@ -1,80 +1,124 @@
 {
  "probe": {
   "version": "2",
-  "hash": "87c6f8adcf9c7c52",
+  "hash": "b17011a8b71f5209",
   "modules": [
-   "io.video"
+   "io.video",
+   "pipeline"
   ]
  },
  "scenes": {
   "version": "3",
-  "hash": "12200d0d8de3d68c",
+  "hash": "687f707560e9cd1d",
   "modules": [
+   "config",
+   "io.video",
+   "pipeline",
    "scenes"
   ]
  },
  "audio": {
   "version": "2",
-  "hash": "8b09cc4ab05a3f40",
-  "modules": []
+  "hash": "9acf3b60a1533b43",
+  "modules": [
+   "impacts",
+   "io.video",
+   "pipeline"
+  ]
  },
  "players": {
   "version": "4",
-  "hash": "e8dacd896e6e635b",
+  "hash": "84ebeb5b6a601e83",
   "modules": [
+   "io.video",
+   "pipeline",
+   "pose.backend",
    "pose.yolo"
   ]
  },
  "identity": {
   "version": "13",
-  "hash": "1b497e955f644b18",
+  "hash": "1447c6b6fc86a95f",
   "modules": [
    "clothes",
-   "identity"
+   "court_metrics",
+   "identity",
+   "io.video",
+   "kinematics",
+   "pipeline",
+   "skeleton",
+   "tracking"
   ]
  },
  "spotting": {
   "version": "1",
-  "hash": "3708e4277f081a6c",
+  "hash": "65e4e5bf9658aee7",
   "modules": [
+   "ball",
    "ball_features",
-   "spotting"
+   "config",
+   "court_metrics",
+   "impacts",
+   "kinematics",
+   "pipeline",
+   "skeleton",
+   "spotting",
+   "tracking"
   ]
  },
  "candidates": {
   "version": "15",
-  "hash": "a0492ef4cffe2f6f",
+  "hash": "c61b972ba2a66dbc",
   "modules": [
    "court_metrics",
-   "identity"
+   "identity",
+   "impacts",
+   "kinematics",
+   "pipeline",
+   "point_count",
+   "replays",
+   "skeleton",
+   "tracking"
   ]
  },
  "views": {
   "version": "6",
-  "hash": "4f190d48b4e87683",
+  "hash": "c81f27540014d220",
   "modules": [
+   "court",
+   "court_metrics",
+   "io.video",
+   "kinematics",
+   "pipeline",
+   "pose.backend",
    "replays",
+   "skeleton",
+   "tracking",
    "views"
   ]
  },
  "views_link": {
   "version": "1",
-  "hash": "93c0dd91aa2a89cd",
+  "hash": "664b35465a035e87",
   "modules": [
+   "pipeline",
    "views"
   ]
  },
  "court": {
   "version": "5",
-  "hash": "3742d6dbc12b7d0f",
+  "hash": "180a5c7e400640d2",
   "modules": [
-   "court"
+   "court",
+   "pipeline"
   ]
  },
  "score": {
   "version": "10",
-  "hash": "ebcdf6abea80ccd8",
+  "hash": "e6611c8c1340da09",
   "modules": [
+   "io.video",
+   "pipeline",
    "scoreboard"
   ]
  }
