@@ -1,10 +1,10 @@
 {
- "at": "2026-11-12 14:53:29",
- "firma": "b14ec730cbfd",
+ "at": "2026-11-12 14:53:52",
+ "firma": "96a159f5cc91",
  "ejecutor": {
   "vivo": true,
   "pid": 5056,
-  "at": 1794491609.627161
+  "at": 1794491629.6318455
  },
  "pausa": false,
  "en_curso": [],
@@ -20,6 +20,24 @@
  },
  "pendientes": [],
  "recientes": [
+  {
+   "id": 96,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "desde-cero",
+   "state": "hecho",
+   "message": "",
+   "created": "2026-11-12 14:53:49",
+   "started": "2026-11-12 14:53:49",
+   "finished": "2026-11-12 14:53:51",
+   "args": "[\"desde-cero\"]",
+   "source": "claude 255",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_96.log",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 95,
    "kind": "flujo",
@@ -271,27 +289,23 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_82.log",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 81,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "run --match us-open-2026-r4-naomi-osaka-elena-rybakina",
-   "state": "hecho",
-   "message": "",
-   "created": "2026-11-12 10:35:40",
-   "started": "2026-11-12 10:35:43",
-   "finished": "2026-11-12 11:03:06",
-   "args": "[\"run\", \"--match\", \"us-open-2026-r4-naomi-osaka-elena-rybakina\"]",
-   "source": "claude 238",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_81.log",
-   "paso": 0,
-   "pasos": 0
   }
  ],
  "eventos": [
+  {
+   "id": 515,
+   "job": 96,
+   "at": "2026-11-12 14:53:49",
+   "kind": "empieza",
+   "text": "desde-cero"
+  },
+  {
+   "id": 514,
+   "job": 96,
+   "at": "2026-11-12 14:53:49",
+   "kind": "enviado",
+   "text": "tennisbio desde-cero (claude 255)"
+  },
   {
    "id": 513,
    "job": null,
@@ -487,20 +501,6 @@
    "at": "2026-11-12 12:43:26",
    "kind": "reiniciar",
    "text": "ciclo"
-  },
-  {
-   "id": 485,
-   "job": null,
-   "at": "2026-11-12 12:35:55",
-   "kind": "ejecutor",
-   "text": "arranca (pid 19084)"
-  },
-  {
-   "id": 484,
-   "job": null,
-   "at": "2026-11-12 12:35:54",
-   "kind": "ejecutor",
-   "text": "arranca el siguiente con el código nuevo (pid 14964)"
   }
  ]
 }

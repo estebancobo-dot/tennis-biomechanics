@@ -63,3 +63,4 @@
 2026-11-12T12:44:56 peticion 252: trabajo 93 en la cola: tennisbio run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final
 2026-11-12T12:45:39 peticion 253: trabajo 94 en la cola: tennisbio script validate_recall --spotter --tag v15 --from v13r
 2026-11-12T12:46:17 peticion 254: trabajo 95 en la cola: flujo informe
+2026-11-12T14:53:49 peticion 255: trabajo 96 en la cola: tennisbio desde-cero

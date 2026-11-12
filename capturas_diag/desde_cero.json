@@ -1,0 +1,154 @@
+{
+ "fecha": "2026-11-12 14:53:50",
+ "ejecutado": false,
+ "partidos": [
+  {
+   "carpeta": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_f43dd2_rybakina",
+   "mueve": 18,
+   "conserva": [
+    "etapas/identidad_clic.json",
+    "partido.json"
+   ],
+   "gb": 3.14,
+   "archivo": "C:\\tenis\\biblioteca\\archivo\\desde_cero_20261112_1453\\partidos\\sin-fecha\\sin-fecha_f43dd2_rybakina",
+   "ejemplos": [
+    "etapas/audio_onsets.json",
+    "etapas/audio_track.json",
+    "etapas/ball_track.npz",
+    "etapas/candidates.json",
+    "etapas/court.json",
+    "etapas/identidad_fotos",
+    "etapas/identity.json",
+    "etapas/manifest.json",
+    "etapas/partido_origen.json",
+    "etapas/players.npz",
+    "etapas/probe.json",
+    "etapas/registro.log"
+   ]
+  },
+  {
+   "carpeta": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_584c5b_rybakina",
+   "mueve": 18,
+   "conserva": [
+    "etapas/identidad_clic.json",
+    "partido.json"
+   ],
+   "gb": 4.31,
+   "archivo": "C:\\tenis\\biblioteca\\archivo\\desde_cero_20261112_1453\\partidos\\sin-fecha\\sin-fecha_584c5b_rybakina",
+   "ejemplos": [
+    "etapas/audio_onsets.json",
+    "etapas/audio_track.json",
+    "etapas/ball_track.npz",
+    "etapas/candidates.json",
+    "etapas/court.json",
+    "etapas/identidad_fotos",
+    "etapas/identity.json",
+    "etapas/manifest.json",
+    "etapas/partido_origen.json",
+    "etapas/players.npz",
+    "etapas/probe.json",
+    "etapas/registro.log"
+   ]
+  },
+  {
+   "carpeta": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_580c6f_rybakina",
+   "mueve": 18,
+   "conserva": [
+    "etapas/identidad_clic.json",
+    "etapas/source.json",
+    "etapas/source.mkv",
+    "partido.json"
+   ],
+   "gb": 6.16,
+   "archivo": "C:\\tenis\\biblioteca\\archivo\\desde_cero_20261112_1453\\partidos\\sin-fecha\\sin-fecha_580c6f_rybakina",
+   "ejemplos": [
+    "etapas/audio_onsets.json",
+    "etapas/audio_track.json",
+    "etapas/ball_track.npz",
+    "etapas/candidates.json",
+    "etapas/court.json",
+    "etapas/identidad_fotos",
+    "etapas/identity.json",
+    "etapas/manifest.json",
+    "etapas/partido_origen.json",
+    "etapas/players.npz",
+    "etapas/probe.json",
+    "etapas/registro.log"
+   ]
+  },
+  {
+   "carpeta": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_b8b713_rybakina",
+   "mueve": 18,
+   "conserva": [
+    "etapas/identidad_clic.json",
+    "etapas/source.json",
+    "etapas/source.mkv",
+    "partido.json"
+   ],
+   "gb": 6.29,
+   "archivo": "C:\\tenis\\biblioteca\\archivo\\desde_cero_20261112_1453\\partidos\\sin-fecha\\sin-fecha_b8b713_rybakina",
+   "ejemplos": [
+    "etapas/audio_onsets.json",
+    "etapas/audio_track.json",
+    "etapas/ball_track.npz",
+    "etapas/candidates.json",
+    "etapas/court.json",
+    "etapas/identidad_fotos",
+    "etapas/identity.json",
+    "etapas/manifest.json",
+    "etapas/partido_origen.json",
+    "etapas/players.npz",
+    "etapas/probe.json",
+    "etapas/registro.log"
+   ]
+  },
+  {
+   "carpeta": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_49723c_rybakina",
+   "mueve": 17,
+   "conserva": [
+    "etapas/identidad_clic.json",
+    "partido.json"
+   ],
+   "gb": 3.92,
+   "archivo": "C:\\tenis\\biblioteca\\archivo\\desde_cero_20261112_1453\\partidos\\sin-fecha\\sin-fecha_49723c_rybakina",
+   "ejemplos": [
+    "etapas/audio_onsets.json",
+    "etapas/audio_track.json",
+    "etapas/ball_track.npz",
+    "etapas/candidates.json",
+    "etapas/court.json",
+    "etapas/identidad_clic_anterior.json",
+    "etapas/identity.json",
+    "etapas/manifest.json",
+    "etapas/players.npz",
+    "etapas/probe.json",
+    "etapas/registro.log",
+    "etapas/scenes.json"
+   ]
+  },
+  {
+   "carpeta": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_8b0278_sinner",
+   "mueve": 16,
+   "conserva": [
+    "etapas/identidad_clic.json",
+    "partido.json"
+   ],
+   "gb": 2.42,
+   "archivo": "C:\\tenis\\biblioteca\\archivo\\desde_cero_20261112_1453\\partidos\\sin-fecha\\sin-fecha_8b0278_sinner",
+   "ejemplos": [
+    "etapas/audio_onsets.json",
+    "etapas/audio_track.json",
+    "etapas/ball_track.npz",
+    "etapas/candidates.json",
+    "etapas/court.json",
+    "etapas/identity.json",
+    "etapas/manifest.json",
+    "etapas/players.npz",
+    "etapas/probe.json",
+    "etapas/registro.log",
+    "etapas/scenes.json",
+    "etapas/score.json"
+   ]
+  }
+ ]
+}
