@@ -9878,3 +9878,9 @@
 2026-11-12 10:36:16   [score] score:   1 % (3/234 muestras · 0 lecturas · 3 OCR) · 32 s · quedan ≈ 41 min
 2026-11-12 10:36:49   [score] score:   2 % (5/234 muestras · 0 lecturas · 5 OCR) · 64 s · quedan ≈ 49 min
 2026-11-12 10:37:22   [score] score:   3 % (8/234 muestras · 0 lecturas · 9 OCR) · 2 min · quedan ≈ 46 min
+2026-11-12 10:37:52   [score] score:  13 % (31/234 muestras · 10 lecturas · 31 OCR) · 2 min · quedan ≈ 14 min
+2026-11-12 10:37:52   [score] ALARMA de tiempo: score: 4.11 s por unidad frente a 1.86 de presupuesto (la más lenta de 15 ejecuciones aquí), 2.2 veces; a este ritmo quedan 14 min
+2026-11-12 10:38:23   [score] score:  24 % (56/234 muestras · 23 lecturas · 50 OCR) · 3 min · quedan ≈ 8 min
+2026-11-12 10:38:54   [score] score:  34 % (79/234 muestras · 37 lecturas · 65 OCR) · 3 min · quedan ≈ 6 min
+2026-11-12 10:39:25   [score] score:  42 % (98/234 muestras · 49 lecturas · 83 OCR) · 4 min · quedan ≈ 5 min
+2026-11-12 10:39:56   [score] score:  50 % (118/234 muestras · 58 lecturas · 102 OCR) · 4 min · quedan ≈ 4 min
