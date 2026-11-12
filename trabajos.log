@@ -68,3 +68,4 @@
 2026-11-12T14:54:22 peticion 257: trabajo 98 en la cola: tennisbio script diag_saques --match f43dd2 --max 14
 2026-11-12T14:54:45 peticion 258: trabajo 99 en la cola: tennisbio script diag_saques --match 49723c --max 14
 2026-11-12T15:05:23 peticion 259: trabajo 100 en la cola: tennisbio script diag_detector --match f43dd2 --t 2096.0 2124.5 1984.0 3856.8 2777.7
+2026-11-12T15:19:43 peticion 260: trabajo 101 en la cola: tennisbio script diag_detector --match f43dd2 --t 2096.0 2124.5 2777.7 1410.9

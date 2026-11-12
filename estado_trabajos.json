@@ -1,10 +1,10 @@
 {
- "at": "2026-11-12 15:19:19",
- "firma": "d33cc42019ae",
+ "at": "2026-11-12 15:19:46",
+ "firma": "28854f963a50",
  "ejecutor": {
   "vivo": true,
   "pid": 15676,
-  "at": 1794493159.5588772
+  "at": 1794493179.563493
  },
  "pausa": false,
  "en_curso": [],
@@ -18,7 +18,26 @@
   "quedan_s": 0,
   "hora": "2026-11-12 13:25:39"
  },
- "pendientes": [],
+ "pendientes": [
+  {
+   "id": 101,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script diag_detector --match f43dd2 --t 2096.0 2124.5 2777.7 1410.9",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-12 15:19:43",
+   "started": null,
+   "finished": null,
+   "args": "[\"script\", \"diag_detector\", \"--match\", \"f43dd2\", \"--t\", \"2096.0\", \"2124.5\", \"2777.7\", \"1410.9\"]",
+   "source": "claude 260",
+   "log": "",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "recientes": [
   {
    "id": 100,
@@ -293,6 +312,13 @@
  ],
  "eventos": [
   {
+   "id": 541,
+   "job": 101,
+   "at": "2026-11-12 15:19:43",
+   "kind": "enviado",
+   "text": "tennisbio script diag_detector --match f43dd2 --t 2096.0 2124.5 2777.7 1410.9 (claude 260)"
+  },
+  {
    "id": 540,
    "job": null,
    "at": "2026-11-12 15:15:39",
@@ -494,13 +520,6 @@
    "at": "2026-11-12 14:18:28",
    "kind": "ejecutor",
    "text": "arranca el siguiente con el código nuevo (pid 8436)"
-  },
-  {
-   "id": 511,
-   "job": null,
-   "at": "2026-11-12 14:18:28",
-   "kind": "ejecutor",
-   "text": "termina"
   }
  ]
 }
