@@ -1,6 +1,6 @@
 # Revisión automática: REGRESIÓN
 
-404 cumplidos · 32 no cumplidos · 97 sin golpes suficientes · 110 avisos (antes: 406 cumplidos, 28 no cumplidos)
+403 cumplidos · 30 no cumplidos · 97 sin golpes suficientes · 113 avisos (antes: 404 cumplidos, 32 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 135 de 260
 
@@ -146,10 +146,10 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 ## No cumplidos
 
 - **Primera pantalla, anchura y nombres (diseño definitivo)**: vídeo de la lección en y=805–1159 de 900; al abrir 2 títulos, 609 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=1159 (más abajo que la primera pantalla, 900)
+- **Registros con fecha y duración**: 64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba_completo.log: sin «termina fecha» al final
 - **Lista de partidos: rival, torneo, ronda y fecha**: 6 partidos; sin torneo: 1 (zheng-qinwen-elena-rybakina); sin ronda: 1 (zheng-qinwen-elena-rybakina); sin fecha: 1 (zheng-qinwen-elena-rybakina)
 - **Aplicación: lo que consume abierta**: CPU media 0.03 % (máx 0.06 %; objetivo ≤ 5 %), memoria hasta 1469 MB (objetivo ≤ 800) en 8 procesos; 2026-11-12 01:26:37
-- **Orquestador: ejecutor vivo cuando hay trabajo**: ejecutor parado; 3 trabajos esperando
-- **#119 Automatizar todo el ciclo en el PC: el usuario no lanza pruebas ni avisa**: a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 falta, 1 aviso; la peor: «Orquestador: ejecutor vivo cuando hay trabajo» (ejecutor parado; 3 trabajos esperando)
+- **#66 Fechas y duración en los registros**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba)
 - **#160 la app que hiciste completa como se arranca, se puede usar ahora? (Chat, 19-10 08:11)**: 6 comprobaciones: 1 falta, 5 ok; la peor: «Aplicación: lo que consume abierta» (CPU media 0.03 % (máx 0.06 %; objetivo ≤ 5 %), memoria hasta 1469 MB (objetivo ≤ 800) en 8 procesos; 2026-11-12 01:26:37)
 - **#176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3)**: SIN HACER según el registro (#176, docs/peticiones_usuario.md)
 - **#189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4)**: SIN HACER según el registro (#189, docs/peticiones_usuario.md)
@@ -166,12 +166,10 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 - **#224 Saques: plano, cortado o kick; primero o segundo**: SIN HACER según el registro (#224, docs/peticiones_usuario.md)
 - **#225 La aplicación no se cuelga ni ralentiza el PC**: a medias según el registro (ver docs/peticiones_usuario.md); 4 comprobaciones: 1 falta, 3 ok; la peor: «Aplicación: lo que consume abierta» (CPU media 0.03 % (máx 0.06 %; objetivo ≤ 5 %), memoria hasta 1469 MB (objetivo ≤ 800) en 8 procesos; 2026-11-12 01:26:37)
 - **#226 Lista de partidos profesional: nombres normalizados, torneo, ronda, fecha, fotos; sin pruebas (24-10, 25-10)**: a medias según el registro (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 falta; la peor: «Lista de partidos: rival, torneo, ronda y fecha» (6 partidos; sin torneo: 1 (zheng-qinwen-elena-rybakina); sin ronda: 1 (zheng-qinwen-elena-rybakina); sin fecha: 1 (zheng)
-- **#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min**: a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 falta, 1 aviso, 1 ok; la peor: «Orquestador: ejecutor vivo cuando hay trabajo» (ejecutor parado; 3 trabajos esperando)
 - **#240 Comparar la aplicación con las profesionales una vez estén los golpes**: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
 - **#242 Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femeninos, un análisis po**: a medias según el registro (ver docs/peticiones_usuario.md); 6 comprobaciones: 1 falta, 5 ok; la peor: «Aplicación: lo que consume abierta» (CPU media 0.03 % (máx 0.06 %; objetivo ≤ 5 %), memoria hasta 1469 MB (objetivo ≤ 800) en 8 procesos; 2026-11-12 01:26:37)
 - **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
-- **#246 Un único orquestador: mismo código y misma fuente de datos para la aplicación y el chat; monitorizar, pausar, **: a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 falta, 1 aviso, 1 ok; la peor: «Orquestador: ejecutor vivo cuando hay trabajo» (ejecutor parado; 3 trabajos esperando)
 - **#252 Rehacer la aplicación por completo como una profesional: comparativa a fondo con las apps profesionales, UX y **: SIN HACER según el registro (#252, docs/peticiones_usuario.md)
 - **#254 Validar los giros del tronco (cadera, hombros, X-factor 2D y 3D) con una referencia: vista lateral de entreno **: SIN HACER según el registro (#254, docs/peticiones_usuario.md)
 - **#255 Plano del swing: raqueta al lado o detrás del cuerpo en el armado (Vídeos de entrenadores, 12-10, pendiente)**: SIN HACER según el registro (#255, docs/peticiones_usuario.md)
@@ -180,8 +178,12 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 
 ## Empeora respecto a la ejecución anterior
 
-- **Orquestador: ejecutor vivo cuando hay trabajo**: ok → falta: ejecutor parado; 3 trabajos esperando
-- **#119 Automatizar todo el ciclo en el PC: el usuario no lanza pruebas ni avisa**: aviso → falta: a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 falta, 1 aviso; la peor: «Orquestador: ejecutor vivo cuando hay trabajo» (ejecutor parado; 3 trabajos esperando)
-- **#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min**: aviso → falta: a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 falta, 1 aviso, 1 ok; la peor: «Orquestador: ejecutor vivo cuando hay trabajo» (ejecutor parado; 3 trabajos esperando)
-- **#246 Un único orquestador: mismo código y misma fuente de datos para la aplicación y el chat; monitorizar, pausar, **: aviso → falta: a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 falta, 1 aviso, 1 ok; la peor: «Orquestador: ejecutor vivo cuando hay trabajo» (ejecutor parado; 3 trabajos esperando)
-- **Comprobaciones que saben fallar**: ok → aviso: sin el registro de las pruebas en este PC (comprobaciones_pruebas/rec_*.json)
+- **Registros con fecha y duración**: ok → falta: 64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba_completo.log: sin «termina fecha» al final
+- **#66 Fechas y duración en los registros**: ok → falta: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba)
+
+## Mejora
+
+- Orquestador: ejecutor vivo cuando hay trabajo: falta → ok
+- #119 Automatizar todo el ciclo en el PC: el usuario no lanza pruebas ni avisa: falta → aviso
+- #237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min: falta → aviso
+- #246 Un único orquestador: mismo código y misma fuente de datos para la aplicación y el chat; monitorizar, pausar, : falta → aviso
