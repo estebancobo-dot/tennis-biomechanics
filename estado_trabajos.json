@@ -1,13 +1,32 @@
 {
- "at": "2026-11-12 15:19:46",
- "firma": "28854f963a50",
+ "at": "2026-11-12 15:19:49",
+ "firma": "0be13d0499a0",
  "ejecutor": {
   "vivo": true,
   "pid": 15676,
   "at": 1794493179.563493
  },
  "pausa": false,
- "en_curso": [],
+ "en_curso": [
+  {
+   "id": 101,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script diag_detector --match f43dd2 --t 2096.0 2124.5 2777.7 1410.9",
+   "state": "en curso",
+   "message": "",
+   "created": "2026-11-12 15:19:43",
+   "started": "2026-11-12 15:19:49",
+   "finished": null,
+   "args": "[\"script\", \"diag_detector\", \"--match\", \"f43dd2\", \"--t\", \"2096.0\", \"2124.5\", \"2777.7\", \"1410.9\"]",
+   "source": "claude 260",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_101.log",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "fine_doubtful",
@@ -18,26 +37,7 @@
   "quedan_s": 0,
   "hora": "2026-11-12 13:25:39"
  },
- "pendientes": [
-  {
-   "id": 101,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script diag_detector --match f43dd2 --t 2096.0 2124.5 2777.7 1410.9",
-   "state": "pendiente",
-   "message": "",
-   "created": "2026-11-12 15:19:43",
-   "started": null,
-   "finished": null,
-   "args": "[\"script\", \"diag_detector\", \"--match\", \"f43dd2\", \"--t\", \"2096.0\", \"2124.5\", \"2777.7\", \"1410.9\"]",
-   "source": "claude 260",
-   "log": "",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "pendientes": [],
  "recientes": [
   {
    "id": 100,
@@ -312,6 +312,13 @@
  ],
  "eventos": [
   {
+   "id": 542,
+   "job": 101,
+   "at": "2026-11-12 15:19:49",
+   "kind": "empieza",
+   "text": "script diag_detector --match f43dd2 --t 2096.0 2124.5 2777.7 1410.9"
+  },
+  {
    "id": 541,
    "job": 101,
    "at": "2026-11-12 15:19:43",
@@ -513,13 +520,6 @@
    "at": "2026-11-12 14:18:28",
    "kind": "ejecutor",
    "text": "arranca (pid 5056)"
-  },
-  {
-   "id": 512,
-   "job": null,
-   "at": "2026-11-12 14:18:28",
-   "kind": "ejecutor",
-   "text": "arranca el siguiente con el código nuevo (pid 8436)"
   }
  ]
 }
