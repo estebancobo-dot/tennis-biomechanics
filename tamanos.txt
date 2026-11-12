@@ -1,4 +1,4 @@
-fecha: 2026-11-12T03:11:04
+fecha: 2026-11-12T03:15:40
      265.6 MB  \output\analisis
        4.2 MB  \output\auditoria
        5.7 MB  \output\benchmark
@@ -30,7 +30,7 @@ fecha: 2026-11-12T03:11:04
     1354.8 MB  \output\_bench_bola
     1373.8 MB  \output\_bench_fps
     1354.8 MB  \output\_bench_rtmw
-     402.5 MB  \output\_bench_rtmw2
+     402.6 MB  \output\_bench_rtmw2
     2025.7 MB  \output\_poc211_35
      486.5 MB  \output\_poc211_4
     1373.2 MB  \output\_poc67_35
