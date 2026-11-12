@@ -1,10 +1,10 @@
 {
- "at": "2026-11-12 01:20:32",
- "firma": "2eff4f43371c",
+ "at": "2026-11-12 01:20:48",
+ "firma": "0d0c92b861dc",
  "ejecutor": {
   "vivo": true,
   "pid": 7200,
-  "at": 1794442832.3692062
+  "at": 1794442848.3762205
  },
  "pausa": false,
  "en_curso": [
@@ -16,14 +16,14 @@
    "stroke": null,
    "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
    "state": "en curso",
-   "message": "paso 2/6: Informe de la derecha",
+   "message": "paso 5/6: Auditoria",
    "created": "2026-11-12 01:20:26",
    "started": "2026-11-12 01:20:28",
    "finished": null,
    "args": "[\"informe\"]",
    "source": "claude 217",
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_61.log",
-   "paso": 1,
+   "paso": 4,
    "pasos": 6
   }
  ],
@@ -37,7 +37,26 @@
   "quedan_s": 0,
   "hora": "2026-11-11 17:02:19"
  },
- "pendientes": [],
+ "pendientes": [
+  {
+   "id": 62,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script app_recursos",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-12 01:20:44",
+   "started": null,
+   "finished": null,
+   "args": "[\"script\", \"app_recursos\"]",
+   "source": "claude 218",
+   "log": "",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "recientes": [
   {
    "id": 60,
@@ -312,6 +331,34 @@
  ],
  "eventos": [
   {
+   "id": 270,
+   "job": 61,
+   "at": "2026-11-12 01:20:47",
+   "kind": "paso",
+   "text": "5/6 Auditoria"
+  },
+  {
+   "id": 269,
+   "job": 62,
+   "at": "2026-11-12 01:20:44",
+   "kind": "enviado",
+   "text": "tennisbio script app_recursos (claude 218)"
+  },
+  {
+   "id": 268,
+   "job": 61,
+   "at": "2026-11-12 01:20:43",
+   "kind": "paso",
+   "text": "4/6 Informe del saque"
+  },
+  {
+   "id": 267,
+   "job": 61,
+   "at": "2026-11-12 01:20:37",
+   "kind": "paso",
+   "text": "3/6 Informe del reves"
+  },
+  {
    "id": 266,
    "job": 61,
    "at": "2026-11-12 01:20:30",
@@ -492,34 +539,6 @@
    "at": "2026-11-11 23:50:10",
    "kind": "ejecutor",
    "text": "se reinicia con el código nuevo"
-  },
-  {
-   "id": 240,
-   "job": null,
-   "at": "2026-11-11 23:50:06",
-   "kind": "reiniciar",
-   "text": "ciclo"
-  },
-  {
-   "id": 239,
-   "job": 59,
-   "at": "2026-11-11 23:44:10",
-   "kind": "hecho",
-   "text": "código 0"
-  },
-  {
-   "id": 238,
-   "job": 59,
-   "at": "2026-11-11 23:44:09",
-   "kind": "paso",
-   "text": "6/6 Modelo de calidad"
-  },
-  {
-   "id": 237,
-   "job": 59,
-   "at": "2026-11-11 23:39:53",
-   "kind": "paso",
-   "text": "5/6 Auditoria"
   }
  ]
 }
