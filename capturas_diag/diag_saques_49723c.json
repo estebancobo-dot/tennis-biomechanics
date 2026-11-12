@@ -1,0 +1,3625 @@
+{
+ "partido": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_49723c_rybakina",
+ "puntos_de_su_saque": 63,
+ "con_saque": 50,
+ "no_vistos": 3,
+ "por_causa": {
+  "sin_camara": 0,
+  "sin_golpes": 9,
+  "sin_saque": 4
+ },
+ "saques_caen_en": {
+  "her_points": 86,
+  "opponent_points": 4,
+  "elsewhere": 6
+ },
+ "primer_golpe_sin_saque": {
+  "n": 4,
+  "type": {
+   "forehand/detector": 2,
+   "backhand/detector": 2
+  },
+  "side": {
+   "far": 4
+  },
+  "behind_baseline": 4
+ },
+ "detector_antes_del_primer_golpe": {
+  "saque_suyo_visto_y_perdido": 1,
+  "golpe_suyo_visto_y_perdido": 1,
+  "golpe_de_la_rival_antes": 2,
+  "nada_antes": 0,
+  "sin_primer_golpe": 9
+ },
+ "puntos_sin_golpes": {
+  "golpes_de_alguien": 6,
+  "nadie_golpea": 3,
+  "candidatos": {
+   "suyos_perdidos_despues": 4,
+   "solo_de_la_rival": 0,
+   "identidad_sin_decidir": 2,
+   "sin_candidatos": 3
+  },
+  "suyos_perdidos": {
+   "de_identidad_dudosa": 1,
+   "descartados_en_la_pasada_fina": 3
+  },
+  "motivos_descarte": {
+   "jugadora_lejana_no_encontrada": 1,
+   "lejana_sin_bola_ni_detector": 2
+  },
+  "camara_principal_s_mediana": 8.7
+ },
+ "huecos": [
+  {
+   "t0": 83.5,
+   "t1": 107.0,
+   "cause": "sin_golpes",
+   "shot_start": 83.5,
+   "min": 1.39,
+   "planos_camara_principal": [
+    [
+     83.0,
+     91.7
+    ],
+    [
+     106.5,
+     110.0
+    ]
+   ],
+   "marcador": [
+    {
+     "t": 88.5,
+     "g": 0,
+     "pts": [
+      1,
+      0
+     ],
+     "saca": 0
+    },
+    {
+     "t": 107.0,
+     "g": 0,
+     "pts": [
+      1,
+      1
+     ],
+     "saca": 0
+    }
+   ],
+   "detector": [
+    {
+     "t": 85.926,
+     "side": "near",
+     "kind": "backhand",
+     "score": 0.259
+    }
+   ],
+   "candidatos": [
+    {
+     "t": 85.926,
+     "audio": true,
+     "side": "near",
+     "identity": null,
+     "target": null,
+     "kind": "backhand",
+     "score": 0.259,
+     "source": "spotter"
+    }
+   ],
+   "golpes_suyos": [],
+   "dudosos": [
+    {
+     "impact_frame": 130,
+     "impact_source": "ball",
+     "stroke": "backhand",
+     "stroke_pose": "backhand",
+     "stroke_source": "detector",
+     "window": "w000083726_3600.mp4",
+     "window_start_s": 83.726,
+     "match_time_s": 85.89273889129637,
+     "candidate_audio": true,
+     "identity": null,
+     "target": null,
+     "stroke_id": "elena-rybakina-jessica-pegula-miami-2026-quarter-final-0008589",
+     "surface": "dura",
+     "court_check": "refit",
+     "side": "near",
+     "stance_width_m": 0.95,
+     "stance": "semiabierto",
+     "stance_angle_deg": 62.9,
+     "displacement_m": 1.0,
+     "camera_pitch_deg": 8.7,
+     "outcome": "rally",
+     "point_won": false,
+     "is_return": false,
+     "series": "series/w000083726_3600_near_130.json",
+     "window_impact_s": 2.1667388912963768,
+     "shot_in_point": 1,
+     "shots_in_point": 1
+    }
+   ],
+   "descartados": [],
+   "identidad": {
+    "start": 830,
+    "end": 893,
+    "end_changes": null,
+    "cluster": 0,
+    "near_is_target": null,
+    "method": null,
+    "clothes_margin": 0.32,
+    "clothes_says": null
+   },
+   "hoja": "saques_49723c_01.39.jpg"
+  },
+  {
+   "t0": 141.7,
+   "t1": 166.4,
+   "cause": "sin_golpes",
+   "shot_start": 146.2,
+   "min": 2.36,
+   "planos_camara_principal": [
+    [
+     146.2,
+     152.3
+    ],
+    [
+     165.9,
+     187.3
+    ]
+   ],
+   "marcador": [
+    {
+     "t": 146.7,
+     "g": 0,
+     "pts": [
+      1,
+      2
+     ],
+     "saca": 0
+    },
+    {
+     "t": 166.4,
+     "g": 0,
+     "pts": [
+      2,
+      2
+     ],
+     "saca": 0
+    }
+   ],
+   "detector": [
+    {
+     "t": 146.966,
+     "side": "near",
+     "kind": "forehand",
+     "score": 0.361
+    },
+    {
+     "t": 149.8,
+     "side": "near",
+     "kind": "serve",
+     "score": 0.771
+    }
+   ],
+   "candidatos": [
+    {
+     "t": 146.166,
+     "audio": false,
+     "side": "far",
+     "identity": false,
+     "target": true,
+     "kind": "serve",
+     "score": null,
+     "source": "marcador"
+    },
+    {
+     "t": 146.966,
+     "audio": true,
+     "side": "near",
+     "identity": false,
+     "target": false,
+     "kind": "forehand",
+     "score": 0.361,
+     "source": "spotter"
+    },
+    {
+     "t": 149.8,
+     "audio": true,
+     "side": "near",
+     "identity": false,
+     "target": false,
+     "kind": "serve",
+     "score": 0.771,
+     "source": "spotter"
+    }
+   ],
+   "golpes_suyos": [],
+   "dudosos": [],
+   "descartados": [
+    {
+     "t": 146.166,
+     "why": "jugadora_lejana_no_encontrada",
+     "side": "far",
+     "target": true,
+     "source": "marcador",
+     "kind": "serve"
+    }
+   ],
+   "identidad": {
+    "start": 1462,
+    "end": 1510,
+    "end_changes": 0,
+    "cluster": 0,
+    "near_is_target": false,
+    "method": "cambios de lado",
+    "clothes_margin": 0.0,
+    "clothes_says": null
+   },
+   "hoja": "saques_49723c_02.36.jpg"
+  },
+  {
+   "t0": 228.1,
+   "t1": 264.9,
+   "cause": "sin_golpes",
+   "shot_start": 232.6,
+   "min": 3.8,
+   "planos_camara_principal": [
+    [
+     232.6,
+     243.7
+    ],
+    [
+     264.4,
+     282.5
+    ]
+   ],
+   "marcador": [
+    {
+     "t": 233.1,
+     "g": 0,
+     "pts": [
+      3,
+      3
+     ],
+     "saca": 0
+    },
+    {
+     "t": 264.9,
+     "g": 0,
+     "pts": [
+      4,
+      3
+     ],
+     "saca": 0
+    }
+   ],
+   "detector": [
+    {
+     "t": 233.582,
+     "side": "far",
+     "kind": "serve",
+     "score": 0.96
+    }
+   ],
+   "candidatos": [
+    {
+     "t": 233.582,
+     "audio": false,
+     "side": "far",
+     "identity": false,
+     "target": true,
+     "kind": "serve",
+     "score": 0.96,
+     "source": "spotter"
+    }
+   ],
+   "golpes_suyos": [],
+   "dudosos": [],
+   "descartados": [
+    {
+     "t": 233.582,
+     "why": "lejana_sin_bola_ni_detector",
+     "side": "far",
+     "target": true,
+     "source": "spotter",
+     "kind": "serve"
+    }
+   ],
+   "identidad": {
+    "start": 2326,
+    "end": 2351,
+    "return_vote": false,
+    "end_changes": 0,
+    "cluster": 1,
+    "near_is_target": false,
+    "method": "cambios de lado",
+    "clothes_margin": 0.26,
+    "clothes_says": null
+   },
+   "hoja": "saques_49723c_03.80.jpg"
+  },
+  {
+   "t0": 259.9,
+   "t1": 304.2,
+   "cause": "sin_saque",
+   "shot_start": 264.4,
+   "first_stroke_after_s": 7.9,
+   "first_stroke": {
+    "stroke": "forehand",
+    "source": "detector",
+    "pose": "forehand",
+    "side": "far",
+    "court_y_m": -2.0
+   },
+   "min": 4.33,
+   "planos_camara_principal": [
+    [
+     264.4,
+     282.5
+    ],
+    [
+     289.5,
+     297.6
+    ],
+    [
+     303.7,
+     317.9
+    ]
+   ],
+   "marcador": [
+    {
+     "t": 264.9,
+     "g": 0,
+     "pts": [
+      4,
+      3
+     ],
+     "saca": 0
+    },
+    {
+     "t": 304.2,
+     "g": 0,
+     "pts": [
+      3,
+      3
+     ],
+     "saca": 0
+    }
+   ],
+   "detector": [
+    {
+     "t": 268.1,
+     "side": "far",
+     "kind": "serve",
+     "score": 1.0
+    },
+    {
+     "t": 268.996,
+     "side": "near",
+     "kind": "forehand",
+     "score": 0.838
+    },
+    {
+     "t": 272.202,
+     "side": "far",
+     "kind": "forehand",
+     "score": 0.995
+    },
+    {
+     "t": 273.5,
+     "side": "near",
+     "kind": "forehand",
+     "score": 1.0
+    },
+    {
+     "t": 274.55,
+     "side": "far",
+     "kind": "forehand",
+     "score": 1.0
+    },
+    {
+     "t": 275.901,
+     "side": "near",
+     "kind": "backhand",
+     "score": 1.0
+    },
+    {
+     "t": 276.888,
+     "side": "far",
+     "kind": "backhand",
+     "score": 0.989
+    },
+    {
+     "t": 278.151,
+     "side": "near",
+     "kind": "backhand",
+     "score": 0.983
+    },
+    {
+     "t": 279.299,
+     "side": "far",
+     "kind": "forehand",
+     "score": 1.0
+    },
+    {
+     "t": 280.7,
+     "side": "near",
+     "kind": "forehand",
+     "score": 1.0
+    }
+   ],
+   "candidatos": [
+    {
+     "t": 268.1,
+     "audio": false,
+     "side": "far",
+     "identity": false,
+     "target": true,
+     "kind": "serve",
+     "score": 1.0,
+     "source": "spotter"
+    },
+    {
+     "t": 268.996,
+     "audio": true,
+     "side": "near",
+     "identity": false,
+     "target": false,
+     "kind": "forehand",
+     "score": 0.838,
+     "source": "spotter"
+    },
+    {
+     "t": 272.202,
+     "audio": true,
+     "side": "far",
+     "identity": false,
+     "target": true,
+     "kind": "forehand",
+     "score": 0.995,
+     "source": "spotter"
+    },
+    {
+     "t": 273.5,
+     "audio": true,
+     "side": "near",
+     "identity": false,
+     "target": false,
+     "kind": "forehand",
+     "score": 1.0,
+     "source": "spotter"
+    },
+    {
+     "t": 274.55,
+     "audio": true,
+     "side": "far",
+     "identity": false,
+     "target": true,
+     "kind": "forehand",
+     "score": 1.0,
+     "source": "spotter"
+    },
+    {
+     "t": 275.901,
+     "audio": true,
+     "side": "near",
+     "identity": false,
+     "target": false,
+     "kind": "backhand",
+     "score": 1.0,
+     "source": "spotter"
+    },
+    {
+     "t": 276.888,
+     "audio": true,
+     "side": "far",
+     "identity": false,
+     "target": true,
+     "kind": "backhand",
+     "score": 0.989,
+     "source": "spotter"
+    },
+    {
+     "t": 278.151,
+     "audio": true,
+     "side": "near",
+     "identity": false,
+     "target": false,
+     "kind": "backhand",
+     "score": 0.983,
+     "source": "spotter"
+    },
+    {
+     "t": 279.299,
+     "audio": true,
+     "side": "far",
+     "identity": false,
+     "target": true,
+     "kind": "forehand",
+     "score": 1.0,
+     "source": "spotter"
+    },
+    {
+     "t": 280.7,
+     "audio": true,
+     "side": "near",
+     "identity": false,
+     "target": false,
+     "kind": "forehand",
+     "score": 1.0,
+     "source": "spotter"
+    }
+   ],
+   "golpes_suyos": [
+    {
+     "t": 272.26874222474083,
+     "golpe": "forehand",
+     "lado": "far",
+     "fuente": "detector",
+     "id": "elena-rybakina-jessica-pegula-miami-2026-quarter-final-0027227"
+    },
+    {
+     "t": 274.5521516717224,
+     "golpe": "forehand",
+     "lado": "far",
+     "fuente": "detector",
+     "id": "elena-rybakina-jessica-pegula-miami-2026-quarter-final-0027455"
+    },
+    {
+     "t": 276.9688988966299,
+     "golpe": "backhand",
+     "lado": "far",
+     "fuente": "detector",
+     "id": "elena-rybakina-jessica-pegula-miami-2026-quarter-final-0027697"
+    },
+    {
+     "t": 279.33564445481517,
+     "golpe": "forehand",
+     "lado": "far",
+     "fuente": "detector",
+     "id": "elena-rybakina-jessica-pegula-miami-2026-quarter-final-0027934"
+    }
+   ],
+   "dudosos": [],
+   "descartados": [
+    {
+     "t": 268.1,
+     "why": "jugadora_lejana_no_encontrada",
+     "side": "far",
+     "target": true,
+     "source": "spotter",
+     "kind": "serve"
+    }
+   ],
+   "identidad": {
+    "start": 2644,
+    "end": 2696,
+    "end_changes": 0,
+    "cluster": 0,
+    "near_is_target": false,
+    "method": "cambios de lado",
+    "clothes_margin": 0.47,
+    "clothes_says": null
+   },
+   "hoja": "saques_49723c_04.33.jpg"
+  },
+  {
+   "t0": 333.4,
+   "t1": 426.9,
+   "cause": "sin_saque",
+   "shot_start": 337.9,
+   "first_stroke_after_s": 17.1,
+   "first_stroke": {
+    "stroke": "backhand",
+    "source": "detector",
+    "pose": "backhand",
+    "side": "far",
+    "court_y_m": -1.37
+   },
+   "min": 5.56,
+   "planos_camara_principal": [
+    [
+     337.9,
+     347.6
+    ],
+    [
+     354.2,
+     362.7
+    ],
+    [
+     426.4,
+     431.1
+    ]
+   ],
+   "marcador": [
+    {
+     "t": 338.4,
+     "g": 0,
+     "pts": [
+      3,
+      4
+     ],
+     "saca": 0
+    },
+    {
+     "t": 426.9,
+     "g": 1,
+     "pts": [
+      0,
+      0
+     ],
+     "saca": 1
+    }
+   ],
+   "detector": [
+    {
+     "t": 344.15,
+     "side": "near",
+     "kind": "backhand",
+     "score": 0.999
+    },
+    {
+     "t": 355.048,
+     "side": "far",
+     "kind": "backhand",
+     "score": 0.202
+    },
+    {
+     "t": 357.868,
+     "side": "far",
+     "kind": "forehand",
+     "score": 0.285
+    },
+    {
+     "t": 360.7,
+     "side": "near",
+     "kind": "serve",
+     "score": 0.29
+    },
+    {
+     "t": 361.803,
+     "side": "far",
+     "kind": "backhand",
+     "score": 0.52
+    }
+   ],
+   "candidatos": [
+    {
+     "t": 344.15,
+     "audio": false,
+     "side": "near",
+     "identity": false,
+     "target": false,
+     "kind": "backhand",
+     "score": 0.999,
+     "source": "spotter"
+    },
+    {
+     "t": 355.048,
+     "audio": true,
+     "side": "far",
+     "identity": false,
+     "target": true,
+     "kind": "backhand",
+     "score": 0.202,
+     "source": "spotter"
+    },
+    {
+     "t": 357.868,
+     "audio": true,
+     "side": "far",
+     "identity": false,
+     "target": true,
+     "kind": "forehand",
+     "score": 0.285,
+     "source": "spotter"
+    },
+    {
+     "t": 360.7,
+     "audio": true,
+     "side": "near",
+     "identity": false,
+     "target": false,
+     "kind": "serve",
+     "score": 0.29,
+     "source": "spotter"
+    },
+    {
+     "t": 361.803,
+     "audio": true,
+     "side": "far",
+     "identity": false,
+     "target": true,
+     "kind": "backhand",
+     "score": 0.52,
+     "source": "spotter"
+    }
+   ],
+   "golpes_suyos": [
+    {
+     "t": 355.0480733357779,
+     "golpe": "backhand",
+     "lado": "far",
+     "fuente": "detector",
+     "id": "elena-rybakina-jessica-pegula-miami-2026-quarter-final-0035505"
+    },
+    {
+     "t": 358.03150611687056,
+     "golpe": "forehand",
+     "lado": "far",
+     "fuente": "detector",
+     "id": "elena-rybakina-jessica-pegula-miami-2026-quarter-final-0035803"
+    },
+    {
+     "t": 361.71973722457415,
+     "golpe": "backhand",
+     "lado": "far",
+     "fuente": "detector",
+     "id": "elena-rybakina-jessica-pegula-miami-2026-quarter-final-0036172"
+    }
+   ],
+   "dudosos": [],
+   "descartados": [],
+   "identidad": {
+    "start": 3379,
+    "end": 3476,
+    "end_changes": 0,
+    "cluster": 0,
+    "near_is_target": false,
+    "method": "cambios de lado",
+    "clothes_margin": 0.39,
+    "clothes_says": null
+   },
+   "hoja": "saques_49723c_05.56.jpg"
+  },
+  {
+   "t0": 2007.7,
+   "t1": 2037.7,
+   "cause": "sin_golpes",
+   "shot_start": 2012.2,
+   "min": 33.46,
+   "planos_camara_principal": [
+    [
+     2012.2,
+     2018.9
+    ],
+    [
+     2037.2,
+     2040.7
+    ]
+   ],
+   "marcador": [
+    {
+     "t": 2012.7,
+     "g": 8,
+     "pts": [
+      2,
+      3
+     ],
+     "saca": 0
+    },
+    {
+     "t": 2037.7,
+     "g": 8,
+     "pts": [
+      3,
+      3
+     ],
+     "saca": 0
+    }
+   ],
+   "detector": [
+    {
+     "t": 2011.898,
+     "side": "far",
+     "kind": "forehand",
+     "score": 0.799
+    },
+    {
+     "t": 2015.895,
+     "side": "near",
+     "kind": "backhand",
+     "score": 0.998
+    }
+   ],
+   "candidatos": [
+    {
+     "t": 2011.898,
+     "audio": false,
+     "side": "far",
+     "identity": null,
+     "target": null,
+     "kind": "forehand",
+     "score": 0.799,
+     "source": "spotter"
+    },
+    {
+     "t": 2015.895,
+     "audio": true,
+     "side": "near",
+     "identity": false,
+     "target": false,
+     "kind": "backhand",
+     "score": 0.998,
+     "source": "spotter"
+    }
+   ],
+   "golpes_suyos": [],
+   "dudosos": [],
+   "descartados": [],
+   "identidad": {
+    "start": 20122,
+    "end": 20189,
+    "return_vote": false,
+    "end_changes": 4,
+    "cluster": 0,
+    "near_is_target": false,
+    "method": "cambios de lado",
+    "clothes_margin": 0.37,
+    "clothes_says": null
+   },
+   "hoja": "saques_49723c_33.46.jpg"
+  },
+  {
+   "t0": 2691.7,
+   "t1": 2732.4,
+   "cause": "sin_golpes",
+   "shot_start": 2696.2,
+   "min": 44.86,
+   "planos_camara_principal": [
+    [
+     2696.2,
+     2707.0
+    ],
+    [
+     2731.9,
+     2741.1
+    ]
+   ],
+   "marcador": [
+    {
+     "t": 2696.7,
+     "g": 12,
+     "pts": [
+      0,
+      0
+     ],
+     "saca": 0
+    },
+    {
+     "t": 2732.4,
+     "g": 12,
+     "pts": [
+      0,
+      1
+     ],
+     "saca": 0
+    }
+   ],
+   "detector": [
+    {
+     "t": 2696.057,
+     "side": "far",
+     "kind": "serve",
+     "score": 0.745
+    },
+    {
+     "t": 2700.719,
+     "side": "near",
+     "kind": "forehand",
+     "score": 0.936
+    }
+   ],
+   "candidatos": [
+    {
+     "t": 2696.057,
+     "audio": false,
+     "side": "far",
+     "identity": false,
+     "target": true,
+     "kind": "serve",
+     "score": 0.745,
+     "source": "spotter",
+     "identity_source": "marcador_saque"
+    },
+    {
+     "t": 2700.719,
+     "audio": true,
+     "side": "near",
+     "identity": null,
+     "target": null,
+     "kind": "forehand",
+     "score": 0.936,
+     "source": "spotter"
+    }
+   ],
+   "golpes_suyos": [],
+   "dudosos": [
+    {
+     "impact_frame": 128,
+     "impact_source": "ball+swing",
+     "stroke": "forehand",
+     "stroke_pose": "forehand",
+     "stroke_source": "detector",
+     "window": "w002698519_3600.mp4",
+     "window_start_s": 2698.5190000000002,
+     "match_time_s": 2700.652404446815,
+     "candidate_audio": true,
+     "identity": null,
+     "target": null,
+     "stroke_id": "elena-rybakina-jessica-pegula-miami-2026-quarter-final-0270065",
+     "surface": "dura",
+     "court_check": "refit",
+     "side": "near",
+     "stance_width_m": 0.61,
+     "stance": "semiabierto",
+     "stance_angle_deg": 40.6,
+     "displacement_m": 0.26,
+     "camera_pitch_deg": 14.9,
+     "shot_depth_m": 6.34,
+     "shot_in": true,
+     "impact_to_shot_bounce_s": 0.767,
+     "shot_side": "centro",
+     "shot_direction": "al centro",
+     "outcome": "rally",
+     "point_won": false,
+     "ball_speed_avg_kmh": 94.2,
+     "shot_quality_proxy": 28.0,
+     "is_return": false,
+     "series": "series/w002698519_3600_near_128.json",
+     "window_impact_s": 2.133404446814894,
+     "shot_in_point": 1,
+     "shots_in_point": 1
+    }
+   ],
+   "descartados": [
+    {
+     "t": 2696.057,
+     "why": "jugadora_lejana_no_encontrada",
+     "side": "far",
+     "target": true,
+     "source": "spotter",
+     "kind": "serve"
+    }
+   ],
+   "identidad": {
+    "start": 26962,
+    "end": 27005,
+    "return_vote": false,
+    "end_changes": 6,
+    "cluster": 0,
+    "near_is_target": false,
+    "method": "cambios de lado",
+    "clothes_margin": 0.26,
+    "clothes_says": null
+   },
+   "hoja": "saques_49723c_44.86.jpg"
+  },
+  {
+   "t0": 4014.1,
+   "t1": 4051.8,
+   "cause": "sin_saque",
+   "shot_start": 4018.6,
+   "first_stroke_after_s": 4.1,
+   "first_stroke": {
+    "stroke": "forehand",
+    "source": "detector",
+    "pose": "backhand",
+    "side": "far",
+    "court_y_m": -1.53
+   },
+   "min": 66.9,
+   "planos_camara_principal": [
+    [
+     4018.6,
+     4025.1
+    ],
+    [
+     4051.3,
+     4061.1
+    ]
+   ],
+   "marcador": [
+    {
+     "t": 4019.1,
+     "g": 16,
+     "pts": [
+      3,
+      2
+     ],
+     "saca": 0
+    },
+    {
+     "t": 4051.8,
+     "g": 17,
+     "pts": [
+      0,
+      0
+     ],
+     "saca": 1
+    }
+   ],
+   "detector": [
+    {
+     "t": 4018.295,
+     "side": "far",
+     "kind": "forehand",
+     "score": 0.526
+    },
+    {
+     "t": 4021.5,
+     "side": "near",
+     "kind": "backhand",
+     "score": 1.0
+    },
+    {
+     "t": 4022.855,
+     "side": "far",
+     "kind": "forehand",
+     "score": 0.56
+    }
+   ],
+   "candidatos": [
+    {
+     "t": 4018.295,
+     "audio": false,
+     "side": "far",
+     "identity": null,
+     "target": null,
+     "kind": "forehand",
+     "score": 0.526,
+     "source": "spotter"
+    },
+    {
+     "t": 4021.5,
+     "audio": true,
+     "side": "near",
+     "identity": false,
+     "target": false,
+     "kind": "backhand",
+     "score": 1.0,
+     "source": "spotter"
+    },
+    {
+     "t": 4022.855,
+     "audio": true,
+     "side": "far",
+     "identity": false,
+     "target": true,
+     "kind": "forehand",
+     "score": 0.56,
+     "source": "spotter"
+    }
+   ],
+   "golpes_suyos": [
+    {
+     "t": 4022.7217355578523,
+     "golpe": "forehand",
+     "lado": "far",
+     "fuente": "detector",
+     "id": "elena-rybakina-jessica-pegula-miami-2026-quarter-final-0402272"
+    }
+   ],
+   "dudosos": [],
+   "descartados": [],
+   "identidad": {
+    "start": 40186,
+    "end": 40251,
+    "end_changes": 8,
+    "cluster": 1,
+    "near_is_target": false,
+    "method": "cambios de lado",
+    "clothes_margin": 0.17,
+    "clothes_says": null
+   },
+   "hoja": "saques_49723c_66.90.jpg"
+  },
+  {
+   "t0": 4433.8,
+   "t1": 4545.1,
+   "cause": "sin_saque",
+   "shot_start": 4438.3,
+   "first_stroke_after_s": 12.1,
+   "first_stroke": {
+    "stroke": "backhand",
+    "source": "detector",
+    "pose": "forehand",
+    "side": "far",
+    "court_y_m": -1.43
+   },
+   "min": 73.9,
+   "planos_camara_principal": [
+    [
+     4438.3,
+     4441.2
+    ],
+    [
+     4447.6,
+     4454.3
+    ],
+    [
+     4468.1,
+     4476.9
+    ],
+    [
+     4488.6,
+     4496.0
+    ],
+    [
+     4519.9,
+     4524.8
+    ],
+    [
+     4544.6,
+     4550.4
+    ]
+   ],
+   "marcador": [
+    {
+     "t": 4438.8,
+     "g": 19,
+     "pts": [
+      1,
+      1
+     ],
+     "saca": 1
+    },
+    {
+     "t": 4545.1,
+     "g": 20,
+     "pts": [
+      0,
+      1
+     ],
+     "saca": 0
+    }
+   ],
+   "detector": [
+    {
+     "t": 4439.85,
+     "side": "near",
+     "kind": "serve",
+     "score": 1.0
+    },
+    {
+     "t": 4449.3,
+     "side": "near",
+     "kind": "serve",
+     "score": 1.0
+    },
+    {
+     "t": 4450.206,
+     "side": "far",
+     "kind": "backhand",
+     "score": 0.999
+    },
+    {
+     "t": 4451.034,
+     "side": "near",
+     "kind": "backhand",
+     "score": 0.918
+    },
+    {
+     "t": 4472.449,
+     "side": "near",
+     "kind": "serve",
+     "score": 1.0
+    },
+    {
+     "t": 4473.1,
+     "side": "far",
+     "kind": "forehand",
+     "score": 1.0
+    },
+    {
+     "t": 4491.55,
+     "side": "near",
+     "kind": "serve",
+     "score": 1.0
+    },
+    {
+     "t": 4496.301,
+     "side": "far",
+     "kind": "serve",
+     "score": 0.646
+    },
+    {
+     "t": 4521.173,
+     "side": "far",
+     "kind": "forehand",
+     "score": 0.475
+    },
+    {
+     "t": 4523.398,
+     "side": "near",
+     "kind": "backhand",
+     "score": 1.0
+    }
+   ],
+   "candidatos": [
+    {
+     "t": 4439.85,
+     "audio": true,
+     "side": "near",
+     "identity": false,
+     "target": false,
+     "kind": "serve",
+     "score": 1.0,
+     "source": "spotter"
+    },
+    {
+     "t": 4449.3,
+     "audio": true,
+     "side": "near",
+     "identity": false,
+     "target": false,
+     "kind": "serve",
+     "score": 1.0,
+     "source": "spotter"
+    },
+    {
+     "t": 4450.206,
+     "audio": true,
+     "side": "far",
+     "identity": false,
+     "target": true,
+     "kind": "backhand",
+     "score": 0.999,
+     "source": "spotter"
+    },
+    {
+     "t": 4451.034,
+     "audio": true,
+     "side": "near",
+     "identity": false,
+     "target": false,
+     "kind": "backhand",
+     "score": 0.918,
+     "source": "spotter"
+    },
+    {
+     "t": 4472.449,
+     "audio": true,
+     "side": "near",
+     "identity": false,
+     "target": false,
+     "kind": "serve",
+     "score": 1.0,
+     "source": "spotter"
+    },
+    {
+     "t": 4473.1,
+     "audio": true,
+     "side": "far",
+     "identity": false,
+     "target": true,
+     "kind": "forehand",
+     "score": 1.0,
+     "source": "spotter"
+    },
+    {
+     "t": 4491.55,
+     "audio": true,
+     "side": "near",
+     "identity": false,
+     "target": false,
+     "kind": "serve",
+     "score": 1.0,
+     "source": "spotter"
+    },
+    {
+     "t": 4496.301,
+     "audio": true,
+     "side": "far",
+     "identity": null,
+     "target": null,
+     "kind": "serve",
+     "score": 0.646,
+     "source": "spotter"
+    },
+    {
+     "t": 4521.173,
+     "audio": true,
+     "side": "far",
+     "identity": true,
+     "target": false,
+     "kind": "forehand",
+     "score": 0.475,
+     "source": "spotter"
+    },
+    {
+     "t": 4523.398,
+     "audio": true,
+     "side": "near",
+     "identity": true,
+     "target": true,
+     "kind": "backhand",
+     "score": 1.0,
+     "source": "spotter"
+    }
+   ],
+   "golpes_suyos": [
+    {
+     "t": 4450.356078335944,
+     "golpe": "backhand",
+     "lado": "far",
+     "fuente": "detector",
+     "id": "elena-rybakina-jessica-pegula-miami-2026-quarter-final-0445036"
+    },
+    {
+     "t": 4472.90006666889,
+     "golpe": "forehand",
+     "lado": "far",
+     "fuente": "detector",
+     "id": "elena-rybakina-jessica-pegula-miami-2026-quarter-final-0447290"
+    },
+    {
+     "t": 4523.364738891297,
+     "golpe": "backhand",
+     "lado": "near",
+     "fuente": "detector",
+     "id": "elena-rybakina-jessica-pegula-miami-2026-quarter-final-0452336"
+    }
+   ],
+   "dudosos": [],
+   "descartados": [],
+   "identidad": {
+    "start": 44383,
+    "end": 44412,
+    "serve_vote": false,
+    "end_changes": 10,
+    "cluster": 1,
+    "near_is_target": false,
+    "method": "cambios de lado",
+    "clothes_margin": 0.28,
+    "clothes_says": null
+   },
+   "hoja": "saques_49723c_73.90.jpg"
+  },
+  {
+   "t0": 5753.2,
+   "t1": 5940.6,
+   "cause": "sin_golpes",
+   "shot_start": 5757.7,
+   "min": 95.89,
+   "planos_camara_principal": [
+    [
+     5757.7,
+     5762.0
+    ],
+    [
+     5838.3,
+     5855.7
+    ],
+    [
+     5855.7,
+     5861.4
+    ],
+    [
+     5861.4,
+     5873.8
+    ],
+    [
+     5903.6,
+     5909.3
+    ],
+    [
+     5940.1,
+     5943.3
+    ]
+   ],
+   "marcador": [
+    {
+     "t": 5758.2,
+     "g": 22,
+     "pts": [
+      4,
+      3
+     ],
+     "saca": 0
+    },
+    {
+     "t": 5940.6,
+     "g": 23,
+     "pts": [
+      0,
+      0
+     ],
+     "saca": 1
+    }
+   ],
+   "detector": [
+    {
+     "t": 5843.196,
+     "side": "near",
+     "kind": "serve",
+     "score": 0.954
+    },
+    {
+     "t": 5848.989,
+     "side": "far",
+     "kind": "serve",
+     "score": 0.725
+    },
+    {
+     "t": 5906.107,
+     "side": "far",
+     "kind": "backhand",
+     "score": 1.0
+    }
+   ],
+   "candidatos": [
+    {
+     "t": 5843.196,
+     "audio": true,
+     "side": "near",
+     "identity": false,
+     "target": false,
+     "kind": "serve",
+     "score": 0.954,
+     "source": "spotter"
+    },
+    {
+     "t": 5848.989,
+     "audio": true,
+     "side": "far",
+     "identity": null,
+     "target": null,
+     "kind": "serve",
+     "score": 0.725,
+     "source": "spotter"
+    },
+    {
+     "t": 5906.107,
+     "audio": true,
+     "side": "far",
+     "identity": false,
+     "target": true,
+     "kind": "backhand",
+     "score": 1.0,
+     "source": "spotter"
+    }
+   ],
+   "golpes_suyos": [],
+   "dudosos": [],
+   "descartados": [
+    {
+     "t": 5906.107,
+     "why": "lejana_sin_bola_ni_detector",
+     "side": "far",
+     "target": true,
+     "source": "spotter",
+     "kind": "backhand"
+    }
+   ],
+   "identidad": {
+    "start": 57577,
+    "end": 57620,
+    "end_changes": 12,
+    "cluster": 1,
+    "near_is_target": false,
+    "method": "cambios de lado",
+    "clothes_margin": 0.04,
+    "clothes_says": null
+   },
+   "hoja": "saques_49723c_95.89.jpg"
+  }
+ ],
+ "sus_saques": [
+  {
+   "t": 108.3,
+   "min": 1.8,
+   "antes": {
+    "t": 107.0,
+    "g": 0,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 146.7,
+    "g": 0,
+    "pts": [
+     1,
+     2
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 120.2,
+   "min": 2.0,
+   "antes": {
+    "t": 107.0,
+    "g": 0,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 146.7,
+    "g": 0,
+    "pts": [
+     1,
+     2
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 169.3,
+   "min": 2.82,
+   "antes": {
+    "t": 166.4,
+    "g": 0,
+    "pts": [
+     2,
+     2
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 212.2,
+    "g": 0,
+    "pts": [
+     2,
+     3
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 212.6,
+   "min": 3.54,
+   "antes": {
+    "t": 212.2,
+    "g": 0,
+    "pts": [
+     2,
+     3
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 233.1,
+    "g": 0,
+    "pts": [
+     3,
+     3
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 309.8,
+   "min": 5.16,
+   "antes": {
+    "t": 304.2,
+    "g": 0,
+    "pts": [
+     3,
+     3
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 338.4,
+    "g": 0,
+    "pts": [
+     3,
+     4
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 596.3,
+   "min": 9.94,
+   "antes": {
+    "t": 519.8,
+    "g": 1,
+    "pts": [
+     0,
+     3
+    ],
+    "saca": 1
+   },
+   "despues": {
+    "t": 623.2,
+    "g": 2,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 625.3,
+   "min": 10.42,
+   "antes": {
+    "t": 623.2,
+    "g": 2,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 647.7,
+    "g": 2,
+    "pts": [
+     1,
+     2
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 654.0,
+   "min": 10.9,
+   "antes": {
+    "t": 647.7,
+    "g": 2,
+    "pts": [
+     1,
+     2
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 723.3,
+    "g": 2,
+    "pts": [
+     2,
+     3
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 666.0,
+   "min": 11.1,
+   "antes": {
+    "t": 647.7,
+    "g": 2,
+    "pts": [
+     1,
+     2
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 723.3,
+    "g": 2,
+    "pts": [
+     2,
+     3
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 691.2,
+   "min": 11.52,
+   "antes": {
+    "t": 647.7,
+    "g": 2,
+    "pts": [
+     1,
+     2
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 723.3,
+    "g": 2,
+    "pts": [
+     2,
+     3
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 725.2,
+   "min": 12.09,
+   "antes": {
+    "t": 723.3,
+    "g": 2,
+    "pts": [
+     2,
+     3
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 762.7,
+    "g": 2,
+    "pts": [
+     3,
+     3
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 735.7,
+   "min": 12.26,
+   "antes": {
+    "t": 723.3,
+    "g": 2,
+    "pts": [
+     2,
+     3
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 762.7,
+    "g": 2,
+    "pts": [
+     3,
+     3
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 763.6,
+   "min": 12.73,
+   "antes": {
+    "t": 762.7,
+    "g": 2,
+    "pts": [
+     3,
+     3
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 806.9,
+    "g": 2,
+    "pts": [
+     4,
+     3
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 809.6,
+   "min": 13.49,
+   "antes": {
+    "t": 806.9,
+    "g": 2,
+    "pts": [
+     4,
+     3
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 840.7,
+    "g": 2,
+    "pts": [
+     3,
+     3
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 842.6,
+   "min": 14.04,
+   "antes": {
+    "t": 840.7,
+    "g": 2,
+    "pts": [
+     3,
+     3
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 888.5,
+    "g": 2,
+    "pts": [
+     3,
+     4
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 890.8,
+   "min": 14.85,
+   "antes": {
+    "t": 888.5,
+    "g": 2,
+    "pts": [
+     3,
+     4
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 910.8,
+    "g": 3,
+    "pts": [
+     0,
+     0
+    ],
+    "saca": 1
+   }
+  },
+  {
+   "t": 907.4,
+   "min": 15.12,
+   "antes": {
+    "t": 888.5,
+    "g": 2,
+    "pts": [
+     3,
+     4
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 910.8,
+    "g": 3,
+    "pts": [
+     0,
+     0
+    ],
+    "saca": 1
+   }
+  },
+  {
+   "t": 910.3,
+   "min": 15.17,
+   "antes": {
+    "t": 888.5,
+    "g": 2,
+    "pts": [
+     3,
+     4
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 910.8,
+    "g": 3,
+    "pts": [
+     0,
+     0
+    ],
+    "saca": 1
+   }
+  },
+  {
+   "t": 1063.2,
+   "min": 17.72,
+   "antes": {
+    "t": 1062.3,
+    "g": 3,
+    "pts": [
+     3,
+     2
+    ],
+    "saca": 1
+   },
+   "despues": {
+    "t": 1125.6,
+    "g": 3,
+    "pts": [
+     3,
+     4
+    ],
+    "saca": 1
+   }
+  },
+  {
+   "t": 1250.6,
+   "min": 20.84,
+   "antes": {
+    "t": 1223.6,
+    "g": 4,
+    "pts": [
+     0,
+     0
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 1287.4,
+    "g": 4,
+    "pts": [
+     2,
+     0
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 1276.1,
+   "min": 21.27,
+   "antes": {
+    "t": 1223.6,
+    "g": 4,
+    "pts": [
+     0,
+     0
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 1287.4,
+    "g": 4,
+    "pts": [
+     2,
+     0
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 1327.9,
+   "min": 22.13,
+   "antes": {
+    "t": 1287.4,
+    "g": 4,
+    "pts": [
+     2,
+     0
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 1338.1,
+    "g": 4,
+    "pts": [
+     3,
+     0
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 1490.9,
+   "min": 24.85,
+   "antes": {
+    "t": 1488.4,
+    "g": 6,
+    "pts": [
+     0,
+     0
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 1517.4,
+    "g": 6,
+    "pts": [
+     0,
+     1
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 1518.5,
+   "min": 25.31,
+   "antes": {
+    "t": 1517.4,
+    "g": 6,
+    "pts": [
+     0,
+     1
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 1546.2,
+    "g": 6,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 1558.8,
+   "min": 25.98,
+   "antes": {
+    "t": 1546.2,
+    "g": 6,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 1747.8,
+    "g": 7,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 1
+   }
+  },
+  {
+   "t": 1591.0,
+   "min": 26.52,
+   "antes": {
+    "t": 1546.2,
+    "g": 6,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 1747.8,
+    "g": 7,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 1
+   }
+  },
+  {
+   "t": 1600.8,
+   "min": 26.68,
+   "antes": {
+    "t": 1546.2,
+    "g": 6,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 1747.8,
+    "g": 7,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 1
+   }
+  },
+  {
+   "t": 1660.6,
+   "min": 27.68,
+   "antes": {
+    "t": 1546.2,
+    "g": 6,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 1747.8,
+    "g": 7,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 1
+   }
+  },
+  {
+   "t": 1671.2,
+   "min": 27.85,
+   "antes": {
+    "t": 1546.2,
+    "g": 6,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 1747.8,
+    "g": 7,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 1
+   }
+  },
+  {
+   "t": 1720.5,
+   "min": 28.68,
+   "antes": {
+    "t": 1546.2,
+    "g": 6,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 1747.8,
+    "g": 7,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 1
+   }
+  },
+  {
+   "t": 1731.7,
+   "min": 28.86,
+   "antes": {
+    "t": 1546.2,
+    "g": 6,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 1747.8,
+    "g": 7,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 1
+   }
+  },
+  {
+   "t": 1875.4,
+   "min": 31.26,
+   "antes": {
+    "t": 1832.0,
+    "g": 7,
+    "pts": [
+     2,
+     3
+    ],
+    "saca": 1
+   },
+   "despues": {
+    "t": 1916.0,
+    "g": 8,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 1937.2,
+   "min": 32.29,
+   "antes": {
+    "t": 1916.0,
+    "g": 8,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 2012.7,
+    "g": 8,
+    "pts": [
+     2,
+     3
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 2074.1,
+   "min": 34.57,
+   "antes": {
+    "t": 2037.7,
+    "g": 8,
+    "pts": [
+     3,
+     3
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 2203.7,
+    "g": 9,
+    "pts": [
+     0,
+     1
+    ],
+    "saca": 1
+   }
+  },
+  {
+   "t": 2138.0,
+   "min": 35.63,
+   "antes": {
+    "t": 2037.7,
+    "g": 8,
+    "pts": [
+     3,
+     3
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 2203.7,
+    "g": 9,
+    "pts": [
+     0,
+     1
+    ],
+    "saca": 1
+   }
+  },
+  {
+   "t": 2175.2,
+   "min": 36.25,
+   "antes": {
+    "t": 2037.7,
+    "g": 8,
+    "pts": [
+     3,
+     3
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 2203.7,
+    "g": 9,
+    "pts": [
+     0,
+     1
+    ],
+    "saca": 1
+   }
+  },
+  {
+   "t": 2253.4,
+   "min": 37.56,
+   "antes": {
+    "t": 2241.3,
+    "g": 9,
+    "pts": [
+     0,
+     2
+    ],
+    "saca": 1
+   },
+   "despues": {
+    "t": 2487.3,
+    "g": 11,
+    "pts": [
+     0,
+     0
+    ],
+    "saca": 1
+   }
+  },
+  {
+   "t": 2351.5,
+   "min": 39.19,
+   "antes": {
+    "t": 2241.3,
+    "g": 9,
+    "pts": [
+     0,
+     2
+    ],
+    "saca": 1
+   },
+   "despues": {
+    "t": 2487.3,
+    "g": 11,
+    "pts": [
+     0,
+     0
+    ],
+    "saca": 1
+   }
+  },
+  {
+   "t": 2371.1,
+   "min": 39.52,
+   "antes": {
+    "t": 2241.3,
+    "g": 9,
+    "pts": [
+     0,
+     2
+    ],
+    "saca": 1
+   },
+   "despues": {
+    "t": 2487.3,
+    "g": 11,
+    "pts": [
+     0,
+     0
+    ],
+    "saca": 1
+   }
+  },
+  {
+   "t": 2391.2,
+   "min": 39.85,
+   "antes": {
+    "t": 2241.3,
+    "g": 9,
+    "pts": [
+     0,
+     2
+    ],
+    "saca": 1
+   },
+   "despues": {
+    "t": 2487.3,
+    "g": 11,
+    "pts": [
+     0,
+     0
+    ],
+    "saca": 1
+   }
+  },
+  {
+   "t": 2791.6,
+   "min": 46.53,
+   "antes": {
+    "t": 2763.4,
+    "g": 12,
+    "pts": [
+     0,
+     2
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 2795.6,
+    "g": 12,
+    "pts": [
+     1,
+     2
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 2823.4,
+   "min": 47.06,
+   "antes": {
+    "t": 2821.4,
+    "g": 12,
+    "pts": [
+     2,
+     2
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 2861.4,
+    "g": 12,
+    "pts": [
+     2,
+     3
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 2860.0,
+   "min": 47.67,
+   "antes": {
+    "t": 2821.4,
+    "g": 12,
+    "pts": [
+     2,
+     2
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 2861.4,
+    "g": 12,
+    "pts": [
+     2,
+     3
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 2900.4,
+   "min": 48.34,
+   "antes": {
+    "t": 2899.1,
+    "g": 12,
+    "pts": [
+     3,
+     3
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 2920.7,
+    "g": 12,
+    "pts": [
+     4,
+     3
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 2921.9,
+   "min": 48.7,
+   "antes": {
+    "t": 2920.7,
+    "g": 12,
+    "pts": [
+     4,
+     3
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 2967.7,
+    "g": 12,
+    "pts": [
+     3,
+     3
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 2932.4,
+   "min": 48.87,
+   "antes": {
+    "t": 2920.7,
+    "g": 12,
+    "pts": [
+     4,
+     3
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 2967.7,
+    "g": 12,
+    "pts": [
+     3,
+     3
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 2969.9,
+   "min": 49.5,
+   "antes": {
+    "t": 2967.7,
+    "g": 12,
+    "pts": [
+     3,
+     3
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 2995.7,
+    "g": 12,
+    "pts": [
+     3,
+     4
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 2998.8,
+   "min": 49.98,
+   "antes": {
+    "t": 2995.7,
+    "g": 12,
+    "pts": [
+     3,
+     4
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 3083.6,
+    "g": 12,
+    "pts": [
+     3,
+     3
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 3027.3,
+   "min": 50.46,
+   "antes": {
+    "t": 2995.7,
+    "g": 12,
+    "pts": [
+     3,
+     4
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 3083.6,
+    "g": 12,
+    "pts": [
+     3,
+     3
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 3085.7,
+   "min": 51.43,
+   "antes": {
+    "t": 3083.6,
+    "g": 12,
+    "pts": [
+     3,
+     3
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 3120.6,
+    "g": 12,
+    "pts": [
+     4,
+     3
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 3123.3,
+   "min": 52.05,
+   "antes": {
+    "t": 3120.6,
+    "g": 12,
+    "pts": [
+     4,
+     3
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 3141.1,
+    "g": 13,
+    "pts": [
+     0,
+     0
+    ],
+    "saca": 1
+   }
+  },
+  {
+   "t": 3328.3,
+   "min": 55.47,
+   "antes": {
+    "t": 3326.4,
+    "g": 14,
+    "pts": [
+     0,
+     0
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 3408.9,
+    "g": 14,
+    "pts": [
+     3,
+     0
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 3349.7,
+   "min": 55.83,
+   "antes": {
+    "t": 3326.4,
+    "g": 14,
+    "pts": [
+     0,
+     0
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 3408.9,
+    "g": 14,
+    "pts": [
+     3,
+     0
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 3386.8,
+   "min": 56.45,
+   "antes": {
+    "t": 3326.4,
+    "g": 14,
+    "pts": [
+     0,
+     0
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 3408.9,
+    "g": 14,
+    "pts": [
+     3,
+     0
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 3410.7,
+   "min": 56.85,
+   "antes": {
+    "t": 3408.9,
+    "g": 14,
+    "pts": [
+     3,
+     0
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 3461.1,
+    "g": 15,
+    "pts": [
+     0,
+     0
+    ],
+    "saca": 1
+   }
+  },
+  {
+   "t": 3794.7,
+   "min": 63.24,
+   "antes": {
+    "t": 3767.5,
+    "g": 16,
+    "pts": [
+     0,
+     0
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 3838.7,
+    "g": 16,
+    "pts": [
+     0,
+     1
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 3840.6,
+   "min": 64.01,
+   "antes": {
+    "t": 3838.7,
+    "g": 16,
+    "pts": [
+     0,
+     1
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 3870.1,
+    "g": 16,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 3887.0,
+   "min": 64.78,
+   "antes": {
+    "t": 3870.1,
+    "g": 16,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 4019.1,
+    "g": 16,
+    "pts": [
+     3,
+     2
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 3914.9,
+   "min": 65.25,
+   "antes": {
+    "t": 3870.1,
+    "g": 16,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 4019.1,
+    "g": 16,
+    "pts": [
+     3,
+     2
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 3928.8,
+   "min": 65.48,
+   "antes": {
+    "t": 3870.1,
+    "g": 16,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 4019.1,
+    "g": 16,
+    "pts": [
+     3,
+     2
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 4396.2,
+   "min": 73.27,
+   "antes": {
+    "t": 4051.8,
+    "g": 17,
+    "pts": [
+     0,
+     0
+    ],
+    "saca": 1
+   },
+   "despues": {
+    "t": 4438.8,
+    "g": 19,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 1
+   }
+  },
+  {
+   "t": 4418.4,
+   "min": 73.64,
+   "antes": {
+    "t": 4051.8,
+    "g": 17,
+    "pts": [
+     0,
+     0
+    ],
+    "saca": 1
+   },
+   "despues": {
+    "t": 4438.8,
+    "g": 19,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 1
+   }
+  },
+  {
+   "t": 4546.3,
+   "min": 75.77,
+   "antes": {
+    "t": 4545.1,
+    "g": 20,
+    "pts": [
+     0,
+     1
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 4568.8,
+    "g": 20,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 4548.1,
+   "min": 75.8,
+   "antes": {
+    "t": 4545.1,
+    "g": 20,
+    "pts": [
+     0,
+     1
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 4568.8,
+    "g": 20,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 4569.7,
+   "min": 76.16,
+   "antes": {
+    "t": 4568.8,
+    "g": 20,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 4769.8,
+    "g": 20,
+    "pts": [
+     4,
+     3
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 4607.5,
+   "min": 76.79,
+   "antes": {
+    "t": 4568.8,
+    "g": 20,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 4769.8,
+    "g": 20,
+    "pts": [
+     4,
+     3
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 4619.0,
+   "min": 76.98,
+   "antes": {
+    "t": 4568.8,
+    "g": 20,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 4769.8,
+    "g": 20,
+    "pts": [
+     4,
+     3
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 4689.9,
+   "min": 78.16,
+   "antes": {
+    "t": 4568.8,
+    "g": 20,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 4769.8,
+    "g": 20,
+    "pts": [
+     4,
+     3
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 4722.4,
+   "min": 78.71,
+   "antes": {
+    "t": 4568.8,
+    "g": 20,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 4769.8,
+    "g": 20,
+    "pts": [
+     4,
+     3
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 4735.2,
+   "min": 78.92,
+   "antes": {
+    "t": 4568.8,
+    "g": 20,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 4769.8,
+    "g": 20,
+    "pts": [
+     4,
+     3
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 4771.6,
+   "min": 79.53,
+   "antes": {
+    "t": 4769.8,
+    "g": 20,
+    "pts": [
+     4,
+     3
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 4823.7,
+    "g": 21,
+    "pts": [
+     0,
+     0
+    ],
+    "saca": 1
+   }
+  },
+  {
+   "t": 4783.7,
+   "min": 79.73,
+   "antes": {
+    "t": 4769.8,
+    "g": 20,
+    "pts": [
+     4,
+     3
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 4823.7,
+    "g": 21,
+    "pts": [
+     0,
+     0
+    ],
+    "saca": 1
+   }
+  },
+  {
+   "t": 5040.7,
+   "min": 84.01,
+   "antes": {
+    "t": 5038.2,
+    "g": 21,
+    "pts": [
+     3,
+     4
+    ],
+    "saca": 1
+   },
+   "despues": {
+    "t": 5109.4,
+    "g": 21,
+    "pts": [
+     4,
+     3
+    ],
+    "saca": 1
+   }
+  },
+  {
+   "t": 5244.2,
+   "min": 87.4,
+   "antes": {
+    "t": 5212.1,
+    "g": 22,
+    "pts": [
+     0,
+     0
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 5416.8,
+    "g": 22,
+    "pts": [
+     3,
+     3
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 5334.7,
+   "min": 88.91,
+   "antes": {
+    "t": 5212.1,
+    "g": 22,
+    "pts": [
+     0,
+     0
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 5416.8,
+    "g": 22,
+    "pts": [
+     3,
+     3
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 5361.5,
+   "min": 89.36,
+   "antes": {
+    "t": 5212.1,
+    "g": 22,
+    "pts": [
+     0,
+     0
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 5416.8,
+    "g": 22,
+    "pts": [
+     3,
+     3
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 5392.2,
+   "min": 89.87,
+   "antes": {
+    "t": 5212.1,
+    "g": 22,
+    "pts": [
+     0,
+     0
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 5416.8,
+    "g": 22,
+    "pts": [
+     3,
+     3
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 5431.7,
+   "min": 90.53,
+   "antes": {
+    "t": 5416.8,
+    "g": 22,
+    "pts": [
+     3,
+     3
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 5483.4,
+    "g": 22,
+    "pts": [
+     3,
+     4
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 5484.1,
+   "min": 91.4,
+   "antes": {
+    "t": 5483.4,
+    "g": 22,
+    "pts": [
+     3,
+     4
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 5508.8,
+    "g": 22,
+    "pts": [
+     3,
+     3
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 5509.9,
+   "min": 91.83,
+   "antes": {
+    "t": 5508.8,
+    "g": 22,
+    "pts": [
+     3,
+     3
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 5542.0,
+    "g": 22,
+    "pts": [
+     4,
+     3
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 5543.1,
+   "min": 92.39,
+   "antes": {
+    "t": 5542.0,
+    "g": 22,
+    "pts": [
+     4,
+     3
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 5570.8,
+    "g": 22,
+    "pts": [
+     3,
+     3
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 5572.4,
+   "min": 92.87,
+   "antes": {
+    "t": 5570.8,
+    "g": 22,
+    "pts": [
+     3,
+     3
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 5606.1,
+    "g": 22,
+    "pts": [
+     4,
+     3
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 5615.3,
+   "min": 93.59,
+   "antes": {
+    "t": 5606.1,
+    "g": 22,
+    "pts": [
+     4,
+     3
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 5644.4,
+    "g": 22,
+    "pts": [
+     3,
+     3
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 5679.8,
+   "min": 94.66,
+   "antes": {
+    "t": 5662.0,
+    "g": 22,
+    "pts": [
+     4,
+     3
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 5718.6,
+    "g": 22,
+    "pts": [
+     3,
+     3
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 5691.9,
+   "min": 94.87,
+   "antes": {
+    "t": 5662.0,
+    "g": 22,
+    "pts": [
+     4,
+     3
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 5718.6,
+    "g": 22,
+    "pts": [
+     3,
+     3
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 5733.1,
+   "min": 95.55,
+   "antes": {
+    "t": 5718.6,
+    "g": 22,
+    "pts": [
+     3,
+     3
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 5758.2,
+    "g": 22,
+    "pts": [
+     4,
+     3
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 6090.5,
+   "min": 101.51,
+   "antes": {
+    "t": 6089.7,
+    "g": 24,
+    "pts": [
+     0,
+     0
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 6172.4,
+    "g": 24,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 6122.4,
+   "min": 102.04,
+   "antes": {
+    "t": 6089.7,
+    "g": 24,
+    "pts": [
+     0,
+     0
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 6172.4,
+    "g": 24,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 6149.0,
+   "min": 102.48,
+   "antes": {
+    "t": 6089.7,
+    "g": 24,
+    "pts": [
+     0,
+     0
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 6172.4,
+    "g": 24,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 6194.4,
+   "min": 103.24,
+   "antes": {
+    "t": 6172.4,
+    "g": 24,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 6304.5,
+    "g": 24,
+    "pts": [
+     3,
+     2
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 6231.4,
+   "min": 103.86,
+   "antes": {
+    "t": 6172.4,
+    "g": 24,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 6304.5,
+    "g": 24,
+    "pts": [
+     3,
+     2
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 6277.1,
+   "min": 104.62,
+   "antes": {
+    "t": 6172.4,
+    "g": 24,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 6304.5,
+    "g": 24,
+    "pts": [
+     3,
+     2
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 6307.0,
+   "min": 105.12,
+   "antes": {
+    "t": 6304.5,
+    "g": 24,
+    "pts": [
+     3,
+     2
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 6363.9,
+    "g": 25,
+    "pts": [
+     0,
+     0
+    ],
+    "saca": 1
+   }
+  },
+  {
+   "t": 6539.3,
+   "min": 108.99,
+   "antes": {
+    "t": 6516.0,
+    "g": 26,
+    "pts": [
+     0,
+     0
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 6604.2,
+    "g": 26,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 6624.6,
+   "min": 110.41,
+   "antes": {
+    "t": 6604.2,
+    "g": 26,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 6674.3,
+    "g": 26,
+    "pts": [
+     3,
+     2
+    ],
+    "saca": 0
+   }
+  },
+  {
+   "t": 6651.2,
+   "min": 110.85,
+   "antes": {
+    "t": 6604.2,
+    "g": 26,
+    "pts": [
+     1,
+     1
+    ],
+    "saca": 0
+   },
+   "despues": {
+    "t": 6674.3,
+    "g": 26,
+    "pts": [
+     3,
+     2
+    ],
+    "saca": 0
+   }
+  }
+ ],
+ "lecturas_marcador": 500,
+ "estados": 115
+}
