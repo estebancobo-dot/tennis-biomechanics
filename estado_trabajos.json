@@ -1,10 +1,10 @@
 {
- "at": "2026-11-12 09:32:03",
+ "at": "2026-11-12 09:38:34",
  "firma": "3ce94815b913",
  "ejecutor": {
   "vivo": true,
-  "pid": 7452,
-  "at": 1794472323.3877213
+  "pid": 8668,
+  "at": 1794472714.3540766
  },
  "pausa": false,
  "en_curso": [],
@@ -293,6 +293,41 @@
  ],
  "eventos": [
   {
+   "id": 363,
+   "job": null,
+   "at": "2026-11-12 09:35:34",
+   "kind": "ejecutor",
+   "text": "arranca (pid 8668)"
+  },
+  {
+   "id": 362,
+   "job": null,
+   "at": "2026-11-12 09:35:33",
+   "kind": "ejecutor",
+   "text": "arranca el siguiente con el código nuevo (pid 8568)"
+  },
+  {
+   "id": 361,
+   "job": null,
+   "at": "2026-11-12 09:35:33",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 360,
+   "job": null,
+   "at": "2026-11-12 09:35:33",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 359,
+   "job": null,
+   "at": "2026-11-12 09:35:29",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
    "id": 358,
    "job": 75,
    "at": "2026-11-12 09:28:53",
@@ -466,41 +501,6 @@
    "at": "2026-11-12 08:25:09",
    "kind": "empieza",
    "text": "script validate_recall --spotter --tag v13 --from base"
-  },
-  {
-   "id": 333,
-   "job": 71,
-   "at": "2026-11-12 08:25:06",
-   "kind": "enviado",
-   "text": "tennisbio script validate_recall --spotter --tag v13 --from base (claude 228)"
-  },
-  {
-   "id": 332,
-   "job": null,
-   "at": "2026-11-12 08:24:29",
-   "kind": "ejecutor",
-   "text": "arranca (pid 5712)"
-  },
-  {
-   "id": 331,
-   "job": null,
-   "at": "2026-11-12 08:24:28",
-   "kind": "ejecutor",
-   "text": "arranca el siguiente con el código nuevo (pid 18952)"
-  },
-  {
-   "id": 330,
-   "job": null,
-   "at": "2026-11-12 08:24:28",
-   "kind": "ejecutor",
-   "text": "termina"
-  },
-  {
-   "id": 329,
-   "job": null,
-   "at": "2026-11-12 08:24:28",
-   "kind": "ejecutor",
-   "text": "se reinicia con el código nuevo"
   }
  ]
 }
