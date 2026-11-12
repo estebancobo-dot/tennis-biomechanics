@@ -1,13 +1,32 @@
 {
- "at": "2026-11-12 12:44:21",
- "firma": "6e5621b5d318",
+ "at": "2026-11-12 12:44:26",
+ "firma": "94a824a64af0",
  "ejecutor": {
   "vivo": true,
   "pid": 5732,
   "at": 1794483856.4558303
  },
  "pausa": false,
- "en_curso": [],
+ "en_curso": [
+  {
+   "id": 92,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "run --match us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "state": "en curso",
+   "message": "",
+   "created": "2026-11-12 12:44:18",
+   "started": "2026-11-12 12:44:26",
+   "finished": null,
+   "args": "[\"run\", \"--match\", \"us-open-2026-r4-naomi-osaka-elena-rybakina\"]",
+   "source": "claude 251",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_92.log",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "identity",
@@ -18,26 +37,7 @@
   "quedan_s": 95,
   "hora": "2026-11-12 12:29:42"
  },
- "pendientes": [
-  {
-   "id": 92,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "run --match us-open-2026-r4-naomi-osaka-elena-rybakina",
-   "state": "pendiente",
-   "message": "",
-   "created": "2026-11-12 12:44:18",
-   "started": null,
-   "finished": null,
-   "args": "[\"run\", \"--match\", \"us-open-2026-r4-naomi-osaka-elena-rybakina\"]",
-   "source": "claude 251",
-   "log": "",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "pendientes": [],
  "recientes": [
   {
    "id": 91,
@@ -312,6 +312,13 @@
  ],
  "eventos": [
   {
+   "id": 492,
+   "job": 92,
+   "at": "2026-11-12 12:44:26",
+   "kind": "empieza",
+   "text": "run --match us-open-2026-r4-naomi-osaka-elena-rybakina"
+  },
+  {
    "id": 491,
    "job": 92,
    "at": "2026-11-12 12:44:18",
@@ -513,13 +520,6 @@
    "at": "2026-11-12 12:09:46",
    "kind": "enviado",
    "text": "tennisbio run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final (claude 246)"
-  },
-  {
-   "id": 462,
-   "job": 88,
-   "at": "2026-11-12 12:09:35",
-   "kind": "empieza",
-   "text": "run --match us-open-2026-r4-naomi-osaka-elena-rybakina"
   }
  ]
 }
