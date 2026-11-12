@@ -1,10 +1,10 @@
 {
- "at": "2026-11-12 01:20:48",
- "firma": "0d0c92b861dc",
+ "at": "2026-11-12 01:21:06",
+ "firma": "4da8d761619b",
  "ejecutor": {
   "vivo": true,
   "pid": 7200,
-  "at": 1794442848.3762205
+  "at": 1794442864.3816497
  },
  "pausa": false,
  "en_curso": [
@@ -38,6 +38,24 @@
   "hora": "2026-11-11 17:02:19"
  },
  "pendientes": [
+  {
+   "id": 63,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script bench_fine_fps --match pegula --minutes 15 --tag rtmw --set fine_pass.refine=rtmw-x",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-12 01:21:02",
+   "started": null,
+   "finished": null,
+   "args": "[\"script\", \"bench_fine_fps\", \"--match\", \"pegula\", \"--minutes\", \"15\", \"--tag\", \"rtmw\", \"--set\", \"fine_pass.refine=rtmw-x\"]",
+   "source": "claude 219",
+   "log": "",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 62,
    "kind": "comando",
@@ -331,6 +349,13 @@
  ],
  "eventos": [
   {
+   "id": 271,
+   "job": 63,
+   "at": "2026-11-12 01:21:02",
+   "kind": "enviado",
+   "text": "tennisbio script bench_fine_fps --match pegula --minutes 15 --tag rtmw --set fine_pass.refine=rtmw-x (claude 219)"
+  },
+  {
    "id": 270,
    "job": 61,
    "at": "2026-11-12 01:20:47",
@@ -532,13 +557,6 @@
    "at": "2026-11-11 23:50:10",
    "kind": "ejecutor",
    "text": "termina"
-  },
-  {
-   "id": 241,
-   "job": null,
-   "at": "2026-11-11 23:50:10",
-   "kind": "ejecutor",
-   "text": "se reinicia con el código nuevo"
   }
  ]
 }
