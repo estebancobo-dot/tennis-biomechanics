@@ -1,10 +1,10 @@
 {
- "at": "2026-11-12 09:53:46",
- "firma": "2e0da6300730",
+ "at": "2026-11-12 10:00:12",
+ "firma": "02aa8bf3d5b7",
  "ejecutor": {
   "vivo": true,
-  "pid": 11488,
-  "at": 1794473626.4007506
+  "pid": 4792,
+  "at": 1794474007.369628
  },
  "pausa": false,
  "en_curso": [],
@@ -18,7 +18,26 @@
   "quedan_s": 0,
   "hora": "2026-11-12 08:59:52"
  },
- "pendientes": [],
+ "pendientes": [
+  {
+   "id": 78,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script diag_export_clip 0312430 0966569 0925800 0048549",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-12 10:00:09",
+   "started": null,
+   "finished": null,
+   "args": "[\"script\", \"diag_export_clip\", \"0312430\", \"0966569\", \"0925800\", \"0048549\"]",
+   "source": "claude 235",
+   "log": "",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "recientes": [
   {
    "id": 77,
@@ -293,6 +312,48 @@
  ],
  "eventos": [
   {
+   "id": 385,
+   "job": 78,
+   "at": "2026-11-12 10:00:09",
+   "kind": "enviado",
+   "text": "tennisbio script diag_export_clip 0312430 0966569 0925800 0048549 (claude 235)"
+  },
+  {
+   "id": 384,
+   "job": null,
+   "at": "2026-11-12 09:58:27",
+   "kind": "ejecutor",
+   "text": "arranca (pid 4792)"
+  },
+  {
+   "id": 383,
+   "job": null,
+   "at": "2026-11-12 09:58:26",
+   "kind": "ejecutor",
+   "text": "arranca el siguiente con el código nuevo (pid 17780)"
+  },
+  {
+   "id": 382,
+   "job": null,
+   "at": "2026-11-12 09:58:26",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 381,
+   "job": null,
+   "at": "2026-11-12 09:58:26",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 380,
+   "job": null,
+   "at": "2026-11-12 09:58:23",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
    "id": 379,
    "job": 77,
    "at": "2026-11-12 09:50:46",
@@ -459,48 +520,6 @@
    "at": "2026-11-12 09:28:25",
    "kind": "enviado",
    "text": "tennisbio script diag_export_esqueleto (claude 232)"
-  },
-  {
-   "id": 355,
-   "job": null,
-   "at": "2026-11-12 09:28:25",
-   "kind": "ejecutor",
-   "text": "arranca (pid 7452)"
-  },
-  {
-   "id": 354,
-   "job": null,
-   "at": "2026-11-12 09:28:24",
-   "kind": "ejecutor",
-   "text": "arranca el siguiente con el código nuevo (pid 15828)"
-  },
-  {
-   "id": 353,
-   "job": null,
-   "at": "2026-11-12 09:28:24",
-   "kind": "ejecutor",
-   "text": "termina"
-  },
-  {
-   "id": 352,
-   "job": null,
-   "at": "2026-11-12 09:28:24",
-   "kind": "ejecutor",
-   "text": "se reinicia con el código nuevo"
-  },
-  {
-   "id": 351,
-   "job": null,
-   "at": "2026-11-12 09:28:23",
-   "kind": "reiniciar",
-   "text": "ciclo"
-  },
-  {
-   "id": 350,
-   "job": 74,
-   "at": "2026-11-12 09:27:54",
-   "kind": "hecho",
-   "text": "código 0"
   }
  ]
 }
