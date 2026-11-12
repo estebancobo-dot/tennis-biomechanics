@@ -1,6 +1,6 @@
 # Revisión automática: FALLOS
 
-386 cumplidos · 30 no cumplidos · 111 sin golpes suficientes · 115 avisos (antes: 384 cumplidos, 35 no cumplidos)
+386 cumplidos · 30 no cumplidos · 111 sin golpes suficientes · 115 avisos (antes: 386 cumplidos, 30 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 135 de 260
 
@@ -175,11 +175,3 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 - **#255 Plano del swing: raqueta al lado o detrás del cuerpo en el armado (Vídeos de entrenadores, 12-10, pendiente)**: SIN HACER según el registro (#255, docs/peticiones_usuario.md)
 - **#257 Comparativa a fondo y catalogada con todo lo que existe: apps profesionales (Hawk-Eye/TennisViz, SwingVision, **: SIN HACER según el registro (#257, docs/peticiones_usuario.md)
 - **#258 Partidos y jugadores automáticos desde un nombre de fichero mínimo: normalizar los nombres, leer la ficha públ**: SIN HACER según el registro (#258, docs/peticiones_usuario.md)
-
-## Mejora
-
-- Pruebas del código en este PC: falta → ok
-- #13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe: falta → aviso
-- #20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML: falta → pocos datos
-- #51 El código de la prueba es el de los casos reales: falta → aviso
-- #241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código: falta → ok
