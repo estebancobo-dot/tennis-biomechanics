@@ -1,2 +1,3 @@
-arranque: 2026-11-12T04:10:44 (pid 16724)
-2026-11-12T04:10:47 otro analisis en marcha (11996,4668,10468)
+arranque: 2026-11-12T04:17:46 (pid 17784)
+2026-11-12T04:17:51 solo la aplicacion al dia (a735fe1 -> fa07081) con un trabajo en marcha
+2026-11-12T04:17:57 otro analisis en marcha (4668,10468)
