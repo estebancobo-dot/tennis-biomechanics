@@ -932,3 +932,8 @@ accion: medir
 script: bench_fine_fps
 argumentos: --match pegula --minutes 15 --tag bola --set fine_pass.ball_from_spotting=true
 # 220 (12-11, R2): A/B desde cero de la bola del detector reutilizada en la pasada fina (bench_bola.json)
+---
+id: 221
+accion: prevision
+# 221 (12-11): que se rehace en cada partido y cuanto tardaria el analisis completo (tarea 11) con el codigo de hoy;
+# va en la cola detras de las pruebas A/B (prevision.md). Solo calcula, no ejecuta nada
