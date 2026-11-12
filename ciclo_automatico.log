@@ -35,3 +35,30 @@ At C:\tenis\tennis-biomech\scripts\windows\comun.ps1:229 char:80
 
 Registro enviado a Claude (no hace falta copiar nada).
 
+Registro enviado a Claude (no hace falta copiar nada).
+git : error: Your local changes to the following files would be overwritten by checkout:
+At C:\tenis\tennis-biomech\scripts\windows\comun.ps1:82 char:36
++ ... ITCODE -eq 0) { git -C $d checkout -q -B pc-logs FETCH_HEAD 2>$null }
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (error: Your loc...en by checkout::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+	ciclo_actions.log
+	ciclo_automatico.log
+	estado_trabajos.json
+	trabajos.log
+Please commit your changes or stash them before you switch branches.
+Aborting
+git : To https://github.com/estebancobo-dot/tennis-biomechanics.git
+At C:\tenis\tennis-biomech\scripts\windows\comun.ps1:241 char:9
++         git -C $d push -q origin pc-logs 2>$null
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (To https://gith...iomechanics.git:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ ! [rejected]          pc-logs -> pc-logs (non-fast-forward)
+error: failed to push some refs to 'https://github.com/estebancobo-dot/tennis-biomechanics.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. If you want to integrate the remote changes,
+hint: use 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+No se pudo enviar el registro a Claude (sin red o sin permiso en GitHub).
+
