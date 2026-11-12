@@ -70,8 +70,13 @@ def main() -> None:
             line = []
             for f in range(max(0, f0 - int(4 * fps)), min(len(X), f0 + int(2 * fps) + 1)):
                 p = prob[f]
+                feet = X[f, 52:54] * np.array([6.0, 24.0])          # spotting._person: feet on the court / (6, 24) m
                 line.append({"t": round(f / fps, 1), "juego": bool(play[f]),
                              "presentes": [round(float(X[f, i]), 2) for i in present],
+                             # 12-11: who the «near player» is: feet on the court (m), height over the frame, mean
+                             # keypoint confidence (a ball kid at the back wall is near too)
+                             "cerca_pies_m": [round(float(v), 1) for v in feet], "cerca_altura": round(float(X[f, 51]), 3),
+                             "cerca_conf": round(float(X[f, 34:51].mean()), 2),
                              "saque_cerca": round(float(p[ci["near_serve"]]), 3), "saque_lejos": round(float(p[ci["far_serve"]]), 3),
                              "clase": CLASSES[int(np.argmax(p))], "p": round(float(np.max(p)), 3)})
             shot = [[round(s["start"] / sfps, 1), round(s["end"] / sfps, 1), s.get("main_camera")]
