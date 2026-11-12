@@ -1062,3 +1062,9 @@ id: 241
 accion: trabajo
 comando: flujo informe
 # 241 (12-12): auditoria con R10
+---
+id: 242
+accion: medir
+script: ventanas_visibles
+# 242 (12-12): que programa abre la ventana de PowerShell vacia que ve el usuario: cada ventana visible con su orden y
+# la de su padre. Solo lee
