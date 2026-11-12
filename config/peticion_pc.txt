@@ -972,3 +972,9 @@ orden: cancelar
 trabajo: 68
 # 226 (12-11): se cancela el recuento con la bola reutilizada (trabajo 68): corre con la identidad que hoy deja sin
 # decidir la compilacion de Azarenka; se repite cuando este arreglada. Primero el diagnostico (225)
+---
+id: 227
+accion: medir
+script: diag_identidad_f3set
+argumentos: --match azaren
+# 227 (12-11): la 225 no encontro la carpeta (su nombre esta cortado a 60 letras: "..._victoria_azaren")
