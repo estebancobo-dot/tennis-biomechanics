@@ -1,10 +1,10 @@
 {
- "at": "2026-11-12 07:54:21",
+ "at": "2026-11-12 08:10:02",
  "firma": "313f741ddf2a",
  "ejecutor": {
   "vivo": true,
-  "pid": 12532,
-  "at": 1794466461.5684114
+  "pid": 15204,
+  "at": 1794467402.769087
  },
  "pausa": false,
  "en_curso": [],
@@ -293,6 +293,41 @@
  ],
  "eventos": [
   {
+   "id": 318,
+   "job": null,
+   "at": "2026-11-12 08:10:02",
+   "kind": "ejecutor",
+   "text": "arranca (pid 15204)"
+  },
+  {
+   "id": 317,
+   "job": null,
+   "at": "2026-11-12 08:10:01",
+   "kind": "ejecutor",
+   "text": "arranca el siguiente con el código nuevo (pid 12552)"
+  },
+  {
+   "id": 316,
+   "job": null,
+   "at": "2026-11-12 08:10:01",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 315,
+   "job": null,
+   "at": "2026-11-12 08:10:01",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 314,
+   "job": null,
+   "at": "2026-11-12 08:10:00",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
    "id": 313,
    "job": 69,
    "at": "2026-11-12 07:51:01",
@@ -466,41 +501,6 @@
    "at": "2026-11-12 03:10:39",
    "kind": "paso",
    "text": "2/2 Prevision"
-  },
-  {
-   "id": 288,
-   "job": 65,
-   "at": "2026-11-12 03:10:38",
-   "kind": "paso",
-   "text": "1/2 Registro de partidos"
-  },
-  {
-   "id": 287,
-   "job": 65,
-   "at": "2026-11-12 03:10:37",
-   "kind": "empieza",
-   "text": "flujo «prevision»: Que etapas se rehacen en cada partido y cuanto tardarian, sin ejecutar nada"
-  },
-  {
-   "id": 286,
-   "job": 65,
-   "at": "2026-11-12 03:10:33",
-   "kind": "enviado",
-   "text": "flujo prevision (claude 221)"
-  },
-  {
-   "id": 285,
-   "job": null,
-   "at": "2026-11-12 03:10:27",
-   "kind": "ejecutor",
-   "text": "arranca (pid 13256)"
-  },
-  {
-   "id": 284,
-   "job": null,
-   "at": "2026-11-12 03:10:26",
-   "kind": "ejecutor",
-   "text": "arranca el siguiente con el código nuevo (pid 8488)"
   }
  ]
 }
