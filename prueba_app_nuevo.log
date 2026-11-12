@@ -4,3 +4,23 @@ prueba_app_35m.mkv: 35 min, 60 fps
   propuesta: ¿torneo?  · ¿superficie? · ¿jugadoras? → prueba-app-35m
   [sin_jugadora] No reconozco a ninguna jugadora en el nombre: elige quién es (o añade su ficha).
   añadido: prueba-app-35m (en la cola)
+ejecutor: parado · cola activa · firma eb59132a5f69
+  hecho     #2 informe partido prueba-app-35m analizado FALLOS · versión 1 · al día
+  hecho     #1 partido partido nuevo 
+Ahora: nada en curso
+Jugadoras: 3 · partidos: 7
+
+Análisis:
+  rybakina · derecha: v1 · al día · FALLOS · 40 golpes
+Partidos:
+  prueba-app-35m: analizado
+  zheng-qinwen-elena-rybakina: nuevo
+  elena-rybakina-jessica-pegula-miami-2026-quarter-final: nuevo
+  us-open-2026-r4-naomi-osaka-elena-rybakina: nuevo
+  zverev-alexander-sinner-jannik-indian-wells-2026-semi-final: nuevo
+  tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5: nuevo
+  tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5: nuevo
+Cola (0):
+Avisos:
+  [ok] Derecha de Elena Rybakina actualizada: 353 ✔, 31 ✘.
+duracion total: 78.7 min; termina 2026-11-12T01:12:58
