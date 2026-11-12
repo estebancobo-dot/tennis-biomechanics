@@ -2230,6 +2230,7 @@ def comparison_doc_item(items: list[dict], out_root: Path, doc: Path | None = No
 
 SCRATCH_TIME_ITEM = "Tiempo desde cero"
 SCRATCH_MAX_DAYS = 14          # a run from scratch older than this was made with other code
+SCRATCH_RECENT_DAYS = 3        # the runs whose slowest counts (the same code, different videos)
 
 
 def scratch_time_item(tables: list[dict], today: str | None = None) -> dict:
@@ -2239,8 +2240,10 @@ def scratch_time_item(tables: list[dict], today: str | None = None) -> dict:
     import datetime as _dt
     from .stage_times import latest_from_scratch
     day0 = (today or _dt.date.today().isoformat())[:10]
-    since = (_dt.date.fromisoformat(day0) - _dt.timedelta(days=SCRATCH_MAX_DAYS)).isoformat()
-    t = latest_from_scratch(tables, since=since)       # the slowest of the last 14 days: it must hold for every video
+    # the slowest of the last SCRATCH_RECENT_DAYS: it must hold for every video, with today's code (12-11: over 14 days
+    # it took a run of 29-10, made before the detector was sped up)
+    since = (_dt.date.fromisoformat(day0) - _dt.timedelta(days=SCRATCH_RECENT_DAYS)).isoformat()
+    t = latest_from_scratch(tables, since=since)
     if t is None:
         return _item(9, "Rendimiento", SCRATCH_TIME_ITEM, "pocos datos",
                      "ninguna ejecución desde cero de 20 min de vídeo o más (prueba app_nuevo o poc del PC)")
@@ -2865,7 +2868,7 @@ def export_videos_item(d: Path) -> dict | None:
         return _item(2, "Ficheros", name, "aviso", "sin ffprobe/ffmpeg para mirarlos")
     k = min(EXPORT_SAMPLE, len(vids))
     sample = [vids[round(i * (len(vids) - 1) / max(1, k - 1))] for i in range(k)]
-    bad, skel = [], 0
+    bad, skel, noskel = [], 0, []
     for v in sample:
         try:
             r = subprocess.run(["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries",
@@ -2879,13 +2882,17 @@ def export_videos_item(d: Path) -> dict | None:
             bad.append(f"{v.name}: formato {codec}")
         elif not EXPORT_DUR_S[0] <= dur <= EXPORT_DUR_S[1]:
             bad.append(f"{v.name}: dura {dur:.1f} s")
-        px = _skeleton_pixels(v)
-        if px is not None and min(px) >= EXPORT_SKEL_PX:
+        # 12-11: at 0.5 s only 3-6 of 8 showed it: the pose runs only around the impact, the start of a video can have
+        # none. Three moments of the video (real speed, slow motion, the freeze at the end); any with it counts
+        hits = [_skeleton_pixels(v, f * dur) for f in (0.3, 0.6, 0.9)] if dur else []
+        if any(px is not None and min(px) >= EXPORT_SKEL_PX for px in hits):
             skel += 1
+        else:
+            noskel.append(v.name)
     st = "falta" if bad or skel < EXPORT_SKEL_SHARE * k else "ok"
     return _item(2, "Ficheros", name, st,
                  f"{k} de {len(vids)} vídeos mirados: {k - len(bad)} se reproducen con su duración, {skel} con el esqueleto"
-                 + (f"; mal: {'; '.join(bad[:3])}" if bad else ""))
+                 + (f"; mal: {'; '.join(bad[:3])}" if bad else "") + (f"; sin esqueleto: {', '.join(noskel[:4])}" if noskel else ""))
 
 
 def export_end_items(out_dir: Path) -> list[dict]:
