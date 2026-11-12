@@ -1,10 +1,10 @@
 {
- "at": "2026-11-12 04:06:58",
- "firma": "9769102bfbf2",
+ "at": "2026-11-12 04:07:22",
+ "firma": "96477dd52b62",
  "ejecutor": {
   "vivo": true,
   "pid": 13008,
-  "at": 1794452818.1925795
+  "at": 1794452834.2078867
  },
  "pausa": false,
  "en_curso": [
@@ -37,7 +37,26 @@
   "quedan_s": 0,
   "hora": "2026-11-11 17:02:19"
  },
- "pendientes": [],
+ "pendientes": [
+  {
+   "id": 68,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script validate_recall --spotter --tag bola --set fine_pass.ball_from_spotting=true",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-12 04:07:14",
+   "started": null,
+   "finished": null,
+   "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"bola\", \"--set\", \"fine_pass.ball_from_spotting=true\"]",
+   "source": "claude 224",
+   "log": "",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "recientes": [
   {
    "id": 66,
@@ -312,6 +331,13 @@
  ],
  "eventos": [
   {
+   "id": 301,
+   "job": 68,
+   "at": "2026-11-12 04:07:14",
+   "kind": "enviado",
+   "text": "tennisbio script validate_recall --spotter --tag bola --set fine_pass.ball_from_spotting=true (claude 224)"
+  },
+  {
    "id": 300,
    "job": 67,
    "at": "2026-11-12 04:06:58",
@@ -513,13 +539,6 @@
    "at": "2026-11-12 01:21:21",
    "kind": "enviado",
    "text": "tennisbio script bench_fine_fps --match pegula --minutes 15 --tag bola --set fine_pass.ball_from_spotting=true (claude 220)"
-  },
-  {
-   "id": 271,
-   "job": 63,
-   "at": "2026-11-12 01:21:02",
-   "kind": "enviado",
-   "text": "tennisbio script bench_fine_fps --match pegula --minutes 15 --tag rtmw --set fine_pass.refine=rtmw-x (claude 219)"
   }
  ]
 }
