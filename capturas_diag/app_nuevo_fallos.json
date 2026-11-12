@@ -508,7 +508,7 @@
    "estado": "falta",
    "area": "Infraestructura",
    "nombre": "Registros con fecha y duración",
-   "detalle": "61 de 64 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; ciclo_automatico.log: sin la fecha de sus pasos; prueba_completo.log: sin «termina fecha» al final"
+   "detalle": "64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba_completo.log: sin «termina fecha» al final"
   },
   {
    "estado": "aviso",
@@ -530,21 +530,27 @@
   },
   {
    "estado": "falta",
-   "area": "Ficheros",
-   "nombre": "Partido prueba-app-35m: salida de cada etapa, ventanas y series",
-   "detalle": "17 ficheros de etapa, 119 golpes con ventana y serie; faltan o están vacíos: fine_opponent/strokes_opponent.json"
+   "area": "Aplicación",
+   "nombre": "Lista de partidos: rival, torneo, ronda y fecha",
+   "detalle": "7 partidos; sin rival: 1 (prueba-app-35m); sin torneo: 2 (zheng-qinwen-elena-rybakina, prueba-app-35m); sin ronda: 2 (zheng-qinwen-elena-rybakina, prueba-app-35m); sin fecha: 2 (zheng-qinwen-elena-rybakina, prueba-app-35m)"
   },
   {
    "estado": "pocos datos",
    "area": "Tiempo por etapa",
    "nombre": "Tiempo de cada etapa frente a su ritmo en este PC: prueba-app-35m",
-   "detalle": "fine 33.6 min, spotting 13.0 min, fine_doubtful 9.9 min, players 7.6 min, scenes 5.0 min; sin ritmos suficientes de esas etapas en este PC (ritmos.json, hacen falta 3)"
+   "detalle": "fine 33.7 min, spotting 12.9 min, fine_doubtful 9.8 min, players 7.7 min, scenes 4.7 min; sin ritmos suficientes de esas etapas en este PC (ritmos.json, hacen falta 3)"
   },
   {
-   "estado": "falta",
+   "estado": "aviso",
+   "area": "Peticiones del PC",
+   "nombre": "Peticiones por GitHub Actions: espera hasta empezar",
+   "detalle": "la última petición (11-11 23:50) no empezó por GitHub Actions; el último trabajo por Actions fue el 11-11 23:38"
+  },
+  {
+   "estado": "pocos datos",
    "area": "Peticiones",
    "nombre": "#1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final",
-   "detalle": "5 comprobaciones: 1 falta, 1 pocos datos, 3 ok; la peor: «Partido prueba-app-35m: salida de cada etapa, ventanas y series» (17 ficheros de etapa, 119 golpes con ventana y serie; faltan o están vacíos: fine_opponent/strokes_opponent.json)"
+   "detalle": "5 comprobaciones: 1 pocos datos, 4 ok; la peor: «forehand: golpes analizados» (10 del lado cercano (con todo el detalle), 30 del lejano; con menos de 20 muchas situaciones no se pueden describir)"
   },
   {
    "estado": "aviso",
@@ -599,6 +605,18 @@
    "area": "Peticiones",
    "nombre": "#12 Validar cada medida con clips públicos anotados; el usuario no valida a mano",
    "detalle": "a medias según el registro (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Validación con clips anotados (F3Set)» (no se encontró f3set_validation.json)"
+  },
+  {
+   "estado": "aviso",
+   "area": "Peticiones",
+   "nombre": "#13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe",
+   "detalle": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok"
+  },
+  {
+   "estado": "aviso",
+   "area": "Peticiones",
+   "nombre": "#14 Rendimiento: un partido en horas, no días",
+   "detalle": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok"
   },
   {
    "estado": "aviso",
@@ -694,7 +712,7 @@
    "estado": "aviso",
    "area": "Peticiones",
    "nombre": "#41 Exportación: cómo se ven y se graban",
-   "detalle": "1 comprobaciones: 1 aviso; la peor: «Resumen PDF» (no se encontró resumen.pdf)"
+   "detalle": "a medias según el registro (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Resumen PDF» (no se encontró resumen.pdf)"
   },
   {
    "estado": "aviso",
@@ -717,8 +735,20 @@
   {
    "estado": "aviso",
    "area": "Peticiones",
+   "nombre": "#51 El código de la prueba es el de los casos reales",
+   "detalle": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok"
+  },
+  {
+   "estado": "aviso",
+   "area": "Peticiones",
    "nombre": "#55 Ver una bola cerca de la red y un apoyo cerrado con golpe paralelo",
    "detalle": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok"
+  },
+  {
+   "estado": "aviso",
+   "area": "Peticiones",
+   "nombre": "#58 La IA más moderna posible",
+   "detalle": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 15 comprobaciones: 15 ok"
   },
   {
    "estado": "pocos datos",
@@ -736,7 +766,7 @@
    "estado": "falta",
    "area": "Peticiones",
    "nombre": "#66 Fechas y duración en los registros",
-   "detalle": "2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (61 de 64 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; ciclo_)"
+   "detalle": "2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba)"
   },
   {
    "estado": "pocos datos",
@@ -783,6 +813,12 @@
   {
    "estado": "aviso",
    "area": "Peticiones",
+   "nombre": "#75 Velocidad: «10 golpes en 5 horas es absurdo»",
+   "detalle": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok"
+  },
+  {
+   "estado": "aviso",
+   "area": "Peticiones",
    "nombre": "#76 «Un 50 % de golpes dudosos»",
    "detalle": "1 comprobaciones: 1 aviso; la peor: «Golpes dudosos (duda sobre el golpe, no sobre una medida)» (6 de 10 del lado cercano (60%); motivos: phase 26, impact_without_audio 3. Otros 4 golpes solo tienen una medida que fal)"
   },
@@ -803,12 +839,6 @@
    "area": "Peticiones",
    "nombre": "#81 Tamaño de la salida; comprobación sin gastar tokens",
    "detalle": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Tamaño de la salida (tamanos.txt)» (no se encontró registros/tamanos.txt)"
-  },
-  {
-   "estado": "falta",
-   "area": "Peticiones",
-   "nombre": "#83 Árbol de ficheros generados y validados",
-   "detalle": "2 comprobaciones: 1 falta, 1 ok; la peor: «Partido prueba-app-35m: salida de cada etapa, ventanas y series» (17 ficheros de etapa, 119 golpes con ventana y serie; faltan o están vacíos: fine_opponent/strokes_opponent.json)"
   },
   {
    "estado": "pocos datos",
@@ -915,8 +945,20 @@
   {
    "estado": "aviso",
    "area": "Peticiones",
+   "nombre": "#119 Automatizar todo el ciclo en el PC: el usuario no lanza pruebas ni avisa",
+   "detalle": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok"
+  },
+  {
+   "estado": "aviso",
+   "area": "Peticiones",
    "nombre": "#124 Hacia dónde mira el tronco y las manos en la espera, medidas fiables",
    "detalle": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok"
+  },
+  {
+   "estado": "aviso",
+   "area": "Peticiones",
+   "nombre": "#125 Velocidad, rendimiento y algoritmia antes del tramo largo nocturno",
+   "detalle": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok"
   },
   {
    "estado": "pocos datos",
@@ -947,6 +989,12 @@
    "area": "Peticiones",
    "nombre": "#135 distancia al fondo, red (Chat, 11-10 19:23)",
    "detalle": "A MEDIAS según el registro (#135); sin comprobación automática asignada"
+  },
+  {
+   "estado": "aviso",
+   "area": "Peticiones",
+   "nombre": "#137 hay algo que se pueda paralelizar ... threading (Chat, 13-10 18:31)",
+   "detalle": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 7 comprobaciones: 7 ok"
   },
   {
    "estado": "aviso",
@@ -1000,7 +1048,7 @@
    "estado": "pocos datos",
    "area": "Peticiones",
    "nombre": "#151 como se separan los golpes (derecha, reves, saque, voleas), los jugadores, los partidos (Chat, 17-10 17:25)",
-   "detalle": "2 comprobaciones: 1 pocos datos, 1 ok; la peor: «forehand: golpes analizados» (10 del lado cercano (con todo el detalle), 30 del lejano; con menos de 20 muchas situaciones no se pueden describir)"
+   "detalle": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 pocos datos, 2 ok; la peor: «forehand: golpes analizados» (10 del lado cercano (con todo el detalle), 30 del lejano; con menos de 20 muchas situaciones no se pueden describir)"
   },
   {
    "estado": "aviso",
@@ -1357,10 +1405,28 @@
    "detalle": "SIN HACER según el registro (#224, docs/peticiones_usuario.md)"
   },
   {
+   "estado": "aviso",
+   "area": "Peticiones",
+   "nombre": "#225 La aplicación no se cuelga ni ralentiza el PC",
+   "detalle": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok"
+  },
+  {
+   "estado": "falta",
+   "area": "Peticiones",
+   "nombre": "#226 Lista de partidos profesional: nombres normalizados, torneo, ronda, fecha, fotos; sin pruebas (24-10, 25-10)",
+   "detalle": "a medias según el registro (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 falta; la peor: «Lista de partidos: rival, torneo, ronda y fecha» (7 partidos; sin rival: 1 (prueba-app-35m); sin torneo: 2 (zheng-qinwen-elena-rybakina, prueba-app-35m); sin ronda: 2 (zh)"
+  },
+  {
+   "estado": "aviso",
+   "area": "Peticiones",
+   "nombre": "#230 Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo",
+   "detalle": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 5 comprobaciones: 5 ok"
+  },
+  {
    "estado": "pocos datos",
    "area": "Peticiones",
    "nombre": "#231 Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta",
-   "detalle": "4 comprobaciones: 1 pocos datos, 3 ok; la peor: «Tiempo de cada etapa frente a su ritmo en este PC: prueba-app-35m» (fine 33.6 min, spotting 13.0 min, fine_doubtful 9.9 min, players 7.6 min, scenes 5.0 min; sin ritmos suficientes de esas)"
+   "detalle": "5 comprobaciones: 1 pocos datos, 4 ok; la peor: «Tiempo de cada etapa frente a su ritmo en este PC: prueba-app-35m» (fine 33.7 min, spotting 12.9 min, fine_doubtful 9.8 min, players 7.7 min, scenes 4.7 min; sin ritmos suficientes de esas)"
   },
   {
    "estado": "pocos datos",
@@ -1372,7 +1438,7 @@
    "estado": "aviso",
    "area": "Peticiones",
    "nombre": "#234 Prueba de valor de la aplicación con los datos reales",
-   "detalle": "3 comprobaciones: 1 aviso, 2 ok; la peor: «Aplicación: análisis en su índice» (0 análisis y 7 partidos en el índice de la aplicación (leído del índice, datos/tennisbio.db): los análisis de los partid)"
+   "detalle": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Aplicación: análisis en su índice» (0 análisis y 7 partidos en el índice de la aplicación (leído del índice, datos/tennisbio.db): los análisis de los partid)"
   },
   {
    "estado": "aviso",
@@ -1385,6 +1451,12 @@
    "area": "Peticiones",
    "nombre": "#236 Huellas numeradas sobre los pies y patrones de pasos",
    "detalle": "A MEDIAS según el registro (#236); sin comprobación automática asignada"
+  },
+  {
+   "estado": "aviso",
+   "area": "Peticiones",
+   "nombre": "#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min",
+   "detalle": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Peticiones por GitHub Actions: espera hasta empezar» (la última petición (11-11 23:50) no empezó por GitHub Actions; el último trabajo por Actions fue el 11-11 23:38)"
   },
   {
    "estado": "aviso",
@@ -1432,7 +1504,7 @@
    "estado": "aviso",
    "area": "Peticiones",
    "nombre": "#246 Un único orquestador: mismo código y misma fuente de datos para la aplicación y el chat; monitorizar, pausar, ",
-   "detalle": "A MEDIAS según el registro (#246); sin comprobación automática asignada"
+   "detalle": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok"
   },
   {
    "estado": "aviso",
@@ -1450,7 +1522,7 @@
    "estado": "aviso",
    "area": "Peticiones",
    "nombre": "#249 Parar el PC a distancia al momento, sin tener que apagarlo (Chat, 09-11)",
-   "detalle": "A MEDIAS según el registro (#249); sin comprobación automática asignada"
+   "detalle": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok"
   },
   {
    "estado": "aviso",
@@ -1505,6 +1577,18 @@
    "area": "Peticiones",
    "nombre": "#258 Partidos y jugadores automáticos desde un nombre de fichero mínimo: normalizar los nombres, leer la ficha públ",
    "detalle": "SIN HACER según el registro (#258, docs/peticiones_usuario.md)"
+  },
+  {
+   "estado": "aviso",
+   "area": "Peticiones",
+   "nombre": "#259 Saber dónde se va el tiempo de cada etapa, medido desde cero, y demostrar con medidas si cada etapa puede ir m",
+   "detalle": "A MEDIAS según el registro (#259); sin comprobación automática asignada"
+  },
+  {
+   "estado": "aviso",
+   "area": "Peticiones",
+   "nombre": "#260 Revisar de verdad todo el bloque Base, no solo la velocidad: en cada tarea, si su prueba mide lo pedido, si fa",
+   "detalle": "sin comprobación automática asignada"
   }
  ]
 }
