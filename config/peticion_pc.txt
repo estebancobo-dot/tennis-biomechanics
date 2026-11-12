@@ -1014,3 +1014,10 @@ accion: medir
 script: export_fotogramas
 argumentos: 0312430 0221547 0925800 0048549
 # 233 (12-12, R5): fotogramas de 3 videos exportados sin los colores del esqueleto y de 1 con ellos, para mirarlos
+---
+id: 234
+accion: medir
+script: diag_serie_ventana
+argumentos: 0312430 0925800 0966569 0048549
+# 234 (12-12, R5): la pose de la serie sobre el fotograma del impacto de su ventana (tal cual y reflejada) y los
+# tamanos, para ver por que el video exportado la pone fuera de sitio. Solo lee
