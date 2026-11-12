@@ -218,117 +218,122 @@
   "rewrote": {}
  },
  "fine": {
-  "fingerprint": "62cfcd7bcb0f0e95",
+  "fingerprint": "233383c99b5f0188",
   "version": "16",
-  "seconds": 1061.4,
-  "finished": "2026-11-12 13:23:26",
+  "seconds": 6876.2,
+  "finished": "2026-11-12 19:15:42",
   "summary": {
-   "candidates": 331,
-   "confirmed": 316,
+   "candidates": 344,
+   "confirmed": 328,
    "errors": 0,
    "warnings": [],
-   "forehands": 123,
-   "windows": 215,
+   "forehands": 125,
+   "windows": 220,
    "gate": {
     "windows_gated": 0,
-    "windows_passed": 207,
+    "windows_passed": 211,
     "windows_ungated": 0,
     "reasons": {
-     "golpe_de_bola": 131,
-     "detector": 64,
-     "bola_no_vista": 12
+     "golpe_de_bola": 129,
+     "detector": 69,
+     "bola_no_vista": 13
     },
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "raqueta": 1129.2,
-    "cuerdas_y_3d": 241.1,
-    "jugadora_lejana": 226.7,
-    "pista_ventana": 83.3,
-    "analisis_ventana": 50.8,
-    "recorte": 15.7,
-    "cribado": 9.6,
-    "pose": 1.0,
-    "pose_medida_lejana": 0.7
+    "pose": 7316.0,
+    "pose_modelo_hybrid": 5268.6,
+    "raqueta": 3106.5,
+    "pose_modelo_yolo": 1989.2,
+    "bola": 1875.8,
+    "pose_medida_lejana": 696.8,
+    "cuerdas_y_3d": 210.5,
+    "jugadora_lejana": 192.6,
+    "recorte": 99.3,
+    "pista_ventana": 85.4,
+    "analisis_ventana": 55.2,
+    "cribado": 9.0
    },
    "counts": {
-    "overlap_s": 1.7,
-    "frames": 61371,
-    "posed_frames": 61371,
-    "impacts": 392,
-    "kept_impacts": 324,
-    "racket_frames": 2769,
+    "overlap_s": 2.9,
+    "frames": 63218,
+    "posed_frames": 63218,
+    "impacts": 410,
+    "kept_impacts": 337,
+    "racket_frames": 7542,
     "whole_window_again": 0,
-    "frames_960_far": 0,
-    "far_measure_windows": 17
+    "frames_960_far": 4558,
+    "frames_modelo_yolo": 29652,
+    "far_measure_windows": 18,
+    "frames_modelo_hybrid": 33566
    }
   },
-  "out_hash": "955aff20a2032dca072c",
+  "out_hash": "c4db058e5ccc25bd7cc7",
   "scheme": 2,
   "rewrote": {}
  },
  "views_link": {
-  "fingerprint": "3c6b8d8200a953b6",
+  "fingerprint": "61efba53a49d70f8",
   "version": "1",
   "seconds": 0.5,
-  "finished": "2026-11-12 13:23:27",
+  "finished": "2026-11-12 19:15:43",
   "summary": {
-   "strokes": 316,
-   "with_replay": 45,
-   "with_other_camera": 303,
-   "with_slowmo": 20,
-   "replay_share": 0.142,
-   "other_share": 0.959
+   "strokes": 328,
+   "with_replay": 43,
+   "with_other_camera": 315,
+   "with_slowmo": 19,
+   "replay_share": 0.131,
+   "other_share": 0.96
   },
-  "out_hash": "9c24d74db9d6118f1746",
+  "out_hash": "78208700c48d6c09ab82",
   "scheme": 2,
   "rewrote": {
-   "fine": "4e76a08a37fbd25b3737"
+   "fine": "8774f401f3215beddc3e"
   }
  },
  "view_clips": {
-  "fingerprint": "d8bc3714d8669024",
+  "fingerprint": "c3799d8a96239668",
   "version": "1",
-  "seconds": 27.8,
-  "finished": "2026-11-12 13:23:56",
+  "seconds": 33.8,
+  "finished": "2026-11-12 19:16:17",
   "summary": {
    "enabled": true,
-   "linked_strokes": 306,
-   "views": 926,
-   "clips": 613,
-   "cut": 0,
-   "reused": 613,
+   "linked_strokes": 317,
+   "views": 941,
+   "clips": 607,
+   "cut": 6,
+   "reused": 601,
    "failed": 0,
-   "seconds": 27.7,
-   "clip_seconds": 3195.0,
-   "strokes_with_clip": 306
+   "seconds": 33.7,
+   "clip_seconds": 3167.9,
+   "strokes_with_clip": 317
   },
-  "out_hash": "e34f4340d1ef9a20ad35",
+  "out_hash": "e786d5b513237e6b03f3",
   "scheme": 2,
   "rewrote": {}
  },
  "slowmo_fine": {
-  "fingerprint": "4eccfac92cdedbf4",
+  "fingerprint": "c0564c0a5f83c8f8",
   "version": "1",
-  "seconds": 1.7,
-  "finished": "2026-11-12 13:23:58",
+  "seconds": 8.1,
+  "finished": "2026-11-12 19:16:26",
   "summary": {
    "enabled": true,
    "slowmo_strokes": 5,
    "measured": 5,
    "failed": 0,
    "frames": 312,
-   "seconds": 1.6
+   "seconds": 7.9
   },
-  "out_hash": "3da189dcba3a8aa3e724",
+  "out_hash": "5eaa4940da5f36909fb3",
   "scheme": 2,
   "rewrote": {}
  },
  "fine_opponent": {
-  "fingerprint": "66535e98eef67e2f",
+  "fingerprint": "ee195f1803cf7cfa",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-12 13:23:59",
+  "finished": "2026-11-12 19:16:27",
   "summary": {
    "enabled": false
   },
