@@ -1,4 +1,4 @@
-"""The export's own view of a stroke (12-12, R5): for each stroke id given (a part of it), what the export's StrokeClip
+"""The export's own view of a stroke (12-11, R5): for each stroke id given (a part of it), what the export's StrokeClip
 reads and draws at the impact: its cropped frame with the series' keypoints mapped by its crop (P), next to the raw
 window frame at the same index read with OpenCV, plus the window's start_time, fps and frame count from ffmpeg and the
 crop at that frame. Shows whether the export's frames and the series are out of step (time) or the crop is off.

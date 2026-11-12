@@ -1,4 +1,4 @@
-"""How many analysed strokes have no pose of hers at the contact (12-12, R5: exported videos without skeleton; their
+"""How many analysed strokes have no pose of hers at the contact (12-11, R5: exported videos without skeleton; their
 series had no keypoint within ±15 frames of the impact). For every match folder: per side and kind, the strokes, those
 with no keypoint within ±0.3 s of the impact, and how many of those still carry body measures (elbow, knees, height of
 the contact). Writes <output>/capturas_diag/diag_pose_contacto.json. Reads only.

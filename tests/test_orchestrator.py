@@ -264,7 +264,7 @@ def test_a_repository_script_as_a_job(env, tmp_path):
 
 
 def test_an_error_of_the_loop_is_logged_and_the_worker_goes_on(env, monkeypatch):
-    # 12-12: a worker died at 11:00 without a trace (its output thrown away); a failing turn is now logged and retried
+    # 12-11: a worker died at 11:00 without a trace (its output thrown away); a failing turn is now logged and retried
     calls = {"n": 0}
     real = O._serve_step
 

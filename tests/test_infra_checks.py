@@ -145,7 +145,8 @@ def test_every_infrastructure_item_is_tied_to_its_request(tmp_path):
     import re
     names = [i["name"] for i in infrastructure_items(tmp_path / "output")]
     # 07-11: + the application's new match from start to end (B7's main test); 11-11 (R7): + the queue's 3 (B8's)
-    assert len(names) == 12            # 11-11 (R6): + the match list's data (#226); (R8) + what the app costs (#225)
+    assert len(names) == 13            # 11-11 (R6): + the match list's data (#226); (R8) + what the app costs (#225)
+    # 12-11: + no empty console of ours on the PC's screen (#261)
     by = {n: [r for r, rule in PETITIONS.items() if isinstance(rule, str) and type(rule) is str and re.search(rule, n)]
           for n in names}
     assert 50 in by["Progreso visible (progreso.json)"] and 66 in by["Registros con fecha y duración"]
@@ -154,6 +155,7 @@ def test_every_infrastructure_item_is_tied_to_its_request(tmp_path):
     assert 242 in by["Aplicación: un partido nuevo de principio a fin"]
     assert 249 in by["Orquestador: prueba de extremo a extremo"] and 237 in by["Orquestador: espera hasta empezar cada trabajo"]
     assert 246 in by["Orquestador: ejecutor vivo cuando hay trabajo"]
+    assert 261 in by["Ninguna ventana vacía del análisis en la pantalla del PC"]
 
 
 def test_app_queue_log_and_a_request_log_open_while_its_analysis_runs(tmp_path):

@@ -28,7 +28,7 @@ function Esperar-Novedades($minutos = 45) {
     $k = 0
     while ((Get-Date) -lt $fin) {
         Start-Sleep -Seconds 60
-        # 12-12: while it waits, the single worker is kept alive (on 12-12 it died at 11:00 and this cycle, waiting for
+        # 12-11: while it waits, the single worker is kept alive (on 12-11 it died at 11:00 and this cycle, waiting for
         # new code, left four jobs waiting); every 5 min, the same check as at the start of every cycle
         $k++
         if ($k % 5 -eq 0) { try { Orquestador } catch {} }
@@ -131,6 +131,11 @@ function Orquestador {
             Start-Process -FilePath "uv" -ArgumentList @("--directory", $RepoDir, "run", "--no-sync", "python", "-m", "tennisbio.cli", "worker") `
                 -WorkingDirectory $RepoDir -WindowStyle Hidden
             "$(Get-Date -Format s) ejecutor unico arrancado" | Add-Content "$Out\ciclo_arranque.txt"
+        }
+        # 12-11 (peticion 261): las ventanas visibles del PC, para que la auditoria vea si queda una consola nuestra
+        # vacia en la pantalla (el ejecutor la dejaba). Desde Actions no: su sesion no tiene escritorio
+        if (-not $env:GITHUB_ACTIONS) {
+            & uv --directory $RepoDir run --no-sync python "$RepoDir\scripts\ventanas_visibles.py" 2>&1 | Out-Null
         }
         $marca = "$Out\estado_trabajos.firma"
         $antes = if (Test-Path $marca) { "$(Get-Content $marca -Raw)".Trim() } else { "" }

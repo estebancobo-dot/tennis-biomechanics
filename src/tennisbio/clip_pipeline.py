@@ -170,7 +170,7 @@ def _anchor(boxes, hits, a: int, b: int, search=5):
     return None
 
 
-REFIND_TOL_S = 0.3          # 12-12 (R10): her track must hold a box this close to a target impact
+REFIND_TOL_S = 0.3          # 12-11 (R10): her track must hold a box this close to a target impact
 CLOSEUP_FRAC = 0.6          # a person taller than this share of the frame is a close-up, not a player of the main camera
 
 
@@ -190,7 +190,7 @@ def near_person(bx: np.ndarray, frame_h: int) -> np.ndarray | None:
 
 
 def refind_at_targets(sel: np.ndarray, boxes, feats, targets, fps: float, frame_h: int, T: int) -> int:
-    """12-12 (R10 of the review of the Base): her track empty around a target impact while the pose saw the near player
+    """12-11 (R10 of the review of the Base): her track empty around a target impact while the pose saw the near player
     there (the window started on another camera shot, a close-up of 950 px, and the track never came back to her when
     the main camera returned: 15-41 % of her near strokes had no pose at the contact). From the frame nearest the
     impact with a near player, she is followed both ways, and only the gap of her track around it is filled; what was

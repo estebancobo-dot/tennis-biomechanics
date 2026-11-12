@@ -1,4 +1,4 @@
-"""Do a stroke's series and its window video line up? (12-12, R5: exported videos with the skeleton off the player or
+"""Do a stroke's series and its window video line up? (12-11, R5: exported videos with the skeleton off the player or
 missing.) For each stroke id given (a part of it), the window frame at the impact with the series' keypoints drawn as
 stored (green), mirrored in x (red) and scaled to the window's width if they look like another frame size (blue), plus
 the numbers: window size and frames, series fps/first/impact/n, the range of the keypoints and boxes, the stroke's

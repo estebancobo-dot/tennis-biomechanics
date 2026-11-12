@@ -1,4 +1,4 @@
-"""Frames of some exported stroke videos, for Claude to look at (12-12, R5: the skeleton colours were not found in some of
+"""Frames of some exported stroke videos, for Claude to look at (12-11, R5: the skeleton colours were not found in some of
 them although their series have the pose in every frame). For each name given (a part of the video's file name) the
 frames at 30, 60 and 90 % of the video, as JPEG, in <output>/capturas_diag/ (expfoto_*.jpg: the PC uploads that
 folder without its sub-folders). Reads only.

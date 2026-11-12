@@ -1,4 +1,4 @@
-"""Why some exported stroke videos show no skeleton (12-12: «Vídeos exportados» found it in 6, 3 and 4 of 8 sampled
+"""Why some exported stroke videos show no skeleton (12-11: «Vídeos exportados» found it in 6, 3 and 4 of 8 sampled
 videos of the forehand, backhand and serve exports, looking at three moments of each). For the same sample the audit
 takes, each video's stroke is found in the strokes.json of the match folders (output and library): its side, its
 kind, and how many frames of its series carry keypoints, in all and around the impact; plus the skeleton pixels the

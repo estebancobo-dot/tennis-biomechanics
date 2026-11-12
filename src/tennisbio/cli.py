@@ -57,6 +57,8 @@ def _jobs(args) -> int:
     out = Path(cfg.get("paths", {}).get("output", "output"))
     status_file = out / "estado_trabajos.json"
     if args.cmd == "worker":
+        if not args.once and O.leave_visible_console():   # 12-11: an empty terminal window on the PC's screen
+            return 0
         return O.serve(cfg, once=args.once, status_file=status_file)
     # the options can come before or after the action's own words (argparse.REMAINDER keeps them all): parsed here;
     # what follows «--» is the tennisbio command of «submit» (its own options are never read as ours)

@@ -1674,6 +1674,8 @@ PETITIONS.update({
     225: r"^Aplicación: lo que consume abierta|Golpes que fallaron|Etapas con errores|Pruebas en este PC: (test_no_unbounded_calls|test_app_window)$",
     237: r"^Peticiones por GitHub Actions|^Orquestador: espera hasta empezar|^Orquestador: ejecutor vivo",
     119: r"^Orquestador: ejecutor vivo|^Orquestador: espera hasta empezar",
+    # 12-11: no empty console window of ours on the PC's screen (the worker's successor left one)
+    261: r"^Ninguna ventana vacía del análisis",
 })
 ORDER = {"falta": 0, "aviso": 1, "pocos datos": 2, "ok": 3}
 # hours of processing per hour of video. The user's requirement 9 is «un partido en horas, no días»; the former
@@ -2231,7 +2233,7 @@ def comparison_doc_item(items: list[dict], out_root: Path, doc: Path | None = No
 
 
 STROKE_NAMES = {"forehand": "derechas", "backhand": "reveses", "overhead": "saques"}
-POSE_CONTACT_MIN = 0.95          # 12-12 (R10): her near strokes with her pose at the contact
+POSE_CONTACT_MIN = 0.95          # 12-11 (R10): her near strokes with her pose at the contact
 POSE_CONTACT_S = 0.3
 
 
@@ -2243,7 +2245,7 @@ def _pose_near_contact(ser: dict, span_s: float = POSE_CONTACT_S) -> bool:
 
 
 def pose_at_contact_items(match_dirs: list[Path]) -> list[dict]:
-    """12-12 (R10 of the review of the Base): a stroke kept without her pose at the contact has no body measure and its
+    """12-11 (R10 of the review of the Base): a stroke kept without her pose at the contact has no body measure and its
     exported video no skeleton. In the library analyses (09-11) 15 % of her near forehands, 21 % of backhands and 41 % of
     serves were so (the strokes B4 added from the detector and the scoreboard), while the audit called them valid
     («solo les falta una medida»). Per match: her near strokes with a keypoint within ±0.3 s of the impact (≥ 95 %);
@@ -2570,6 +2572,48 @@ def app_cost_item(bases: list[Path], today: str | None = None) -> dict:
                  + (f" (hace {age} días: repetirla)" if age > APP_COST_DAYS else ""))
 
 
+WINDOWS_ITEM = "Ninguna ventana vacía del análisis en la pantalla del PC"
+CONSOLE_HOSTS = {"windowsterminal", "conhost", "openconsole", "powershell", "pwsh", "cmd"}
+OUR_CONSOLE = re.compile(r"\.venv|python|\buv(\.exe)?\b|tennis|ciclo", re.I)
+WINDOWS_DAYS = 2
+
+
+def visible_windows_item(bases: list[Path], today: str | None = None) -> dict:
+    """#261 (12-11: the user saw an empty PowerShell window on the PC for days; it was the worker's successor, started
+    with DETACHED_PROCESS): the windows on the PC's screen (scripts/ventanas_visibles.py, run by the cycle) include no
+    console of ours (a terminal or console host whose title or command names python, the venv, uv or the project).
+    The application's own window («Tennisbio», a python process) is not a console and does not count."""
+    import datetime as _dt
+    f = next((b / "capturas_diag" / "ventanas_visibles.json" for b in bases
+              if (b / "capturas_diag" / "ventanas_visibles.json").exists()), None)
+    if f is None:
+        return _item(5, "Automático", WINDOWS_ITEM, "pocos datos", "sin la lista de ventanas del PC (scripts/ventanas_visibles.py)")
+    try:
+        r = json.loads(f.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as e:
+        return _item(5, "Automático", WINDOWS_ITEM, "aviso", f"ventanas_visibles.json ilegible ({e})")
+    rows = r.get("ventanas") if isinstance(r, dict) else r
+    if isinstance(rows, dict):                     # one window: PowerShell's ConvertTo-Json gives an object, not a list
+        rows = [rows] if "name" in rows else []
+    rows = [w for w in rows or [] if isinstance(w, dict)]
+    ours = [w for w in rows if str(w.get("name") or "").lower() in CONSOLE_HOSTS
+            and OUR_CONSOLE.search(f"{w.get('title') or ''} {w.get('cmd') or ''}")]
+    when = str(r.get("fecha") or "")[:10] if isinstance(r, dict) else ""
+    age = None
+    if when:
+        try:
+            age = (_dt.date.fromisoformat((today or _dt.date.today().isoformat())[:10]) - _dt.date.fromisoformat(when)).days
+        except ValueError:
+            age = None
+    if ours:
+        ex = "; ".join(f"{w.get('name')} «{(w.get('title') or '')[:60]}» desde {w.get('start')}" for w in ours[:3])
+        return _item(5, "Automático", WINDOWS_ITEM, "falta", f"{len(ours)} ventanas de consola nuestras en la pantalla: {ex}")
+    if age is None or age > WINDOWS_DAYS:
+        return _item(5, "Automático", WINDOWS_ITEM, "aviso",
+                     f"ninguna en la última lista ({len(rows)} ventanas), pero {'sin fecha' if age is None else f'de hace {age} días'}")
+    return _item(5, "Automático", WINDOWS_ITEM, "ok", f"ninguna consola nuestra entre las {len(rows)} ventanas visibles ({r.get('fecha')})")
+
+
 MATCH_LIST_ITEM = "Lista de partidos: rival, torneo, ronda y fecha"
 MATCH_LIST_FIELDS = (("opponent", "rival"), ("tournament", "torneo"), ("round", "ronda"), ("date", "fecha"))
 
@@ -2757,7 +2801,8 @@ def infrastructure_items(out_root: Path) -> list[dict]:
     (the single worker's queue)."""
     bases = [out_root, out_root.parent, out_root.parent.parent]
     return ([progress_item(bases), logs_item(bases), sizes_item(bases), old_test_folders_item(bases)] + app_items(bases)
-            + [new_match_item(bases), match_list_item(bases), app_cost_item(bases)] + orchestrator_items(bases))
+            + [new_match_item(bases), match_list_item(bases), app_cost_item(bases), visible_windows_item(bases)]
+            + orchestrator_items(bases))
 
 
 MANUAL_REVIEW_ITEM = "Nada pide revisión manual"

@@ -12,7 +12,7 @@ def _frames(T=100, cut=21):
 
 
 def test_her_track_lost_after_a_close_up_is_found_again_at_the_contact():
-    # 12-12 (R10): the final's strokes 0105506/0105738: one person at the impact, her track empty since a close-up
+    # 12-11 (R10): the final's strokes 0105506/0105738: one person at the impact, her track empty since a close-up
     boxes, feats = _frames()
     sel = np.full(100, -1)
     sel[:21] = 0                                                       # the track followed the close-up, then lost

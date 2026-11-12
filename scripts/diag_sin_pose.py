@@ -1,4 +1,4 @@
-"""Why a near stroke has no pose of hers at the contact (12-12, R10). For up to N near strokes of a match without any
+"""Why a near stroke has no pose of hers at the contact (12-11, R10). For up to N near strokes of a match without any
 keypoint within ±0.3 s of the impact: the window's pose cache (every person the pose model found, per frame) around
 the impact: how many people per frame, their boxes, and the last box of her track before the gap; and an image of the
 impact frame with every person found (green) and her last tracked box (red). JPEGs sinpose_<id>.jpg and

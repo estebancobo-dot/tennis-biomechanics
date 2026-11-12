@@ -194,21 +194,37 @@ def _kill_tree(p: subprocess.Popen) -> None:
         pass
 
 
+# Windows process creation flags (winbase.h), spelled out so the choice is testable off Windows too
+CREATE_NO_WINDOW = 0x08000000
+CREATE_NEW_PROCESS_GROUP = 0x00000200
+DETACHED_PROCESS = 0x00000008
+
+
+def background_kwargs(nt: bool | None = None) -> dict:
+    """Popen arguments for a Python process of ours that runs in the background with no window (the worker, its jobs).
+    12-11: never DETACHED_PROCESS. Windows ignores CREATE_NO_WINDOW next to it, and the venv's python.exe is a launcher
+    that starts the real interpreter as its child: with no console to inherit, that child got a new one, i.e. a visible
+    empty Windows Terminal window titled «...\\.venv\\Scripts\\python.exe» for as long as the worker lived (seen on the
+    PC by scripts/ventanas_visibles.py). CREATE_NO_WINDOW alone gives it a console without a window, which its
+    children (the real interpreter, ffmpeg...) inherit."""
+    nt = (os.name == "nt") if nt is None else nt
+    return {"creationflags": CREATE_NO_WINDOW | CREATE_NEW_PROCESS_GROUP} if nt else {"start_new_session": True}
+
+
 def _spawn(job_id: int, log: Path, extra_env: dict | None = None) -> subprocess.Popen:
     log.parent.mkdir(parents=True, exist_ok=True)
     out = open(log, "a", encoding="utf-8")
     out.write(f"== {time.strftime('%Y-%m-%d %H:%M:%S')} trabajo {job_id}\n")
     out.flush()
     env = {**os.environ, "PYTHONUTF8": "1", "PYTHONIOENCODING": "utf-8", **(extra_env or {})}
-    kw = {"creationflags": getattr(subprocess, "CREATE_NO_WINDOW", 0) | getattr(subprocess, "CREATE_NEW_PROCESS_GROUP", 0)} \
-        if os.name == "nt" else {"start_new_session": True}
+    kw = background_kwargs()
     return subprocess.Popen([sys.executable, "-m", "tennisbio.cli", "jobs", "run-one", str(job_id)],
                             stdout=out, stderr=subprocess.STDOUT, env=env, **kw)
 
 
 def worker_log(cfg: dict | None = None) -> Path:
-    """12-12: the worker's own log (datos/trabajos/ejecutor.log): its successor's output and any error of its loop. On
-    12-12 a worker started by its predecessor (output thrown away) died at 11:00 without a trace."""
+    """12-11: the worker's own log (datos/trabajos/ejecutor.log): its successor's output and any error of its loop. On
+    12-11 a worker started by its predecessor (output thrown away) died at 11:00 without a trace."""
     from .app.db import Paths
     from .config import load_config
     p = Paths.from_config(cfg if cfg is not None else load_config()).data / "trabajos" / "ejecutor.log"
@@ -227,13 +243,49 @@ def _log(cfg: dict | None, msg: str) -> None:
 MAX_LOOP_ERRORS = 10        # consecutive errors of the worker's loop (a locked database...) before it gives up
 
 
-def _start_successor() -> subprocess.Popen:
+HIDDEN_RESPAWN_ENV = "TENNISBIO_WORKER_HIDDEN"
+
+
+def _alone_in_own_console() -> bool:
+    """Windows: True when this process has a console made for it alone (no other process attached to it), which is
+    what a worker started with DETACHED_PROCESS by the code before 12-11 got: an empty terminal window on the screen.
+    A worker started hidden shares its windowless console with the venv launcher, and one a person starts shares the
+    shell's: neither is alone."""
+    if os.name != "nt":
+        return False
+    try:
+        import ctypes
+        k = ctypes.windll.kernel32
+        if not k.GetConsoleWindow():
+            return False
+        ids = (ctypes.c_uint32 * 8)()
+        return k.GetConsoleProcessList(ids, 8) == 1
+    except Exception:  # noqa: BLE001 — never stops a worker from starting
+        return False
+
+
+def leave_visible_console(alone=_alone_in_own_console, successor=None, env=None) -> bool:
+    """12-11: a worker in a console window of its own starts itself again hidden and ends (before taking the lock), so
+    the window left by the previous code closes. Only once: the hidden one carries HIDDEN_RESPAWN_ENV and never does it
+    again, whatever it finds. Returns True when this worker must end now."""
+    env = os.environ if env is None else env
+    if env.get(HIDDEN_RESPAWN_ENV) or not alone():
+        return False
+    try:
+        (successor or _start_successor)({HIDDEN_RESPAWN_ENV: "1"})
+    except Exception as e:  # noqa: BLE001 — it keeps working in its window rather than leave the queue without a worker
+        _log(None, f"no pudo arrancar oculto: {e}")
+        return False
+    _log(None, "estaba en una ventana propia: arranca otro oculto y termina")
+    return True
+
+
+def _start_successor(extra_env: dict | None = None) -> subprocess.Popen:
     """11-11 (R7 of the review of the Base): a worker that ends for new code starts the next one itself, detached, once
     its lock is released (a fresh interpreter: it imports the new code). Before, it waited for the cycle to start it:
     a cycle from GitHub Actions never does, and on 11-11 the queue had no worker for 18 min (20:54-21:13)."""
-    env = {**os.environ, "PYTHONUTF8": "1", "PYTHONIOENCODING": "utf-8"}
-    kw = {"creationflags": getattr(subprocess, "CREATE_NO_WINDOW", 0) | getattr(subprocess, "CREATE_NEW_PROCESS_GROUP", 0)
-          | getattr(subprocess, "DETACHED_PROCESS", 0)} if os.name == "nt" else {"start_new_session": True}
+    env = {**os.environ, "PYTHONUTF8": "1", "PYTHONIOENCODING": "utf-8", **(extra_env or {})}
+    kw = background_kwargs()
     out = open(worker_log(), "a", encoding="utf-8")
     return subprocess.Popen([sys.executable, "-m", "tennisbio.cli", "worker"], stdin=subprocess.DEVNULL,
                             stdout=out, stderr=subprocess.STDOUT, env=env, **kw)
@@ -260,7 +312,7 @@ def serve(cfg: dict, once: bool = False, idle_s: float = 10.0, stop=lambda: Fals
             try:
                 done = _serve_step(db, paths, jobs, now, once, idle_s, stop, status_file, last_beat)
                 errors = 0
-            except Exception as e:  # noqa: BLE001 — 12-12: an error of the loop (a locked database...) is logged, not fatal
+            except Exception as e:  # noqa: BLE001 — 12-11: an error of the loop (a locked database...) is logged, not fatal
                 errors += 1
                 import traceback
                 _log(cfg, f"error del bucle ({errors}/{MAX_LOOP_ERRORS}): {e}\n{traceback.format_exc()}")
@@ -329,7 +381,7 @@ def _serve_step(db, paths, jobs, now, once: bool, idle_s: float, stop, status_fi
             if time.time() - out["beat"] > HEARTBEAT_S:
                 out["beat"] = _beat(db, status_file)
             ctl = (db.one("SELECT control FROM jobs WHERE id=?", job["id"]) or {}).get("control") or ""
-        except Exception as e:  # noqa: BLE001 — 12-12: a locked database while the job runs never kills the worker
+        except Exception as e:  # noqa: BLE001 — 12-11: a locked database while the job runs never kills the worker
             _log(None, f"latido o control del trabajo {job['id']} no leído: {e}")
             continue
         if ctl in ("cancelar", "pausar") or stop():

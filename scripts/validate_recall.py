@@ -171,7 +171,7 @@ def main():
     ap.add_argument("--tag", default="", help="con --set: carpeta salidas_<tag> (copiada de salidas sin las ventanas: solo "
                                                "se rehace la pasada fina) e informe <nombre>_<tag>.json")
     ap.add_argument("--from", dest="from_tag", default="",
-                    help="12-12: copiar de salidas_<from> con sus ventanas (la pose ya calculada se reutiliza)")
+                    help="12-11: copiar de salidas_<from> con sus ventanas (la pose ya calculada se reutiliza)")
     ap.add_argument("--drop-ball-caches", action="store_true",
                     help="en la copia, sin la bola guardada de cada ventana (para medir otra forma de obtenerla)")
     args = ap.parse_args()

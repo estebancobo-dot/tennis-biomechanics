@@ -17,7 +17,7 @@ def _match(tmp_path, strokes):
 
 
 def test_strokes_kept_without_her_pose_at_the_contact_fail(tmp_path):
-    # 12-12: in the library analyses 41 % of her near serves had no keypoint at the contact and the audit called them valid
+    # 12-11: in the library analyses 41 % of her near serves had no keypoint at the contact and the audit called them valid
     d = _match(tmp_path, [("near", "overhead", False)] * 4 + [("near", "overhead", True)] * 6 + [("near", "forehand", True)] * 10
                + [("far", "forehand", False)] * 3)
     it = pose_at_contact_items([d])[0]

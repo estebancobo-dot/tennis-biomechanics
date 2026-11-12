@@ -1006,65 +1006,78 @@ argumentos: --spotter --tag v13bola --from v13 --drop-ball-caches --set fine_pas
 id: 232
 accion: medir
 script: diag_export_esqueleto
-# 232 (12-12, R5): por que 2, 5 y 4 de 8 videos exportados (derecha, reves, saque) no muestran el esqueleto en ningun
+# 232 (12-11, R5): por que 2, 5 y 4 de 8 videos exportados (derecha, reves, saque) no muestran el esqueleto en ningun
 # momento: lado, golpe y fotogramas con pose de su serie. Solo lee
 ---
 id: 233
 accion: medir
 script: export_fotogramas
 argumentos: 0312430 0221547 0925800 0048549
-# 233 (12-12, R5): fotogramas de 3 videos exportados sin los colores del esqueleto y de 1 con ellos, para mirarlos
+# 233 (12-11, R5): fotogramas de 3 videos exportados sin los colores del esqueleto y de 1 con ellos, para mirarlos
 ---
 id: 234
 accion: medir
 script: diag_serie_ventana
 argumentos: 0312430 0925800 0966569 0048549
-# 234 (12-12, R5): la pose de la serie sobre el fotograma del impacto de su ventana (tal cual y reflejada) y los
+# 234 (12-11, R5): la pose de la serie sobre el fotograma del impacto de su ventana (tal cual y reflejada) y los
 # tamanos, para ver por que el video exportado la pone fuera de sitio. Solo lee
 ---
 id: 235
 accion: medir
 script: diag_export_clip
 argumentos: 0312430 0966569 0925800 0048549
-# 235 (12-12, R5): lo que lee y dibuja la exportacion (StrokeClip) en el impacto frente al fotograma crudo de la ventana
+# 235 (12-11, R5): lo que lee y dibuja la exportacion (StrokeClip) en el impacto frente al fotograma crudo de la ventana
 ---
 id: 236
 accion: medir
 script: diag_pose_contacto
-# 236 (12-12, R5): cuantos golpes analizados no tienen su pose en el contacto (por partido, lado y golpe) y si aun llevan
+# 236 (12-11, R5): cuantos golpes analizados no tienen su pose en el contacto (por partido, lado y golpe) y si aun llevan
 # medidas del cuerpo. Solo lee
 ---
 id: 237
 accion: medir
 script: diag_sin_pose
 argumentos: --match b8b713 --n 4
-# 237 (12-12, R10): por que golpes cercanos de la final no tienen su pose en el contacto: personas que vio la pose en
+# 237 (12-11, R10): por que golpes cercanos de la final no tienen su pose en el contacto: personas que vio la pose en
 # esos fotogramas y su ultimo recuadro antes del hueco. Solo lee
 ---
 id: 238
 accion: trabajo
 comando: run --match us-open-2026-r4-naomi-osaka-elena-rybakina
-# 238 (12-12, R10): Osaka con el arreglo (el seguimiento vuelve a buscarla en el contacto si la perdio tras otra toma);
+# 238 (12-11, R10): Osaka con el arreglo (el seguimiento vuelve a buscarla en el contacto si la perdio tras otra toma);
 # la pasada fina se rehace desde la pose guardada
 ---
 id: 239
 accion: medir
 script: diag_pose_contacto
-# 239 (12-12, R10): golpes sin su pose en el contacto despues del arreglo (Osaka antes: derechas 13 de 49, saques 18 de 32)
+# 239 (12-11, R10): golpes sin su pose en el contacto despues del arreglo (Osaka antes: derechas 13 de 49, saques 18 de 32)
 ---
 id: 240
 accion: medir
 script: validate_recall
 argumentos: --spotter --tag v13r --from v13
-# 240 (12-12, R10): F3Set con el arreglo (desde salidas_v13 con la pose guardada): no debe perder golpes ni precision
+# 240 (12-11, R10): F3Set con el arreglo (desde salidas_v13 con la pose guardada): no debe perder golpes ni precision
 ---
 id: 241
 accion: trabajo
 comando: flujo informe
-# 241 (12-12): auditoria con R10
+# 241 (12-11): auditoria con R10
 ---
 id: 242
 accion: medir
 script: ventanas_visibles
-# 242 (12-12): que programa abre la ventana de PowerShell vacia que ve el usuario: cada ventana visible con su orden y
+# 242 (12-11): que programa abre la ventana de PowerShell vacia que ve el usuario: cada ventana visible con su orden y
 # la de su padre. Solo lee
+---
+id: 243
+accion: medir
+script: diag_saques
+argumentos: --match f43dd2
+# 243 (12-11, B4): por que 9 puntos del saque de Rybakina en Osaka no tienen su saque (27 de 36, 75 %): en cada punto,
+# lo que vio cada etapa (marcador, detector, candidatos, identidad, golpes) y una hoja de fotogramas. Solo lee
+---
+id: 244
+accion: medir
+script: ventanas_visibles
+# 244 (12-11): comprobar que la ventana vacia ya no esta (el ejecutor arrancaba a su sucesor con DETACHED_PROCESS y la
+# consola de Windows Terminal quedaba abierta; ahora se arranca sin ventana y el que quede en una ventana se reabre oculto)

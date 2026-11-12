@@ -321,8 +321,7 @@ def ensure_worker(cfg: dict, app) -> str:
     from .. import orchestrator as O
     if O.status(app.db)["ejecutor"]["vivo"]:
         return "vivo"
-    kw = ({"creationflags": getattr(subprocess, "CREATE_NO_WINDOW", 0) | getattr(subprocess, "DETACHED_PROCESS", 0)}
-          if os.name == "nt" else {"start_new_session": True})
+    kw = O.background_kwargs()                  # 12-11: no DETACHED_PROCESS (it opened an empty terminal window)
     subprocess.Popen([sys.executable, "-m", "tennisbio.cli", "worker"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
                      env={**os.environ, "PYTHONUTF8": "1", "PYTHONIOENCODING": "utf-8"}, **kw)
     return "arrancado"

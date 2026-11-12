@@ -28,7 +28,7 @@ PS = ("$ids=@({pid}); $all=Get-CimInstance Win32_Process; $n=0; while($n -ne $id
 
 def sample(pid: int) -> tuple[float, float, int] | None:
     try:
-        # 12-12: without a window of its own (a console could stay visible on the PC's screen)
+        # 12-11: without a window of its own (a console could stay visible on the PC's screen)
         r = subprocess.run(["powershell.exe", "-NoProfile", "-NonInteractive", "-WindowStyle", "Hidden", "-Command",
                             PS.format(pid=pid)], capture_output=True, text=True, timeout=30,
                            creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
