@@ -547,12 +547,6 @@
  ],
  "views:unidad": [
   {
-   "s": 0.1091,
-   "units": 1654,
-   "match": "zheng-qinwen-elena-rybakina",
-   "date": "2026-11-04 11:12"
-  },
-  {
    "s": 0.1444,
    "units": 2991,
    "match": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
@@ -725,15 +719,15 @@
    "units": 1618,
    "match": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
    "date": "2026-11-11 16:41"
+  },
+  {
+   "s": 0.2763,
+   "units": 964,
+   "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "date": "2026-11-12 10:51"
   }
  ],
  "views:minuto": [
-  {
-   "s": 1.592,
-   "video_min": 116.7,
-   "match": "zheng-qinwen-elena-rybakina",
-   "date": "2026-11-04 11:12"
-  },
   {
    "s": 2.094,
    "video_min": 210.4,
@@ -907,6 +901,12 @@
    "video_min": 112.2,
    "match": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
    "date": "2026-11-11 16:41"
+  },
+  {
+   "s": 3.936,
+   "video_min": 71.4,
+   "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "date": "2026-11-12 10:51"
   }
  ],
  "identity:unidad": [

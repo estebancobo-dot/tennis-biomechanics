@@ -254,22 +254,22 @@
   "rewrote": {}
  },
  "views": {
-  "fingerprint": "2cc9573d76c6291b",
+  "fingerprint": "88f6d70786d53887",
   "version": "6",
-  "seconds": 126.7,
-  "finished": "2026-11-09 13:30:46",
+  "seconds": 280.9,
+  "finished": "2026-11-12 10:51:23",
   "summary": {
-   "views": 486,
-   "repeticion_principal": 30,
+   "views": 492,
+   "repeticion_principal": 36,
    "lateral": 25,
    "frontal": 6,
    "primer_plano": 408,
    "otra": 17,
-   "links": 894,
-   "linked_views": 399,
-   "slowmo_links": 14
+   "links": 897,
+   "linked_views": 402,
+   "slowmo_links": 12
   },
-  "out_hash": "3a4036aff2e13eacbd8d",
+  "out_hash": "1813dedbc8ce249d0382",
   "scheme": 2,
   "rewrote": {}
  },
