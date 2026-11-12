@@ -3,10 +3,10 @@
  "strokes": 26,
  "near": 13,
  "summary": {
-  "ok": 383,
-  "falta": 29,
+  "ok": 386,
+  "falta": 26,
   "pocos datos": 111,
-  "aviso": 117
+  "aviso": 119
  },
  "items": [
   {
@@ -3207,7 +3207,7 @@
    "area": "Rendimiento (información)",
    "name": "Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "pocos datos",
-   "detail": "91 min para 35 min de vídeo ≈ 9.1 h para un partido de 3,5 h, pero no es desde cero: releyeron sus datos guardados spotting, fine. La cifra que cuenta es «Tiempo desde cero»"
+   "detail": "90 min para 35 min de vídeo ≈ 9.0 h para un partido de 3,5 h, pero no es desde cero: releyeron sus datos guardados spotting, fine. La cifra que cuenta es «Tiempo desde cero»"
   },
   {
    "req": 9,
@@ -3242,8 +3242,8 @@
    "area": "Automático",
    "name": "Pruebas del código en este PC",
    "status": "ok",
-   "detail": "código 7a37ec9 (2026-11-11T23:21:47): 998 bien, 0 fallan, 0 errores",
-   "passed": 998,
+   "detail": "código a221380 (2026-11-11T23:57:48): 1010 bien, 0 fallan, 0 errores",
+   "passed": 1010,
    "failed": 0
   },
   {
@@ -3468,7 +3468,7 @@
    "area": "Infraestructura",
    "name": "Progreso visible (progreso.json)",
    "status": "ok",
-   "detail": "último: fine_doubtful de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (20/20), 34 s, quedan ≈ 0 s, a las 2026-11-11 16:31:21"
+   "detail": "último: fine_doubtful de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (20/20), 14 s, quedan ≈ 0 s, a las 2026-11-12 01:15:29"
   },
   {
    "req": 5,
@@ -3482,7 +3482,7 @@
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "47 carpetas, 34.1 GB en total (2026-11-11T23:54:00); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB"
+   "detail": "47 carpetas, 34.1 GB en total (2026-11-12T01:13:00); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB"
   },
   {
    "req": 5,
@@ -3509,15 +3509,22 @@
    "req": 5,
    "area": "Aplicación",
    "name": "Aplicación: un partido nuevo de principio a fin",
-   "status": "falta",
-   "detail": "sin terminar; sin análisis actualizado"
+   "status": "ok",
+   "detail": "terminó 2026-11-12T01:12:58 en 78.7 min; análisis actualizado"
   },
   {
    "req": 5,
    "area": "Aplicación",
    "name": "Lista de partidos: rival, torneo, ronda y fecha",
    "status": "falta",
-   "detail": "6 partidos; sin rival: 6 (us-open-2026-r4-naomi-osaka-elena-rybakina, zheng-qinwen-elena-rybakina…); sin torneo: 6 (us-open-2026-r4-naomi-osaka-elena-rybakina, zheng-qinwen-elena-rybakina…); sin ronda: 6 (us-open-2026-r4-naomi-osaka-elena-rybakina, zheng-qinwen-elena-rybakina…); sin fecha: 6 (us-open-2026-r4-naomi-osaka-elena-rybakina, zheng-qinwen-elena-rybakina…)"
+   "detail": "6 partidos; sin torneo: 1 (zheng-qinwen-elena-rybakina); sin ronda: 1 (zheng-qinwen-elena-rybakina); sin fecha: 1 (zheng-qinwen-elena-rybakina)"
+  },
+  {
+   "req": 5,
+   "area": "Aplicación",
+   "name": "Aplicación: lo que consume abierta",
+   "status": "aviso",
+   "detail": "sin medir (petición «medir app_recursos» del PC)"
   },
   {
    "req": 5,
@@ -3566,7 +3573,14 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar",
    "status": "ok",
-   "detail": "terminó el 2026-11-11 23:51:25 en 0 min: 118 vídeos de 118 golpes"
+   "detail": "terminó el 2026-11-12 01:16:03 en 0 min: 118 vídeos de 118 golpes"
+  },
+  {
+   "req": 2,
+   "area": "Ficheros",
+   "name": "Vídeos exportados: exportar",
+   "status": "ok",
+   "detail": "8 de 118 vídeos mirados: 8 se reproducen con su duración, 7 con el esqueleto"
   },
   {
    "req": 5,
@@ -3692,7 +3706,7 @@
    "area": "Tiempo por etapa",
    "name": "Tiempo de cada etapa frente a su ritmo en este PC: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "ok",
-   "detail": "1 etapas comparadas con su mediana aquí; las que más tardan: players 48.2 min, score 19.2 min, court 16.6 min, scenes 2.4 min, fine 1.9 min; ninguna pasa de 2 veces su ritmo habitual"
+   "detail": "1 etapas comparadas con su mediana aquí; las que más tardan: players 48.2 min, score 19.2 min, court 16.6 min, scenes 2.4 min, fine 1.2 min; ninguna pasa de 2 veces su ritmo habitual"
   },
   {
    "req": 9,
@@ -3719,8 +3733,8 @@
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
-   "status": "aviso",
-   "detail": "la última petición (11-11 23:50) no empezó por GitHub Actions; el último trabajo por Actions fue el 11-11 23:38"
+   "status": "ok",
+   "detail": "petición del 11-11 23:50, empezó a los 82.9 min; el PC estaba con otro trabajo hasta las 01:12 (82.3 min, no cuentan), empezó 0.6 min después de quedar libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
   },
   {
    "req": 1,
@@ -4042,7 +4056,7 @@
    "area": "Peticiones",
    "name": "#41 Exportación: cómo se ven y se graban",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok"
   },
   {
    "req": 11,
@@ -4308,7 +4322,7 @@
    "area": "Peticiones",
    "name": "#83 Árbol de ficheros generados y validados",
    "status": "ok",
-   "detail": "5 comprobaciones: 5 ok"
+   "detail": "6 comprobaciones: 6 ok"
   },
   {
    "req": 11,
@@ -4811,8 +4825,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#160 la app que hiciste completa como se arranca, se puede usar ahora? (Chat, 19-10 08:11)",
-   "status": "falta",
-   "detail": "5 comprobaciones: 1 falta, 4 ok; la peor: «Aplicación: un partido nuevo de principio a fin» (sin terminar; sin análisis actualizado)"
+   "status": "aviso",
+   "detail": "6 comprobaciones: 1 aviso, 5 ok; la peor: «Aplicación: lo que consume abierta» (sin medir (petición «medir app_recursos» del PC))"
   },
   {
    "req": 11,
@@ -5267,14 +5281,14 @@
    "area": "Peticiones",
    "name": "#225 La aplicación no se cuelga ni ralentiza el PC",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 4 comprobaciones: 1 aviso, 3 ok; la peor: «Aplicación: lo que consume abierta» (sin medir (petición «medir app_recursos» del PC))"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#226 Lista de partidos profesional: nombres normalizados, torneo, ronda, fecha, fotos; sin pruebas (24-10, 25-10)",
    "status": "falta",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 falta; la peor: «Lista de partidos: rival, torneo, ronda y fecha» (6 partidos; sin rival: 6 (us-open-2026-r4-naomi-osaka-elena-rybakina, zheng-qinwen-elena-rybakina…); sin torneo: 6 (us-o)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 falta; la peor: «Lista de partidos: rival, torneo, ronda y fecha» (6 partidos; sin torneo: 1 (zheng-qinwen-elena-rybakina); sin ronda: 1 (zheng-qinwen-elena-rybakina); sin fecha: 1 (zheng)"
   },
   {
    "req": 11,
@@ -5344,7 +5358,7 @@
    "area": "Peticiones",
    "name": "#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min",
    "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 2 aviso, 1 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (30 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (30 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min)"
   },
   {
    "req": 11,
@@ -5378,8 +5392,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#242 Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femeninos, un análisis po",
-   "status": "falta",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 5 comprobaciones: 1 falta, 4 ok; la peor: «Aplicación: un partido nuevo de principio a fin» (sin terminar; sin análisis actualizado)"
+   "status": "aviso",
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 6 comprobaciones: 1 aviso, 5 ok; la peor: «Aplicación: lo que consume abierta» (sin medir (petición «medir app_recursos» del PC))"
   },
   {
    "req": 11,

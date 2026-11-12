@@ -1,10 +1,10 @@
 {
- "at": "2026-11-12 01:12:44",
+ "at": "2026-11-12 01:19:05",
  "firma": "42e88574db8c",
  "ejecutor": {
   "vivo": true,
-  "pid": 6180,
-  "at": 1794442364.3365061
+  "pid": 18324,
+  "at": 1794442745.425982
  },
  "pausa": false,
  "en_curso": [],
@@ -293,6 +293,41 @@
  ],
  "eventos": [
   {
+   "id": 254,
+   "job": null,
+   "at": "2026-11-12 01:13:45",
+   "kind": "ejecutor",
+   "text": "arranca (pid 18324)"
+  },
+  {
+   "id": 253,
+   "job": null,
+   "at": "2026-11-12 01:13:44",
+   "kind": "ejecutor",
+   "text": "arranca el siguiente con el código nuevo (pid 7048)"
+  },
+  {
+   "id": 252,
+   "job": null,
+   "at": "2026-11-12 01:13:44",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 251,
+   "job": null,
+   "at": "2026-11-12 01:13:44",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 250,
+   "job": null,
+   "at": "2026-11-12 01:13:39",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
    "id": 249,
    "job": null,
    "at": "2026-11-11 23:51:02",
@@ -466,41 +501,6 @@
    "at": "2026-11-11 23:38:51",
    "kind": "ejecutor",
    "text": "termina"
-  },
-  {
-   "id": 224,
-   "job": null,
-   "at": "2026-11-11 23:38:51",
-   "kind": "ejecutor",
-   "text": "se reinicia con el código nuevo"
-  },
-  {
-   "id": 223,
-   "job": null,
-   "at": "2026-11-11 23:38:47",
-   "kind": "reiniciar",
-   "text": "ciclo"
-  },
-  {
-   "id": 222,
-   "job": 57,
-   "at": "2026-11-11 23:21:21",
-   "kind": "hecho",
-   "text": "código 0"
-  },
-  {
-   "id": 221,
-   "job": 57,
-   "at": "2026-11-11 23:21:19",
-   "kind": "empieza",
-   "text": "script tiempos_etapas"
-  },
-  {
-   "id": 220,
-   "job": null,
-   "at": "2026-11-11 23:21:19",
-   "kind": "ejecutor",
-   "text": "arranca (pid 2136)"
   }
  ]
 }
