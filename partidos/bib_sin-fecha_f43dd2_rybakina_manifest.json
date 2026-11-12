@@ -44,11 +44,12 @@
   "scheme": 2
  },
  "court": {
-  "fingerprint": "614262dffcbb7884",
-  "version": "5",
-  "seconds": 94.5,
-  "finished": "2026-11-03 17:39:32",
+  "fingerprint": "de1381b1195e336d",
+  "version": "6",
+  "seconds": 196.0,
+  "finished": "2026-11-13 00:43:32",
   "summary": {
+   "detector": "tcd14",
    "segments": 278,
    "with_court": 197,
    "known_court_reused": 613,
@@ -62,7 +63,8 @@
    "pitch_deg_median": 18.9
   },
   "out_hash": "83355a626b3a377e6a8a",
-  "scheme": 2
+  "scheme": 2,
+  "rewrote": {}
  },
  "score": {
   "fingerprint": "f1051dbbb5a32cb8",

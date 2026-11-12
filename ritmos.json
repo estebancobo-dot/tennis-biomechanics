@@ -1351,6 +1351,13 @@
    "units": 827,
    "match": "zverev-alexander-sinner-jannik-indian-wells-2026-semi-final",
    "date": "2026-11-09 10:23"
+  },
+  {
+   "s": 0.1845,
+   "units": 635,
+   "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "date": "2026-11-13 00:42",
+   "v": "6"
   }
  ],
  "court:minuto": [
@@ -1389,6 +1396,13 @@
    "video_min": 71.0,
    "match": "zverev-alexander-sinner-jannik-indian-wells-2026-semi-final",
    "date": "2026-11-09 10:24"
+  },
+  {
+   "s": 2.746,
+   "video_min": 71.4,
+   "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "date": "2026-11-13 00:43",
+   "v": "6"
   }
  ],
  "score:unidad": [
