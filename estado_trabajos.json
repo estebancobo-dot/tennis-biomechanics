@@ -1,10 +1,10 @@
 {
- "at": "2026-11-12 15:10:06",
+ "at": "2026-11-12 15:19:19",
  "firma": "d33cc42019ae",
  "ejecutor": {
   "vivo": true,
-  "pid": 16424,
-  "at": 1794492588.6732316
+  "pid": 15676,
+  "at": 1794493159.5588772
  },
  "pausa": false,
  "en_curso": [],
@@ -293,6 +293,41 @@
  ],
  "eventos": [
   {
+   "id": 540,
+   "job": null,
+   "at": "2026-11-12 15:15:39",
+   "kind": "ejecutor",
+   "text": "arranca (pid 15676)"
+  },
+  {
+   "id": 539,
+   "job": null,
+   "at": "2026-11-12 15:15:38",
+   "kind": "ejecutor",
+   "text": "arranca el siguiente con el código nuevo (pid 19252)"
+  },
+  {
+   "id": 538,
+   "job": null,
+   "at": "2026-11-12 15:15:38",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 537,
+   "job": null,
+   "at": "2026-11-12 15:15:38",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 536,
+   "job": null,
+   "at": "2026-11-12 15:15:32",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
    "id": 535,
    "job": 100,
    "at": "2026-11-12 15:05:48",
@@ -466,41 +501,6 @@
    "at": "2026-11-12 14:18:28",
    "kind": "ejecutor",
    "text": "termina"
-  },
-  {
-   "id": 510,
-   "job": null,
-   "at": "2026-11-12 14:18:28",
-   "kind": "ejecutor",
-   "text": "se reinicia con el código nuevo"
-  },
-  {
-   "id": 509,
-   "job": null,
-   "at": "2026-11-12 14:18:27",
-   "kind": "reiniciar",
-   "text": "ciclo"
-  },
-  {
-   "id": 508,
-   "job": 95,
-   "at": "2026-11-12 13:55:47",
-   "kind": "hecho",
-   "text": "código 0"
-  },
-  {
-   "id": 507,
-   "job": 95,
-   "at": "2026-11-12 13:55:45",
-   "kind": "paso",
-   "text": "6/6 Modelo de calidad"
-  },
-  {
-   "id": 506,
-   "job": 95,
-   "at": "2026-11-12 13:51:12",
-   "kind": "paso",
-   "text": "5/6 Auditoria"
   }
  ]
 }

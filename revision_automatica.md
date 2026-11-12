@@ -1,6 +1,6 @@
 # Revisión automática: REGRESIÓN
 
-404 cumplidos · 30 no cumplidos · 97 sin golpes suficientes · 116 avisos (antes: 404 cumplidos, 30 no cumplidos)
+403 cumplidos · 30 no cumplidos · 97 sin golpes suficientes · 117 avisos (antes: 404 cumplidos, 30 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 137 de 263
 
@@ -180,8 +180,4 @@ Registro `docs/peticiones_usuario.md`: 115 hechas · 116 a medias · 21 sin hace
 
 ## Empeora respecto a la ejecución anterior
 
-- **Comprobaciones que saben fallar**: ok → aviso: sin el registro de las pruebas en este PC (comprobaciones_pruebas/rec_*.json)
-
-## Mejora
-
-- Peticiones por GitHub Actions: espera hasta empezar: aviso → ok
+- **Peticiones por GitHub Actions: espera hasta empezar**: ok → aviso: la última petición (12-11 15:15) no empezó por GitHub Actions; el último trabajo por Actions fue el 12-11 15:04

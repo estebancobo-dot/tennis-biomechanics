@@ -1,1 +1,2 @@
-arranque: 2026-11-12T15:10:02 (pid 12104)
+arranque: 2026-11-12T15:15:22 (pid 7552)
+2026-11-12T15:15:23 GitHub Actions espera a que acabe otro analisis (12104,7552)
