@@ -905,3 +905,30 @@ accion: app_nuevo
 minutos: 35
 # 215 (11-11, tarea 10b tras R6): otra vez el partido nuevo con la aplicacion (35 min de un partido de la jugadora), con
 # las correcciones de R6 (etapa del rival, juicio con sus propias comprobaciones). Va despues de 213 y 214 (cola libre)
+---
+id: 216
+accion: medir
+script: diag_app_nuevo
+# 216 (12-11): que comprobaciones no pasan en la prueba 215 (partido nuevo tras R6)
+---
+id: 217
+accion: trabajo
+comando: flujo informe
+# 217 (12-11): informes, auditoria y calidad con todo lo de R1-R8; juzga la 215 con sus propias comprobaciones
+---
+id: 218
+accion: medir
+script: app_recursos
+# 218 (12-11, R8): lo que consume la aplicacion abierta (1 min), con la cola libre
+---
+id: 219
+accion: medir
+script: bench_fine_fps
+argumentos: --match pegula --minutes 15 --tag rtmw --set fine_pass.refine=rtmw-x
+# 219 (12-11, R3): A/B desde cero de RTMW-x frente a RTMPose-x en 15 min de Pegula: tiempo y medidas (bench_rtmw.json)
+---
+id: 220
+accion: medir
+script: bench_fine_fps
+argumentos: --match pegula --minutes 15 --tag bola --set fine_pass.ball_from_spotting=true
+# 220 (12-11, R2): A/B desde cero de la bola del detector reutilizada en la pasada fina (bench_bola.json)
