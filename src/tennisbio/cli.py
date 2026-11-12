@@ -197,6 +197,9 @@ def _main(argv=None):
                     help="submit: -- <argumentos de tennisbio> | cancel: ID o all | run-one: ID | pause: now")
     jb.add_argument("--source", default="cli", help="quién lo pide (app, ciclo, claude…), para el registro de eventos")
     jb.add_argument("--json", default=None, help="status: escribe el estado en este fichero")
+    dc = sub.add_parser("desde-cero", help="mueve al archivo lo calculado de cada partido (se conservan el clic, la ficha "
+                                           "y el vídeo) para rehacerlos desde cero; sin --ejecutar solo dice qué movería")
+    dc.add_argument("--ejecutar", action="store_true")
     rg = sub.add_parser("registry", help="registro único de partidos: sync (catálogo y carpetas) | list [--json FICHERO]")
     rg.add_argument("action", choices=("sync", "list"))
     rg.add_argument("--json", default=None, help="list: escribe también la lista en este fichero (para pc-logs)")
@@ -230,6 +233,15 @@ def _main(argv=None):
     out_root = Path(cfg.get("paths", {}).get("output", "output"))
     matches = load_matches(cfg)
     own = matches[0].player.id if matches else None
+    if args.cmd == "desde-cero":               # 12-11 (#263): the analysis from scratch, nothing of before reused
+        from . import fresh
+        dirs = list(dict.fromkeys(layout.dir_of(out_root, m, cfg) for m in matches))
+        rep = fresh.run(cfg, out_root, dirs, execute=args.ejecutar)
+        for r in rep["partidos"]:
+            print(f"{r['carpeta']}: {r.get('movidos', r['mueve'])} {'movidos' if args.ejecutar else 'a mover'} "
+                  f"({r['gb']} GB) -> {r['archivo']}; se conserva {', '.join(r['conserva']) or 'nada'}"
+                  + (f" · AVISO: {r['aviso']}" if r.get("aviso") else ""))
+        return 0
     if args.cmd == "report":
         from .report import build
         pid = args.player or own

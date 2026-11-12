@@ -5,7 +5,7 @@ without her serve: its stretch, the main-camera shots in it, the scoreboard read
 learned spotter saw (both players), the candidates and whose they were, her strokes found, the doubtful and dropped
 ones, and the identity run (which player the near one is); plus a sheet of frames from the main camera's return to her
 first stroke found, each labelled with what was detected next to it. Also where her serves outside her points fall.
-Writes <output>/capturas_diag/diag_saques.json and saques_<min>.jpg (flat). Reads only.
+Writes <output>/capturas_diag/diag_saques_<match>.json and saques_<match>_<min>.jpg (flat). Reads only.
 
     uv run python scripts/diag_saques.py --match f43dd2 [--max 12]"""
 from __future__ import annotations
@@ -142,7 +142,8 @@ def main() -> None:
         video = Path(probe_["path"]) if probe_.get("path") else None
         for x in gaps[:a.max]:
             try:
-                x["hoja"] = sheet(video, x, dst / f"saques_{x['min']:05.2f}.jpg") if video and video.exists() else None
+                x["hoja"] = (sheet(video, x, dst / f"saques_{a.match}_{x['min']:05.2f}.jpg")
+                             if video and video.exists() else None)
             except Exception as e:  # noqa: BLE001 — one sheet that fails leaves the rest
                 x["hoja"] = f"error: {type(e).__name__}: {e}"[:200]
         serve_t = sorted(float(s["match_time_s"]) for s in data["strokes"]
@@ -164,7 +165,9 @@ def main() -> None:
                "detector_antes_del_primer_golpe": g.get("spotter_before_first"),
                "puntos_sin_golpes": g.get("no_strokes_points"), "huecos": gaps, "sus_saques": outside,
                "lecturas_marcador": len(data["readings"]), "estados": len(states)}
-    (dst / "diag_saques.json").write_text(json.dumps(rep, ensure_ascii=False, indent=1, default=str), encoding="utf-8")
+    # one file per match (12-11: two requests in a row overwrote each other before the upload)
+    (dst / f"diag_saques_{a.match}.json").write_text(json.dumps(rep, ensure_ascii=False, indent=1, default=str),
+                                                     encoding="utf-8")
     print(json.dumps({k: v for k, v in rep.items() if k not in ("huecos", "sus_saques")}, ensure_ascii=False, indent=1,
                      default=str)[:4000])
 

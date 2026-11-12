@@ -250,6 +250,17 @@ def code_fingerprint(modules: tuple[str, ...], entry: str | None = None) -> str:
     return _code_cache[key]
 
 
+def function_fingerprint(module: str, entry: str) -> str:
+    """Hash of one function of a module and everything of that module it reaches by name (12-11, for caches made by
+    one function of a large module: the match's ball track by ball_features.track_play)."""
+    key = ((module,), "fn:" + entry)
+    if key not in _code_cache:
+        f = Path(__file__).resolve().parent / (module.replace(".", "/") + ".py")
+        src = f.read_text(encoding="utf-8") if f.exists() else ""
+        _code_cache[key] = hashlib.sha1((module + _reachable_src(src, entry)).encode()).hexdigest()[:16] if src else ""
+    return _code_cache[key]
+
+
 def _hash(obj) -> str:
     return hashlib.sha1(json.dumps(obj, sort_keys=True, default=str).encode()).hexdigest()[:16]
 

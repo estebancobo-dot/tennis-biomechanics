@@ -56,6 +56,8 @@ ERROR) y lo sube a `pc-logs`. No pedir al usuario que lance 2c/2d tras cada camb
   orden con su estado, qué está en marcha en el PC y en la nube). Se actualiza en cada cambio. Toda petición nueva del
   usuario va a `docs/peticiones_usuario.md` y a un paquete de `config/plan_peticiones.yaml` (nada solo en el chat).
 - **Nunca un análisis completo con fallos conocidos** (#247). Antes: todo arreglado y probado en pequeño.
+- **El análisis completo de los partidos solo con la aprobación del usuario** (#262, 12-11): Claude lo prepara, dice qué
+  hará y cuánto tardará, y espera su visto bueno; nunca lo lanza solo.
 - **Calidad antes que velocidad:** nada que pierda calidad o puntuación para ir más rápido (#248).
 - **Orquestador único** (`docs/orquestador.md`): todo trabajo del PC va por la cola del ejecutor único
   (`tennisbio jobs`, peticiones `trabajo`/`control`); la aplicación y el chat usan el mismo código y los mismos datos.
@@ -131,6 +133,9 @@ ERROR) y lo sube a `pc-logs`. No pedir al usuario que lance 2c/2d tras cada camb
   - cambia una fórmula de métrica → solo métricas, desde la pose guardada;
   - cambia el modelo de pose → solo la pasada fina y lo que depende de ella.
 - Los agregados e informes se recalculan siempre juntando todos los partidos (es barato).
+- **Desde cero** (12-11, #263): `tennisbio desde-cero --ejecutar` (flujo `desde_cero`) mueve lo calculado al archivo
+  con la fecha (nunca se borra) y deja solo la ficha, el clic de identidad y el vídeo; nada se reutiliza. Las cachés
+  internas (ventanas, bola del partido, vídeos exportados) llevan la huella de su código.
 - Las revisiones manuales (identificación de la jugadora, golpes confirmados/descartados)
   se guardan en ficheros propios y **nunca** se sobrescriben al recalcular.
 

@@ -782,8 +782,14 @@ def _export(matches, out_root: Path, dest: Path, stroke, player_id, reel_max, st
     except (OSError, ValueError):
         sigs = {}
     # and with the encoder: reels join clips without re-encoding, so they must all come from the same one
+    # 12-11 (#263): and with the code that draws and encodes each video (encode_stroke and all it reaches in this
+    # module: StrokeClip, its skeleton and texts): before, a change to the drawing kept every video drawn by the code
+    # before
+    from .pipeline import function_fingerprint
     base = json.dumps([[m.get("k"), m.get("noise")] for m in key_metrics] + [dist.get(m.get("k")) for m in key_metrics]
-                      + ([encoder_name()] if encoder_name() != "libx264" else []), sort_keys=True, default=str)
+                      + ([encoder_name()] if encoder_name() != "libx264" else [])
+                      + [function_fingerprint("export", "encode_stroke")],
+                      sort_keys=True, default=str)
     for i, s in enumerate(need):
         out = dest / "golpes" / f"{s['id']}.mp4"
         paths[s["id"]] = out

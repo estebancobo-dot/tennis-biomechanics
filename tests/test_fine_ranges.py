@@ -761,9 +761,13 @@ def test_window_cache_key_changes_only_with_hybrid():
 
     from tennisbio.stages import window_cache_key
 
+    from tennisbio.pipeline import code_fingerprint
+    from tennisbio.stages import WINDOW_CODE
+
     base = {"fine_pass": {"window_s": 1.0}, "device": "cpu"}
-    old = hashlib.sha1(json.dumps(["yolo11m-pose.pt", 960, None, "v2"]).encode()).hexdigest()[:8]
-    assert window_cache_key(base) == old                                    # YOLO: the key it always was
+    # 12-11 (#263): with the code that makes the caches (WINDOW_CODE); before, the models and settings only
+    old = hashlib.sha1(json.dumps(["yolo11m-pose.pt", 960, None, "v2", code_fingerprint(WINDOW_CODE)]).encode()).hexdigest()[:8]
+    assert window_cache_key(base) == old                                    # YOLO: models, settings and code
     assert window_cache_key({**base, "fine_pass": {"window_s": 1.0, "pose_model": "yolo"}}) == old
     assert window_cache_key({**base, "fine_pass": {"window_s": 1.0, "pose_model": "nope"}}) == old
     hyb = window_cache_key({**base, "fine_pass": {"window_s": 1.0, "pose_model": "hybrid"}})

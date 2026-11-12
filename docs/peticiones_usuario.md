@@ -53,12 +53,12 @@ la auditoría las marcará «sin comprobación automática asignada».
 
 | Estado | Nº |
 |---|---|
-| HECHO | 114 |
-| PARCIAL | 115 |
+| HECHO | 115 |
+| PARCIAL | 116 |
 | FALTA | 21 |
 | NO MEDIBLE | 3 |
 | NO APLICA | 8 |
-| **Total** | **261** |
+| **Total** | **263** |
 
 **27-10:** filas 220-245 nuevas: todo lo pedido en el chat del 19-10 al 27-10 (releídos los mensajes) y lo que
 salió en la prueba de valor; ninguna fila borrada.
@@ -349,6 +349,8 @@ lateral (entreno)» · ≥12 = solo se muestra con 12 golpes o más (`model.MIN_
 | 259 | Saber dónde se va el tiempo de cada etapa, medido desde cero, y demostrar con medidas si cada etapa puede ir más rápido sin perder calidad (alternativas probadas, no supuestas), antes del análisis completo; confianza en la aplicación vista como usuario (Chat, 11-11) | PARCIAL (11-11) | `scripts/tiempos_etapas.py`, `ritmos.json`, `docs/pruebas_velocidad.md` (última medida desde cero: 18-10) | — | — | Tabla de tiempos de la prueba desde cero (petición 207) + por cada etapa pesada: alternativas medidas (tiempo y calidad); el indicador «Tiempo» de la auditoría solo con ejecuciones desde cero. **11-11:** tiempos por etapa desde cero medidos (`capturas_diag/tiempos_etapas.md`: 76 min por 35 min, pasada fina 43 %); faltan las alternativas medidas (tarea R2) y el mismo tramo del 03-11 (petición 211). **12-11:** cerrada la medida: 7,6 h en el peor vídeo; bola reutilizada (−14 %) descartada por F3Set (5 golpes menos, instante peor); RTMW, más lento. |
 | 260 | Revisar de verdad todo el bloque Base, no solo la velocidad: en cada tarea, si su prueba mide lo pedido, si falla cuando debe, si sus números salen de una ejecución desde cero con el código actual y si se analizaron y midieron las alternativas (Chat, 11-11: «no creo que el bloque base pueda ser válido») | HECHO (11-11) | `docs/revision_base_11-11.md` | — | — | Revisión paquete a paquete (B1-B8, 77 peticiones) con veredicto por petición; lo que no pase vuelve a FALTA o PARCIAL con su tarea. **11-11:** revisión hecha (`docs/revision_base_11-11.md`): 15 peticiones vuelven a PARCIAL; tareas R1-R8 en `docs/estado_proyecto.md`. |
 | 261 | Que no se quede abierta en la pantalla del PC una ventana vacía de PowerShell mientras trabaja (Chat, 11-11 y 12-11: «hay un terminal abierto de powershell sin nada», «la shell vacía sigue saliendo») | PARCIAL | `orchestrator.background_kwargs`, `orchestrator.leave_visible_console`, `scripts/ventanas_visibles.py` (el ciclo la ejecuta) | — | «Ninguna ventana vacía del análisis en la pantalla del PC», `tests/test_worker_hidden.py` | Causa hallada por la petición 242: el ejecutor arrancaba a su sucesor con DETACHED_PROCESS (Windows Terminal abría una consola para el intérprete). Arreglado 12-11; HECHO cuando la comprobación salga ok en el PC (244). |
+| 262 | El análisis completo de los 6 partidos se lanza solo con su aprobación (dura mucho): Claude lo prepara, dice qué hará y cuánto tardará, y espera (Chat, 12-11) | HECHO (12-11) | `docs/estado_proyecto.md` (tarea 11), `CLAUDE.md` | — | — | Regla de trabajo: nada largo en el PC sin su visto bueno. |
+| 263 | Antes de los 6 partidos: el código de la base es el último y está subido; el análisis es desde cero, sin nada de análisis anteriores; todo versionado de verdad; se usan todas las funciones (Chat, 12-11) | PARCIAL | `stage_code.reachable` (auxiliares de cada etapa), cachés de ventana y de la bola con la huella de su código, ejecución desde cero en carpetas nuevas (las anteriores al archivo, solo se copia su clic) | — | pruebas de las cachés y del archivo | Se cumple al lanzar la tarea 11 desde cero con su aprobación. |
 
 ## Lo más grave que falta (por impacto en «copiar su derecha»)
 

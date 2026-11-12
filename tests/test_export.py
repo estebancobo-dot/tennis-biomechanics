@@ -99,6 +99,16 @@ def test_stroke_videos_in_parallel_processes(tmp_path):
     again = []
     export(m, tmp_path / "out", tmp_path / "seq", workers=1, log=again.append)
     assert any("Golpes: 2 nuevos" in line for line in again), again
+    # 12-11 (#263): the code that draws them changed: encoded again (before, the videos of the code before stayed)
+    from tennisbio import pipeline
+    real = pipeline.function_fingerprint
+    pipeline.function_fingerprint = lambda mod, entry: "dibujo-nuevo" if (mod, entry) == ("export", "encode_stroke") else real(mod, entry)
+    try:
+        again = []
+        export(m, tmp_path / "out", tmp_path / "seq", workers=1, log=again.append)
+    finally:
+        pipeline.function_fingerprint = real
+    assert any("Golpes: 2 nuevos" in line for line in again), again
 
 
 def test_lazy_frames_are_the_frames_of_the_whole_series(tmp_path):

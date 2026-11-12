@@ -27,6 +27,25 @@ completo:
     - {nombre: "Exportar el reves", tennisbio: [export, --stroke, backhand, --out, "{salida}/exportar_reves"], si_falla: seguir, limite_min: 240}
     - {nombre: "Exportar el saque", tennisbio: [export, --stroke, overhead, --out, "{salida}/exportar_saque"], si_falla: seguir, limite_min: 240}
 
+# 12-11 (#262-#263): los partidos desde cero, sin nada de analisis anteriores (lo calculado pasa al archivo con la fecha;
+# se conservan el clic de identidad, la ficha y el video). Solo con la aprobacion del usuario: dura ~21 h
+desde_cero:
+  descripcion: "Los partidos desde cero (lo calculado al archivo, nada reutilizado) y despues todo el flujo completo"
+  pasos:
+    - {nombre: "Catalogo de partidos (videos nuevos)", script: [scripts/auto_catalog.py]}
+    - {nombre: "Registro de partidos", tennisbio: [registry, sync]}
+    - {nombre: "Lo calculado al archivo", tennisbio: [desde-cero, --ejecutar]}
+    - {nombre: "Analisis de los partidos", tennisbio: [run, --all]}
+    - {nombre: "Informe de la derecha", tennisbio: [report, --stroke, forehand, --out, "{salida}/informe_derecha"]}
+    - {nombre: "Informe del reves", tennisbio: [report, --stroke, backhand, --out, "{salida}/informe_reves"], si_falla: seguir}
+    - {nombre: "Informe del saque", tennisbio: [report, --stroke, overhead, --out, "{salida}/informe_saque"], si_falla: seguir}
+    - {nombre: "Analisis en la aplicacion", tennisbio: [app, tras-completo], si_falla: seguir}
+    - {nombre: "Auditoria", tennisbio: [audit, --stroke, forehand]}
+    - {nombre: "Modelo de calidad", tennisbio: [calidad], si_falla: seguir}
+    - {nombre: "Exportar la derecha", tennisbio: [export, --stroke, forehand, --out, "{salida}/exportar_derecha"], si_falla: seguir, limite_min: 240}
+    - {nombre: "Exportar el reves", tennisbio: [export, --stroke, backhand, --out, "{salida}/exportar_reves"], si_falla: seguir, limite_min: 240}
+    - {nombre: "Exportar el saque", tennisbio: [export, --stroke, overhead, --out, "{salida}/exportar_saque"], si_falla: seguir, limite_min: 240}
+
 informe:
   descripcion: "Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)"
   pasos:

@@ -99,18 +99,24 @@ def features(track: np.ndarray, n: int, fps: float) -> np.ndarray:
     return out
 
 
-def cached_track(mdir: Path, video: Path, tracker_factory, log=None) -> np.ndarray:
-    """track_play of an analysed video, kept in <mdir>/ball_track.npz (the ball model is the slow part)."""
+def cached_track(mdir: Path, video: Path, tracker_factory, log=None, key: str | None = None) -> np.ndarray:
+    """track_play of an analysed video, kept in <mdir>/ball_track.npz (the ball model is the slow part). key (12-11): the
+    model and the code that made it (stages.ball_track_key); a file made by another one, or before keys existed, is
+    computed again. Before, the file was reused forever once written, whatever model or code came later."""
     import json
 
     f = _mf.at(Path(mdir), "ball_track.npz")
     if f.exists():
         with np.load(f) as z:
-            return z["track"]
+            old = str(z["key"]) if "key" in z.files else None
+            if key is None or old == key:
+                return z["track"]
+        if log:
+            log("  la bola del partido se hizo con otro modelo o código: se calcula de nuevo")
     rd = lambda n: json.loads((Path(mdir) / n).read_text(encoding="utf-8")) if (Path(mdir) / n).exists() else None
     sc, court = rd("scenes.json") or {"shots": []}, rd("court.json")
     with np.load(_mf.at(Path(mdir), "players.npz"), allow_pickle=True) as z:
         fps = float(z["fps"])
     tr = track_play(video, sc, court, tracker_factory(), fps, log) if sc.get("shots") else np.zeros((0, 4))
-    np.savez_compressed(f, track=tr.astype(np.float32))
+    np.savez_compressed(f, track=tr.astype(np.float32), **({"key": np.array(key)} if key is not None else {}))
     return tr

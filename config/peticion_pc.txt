@@ -1137,3 +1137,26 @@ id: 254
 accion: trabajo
 comando: flujo informe
 # 254 (12-11, R11): auditoria con v11 y la comprobacion de saques que cuenta tambien el final y el principio de cada juego
+---
+id: 255
+accion: trabajo
+comando: desde-cero
+# 255 (12-11, #263): SIMULACION, no mueve nada: que se moveria al archivo de cada partido para rehacerlo desde cero y
+# cuanto ocupa (capturas_diag/desde_cero.json). La ejecucion real (flujo desde_cero) solo con la aprobacion del usuario
+---
+id: 256
+accion: prevision
+# 256 (12-11): prevision de tiempo de los 6 partidos (desde las caches y calculando todo), sin ejecutar nada
+---
+id: 257
+accion: medir
+script: diag_saques
+argumentos: --match f43dd2 --max 14
+# 257 (12-11, B4): con la comprobacion ampliada (tambien el final de cada juego y el principio del siguiente) Osaka da
+# 29 de 36 (81 %): que pasa en los puntos de cambio de juego sin su saque. Solo lee
+---
+id: 258
+accion: medir
+script: diag_saques
+argumentos: --match 49723c --max 14
+# 258 (12-11, B4): lo mismo en Pegula (50 de 60, 83 %). Solo lee

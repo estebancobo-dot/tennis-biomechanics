@@ -766,7 +766,8 @@ def st_spotting(ctx: Context):
     if ball:
         from .ball_features import cached_track, features as ball_feats
         t_ = time.time()
-        tr = cached_track(ctx.dir, ctx.video, lambda: _ball_tracker(ctx), log=ctx.log)    # ball_track.npz: once
+        tr = cached_track(ctx.dir, ctx.video, lambda: _ball_tracker(ctx), log=ctx.log,      # ball_track.npz: once per
+                          key=ball_track_key(ctx.cfg))                                       # model and code
         took["bola"] = time.time() - t_
         feats["X"] = np.concatenate([feats["X"], ball_feats(tr, len(feats["X"]), fps)], axis=1)
     mfps = float(meta.get("fps") or fps)
@@ -1685,17 +1686,35 @@ def st_fine_doubtful(ctx: Context):
     return _fine(ctx, ctx.match.player, lambda c: c.get("target", c.get("identity")) is None, "strokes_doubtful.json")
 
 
+# 12-11 (#263): the code that makes what the caches of each window hold (pose, ball, racket, 3D, decoded frames)
+WINDOW_CODE = ("pose.yolo", "pose.yolo_onnx", "pose.backend", "pose.hybrid", "pose.estimator", "pose.rtmw", "pose.variants",
+               "pose.wholebody3d", "pose.motionagformer", "ball", "racket_pose", "io.video")
+
+
 def window_cache_key(cfg: dict) -> str:
-    """Key of the caches of the pose, ball and racket of each window (`ph`): the models and settings that
-    made them. The hybrid pose adds its tag (pose.hybrid.pose_cache_tag): a YOLO-only cache has no feet
-    and is not reused for it; with YOLO the key is the one it always was."""
+    """Key of the caches of the pose, ball and racket of each window (`ph`): the models, settings and, since 12-11, the
+    code that made them (WINDOW_CODE: before, a change to the pose or ball code reused the windows made by the code
+    before). The hybrid pose adds its tag (pose.hybrid.pose_cache_tag): a YOLO-only cache has no feet and is not
+    reused for it."""
+    from .pipeline import code_fingerprint
     from .pose.hybrid import pose_cache_tag
 
     bcfg = cfg.get("ball") or {}
     return hashlib.sha1(json.dumps([cfg.get("yolo_pose", "yolo11m-pose.pt"), cfg.get("fine_imgsz", 960),
                                     model_state(bcfg.get("onnx")), "v2"]
                                    + (["fp16"] if _fp16_setting(cfg) else [])
-                                   + pose_cache_tag(cfg)).encode()).hexdigest()[:8]
+                                   + pose_cache_tag(cfg) + [code_fingerprint(WINDOW_CODE)]).encode()).hexdigest()[:8]
+
+
+def ball_track_key(cfg: dict) -> str:
+    """12-11 (#263): the match's ball track (ball_track.npz, spotting) by the ball model, its precision and the code that
+    makes it (ball_features.track_play and what it reaches, the ball model's runner, the video reader)."""
+    from .pipeline import code_fingerprint, function_fingerprint
+
+    bcfg = cfg.get("ball") or {}
+    return hashlib.sha1(json.dumps([model_state(bcfg.get("onnx")), bool(bcfg.get("fp16")),
+                                    code_fingerprint(("ball", "io.video")),
+                                    function_fingerprint("ball_features", "track_play")]).encode()).hexdigest()[:16]
 
 
 def available_ram_gb() -> float | None:

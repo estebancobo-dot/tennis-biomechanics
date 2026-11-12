@@ -27,7 +27,7 @@ def test_same_points_as_the_audit_and_each_gap_described(tmp_path, monkeypatch):
     monkeypatch.setattr(m, "match_dir", lambda cfg, needle: d if needle == "osaka" else None)
     monkeypatch.setattr(sys, "argv", ["diag_saques.py", "--match", "osaka"])
     m.main()
-    rep = json.loads((out / "capturas_diag" / "diag_saques.json").read_text(encoding="utf-8"))
+    rep = json.loads((out / "capturas_diag" / "diag_saques_osaka.json").read_text(encoding="utf-8"))
     c = serve_coverage(d)
     assert rep["puntos_de_su_saque"] == c["points"] and rep["con_saque"] == c["found"] and rep["no_vistos"] == c["unseen"]
     gaps = rep["huecos"]
@@ -48,4 +48,4 @@ def test_no_match_is_said(tmp_path, monkeypatch):
     monkeypatch.setattr(m, "match_dir", lambda cfg, needle: None)
     monkeypatch.setattr(sys, "argv", ["diag_saques.py", "--match", "nada"])
     m.main()
-    assert "error" in json.loads((out / "capturas_diag" / "diag_saques.json").read_text(encoding="utf-8"))
+    assert "error" in json.loads((out / "capturas_diag" / "diag_saques_nada.json").read_text(encoding="utf-8"))
