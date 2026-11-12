@@ -944,3 +944,17 @@ script: bench_fine_fps
 argumentos: --match pegula --minutes 15 --tag rtmw2 --set fine_pass.refine=rtmw-x
 # 222 (12-11, R3): RTMW-x otra vez. La 219 no lo probo: run_clip construia el modelo de pose con la configuracion del
 # fichero (RTMPose-x) y no con la de la prueba; B salio igual que A hasta el ultimo decimal. Corregido (pose_cfg)
+---
+id: 223
+accion: medir
+script: validate_recall
+argumentos: --spotter --tag base
+# 223 (12-11, R2): recuento de F3Set con el codigo de hoy (salidas_base, copiado de salidas sin las ventanas): la
+# referencia del A/B de la bola
+---
+id: 224
+accion: medir
+script: validate_recall
+argumentos: --spotter --tag bola --set fine_pass.ball_from_spotting=true
+# 224 (12-11, R2): el mismo recuento con la bola del detector reutilizada en la pasada fina: recall, precision e instante
+# frente a los golpes anotados (la prueba de 15 min de Pegula: 14 % menos de pasada fina, 42 de 43 golpes iguales)

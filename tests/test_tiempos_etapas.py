@@ -57,3 +57,13 @@ def test_the_ab_bench_sets_any_key_of_b():
     b.set_key(cfg, "fine_pass.max_fps=30")
     b.set_key(cfg, "trunk3d.enabled=false")
     assert cfg == {"fine_pass": {"refine": "rtmw-x", "max_fps": 30}, "trunk3d": {"enabled": False}}
+
+
+def test_the_f3set_recount_sets_a_key_for_its_ab():
+    spec = importlib.util.spec_from_file_location(
+        "validate_recall", Path(__file__).resolve().parents[1] / "scripts" / "validate_recall.py")
+    v = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(v)
+    base = {"fine_pass": {"refine": "rtmpose-x"}}
+    out = v.with_settings(base, ["fine_pass.ball_from_spotting=true"])
+    assert out["fine_pass"] == {"refine": "rtmpose-x", "ball_from_spotting": True} and "ball_from_spotting" not in base["fine_pass"]

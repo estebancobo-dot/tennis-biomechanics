@@ -106,8 +106,24 @@ def spotter_cfg(cfg: dict, on: bool) -> dict:
     return {**cfg, "spotter": {**(cfg.get("spotter") or {}), "enabled": True}}
 
 
+def with_settings(cfg: dict, sets: list[str]) -> dict:
+    """«fine_pass.ball_from_spotting=true» → the config with that key set (values read as YAML), for an A/B (12-11)."""
+    import copy
+
+    import yaml
+    cfg = copy.deepcopy(cfg)
+    for kv in sets or []:
+        k, _, v = kv.partition("=")
+        d = cfg
+        *path, last = k.split(".")
+        for q in path:
+            d = d.setdefault(q, {})
+        d[last] = yaml.safe_load(v)
+    return cfg
+
+
 def run_pipeline(video: Path, mid: str, player_id: str, opponent: str, out_dir: Path, force_fine: bool,
-                 spotter: bool = False) -> list[str]:
+                 spotter: bool = False, sets: list[str] | None = None) -> list[str]:
     """All stages on the compilation, as for a full match; the fine pass's window lines are kept in
     ventanas_fine.log (the benchmark reads where each window went). spotter: candidates from the learned
     spotter (stage spotting) instead of the rules."""
@@ -115,7 +131,7 @@ def run_pipeline(video: Path, mid: str, player_id: str, opponent: str, out_dir: 
     from tennisbio.catalog import Match, load_player, surface_of
     from tennisbio.config import load_config
 
-    cfg = spotter_cfg(load_config(), spotter)
+    cfg = with_settings(spotter_cfg(load_config(), spotter), sets or [])
     match = Match(mid, video, load_player(player_id), opponent=opponent, surface=surface_of(mid.replace("_", " ")) or "dura")
     lines = []
 
@@ -134,7 +150,7 @@ def run_pipeline(video: Path, mid: str, player_id: str, opponent: str, out_dir: 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--root", default="datasets")
+    ap.add_argument("--root", default=None, help="por defecto <salidas>/../datasets (C:\\tenis\\datasets en el PC)")
     ap.add_argument("--player", default=None, help="nombre tal como lo escribe F3Set (por defecto la jugadora configurada)")
     ap.add_argument("--player-id", default=None, help="config/players/<id>.yaml (por defecto `player` de la configuración)")
     ap.add_argument("--splits", default="train,val,test")
@@ -150,10 +166,18 @@ def main():
     ap.add_argument("--spotter", action="store_true",
                     help="candidatos del detector entrenado (spotter.enabled) en vez de las reglas; el informe va a "
                          "recall_validation_detector.json/.md (no pisa el de las reglas)")
+    ap.add_argument("--set", action="append", default=[],
+                    help="clave.subclave=valor (12-11, A/B): el recuento con ese ajuste, en salidas_<tag>")
+    ap.add_argument("--tag", default="", help="con --set: carpeta salidas_<tag> (copiada de salidas sin las ventanas: solo "
+                                               "se rehace la pasada fina) e informe <nombre>_<tag>.json")
     args = ap.parse_args()
     from tennisbio.config import default_player, player_surname
     args.player_id = args.player_id or default_player()
     args.player = args.player or player_surname(args.player_id)
+    if args.root is None:                  # 12-11: as a queue job («medir»), the PC's datasets beside its outputs
+        from tennisbio.config import load_config
+        out = Path((load_config().get("paths") or {}).get("output") or "output")
+        args.root = str(out.parent / "datasets") if (out.parent / "datasets").exists() else "datasets"
     root = Path(args.root)
     t_start = time.time()
 
@@ -171,6 +195,9 @@ def main():
           f"{sum(e['who'] == 'target' for v in by_video.values() for p in v for e in p['events'])} golpes suyos")
 
     out_dir = root / "f3set" / "recall" / "salidas"
+    base_dir = out_dir
+    if args.tag:
+        out_dir = root / "f3set" / "recall" / f"salidas_{args.tag}"
     all_attr, all_ev, all_strokes, all_spans, all_runs, all_pspans, per_match, notes = [], [], [], [], [], [], [], []
     ok_attr, ok_ev, ok_strokes, ok_spans, ok_runs, ok_pspans = [], [], [], [], [], []
     for k, (name, ps) in enumerate(sorted(by_video.items())):
@@ -195,13 +222,16 @@ def main():
             if vid is None:
                 notes.append(f"{name}: no se pudo descargar ningún tramo")
                 continue
+            if args.tag and not (out_dir / mid).exists() and (base_dir / mid).exists():
+                import shutil              # the cheap pass and the rest from the base run: only what the setting changes
+                shutil.copytree(base_dir / mid, out_dir / mid, ignore=shutil.ignore_patterns("windows", "series", "informe"))
             if args.click:                # the user's one click per match, simulated from the annotations
                 pick = R.simulated_pick(ps, done_segs)
                 if pick:
                     from tennisbio.identity import PICK_FILE
                     (out_dir / mid).mkdir(parents=True, exist_ok=True)
                     (out_dir / mid / PICK_FILE).write_text(json.dumps(pick), encoding="utf-8")
-            run_pipeline(vid, mid, args.player_id, ps[0]["opponent"], out_dir, args.force_fine, args.spotter)
+            run_pipeline(vid, mid, args.player_id, ps[0]["opponent"], out_dir, args.force_fine, args.spotter, args.set)
         got = {pid for s in done_segs for pid in s["points"]}
         ps = [p for p in ps if p["id"] in got]
         if len(got) < sum(len(s["points"]) for s in segs):
@@ -257,7 +287,15 @@ def main():
     rep = root / "reports"
     rep.mkdir(parents=True, exist_ok=True)
     name = "recall_validation_detector" if args.spotter else "recall_validation"
+    if args.tag:
+        name += f"_{args.tag}"
+        res["set"] = args.set
     (rep / f"{name}.json").write_text(json.dumps(res, ensure_ascii=False, indent=1), encoding="utf-8")
+    if args.tag:                           # an A/B: also where the PC uploads it (capturas_diag)
+        from tennisbio.config import load_config
+        cd = Path((load_config().get("paths") or {}).get("output") or "output") / "capturas_diag"
+        cd.mkdir(parents=True, exist_ok=True)
+        (cd / f"{name}.json").write_text(json.dumps(res, ensure_ascii=False, indent=1), encoding="utf-8")
     if total is None:
         print("Sin resultados: " + "; ".join(notes))
         return 1
