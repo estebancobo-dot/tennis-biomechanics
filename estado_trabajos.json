@@ -1,10 +1,10 @@
 {
- "at": "2026-11-12 12:45:20",
- "firma": "f26c896080fc",
+ "at": "2026-11-12 12:45:48",
+ "firma": "7868edd0d158",
  "ejecutor": {
   "vivo": true,
   "pid": 5732,
-  "at": 1794483920.578939
+  "at": 1794483936.6003346
  },
  "pausa": false,
  "en_curso": [
@@ -30,14 +30,32 @@
  "progreso": {
   "partido": "us-open-2026-r4-naomi-osaka-elena-rybakina",
   "etapa": "score",
-  "hecho": 4,
+  "hecho": 8,
   "total": 234,
-  "porcentaje": 1.7,
-  "segundos": 38,
-  "quedan_s": 2172,
-  "hora": "2026-11-12 12:45:05"
+  "porcentaje": 3.4,
+  "segundos": 68,
+  "quedan_s": 1928,
+  "hora": "2026-11-12 12:45:36"
  },
  "pendientes": [
+  {
+   "id": 94,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script validate_recall --spotter --tag v15 --from v13r",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-12 12:45:39",
+   "started": null,
+   "finished": null,
+   "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"v15\", \"--from\", \"v13r\"]",
+   "source": "claude 253",
+   "log": "",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 93,
    "kind": "comando",
@@ -331,6 +349,13 @@
  ],
  "eventos": [
   {
+   "id": 494,
+   "job": 94,
+   "at": "2026-11-12 12:45:39",
+   "kind": "enviado",
+   "text": "tennisbio script validate_recall --spotter --tag v15 --from v13r (claude 253)"
+  },
+  {
    "id": 493,
    "job": 93,
    "at": "2026-11-12 12:44:56",
@@ -532,13 +557,6 @@
    "at": "2026-11-12 12:11:05",
    "kind": "enviado",
    "text": "flujo informe (claude 248)"
-  },
-  {
-   "id": 464,
-   "job": 90,
-   "at": "2026-11-12 12:10:24",
-   "kind": "enviado",
-   "text": "tennisbio script validate_recall --spotter --tag v14 --from v13r (claude 247)"
   }
  ]
 }
