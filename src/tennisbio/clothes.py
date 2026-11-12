@@ -333,6 +333,7 @@ MIN_CENTROID_DIST = 0.10    # clothes groups whose typical codes are closer than
 MIN_PARITY_SHARE = 0.70     # two people follow the end changes: ≥ 70 % of runs on the side the parity says
 MIN_FAR_OPPOSITE = 0.60     # the near and far player of the same frames fall in different groups
 MIN_CHECK_RUNS = 8
+MIN_VOTES_SHARE = 0.85      # 12-11: clothes groups that explain this share of the serve/return votes are two people
 
 
 def group_centroids(codes, labels, margins=None, weak=0.08) -> list:
@@ -350,7 +351,7 @@ def group_centroids(codes, labels, margins=None, weak=0.08) -> list:
 
 
 def groups_check(codes, labels, margins, parities: list | None = None, far_pairs=0, far_opposite=None,
-                 weak=0.08) -> dict:
+                 weak=0.08, votes=()) -> dict:
     """Are the two clothes groups two people? (09-11, request 167: in the Rybakina–Pegula match both photos of
     the click were the same woman: both players in white, the split followed something else, the light or the
     camera, and a separation of 1.78 looked as good as Zverev–Sinner's 1.65; one white dress under changing
@@ -359,10 +360,23 @@ def groups_check(codes, labels, margins, parities: list | None = None, far_pairs
       the end changes read on the scoreboard (no serve needs to be seen): share ≥ MIN_PARITY_SHARE;
     - the near and far player of the same frames fall in different groups (when the far one was measured);
     - the typical codes of the two groups are not the same clothes (≥ MIN_CENTROID_DIST).
+    12-11 (identity v13): the end changes can be the wrong cue, not the clothes: in an F3Set compilation (points cut
+    from the whole match, Rybakina–Azarenka) the clothes split 80 of 83 runs clearly and the parity agreed with them in
+    54 %, so the clothes were dropped and 122 of her 154 strokes were left doubtful, while on 08-11 the clothes had
+    decided them right. The serve/return votes (who is near, seen directly) are a third, independent cue: when the
+    clothes groups explain them (≥ MIN_VOTES_SHARE of ≥ MIN_CHECK_RUNS votes), the groups are two people and the
+    disagreement is the scoreboard's. With both players in white (Pegula) the groups do not explain the votes.
     Returns {"distinguishable": True / False / None (nothing to check with), "why", "parity_runs",
-    "parity_agree", "centroid_dist"}."""
+    "parity_agree", "centroid_dist", "vote_runs", "vote_agree"}."""
     lab, mar = np.asarray(labels), np.asarray(margins, float)
-    out = {"distinguishable": None, "why": None, "parity_runs": 0, "parity_agree": None, "centroid_dist": None}
+    out = {"distinguishable": None, "why": None, "parity_runs": 0, "parity_agree": None, "centroid_dist": None,
+           "vote_runs": 0, "vote_agree": None}
+    vs = [(int(i), bool(t)) for i, t in (votes or ()) if t is not None and 0 <= int(i) < len(lab)
+          and lab[int(i)] >= 0 and mar[int(i)] >= weak]
+    if vs:
+        a = float(np.mean([(int(lab[i]) == 1) == t for i, t in vs]))
+        out["vote_runs"], out["vote_agree"] = len(vs), round(max(a, 1 - a), 2)
+    votes_back = out["vote_runs"] >= MIN_CHECK_RUNS and out["vote_agree"] >= MIN_VOTES_SHARE
     if codes is not None and len(codes) and (lab >= 0).any():
         c0, c1 = group_centroids(codes, lab, mar, weak)
         if c0 is not None and c1 is not None:
@@ -380,7 +394,7 @@ def groups_check(codes, labels, margins, parities: list | None = None, far_pairs
             why.append(f"la ropa típica de los dos grupos es casi igual (distancia {out['centroid_dist']})")
     if out["parity_runs"] >= MIN_CHECK_RUNS:
         checked = True
-        if out["parity_agree"] < MIN_PARITY_SHARE:
+        if out["parity_agree"] < MIN_PARITY_SHARE and not votes_back:
             why.append(f"los grupos no siguen los cambios de lado del marcador ({round(100 * out['parity_agree'])} % "
                        f"de {out['parity_runs']} planos)")
     # the far player's codes are small and noisy: only when the scoreboard gives no end changes to check with
@@ -390,7 +404,11 @@ def groups_check(codes, labels, margins, parities: list | None = None, far_pairs
             why.append(f"la jugadora del fondo cae en el mismo grupo que la cercana ({round(100 * (1 - far_opposite))} %)")
     if checked:
         out["distinguishable"] = not why
-        out["why"] = "; ".join(why) or "dos personas (ropa distinta y de acuerdo con los cambios de lado)"
+        out["why"] = "; ".join(why) or (
+            f"dos personas: la ropa explica los saques vistos ({round(100 * out['vote_agree'])} % de {out['vote_runs']}) "
+            f"aunque no los cambios de lado del marcador ({round(100 * out['parity_agree'])} %)"
+            if out["parity_agree"] is not None and out["parity_agree"] < MIN_PARITY_SHARE
+            else "dos personas (ropa distinta y de acuerdo con los cambios de lado)")
     return out
 
 
@@ -420,7 +438,7 @@ def identity_from_cues(codes, far, feats, ends: list, direct: list, votes=(), ga
     labels, margins = sp["labels"][:n], sp["margins"][:n]
     has_codes = codes is not None and len(codes) and np.isfinite(codes).any()
     check = groups_check(np.asarray(codes, np.float32)[:n] if has_codes else None, labels, margins, parities,
-                         len(links), sp["links_ok"], weak)
+                         len(links), sp["links_ok"], weak, votes=votes)
     # two groups that are not two people decide nothing (their margins are not used); the click then goes by the
     # end changes when the scoreboard gives them (click_by «ends»), else there is no click to ask
     per, summ = fuse(labels, margins if check["distinguishable"] is not False else np.zeros(n), ends, direct, votes,

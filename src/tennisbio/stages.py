@@ -485,7 +485,7 @@ def run_clothes(ctx: Context, d: dict, tracks: list, court: dict | None, per_run
     return codes, far
 
 
-@stage("identity", "12", deps=("players", "score", "court", "audio"), outputs=("identity.json",), match_fields=lambda m: {"player": m.player.name})
+@stage("identity", "13", deps=("players", "score", "court", "audio"), outputs=("identity.json",), match_fields=lambda m: {"player": m.player.name})
 def st_identity(ctx: Context):
     """Is the near player the target in each run? Two independent cues, fused:
     - the end-change chain: serves + the scoreboard's serve marker name who is near in some runs

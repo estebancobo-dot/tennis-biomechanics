@@ -978,3 +978,20 @@ accion: medir
 script: diag_identidad_f3set
 argumentos: --match azaren
 # 227 (12-11): la 225 no encontro la carpeta (su nombre esta cortado a 60 letras: "..._victoria_azaren")
+---
+id: 228
+accion: medir
+script: validate_recall
+argumentos: --spotter --tag v13 --from base
+# 228 (12-11): recuento de F3Set con la identidad v13 (los saques vistos deciden entre la ropa y el marcador), desde
+# salidas_base con sus ventanas: la pose no se rehace. Debe volver la compilacion de Azarenka (122 golpes dudosos)
+---
+id: 229
+accion: trabajo
+comando: run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final
+# 229 (12-11): Pegula con la identidad v13 (debe seguir en 98 %; el caso para el que se hizo la v9-v12)
+---
+id: 230
+accion: trabajo
+comando: flujo informe
+# 230 (12-11): auditoria con Pegula y el recuento v13

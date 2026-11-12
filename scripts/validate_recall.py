@@ -170,6 +170,10 @@ def main():
                     help="clave.subclave=valor (12-11, A/B): el recuento con ese ajuste, en salidas_<tag>")
     ap.add_argument("--tag", default="", help="con --set: carpeta salidas_<tag> (copiada de salidas sin las ventanas: solo "
                                                "se rehace la pasada fina) e informe <nombre>_<tag>.json")
+    ap.add_argument("--from", dest="from_tag", default="",
+                    help="12-12: copiar de salidas_<from> con sus ventanas (la pose ya calculada se reutiliza)")
+    ap.add_argument("--drop-ball-caches", action="store_true",
+                    help="en la copia, sin la bola guardada de cada ventana (para medir otra forma de obtenerla)")
     args = ap.parse_args()
     from tennisbio.config import default_player, player_surname
     args.player_id = args.player_id or default_player()
@@ -196,6 +200,8 @@ def main():
 
     out_dir = root / "f3set" / "recall" / "salidas"
     base_dir = out_dir
+    if args.from_tag:
+        base_dir = root / "f3set" / "recall" / f"salidas_{args.from_tag}"
     if args.tag:
         out_dir = root / "f3set" / "recall" / f"salidas_{args.tag}"
     all_attr, all_ev, all_strokes, all_spans, all_runs, all_pspans, per_match, notes = [], [], [], [], [], [], [], []
@@ -224,7 +230,11 @@ def main():
                 continue
             if args.tag and not (out_dir / mid).exists() and (base_dir / mid).exists():
                 import shutil              # the cheap pass and the rest from the base run: only what the setting changes
-                shutil.copytree(base_dir / mid, out_dir / mid, ignore=shutil.ignore_patterns("windows", "series", "informe"))
+                skip = ("series", "informe") if args.from_tag else ("windows", "series", "informe")
+                shutil.copytree(base_dir / mid, out_dir / mid, ignore=shutil.ignore_patterns(*skip))
+                if args.drop_ball_caches:
+                    for f in (out_dir / mid).rglob("*_ball.npy"):
+                        f.unlink()
             if args.click:                # the user's one click per match, simulated from the annotations
                 pick = R.simulated_pick(ps, done_segs)
                 if pick:

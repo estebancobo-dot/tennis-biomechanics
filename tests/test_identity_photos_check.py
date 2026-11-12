@@ -257,3 +257,22 @@ def test_prepare_marks_photos_not_distinguishable(tmp_path, monkeypatch):
     st = json.loads((tmp_path / "fotos" / "estado.json").read_text(encoding="utf-8"))["m"]
     assert st["fotos"] == "fotos no distinguibles" and st["fotos_por"] == "cambios de lado del marcador"
     assert st["listo"] and st["distancia_fotos"] == 0.03 and "casi igual" in st["motivo"]
+
+
+def test_the_serve_votes_settle_clothes_against_a_wrong_scoreboard():
+    # 12-11 (identity v13): Rybakina–Azarenka in an F3Set compilation: clothes split clearly, the end changes of the
+    # scoreboard agreed in 54 %, the serves seen agreed with the clothes. The clothes were dropped and 122 of her 154
+    # strokes left doubtful; the serve votes now keep them
+    rng = np.random.default_rng(3)
+    lab = np.array([0, 1] * 10)
+    parity = [int(x) for x in rng.integers(0, 2, 20)]                  # a scoreboard chain that says nothing
+    votes = [(i, bool(lab[i] == 1)) for i in range(0, 20, 2)]          # 10 serves seen, all with the clothes
+    ck = groups_check(None, lab, np.full(20, .5), parity, votes=votes)
+    assert ck["distinguishable"] is True and ck["vote_agree"] == 1.0 and "saques" in ck["why"]
+    # both players in white (Pegula): the groups follow the light, the serves seen do not follow the groups
+    votes_w = [(i, bool(i % 4 == 0)) for i in range(0, 20, 2)]
+    ck = groups_check(None, lab, np.full(20, .5), parity, votes=votes_w)
+    assert ck["distinguishable"] is False and "cambios de lado" in ck["why"]
+    # few serves seen: the scoreboard decides as before
+    ck = groups_check(None, lab, np.full(20, .5), parity, votes=votes[:3])
+    assert ck["distinguishable"] is False
