@@ -1,5 +1,5 @@
 {
- "at": "2026-11-12 08:10:33",
+ "at": "2026-11-12 08:10:34",
  "firma": "c984f07571c6",
  "ejecutor": {
   "vivo": true,
@@ -293,6 +293,13 @@
  ],
  "eventos": [
   {
+   "id": 321,
+   "job": 70,
+   "at": "2026-11-12 08:10:34",
+   "kind": "hecho",
+   "text": "código 0"
+  },
+  {
    "id": 320,
    "job": 70,
    "at": "2026-11-12 08:10:32",
@@ -494,13 +501,6 @@
    "at": "2026-11-12 03:10:53",
    "kind": "empieza",
    "text": "script bench_fine_fps --match pegula --minutes 15 --tag rtmw2 --set fine_pass.refine=rtmw-x"
-  },
-  {
-   "id": 291,
-   "job": 66,
-   "at": "2026-11-12 03:10:49",
-   "kind": "enviado",
-   "text": "tennisbio script bench_fine_fps --match pegula --minutes 15 --tag rtmw2 --set fine_pass.refine=rtmw-x (claude 222)"
   }
  ]
 }
