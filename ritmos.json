@@ -1505,6 +1505,12 @@
    "units": 252,
    "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
    "date": "2026-11-12 15:44"
+  },
+  {
+   "s": 0.9098,
+   "units": 543,
+   "match": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
+   "date": "2026-11-12 16:57"
   }
  ],
  "score:minuto": [
@@ -1633,6 +1639,12 @@
    "video_min": 71.4,
    "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
    "date": "2026-11-12 15:44"
+  },
+  {
+   "s": 4.423,
+   "video_min": 112.2,
+   "match": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
+   "date": "2026-11-12 16:57"
   }
  ],
  "players:unidad": [
