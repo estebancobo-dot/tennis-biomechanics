@@ -176,14 +176,16 @@
    "dominio": "plataforma",
    "caracteristica": "rendimiento",
    "capa": "pc",
-   "ok": 17,
-   "aviso": 0,
+   "ok": 16,
+   "aviso": 1,
    "falta": 0,
    "pocos datos": 5,
-   "fallan": [],
+   "fallan": [
+    "Tiempo desde cero"
+   ],
    "n": 17,
-   "score": 1.0,
-   "accepted": true
+   "score": 0.9411764705882353,
+   "accepted": false
   },
   {
    "dominio": "exportacion",
@@ -228,30 +230,33 @@
    "dominio": "datos",
    "caracteristica": "funcional",
    "capa": "pc",
-   "ok": 2,
-   "aviso": 0,
-   "falta": 2,
+   "ok": 3,
+   "aviso": 1,
+   "falta": 1,
    "pocos datos": 0,
    "fallan": [
-    "Aplicación: un partido nuevo de principio a fin",
-    "Lista de partidos: rival, torneo, ronda y fecha"
+    "Lista de partidos: rival, torneo, ronda y fecha",
+    "Aplicación: lo que consume abierta"
    ],
-   "n": 4,
-   "score": 0.5,
+   "n": 5,
+   "score": 0.6,
    "accepted": false
   },
   {
    "dominio": "datos",
    "caracteristica": "fiabilidad",
    "capa": "pc",
-   "ok": 11,
+   "ok": 12,
    "aviso": 0,
-   "falta": 0,
+   "falta": 2,
    "pocos datos": 0,
-   "fallan": [],
-   "n": 11,
-   "score": 1.0,
-   "accepted": true
+   "fallan": [
+    "Vídeos exportados: exportar_reves",
+    "Vídeos exportados: exportar_saque"
+   ],
+   "n": 14,
+   "score": 0.8571428571428571,
+   "accepted": false
   },
   {
    "dominio": "modelos",
@@ -407,12 +412,12 @@
    "score": 1.0
   },
   "plataforma": {
-   "ok": 57,
+   "ok": 56,
    "n": 61,
    "cells": 4,
    "unmeasured": 1,
-   "accepted": 2,
-   "score": 0.9344262295081968
+   "accepted": 1,
+   "score": 0.9180327868852459
   },
   "exportacion": {
    "ok": 1,
@@ -423,12 +428,12 @@
    "score": 1.0
   },
   "datos": {
-   "ok": 13,
-   "n": 15,
+   "ok": 15,
+   "n": 19,
    "cells": 3,
    "unmeasured": 1,
-   "accepted": 1,
-   "score": 0.8666666666666667
+   "accepted": 0,
+   "score": 0.7894736842105263
   },
   "modelos": {
    "ok": 21,
@@ -441,12 +446,12 @@
  },
  "characteristics": {
   "funcional": {
-   "ok": 258,
-   "n": 268,
+   "ok": 259,
+   "n": 269,
    "cells": 8,
    "unmeasured": 0,
    "accepted": 6,
-   "score": 0.9626865671641791
+   "score": 0.9628252788104089
   },
   "exactitud": {
    "ok": 40,
@@ -465,20 +470,20 @@
    "score": 0.8421052631578947
   },
   "fiabilidad": {
-   "ok": 21,
-   "n": 25,
+   "ok": 22,
+   "n": 28,
    "cells": 2,
    "unmeasured": 0,
-   "accepted": 1,
-   "score": 0.84
+   "accepted": 0,
+   "score": 0.7857142857142857
   },
   "rendimiento": {
-   "ok": 17,
+   "ok": 16,
    "n": 17,
    "cells": 3,
    "unmeasured": 2,
-   "accepted": 1,
-   "score": 1.0
+   "accepted": 0,
+   "score": 0.9411764705882353
   },
   "mantenibilidad": {
    "ok": 30,
@@ -499,12 +504,12 @@
  },
  "layers": {
   "pc": {
-   "ok": 262,
-   "n": 278,
+   "ok": 263,
+   "n": 282,
    "cells": 12,
    "unmeasured": 2,
-   "accepted": 6,
-   "score": 0.9424460431654677
+   "accepted": 4,
+   "score": 0.9326241134751773
   },
   "pantallas": {
    "ok": 54,
@@ -534,11 +539,11 @@
  "unmapped": {},
  "threshold": 0.95,
  "total": {
-  "ok": 382,
-  "n": 406,
-  "score": 0.9408866995073891,
+  "ok": 383,
+  "n": 410,
+  "score": 0.9341463414634147,
   "cells": 25,
-  "accepted": 11,
+  "accepted": 9,
   "unmeasured": 7
  }
 }

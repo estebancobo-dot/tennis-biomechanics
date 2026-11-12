@@ -6,8 +6,8 @@
 |---|---|
 | 0 sin construir | 21 |
 | 1 construido, sin comprobar | 71 |
-| 2 comprobación que falla | 84 |
-| 3 comprobado en salidas | 76 |
+| 2 comprobación que falla | 88 |
+| 3 comprobado en salidas | 72 |
 | 4 validado con verdad | 0 |
 
 ## Por paquete del plan (en el orden de ejecución)
@@ -16,13 +16,13 @@
 
 | Paquete | Peticiones | sin construir | construido, sin comprobar | comprobación que falla | comprobado en salidas | validado con verdad | Se cierra con | Prueba principal | ¿Cerrado? |
 |---|---|---|---|---|---|---|---|---|---|
-| B1 Base · velocidad y uso del PC | 10 | 0 | 0 | 6 | 4 | 0 | Un partido de 3,5 h desde cero en una noche (≤ 8 h) sin perder calidad (10-11, con el usuario); CPU/iGPU por etapa medidas en cada ejecución | ok | no |
+| B1 Base · velocidad y uso del PC | 10 | 0 | 0 | 8 | 2 | 0 | Un partido de 3,5 h desde cero en una noche (≤ 8 h) sin perder calidad (10-11, con el usuario); CPU/iGPU por etapa medidas en cada ejecución | falla | no |
 | B2 Base · robustez (nada se cuelga, todo se recupera) | 3 | 0 | 0 | 2 | 1 | 0 | Prueba por cada caso de error y cuelgue; 0 etapas con error en la referencia | ok | no |
 | B3 Base · mejores modelos (estado del arte medido) | 10 | 0 | 0 | 1 | 9 | 0 | Cada candidato medido frente al actual (precisión con datos anotados y fotogramas/s en el PC) | ok | no |
 | B4 Base · no perder golpes | 6 | 0 | 0 | 3 | 3 | 0 | Recall F3Set y RacketVision por lado y tipo, sin bajar la precisión | falla | no |
-| B5 Base · exportación | 1 | 0 | 0 | 1 | 0 | 0 | Vídeos por golpe en ≤ 20 min sin cuelgues | ok | no |
+| B5 Base · exportación | 1 | 0 | 0 | 1 | 0 | 0 | Vídeos por golpe en ≤ 20 min sin cuelgues | falla | no |
 | B6 Base · referencia definitiva de los 4 partidos | 4 | 0 | 0 | 4 | 0 | 0 | 4 partidos sin errores de etapa; auditoría generada | ok | no |
-| B7 Base · aplicación autónoma e infraestructura | 36 | 0 | 0 | 7 | 29 | 0 | Un partido nuevo de principio a fin sin el ciclo ni el chat; capturas de cada pantalla sin fallos | falla | no |
+| B7 Base · aplicación autónoma e infraestructura | 36 | 0 | 0 | 9 | 27 | 0 | Un partido nuevo de principio a fin sin el ciclo ni el chat; capturas de cada pantalla sin fallos | ok | no |
 | B8 Base · orquestador único (aplicación y chat con el mismo código y los mismos datos) | 8 | 0 | 6 | 2 | 0 | 0 | Fases A-F de docs/orquestador.md; un trabajo enviado desde el chat, pausado en la aplicación y reanudado desde el chat en el PC | falla | no |
 | P0 Producto · rediseño completo de la aplicación (comparativa profesional, UX, aprendizaje, gestión, gráficos) | 4 | 3 | 1 | 0 | 0 | 0 | Diseño desde la comparativa con las apps profesionales; capturas de cada pantalla comparadas con las de referencia, sin restos inútiles ni nada fijo en el código | sin medir | no |
 | M1 Medidas · fases, cadena cinética y ritmo | 12 | 0 | 7 | 4 | 1 | 0 | Cada medida: fiable en la auditoría (ruido < variación) y sin depender de la cámara | — | — |
@@ -42,13 +42,13 @@
 
 Lo que le falta a cada paquete de la Base para cerrarse:
 
-- **B1**: peticiones sin comprobar o que fallan: #14, #75, #125, #137, #230, #237
+- **B1**: prueba principal: Tiempo desde cero: aviso; peticiones sin comprobar o que fallan: #14, #29, #75, #125, #137, #230, #231, #237
 - **B2**: peticiones sin comprobar o que fallan: #13, #225
 - **B3**: peticiones sin comprobar o que fallan: #58
 - **B4**: prueba principal: Golpes encontrados frente al marcador: sin-fecha_f43dd2_rybakina: aviso, Saques por punto de su saque: sin-fecha_f43dd2_rybakina: aviso, Saques por punto de su saque: sin-fecha_584c5b_rybakina: aviso; peticiones sin comprobar o que fallan: #151, #155, #219
-- **B5**: peticiones sin comprobar o que fallan: #41
+- **B5**: prueba principal: Vídeos exportados: exportar_reves: falta, Vídeos exportados: exportar_saque: falta; peticiones sin comprobar o que fallan: #41
 - **B6**: peticiones sin comprobar o que fallan: #1, #134, #233, #234
-- **B7**: prueba principal: Aplicación: un partido nuevo de principio a fin: falta; peticiones sin comprobar o que fallan: #45, #51, #66, #119, #160, #226, #242
+- **B7**: peticiones sin comprobar o que fallan: #20, #45, #51, #66, #83, #119, #160, #226, #242
 - **B8**: prueba principal: Orquestador: espera hasta empezar cada trabajo: aviso; peticiones sin comprobar o que fallan: #246, #247, #248, #249, #250, #251, #259, #260
 - **P0**: prueba principal: Aplicación: rediseño : sin medir; peticiones sin comprobar o que fallan: #256, #257, #252, #258
 
@@ -68,13 +68,13 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 | 11 | Validar solo que las salidas reales tienen todo lo pedido y todos los casos del modelo y l | P3 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 191 comprobaciones: 16 pocos datos, 175 ok; la peor: «1. Fases · Golpe del riva |
 | 12 | Validar cada medida con clips públicos anotados; el usuario no valida a mano (11-10 09:05, | P3 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok |
 | 13 | Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimient | B2 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok |
-| 14 | Rendimiento: un partido en horas, no días (12-10 13:09) | B1 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 6 comprobaciones: 6 ok |
+| 14 | Rendimiento: un partido en horas, no días (12-10 13:09) | B1 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 6 comprobaciones: 1 aviso, 5 ok; la peor: «Tiempo desde cero» (117 min para 35  |
 | 15 | Bajar y analizar vídeos de entrenadores de YouTube para aprender y encontrar huecos (12-10 | P1 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok |
 | 16 | Distinguir por contexto (derecha junto a la red o volea) y cubrir las medias voleas (10-10 | M6 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 5 comprobaciones: 3 pocos datos, 2 ok; la peor: «Volea a media pista con golpe  |
 | 17 | Una entrada que se entienda sola: «no entiendo nada ni cómo usarla» (12-10 16:22) | P2 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 10 comprobaciones: 1 falta, 1 pocos datos, 8 ok; la peor: «La lección: como muc |
 | 18 | Herramienta Python cinemática 2D, 1 jugador y 1 golpe, parametrizable (10-10 17:27) | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 19 | Vídeos y salidas fuera del repo, rutas por configuración (10-10 17:27) | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
-| 20 | Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML (10-10 17:27) | B7 | HECHO | 3 comprobado en salidas | 7 comprobaciones: 7 ok |
+| 20 | Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML (10-10 17:27) | B7 | HECHO | 2 comprobación que falla | 7 comprobaciones: 1 aviso, 6 ok; la peor: «Tiempo desde cero» (117 min para 35 min de vídeo (3.33 veces) ≈ 11.7 h para un partido de 3,5 h ( |
 | 21 | Dos pasadas, barata y fina de ±1 s (10-10 17:27) | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 22 | Solo la cámara principal, sin repeticiones ni primeros planos (10-10 17:27) | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 23 | Seguir a la jugadora en los cambios de lado (10-10 17:27) | B4 | HECHO | 3 comprobado en salidas | 6 comprobaciones: 6 ok |
@@ -83,7 +83,7 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 | 26 | Fases y cadena completa, del salto inicial a la terminación (10-10 17:27; 11-10 08:22) | M1 | HECHO | 2 comprobación que falla | 8 comprobaciones: 5 aviso, 3 ok; la peor: «Fotograma clave: inicio de preparación» (encontrado en el 73% de los golpes) |
 | 27 | Agregados por partido y set, fatiga, ganadores y errores, presión (10-10 17:27) | M5 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 28 | Informe HTML con gráficos y esqueleto (10-10 17:27) | P2 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
-| 29 | Fase 0: entorno y fps reales, con YOLO (10-10 17:27; 11-10 08:49) | B1 | HECHO | 3 comprobado en salidas | 6 comprobaciones: 6 ok |
+| 29 | Fase 0: entorno y fps reales, con YOLO (10-10 17:27; 11-10 08:49) | B1 | HECHO | 2 comprobación que falla | 6 comprobaciones: 1 aviso, 5 ok; la peor: «Tiempo desde cero» (117 min para 35 min de vídeo (3.33 veces) ≈ 11.7 h para un partido de 3,5 h ( |
 | 30 | Estado del arte: igual, mejor o peor que otras apps (10-10 17:40; 11-10 09:05, 18:06) | B3 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 31 | Procesado incremental al añadir vídeos (10-10 18:05) | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 32 | Ampliable a otros golpes y jugadores (10-10 18:07) | B7 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
@@ -95,7 +95,7 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 | 38 | Dirección y profundidad del golpe (11-10 17:24) | M5 | HECHO | 2 comprobación que falla | 6 comprobaciones: 1 pocos datos, 5 ok; la peor: «5. Bola, resultado y contexto · Bote: profundidad, anchura, dentro/fuera» (se mide (46% de  |
 | 39 | Lado del fondo de la pista (11-10 17:32-17:33) | M5 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 40 | Scripts de instalación, uso rápido y completo, sin leer nada (11-10 18:06, 18:21) | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
-| 41 | Exportación: cómo se ven y se graban (11-10 18:06; 19:01 «haz el punto 4») | B5 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok |
+| 41 | Exportación: cómo se ven y se graban (11-10 18:06; 19:01 «haz el punto 4») | B5 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 7 comprobaciones: 2 falta, 5 ok; la peor: «Vídeos exportados: exportar_reves» ( |
 | 42 | Un golpe no son 8 pantallazos: vídeo y más (11-10 18:21) | P2 | HECHO | 3 comprobado en salidas | 11 comprobaciones: 11 ok |
 | 43 | El PC no es servidor (11-10 18:27) | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 44 | Sin vídeos del usuario, de entrenadores ni de otras jugadoras (11-10 19:37), salvo su entr | P1 | HECHO | 2 comprobación que falla | 11 comprobaciones: 1 aviso, 10 ok; la peor: «Tablas a la vista en «Conclusiones (Panel y Comparativas)»» (1 tablas (el usuario pidió informa |
@@ -125,7 +125,7 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 | 72 | El conocimiento del chat (modelo técnico, taxonomía, matriz) implementado en la web, no so | P1 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 170 comprobaciones: 16 pocos datos, 154 ok; la peor: «1. Fases · Golpe del riva |
 | 73 | Revisar la web de arriba abajo para que aporte valor (13-10 05:48 p6) | P2 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 23 comprobaciones: 1 aviso, 22 ok; la peor: «Tablas a la vista en «Conclusiones |
 | 74 | ¿El análisis de las apps de pago y libres fue profundo o superficial? (13-10 05:48 p7) | P4 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#74); no se comprueba en las salidas: análisis documental (docs/comparativa_apps.md), no una salida |
-| 75 | Velocidad: «10 golpes en 5 horas es absurdo» (13-10 05:48 p10) | B1 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 6 comprobaciones: 6 ok |
+| 75 | Velocidad: «10 golpes en 5 horas es absurdo» (13-10 05:48 p10) | B1 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 6 comprobaciones: 1 aviso, 5 ok; la peor: «Tiempo desde cero» (117 min para 35  |
 | 76 | «Un 50 % de golpes dudosos» (13-10 05:48 p10) | P3 | HECHO | 2 comprobación que falla | 1 comprobaciones: 1 aviso; la peor: «Golpes dudosos (duda sobre el golpe, no sobre una medida)» (198 de 324 del lado cercano (61%); motivos: |
 | 77 | No lanzar pruebas de 6 h para validar (13-10 06:01) | B1 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
 | 78 | No depender de que al usuario se le ocurran funciones (13-10 06:09) | P5 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#78); no se comprueba en las salidas: proceso: Claude propone las funciones desde la matriz y los entrenadores |
@@ -133,7 +133,7 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 | 80 | Encadenar solo la prueba y las comprobaciones; que Claude lo monitorice (12-10 22:43) | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 81 | Tamaño de la salida; comprobación sin gastar tokens (12-10 22:40) | B7 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
 | 82 | Dónde se graban las salidas, qué va a git, qué se reutiliza (12-10 22:47) | B7 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
-| 83 | Árbol de ficheros generados y validados (12-10 22:25) | B7 | HECHO | 3 comprobado en salidas | 11 comprobaciones: 11 ok |
+| 83 | Árbol de ficheros generados y validados (12-10 22:25) | B7 | HECHO | 2 comprobación que falla | 14 comprobaciones: 2 falta, 12 ok; la peor: «Vídeos exportados: exportar_reves» (8 de 365 vídeos mirados: 8 se reproducen con su duración, 3 |
 | 84 | Matriz §1 Cadena cinética (suelo → pelvis → separación → tronco → codo → muñeca) (12-10 21 | M1 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 10 comprobaciones: 10 ok |
 | 85 | Matriz §2 Cuerpo (cabeza, brazos, tronco, piernas, pie de arrastre) | M3 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 14 comprobaciones: 3 pocos datos, 11 ok; la peor: «6. Matriz del usuario · Rodi |
 | 86 | Matriz §3 Raqueta (bucle, caída, cara, trayectoria) | M4 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 13 comprobaciones: 2 pocos datos, 11 ok; la peor: «6. Matriz del usuario · Caíd |
@@ -175,7 +175,7 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 | 122 | Web en 2 vistas principales y el resto en «Más», en dos grupos (funcional y técnico), sin  | P2 | HECHO | 2 comprobación que falla | 10 comprobaciones: 1 aviso, 9 ok; la peor: «Tablas a la vista en «Conclusiones (Panel y Comparativas)»» (1 tablas (el usuario pidió informac |
 | 123 | Lo que se aprende en una sesión: plan de 3 prioridades en orden, foco externo por fase, de | P1 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 124 | Hacia dónde mira el tronco y las manos en la espera, medidas fiables (13-10 13:00) | M3 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok |
-| 125 | Velocidad, rendimiento y algoritmia antes del tramo largo nocturno (13-10 13:05) | B1 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 6 comprobaciones: 6 ok |
+| 125 | Velocidad, rendimiento y algoritmia antes del tramo largo nocturno (13-10 13:05) | B1 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 6 comprobaciones: 1 aviso, 5 ok; la peor: «Tiempo desde cero» (117 min para 35  |
 | 126 | Consignas con su número en «Cómo hacerlo tú» («baja unos 14 cm desde la espera, como ella» | P1 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 127 | Guía de primer uso, «empieza aquí» (13-10 14:00) | P2 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
 | 128 | Glosario de términos (13-10 14:00) | P2 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
@@ -185,7 +185,7 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 | 134 | prefiero una baseline completa a cerrar más golpes (Chat, 11-10 18:06) | B6 | HECHO | 2 comprobación que falla | 6 comprobaciones: 1 aviso, 5 ok; la peor: «Golpes encontrados frente al marcador: sin-fecha_f43dd2_rybakina» (marcador: 91-99 puntos jugados |
 | 135 | distancia al fondo, red (Chat, 11-10 19:23) | M5 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#135); sin comprobación automática asignada |
 | 136 | lo puedes añadir al contexto o fichero base? (Chat, 13-10 09:47) | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
-| 137 | hay algo que se pueda paralelizar ... threading (Chat, 13-10 18:31) | B1 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 14 comprobaciones: 14 ok |
+| 137 | hay algo que se pueda paralelizar ... threading (Chat, 13-10 18:31) | B1 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 14 comprobaciones: 1 aviso, 13 ok; la peor: «Tiempo desde cero» (117 min para 3 |
 | 138 | se puede hacer modelos hibridos de alguna manera? (Chat, 13-10 18:34) | B3 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
 | 139 | si se pierde calidad no tocamos nada (Chat, 14-10 20:08) | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 140 | de la jugadora de fondo se sacan imagenes para la captura de datos en vista frontal? (Chat | P5 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#140); sin comprobación automática asignada |
@@ -208,7 +208,7 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 | 157 | bola corta baja cerca de la red (Chat, 19-10 08:11) | M5 | HECHO | 2 comprobación que falla | 1 comprobaciones: 1 pocos datos; la peor: «Bola corta baja cerca de la red (#157)» (0 golpes de 324 (la clase «Bola corta cerca de la red» s |
 | 158 | bola corta alta cerca de la red (Chat, 19-10 08:11) | M5 | HECHO | 2 comprobación que falla | 1 comprobaciones: 1 pocos datos; la peor: «Bola corta alta cerca de la red (#158)» (0 golpes de 324 (la clase «Bola corta cerca de la red» s |
 | 159 | volea a media pista con el golpe de fondo derecha o reves (sin ser empuñadura de volea) (C | M6 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 pocos datos; la peor: «Volea a media pista con golpe de fon |
-| 160 | la app que hiciste completa como se arranca, se puede usar ahora? (Chat, 19-10 08:11) | B7 | HECHO | 2 comprobación que falla | 5 comprobaciones: 1 falta, 4 ok; la peor: «Aplicación: un partido nuevo de principio a fin» (terminó 2026-11-11T20:54:10 en 79.1 min; anális |
+| 160 | la app que hiciste completa como se arranca, se puede usar ahora? (Chat, 19-10 08:11) | B7 | HECHO | 2 comprobación que falla | 6 comprobaciones: 1 aviso, 5 ok; la peor: «Aplicación: lo que consume abierta» (sin medir (petición «medir app_recursos» del PC)) |
 | 161 | como se enlazan los partidos de una jugadora ... tienen que estar el analisis junto (Chat, | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 162 | Galerías ordenadas por calidad de captura, representatividad y resultado del punto (CLAUDE | P2 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#162); sin comprobación automática asignada |
 | 163 | Final del armado (máximo giro, raqueta más atrás) (Matriz (literatura), §1) | M1 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#163); sin comprobación automática asignada |
@@ -273,12 +273,12 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 | 222 | Un clic por partido para decir quién es ella (19-10 19:57) | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 223 | Revés y derecha cortados (20-10 06:33) | M6 | FALTA | 0 sin construir | SIN HACER según el registro (#223, docs/peticiones_usuario.md) |
 | 224 | Saques: plano, cortado o kick; primero o segundo (20-10 07:30) | M6 | FALTA | 0 sin construir | SIN HACER según el registro (#224, docs/peticiones_usuario.md) |
-| 225 | La aplicación no se cuelga ni ralentiza el PC (24-10 10:22-10:47) | B2 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok |
+| 225 | La aplicación no se cuelga ni ralentiza el PC (24-10 10:22-10:47) | B2 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 4 comprobaciones: 1 aviso, 3 ok; la peor: «Aplicación: lo que consume abierta»  |
 | 226 | Lista de partidos profesional: nombres normalizados, torneo, ronda, fecha, fotos; sin prue | B7 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 falta; la peor: «Lista de partidos: rival, torneo, ronda y  |
 | 227 | Pantalla completa en la aplicación (24-10 10:36) | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 229 | Renombrar el vídeo no rompe nada; el partido se identifica por su contenido (25-10 13:21-1 | B7 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
-| 230 | Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo (26-10 12 | B1 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 8 comprobaciones: 8 ok |
-| 231 | Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta (26-10 11: | B1 | HECHO | 3 comprobado en salidas | 12 comprobaciones: 12 ok |
+| 230 | Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo (26-10 12 | B1 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 8 comprobaciones: 1 aviso, 7 ok; la peor: «Tiempo desde cero» (117 min para 35  |
+| 231 | Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta (26-10 11: | B1 | HECHO | 2 comprobación que falla | 12 comprobaciones: 1 aviso, 11 ok; la peor: «Tiempo desde cero» (117 min para 35 min de vídeo (3.33 veces) ≈ 11.7 h para un partido de 3,5 h |
 | 232 | Ningún proceso que se pueda colgar sin probar; la exportación del revés se colgó (27-10 09 | B2 | HECHO | 3 comprobado en salidas | 7 comprobaciones: 7 ok |
 | 233 | Una referencia completa y medida antes de validar nada (26-10 11:09) | B6 | HECHO | 2 comprobación que falla | 6 comprobaciones: 1 aviso, 5 ok; la peor: «Golpes encontrados frente al marcador: sin-fecha_f43dd2_rybakina» (marcador: 91-99 puntos jugados |
 | 234 | Prueba de valor de la aplicación con los datos reales (27-10 07:21) | B6 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok |
@@ -289,7 +289,7 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 | 239 | No se descarta ninguna petición (27-10 11:42) | D | HECHO | 1 construido, sin comprobar | sin comprobación automática asignada |
 | 240 | Comparar la aplicación con las profesionales una vez estén los golpes (27-10 11:42) | P4 | FALTA | 0 sin construir | SIN HACER según el registro (#240, docs/peticiones_usuario.md) |
 | 241 | Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el códig | B7 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
-| 242 | Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femen | B7 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 5 comprobaciones: 1 falta, 4 ok; la peor: «Aplicación: un partido nuevo de prin |
+| 242 | Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femen | B7 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 6 comprobaciones: 1 aviso, 5 ok; la peor: «Aplicación: lo que consume abierta»  |
 | 243 | Todos los escenarios del producto los contempla Claude sin esperar a que se pidan (27-10 1 | P5 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#243); sin comprobación automática asignada |
 | 244 | Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-1 | M7 | FALTA | 0 sin construir | SIN HACER según el registro (#244, docs/peticiones_usuario.md) |
 | 245 | Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10) | M7 | FALTA | 0 sin construir | SIN HACER según el registro (#245, docs/peticiones_usuario.md) |

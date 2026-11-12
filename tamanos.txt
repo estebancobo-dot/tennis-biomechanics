@@ -1,4 +1,4 @@
-fecha: 2026-11-12T01:23:38
+fecha: 2026-11-12T01:30:12
      265.6 MB  \output\analisis
        4.2 MB  \output\auditoria
        5.7 MB  \output\benchmark
@@ -28,6 +28,7 @@ fecha: 2026-11-12T01:23:38
     1751.8 MB  \output\zheng-qinwen-elena-rybakina
     2236.1 MB  \output\_app_nuevo
     1373.8 MB  \output\_bench_fps
+     402.6 MB  \output\_bench_rtmw
     2025.7 MB  \output\_poc211_35
      486.5 MB  \output\_poc211_4
     1373.2 MB  \output\_poc67_35

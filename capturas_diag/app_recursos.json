@@ -1,0 +1,13 @@
+{
+ "fecha": "2026-11-12 01:26:37",
+ "nucleos": 16,
+ "espera_s": 25,
+ "error": "",
+ "muestras": 12,
+ "cpu_media_pct": 0.03,
+ "cpu_max_pct": 0.06,
+ "ram_media_mb": 1452,
+ "ram_max_mb": 1469,
+ "procesos": 8,
+ "segundos": 89
+}

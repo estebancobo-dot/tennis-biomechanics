@@ -1,30 +1,30 @@
 {
- "at": "2026-11-12 01:23:28",
- "firma": "028addda2fbb",
+ "at": "2026-11-12 01:30:09",
+ "firma": "5d526181ca50",
  "ejecutor": {
   "vivo": true,
   "pid": 7200,
-  "at": 1794443008.4503746
+  "at": 1794443408.7026017
  },
  "pausa": false,
  "en_curso": [
   {
-   "id": 61,
-   "kind": "flujo",
+   "id": 63,
+   "kind": "comando",
    "match": null,
    "player": null,
    "stroke": null,
-   "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
+   "reason": "script bench_fine_fps --match pegula --minutes 15 --tag rtmw --set fine_pass.refine=rtmw-x",
    "state": "en curso",
-   "message": "paso 5/6: Auditoria",
-   "created": "2026-11-12 01:20:26",
-   "started": "2026-11-12 01:20:28",
+   "message": "",
+   "created": "2026-11-12 01:21:02",
+   "started": "2026-11-12 01:26:38",
    "finished": null,
-   "args": "[\"informe\"]",
-   "source": "claude 217",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_61.log",
-   "paso": 4,
-   "pasos": 6
+   "args": "[\"script\", \"bench_fine_fps\", \"--match\", \"pegula\", \"--minutes\", \"15\", \"--tag\", \"rtmw\", \"--set\", \"fine_pass.refine=rtmw-x\"]",
+   "source": "claude 219",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_63.log",
+   "paso": 0,
+   "pasos": 0
   }
  ],
  "progreso": {
@@ -55,25 +55,9 @@
    "log": "",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 63,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script bench_fine_fps --match pegula --minutes 15 --tag rtmw --set fine_pass.refine=rtmw-x",
-   "state": "pendiente",
-   "message": "",
-   "created": "2026-11-12 01:21:02",
-   "started": null,
-   "finished": null,
-   "args": "[\"script\", \"bench_fine_fps\", \"--match\", \"pegula\", \"--minutes\", \"15\", \"--tag\", \"rtmw\", \"--set\", \"fine_pass.refine=rtmw-x\"]",
-   "source": "claude 219",
-   "log": "",
-   "paso": 0,
-   "pasos": 0
-  },
+  }
+ ],
+ "recientes": [
   {
    "id": 62,
    "kind": "comando",
@@ -81,19 +65,35 @@
    "player": null,
    "stroke": null,
    "reason": "script app_recursos",
-   "state": "pendiente",
+   "state": "hecho",
    "message": "",
    "created": "2026-11-12 01:20:44",
-   "started": null,
-   "finished": null,
+   "started": "2026-11-12 01:25:08",
+   "finished": "2026-11-12 01:26:37",
    "args": "[\"script\", \"app_recursos\"]",
    "source": "claude 218",
-   "log": "",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_62.log",
    "paso": 0,
    "pasos": 0
-  }
- ],
- "recientes": [
+  },
+  {
+   "id": 61,
+   "kind": "flujo",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
+   "state": "hecho",
+   "message": "6 pasos",
+   "created": "2026-11-12 01:20:26",
+   "started": "2026-11-12 01:20:28",
+   "finished": "2026-11-12 01:25:06",
+   "args": "[\"informe\"]",
+   "source": "claude 217",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_61.log",
+   "paso": 6,
+   "pasos": 6
+  },
   {
    "id": 60,
    "kind": "comando",
@@ -327,45 +327,44 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_48.log",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 47,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "calidad",
-   "state": "hecho",
-   "message": "",
-   "created": "2026-11-11 15:35:03",
-   "started": "2026-11-11 15:35:07",
-   "finished": "2026-11-11 15:35:08",
-   "args": "[\"calidad\"]",
-   "source": "claude 199",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_47.log",
-   "paso": 0,
-   "pasos": 0
-  },
-  {
-   "id": 46,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script diag_identity --match pegula --n 12",
-   "state": "hecho",
-   "message": "",
-   "created": "2026-11-11 15:26:45",
-   "started": "2026-11-11 15:30:49",
-   "finished": "2026-11-11 15:30:54",
-   "args": "[\"script\", \"diag_identity\", \"--match\", \"pegula\", \"--n\", \"12\"]",
-   "source": "claude 198",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_46.log",
-   "paso": 0,
-   "pasos": 0
   }
  ],
  "eventos": [
+  {
+   "id": 277,
+   "job": 63,
+   "at": "2026-11-12 01:26:38",
+   "kind": "empieza",
+   "text": "script bench_fine_fps --match pegula --minutes 15 --tag rtmw --set fine_pass.refine=rtmw-x"
+  },
+  {
+   "id": 276,
+   "job": 62,
+   "at": "2026-11-12 01:26:38",
+   "kind": "hecho",
+   "text": "código 0"
+  },
+  {
+   "id": 275,
+   "job": 62,
+   "at": "2026-11-12 01:25:08",
+   "kind": "empieza",
+   "text": "script app_recursos"
+  },
+  {
+   "id": 274,
+   "job": 61,
+   "at": "2026-11-12 01:25:08",
+   "kind": "hecho",
+   "text": "código 0"
+  },
+  {
+   "id": 273,
+   "job": 61,
+   "at": "2026-11-12 01:25:05",
+   "kind": "paso",
+   "text": "6/6 Modelo de calidad"
+  },
   {
    "id": 272,
    "job": 64,
@@ -540,41 +539,6 @@
    "at": "2026-11-11 23:51:01",
    "kind": "ejecutor",
    "text": "arranca el siguiente con el código nuevo (pid 10036)"
-  },
-  {
-   "id": 247,
-   "job": null,
-   "at": "2026-11-11 23:51:01",
-   "kind": "ejecutor",
-   "text": "termina"
-  },
-  {
-   "id": 246,
-   "job": null,
-   "at": "2026-11-11 23:51:01",
-   "kind": "ejecutor",
-   "text": "se reinicia con el código nuevo"
-  },
-  {
-   "id": 245,
-   "job": null,
-   "at": "2026-11-11 23:50:57",
-   "kind": "reiniciar",
-   "text": "ciclo"
-  },
-  {
-   "id": 244,
-   "job": null,
-   "at": "2026-11-11 23:50:11",
-   "kind": "ejecutor",
-   "text": "arranca (pid 12844)"
-  },
-  {
-   "id": 243,
-   "job": null,
-   "at": "2026-11-11 23:50:10",
-   "kind": "ejecutor",
-   "text": "arranca el siguiente con el código nuevo (pid 11172)"
   }
  ]
 }
