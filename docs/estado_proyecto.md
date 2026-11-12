@@ -33,6 +33,36 @@ dominio × calidad ISO 25010 × capa, con puntuación por casilla), después el 
 arte, huecos y lo que sobra; diseño, prototipo, aplicación nueva (#252). Medio plazo = M1-M7 (medidas); largo = P1-P6 (el móvil, el último).
 #253 hecha (11-11): la tabla «Notas históricas: dónde está cada pendiente», abajo; dos pendientes nuevos: #254 y #255.
 
+**Resumen de la noche (11-11 22:30 → 12-11 06:45), con lo comprobado en el PC**
+- **Revisión de la Base** (#260, `docs/revision_base_11-11.md`): 15 peticiones vuelven a PARCIAL; salen las tareas R1-R8.
+- **R1 cerrada:** de las 550 comprobaciones de la auditoría real, ninguna de las pruebas principales de B1-B8 queda sin un caso que la haga fallar. Antes había 6, una de ellas siempre «ok».
+- **R2:**
+  - Prueba principal nueva, «Tiempo desde cero».
+  - Mismo tramo que el 03-11: 49,4 min frente a 44-47,5 (≈ 4,9 h por partido). El vídeo de 60 fps de Pegula: 2,17 veces (≈ 7,6 h, bajo el límite de 8 h).
+  - La bola del detector reutilizada: pasada fina −14 %, 42 de 43 golpes iguales; **pendiente de la verdad de F3Set** (peticiones 223 y 224).
+- **R3 cerrada:** RTMW-x va un 3 % más lento en la pasada real, con los mismos golpes: se queda RTMPose-x. El primer A/B no lo probaba (fallo corregido). RF-DETR, no (2 golpes de 517). Candidatos de 2025-2026, apuntados.
+- **R4 hecha:** detector frente a F3Set, 90 %; tipo de golpe, 97,3 % (derecha/revés) y 100 % (saques).
+- **R5:** los vídeos exportados se reproducen (24 de 24). El esqueleto se buscaba en un momento sin pose; ahora mira 3 momentos. Se confirma en la próxima auditoría.
+- **R6 hecha:**
+  - Partido nuevo con la aplicación: **10b aceptada** (215: 78,7 min, identidad bien).
+  - Rival, torneo, ronda y fecha salen del nombre del vídeo, también en ruso. A Zheng su nombre no le da torneo, ronda ni fecha (#258).
+- **R7 hecha y vista en el PC:** el ejecutor arranca solo al siguiente con el código nuevo (1 s); las órdenes de la cola se atienden con código en espera.
+- **R8 medida:** la aplicación abierta usa 1,45 GB en 8 procesos (límite 800 MB): falla; la aplicación de P0 debe cumplirlo.
+- **Fallos encontrados y arreglados esta noche:**
+  - el A/B de la pose ignoraba su configuración;
+  - el registro no recibía los datos del catálogo;
+  - el partido nuevo se juzgaba con peticiones ajenas;
+  - «Tiempo desde cero» tomaba una ejecución vieja;
+  - con la cola ocupada el PC no veía las peticiones;
+  - una función nueva iba a cambiar la huella del detector (5-6 h de recálculo): evitado.
+- **En marcha en el PC:**
+  - 223, recuento de F3Set con el código de hoy, desde las 04:07; rehace la pose de los tramos, por eso tarda.
+  - Detrás, 224: el mismo con la bola reutilizada.
+- **Qué falta para la tarea 11 (análisis completo):**
+  - decidir la bola reutilizada con 223/224;
+  - una auditoría con R5 confirmado.
+  - Previsión: 1,1-20,8 h. Lo que queda abierto de B4 (saques de Osaka, 76 %) y de B6 (datos del 09-11) se recalcula en ella.
+
 **Paquete actual: B8 — tareas en orden**
 | # | Tarea | Dónde se ejecuta | Validación | Estado |
 |---|---|---|---|---|
