@@ -1,41 +1,41 @@
 {
- "at": "2026-11-12 12:19:17",
- "firma": "658709092ae4",
+ "at": "2026-11-12 12:30:10",
+ "firma": "02d05fbc3249",
  "ejecutor": {
   "vivo": true,
   "pid": 11456,
-  "at": 1794482357.803517
+  "at": 1794482998.2907367
  },
  "pausa": false,
  "en_curso": [
   {
-   "id": 88,
+   "id": 90,
    "kind": "comando",
    "match": null,
    "player": null,
    "stroke": null,
-   "reason": "run --match us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "reason": "script validate_recall --spotter --tag v14 --from v13r",
    "state": "en curso",
    "message": "",
-   "created": "2026-11-12 12:09:30",
-   "started": "2026-11-12 12:09:35",
+   "created": "2026-11-12 12:10:24",
+   "started": "2026-11-12 12:30:08",
    "finished": null,
-   "args": "[\"run\", \"--match\", \"us-open-2026-r4-naomi-osaka-elena-rybakina\"]",
-   "source": "claude 245",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_88.log",
+   "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"v14\", \"--from\", \"v13r\"]",
+   "source": "claude 247",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_90.log",
    "paso": 0,
    "pasos": 0
   }
  ],
  "progreso": {
-  "partido": "us-open-2026-r4-naomi-osaka-elena-rybakina",
-  "etapa": "fine",
-  "hecho": 69,
-  "total": 169,
-  "porcentaje": 40.8,
-  "segundos": 69,
-  "quedan_s": 100,
-  "hora": "2026-11-12 12:19:12"
+  "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
+  "etapa": "identity",
+  "hecho": 925,
+  "total": 1892,
+  "porcentaje": 48.9,
+  "segundos": 90,
+  "quedan_s": 95,
+  "hora": "2026-11-12 12:29:42"
  },
  "pendientes": [
   {
@@ -55,25 +55,9 @@
    "log": "",
    "paso": 0,
    "pasos": 6
-  },
-  {
-   "id": 90,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script validate_recall --spotter --tag v14 --from v13r",
-   "state": "pendiente",
-   "message": "",
-   "created": "2026-11-12 12:10:24",
-   "started": null,
-   "finished": null,
-   "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"v14\", \"--from\", \"v13r\"]",
-   "source": "claude 247",
-   "log": "",
-   "paso": 0,
-   "pasos": 0
-  },
+  }
+ ],
+ "recientes": [
   {
    "id": 89,
    "kind": "comando",
@@ -81,19 +65,35 @@
    "player": null,
    "stroke": null,
    "reason": "run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final",
-   "state": "pendiente",
-   "message": "",
+   "state": "cancelado",
+   "message": "cancelado",
    "created": "2026-11-12 12:09:46",
-   "started": null,
-   "finished": null,
+   "started": "2026-11-12 12:23:49",
+   "finished": "2026-11-12 12:30:08",
    "args": "[\"run\", \"--match\", \"elena-rybakina-jessica-pegula-miami-2026-quarter-final\"]",
    "source": "claude 246",
-   "log": "",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_89.log",
    "paso": 0,
    "pasos": 0
-  }
- ],
- "recientes": [
+  },
+  {
+   "id": 88,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "run --match us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "state": "hecho",
+   "message": "",
+   "created": "2026-11-12 12:09:30",
+   "started": "2026-11-12 12:09:35",
+   "finished": "2026-11-12 12:23:47",
+   "args": "[\"run\", \"--match\", \"us-open-2026-r4-naomi-osaka-elena-rybakina\"]",
+   "source": "claude 245",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_88.log",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 87,
    "kind": "comando",
@@ -327,45 +327,44 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_75.log",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 74,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script validate_recall --spotter --tag v13bola --from v13 --drop-ball-caches --set fine_pass.ball_from_spotting=true",
-   "state": "hecho",
-   "message": "",
-   "created": "2026-11-12 08:57:25",
-   "started": "2026-11-12 09:04:37",
-   "finished": "2026-11-12 09:27:52",
-   "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"v13bola\", \"--from\", \"v13\", \"--drop-ball-caches\", \"--set\", \"fine_pass.ball_from_spotting=true\"]",
-   "source": "claude 231",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_74.log",
-   "paso": 0,
-   "pasos": 0
-  },
-  {
-   "id": 73,
-   "kind": "flujo",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
-   "state": "hecho",
-   "message": "6 pasos",
-   "created": "2026-11-12 08:25:59",
-   "started": "2026-11-12 08:59:53",
-   "finished": "2026-11-12 09:04:35",
-   "args": "[\"informe\"]",
-   "source": "claude 230",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_73.log",
-   "paso": 6,
-   "pasos": 6
   }
  ],
  "eventos": [
+  {
+   "id": 470,
+   "job": 90,
+   "at": "2026-11-12 12:30:08",
+   "kind": "empieza",
+   "text": "script validate_recall --spotter --tag v14 --from v13r"
+  },
+  {
+   "id": 469,
+   "job": 89,
+   "at": "2026-11-12 12:30:08",
+   "kind": "cancelado",
+   "text": ""
+  },
+  {
+   "id": 468,
+   "job": 89,
+   "at": "2026-11-12 12:30:07",
+   "kind": "cancelar",
+   "text": "claude 249"
+  },
+  {
+   "id": 467,
+   "job": 89,
+   "at": "2026-11-12 12:23:49",
+   "kind": "empieza",
+   "text": "run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final"
+  },
+  {
+   "id": 466,
+   "job": 88,
+   "at": "2026-11-12 12:23:49",
+   "kind": "hecho",
+   "text": "código 0"
+  },
   {
    "id": 465,
    "job": 91,
@@ -540,41 +539,6 @@
    "at": "2026-11-12 11:40:23",
    "kind": "ejecutor",
    "text": "se reinicia con el código nuevo"
-  },
-  {
-   "id": 440,
-   "job": null,
-   "at": "2026-11-12 11:40:18",
-   "kind": "reiniciar",
-   "text": "ciclo"
-  },
-  {
-   "id": 439,
-   "job": 85,
-   "at": "2026-11-12 11:32:33",
-   "kind": "hecho",
-   "text": "código 0"
-  },
-  {
-   "id": 438,
-   "job": 85,
-   "at": "2026-11-12 11:32:31",
-   "kind": "empieza",
-   "text": "script ventanas_visibles"
-  },
-  {
-   "id": 437,
-   "job": 84,
-   "at": "2026-11-12 11:32:31",
-   "kind": "hecho",
-   "text": "código 0"
-  },
-  {
-   "id": 436,
-   "job": 84,
-   "at": "2026-11-12 11:32:29",
-   "kind": "paso",
-   "text": "6/6 Modelo de calidad"
   }
  ]
 }

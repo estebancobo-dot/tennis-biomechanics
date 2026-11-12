@@ -2494,3 +2494,22 @@
 2026-11-12 08:59:52   ventana w006011879_3600: pose hybrid en 216 de 216 fotogramas (0 s; modelo 0 s; pies en 133) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 180 px (court)
 2026-11-12 08:59:52   fine_doubtful: 100 % (47/47 golpes candidatos · 24 confirmados · 0 ventanas descartadas sin pose) · 72 s · quedan ≈ 0 s
 2026-11-12 08:59:52 [elena-rybakina-jessica-pegula-miami-2026-quarter-final] fine_doubtful terminada a las 08:59:52 en 1.3 min
+2026-11-12 12:23:50 [elena-rybakina-jessica-pegula-miami-2026-quarter-final] score… (2026-11-12 12:23:50, etapa 5 de 16)
+2026-11-12 12:23:51   [score] score:   0 % (1/522 muestras · 0 lecturas · 0 OCR) · 0 s · quedan ≈ 0 s
+2026-11-12 12:24:21   [score] score:  11 % (59/522 muestras · 53 lecturas · 43 OCR) · 30 s · quedan ≈ 4 min
+2026-11-12 12:24:51   [score] score:  24 % (127/522 muestras · 120 lecturas · 87 OCR) · 60 s · quedan ≈ 3 min
+2026-11-12 12:25:21   [score] score:  34 % (180/522 muestras · 167 lecturas · 134 OCR) · 2 min · quedan ≈ 3 min
+2026-11-12 12:25:51   [score] score:  47 % (244/522 muestras · 226 lecturas · 179 OCR) · 2 min · quedan ≈ 2 min
+2026-11-12 12:26:22   [score] score:  59 % (308/522 muestras · 289 lecturas · 226 OCR) · 3 min · quedan ≈ 2 min
+2026-11-12 12:26:52   [score] score:  72 % (377/522 muestras · 355 lecturas · 272 OCR) · 3 min · quedan ≈ 70 s
+2026-11-12 12:27:23   [score] score:  83 % (435/522 muestras · 413 lecturas · 318 OCR) · 4 min · quedan ≈ 42 s
+2026-11-12 12:27:53   [score] score:  95 % (497/522 muestras · 475 lecturas · 363 OCR) · 4 min · quedan ≈ 12 s
+2026-11-12 12:28:03   [score] score: 100 % (522/522 muestras · 499 lecturas · 378 OCR) · 4 min · quedan ≈ 0 s
+2026-11-12 12:28:04   [score] marcador: 522 muestras en juego, 379 OCR (500 lecturas)
+2026-11-12 12:28:04   [score] saque en el marcador: 500 de 500 lecturas (marker + alternancia; marca de color 460, sigue la alternancia en 92% de 460; aprendida no, sigue la alternancia en 54% de 493); por la alternancia de cada juego: 36 corregidas y 40 completadas (primer saque claro en el 92%)
+2026-11-12 12:28:04 [elena-rybakina-jessica-pegula-miami-2026-quarter-final] score terminada a las 12:28:04 en 4.2 min
+2026-11-12 12:28:04 [elena-rybakina-jessica-pegula-miami-2026-quarter-final] identity… (2026-11-12 12:28:04, etapa 7 de 16)
+2026-11-12 12:28:12   identity:   0 % (1/1892 fotogramas (ropa)) · 0 s · quedan ≈ 0 s
+2026-11-12 12:28:42   identity:  16 % (306/1892 fotogramas (ropa)) · 30 s · quedan ≈ 3 min
+2026-11-12 12:29:12   identity:  33 % (615/1892 fotogramas (ropa)) · 60 s · quedan ≈ 2 min
+2026-11-12 12:29:42   identity:  49 % (925/1892 fotogramas (ropa)) · 2 min · quedan ≈ 2 min
