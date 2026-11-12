@@ -1,6 +1,6 @@
 # Revisión automática: FALLOS
 
-384 cumplidos · 35 no cumplidos · 110 sin golpes suficientes · 113 avisos (antes: 383 cumplidos, 35 no cumplidos)
+386 cumplidos · 30 no cumplidos · 111 sin golpes suficientes · 115 avisos (antes: 384 cumplidos, 35 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 135 de 260
 
@@ -146,13 +146,9 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 ## No cumplidos
 
 - **Primera pantalla, anchura y nombres (diseño definitivo)**: vídeo de la lección en y=805–1159 de 900; al abrir 2 títulos, 609 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=1159 (más abajo que la primera pantalla, 900)
-- **Pruebas del código en este PC**: código ef822ad (2026-11-12T08:30:51): 1020 bien, 2 fallan, 0 errores; fallan: tests/test_stage_code.py::test_stage_code_changes_come_with_a_version, tests/test_views.py::test_existing_outputs_and_stages_unchanged
 - **Registros con fecha y duración**: 64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba_completo.log: sin «termina fecha» al final
 - **Lista de partidos: rival, torneo, ronda y fecha**: 6 partidos; sin torneo: 1 (zheng-qinwen-elena-rybakina); sin ronda: 1 (zheng-qinwen-elena-rybakina); sin fecha: 1 (zheng-qinwen-elena-rybakina)
 - **Aplicación: lo que consume abierta**: CPU media 0.03 % (máx 0.06 %; objetivo ≤ 5 %), memoria hasta 1469 MB (objetivo ≤ 800) en 8 procesos; 2026-11-12 01:26:37
-- **#13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe**: a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código ef822ad (2026-11-12T08:30:51): 1020 bien, 2 fallan, 0 errores; fallan: tests/test_stage_code.py::test_stage_code_)
-- **#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML**: 3 comprobaciones: 1 falta, 1 pocos datos, 1 ok; la peor: «Pruebas del código en este PC» (código ef822ad (2026-11-12T08:30:51): 1020 bien, 2 fallan, 0 errores; fallan: tests/test_stage_code.py::test_stage_code_)
-- **#51 El código de la prueba es el de los casos reales**: a medias según el registro (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código ef822ad (2026-11-12T08:30:51): 1020 bien, 2 fallan, 0 errores; fallan: tests/test_stage_code.py::test_stage_code_)
 - **#66 Fechas y duración en los registros**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba)
 - **#160 la app que hiciste completa como se arranca, se puede usar ahora? (Chat, 19-10 08:11)**: 6 comprobaciones: 1 falta, 5 ok; la peor: «Aplicación: lo que consume abierta» (CPU media 0.03 % (máx 0.06 %; objetivo ≤ 5 %), memoria hasta 1469 MB (objetivo ≤ 800) en 8 procesos; 2026-11-12 01:26:37)
 - **#176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3)**: SIN HACER según el registro (#176, docs/peticiones_usuario.md)
@@ -171,7 +167,6 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 - **#225 La aplicación no se cuelga ni ralentiza el PC**: a medias según el registro (ver docs/peticiones_usuario.md); 4 comprobaciones: 1 falta, 3 ok; la peor: «Aplicación: lo que consume abierta» (CPU media 0.03 % (máx 0.06 %; objetivo ≤ 5 %), memoria hasta 1469 MB (objetivo ≤ 800) en 8 procesos; 2026-11-12 01:26:37)
 - **#226 Lista de partidos profesional: nombres normalizados, torneo, ronda, fecha, fotos; sin pruebas (24-10, 25-10)**: a medias según el registro (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 falta; la peor: «Lista de partidos: rival, torneo, ronda y fecha» (6 partidos; sin torneo: 1 (zheng-qinwen-elena-rybakina); sin ronda: 1 (zheng-qinwen-elena-rybakina); sin fecha: 1 (zheng)
 - **#240 Comparar la aplicación con las profesionales una vez estén los golpes**: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
-- **#241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código ef822ad (2026-11-12T08:30:51): 1020 bien, 2 fallan, 0 errores; fallan: tests/test_stage_code.py::test_stage_code_)
 - **#242 Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femeninos, un análisis po**: a medias según el registro (ver docs/peticiones_usuario.md); 6 comprobaciones: 1 falta, 5 ok; la peor: «Aplicación: lo que consume abierta» (CPU media 0.03 % (máx 0.06 %; objetivo ≤ 5 %), memoria hasta 1469 MB (objetivo ≤ 800) en 8 procesos; 2026-11-12 01:26:37)
 - **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
@@ -183,4 +178,8 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 
 ## Mejora
 
-- Peticiones por GitHub Actions: espera hasta empezar: aviso → ok
+- Pruebas del código en este PC: falta → ok
+- #13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe: falta → aviso
+- #20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML: falta → pocos datos
+- #51 El código de la prueba es el de los casos reales: falta → aviso
+- #241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código: falta → ok

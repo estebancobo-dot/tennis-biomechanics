@@ -6,8 +6,8 @@
 |---|---|
 | 0 sin construir | 21 |
 | 1 construido, sin comprobar | 71 |
-| 2 comprobación que falla | 86 |
-| 3 comprobado en salidas | 74 |
+| 2 comprobación que falla | 85 |
+| 3 comprobado en salidas | 75 |
 | 4 validado con verdad | 0 |
 
 ## Por paquete del plan (en el orden de ejecución)
@@ -22,7 +22,7 @@
 | B4 Base · no perder golpes | 6 | 0 | 0 | 5 | 1 | 0 | Recall F3Set y RacketVision por lado y tipo, sin bajar la precisión | falla | no |
 | B5 Base · exportación | 1 | 0 | 0 | 1 | 0 | 0 | Vídeos por golpe en ≤ 20 min sin cuelgues | ok | no |
 | B6 Base · referencia definitiva de los 4 partidos | 4 | 0 | 0 | 4 | 0 | 0 | 4 partidos sin errores de etapa; auditoría generada | ok | no |
-| B7 Base · aplicación autónoma e infraestructura | 36 | 0 | 0 | 12 | 24 | 0 | Un partido nuevo de principio a fin sin el ciclo ni el chat; capturas de cada pantalla sin fallos | falla | no |
+| B7 Base · aplicación autónoma e infraestructura | 36 | 0 | 0 | 11 | 25 | 0 | Un partido nuevo de principio a fin sin el ciclo ni el chat; capturas de cada pantalla sin fallos | ok | no |
 | B8 Base · orquestador único (aplicación y chat con el mismo código y los mismos datos) | 8 | 0 | 6 | 2 | 0 | 0 | Fases A-F de docs/orquestador.md; un trabajo enviado desde el chat, pausado en la aplicación y reanudado desde el chat en el PC | falla | no |
 | P0 Producto · rediseño completo de la aplicación (comparativa profesional, UX, aprendizaje, gestión, gráficos) | 4 | 3 | 1 | 0 | 0 | 0 | Diseño desde la comparativa con las apps profesionales; capturas de cada pantalla comparadas con las de referencia, sin restos inútiles ni nada fijo en el código | sin medir | no |
 | M1 Medidas · fases, cadena cinética y ritmo | 12 | 0 | 7 | 4 | 1 | 0 | Cada medida: fiable en la auditoría (ruido < variación) y sin depender de la cámara | — | — |
@@ -48,7 +48,7 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 - **B4**: prueba principal: Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin: aviso, Cobertura del saque dicha en el informe: aviso; peticiones sin comprobar o que fallan: #23, #151, #155, #205, #218
 - **B5**: peticiones sin comprobar o que fallan: #41
 - **B6**: peticiones sin comprobar o que fallan: #1, #134, #233, #234
-- **B7**: prueba principal: Pruebas del código en este PC: falta; peticiones sin comprobar o que fallan: #18, #20, #21, #22, #37, #51, #66, #119, #160, #226, #241, #242
+- **B7**: peticiones sin comprobar o que fallan: #18, #20, #21, #22, #37, #51, #66, #119, #160, #226, #242
 - **B8**: prueba principal: Orquestador: espera hasta empezar cada trabajo: aviso; peticiones sin comprobar o que fallan: #246, #247, #248, #249, #250, #251, #259, #260
 - **P0**: prueba principal: Aplicación: rediseño : sin medir; peticiones sin comprobar o que fallan: #256, #257, #252, #258
 
@@ -67,14 +67,14 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 | 10 | Ver los cambios en la prueba rápida, sin 1 h (12-10 17:32, 17:40) | B1 | HECHO | 3 comprobado en salidas | 12 comprobaciones: 12 ok |
 | 11 | Validar solo que las salidas reales tienen todo lo pedido y todos los casos del modelo y l | P3 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 191 comprobaciones: 25 pocos datos, 166 ok; la peor: «1. Fases · Golpe del riva |
 | 12 | Validar cada medida con clips públicos anotados; el usuario no valida a mano (11-10 09:05, | P3 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok |
-| 13 | Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimient | B2 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (códi |
+| 13 | Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimient | B2 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok |
 | 14 | Rendimiento: un partido en horas, no días (12-10 13:09) | B1 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 pocos datos, 1 ok; la peor: «Tiempo desde cero» (ninguna ej |
 | 15 | Bajar y analizar vídeos de entrenadores de YouTube para aprender y encontrar huecos (12-10 | P1 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok |
 | 16 | Distinguir por contexto (derecha junto a la red o volea) y cubrir las medias voleas (10-10 | M6 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 5 comprobaciones: 3 pocos datos, 2 ok; la peor: «Volea a media pista con golpe  |
 | 17 | Una entrada que se entienda sola: «no entiendo nada ni cómo usarla» (12-10 16:22) | P2 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 10 comprobaciones: 1 pocos datos, 9 ok; la peor: «Tu ejemplo: derecha paralela, |
 | 18 | Herramienta Python cinemática 2D, 1 jugador y 1 golpe, parametrizable (10-10 17:27) | B7 | HECHO | 2 comprobación que falla | 1 comprobaciones: 1 pocos datos; la peor: «forehand: golpes analizados» (13 del lado cercano (con todo el detalle), 13 del lejano; con menos |
 | 19 | Vídeos y salidas fuera del repo, rutas por configuración (10-10 17:27) | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
-| 20 | Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML (10-10 17:27) | B7 | HECHO | 2 comprobación que falla | 3 comprobaciones: 1 falta, 1 pocos datos, 1 ok; la peor: «Pruebas del código en este PC» (código ef822ad (2026-11-12T08:30:51): 1020 bien, 2 |
+| 20 | Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML (10-10 17:27) | B7 | HECHO | 2 comprobación que falla | 3 comprobaciones: 1 pocos datos, 2 ok; la peor: «Tiempo desde cero» (ninguna ejecución desde cero de 20 min de vídeo o más (prueba app_nuevo |
 | 21 | Dos pasadas, barata y fina de ±1 s (10-10 17:27) | B7 | HECHO | 2 comprobación que falla | 1 comprobaciones: 1 pocos datos; la peor: «forehand: golpes analizados» (13 del lado cercano (con todo el detalle), 13 del lejano; con menos |
 | 22 | Solo la cámara principal, sin repeticiones ni primeros planos (10-10 17:27) | B7 | HECHO | 2 comprobación que falla | 1 comprobaciones: 1 pocos datos; la peor: «forehand: golpes analizados» (13 del lado cercano (con todo el detalle), 13 del lejano; con menos |
 | 23 | Seguir a la jugadora en los cambios de lado (10-10 17:27) | B4 | HECHO | 2 comprobación que falla | 2 comprobaciones: 1 aviso, 1 ok; la peor: «Identidad en los cambios de lado: smoke_tennis-yusipopen-final-sobolenko-rybakin» (66 de 67 plano |
@@ -105,7 +105,7 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 | 48 | Posición de la cabeza y altura del cuerpo al inicio y al final (11-10 19:48) | M3 | HECHO | 3 comprobado en salidas | 3 comprobaciones: 3 ok |
 | 49 | No perder contexto ni sesión; registros automáticos (12-10 11:39-11:45) | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 50 | Progreso y monitorización visibles (12-10 14:37, 14:43) | B7 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
-| 51 | El código de la prueba es el de los casos reales (12-10 14:37) | B7 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código ef8 |
+| 51 | El código de la prueba es el de los casos reales (12-10 14:37) | B7 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok |
 | 52 | Brave, no instalar Edge (12-10 16:48) | B7 | HECHO | 3 comprobado en salidas | 9 comprobaciones: 9 ok |
 | 53 | No pasar de 100 a 0: conservar lo anterior (12-10 17:21) | P2 | HECHO | 3 comprobado en salidas | 9 comprobaciones: 9 ok |
 | 54 | Qué hace ella cuando la rival golpea, la bola cruza la red, bota y llega arriba (12-10 17: | M3 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
@@ -288,7 +288,7 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 | 238 | La validación es siempre automática; el usuario no valida la aplicación (27-10 11:42) | P3 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#238); sin comprobación automática asignada |
 | 239 | No se descarta ninguna petición (27-10 11:42) | D | HECHO | 1 construido, sin comprobar | sin comprobación automática asignada |
 | 240 | Comparar la aplicación con las profesionales una vez estén los golpes (27-10 11:42) | P4 | FALTA | 0 sin construir | SIN HACER según el registro (#240, docs/peticiones_usuario.md) |
-| 241 | Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el códig | B7 | HECHO | 2 comprobación que falla | 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código ef822ad (2026-11-12T08:30:51): 1020 bien, 2 fallan, 0 erro |
+| 241 | Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el códig | B7 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
 | 242 | Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femen | B7 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 6 comprobaciones: 1 falta, 5 ok; la peor: «Aplicación: lo que consume abierta»  |
 | 243 | Todos los escenarios del producto los contempla Claude sin esperar a que se pidan (27-10 1 | P5 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#243); sin comprobación automática asignada |
 | 244 | Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-1 | M7 | FALTA | 0 sin construir | SIN HACER según el registro (#244, docs/peticiones_usuario.md) |
