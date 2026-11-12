@@ -1,13 +1,32 @@
 {
- "at": "2026-11-12 14:54:08",
- "firma": "9092cb4a1838",
+ "at": "2026-11-12 14:54:13",
+ "firma": "c3a637d2c1b5",
  "ejecutor": {
   "vivo": true,
   "pid": 5056,
-  "at": 1794491629.6318455
+  "at": 1794491653.6598063
  },
  "pausa": false,
- "en_curso": [],
+ "en_curso": [
+  {
+   "id": 97,
+   "kind": "flujo",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "flujo «prevision»: Que etapas se rehacen en cada partido y cuanto tardarian, sin ejecutar nada",
+   "state": "en curso",
+   "message": "",
+   "created": "2026-11-12 14:54:05",
+   "started": "2026-11-12 14:54:13",
+   "finished": null,
+   "args": "[\"prevision\"]",
+   "source": "claude 256",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_97.log",
+   "paso": 0,
+   "pasos": 2
+  }
+ ],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "fine_doubtful",
@@ -18,26 +37,7 @@
   "quedan_s": 0,
   "hora": "2026-11-12 13:25:39"
  },
- "pendientes": [
-  {
-   "id": 97,
-   "kind": "flujo",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "flujo «prevision»: Que etapas se rehacen en cada partido y cuanto tardarian, sin ejecutar nada",
-   "state": "pendiente",
-   "message": "",
-   "created": "2026-11-12 14:54:05",
-   "started": null,
-   "finished": null,
-   "args": "[\"prevision\"]",
-   "source": "claude 256",
-   "log": "",
-   "paso": 0,
-   "pasos": 2
-  }
- ],
+ "pendientes": [],
  "recientes": [
   {
    "id": 96,
@@ -312,6 +312,13 @@
  ],
  "eventos": [
   {
+   "id": 518,
+   "job": 97,
+   "at": "2026-11-12 14:54:13",
+   "kind": "empieza",
+   "text": "flujo «prevision»: Que etapas se rehacen en cada partido y cuanto tardarian, sin ejecutar nada"
+  },
+  {
    "id": 517,
    "job": 97,
    "at": "2026-11-12 14:54:05",
@@ -513,13 +520,6 @@
    "at": "2026-11-12 12:43:35",
    "kind": "ejecutor",
    "text": "arranca el siguiente con el código nuevo (pid 13792)"
-  },
-  {
-   "id": 488,
-   "job": null,
-   "at": "2026-11-12 12:43:35",
-   "kind": "ejecutor",
-   "text": "termina"
   }
  ]
 }
