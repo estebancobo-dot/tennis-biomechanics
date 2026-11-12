@@ -1,10 +1,10 @@
 {
- "at": "2026-11-12 15:37:39",
- "firma": "86aca3521d99",
+ "at": "2026-11-12 15:38:27",
+ "firma": "de2c6cf90262",
  "ejecutor": {
   "vivo": true,
   "pid": 14256,
-  "at": 1794494259.0081728
+  "at": 1794494307.1048045
  },
  "pausa": false,
  "en_curso": [
@@ -29,15 +29,33 @@
  ],
  "progreso": {
   "partido": "us-open-2026-r4-naomi-osaka-elena-rybakina",
-  "etapa": "players",
-  "hecho": 746,
-  "total": 10216,
-  "porcentaje": 7.3,
-  "segundos": 90,
-  "quedan_s": 1149,
-  "hora": "2026-11-12 15:37:15"
+  "etapa": "score",
+  "hecho": 11,
+  "total": 252,
+  "porcentaje": 4.4,
+  "segundos": 159,
+  "quedan_s": 3494,
+  "hora": "2026-11-12 15:38:22"
  },
  "pendientes": [
+  {
+   "id": 105,
+   "kind": "flujo",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-12 15:38:10",
+   "started": null,
+   "finished": null,
+   "args": "[\"informe\"]",
+   "source": "claude 264",
+   "log": "",
+   "paso": 0,
+   "pasos": 6
+  },
   {
    "id": 104,
    "kind": "comando",
@@ -349,6 +367,13 @@
  ],
  "eventos": [
   {
+   "id": 553,
+   "job": 105,
+   "at": "2026-11-12 15:38:10",
+   "kind": "enviado",
+   "text": "flujo informe (claude 264)"
+  },
+  {
    "id": 552,
    "job": 104,
    "at": "2026-11-12 15:37:06",
@@ -550,13 +575,6 @@
    "at": "2026-11-12 14:54:35",
    "kind": "hecho",
    "text": "código 0"
-  },
-  {
-   "id": 523,
-   "job": 98,
-   "at": "2026-11-12 14:54:29",
-   "kind": "empieza",
-   "text": "script diag_saques --match f43dd2 --max 14"
   }
  ]
 }
