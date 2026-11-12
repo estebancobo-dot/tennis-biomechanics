@@ -1,10 +1,10 @@
 {
- "at": "2026-11-12 09:00:08",
- "firma": "d5606830c5db",
+ "at": "2026-11-12 09:00:49",
+ "firma": "9159f579eb8d",
  "ejecutor": {
   "vivo": true,
   "pid": 5712,
-  "at": 1794470407.504158
+  "at": 1794470439.517286
  },
  "pausa": false,
  "en_curso": [
@@ -16,14 +16,14 @@
    "stroke": null,
    "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
    "state": "en curso",
-   "message": "paso 4/6: Informe del saque",
+   "message": "paso 5/6: Auditoria",
    "created": "2026-11-12 08:25:59",
    "started": "2026-11-12 08:59:53",
    "finished": null,
    "args": "[\"informe\"]",
    "source": "claude 230",
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_73.log",
-   "paso": 3,
+   "paso": 4,
    "pasos": 6
   }
  ],
@@ -331,6 +331,13 @@
  ],
  "eventos": [
   {
+   "id": 346,
+   "job": 73,
+   "at": "2026-11-12 09:00:10",
+   "kind": "paso",
+   "text": "5/6 Auditoria"
+  },
+  {
    "id": 345,
    "job": 73,
    "at": "2026-11-12 09:00:06",
@@ -532,13 +539,6 @@
    "at": "2026-11-12 08:10:01",
    "kind": "ejecutor",
    "text": "arranca el siguiente con el código nuevo (pid 12552)"
-  },
-  {
-   "id": 316,
-   "job": null,
-   "at": "2026-11-12 08:10:01",
-   "kind": "ejecutor",
-   "text": "termina"
   }
  ]
 }
