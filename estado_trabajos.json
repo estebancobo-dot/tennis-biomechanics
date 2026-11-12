@@ -1,32 +1,13 @@
 {
- "at": "2026-11-12 10:08:32",
- "firma": "559b741c109d",
+ "at": "2026-11-12 10:10:08",
+ "firma": "92c024e3efde",
  "ejecutor": {
   "vivo": true,
   "pid": 6856,
-  "at": 1794474512.4191823
+  "at": 1794474608.4538002
  },
  "pausa": false,
- "en_curso": [
-  {
-   "id": 79,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script diag_pose_contacto",
-   "state": "en curso",
-   "message": "",
-   "created": "2026-11-12 10:08:24",
-   "started": "2026-11-12 10:08:32",
-   "finished": null,
-   "args": "[\"script\", \"diag_pose_contacto\"]",
-   "source": "claude 236",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_79.log",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "en_curso": [],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "fine_doubtful",
@@ -39,6 +20,24 @@
  },
  "pendientes": [],
  "recientes": [
+  {
+   "id": 79,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script diag_pose_contacto",
+   "state": "hecho",
+   "message": "",
+   "created": "2026-11-12 10:08:24",
+   "started": "2026-11-12 10:08:32",
+   "finished": "2026-11-12 10:08:38",
+   "args": "[\"script\", \"diag_pose_contacto\"]",
+   "source": "claude 236",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_79.log",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 78,
    "kind": "comando",
@@ -290,27 +289,16 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_65.log",
    "paso": 2,
    "pasos": 2
-  },
-  {
-   "id": 64,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script bench_fine_fps --match pegula --minutes 15 --tag bola --set fine_pass.ball_from_spotting=true",
-   "state": "hecho",
-   "message": "",
-   "created": "2026-11-12 01:21:21",
-   "started": "2026-11-12 02:20:00",
-   "finished": "2026-11-12 03:09:54",
-   "args": "[\"script\", \"bench_fine_fps\", \"--match\", \"pegula\", \"--minutes\", \"15\", \"--tag\", \"bola\", \"--set\", \"fine_pass.ball_from_spotting=true\"]",
-   "source": "claude 220",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_64.log",
-   "paso": 0,
-   "pasos": 0
   }
  ],
  "eventos": [
+  {
+   "id": 395,
+   "job": 79,
+   "at": "2026-11-12 10:08:38",
+   "kind": "hecho",
+   "text": "código 0"
+  },
   {
    "id": 394,
    "job": 79,
@@ -513,13 +501,6 @@
    "at": "2026-11-12 09:41:54",
    "kind": "ejecutor",
    "text": "termina"
-  },
-  {
-   "id": 365,
-   "job": null,
-   "at": "2026-11-12 09:41:54",
-   "kind": "ejecutor",
-   "text": "se reinicia con el código nuevo"
   }
  ]
 }

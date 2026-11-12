@@ -1,0 +1,516 @@
+{
+ "smoke_tennis-yusipopen-final-sobolenko-rybakin": {
+  "near/backhand": {
+   "golpes": 8,
+   "sin_pose_en_el_contacto": 0,
+   "de_ellos_con_medidas": 0,
+   "ejemplos": []
+  },
+  "near/forehand": {
+   "golpes": 10,
+   "sin_pose_en_el_contacto": 0,
+   "de_ellos_con_medidas": 0,
+   "ejemplos": []
+  },
+  "far/backhand": {
+   "golpes": 4,
+   "sin_pose_en_el_contacto": 0,
+   "de_ellos_con_medidas": 0,
+   "ejemplos": []
+  },
+  "far/forehand": {
+   "golpes": 4,
+   "sin_pose_en_el_contacto": 0,
+   "de_ellos_con_medidas": 0,
+   "ejemplos": []
+  },
+  "near/overhead": {
+   "golpes": 1,
+   "sin_pose_en_el_contacto": 0,
+   "de_ellos_con_medidas": 0,
+   "ejemplos": []
+  }
+ },
+ "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5": {
+  "far/forehand": {
+   "golpes": 14,
+   "sin_pose_en_el_contacto": 0,
+   "de_ellos_con_medidas": 0,
+   "ejemplos": []
+  },
+  "near/backhand": {
+   "golpes": 19,
+   "sin_pose_en_el_contacto": 0,
+   "de_ellos_con_medidas": 0,
+   "ejemplos": []
+  },
+  "near/forehand": {
+   "golpes": 55,
+   "sin_pose_en_el_contacto": 0,
+   "de_ellos_con_medidas": 0,
+   "ejemplos": []
+  },
+  "near/overhead": {
+   "golpes": 25,
+   "sin_pose_en_el_contacto": 0,
+   "de_ellos_con_medidas": 0,
+   "ejemplos": []
+  },
+  "far/backhand": {
+   "golpes": 16,
+   "sin_pose_en_el_contacto": 0,
+   "de_ellos_con_medidas": 0,
+   "ejemplos": []
+  }
+ },
+ "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5": {
+  "near/backhand": {
+   "golpes": 17,
+   "sin_pose_en_el_contacto": 0,
+   "de_ellos_con_medidas": 0,
+   "ejemplos": []
+  },
+  "near/forehand": {
+   "golpes": 37,
+   "sin_pose_en_el_contacto": 0,
+   "de_ellos_con_medidas": 0,
+   "ejemplos": []
+  },
+  "far/forehand": {
+   "golpes": 7,
+   "sin_pose_en_el_contacto": 0,
+   "de_ellos_con_medidas": 0,
+   "ejemplos": []
+  },
+  "near/overhead": {
+   "golpes": 9,
+   "sin_pose_en_el_contacto": 0,
+   "de_ellos_con_medidas": 0,
+   "ejemplos": []
+  },
+  "far/backhand": {
+   "golpes": 7,
+   "sin_pose_en_el_contacto": 0,
+   "de_ellos_con_medidas": 0,
+   "ejemplos": []
+  }
+ },
+ "us-open-2026-r4-naomi-osaka-elena-rybakina": {
+  "near/forehand": {
+   "golpes": 1,
+   "sin_pose_en_el_contacto": 0,
+   "de_ellos_con_medidas": 0,
+   "ejemplos": []
+  },
+  "far/forehand": {
+   "golpes": 2,
+   "sin_pose_en_el_contacto": 0,
+   "de_ellos_con_medidas": 0,
+   "ejemplos": []
+  }
+ },
+ "zheng-qinwen-elena-rybakina": {
+  "far/forehand": {
+   "golpes": 7,
+   "sin_pose_en_el_contacto": 0,
+   "de_ellos_con_medidas": 0,
+   "ejemplos": []
+  },
+  "near/overhead": {
+   "golpes": 16,
+   "sin_pose_en_el_contacto": 0,
+   "de_ellos_con_medidas": 0,
+   "ejemplos": []
+  },
+  "near/forehand": {
+   "golpes": 44,
+   "sin_pose_en_el_contacto": 0,
+   "de_ellos_con_medidas": 0,
+   "ejemplos": []
+  },
+  "far/backhand": {
+   "golpes": 8,
+   "sin_pose_en_el_contacto": 0,
+   "de_ellos_con_medidas": 0,
+   "ejemplos": []
+  },
+  "near/backhand": {
+   "golpes": 11,
+   "sin_pose_en_el_contacto": 0,
+   "de_ellos_con_medidas": 0,
+   "ejemplos": []
+  }
+ },
+ "sin-fecha_49723c_rybakina": {
+  "far/overhead": {
+   "golpes": 46,
+   "sin_pose_en_el_contacto": 10,
+   "de_ellos_con_medidas": 8,
+   "ejemplos": [
+    "elena-rybakina-jessica-pegula-miami-2026-quarter-final-0021262",
+    "elena-rybakina-jessica-pegula-miami-2026-quarter-final-0213800",
+    "elena-rybakina-jessica-pegula-miami-2026-quarter-final-0279155"
+   ]
+  },
+  "far/forehand": {
+   "golpes": 60,
+   "sin_pose_en_el_contacto": 6,
+   "de_ellos_con_medidas": 5,
+   "ejemplos": [
+    "elena-rybakina-jessica-pegula-miami-2026-quarter-final-0101630",
+    "elena-rybakina-jessica-pegula-miami-2026-quarter-final-0214975",
+    "elena-rybakina-jessica-pegula-miami-2026-quarter-final-0216380"
+   ]
+  },
+  "far/backhand": {
+   "golpes": 35,
+   "sin_pose_en_el_contacto": 9,
+   "de_ellos_con_medidas": 8,
+   "ejemplos": [
+    "elena-rybakina-jessica-pegula-miami-2026-quarter-final-0021427",
+    "elena-rybakina-jessica-pegula-miami-2026-quarter-final-0035505",
+    "elena-rybakina-jessica-pegula-miami-2026-quarter-final-0101150"
+   ]
+  },
+  "near/forehand": {
+   "golpes": 62,
+   "sin_pose_en_el_contacto": 15,
+   "de_ellos_con_medidas": 0,
+   "ejemplos": [
+    "elena-rybakina-jessica-pegula-miami-2026-quarter-final-0057297",
+    "elena-rybakina-jessica-pegula-miami-2026-quarter-final-0152104",
+    "elena-rybakina-jessica-pegula-miami-2026-quarter-final-0167420"
+   ]
+  },
+  "near/backhand": {
+   "golpes": 63,
+   "sin_pose_en_el_contacto": 18,
+   "de_ellos_con_medidas": 0,
+   "ejemplos": [
+    "elena-rybakina-jessica-pegula-miami-2026-quarter-final-0056758",
+    "elena-rybakina-jessica-pegula-miami-2026-quarter-final-0057023",
+    "elena-rybakina-jessica-pegula-miami-2026-quarter-final-0073820"
+   ]
+  },
+  "near/overhead": {
+   "golpes": 50,
+   "sin_pose_en_el_contacto": 27,
+   "de_ellos_con_medidas": 0,
+   "ejemplos": [
+    "elena-rybakina-jessica-pegula-miami-2026-quarter-final-0066590",
+    "elena-rybakina-jessica-pegula-miami-2026-quarter-final-0073570",
+    "elena-rybakina-jessica-pegula-miami-2026-quarter-final-0076347"
+   ]
+  }
+ },
+ "sin-fecha_580c6f_rybakina": {
+  "near/overhead": {
+   "golpes": 37,
+   "sin_pose_en_el_contacto": 15,
+   "de_ellos_con_medidas": 0,
+   "ejemplos": [
+    "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5-0014088",
+    "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5-0015839",
+    "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5-0212591"
+   ]
+  },
+  "far/backhand": {
+   "golpes": 40,
+   "sin_pose_en_el_contacto": 13,
+   "de_ellos_con_medidas": 10,
+   "ejemplos": [
+    "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5-0090837",
+    "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5-0091085",
+    "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5-0266193"
+   ]
+  },
+  "far/forehand": {
+   "golpes": 46,
+   "sin_pose_en_el_contacto": 21,
+   "de_ellos_con_medidas": 16,
+   "ejemplos": [
+    "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5-0204319",
+    "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5-0269225",
+    "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5-0269521"
+   ]
+  },
+  "far/overhead": {
+   "golpes": 45,
+   "sin_pose_en_el_contacto": 19,
+   "de_ellos_con_medidas": 7,
+   "ejemplos": [
+    "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5-0164710",
+    "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5-0259075",
+    "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5-0265971"
+   ]
+  },
+  "near/forehand": {
+   "golpes": 64,
+   "sin_pose_en_el_contacto": 7,
+   "de_ellos_con_medidas": 0,
+   "ejemplos": [
+    "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5-0227629",
+    "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5-0227929",
+    "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5-0376419"
+   ]
+  },
+  "near/backhand": {
+   "golpes": 39,
+   "sin_pose_en_el_contacto": 7,
+   "de_ellos_con_medidas": 0,
+   "ejemplos": [
+    "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5-0244682",
+    "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5-0403792",
+    "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5-0642426"
+   ]
+  }
+ },
+ "sin-fecha_584c5b_rybakina": {
+  "near/backhand": {
+   "golpes": 47,
+   "sin_pose_en_el_contacto": 20,
+   "de_ellos_con_medidas": 0,
+   "ejemplos": [
+    "zheng-qinwen-elena-rybakina-0071917",
+    "zheng-qinwen-elena-rybakina-0089410",
+    "zheng-qinwen-elena-rybakina-0155142"
+   ]
+  },
+  "near/forehand": {
+   "golpes": 82,
+   "sin_pose_en_el_contacto": 23,
+   "de_ellos_con_medidas": 0,
+   "ejemplos": [
+    "zheng-qinwen-elena-rybakina-0071559",
+    "zheng-qinwen-elena-rybakina-0071659",
+    "zheng-qinwen-elena-rybakina-0071771"
+   ]
+  },
+  "far/forehand": {
+   "golpes": 50,
+   "sin_pose_en_el_contacto": 26,
+   "de_ellos_con_medidas": 25,
+   "ejemplos": [
+    "zheng-qinwen-elena-rybakina-0032239",
+    "zheng-qinwen-elena-rybakina-0043696",
+    "zheng-qinwen-elena-rybakina-0043964"
+   ]
+  },
+  "far/overhead": {
+   "golpes": 25,
+   "sin_pose_en_el_contacto": 17,
+   "de_ellos_con_medidas": 11,
+   "ejemplos": [
+    "zheng-qinwen-elena-rybakina-0114870",
+    "zheng-qinwen-elena-rybakina-0116026",
+    "zheng-qinwen-elena-rybakina-0141067"
+   ]
+  },
+  "far/backhand": {
+   "golpes": 31,
+   "sin_pose_en_el_contacto": 15,
+   "de_ellos_con_medidas": 11,
+   "ejemplos": [
+    "zheng-qinwen-elena-rybakina-0053657",
+    "zheng-qinwen-elena-rybakina-0054305",
+    "zheng-qinwen-elena-rybakina-0108199"
+   ]
+  },
+  "near/overhead": {
+   "golpes": 51,
+   "sin_pose_en_el_contacto": 33,
+   "de_ellos_con_medidas": 0,
+   "ejemplos": [
+    "zheng-qinwen-elena-rybakina-0071259",
+    "zheng-qinwen-elena-rybakina-0074260",
+    "zheng-qinwen-elena-rybakina-0077410"
+   ]
+  }
+ },
+ "sin-fecha_8b0278_sinner": {
+  "near/forehand": {
+   "golpes": 40,
+   "sin_pose_en_el_contacto": 4,
+   "de_ellos_con_medidas": 0,
+   "ejemplos": [
+    "zverev-alexander-sinner-jannik-indian-wells-2026-semi-final-0156519",
+    "zverev-alexander-sinner-jannik-indian-wells-2026-semi-final-0157233",
+    "zverev-alexander-sinner-jannik-indian-wells-2026-semi-final-0261011"
+   ]
+  },
+  "far/overhead": {
+   "golpes": 14,
+   "sin_pose_en_el_contacto": 3,
+   "de_ellos_con_medidas": 1,
+   "ejemplos": [
+    "zverev-alexander-sinner-jannik-indian-wells-2026-semi-final-0017820",
+    "zverev-alexander-sinner-jannik-indian-wells-2026-semi-final-0236295",
+    "zverev-alexander-sinner-jannik-indian-wells-2026-semi-final-0312020"
+   ]
+  },
+  "far/backhand": {
+   "golpes": 34,
+   "sin_pose_en_el_contacto": 6,
+   "de_ellos_con_medidas": 5,
+   "ejemplos": [
+    "zverev-alexander-sinner-jannik-indian-wells-2026-semi-final-0038695",
+    "zverev-alexander-sinner-jannik-indian-wells-2026-semi-final-0128903",
+    "zverev-alexander-sinner-jannik-indian-wells-2026-semi-final-0131959"
+   ]
+  },
+  "far/forehand": {
+   "golpes": 21,
+   "sin_pose_en_el_contacto": 8,
+   "de_ellos_con_medidas": 5,
+   "ejemplos": [
+    "zverev-alexander-sinner-jannik-indian-wells-2026-semi-final-0246123",
+    "zverev-alexander-sinner-jannik-indian-wells-2026-semi-final-0248006",
+    "zverev-alexander-sinner-jannik-indian-wells-2026-semi-final-0249452"
+   ]
+  },
+  "near/overhead": {
+   "golpes": 36,
+   "sin_pose_en_el_contacto": 5,
+   "de_ellos_con_medidas": 0,
+   "ejemplos": [
+    "zverev-alexander-sinner-jannik-indian-wells-2026-semi-final-0156279",
+    "zverev-alexander-sinner-jannik-indian-wells-2026-semi-final-0218750",
+    "zverev-alexander-sinner-jannik-indian-wells-2026-semi-final-0259197"
+   ]
+  },
+  "near/backhand": {
+   "golpes": 45,
+   "sin_pose_en_el_contacto": 7,
+   "de_ellos_con_medidas": 0,
+   "ejemplos": [
+    "zverev-alexander-sinner-jannik-indian-wells-2026-semi-final-0147047",
+    "zverev-alexander-sinner-jannik-indian-wells-2026-semi-final-0156752",
+    "zverev-alexander-sinner-jannik-indian-wells-2026-semi-final-0156993"
+   ]
+  }
+ },
+ "sin-fecha_b8b713_rybakina": {
+  "far/overhead": {
+   "golpes": 42,
+   "sin_pose_en_el_contacto": 14,
+   "de_ellos_con_medidas": 6,
+   "ejemplos": [
+    "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5-0277485",
+    "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5-0382750",
+    "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5-0472687"
+   ]
+  },
+  "near/forehand": {
+   "golpes": 67,
+   "sin_pose_en_el_contacto": 14,
+   "de_ellos_con_medidas": 0,
+   "ejemplos": [
+    "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5-0046747",
+    "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5-0105506",
+    "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5-0105738"
+   ]
+  },
+  "near/overhead": {
+   "golpes": 50,
+   "sin_pose_en_el_contacto": 28,
+   "de_ellos_con_medidas": 0,
+   "ejemplos": [
+    "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5-0105310",
+    "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5-0330071",
+    "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5-0333878"
+   ]
+  },
+  "near/backhand": {
+   "golpes": 43,
+   "sin_pose_en_el_contacto": 6,
+   "de_ellos_con_medidas": 0,
+   "ejemplos": [
+    "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5-0356877",
+    "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5-0630091",
+    "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5-0708482"
+   ]
+  },
+  "far/forehand": {
+   "golpes": 51,
+   "sin_pose_en_el_contacto": 12,
+   "de_ellos_con_medidas": 7,
+   "ejemplos": [
+    "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5-0392036",
+    "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5-0407935",
+    "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5-0687182"
+   ]
+  },
+  "far/backhand": {
+   "golpes": 42,
+   "sin_pose_en_el_contacto": 18,
+   "de_ellos_con_medidas": 13,
+   "ejemplos": [
+    "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5-0391828",
+    "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5-0530398",
+    "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5-0530644"
+   ]
+  }
+ },
+ "sin-fecha_f43dd2_rybakina": {
+  "far/forehand": {
+   "golpes": 30,
+   "sin_pose_en_el_contacto": 7,
+   "de_ellos_con_medidas": 3,
+   "ejemplos": [
+    "us-open-2026-r4-naomi-osaka-elena-rybakina-0107453",
+    "us-open-2026-r4-naomi-osaka-elena-rybakina-0108003",
+    "us-open-2026-r4-naomi-osaka-elena-rybakina-0180742"
+   ]
+  },
+  "far/backhand": {
+   "golpes": 29,
+   "sin_pose_en_el_contacto": 6,
+   "de_ellos_con_medidas": 4,
+   "ejemplos": [
+    "us-open-2026-r4-naomi-osaka-elena-rybakina-0097416",
+    "us-open-2026-r4-naomi-osaka-elena-rybakina-0120751",
+    "us-open-2026-r4-naomi-osaka-elena-rybakina-0121019"
+   ]
+  },
+  "far/overhead": {
+   "golpes": 20,
+   "sin_pose_en_el_contacto": 6,
+   "de_ellos_con_medidas": 2,
+   "ejemplos": [
+    "us-open-2026-r4-naomi-osaka-elena-rybakina-0060754",
+    "us-open-2026-r4-naomi-osaka-elena-rybakina-0107255",
+    "us-open-2026-r4-naomi-osaka-elena-rybakina-0120449"
+   ]
+  },
+  "near/forehand": {
+   "golpes": 49,
+   "sin_pose_en_el_contacto": 13,
+   "de_ellos_con_medidas": 0,
+   "ejemplos": [
+    "us-open-2026-r4-naomi-osaka-elena-rybakina-0065660",
+    "us-open-2026-r4-naomi-osaka-elena-rybakina-0081631",
+    "us-open-2026-r4-naomi-osaka-elena-rybakina-0087351"
+   ]
+  },
+  "near/backhand": {
+   "golpes": 12,
+   "sin_pose_en_el_contacto": 5,
+   "de_ellos_con_medidas": 0,
+   "ejemplos": [
+    "us-open-2026-r4-naomi-osaka-elena-rybakina-0081879",
+    "us-open-2026-r4-naomi-osaka-elena-rybakina-0082201",
+    "us-open-2026-r4-naomi-osaka-elena-rybakina-0141094"
+   ]
+  },
+  "near/overhead": {
+   "golpes": 32,
+   "sin_pose_en_el_contacto": 18,
+   "de_ellos_con_medidas": 0,
+   "ejemplos": [
+    "us-open-2026-r4-naomi-osaka-elena-rybakina-0078367",
+    "us-open-2026-r4-naomi-osaka-elena-rybakina-0081351",
+    "us-open-2026-r4-naomi-osaka-elena-rybakina-0084760"
+   ]
+  }
+ }
+}
