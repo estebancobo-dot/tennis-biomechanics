@@ -65,19 +65,19 @@
   "scheme": 2
  },
  "score": {
-  "fingerprint": "c908529372b0f489",
-  "version": "11",
-  "seconds": 213.8,
-  "finished": "2026-11-12 12:48:01",
+  "fingerprint": "f1051dbbb5a32cb8",
+  "version": "12",
+  "seconds": 547.7,
+  "finished": "2026-11-12 15:44:49",
   "summary": {
-   "readings": 158,
-   "pressure": 24,
-   "samples": 234,
-   "ocr_calls": 208,
-   "server_read": 158,
+   "readings": 185,
+   "pressure": 36,
+   "samples": 252,
+   "ocr_calls": 225,
+   "server_read": 185,
    "server_source": "marker + aprendido + alternancia"
   },
-  "out_hash": "af76c8fa57ac90ad7188",
+  "out_hash": "27317c04923938fb9b78",
   "scheme": 2,
   "rewrote": {}
  },

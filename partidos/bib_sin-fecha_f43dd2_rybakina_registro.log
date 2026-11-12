@@ -10774,3 +10774,42 @@
 2026-11-12 15:38:15   [players] players:  12 % (1253/10216 fotogramas con jugadoras) · 3 min · quedan ≈ 18 min
 2026-11-12 15:38:22   [score] score:   4 % (11/252 muestras · 1 lecturas · 12 OCR) · 3 min · quedan ≈ 58 min
 2026-11-12 15:38:45   [players] players:  15 % (1531/10216 fotogramas con jugadoras) · 3 min · quedan ≈ 17 min
+2026-11-12 15:38:53   [score] score:  13 % (32/252 muestras · 11 lecturas · 31 OCR) · 3 min · quedan ≈ 22 min
+2026-11-12 15:38:53   [score] ALARMA de tiempo: score: 5.96 s por unidad frente a 1.86 de presupuesto (la más lenta de 20 ejecuciones aquí), 3.2 veces; a este ritmo quedan 22 min
+2026-11-12 15:39:15   [players] players:  18 % (1858/10216 fotogramas con jugadoras) · 4 min · quedan ≈ 16 min
+2026-11-12 15:39:24   [score] score:  21 % (52/252 muestras · 20 lecturas · 47 OCR) · 4 min · quedan ≈ 14 min
+2026-11-12 15:39:45   [players] players:  21 % (2138/10216 fotogramas con jugadoras) · 4 min · quedan ≈ 15 min
+2026-11-12 15:39:55   [score] score:  31 % (77/252 muestras · 39 lecturas · 65 OCR) · 4 min · quedan ≈ 10 min
+2026-11-12 15:40:15   [players] players:  23 % (2357/10216 fotogramas con jugadoras) · 5 min · quedan ≈ 15 min
+2026-11-12 15:40:27   [score] score:  38 % (96/252 muestras · 48 lecturas · 81 OCR) · 5 min · quedan ≈ 8 min
+2026-11-12 15:40:45   [players] players:  25 % (2587/10216 fotogramas con jugadoras) · 5 min · quedan ≈ 15 min
+2026-11-12 15:40:58   [score] score:  46 % (116/252 muestras · 59 lecturas · 100 OCR) · 5 min · quedan ≈ 6 min
+2026-11-12 15:41:15   [players] players:  27 % (2792/10216 fotogramas con jugadoras) · 6 min · quedan ≈ 15 min
+2026-11-12 15:41:29   [score] score:  55 % (138/252 muestras · 80 lecturas · 120 OCR) · 6 min · quedan ≈ 5 min
+2026-11-12 15:41:45   [players] players:  30 % (3033/10216 fotogramas con jugadoras) · 6 min · quedan ≈ 14 min
+2026-11-12 15:41:59   [score] score:  63 % (159/252 muestras · 101 lecturas · 139 OCR) · 6 min · quedan ≈ 4 min
+2026-11-12 15:42:15   [players] players:  33 % (3358/10216 fotogramas con jugadoras) · 7 min · quedan ≈ 13 min
+2026-11-12 15:42:31   [score] score:  71 % (179/252 muestras · 118 lecturas · 156 OCR) · 7 min · quedan ≈ 3 min
+2026-11-12 15:42:45   [players] players:  36 % (3666/10216 fotogramas con jugadoras) · 7 min · quedan ≈ 13 min
+2026-11-12 15:43:01   [score] score:  78 % (196/252 muestras · 131 lecturas · 171 OCR) · 7 min · quedan ≈ 2 min
+2026-11-12 15:43:15   [players] players:  39 % (3991/10216 fotogramas con jugadoras) · 8 min · quedan ≈ 12 min
+2026-11-12 15:43:32   [score] score:  83 % (210/252 muestras · 145 lecturas · 185 OCR) · 8 min · quedan ≈ 2 min
+2026-11-12 15:43:45   [players] players:  42 % (4297/10216 fotogramas con jugadoras) · 8 min · quedan ≈ 11 min
+2026-11-12 15:44:03   [score] score:  90 % (228/252 muestras · 162 lecturas · 201 OCR) · 8 min · quedan ≈ 53 s
+2026-11-12 15:44:15   [players] players:  45 % (4619/10216 fotogramas con jugadoras) · 9 min · quedan ≈ 10 min
+2026-11-12 15:44:33   [score] score:  96 % (243/252 muestras · 176 lecturas · 215 OCR) · 9 min · quedan ≈ 20 s
+2026-11-12 15:44:45   [players] players:  48 % (4951/10216 fotogramas con jugadoras) · 9 min · quedan ≈ 10 min
+2026-11-12 15:44:47   [score] score: 100 % (252/252 muestras · 184 lecturas · 224 OCR) · 9 min · quedan ≈ 0 s
+2026-11-12 15:44:49   [score] marcador: 252 muestras en juego, 225 OCR (185 lecturas)
+2026-11-12 15:44:49   [score] saque en el marcador: 185 de 185 lecturas (marker + aprendido + alternancia; marca de color 66, sigue la alternancia en 98% de 66; aprendida sí, sigue la alternancia en 88% de 113); por la alternancia de cada juego: 54 corregidas y 56 completadas (primer saque claro en el 100% de 15 juegos)
+2026-11-12 15:44:49 [us-open-2026-r4-naomi-osaka-elena-rybakina] score terminada a las 15:44:49 en 9.1 min
+2026-11-12 15:45:16   [players] players:  53 % (5438/10216 fotogramas con jugadoras) · 10 min · quedan ≈ 8 min
+2026-11-12 15:45:46   [players] players:  58 % (5929/10216 fotogramas con jugadoras) · 10 min · quedan ≈ 7 min
+2026-11-12 15:46:16   [players] players:  63 % (6414/10216 fotogramas con jugadoras) · 11 min · quedan ≈ 6 min
+2026-11-12 15:46:46   [players] players:  68 % (6924/10216 fotogramas con jugadoras) · 11 min · quedan ≈ 5 min
+2026-11-12 15:47:16   [players] players:  72 % (7382/10216 fotogramas con jugadoras) · 12 min · quedan ≈ 4 min
+2026-11-12 15:47:46   [players] players:  77 % (7822/10216 fotogramas con jugadoras) · 12 min · quedan ≈ 4 min
+2026-11-12 15:48:16   [players] players:  81 % (8310/10216 fotogramas con jugadoras) · 13 min · quedan ≈ 3 min
+2026-11-12 15:48:46   [players] players:  86 % (8806/10216 fotogramas con jugadoras) · 13 min · quedan ≈ 2 min
+2026-11-12 15:49:16   [players] players:  91 % (9292/10216 fotogramas con jugadoras) · 14 min · quedan ≈ 81 s
+2026-11-12 15:49:46   [players] players:  95 % (9709/10216 fotogramas con jugadoras) · 14 min · quedan ≈ 44 s
