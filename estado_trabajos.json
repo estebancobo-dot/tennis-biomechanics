@@ -1,10 +1,10 @@
 {
- "at": "2026-11-12 12:09:35",
- "firma": "0a54ac2711a0",
+ "at": "2026-11-12 12:09:53",
+ "firma": "1d99f0103c04",
  "ejecutor": {
   "vivo": true,
   "pid": 11456,
-  "at": 1794481765.2373695
+  "at": 1794481781.2646058
  },
  "pausa": false,
  "en_curso": [
@@ -29,15 +29,34 @@
  ],
  "progreso": {
   "partido": "us-open-2026-r4-naomi-osaka-elena-rybakina",
-  "etapa": "fine_doubtful",
-  "hecho": 14,
-  "total": 14,
-  "porcentaje": 100.0,
-  "segundos": 24,
+  "etapa": "score",
+  "hecho": 1,
+  "total": 234,
+  "porcentaje": 0.4,
+  "segundos": 0,
   "quedan_s": 0,
-  "hora": "2026-11-12 11:03:05"
+  "hora": "2026-11-12 12:09:36"
  },
- "pendientes": [],
+ "pendientes": [
+  {
+   "id": 89,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-12 12:09:46",
+   "started": null,
+   "finished": null,
+   "args": "[\"run\", \"--match\", \"elena-rybakina-jessica-pegula-miami-2026-quarter-final\"]",
+   "source": "claude 246",
+   "log": "",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "recientes": [
   {
    "id": 87,
@@ -312,6 +331,13 @@
  ],
  "eventos": [
   {
+   "id": 463,
+   "job": 89,
+   "at": "2026-11-12 12:09:46",
+   "kind": "enviado",
+   "text": "tennisbio run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final (claude 246)"
+  },
+  {
    "id": 462,
    "job": 88,
    "at": "2026-11-12 12:09:35",
@@ -513,13 +539,6 @@
    "at": "2026-11-12 11:27:51",
    "kind": "paso",
    "text": "4/6 Informe del saque"
-  },
-  {
-   "id": 433,
-   "job": 84,
-   "at": "2026-11-12 11:27:46",
-   "kind": "paso",
-   "text": "3/6 Informe del reves"
   }
  ]
 }

@@ -18,3 +18,20 @@ SerializationVersion: 1.1.0.1
 **********************
 PS>TerminatingError(Remove-Item): "An object at the specified path C:\tenis\registros\entrenamiento\P4kwF30432U_00_06.jpg does not exist."
 No se pudo enviar el registro a Claude: An object at the specified path C:\tenis\registros\entrenamiento\P4kwF30432U_00_06.jpg does not exist.
+Add-Content : The process cannot access the file 'C:\tenis\registros\tamanos.txt' because it is being used by another 
+process.
+At C:\tenis\tennis-biomech\scripts\windows\comun.ps1:229 char:80
++ ...   {1}" -f $mb, $c.FullName.Substring($Base.Length) | Add-Content $tam
++                                                          ~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (C:\tenis\registros\tamanos.txt:String) [Add-Content], IOException
+    + FullyQualifiedErrorId : GetContentWriterIOError,Microsoft.PowerShell.Commands.AddContentCommand
+Add-Content : The process cannot access the file 'C:\tenis\registros\tamanos.txt' because it is being used by another
+process.
+At C:\tenis\tennis-biomech\scripts\windows\comun.ps1:229 char:80
++ ...   {1}" -f $mb, $c.FullName.Substring($Base.Length) | Add-Content $tam
++                                                          ~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (C:\tenis\registros\tamanos.txt:String) [Add-Content], IOException
+    + FullyQualifiedErrorId : GetContentWriterIOError,Microsoft.PowerShell.Commands.AddContentCommand
+
+Registro enviado a Claude (no hace falta copiar nada).
+
