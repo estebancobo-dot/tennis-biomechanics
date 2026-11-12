@@ -170,6 +170,61 @@ def _anchor(boxes, hits, a: int, b: int, search=5):
     return None
 
 
+REFIND_TOL_S = 0.3          # 12-12 (R10): her track must hold a box this close to a target impact
+CLOSEUP_FRAC = 0.6          # a person taller than this share of the frame is a close-up, not a player of the main camera
+
+
+def near_person(bx: np.ndarray, frame_h: int) -> np.ndarray | None:
+    """The near player among the boxes of one frame: the lowest of those at least half as tall as the tallest, after
+    dropping close-ups (taller than CLOSEUP_FRAC of the frame); None without one."""
+    b = np.asarray(bx, float)
+    if not len(b):
+        return None
+    h = b[:, 3] - b[:, 1]
+    ok = h < CLOSEUP_FRAC * frame_h
+    if not ok.any():
+        return None
+    b, h = b[ok], h[ok]
+    cand = np.flatnonzero(h >= 0.5 * h.max())
+    return b[cand[np.argmax(b[cand, 3])]]
+
+
+def refind_at_targets(sel: np.ndarray, boxes, feats, targets, fps: float, frame_h: int, T: int) -> int:
+    """12-12 (R10 of the review of the Base): her track empty around a target impact while the pose saw the near player
+    there (the window started on another camera shot, a close-up of 950 px, and the track never came back to her when
+    the main camera returned: 15-41 % of her near strokes had no pose at the contact). From the frame nearest the
+    impact with a near player, she is followed both ways, and only the gap of her track around it is filled; what was
+    tracked is never changed. Returns how many targets were refound (sel is changed in place)."""
+    tol = max(1, int(round(REFIND_TOL_S * fps)))
+    n = 0
+    for tt in targets:
+        f0 = int(round(float(tt) * fps))
+        lo, hi = max(0, f0 - tol), min(T, f0 + tol + 1)
+        if lo >= hi or (sel[lo:hi] >= 0).any():
+            continue
+        fpick, init = None, None
+        for f in sorted(range(lo, hi), key=lambda f: abs(f - f0)):
+            p = near_person(boxes[f], frame_h) if boxes[f] is not None else None
+            if p is not None:
+                fpick, init = f, p
+                break
+        if fpick is None:
+            continue
+        mb = float(0.5 * init[3])
+        fwd = track_target(list(boxes[fpick:T]), list(feats[fpick:T]), init, min_bottom=mb)
+        bwd = track_target(list(boxes[:fpick + 1][::-1]), list(feats[:fpick + 1][::-1]), init, min_bottom=mb)[::-1]
+        new = np.concatenate([np.asarray(bwd)[:-1], np.asarray(fwd)])
+        a = fpick
+        while a > 0 and sel[a - 1] < 0:
+            a -= 1
+        b = fpick
+        while b < T and sel[b] < 0:
+            b += 1
+        sel[a:b] = new[a:b]
+        n += 1
+    return n
+
+
 def keep_runs(keep) -> list[tuple[int, int]]:
     """[a, b) stretches of True in a bool mask."""
     k = np.r_[0, np.asarray(keep, bool).astype(int), 0]
@@ -311,7 +366,11 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
             if f > a:
                 sel[a:f] = track_target(list(boxes[a:f + 1][::-1]), list(feats[a:f + 1][::-1]), init,
                                         min_bottom=min_bottom, max_bottom=max_bottom)[::-1][:-1]
-    stats = {**pstats, "frames_model": int(pstats.get("frames", 0)), "posed_frames": int(np.sum(keep[:T])) if keep is not None else T, "frames": T}
+    refound = 0
+    if found and side == "near" and init_box is None and targets:
+        refound = refind_at_targets(sel, boxes, feats, targets, fps, fh, T)
+    stats = {**pstats, "frames_model": int(pstats.get("frames", 0)), "posed_frames": int(np.sum(keep[:T])) if keep is not None else T, "frames": T,
+             "refound_at_contact": refound}
     if not found:                       # nobody to follow: a run without strokes, not an error
         log("nadie en la ventana: sin golpes")
         fk, fc = tracked_feet(d, sel)
