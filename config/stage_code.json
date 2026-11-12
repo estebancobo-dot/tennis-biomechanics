@@ -114,8 +114,8 @@
   ]
  },
  "score": {
-  "version": "10",
-  "hash": "e6611c8c1340da09",
+  "version": "11",
+  "hash": "24c64d67c818b024",
   "modules": [
    "io.video",
    "pipeline",

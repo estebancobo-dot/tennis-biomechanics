@@ -200,3 +200,15 @@ def test_learn_server_says_what_the_alternation_corrected():
     rows, servers, truth, _ = _osaka_like(1)
     out, summ = learn_server([dict(r, server=s) for r, s in zip(rows, servers)], [None] * len(rows))
     assert out == truth and summ["alternation"]["changed"] == 16 and summ["source"].endswith("+ alternancia")
+
+
+def test_alternation_votes_by_games_and_the_colour_marker_wins_inside_a_game():
+    """A game whose readings were mostly filled by the learned marker (wrong) but with one colour reading (right) votes
+    with the colour one; voting by readings, games read many times weighed more than the rest (Osaka: 61 %)."""
+    from tennisbio.scoreboard import by_alternation
+    rows, servers, truth, par = _osaka_like(0, wrong_games=(1, 3, 5, 7, 9, 11, 13, 15))   # 8 of the opponent's 9 wrong
+    marker = [t if i % 4 == 0 else None for i, t in enumerate(truth)]                      # one colour reading a game
+    out, summ = by_alternation(rows, servers, par)
+    assert summ["first_server"] is None and out == servers        # without the colour readings: 10 of 18, not clear
+    out, summ = by_alternation(rows, servers, par, marker=marker)
+    assert out == truth and summ["share"] == 1.0 and summ["games"] == 18

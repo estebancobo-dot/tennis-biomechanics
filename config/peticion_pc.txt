@@ -1103,3 +1103,16 @@ id: 248
 accion: trabajo
 comando: flujo informe
 # 248 (12-11, R11): auditoria: saques por punto de su saque en Osaka >= 85 %, identidad de Pegula, ventana vacia (261)
+---
+id: 249
+accion: control
+orden: cancelar
+trabajo: 89
+# 249 (12-11, R11): se cancela Pegula con el marcador v10 (246): el voto del primer saque pasa a ser por juegos (v11);
+# se valida despues con v11
+---
+id: 250
+accion: control
+orden: cancelar
+trabajo: 90
+# 250 (12-11, R11): se cancela F3Set con v10 (247), por lo mismo; la auditoria 248 de Osaka sigue
