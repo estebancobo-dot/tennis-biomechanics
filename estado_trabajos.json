@@ -1,13 +1,32 @@
 {
- "at": "2026-11-12 07:50:53",
- "firma": "2c36a9ebbb64",
+ "at": "2026-11-12 07:50:59",
+ "firma": "73c151aed1a3",
  "ejecutor": {
   "vivo": true,
   "pid": 12532,
-  "at": 1794466239.4913757
+  "at": 1794466259.4945927
  },
  "pausa": false,
- "en_curso": [],
+ "en_curso": [
+  {
+   "id": 69,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script diag_identidad_f3set --match azarenka",
+   "state": "en curso",
+   "message": "",
+   "created": "2026-11-12 07:50:50",
+   "started": "2026-11-12 07:50:59",
+   "finished": null,
+   "args": "[\"script\", \"diag_identidad_f3set\", \"--match\", \"azarenka\"]",
+   "source": "claude 225",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_69.log",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "fine_doubtful",
@@ -18,26 +37,7 @@
   "quedan_s": 0,
   "hora": "2026-11-11 17:02:19"
  },
- "pendientes": [
-  {
-   "id": 69,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script diag_identidad_f3set --match azarenka",
-   "state": "pendiente",
-   "message": "",
-   "created": "2026-11-12 07:50:50",
-   "started": null,
-   "finished": null,
-   "args": "[\"script\", \"diag_identidad_f3set\", \"--match\", \"azarenka\"]",
-   "source": "claude 225",
-   "log": "",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "pendientes": [],
  "recientes": [
   {
    "id": 68,
@@ -312,6 +312,13 @@
  ],
  "eventos": [
   {
+   "id": 312,
+   "job": 69,
+   "at": "2026-11-12 07:50:59",
+   "kind": "empieza",
+   "text": "script diag_identidad_f3set --match azarenka"
+  },
+  {
    "id": 311,
    "job": 69,
    "at": "2026-11-12 07:50:50",
@@ -513,13 +520,6 @@
    "at": "2026-11-12 03:10:26",
    "kind": "ejecutor",
    "text": "termina"
-  },
-  {
-   "id": 282,
-   "job": null,
-   "at": "2026-11-12 03:10:26",
-   "kind": "ejecutor",
-   "text": "se reinicia con el código nuevo"
   }
  ]
 }
