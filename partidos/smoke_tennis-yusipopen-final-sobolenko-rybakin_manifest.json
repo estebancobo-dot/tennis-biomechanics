@@ -72,10 +72,10 @@
   "scheme": 2
  },
  "identity": {
-  "fingerprint": "8c50730570411080",
-  "version": "12",
-  "seconds": 54.4,
-  "finished": "2026-11-11 14:44:01",
+  "fingerprint": "574f3d3edeabf68e",
+  "version": "13",
+  "seconds": 65.9,
+  "finished": "2026-11-12 08:25:50",
   "summary": {
    "runs": 67,
    "confidence": 0.86,
@@ -108,11 +108,13 @@
      "why": "dos personas (ropa distinta y de acuerdo con los cambios de lado)",
      "parity_runs": 66,
      "parity_agree": 0.86,
-     "centroid_dist": 0.869
+     "centroid_dist": 0.869,
+     "vote_runs": 41,
+     "vote_agree": 1.0
     }
    }
   },
-  "out_hash": "24dd18b509d04b9945f7",
+  "out_hash": "7ce7c6395a5a195bfa31",
   "scheme": 2,
   "rewrote": {}
  },

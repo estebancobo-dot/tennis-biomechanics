@@ -19,7 +19,9 @@
    "why": "dos personas (ropa distinta y de acuerdo con los cambios de lado)",
    "parity_runs": 66,
    "parity_agree": 0.86,
-   "centroid_dist": 0.869
+   "centroid_dist": 0.869,
+   "vote_runs": 41,
+   "vote_agree": 1.0
   }
  },
  "click_by": "clothes",
