@@ -1,13 +1,32 @@
 {
- "at": "2026-11-12 10:27:40",
- "firma": "92c024e3efde",
+ "at": "2026-11-12 10:28:01",
+ "firma": "740bd7a4b738",
  "ejecutor": {
   "vivo": true,
   "pid": 10328,
-  "at": 1794475660.5168724
+  "at": 1794475680.5214894
  },
  "pausa": false,
- "en_curso": [],
+ "en_curso": [
+  {
+   "id": 80,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script diag_sin_pose --match b8b713 --n 4",
+   "state": "en curso",
+   "message": "",
+   "created": "2026-11-12 10:27:58",
+   "started": "2026-11-12 10:28:00",
+   "finished": null,
+   "args": "[\"script\", \"diag_sin_pose\", \"--match\", \"b8b713\", \"--n\", \"4\"]",
+   "source": "claude 237",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_80.log",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "fine_doubtful",
@@ -293,6 +312,20 @@
  ],
  "eventos": [
   {
+   "id": 407,
+   "job": 80,
+   "at": "2026-11-12 10:28:00",
+   "kind": "empieza",
+   "text": "script diag_sin_pose --match b8b713 --n 4"
+  },
+  {
+   "id": 406,
+   "job": 80,
+   "at": "2026-11-12 10:27:58",
+   "kind": "enviado",
+   "text": "tennisbio script diag_sin_pose --match b8b713 --n 4 (claude 237)"
+  },
+  {
    "id": 405,
    "job": null,
    "at": "2026-11-12 10:24:00",
@@ -487,20 +520,6 @@
    "at": "2026-11-12 09:50:42",
    "kind": "empieza",
    "text": "script diag_serie_ventana 0312430 0925800 0966569 0048549"
-  },
-  {
-   "id": 377,
-   "job": 77,
-   "at": "2026-11-12 09:50:41",
-   "kind": "enviado",
-   "text": "tennisbio script diag_serie_ventana 0312430 0925800 0966569 0048549 (claude 234)"
-  },
-  {
-   "id": 376,
-   "job": null,
-   "at": "2026-11-12 09:50:22",
-   "kind": "ejecutor",
-   "text": "arranca (pid 11488)"
   }
  ]
 }
