@@ -1,0 +1,584 @@
+{
+ "exportar_derecha": [
+  {
+   "video": "elena-rybakina-jessica-pegula-miami-2026-quarter-final-0048549.mp4",
+   "duracion_s": 8.5,
+   "pixeles_esqueleto": [
+    [
+     21704,
+     1716
+    ],
+    [
+     34534,
+     1351
+    ],
+    [
+     15766,
+     1764
+    ]
+   ],
+   "lado": "near",
+   "golpe": "forehand",
+   "fotogramas_serie": 196,
+   "con_pose": 196,
+   "con_pose_cerca_del_impacto": 37,
+   "encontrado": true
+  },
+  {
+   "video": "elena-rybakina-jessica-pegula-miami-2026-quarter-final-0543275.mp4",
+   "duracion_s": 8.5,
+   "pixeles_esqueleto": [
+    [
+     1539,
+     1530
+    ],
+    [
+     1788,
+     1769
+    ],
+    [
+     1498,
+     1682
+    ]
+   ],
+   "lado": null,
+   "golpe": null,
+   "fotogramas_serie": null,
+   "con_pose": null,
+   "con_pose_cerca_del_impacto": null,
+   "encontrado": false
+  },
+  {
+   "video": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5-0649454.mp4",
+   "duracion_s": 8.5,
+   "pixeles_esqueleto": [
+    [
+     1550,
+     1634
+    ],
+    [
+     1553,
+     1548
+    ],
+    [
+     1745,
+     1604
+    ]
+   ],
+   "lado": "near",
+   "golpe": "forehand",
+   "fotogramas_serie": 153,
+   "con_pose": 153,
+   "con_pose_cerca_del_impacto": 31,
+   "encontrado": true
+  },
+  {
+   "video": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5-0193855.mp4",
+   "duracion_s": 8.5,
+   "pixeles_esqueleto": [
+    [
+     1143,
+     1407
+    ],
+    [
+     1518,
+     1672
+    ],
+    [
+     1404,
+     1605
+    ]
+   ],
+   "lado": "far",
+   "golpe": "forehand",
+   "fotogramas_serie": 163,
+   "con_pose": 163,
+   "con_pose_cerca_del_impacto": 31,
+   "encontrado": true
+  },
+  {
+   "video": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5-0673112.mp4",
+   "duracion_s": 8.5,
+   "pixeles_esqueleto": [
+    [
+     1628,
+     1574
+    ],
+    [
+     1435,
+     1441
+    ],
+    [
+     1493,
+     1578
+    ]
+   ],
+   "lado": "near",
+   "golpe": "forehand",
+   "fotogramas_serie": 176,
+   "con_pose": 176,
+   "con_pose_cerca_del_impacto": 31,
+   "encontrado": true
+  },
+  {
+   "video": "us-open-2026-r4-naomi-osaka-elena-rybakina-0312430.mp4",
+   "duracion_s": 8.4,
+   "pixeles_esqueleto": [
+    [
+     1,
+     8
+    ],
+    [
+     3,
+     10
+    ],
+    [
+     1,
+     4
+    ]
+   ],
+   "lado": "near",
+   "golpe": "forehand",
+   "fotogramas_serie": 145,
+   "con_pose": 145,
+   "con_pose_cerca_del_impacto": 31,
+   "encontrado": true
+  },
+  {
+   "video": "zheng-qinwen-elena-rybakina-0221547.mp4",
+   "duracion_s": 8.5,
+   "pixeles_esqueleto": [
+    [
+     5,
+     0
+    ],
+    [
+     9,
+     1
+    ],
+    [
+     7,
+     0
+    ]
+   ],
+   "lado": "near",
+   "golpe": "forehand",
+   "fotogramas_serie": 176,
+   "con_pose": 176,
+   "con_pose_cerca_del_impacto": 31,
+   "encontrado": true
+  },
+  {
+   "video": "zheng-qinwen-elena-rybakina-0695978.mp4",
+   "duracion_s": 8.5,
+   "pixeles_esqueleto": [
+    [
+     1371,
+     1552
+    ],
+    [
+     1553,
+     1411
+    ],
+    [
+     1518,
+     1729
+    ]
+   ],
+   "lado": "near",
+   "golpe": "forehand",
+   "fotogramas_serie": 165,
+   "con_pose": 165,
+   "con_pose_cerca_del_impacto": 31,
+   "encontrado": true
+  }
+ ],
+ "exportar_reves": [
+  {
+   "video": "elena-rybakina-jessica-pegula-miami-2026-quarter-final-0056758.mp4",
+   "duracion_s": 8.5,
+   "pixeles_esqueleto": [
+    [
+     10,
+     0
+    ],
+    [
+     1606,
+     2
+    ],
+    [
+     1447,
+     0
+    ]
+   ],
+   "lado": "near",
+   "golpe": "backhand",
+   "fotogramas_serie": 192,
+   "con_pose": 192,
+   "con_pose_cerca_del_impacto": 37,
+   "encontrado": true
+  },
+  {
+   "video": "elena-rybakina-jessica-pegula-miami-2026-quarter-final-0466233.mp4",
+   "duracion_s": 8.5,
+   "pixeles_esqueleto": [
+    [
+     1556,
+     1537
+    ],
+    [
+     1345,
+     1559
+    ],
+    [
+     1437,
+     1759
+    ]
+   ],
+   "lado": "near",
+   "golpe": "backhand",
+   "fotogramas_serie": 193,
+   "con_pose": 193,
+   "con_pose_cerca_del_impacto": 37,
+   "encontrado": true
+  },
+  {
+   "video": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5-0493886.mp4",
+   "duracion_s": 8.5,
+   "pixeles_esqueleto": [
+    [
+     1087,
+     1626
+    ],
+    [
+     1341,
+     1321
+    ],
+    [
+     1559,
+     1826
+    ]
+   ],
+   "lado": "far",
+   "golpe": "backhand",
+   "fotogramas_serie": 176,
+   "con_pose": 176,
+   "con_pose_cerca_del_impacto": 31,
+   "encontrado": true
+  },
+  {
+   "video": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5-0925800.mp4",
+   "duracion_s": 8.5,
+   "pixeles_esqueleto": [
+    [
+     21,
+     0
+    ],
+    [
+     27,
+     0
+    ],
+    [
+     27,
+     0
+    ]
+   ],
+   "lado": "far",
+   "golpe": "backhand",
+   "fotogramas_serie": 161,
+   "con_pose": 161,
+   "con_pose_cerca_del_impacto": 31,
+   "encontrado": true
+  },
+  {
+   "video": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5-0410088.mp4",
+   "duracion_s": 8.5,
+   "pixeles_esqueleto": [
+    [
+     0,
+     36
+    ],
+    [
+     79,
+     38
+    ],
+    [
+     0,
+     38
+    ]
+   ],
+   "lado": "far",
+   "golpe": "backhand",
+   "fotogramas_serie": 176,
+   "con_pose": 176,
+   "con_pose_cerca_del_impacto": 31,
+   "encontrado": true
+  },
+  {
+   "video": "us-open-2026-r4-naomi-osaka-elena-rybakina-0184504.mp4",
+   "duracion_s": 8.4,
+   "pixeles_esqueleto": [
+    [
+     982,
+     1240
+    ],
+    [
+     1263,
+     1238
+    ],
+    [
+     1387,
+     1421
+    ]
+   ],
+   "lado": "far",
+   "golpe": "backhand",
+   "fotogramas_serie": 142,
+   "con_pose": 142,
+   "con_pose_cerca_del_impacto": 31,
+   "encontrado": true
+  },
+  {
+   "video": "zheng-qinwen-elena-rybakina-0202610.mp4",
+   "duracion_s": 8.5,
+   "pixeles_esqueleto": [
+    [
+     5,
+     0
+    ],
+    [
+     5,
+     0
+    ],
+    [
+     5,
+     0
+    ]
+   ],
+   "lado": "near",
+   "golpe": "backhand",
+   "fotogramas_serie": 161,
+   "con_pose": 161,
+   "con_pose_cerca_del_impacto": 31,
+   "encontrado": true
+  },
+  {
+   "video": "zheng-qinwen-elena-rybakina-0687952.mp4",
+   "duracion_s": 8.5,
+   "pixeles_esqueleto": [
+    [
+     0,
+     0
+    ],
+    [
+     79,
+     0
+    ],
+    [
+     0,
+     0
+    ]
+   ],
+   "lado": "near",
+   "golpe": "backhand",
+   "fotogramas_serie": 176,
+   "con_pose": 176,
+   "con_pose_cerca_del_impacto": 31,
+   "encontrado": true
+  }
+ ],
+ "exportar_saque": [
+  {
+   "video": "elena-rybakina-jessica-pegula-miami-2026-quarter-final-0059628.mp4",
+   "duracion_s": 8.5,
+   "pixeles_esqueleto": [
+    [
+     1630,
+     1171
+    ],
+    [
+     1487,
+     1417
+    ],
+    [
+     1463,
+     1583
+    ]
+   ],
+   "lado": "near",
+   "golpe": "overhead",
+   "fotogramas_serie": 193,
+   "con_pose": 193,
+   "con_pose_cerca_del_impacto": 37,
+   "encontrado": true
+  },
+  {
+   "video": "elena-rybakina-jessica-pegula-miami-2026-quarter-final-0447245.mp4",
+   "duracion_s": 8.5,
+   "pixeles_esqueleto": [
+    [
+     1423,
+     1074
+    ],
+    [
+     1425,
+     1274
+    ],
+    [
+     1477,
+     1681
+    ]
+   ],
+   "lado": null,
+   "golpe": null,
+   "fotogramas_serie": null,
+   "con_pose": null,
+   "con_pose_cerca_del_impacto": null,
+   "encontrado": false
+  },
+  {
+   "video": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5-0478427.mp4",
+   "duracion_s": 8.5,
+   "pixeles_esqueleto": [
+    [
+     1170,
+     1564
+    ],
+    [
+     1117,
+     979
+    ],
+    [
+     1342,
+     1357
+    ]
+   ],
+   "lado": "far",
+   "golpe": "overhead",
+   "fotogramas_serie": 164,
+   "con_pose": 164,
+   "con_pose_cerca_del_impacto": 31,
+   "encontrado": true
+  },
+  {
+   "video": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5-0966569.mp4",
+   "duracion_s": 8.5,
+   "pixeles_esqueleto": [
+    [
+     0,
+     24
+    ],
+    [
+     75,
+     23
+    ],
+    [
+     76,
+     22
+    ]
+   ],
+   "lado": "near",
+   "golpe": "overhead",
+   "fotogramas_serie": 163,
+   "con_pose": 163,
+   "con_pose_cerca_del_impacto": 31,
+   "encontrado": true
+  },
+  {
+   "video": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5-0481594.mp4",
+   "duracion_s": 8.5,
+   "pixeles_esqueleto": [
+    [
+     0,
+     38
+    ],
+    [
+     0,
+     31
+    ],
+    [
+     0,
+     35
+    ]
+   ],
+   "lado": "near",
+   "golpe": "overhead",
+   "fotogramas_serie": 165,
+   "con_pose": 165,
+   "con_pose_cerca_del_impacto": 31,
+   "encontrado": true
+  },
+  {
+   "video": "us-open-2026-r4-naomi-osaka-elena-rybakina-0180814.mp4",
+   "duracion_s": 8.5,
+   "pixeles_esqueleto": [
+    [
+     0,
+     2
+    ],
+    [
+     34,
+     2
+    ],
+    [
+     21,
+     5
+    ]
+   ],
+   "lado": "far",
+   "golpe": "overhead",
+   "fotogramas_serie": 169,
+   "con_pose": 169,
+   "con_pose_cerca_del_impacto": 31,
+   "encontrado": true
+  },
+  {
+   "video": "zheng-qinwen-elena-rybakina-0163078.mp4",
+   "duracion_s": 8.5,
+   "pixeles_esqueleto": [
+    [
+     2,
+     0
+    ],
+    [
+     2,
+     0
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "lado": "near",
+   "golpe": "overhead",
+   "fotogramas_serie": 161,
+   "con_pose": 161,
+   "con_pose_cerca_del_impacto": 31,
+   "encontrado": true
+  },
+  {
+   "video": "zheng-qinwen-elena-rybakina-0691046.mp4",
+   "duracion_s": 8.5,
+   "pixeles_esqueleto": [
+    [
+     1251,
+     1139
+    ],
+    [
+     1360,
+     1396
+    ],
+    [
+     1465,
+     1769
+    ]
+   ],
+   "lado": "near",
+   "golpe": "overhead",
+   "fotogramas_serie": 159,
+   "con_pose": 159,
+   "con_pose_cerca_del_impacto": 31,
+   "encontrado": true
+  }
+ ]
+}
