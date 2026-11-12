@@ -1,10 +1,10 @@
 {
- "at": "2026-11-12 08:10:02",
- "firma": "313f741ddf2a",
+ "at": "2026-11-12 08:10:33",
+ "firma": "c984f07571c6",
  "ejecutor": {
   "vivo": true,
   "pid": 15204,
-  "at": 1794467402.769087
+  "at": 1794467422.7730923
  },
  "pausa": false,
  "en_curso": [],
@@ -20,6 +20,24 @@
  },
  "pendientes": [],
  "recientes": [
+  {
+   "id": 70,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script diag_identidad_f3set --match azaren",
+   "state": "hecho",
+   "message": "",
+   "created": "2026-11-12 08:10:30",
+   "started": "2026-11-12 08:10:32",
+   "finished": "2026-11-12 08:10:33",
+   "args": "[\"script\", \"diag_identidad_f3set\", \"--match\", \"azaren\"]",
+   "source": "claude 227",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_70.log",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 69,
    "kind": "comando",
@@ -271,27 +289,23 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_56.log",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 55,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script diag_app_nuevo",
-   "state": "hecho",
-   "message": "",
-   "created": "2026-11-11 21:08:25",
-   "started": "2026-11-11 21:13:02",
-   "finished": "2026-11-11 21:13:03",
-   "args": "[\"script\", \"diag_app_nuevo\"]",
-   "source": "claude 209",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_55.log",
-   "paso": 0,
-   "pasos": 0
   }
  ],
  "eventos": [
+  {
+   "id": 320,
+   "job": 70,
+   "at": "2026-11-12 08:10:32",
+   "kind": "empieza",
+   "text": "script diag_identidad_f3set --match azaren"
+  },
+  {
+   "id": 319,
+   "job": 70,
+   "at": "2026-11-12 08:10:30",
+   "kind": "enviado",
+   "text": "tennisbio script diag_identidad_f3set --match azaren (claude 227)"
+  },
   {
    "id": 318,
    "job": null,
@@ -487,20 +501,6 @@
    "at": "2026-11-12 03:10:49",
    "kind": "enviado",
    "text": "tennisbio script bench_fine_fps --match pegula --minutes 15 --tag rtmw2 --set fine_pass.refine=rtmw-x (claude 222)"
-  },
-  {
-   "id": 290,
-   "job": 65,
-   "at": "2026-11-12 03:10:43",
-   "kind": "hecho",
-   "text": "código 0"
-  },
-  {
-   "id": 289,
-   "job": 65,
-   "at": "2026-11-12 03:10:39",
-   "kind": "paso",
-   "text": "2/2 Prevision"
   }
  ]
 }
