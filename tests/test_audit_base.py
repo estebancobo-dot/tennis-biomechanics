@@ -70,6 +70,24 @@ def test_strokes_from_the_learned_detector_per_match(tmp_path):
     assert it["Golpes del detector aprendido: b"]["status"] == "aviso" and len(it) == 2
 
 
+def test_the_detector_had_the_ball_of_the_match(tmp_path):
+    """12-11: a detector trained with the ball ran without it in every library match; the audit says it per match."""
+    from tennisbio.spotting import FEATURE_DIM
+    cand = {"summary": {"candidates": 600, "source": "spotter"}}
+    sp = lambda **k: {"summary": {"enabled": True, "near": 300, "far": 300, "threshold": 0.1,
+                                  "feature_dim": FEATURE_DIM + 8, **k}}
+    a = _manifest(tmp_path / "a", candidates=cand, spotting=sp(ball={"min": 16.8, "seen": 0.71, "play_min": 17.0}))
+    b = _manifest(tmp_path / "b", candidates=cand, spotting=sp())                                # before the fix
+    c = _manifest(tmp_path / "c", candidates=cand, spotting=sp(ball={"min": 0.0, "seen": 0.0, "play_min": 17.0}))
+    d = _manifest(tmp_path / "d", candidates=cand, spotting={"summary": {"enabled": True, "feature_dim": FEATURE_DIM}})
+    it = {i["name"]: i for i in A.spotter_items([a, b, c, d])}
+    ball = lambda m: it[f"{A.BALL_SPOTTER_ITEM}: {m}"]
+    assert ball("a")["status"] == "ok" and "16.8 de 17.0" in ball("a")["detail"]
+    assert ball("b")["status"] == "aviso" and "sin la bola" in ball("b")["detail"]
+    assert ball("c")["status"] == "aviso"
+    assert f"{A.BALL_SPOTTER_ITEM}: d" not in it                      # a model without the ball: nothing to say
+
+
 def test_a_stage_twice_as_slow_as_usual_is_named(tmp_path):
     out = tmp_path / "output"
     out.mkdir()

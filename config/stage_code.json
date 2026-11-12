@@ -51,8 +51,8 @@
   ]
  },
  "spotting": {
-  "version": "1",
-  "hash": "815d2c4ce8b33e11",
+  "version": "2",
+  "hash": "3b07a769805e5408",
   "modules": [
    "ball",
    "ball_features",

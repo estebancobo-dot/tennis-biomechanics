@@ -102,21 +102,36 @@ def features(track: np.ndarray, n: int, fps: float) -> np.ndarray:
 def cached_track(mdir: Path, video: Path, tracker_factory, log=None, key: str | None = None) -> np.ndarray:
     """track_play of an analysed video, kept in <mdir>/ball_track.npz (the ball model is the slow part). key (12-11): the
     model and the code that made it (stages.ball_track_key); a file made by another one, or before keys existed, is
-    computed again. Before, the file was reused forever once written, whatever model or code came later."""
+    computed again. Before, the file was reused forever once written, whatever model or code came later.
+
+    12-11: scenes.json and court.json are read where the match keeps them (match_files.at: etapas/ in a library
+    folder). They were read at the folder's root, so in every library match the track came out empty and the spotter
+    ran without the ball (its eight columns at zero) while F3Set, in flat folders, had it. A missing scenes.json is
+    now an error, and an empty track is never reused (with play it is computed again; without play it costs nothing)."""
     import json
 
     f = _mf.at(Path(mdir), "ball_track.npz")
     if f.exists():
         with np.load(f) as z:
             old = str(z["key"]) if "key" in z.files else None
-            if key is None or old == key:
+            if (key is None or old == key) and len(z["track"]):
                 return z["track"]
         if log:
-            log("  la bola del partido se hizo con otro modelo o código: se calcula de nuevo")
-    rd = lambda n: json.loads((Path(mdir) / n).read_text(encoding="utf-8")) if (Path(mdir) / n).exists() else None
-    sc, court = rd("scenes.json") or {"shots": []}, rd("court.json")
-    with np.load(_mf.at(Path(mdir), "players.npz"), allow_pickle=True) as z:
+            log("  la bola del partido se hizo con otro modelo o código, o salió vacía: se calcula de nuevo")
+    at = lambda n: _mf.at(Path(mdir), n)
+    if not at("scenes.json").exists():
+        raise FileNotFoundError(f"falta {at('scenes.json')}: sin los planos no se sabe dónde seguir la bola")
+    sc = json.loads(at("scenes.json").read_text(encoding="utf-8")) or {"shots": []}
+    court = json.loads(at("court.json").read_text(encoding="utf-8")) if at("court.json").exists() else None
+    with np.load(at("players.npz"), allow_pickle=True) as z:
         fps = float(z["fps"])
     tr = track_play(video, sc, court, tracker_factory(), fps, log) if sc.get("shots") else np.zeros((0, 4))
     np.savez_compressed(f, track=tr.astype(np.float32), **({"key": np.array(key)} if key is not None else {}))
     return tr
+
+
+def coverage(track: np.ndarray) -> dict:
+    """How much ball the spotter had: minutes tracked (rows at BALL_FPS) and the share of them with the ball seen."""
+    n = len(track)
+    seen = int((~np.isnan(track[:, 1:3]).any(axis=1)).sum()) if n else 0
+    return {"min": round(n / BALL_FPS / 60, 1), "seen": round(seen / n, 3) if n else 0.0}

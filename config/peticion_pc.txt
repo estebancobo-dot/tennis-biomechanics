@@ -1197,3 +1197,20 @@ id: 264
 accion: trabajo
 comando: flujo informe
 # 264 (12-11, R16): auditoria: saques por punto de su saque (comprobacion ampliada) en Osaka y Pegula >= 85 %
+---
+id: 265
+accion: trabajo
+comando: run --match us-open-2026-r4-naomi-osaka-elena-rybakina
+# 265 (12-11, R17): Osaka con el detector v2: la bola del partido leida donde la biblioteca guarda planos y pista
+# (en todos los partidos de la biblioteca salia vacia: el detector iba sin la bola). Debe cubrir >= 90 % del juego
+---
+id: 266
+accion: trabajo
+comando: run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final
+# 266 (12-11, R17): Pegula con lo mismo
+---
+id: 267
+accion: trabajo
+comando: flujo informe
+# 267 (12-11, R17): auditoria: la bola del partido para el detector, saques por punto de su saque (>= 85 %), pose en
+# el contacto y identidad en Osaka y Pegula, frente a 264 (mismo codigo sin la bola)

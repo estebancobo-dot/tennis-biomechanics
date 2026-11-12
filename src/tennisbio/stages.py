@@ -743,7 +743,8 @@ def _ball_tracker(ctx: Context):
                        fp16=bool(bcfg.get("fp16", True)))
 
 
-@stage("spotting", "1", deps=("players", "audio", "court", "scenes", "identity"), settings=_spotting_settings,
+# v2 (12-11): the match's ball read where the library keeps scenes and court (it came out empty: no ball for the model)
+@stage("spotting", "2", deps=("players", "audio", "court", "scenes", "identity"), settings=_spotting_settings,
        outputs=("spotting.json",))
 def st_spotting(ctx: Context):
     """The strokes of both players found by the learned spotter (tennisbio.spotting, docs/plan_maestro.md
@@ -793,6 +794,15 @@ def st_spotting(ctx: Context):
         tr = cached_track(ctx.dir, ctx.video, lambda: _ball_tracker(ctx), log=ctx.log,      # ball_track.npz: once per
                           key=ball_track_key(ctx.cfg))                                       # model and code
         took["bola"] = time.time() - t_
+        from .ball_features import coverage
+        play_min = float(play.sum()) / fps / 60
+        ball_cov = {**coverage(tr), "play_min": round(play_min, 1)}
+        ctx.log(f"  bola del partido: {ball_cov['min']:.1f} min seguidos de {play_min:.1f} min de juego, vista en el "
+                f"{100 * ball_cov['seen']:.0f} %")
+        # 12-11: a model trained with the ball, run without it, finds other strokes (every library match until today)
+        if play_min >= 1.0 and ball_cov["min"] < 0.25 * play_min:
+            raise RuntimeError(f"la bola del partido solo cubre {ball_cov['min']:.1f} de {play_min:.1f} min de juego: "
+                               "el detector se entrenó con ella y sin ella encuentra otros golpes")
         feats["X"] = np.concatenate([feats["X"], ball_feats(tr, len(feats["X"]), fps)], axis=1)
     mfps = float(meta.get("fps") or fps)
     if abs(fps - mfps) > 1e-6:
@@ -818,7 +828,8 @@ def st_spotting(ctx: Context):
             + ", ".join(f"{k} {v:.0f} s" for k, v in took.items()) + ")")
     return {"enabled": True, "strokes": len(strokes), "near": n_near, "far": len(strokes) - n_near,
             "out_of_play": len(found) - len(strokes), "threshold": thr, "fps": fps, "model_fps": mfps,
-            "feature_dim": F, "audio_track": track, "seconds": {k: round(v, 1) for k, v in took.items()}}
+            "feature_dim": F, "audio_track": track, "seconds": {k: round(v, 1) for k, v in took.items()},
+            **({"ball": ball_cov} if ball else {})}
 
 
 def spotter_candidates(spotted: list[dict], identity: dict, fps: float, runs: list[tuple], no_board: list,
@@ -1733,13 +1744,14 @@ def window_cache_key(cfg: dict) -> str:
 
 def ball_track_key(cfg: dict) -> str:
     """12-11 (#263): the match's ball track (ball_track.npz, spotting) by the ball model, its precision and the code that
-    makes it (ball_features.track_play and what it reaches, the ball model's runner, the video reader)."""
+    makes it (ball_features.cached_track and what it reaches, the ball model's runner, the video reader)."""
     from .pipeline import code_fingerprint, function_fingerprint
 
     bcfg = cfg.get("ball") or {}
     return hashlib.sha1(json.dumps([model_state(bcfg.get("onnx")), bool(bcfg.get("fp16")),
                                     code_fingerprint(("ball", "io.video")),
-                                    function_fingerprint("ball_features", "track_play"),
+                                    # cached_track reaches track_play (12-11: it read scenes and court elsewhere)
+                                    function_fingerprint("ball_features", "cached_track"),
                                     # the stretches it follows come from stages.play_mask (ball_features.play_segments)
                                     function_fingerprint("stages", "play_mask")]).encode()).hexdigest()[:16]
 

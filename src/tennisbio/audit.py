@@ -1867,7 +1867,9 @@ def models_in_use_items(cfg: dict | None = None) -> list[dict]:
 
 
 def spotter_items(match_dirs: list[Path]) -> list[dict]:
-    """#204/#221: per match, whether its candidate strokes came from the learned detector (manifest of the run)."""
+    """#204/#221: per match, whether its candidate strokes came from the learned detector (manifest of the run), and
+    (12-11) for a detector trained with the ball, whether it had the ball of the match."""
+    from .spotting import FEATURE_DIM
     out = []
     for d in match_dirs:
         f = _mf.at(d, "manifest.json")
@@ -1884,7 +1886,27 @@ def spotter_items(match_dirs: list[Path]) -> list[dict]:
                          (f"{cand.get('candidates', '?')} candidatos del detector entrenado con F3Set "
                           f"({sp.get('near', '?')} cerca, {sp.get('far', '?')} lejos, umbral {sp.get('threshold', '?')})")
                          if ok else f"candidatos de las reglas, no del detector aprendido (origen: {cand.get('source') or 'reglas'})"))
+        if ok and int(sp.get("feature_dim") or 0) > FEATURE_DIM:
+            out.append(ball_for_spotter_item(d.name, sp.get("ball")))
     return out
+
+
+BALL_SPOTTER_ITEM = "La bola del partido para el detector"
+
+
+def ball_for_spotter_item(match: str, ball: dict | None) -> dict:
+    """12-11: the detector was trained with the ball and, in every library match, ran without it (its track came out
+    empty: scenes and court read outside etapas/). OK when the ball was followed over most of the play."""
+    name = f"{BALL_SPOTTER_ITEM}: {match}"
+    if not ball:
+        return _item(12, "Modelos", name, "aviso", "sin datos de la bola: la detección es anterior al arreglo del 12-11 "
+                     "y se hizo sin la bola; se repite en el próximo análisis")
+    play = float(ball.get("play_min") or 0)
+    got = float(ball.get("min") or 0)
+    ok = play > 0 and got >= 0.9 * play
+    return _item(12, "Modelos", name, "ok" if ok else "aviso",
+                 f"bola seguida en {got:.1f} de {play:.1f} min de juego, vista en el {100 * float(ball.get('seen') or 0):.0f} %"
+                 + ("" if ok else " (debe cubrir al menos el 90 % del juego)"))
 
 
 def stage_time_items(match_dirs: list[Path], out_root: Path) -> list[dict]:

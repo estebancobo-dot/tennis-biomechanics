@@ -330,3 +330,23 @@ def test_spotting_stage_adds_the_ball_for_a_model_trained_with_it(tmp_path, monk
     # 12-11 (#263): asked with the key of the model and code that make the match's ball track
     assert asked == [(ctx.dir, stages.ball_track_key(ctx.cfg))] and res["feature_dim"] == S.FEATURE_DIM + BF.BALL_DIM
     assert len(json.loads((ctx.dir / "spotting.json").read_text())) == 2         # same strokes: the ball adds columns
+
+
+def test_spotting_stops_when_the_match_ball_is_missing(tmp_path, monkeypatch):
+    """12-11: a model trained with the ball, run without it, finds other strokes; every library match ran like that
+    (its ball track came out empty). Now, with a minute of play or more and no ball, the stage stops and says why."""
+    from tennisbio import ball_features as BF
+    onnx = spotter_model(tmp_path, feature_dim=S.FEATURE_DIM + BF.BALL_DIM)
+    ctx = ctx_for(tmp_path, on_cfg(onnx))
+    write_match(ctx.dir)
+    n = int(2 * 60 * FPS)                                   # two minutes of play
+    X = np.zeros((n, S.FEATURE_DIM), np.float32)
+    X[:, -1] = 1
+    monkeypatch.setattr(S, "build_features", lambda *a, **k: {"X": X.copy(), "fps": FPS})
+    monkeypatch.setattr(BF, "cached_track", lambda *a, **k: np.zeros((0, 4)))
+    with pytest.raises(RuntimeError, match="la bola del partido"):
+        stages.st_spotting(ctx)
+    tr = np.column_stack([np.arange(int(2 * 60 * BF.BALL_FPS)) / BF.BALL_FPS, np.full((int(2 * 60 * BF.BALL_FPS), 3), 0.5)])
+    monkeypatch.setattr(BF, "cached_track", lambda *a, **k: tr)
+    res = stages.st_spotting(ctx)
+    assert res["ball"] == {"min": 2.0, "seen": 1.0, "play_min": 2.0}
