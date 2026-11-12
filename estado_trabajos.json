@@ -1,10 +1,10 @@
 {
- "at": "2026-11-12 11:27:39",
- "firma": "10effa369317",
+ "at": "2026-11-12 11:30:08",
+ "firma": "33fc6b23eba3",
  "ejecutor": {
   "vivo": true,
   "pid": 16604,
-  "at": 1794479255.0691671
+  "at": 1794479399.1440463
  },
  "pausa": false,
  "en_curso": [
@@ -16,14 +16,14 @@
    "stroke": null,
    "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
    "state": "en curso",
-   "message": "paso 2/6: Informe de la derecha",
+   "message": "paso 5/6: Auditoria",
    "created": "2026-11-12 10:37:05",
    "started": "2026-11-12 11:27:35",
    "finished": null,
    "args": "[\"informe\"]",
    "source": "claude 241",
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_84.log",
-   "paso": 1,
+   "paso": 4,
    "pasos": 6
   }
  ],
@@ -331,6 +331,27 @@
  ],
  "eventos": [
   {
+   "id": 435,
+   "job": 84,
+   "at": "2026-11-12 11:27:57",
+   "kind": "paso",
+   "text": "5/6 Auditoria"
+  },
+  {
+   "id": 434,
+   "job": 84,
+   "at": "2026-11-12 11:27:51",
+   "kind": "paso",
+   "text": "4/6 Informe del saque"
+  },
+  {
+   "id": 433,
+   "job": 84,
+   "at": "2026-11-12 11:27:46",
+   "kind": "paso",
+   "text": "3/6 Informe del reves"
+  },
+  {
    "id": 432,
    "job": 84,
    "at": "2026-11-12 11:27:36",
@@ -518,27 +539,6 @@
    "at": "2026-11-12 10:27:58",
    "kind": "enviado",
    "text": "tennisbio script diag_sin_pose --match b8b713 --n 4 (claude 237)"
-  },
-  {
-   "id": 405,
-   "job": null,
-   "at": "2026-11-12 10:24:00",
-   "kind": "ejecutor",
-   "text": "arranca (pid 10328)"
-  },
-  {
-   "id": 404,
-   "job": null,
-   "at": "2026-11-12 10:23:59",
-   "kind": "ejecutor",
-   "text": "arranca el siguiente con el código nuevo (pid 11940)"
-  },
-  {
-   "id": 403,
-   "job": null,
-   "at": "2026-11-12 10:23:59",
-   "kind": "ejecutor",
-   "text": "termina"
   }
  ]
 }
