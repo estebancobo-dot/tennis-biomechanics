@@ -1,10 +1,10 @@
 {
- "at": "2026-11-12 11:44:04",
- "firma": "4446581a5762",
+ "at": "2026-11-12 11:57:24",
+ "firma": "7eeab1ae6a93",
  "ejecutor": {
-  "vivo": true,
-  "pid": 13200,
-  "at": 1794480244.2871108
+  "vivo": false,
+  "pid": null,
+  "at": 1794481044.4785013
  },
  "pausa": false,
  "en_curso": [],
@@ -18,7 +18,26 @@
   "quedan_s": 0,
   "hora": "2026-11-12 11:03:05"
  },
- "pendientes": [],
+ "pendientes": [
+  {
+   "id": 86,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script diag_saques --match f43dd2",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-12 11:57:21",
+   "started": null,
+   "finished": null,
+   "args": "[\"script\", \"diag_saques\", \"--match\", \"f43dd2\"]",
+   "source": "claude 243",
+   "log": "",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "recientes": [
   {
    "id": 85,
@@ -293,6 +312,34 @@
  ],
  "eventos": [
   {
+   "id": 448,
+   "job": null,
+   "at": "2026-11-12 11:57:24",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 447,
+   "job": null,
+   "at": "2026-11-12 11:57:24",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 446,
+   "job": 86,
+   "at": "2026-11-12 11:57:21",
+   "kind": "enviado",
+   "text": "tennisbio script diag_saques --match f43dd2 (claude 243)"
+  },
+  {
+   "id": 445,
+   "job": null,
+   "at": "2026-11-12 11:57:16",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
    "id": 444,
    "job": null,
    "at": "2026-11-12 11:40:24",
@@ -473,34 +520,6 @@
    "at": "2026-11-12 11:03:29",
    "kind": "reiniciar",
    "text": "ciclo"
-  },
-  {
-   "id": 418,
-   "job": 84,
-   "at": "2026-11-12 10:37:05",
-   "kind": "enviado",
-   "text": "flujo informe (claude 241)"
-  },
-  {
-   "id": 417,
-   "job": 83,
-   "at": "2026-11-12 10:36:35",
-   "kind": "enviado",
-   "text": "tennisbio script validate_recall --spotter --tag v13r --from v13 (claude 240)"
-  },
-  {
-   "id": 416,
-   "job": 82,
-   "at": "2026-11-12 10:36:03",
-   "kind": "enviado",
-   "text": "tennisbio script diag_pose_contacto (claude 239)"
-  },
-  {
-   "id": 415,
-   "job": 81,
-   "at": "2026-11-12 10:35:43",
-   "kind": "empieza",
-   "text": "run --match us-open-2026-r4-naomi-osaka-elena-rybakina"
   }
  ]
 }

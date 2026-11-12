@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261112110728
+Start time: 20261112115711
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
-Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 10804
+Host Application: powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
+Process ID: 8076
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -16,9 +16,83 @@ WSManStackVersion: 3.0
 PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
-Registro enviado a Claude (no hace falta copiar nada).
-Empezado 2026-11-12 11:07:23 - terminado 2026-11-12 11:07:37 - duracion total 14 s
-**********************
-Windows PowerShell transcript end
-End time: 20261112110737
-**********************
+
+==> [2026-11-12 11:57:11] Codigo nuevo (506cdbd -> 9911aa6): 28 ficheros
+    config/peticion_pc.txt
+    config/plan_peticiones.yaml
+    docs/estado_proyecto.md
+    docs/peticiones_usuario.md
+    scripts/app_recursos.py
+    scripts/diag_export_clip.py
+    scripts/diag_export_esqueleto.py
+    scripts/diag_pose_contacto.py
+    scripts/diag_saques.py
+    scripts/diag_serie_ventana.py
+    scripts/diag_sin_pose.py
+    scripts/export_fotogramas.py
+    scripts/validate_recall.py
+    scripts/ventanas_visibles.py
+    scripts/windows/ciclo_automatico.ps1
+    src/tennisbio/app/window.py
+    src/tennisbio/audit.py
+    src/tennisbio/cli.py
+    src/tennisbio/clip_pipeline.py
+    src/tennisbio/orchestrator.py
+    tests/test_diag_saques.py
+    tests/test_infra_checks.py
+    tests/test_no_unbounded_calls.py
+    tests/test_orchestrator.py
+    tests/test_pose_at_contact.py
+    tests/test_refind_at_contact.py
+    tests/test_visible_windows_item.py
+    tests/test_worker_hidden.py
+Updating 506cdbd..9911aa6
+Fast-forward
+ config/peticion_pc.txt               |  35 ++++---
+ config/plan_peticiones.yaml          |   2 +-
+ docs/estado_proyecto.md              |  10 +-
+ docs/peticiones_usuario.md           |   7 +-
+ scripts/app_recursos.py              |   2 +-
+ scripts/diag_export_clip.py          |   2 +-
+ scripts/diag_export_esqueleto.py     |   2 +-
+ scripts/diag_pose_contacto.py        |   2 +-
+ scripts/diag_saques.py               | 173 +++++++++++++++++++++++++++++++++++
+ scripts/diag_serie_ventana.py        |   2 +-
+ scripts/diag_sin_pose.py             |   2 +-
+ scripts/export_fotogramas.py         |   2 +-
+ scripts/validate_recall.py           |   2 +-
+ scripts/ventanas_visibles.py         |  10 +-
+ scripts/windows/ciclo_automatico.ps1 |   7 +-
+ src/tennisbio/app/window.py          |   3 +-
+ src/tennisbio/audit.py               |  51 ++++++++++-
+ src/tennisbio/cli.py                 |   2 +
+ src/tennisbio/clip_pipeline.py       |   4 +-
+ src/tennisbio/orchestrator.py        |  72 +++++++++++++--
+ tests/test_diag_saques.py            |  51 +++++++++++
+ tests/test_infra_checks.py           |   4 +-
+ tests/test_no_unbounded_calls.py     |   3 +-
+ tests/test_orchestrator.py           |   2 +-
+ tests/test_pose_at_contact.py        |   2 +-
+ tests/test_refind_at_contact.py      |   2 +-
+ tests/test_visible_windows_item.py   |  54 +++++++++++
+ tests/test_worker_hidden.py          |  70 ++++++++++++++
+ 28 files changed, 526 insertions(+), 54 deletions(-)
+ create mode 100644 scripts/diag_saques.py
+ create mode 100644 tests/test_diag_saques.py
+ create mode 100644 tests/test_visible_windows_item.py
+ create mode 100644 tests/test_worker_hidden.py
+Resolved 126 packages in 0.93ms
+Checked 91 packages in 3ms
+balltrack.onnx     OK 45 MB
+racketpose.onnx    OK 53 MB
+transnetv2.onnx    OK 31 MB
+rtmw3d-x.onnx      OK 369 MB
+rtmw-x_384x288.onnx OK 229 MB
+court_tcd.onnx     OK 42 MB
+motionagformer_xs.onnx OK 9 MB
+yolo11m-pose_640.onnx OK 84 MB
+yolo11m-pose_960.onnx OK 84 MB
+yolo11m-pose_1280.onnx OK 85 MB
+yolo11m-pose_1920.onnx OK 86 MB
+Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (ya estaba)
+el ejecutor se reinicia al acabar el trabajo en curso
