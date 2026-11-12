@@ -1,30 +1,30 @@
 {
- "at": "2026-11-12 03:10:37",
- "firma": "62e7756c1c67",
+ "at": "2026-11-12 03:10:54",
+ "firma": "e096b554599c",
  "ejecutor": {
   "vivo": true,
   "pid": 13256,
-  "at": 1794449427.3342357
+  "at": 1794449443.3469658
  },
  "pausa": false,
  "en_curso": [
   {
-   "id": 65,
-   "kind": "flujo",
+   "id": 66,
+   "kind": "comando",
    "match": null,
    "player": null,
    "stroke": null,
-   "reason": "flujo «prevision»: Que etapas se rehacen en cada partido y cuanto tardarian, sin ejecutar nada",
+   "reason": "script bench_fine_fps --match pegula --minutes 15 --tag rtmw2 --set fine_pass.refine=rtmw-x",
    "state": "en curso",
    "message": "",
-   "created": "2026-11-12 03:10:33",
-   "started": "2026-11-12 03:10:37",
+   "created": "2026-11-12 03:10:49",
+   "started": "2026-11-12 03:10:53",
    "finished": null,
-   "args": "[\"prevision\"]",
-   "source": "claude 221",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_65.log",
+   "args": "[\"script\", \"bench_fine_fps\", \"--match\", \"pegula\", \"--minutes\", \"15\", \"--tag\", \"rtmw2\", \"--set\", \"fine_pass.refine=rtmw-x\"]",
+   "source": "claude 222",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_66.log",
    "paso": 0,
-   "pasos": 2
+   "pasos": 0
   }
  ],
  "progreso": {
@@ -39,6 +39,24 @@
  },
  "pendientes": [],
  "recientes": [
+  {
+   "id": 65,
+   "kind": "flujo",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "flujo «prevision»: Que etapas se rehacen en cada partido y cuanto tardarian, sin ejecutar nada",
+   "state": "hecho",
+   "message": "2 pasos",
+   "created": "2026-11-12 03:10:33",
+   "started": "2026-11-12 03:10:37",
+   "finished": "2026-11-12 03:10:41",
+   "args": "[\"prevision\"]",
+   "source": "claude 221",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_65.log",
+   "paso": 2,
+   "pasos": 2
+  },
   {
    "id": 64,
    "kind": "comando",
@@ -290,27 +308,44 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_51.log",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 50,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script diag_scoreboard --match pegula --times 120,300,700,900,1100,1250",
-   "state": "hecho",
-   "message": "",
-   "created": "2026-11-11 16:19:08",
-   "started": "2026-11-11 16:19:18",
-   "finished": "2026-11-11 16:19:39",
-   "args": "[\"script\", \"diag_scoreboard\", \"--match\", \"pegula\", \"--times\", \"120,300,700,900,1100,1250\"]",
-   "source": "claude 202",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_50.log",
-   "paso": 0,
-   "pasos": 0
   }
  ],
  "eventos": [
+  {
+   "id": 292,
+   "job": 66,
+   "at": "2026-11-12 03:10:53",
+   "kind": "empieza",
+   "text": "script bench_fine_fps --match pegula --minutes 15 --tag rtmw2 --set fine_pass.refine=rtmw-x"
+  },
+  {
+   "id": 291,
+   "job": 66,
+   "at": "2026-11-12 03:10:49",
+   "kind": "enviado",
+   "text": "tennisbio script bench_fine_fps --match pegula --minutes 15 --tag rtmw2 --set fine_pass.refine=rtmw-x (claude 222)"
+  },
+  {
+   "id": 290,
+   "job": 65,
+   "at": "2026-11-12 03:10:43",
+   "kind": "hecho",
+   "text": "código 0"
+  },
+  {
+   "id": 289,
+   "job": 65,
+   "at": "2026-11-12 03:10:39",
+   "kind": "paso",
+   "text": "2/2 Prevision"
+  },
+  {
+   "id": 288,
+   "job": 65,
+   "at": "2026-11-12 03:10:38",
+   "kind": "paso",
+   "text": "1/2 Registro de partidos"
+  },
   {
    "id": 287,
    "job": 65,
@@ -485,41 +520,6 @@
    "at": "2026-11-12 01:20:26",
    "kind": "enviado",
    "text": "flujo informe (claude 217)"
-  },
-  {
-   "id": 262,
-   "job": 60,
-   "at": "2026-11-12 01:20:18",
-   "kind": "hecho",
-   "text": "código 0"
-  },
-  {
-   "id": 261,
-   "job": 60,
-   "at": "2026-11-12 01:20:16",
-   "kind": "empieza",
-   "text": "script diag_app_nuevo"
-  },
-  {
-   "id": 260,
-   "job": 60,
-   "at": "2026-11-12 01:20:08",
-   "kind": "enviado",
-   "text": "tennisbio script diag_app_nuevo (claude 216)"
-  },
-  {
-   "id": 259,
-   "job": null,
-   "at": "2026-11-12 01:19:56",
-   "kind": "ejecutor",
-   "text": "arranca (pid 7200)"
-  },
-  {
-   "id": 258,
-   "job": null,
-   "at": "2026-11-12 01:19:55",
-   "kind": "ejecutor",
-   "text": "arranca el siguiente con el código nuevo (pid 7256)"
   }
  ]
 }
