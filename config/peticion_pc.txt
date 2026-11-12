@@ -1021,3 +1021,9 @@ script: diag_serie_ventana
 argumentos: 0312430 0925800 0966569 0048549
 # 234 (12-12, R5): la pose de la serie sobre el fotograma del impacto de su ventana (tal cual y reflejada) y los
 # tamanos, para ver por que el video exportado la pone fuera de sitio. Solo lee
+---
+id: 235
+accion: medir
+script: diag_export_clip
+argumentos: 0312430 0966569 0925800 0048549
+# 235 (12-12, R5): lo que lee y dibuja la exportacion (StrokeClip) en el impacto frente al fotograma crudo de la ventana
