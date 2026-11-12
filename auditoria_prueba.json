@@ -3,8 +3,8 @@
  "strokes": 26,
  "near": 13,
  "summary": {
-  "ok": 404,
-  "falta": 30,
+  "ok": 406,
+  "falta": 28,
   "pocos datos": 97,
   "aviso": 114
  },
@@ -2940,7 +2940,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "2155 caracteres de texto, 16 vídeos, 0 gráficos",
+   "detail": "2158 caracteres de texto, 16 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -3474,15 +3474,15 @@
    "req": 5,
    "area": "Infraestructura",
    "name": "Registros con fecha y duración",
-   "status": "falta",
-   "detail": "64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba_completo.log: sin «termina fecha» al final"
+   "status": "ok",
+   "detail": "66 de 66 registros con fecha de inicio y de fin o duración"
   },
   {
    "req": 5,
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "50 carpetas, 38.1 GB en total (2026-11-12T12:35:31); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB"
+   "detail": "50 carpetas, 38.1 GB en total (2026-11-12T12:46:43); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB"
   },
   {
    "req": 5,
@@ -3531,7 +3531,7 @@
    "area": "Automático",
    "name": "Ninguna ventana vacía del análisis en la pantalla del PC",
    "status": "ok",
-   "detail": "ninguna consola nuestra entre las 5 ventanas visibles (2026-11-12 12:40:07)"
+   "detail": "ninguna consola nuestra entre las 5 ventanas visibles (2026-11-12 12:46:26)"
   },
   {
    "req": 5,
@@ -3545,14 +3545,14 @@
    "area": "Orquestador",
    "name": "Orquestador: ejecutor vivo cuando hay trabajo",
    "status": "ok",
-   "detail": "ejecutor vivo; 0 trabajos esperando"
+   "detail": "ejecutor vivo; 3 trabajos esperando"
   },
   {
    "req": 5,
    "area": "Orquestador",
    "name": "Orquestador: espera hasta empezar cada trabajo",
    "status": "aviso",
-   "detail": "62 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 8 esperaron más de 5 min"
+   "detail": "63 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 8 esperaron más de 5 min"
   },
   {
    "req": 5,
@@ -3580,7 +3580,7 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar",
    "status": "ok",
-   "detail": "terminó el 2026-11-12 12:38:26 en 0 min: 118 vídeos de 118 golpes"
+   "detail": "terminó el 2026-11-12 12:43:53 en 0 min: 118 vídeos de 118 golpes"
   },
   {
    "req": 2,
@@ -3748,7 +3748,7 @@
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
    "status": "ok",
-   "detail": "petición del 12-11 12:27, empezó a los 8.7 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
+   "detail": "petición del 12-11 12:43, empezó a los 0.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
   },
   {
    "req": 1,
@@ -4216,8 +4216,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#66 Fechas y duración en los registros",
-   "status": "falta",
-   "detail": "2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba)"
+   "status": "ok",
+   "detail": "2 comprobaciones: 2 ok"
   },
   {
    "req": 11,
@@ -4567,7 +4567,7 @@
    "area": "Peticiones",
    "name": "#119 Automatizar todo el ciclo en el PC: el usuario no lanza pruebas ni avisa",
    "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (62 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 8 esperaron más de 5 min)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (63 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 8 esperaron más de 5 min)"
   },
   {
    "req": 11,
@@ -5372,7 +5372,7 @@
    "area": "Peticiones",
    "name": "#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min",
    "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (62 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 8 esperaron más de 5 min)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (63 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 8 esperaron más de 5 min)"
   },
   {
    "req": 11,
@@ -5435,7 +5435,7 @@
    "area": "Peticiones",
    "name": "#246 Un único orquestador: mismo código y misma fuente de datos para la aplicación y el chat; monitorizar, pausar, ",
    "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (62 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 8 esperaron más de 5 min)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (63 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 8 esperaron más de 5 min)"
   },
   {
    "req": 11,

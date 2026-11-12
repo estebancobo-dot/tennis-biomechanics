@@ -65,10 +65,10 @@
   "scheme": 2
  },
  "score": {
-  "fingerprint": "89b19fbd35739e15",
-  "version": "10",
-  "seconds": 227.1,
-  "finished": "2026-11-12 12:13:23",
+  "fingerprint": "c908529372b0f489",
+  "version": "11",
+  "seconds": 213.8,
+  "finished": "2026-11-12 12:48:01",
   "summary": {
    "readings": 158,
    "pressure": 24,
@@ -77,7 +77,7 @@
    "server_read": 158,
    "server_source": "marker + aprendido + alternancia"
   },
-  "out_hash": "772fafb6064a98aff83d",
+  "out_hash": "af76c8fa57ac90ad7188",
   "scheme": 2,
   "rewrote": {}
  },
@@ -99,10 +99,10 @@
   "scheme": 2
  },
  "identity": {
-  "fingerprint": "1ed0e7253ede1486",
+  "fingerprint": "984f8a2d9a14a9e8",
   "version": "13",
-  "seconds": 91.1,
-  "finished": "2026-11-12 12:14:54",
+  "seconds": 83.4,
+  "finished": "2026-11-12 12:49:24",
   "summary": {
    "runs": 148,
    "confidence": 0.95,
@@ -146,10 +146,10 @@
   "rewrote": {}
  },
  "candidates": {
-  "fingerprint": "29d4f93de271ecdf",
+  "fingerprint": "75eda832c1053921",
   "version": "15",
-  "seconds": 3.1,
-  "finished": "2026-11-12 12:15:17",
+  "seconds": 3.3,
+  "finished": "2026-11-12 12:49:27",
   "summary": {
    "candidates": 350,
    "far": 157,
