@@ -55,10 +55,10 @@ la auditoría las marcará «sin comprobación automática asignada».
 |---|---|
 | HECHO | 115 |
 | PARCIAL | 117 |
-| FALTA | 21 |
+| FALTA | 22 |
 | NO MEDIBLE | 3 |
 | NO APLICA | 8 |
-| **Total** | **264** |
+| **Total** | **265** |
 
 **27-10:** filas 220-245 nuevas: todo lo pedido en el chat del 19-10 al 27-10 (releídos los mensajes) y lo que
 salió en la prueba de valor; ninguna fila borrada.
@@ -352,6 +352,7 @@ lateral (entreno)» · ≥12 = solo se muestra con 12 golpes o más (`model.MIN_
 | 262 | El análisis completo de los 6 partidos se lanza solo con su aprobación (dura mucho): Claude lo prepara, dice qué hará y cuánto tardará, y espera (Chat, 12-11) | HECHO (12-11) | `docs/estado_proyecto.md` (tarea 11), `CLAUDE.md` | — | — | Regla de trabajo: nada largo en el PC sin su visto bueno. |
 | 263 | Antes de los 6 partidos: el código de la base es el último y está subido; el análisis es desde cero, sin nada de análisis anteriores; todo versionado de verdad; se usan todas las funciones (Chat, 12-11) | PARCIAL | `stage_code.reachable` (auxiliares de cada etapa), cachés de ventana y de la bola con la huella de su código, ejecución desde cero en carpetas nuevas (las anteriores al archivo, solo se copia su clic) | — | pruebas de las cachés y del archivo | Se cumple al lanzar la tarea 11 desde cero con su aprobación. |
 | 264 | Que no vuelvan a pasar fallos de este tamaño sin que se vean (Chat, 12-11, tras R17, el detector sin la bola en todos los partidos reales: «cómo puedes tener fallos tan grandes y demenciales… una persona normal programando no hace estos fallos»). Antes de los 6 partidos: (1) ningún dato que falta se convierte en «vacío» en silencio: es un error o una comprobación de la auditoría; (2) la cobertura de cada entrada de los modelos en los partidos reales (pose, pista, audio, marcador, bola) en la auditoría; (3) cada etapa da lo mismo en una carpeta de la biblioteca que en una plana (lo validado con F3Set es lo que corre en los partidos) | PARCIAL | R17 (bola: error y comprobación), tareas R18-R20 en `docs/estado_proyecto.md` | — | «La bola del partido para el detector»; pruebas de R18-R20 | Se cierra con las tres tareas hechas y su prueba, antes de proponer la tarea 11. |
+| 265 | Gestión de errores y tolerancia a fallos definida por niveles de criticidad, como en las aplicaciones profesionales: cada escenario y cada función se maneja según lo crítica que sea; nunca «comerse» un error sin que pase nada (Chat, 12-11: «es esperpéntico que en algo tan importante te comas el error y no pase nada») | FALTA | propuesta en el chat (12-11): catálogo de modos de fallo, niveles C0-C4, `faults.py` con su política, contratos de datos por etapa, prueba que impide un `except` sin clasificar, puerta de aceptación | — | — | Antes de los 6 partidos si el usuario lo aprueba (plan enseñado, CLAUDE.md: «antes de escribir mucho código, enseñar el plan y esperar»). Estado al 12-11: 323 `except` en el código, 26 relanzan, ~36 avisan, ~261 siguen sin decir nada; sin política escrita: la regla implícita era «el análisis nunca se para». |
 
 ## Lo más grave que falta (por impacto en «copiar su derecha»)
 
