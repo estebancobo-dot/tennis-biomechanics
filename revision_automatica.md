@@ -1,6 +1,6 @@
 # Revisión automática: FALLOS
 
-384 cumplidos · 30 no cumplidos · 110 sin golpes suficientes · 118 avisos (antes: 384 cumplidos, 30 no cumplidos)
+385 cumplidos · 30 no cumplidos · 110 sin golpes suficientes · 117 avisos (antes: 384 cumplidos, 30 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 135 de 260
 
@@ -175,3 +175,7 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 - **#255 Plano del swing: raqueta al lado o detrás del cuerpo en el armado (Vídeos de entrenadores, 12-10, pendiente)**: SIN HACER según el registro (#255, docs/peticiones_usuario.md)
 - **#257 Comparativa a fondo y catalogada con todo lo que existe: apps profesionales (Hawk-Eye/TennisViz, SwingVision, **: SIN HACER según el registro (#257, docs/peticiones_usuario.md)
 - **#258 Partidos y jugadores automáticos desde un nombre de fichero mínimo: normalizar los nombres, leer la ficha públ**: SIN HACER según el registro (#258, docs/peticiones_usuario.md)
+
+## Mejora
+
+- Peticiones por GitHub Actions: espera hasta empezar: aviso → ok
