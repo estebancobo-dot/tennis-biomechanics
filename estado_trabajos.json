@@ -1,10 +1,10 @@
 {
- "at": "2026-11-12 08:50:10",
- "firma": "94763fcd5e5d",
+ "at": "2026-11-12 08:57:29",
+ "firma": "c401c54ae011",
  "ejecutor": {
   "vivo": true,
   "pid": 5712,
-  "at": 1794469798.8900008
+  "at": 1794470247.274945
  },
  "pausa": false,
  "en_curso": [
@@ -29,15 +29,33 @@
  ],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
-  "etapa": "identity",
-  "hecho": 925,
-  "total": 1892,
-  "porcentaje": 48.9,
-  "segundos": 90,
-  "quedan_s": 94,
-  "hora": "2026-11-12 08:50:06"
+  "etapa": "fine",
+  "hecho": 244,
+  "total": 331,
+  "porcentaje": 73.7,
+  "segundos": 291,
+  "quedan_s": 104,
+  "hora": "2026-11-12 08:57:05"
  },
  "pendientes": [
+  {
+   "id": 74,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script validate_recall --spotter --tag v13bola --from v13 --drop-ball-caches --set fine_pass.ball_from_spotting=true",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-12 08:57:25",
+   "started": null,
+   "finished": null,
+   "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"v13bola\", \"--from\", \"v13\", \"--drop-ball-caches\", \"--set\", \"fine_pass.ball_from_spotting=true\"]",
+   "source": "claude 231",
+   "log": "",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 73,
    "kind": "flujo",
@@ -331,6 +349,13 @@
  ],
  "eventos": [
   {
+   "id": 339,
+   "job": 74,
+   "at": "2026-11-12 08:57:25",
+   "kind": "enviado",
+   "text": "tennisbio script validate_recall --spotter --tag v13bola --from v13 --drop-ball-caches --set fine_pass.ball_from_spotting=true (claude 231)"
+  },
+  {
    "id": 338,
    "job": 72,
    "at": "2026-11-12 08:44:12",
@@ -532,13 +557,6 @@
    "at": "2026-11-12 07:50:39",
    "kind": "ejecutor",
    "text": "arranca (pid 12532)"
-  },
-  {
-   "id": 309,
-   "job": null,
-   "at": "2026-11-12 07:50:38",
-   "kind": "ejecutor",
-   "text": "arranca el siguiente con el código nuevo (pid 11708)"
   }
  ]
 }

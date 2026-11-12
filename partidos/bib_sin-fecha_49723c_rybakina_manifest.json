@@ -104,10 +104,10 @@
   "rewrote": {}
  },
  "identity": {
-  "fingerprint": "bb87161faa0c0b16",
-  "version": "12",
-  "seconds": 201.9,
-  "finished": "2026-11-11 16:37:58",
+  "fingerprint": "694cb766286ff365",
+  "version": "13",
+  "seconds": 192.4,
+  "finished": "2026-11-12 08:51:40",
   "summary": {
    "runs": 320,
    "confidence": 0.54,
@@ -140,19 +140,21 @@
      "why": "los grupos no siguen los cambios de lado del marcador (56 % de 281 planos)",
      "parity_runs": 281,
      "parity_agree": 0.56,
-     "centroid_dist": 0.59
+     "centroid_dist": 0.59,
+     "vote_runs": 149,
+     "vote_agree": 0.54
     }
    }
   },
-  "out_hash": "cf9fade8c52692da8675",
+  "out_hash": "08c8f45fca91fe501f7b",
   "scheme": 2,
   "rewrote": {}
  },
  "spotting": {
-  "fingerprint": "ecbbb16b0f2dc0c0",
+  "fingerprint": "2dbc531fc81e73f0",
   "version": "1",
-  "seconds": 23.6,
-  "finished": "2026-11-11 16:38:21",
+  "seconds": 22.9,
+  "finished": "2026-11-12 08:52:03",
   "summary": {
    "enabled": true,
    "strokes": 671,
@@ -166,7 +168,7 @@
    "audio_track": 0,
    "seconds": {
     "jugadores_y_audio": 0.1,
-    "rasgos": 23.2,
+    "rasgos": 22.6,
     "bola": 0.0,
     "modelo": 0.1
    }
@@ -176,10 +178,10 @@
   "rewrote": {}
  },
  "candidates": {
-  "fingerprint": "44eb6eba299a8145",
+  "fingerprint": "e19f9bda731a64f0",
   "version": "15",
   "seconds": 3.3,
-  "finished": "2026-11-11 16:38:25",
+  "finished": "2026-11-12 08:52:07",
   "summary": {
    "candidates": 681,
    "far": 322,

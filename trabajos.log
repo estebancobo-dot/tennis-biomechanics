@@ -39,3 +39,4 @@
 2026-11-12T08:25:06 peticion 228: trabajo 71 en la cola: tennisbio script validate_recall --spotter --tag v13 --from base
 2026-11-12T08:25:32 peticion 229: trabajo 72 en la cola: tennisbio run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final
 2026-11-12T08:26:00 peticion 230: trabajo 73 en la cola: flujo informe
+2026-11-12T08:57:25 peticion 231: trabajo 74 en la cola: tennisbio script validate_recall --spotter --tag v13bola --from v13 --drop-ball-caches --set fine_pass.ball_from_spotting=true

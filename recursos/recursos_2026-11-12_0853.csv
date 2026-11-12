@@ -1,0 +1,15 @@
+hora,partido,etapa,cpu_total,cpu_python,cpu_ffmpeg,ram_usada_gb,ram_total_gb,ram_python_gb,gpu_3d,gpu_compute,gpu_decode,disco,progreso_hora,progreso_pct
+2026-11-12T08:53:52,elena-rybakina-jessica-pegula-miami-2026-quarter-final,fine,25.0,12.8,0.0,8.6,19.8,2.7,94.0,0.0,0.0,0.0,2026-11-12 08:53:25,14.2
+2026-11-12T08:54:09,elena-rybakina-jessica-pegula-miami-2026-quarter-final,fine,26.0,12.8,0.0,8.6,19.8,2.8,82.0,0.0,0.0,0.0,2026-11-12 08:53:56,22.1
+2026-11-12T08:54:25,elena-rybakina-jessica-pegula-miami-2026-quarter-final,fine,29.0,5.4,0.0,8.4,19.8,2.6,0.0,0.0,0.0,4.0,2026-11-12 08:53:56,22.1
+2026-11-12T08:54:42,elena-rybakina-jessica-pegula-miami-2026-quarter-final,fine,25.0,31.1,0.0,8.5,19.8,2.7,94.0,0.0,0.0,0.0,2026-11-12 08:54:26,29.9
+2026-11-12T08:54:58,elena-rybakina-jessica-pegula-miami-2026-quarter-final,fine,28.0,12.0,0.0,8.6,19.8,2.8,87.0,0.0,0.0,1.0,2026-11-12 08:54:57,41.4
+2026-11-12T08:55:14,elena-rybakina-jessica-pegula-miami-2026-quarter-final,fine,25.0,13.9,0.0,8.6,19.8,2.7,0.0,0.0,0.0,0.0,2026-11-12 08:54:57,41.4
+2026-11-12T08:55:31,elena-rybakina-jessica-pegula-miami-2026-quarter-final,fine,29.0,12.9,0.0,8.5,19.8,2.7,0.0,0.0,0.0,0.0,2026-11-12 08:55:27,50.2
+2026-11-12T08:55:47,elena-rybakina-jessica-pegula-miami-2026-quarter-final,fine,66.0,9.4,0.0,8.6,19.8,2.7,52.0,0.0,0.0,0.0,2026-11-12 08:55:27,50.2
+2026-11-12T08:56:03,elena-rybakina-jessica-pegula-miami-2026-quarter-final,fine,55.0,27.3,0.0,8.6,19.8,2.7,42.0,0.0,0.0,0.0,2026-11-12 08:55:27,50.2
+2026-11-12T08:56:20,elena-rybakina-jessica-pegula-miami-2026-quarter-final,fine,65.0,44.7,0.0,8.6,19.8,2.7,0.0,0.0,0.0,0.0,2026-11-12 08:56:04,58.0
+2026-11-12T08:56:36,elena-rybakina-jessica-pegula-miami-2026-quarter-final,fine,86.0,53.8,0.0,8.5,19.8,2.7,41.0,0.0,0.0,0.0,2026-11-12 08:56:34,65.6
+2026-11-12T08:56:52,elena-rybakina-jessica-pegula-miami-2026-quarter-final,fine,25.0,63.7,0.7,8.6,19.8,2.7,0.0,0.0,0.0,0.0,2026-11-12 08:56:34,65.6
+2026-11-12T08:57:09,elena-rybakina-jessica-pegula-miami-2026-quarter-final,fine,69.0,25.3,0.0,8.6,19.8,2.7,0.0,0.0,0.0,3.0,2026-11-12 08:57:05,73.7
+2026-11-12T08:57:25,elena-rybakina-jessica-pegula-miami-2026-quarter-final,fine,51.0,36.1,0.0,8.7,19.8,2.7,0.0,0.0,0.0,0.0,2026-11-12 08:57:05,73.7
