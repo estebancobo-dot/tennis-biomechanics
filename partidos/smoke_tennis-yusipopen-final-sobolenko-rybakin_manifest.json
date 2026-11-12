@@ -119,10 +119,10 @@
   "rewrote": {}
  },
  "candidates": {
-  "fingerprint": "101a16175af87933",
+  "fingerprint": "f26b139b8fd037f2",
   "version": "15",
-  "seconds": 0.8,
-  "finished": "2026-11-11 14:44:11",
+  "seconds": 1.2,
+  "finished": "2026-11-12 08:26:04",
   "summary": {
    "candidates": 182,
    "far": 94,
@@ -285,10 +285,10 @@
   }
  },
  "spotting": {
-  "fingerprint": "a5be6f2532eee2e0",
+  "fingerprint": "c9d5139714fe512b",
   "version": "1",
-  "seconds": 8.9,
-  "finished": "2026-11-11 14:44:10",
+  "seconds": 12.7,
+  "finished": "2026-11-12 08:26:03",
   "summary": {
    "enabled": true,
    "strokes": 181,
@@ -301,10 +301,10 @@
    "feature_dim": 122,
    "audio_track": 0,
    "seconds": {
-    "jugadores_y_audio": 0.0,
-    "rasgos": 8.3,
+    "jugadores_y_audio": 0.1,
+    "rasgos": 11.7,
     "bola": 0.0,
-    "modelo": 0.0
+    "modelo": 0.1
    }
   },
   "out_hash": "ba1de766a177dd7af82b",
