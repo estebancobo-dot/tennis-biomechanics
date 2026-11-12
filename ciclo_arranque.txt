@@ -1,1 +1,2 @@
 arranque: 2026-11-12T12:30:02 (pid 6940)
+2026-11-12T12:30:38 2 ordenes de la cola con codigo nuevo en espera
