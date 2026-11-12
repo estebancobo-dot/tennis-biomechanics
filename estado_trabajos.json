@@ -1,10 +1,10 @@
 {
- "at": "2026-11-12 08:20:06",
- "firma": "ac63a8cfa422",
+ "at": "2026-11-12 08:20:36",
+ "firma": "c984f07571c6",
  "ejecutor": {
-  "vivo": false,
-  "pid": 15204,
-  "at": 1794467884.9189558
+  "vivo": true,
+  "pid": 10440,
+  "at": 1794468028.8010166
  },
  "pausa": false,
  "en_curso": [],
@@ -293,6 +293,48 @@
  ],
  "eventos": [
   {
+   "id": 327,
+   "job": null,
+   "at": "2026-11-12 08:20:28",
+   "kind": "ejecutor",
+   "text": "arranca (pid 10440)"
+  },
+  {
+   "id": 326,
+   "job": null,
+   "at": "2026-11-12 08:20:27",
+   "kind": "ejecutor",
+   "text": "arranca el siguiente con el código nuevo (pid 9128)"
+  },
+  {
+   "id": 325,
+   "job": null,
+   "at": "2026-11-12 08:20:27",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 324,
+   "job": null,
+   "at": "2026-11-12 08:20:27",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 323,
+   "job": null,
+   "at": "2026-11-12 08:20:19",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
+   "id": 322,
+   "job": null,
+   "at": "2026-11-12 08:20:07",
+   "kind": "ejecutor",
+   "text": "arranca (pid 16700)"
+  },
+  {
    "id": 321,
    "job": 70,
    "at": "2026-11-12 08:10:34",
@@ -459,48 +501,6 @@
    "at": "2026-11-12 04:06:38",
    "kind": "ejecutor",
    "text": "arranca (pid 13008)"
-  },
-  {
-   "id": 297,
-   "job": null,
-   "at": "2026-11-12 04:06:37",
-   "kind": "ejecutor",
-   "text": "arranca el siguiente con el código nuevo (pid 15008)"
-  },
-  {
-   "id": 296,
-   "job": null,
-   "at": "2026-11-12 04:06:37",
-   "kind": "ejecutor",
-   "text": "termina"
-  },
-  {
-   "id": 295,
-   "job": null,
-   "at": "2026-11-12 04:06:37",
-   "kind": "ejecutor",
-   "text": "se reinicia con el código nuevo"
-  },
-  {
-   "id": 294,
-   "job": null,
-   "at": "2026-11-12 04:06:31",
-   "kind": "reiniciar",
-   "text": "ciclo"
-  },
-  {
-   "id": 293,
-   "job": 66,
-   "at": "2026-11-12 04:05:57",
-   "kind": "hecho",
-   "text": "código 0"
-  },
-  {
-   "id": 292,
-   "job": 66,
-   "at": "2026-11-12 03:10:53",
-   "kind": "empieza",
-   "text": "script bench_fine_fps --match pegula --minutes 15 --tag rtmw2 --set fine_pass.refine=rtmw-x"
   }
  ]
 }
