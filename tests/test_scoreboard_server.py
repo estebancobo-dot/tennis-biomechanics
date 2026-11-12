@@ -142,3 +142,61 @@ def test_flag_stripes_are_not_the_serve_marker():
         cv2.rectangle(img2, (5, 62 + 6 * k), (60, 64 + 6 * k), (40, 40, 220), -1)
     cv2.circle(img2, (480, 80), 7, (40, 220, 60), -1)                     # the dot on row 1
     assert serve_marker(img2, [], (30.0, 80.0)) == 1
+
+
+def _osaka_like(first_server=0, wrong_games=(1, 5, 9, 11), per_game=4, n_games=18):
+    """Readings of a match where each game's server follows the alternation, but in some of the opponent's service
+    games every reading says the wrong row (12-11, Osaka – Rybakina: the learned marker, 87 % right, read 4 of Osaka's
+    8 service games as Rybakina's)."""
+    from tennisbio.scoreboard import serve_parity
+    rows, truth = [], []
+    games = [[0, 0]]
+    for g in range(n_games):
+        srv = first_server ^ (g % 2)
+        for j in range(per_game):
+            r = {"t": float(len(rows)), "games": [list(x) for x in games], "points": ["15", "0"], "tiebreak": False}
+            rows.append(r)
+            truth.append(srv)
+        games[-1][g % 2] += 1
+        if max(games[-1]) == 6:
+            games.append([0, 0])
+    servers = [(1 - t) if sum(sum(x) for x in r["games"]) in wrong_games else t for r, t in zip(rows, truth)]
+    return rows, servers, truth, [serve_parity(r) for r in rows]
+
+
+def test_alternation_corrects_whole_games_read_on_the_wrong_row():
+    """12-11 (B4, Osaka): 8 of the 9 points «of her serve without her serve» were Osaka's service games read as hers;
+    the first server of the set, voted by every reading, gives each game's server."""
+    from tennisbio.scoreboard import by_alternation
+    for first in (0, 1):
+        rows, servers, truth, par = _osaka_like(first)
+        assert sum(v != t for v, t in zip(servers, truth)) == 16                # 4 games × 4 readings wrong
+        out, summ = by_alternation(rows, servers, par)
+        assert out == truth and summ["changed"] == 16 and summ["first_server"] == first
+
+
+def test_alternation_fills_readings_without_a_marker_and_leaves_tiebreaks():
+    from tennisbio.scoreboard import by_alternation
+    rows, _, truth, par = _osaka_like(0, wrong_games=())
+    servers = [None if i % 3 == 0 else t for i, t in enumerate(truth)]
+    tb = {"t": 999.0, "games": [[6, 6]], "points": ["3", "2"], "tiebreak": True}
+    out, summ = by_alternation(rows + [tb], servers + [1], par + [None])
+    assert out[:-1] == truth and summ["filled"] == sum(v is None for v in servers)
+    assert out[-1] == 1                                   # a tie-break reading keeps the marker: it changes every 2 points
+
+
+def test_alternation_changes_nothing_when_the_readings_do_not_agree():
+    """Nothing invented: half the readings each way gives no first server, and no reading changes."""
+    from tennisbio.scoreboard import by_alternation
+    rows, _, truth, par = _osaka_like(0, wrong_games=())
+    servers = [t if (i // 4) % 4 < 2 else 1 - t for i, t in enumerate(truth)]    # every other pair of games flipped
+    out, summ = by_alternation(rows, servers, par)
+    assert out == servers and summ["changed"] == 0
+    out, summ = by_alternation(rows, [None] * len(rows), par)
+    assert all(v is None for v in out) and summ["first_server"] is None
+
+
+def test_learn_server_says_what_the_alternation_corrected():
+    rows, servers, truth, _ = _osaka_like(1)
+    out, summ = learn_server([dict(r, server=s) for r, s in zip(rows, servers)], [None] * len(rows))
+    assert out == truth and summ["alternation"]["changed"] == 16 and summ["source"].endswith("+ alternancia")

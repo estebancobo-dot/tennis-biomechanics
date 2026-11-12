@@ -1081,3 +1081,25 @@ accion: medir
 script: ventanas_visibles
 # 244 (12-11): comprobar que la ventana vacia ya no esta (el ejecutor arrancaba a su sucesor con DETACHED_PROCESS y la
 # consola de Windows Terminal quedaba abierta; ahora se arranca sin ventana y el que quede en una ventana se reabre oculto)
+---
+id: 245
+accion: trabajo
+comando: run --match us-open-2026-r4-naomi-osaka-elena-rybakina
+# 245 (12-11, R11): Osaka con el marcador v10 (quien saca en cada juego por la alternancia del saque; 243 hallo 8 de
+# los 9 puntos "de su saque sin saque" en juegos de saque de Osaka leidos como suyos). Se rehacen marcador e identidad
+---
+id: 246
+accion: trabajo
+comando: run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final
+# 246 (12-11, R11): Pegula con el marcador v10 (su identidad debe seguir >= 95 %)
+---
+id: 247
+accion: medir
+script: validate_recall
+argumentos: --spotter --tag v14 --from v13r
+# 247 (12-11, R11): F3Set con el marcador v10: no debe perder golpes ni identidad (465 de 517, identidad 489 bien de 494)
+---
+id: 248
+accion: trabajo
+comando: flujo informe
+# 248 (12-11, R11): auditoria: saques por punto de su saque en Osaka >= 85 %, identidad de Pegula, ventana vacia (261)

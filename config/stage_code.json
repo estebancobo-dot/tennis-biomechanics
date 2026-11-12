@@ -26,8 +26,8 @@
   ]
  },
  "identity": {
-  "version": "12",
-  "hash": "91a3dfd9749dac48",
+  "version": "13",
+  "hash": "1b497e955f644b18",
   "modules": [
    "clothes",
    "identity"
@@ -72,8 +72,8 @@
   ]
  },
  "score": {
-  "version": "9",
-  "hash": "14141705a8062719",
+  "version": "10",
+  "hash": "ebcdf6abea80ccd8",
   "modules": [
    "scoreboard"
   ]

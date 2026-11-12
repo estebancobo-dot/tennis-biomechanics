@@ -1367,7 +1367,7 @@ def _surname(name: str) -> str:
     return name.strip().split()[-1] if name and name.strip() else ""
 
 
-@stage("score", "9",   # 9 (11-11): games stacked in one OCR box split between the rows
+@stage("score", "10",  # 9 (11-11): games stacked in one OCR box split between the rows; 10 (12-11): server by alternation
        deps=("scenes", "court"), settings=lambda c: {"every_s": (c.get("score") or {}).get("every_s", 5.0)},
        outputs=("score.json",), match_fields=lambda m: {"player": m.player.name, "opponent": m.opponent}, resource="cpu")
 def st_score(ctx: Context):
@@ -1440,7 +1440,9 @@ def st_score(ctx: Context):
             f"{srv['marker_read']}, sigue la alternancia en {srv['marker_agree']:.0%} de {srv['marker_checked']}; "
             f"aprendida {'sí' if srv['learned'] else 'no'}"
             + (f", sigue la alternancia en {srv['learned_agree']:.0%} de {srv['learned_checked']}" if srv['learned_agree'] is not None else "")
-            + ")")
+            + ")" + (f"; por la alternancia de cada juego: {srv['alternation']['changed']} corregidas y "
+                     f"{srv['alternation']['filled']} completadas (primer saque claro en el {srv['alternation']['share']:.0%})"
+                     if srv.get("alternation", {}).get("first_server") is not None else ""))
     return {"readings": len(out), "pressure": sum(r["pressure"] for r in out), "samples": len(samples), "ocr_calls": reader.ocr_calls,
             "server_read": srv["server_read"], "server_source": srv["source"]}
 

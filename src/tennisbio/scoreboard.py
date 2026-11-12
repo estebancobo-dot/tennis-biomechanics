@@ -8,6 +8,7 @@ glued together by the OCR ("472"), and set scores are single digits, so they are
 import difflib
 import re
 import warnings
+from collections import Counter
 from dataclasses import dataclass, field
 
 import numpy as np
@@ -353,7 +354,68 @@ def learn_server(readings: list[dict], profiles: list, min_readings=20, min_corr
     else:
         out = [None] * n
         summ["source"] = "ninguno: el marcador no sigue la alternancia del saque"
+    out, summ["alternation"] = by_alternation(readings, out, par)
+    if summ["alternation"].get("changed") or summ["alternation"].get("filled"):
+        summ["source"] += " + alternancia"
     summ["server_read"] = sum(v in (0, 1) for v in out)
+    return out, summ
+
+
+ALTERNATION_MIN = 6          # readings with a server in a set before that set's first server is taken from them alone
+ALTERNATION_SHARE = 0.6      # the first server must be clear: below this share of agreeing readings nothing is changed
+
+
+def _tiebreak(r: dict) -> bool:
+    g = r.get("games") or []
+    try:
+        return bool(r.get("tiebreak")) or (bool(g) and [int(x) for x in g[-1]] == [6, 6])
+    except (TypeError, ValueError):
+        return False
+
+
+def by_alternation(readings: list[dict], servers: list, par: list) -> tuple[list, dict]:
+    """12-11 (Osaka – Rybakina, B4: 8 of the 9 points «of her serve without her serve» were Osaka's): who serves in
+    every game from the rule of tennis, not from each reading. The serve changes hands every game, so one first server
+    per set says who serves every game of it; it is the majority of «server XOR games played» over the set's readings
+    (over the match when a set has fewer than ALTERNATION_MIN). On Osaka the colour marker was read on 57 readings
+    (100 % right) and the learned one filled 95 more with 87 % right: 4 of Osaka's 8 service games came out as
+    Rybakina's. Each reading with its games read then takes that game's server; tie-break readings (the serve changes
+    every two points) and readings without games keep what the marker said. Nothing changes when the readings do not
+    agree clearly on a first server (< ALTERNATION_SHARE): the marker is then too unreliable to correct anything.
+    Returns (servers, summary)."""
+    n = len(readings)
+    tb = [_tiebreak(r) for r in readings]
+    usable = [i for i in range(n) if servers[i] in (0, 1) and par[i] is not None and not tb[i]]
+
+    def first(idx):
+        c = Counter(servers[i] ^ par[i] for i in idx)
+        if not c:
+            return None, 0.0, 0
+        s0, k = c.most_common(1)[0]
+        return s0, k / sum(c.values()), sum(c.values())
+
+    g0, g_share, g_n = first(usable)
+    summ = {"first_server": g0, "share": round(g_share, 3), "checked": g_n, "changed": 0, "filled": 0, "by_set": {}}
+    if g0 is None or g_share < ALTERNATION_SHARE:
+        return list(servers), summ
+    sets = {}
+    for i in usable:
+        sets.setdefault(len(readings[i].get("games") or []), []).append(i)
+    s0_of = {}
+    for k, idx in sets.items():
+        s0, share, m = first(idx)
+        s0_of[k] = s0 if m >= ALTERNATION_MIN and share >= ALTERNATION_SHARE else g0
+        summ["by_set"][str(k)] = {"first_server": s0_of[k], "share": round(share, 3), "checked": m}
+    out = list(servers)
+    for i in range(n):
+        if par[i] is None or tb[i]:
+            continue
+        v = s0_of.get(len(readings[i].get("games") or []), g0) ^ par[i]
+        if out[i] is None:
+            summ["filled"] += 1
+        elif out[i] != v:
+            summ["changed"] += 1
+        out[i] = v
     return out, summ
 
 

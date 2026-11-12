@@ -67,9 +67,9 @@ def gather(d: Path) -> dict:
 def describe(g: dict, data: dict, states: list[dict]) -> dict:
     a, b = g["t0"], g["t1"]
     runs = data["identity"].get("runs") or []
-    mid = (a + b) / 2
+    fps = float(data["identity"].get("fps") or 1.0)            # the runs' start and end are frames
     run = next((r for r in runs if r.get("start") is not None and r.get("end") is not None
-                and float(r["start"]) <= mid <= float(r["end"])), None)
+                and float(r["start"]) / fps <= b and float(r["end"]) / fps >= a), None)
     return {**g, "min": round(a / 60, 2),
             "planos_camara_principal": [[round(s, 1), round(e, 1)] for s, e in data["shots"] if e > a and s < b],
             "marcador": [{"t": s["t"], "g": s["g"], "pts": s["pts"], "saca": s["server"]} for s in states
