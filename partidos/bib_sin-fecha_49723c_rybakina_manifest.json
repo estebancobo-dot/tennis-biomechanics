@@ -56,10 +56,10 @@
   "rewrote": {}
  },
  "score": {
-  "fingerprint": "35cc46cef887c078",
+  "fingerprint": "74124a3ad9177fd0",
   "version": "9",
-  "seconds": 311.1,
-  "finished": "2026-11-11 16:34:36",
+  "seconds": 254.9,
+  "finished": "2026-11-12 08:48:28",
   "summary": {
    "readings": 500,
    "pressure": 172,
