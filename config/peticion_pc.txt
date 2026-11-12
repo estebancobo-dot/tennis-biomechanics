@@ -937,3 +937,10 @@ id: 221
 accion: prevision
 # 221 (12-11): que se rehace en cada partido y cuanto tardaria el analisis completo (tarea 11) con el codigo de hoy;
 # va en la cola detras de las pruebas A/B (prevision.md). Solo calcula, no ejecuta nada
+---
+id: 222
+accion: medir
+script: bench_fine_fps
+argumentos: --match pegula --minutes 15 --tag rtmw2 --set fine_pass.refine=rtmw-x
+# 222 (12-11, R3): RTMW-x otra vez. La 219 no lo probo: run_clip construia el modelo de pose con la configuracion del
+# fichero (RTMPose-x) y no con la de la prueba; B salio igual que A hasta el ultimo decimal. Corregido (pose_cfg)

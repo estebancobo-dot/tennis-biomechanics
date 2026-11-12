@@ -290,3 +290,32 @@ def test_rtmw_refiner_by_config_with_fallback(monkeypatch, tmp_path):
     assert hybrid.refiner({"fine_pass": {"refine": "nope"}}) == "rtmpose-x"
     monkeypatch.setattr(hybrid, "RTMW_ONNX", tmp_path / "missing.onnx")
     assert hybrid.refiner(cfg) == "rtmpose-x"
+
+
+def test_the_run_s_own_config_chooses_the_refiner(monkeypatch, tmp_path):
+    # 12-11: run_clip called extract_fine without the run's config: the A/B of RTMW-x (bench_fine_fps --set
+    # fine_pass.refine=rtmw-x) ran RTMPose-x (the config file's) under RTMW's cache key; B equal to A to the decimal
+    from tennisbio.pose import hybrid
+    seen = []
+    monkeypatch.setattr(hybrid, "extract_hybrid", lambda *a, **k: seen.append(k.get("cfg")) or tmp_path / "x.npz")
+    cfg = {"fine_pass": {"pose_model": "hybrid", "refine": "rtmw-x"}}
+    hybrid.extract_fine(tmp_path / "v.mp4", tmp_path / "x.npz", model_name="hybrid", cfg=cfg)
+    assert seen == [cfg]
+
+
+def test_run_clip_hands_its_config_to_the_pose(monkeypatch, tmp_path):
+    import pytest
+    from tennisbio import clip_pipeline
+    from tennisbio.pose import hybrid
+
+    class Seen(Exception):
+        pass
+
+    def fake(*a, **k):
+        raise Seen(k.get("cfg"))
+    monkeypatch.setattr(hybrid, "extract_fine", fake)
+    cfg = {"fine_pass": {"pose_model": "hybrid", "refine": "rtmw-x"}}
+    with pytest.raises(Seen) as e:
+        clip_pipeline.run_clip(tmp_path / "v.mp4", tmp_path / "c.npz", pose_model="hybrid", log=lambda *_: None,
+                               pose_cfg=cfg)
+    assert e.value.args[0] == cfg

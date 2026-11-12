@@ -2228,7 +2228,8 @@ def _fine_one(ctx, p, group, pre, post, interlaced, ph, court, score, onsets, sc
                    prefetch=fp.get("pose_prefetch", True), targets=targets,
                    target_tol=CONFIRM_TOL_S, keep=keep, pose_model=fine_pose_model(ctx.cfg),
                    court_H=H_win, height_scale=hmode,
-                   spotted=[x["t"] - t0 for x in group if x.get("source") in ("spotter", "marcador")] or None, **extra)
+                   spotted=[x["t"] - t0 for x in group if x.get("source") in ("spotter", "marcador")] or None,
+                   pose_cfg=ctx.cfg, **extra)
     for k, v in run.timing.items():
         _TIMES[k] = _TIMES.get(k, 0.0) + v
     _took("analisis_ventana", t_ + sum(run.timing.values()))         # the rest of run_clip

@@ -185,7 +185,7 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
              split: bool = True, pose_model: str = "yolo", court_H: np.ndarray | None = None,
              height_scale: str = "court", spotted: list | None = None, bounce_model=None,
              init_frame: int | None = None, far_H: np.ndarray | None = None,
-             follow_tag: str = FOLLOW_CACHE_TAG, pose_only: bool = False) -> ClipRun:
+             follow_tag: str = FOLLOW_CACHE_TAG, pose_only: bool = False, pose_cfg: dict | None = None) -> ClipRun:
     """Pose, tracking, impacts and stroke analysis of a short clip (cached).
 
     bounce_model: None = the bounce rule (tennisbio.ball.bounce_before / bounce_after); else our learned model
@@ -257,8 +257,10 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
             extract_follow(video, pcache, init_box, max_bottom=max_bottom, frames=frames, prefetch=prefetch,
                            keep=keep, inits=start, stats=pstats, far_H=far_H)
         else:
+            # pose_cfg (12-11): the run's own configuration (fine_pass.refine); without it the model came from the config
+            # file, and an A/B with another refiner (bench_fine_fps --set) ran the same model under another cache key
             extract_fine(video, pcache, imgsz=imgsz, progress=False, roi=roi, frames=frames, prefetch=prefetch,
-                         keep=keep, stats=pstats, model_name=use_model)
+                         keep=keep, stats=pstats, model_name=use_model, cfg=pose_cfg)
     d = load_npz(pcache)
     if d is None:
         raise RuntimeError(f"no se pudo extraer la pose de {video.name}")
@@ -331,7 +333,7 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
         whole = run_clip(video, cache, hand, height_m, rackets, init_mode, imgsz, log, ball, side,
                          init_box, max_bottom, roi, prefetch, targets, target_tol, pose_model=pose_model,
                          court_H=court_H, height_scale=height_scale, spotted=spotted,
-                         init_frame=init_frame, far_H=far_H)
+                         init_frame=init_frame, far_H=far_H, pose_cfg=pose_cfg)
         whole.timing["pose"] = whole.timing.get("pose", 0.0) + timing.get("pose", 0.0)
         whole.stats["posed_frames"] = whole.stats.get("posed_frames", 0) + int(np.sum(keep[:T]))
         whole.stats["whole_window_again"] = 1
