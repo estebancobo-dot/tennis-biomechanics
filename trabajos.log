@@ -41,3 +41,4 @@
 2026-11-12T08:26:00 peticion 230: trabajo 73 en la cola: flujo informe
 2026-11-12T08:57:25 peticion 231: trabajo 74 en la cola: tennisbio script validate_recall --spotter --tag v13bola --from v13 --drop-ball-caches --set fine_pass.ball_from_spotting=true
 2026-11-12T09:28:25 peticion 232: trabajo 75 en la cola: tennisbio script diag_export_esqueleto
+2026-11-12T09:42:16 peticion 233: trabajo 76 en la cola: tennisbio script export_fotogramas 0312430 0221547 0925800 0048549

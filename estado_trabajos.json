@@ -1,10 +1,10 @@
 {
- "at": "2026-11-12 09:39:14",
- "firma": "3ce94815b913",
+ "at": "2026-11-12 09:42:20",
+ "firma": "bb3c2234e717",
  "ejecutor": {
   "vivo": true,
-  "pid": 8668,
-  "at": 1794472754.3636928
+  "pid": 3632,
+  "at": 1794472935.3179429
  },
  "pausa": false,
  "en_curso": [],
@@ -18,7 +18,26 @@
   "quedan_s": 0,
   "hora": "2026-11-12 08:59:52"
  },
- "pendientes": [],
+ "pendientes": [
+  {
+   "id": 76,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script export_fotogramas 0312430 0221547 0925800 0048549",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-12 09:42:16",
+   "started": null,
+   "finished": null,
+   "args": "[\"script\", \"export_fotogramas\", \"0312430\", \"0221547\", \"0925800\", \"0048549\"]",
+   "source": "claude 233",
+   "log": "",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "recientes": [
   {
    "id": 75,
@@ -293,6 +312,48 @@
  ],
  "eventos": [
   {
+   "id": 369,
+   "job": 76,
+   "at": "2026-11-12 09:42:16",
+   "kind": "enviado",
+   "text": "tennisbio script export_fotogramas 0312430 0221547 0925800 0048549 (claude 233)"
+  },
+  {
+   "id": 368,
+   "job": null,
+   "at": "2026-11-12 09:41:55",
+   "kind": "ejecutor",
+   "text": "arranca (pid 3632)"
+  },
+  {
+   "id": 367,
+   "job": null,
+   "at": "2026-11-12 09:41:54",
+   "kind": "ejecutor",
+   "text": "arranca el siguiente con el código nuevo (pid 13564)"
+  },
+  {
+   "id": 366,
+   "job": null,
+   "at": "2026-11-12 09:41:54",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 365,
+   "job": null,
+   "at": "2026-11-12 09:41:54",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 364,
+   "job": null,
+   "at": "2026-11-12 09:41:47",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
    "id": 363,
    "job": null,
    "at": "2026-11-12 09:35:34",
@@ -459,48 +520,6 @@
    "at": "2026-11-12 08:59:53",
    "kind": "hecho",
    "text": "código 0"
-  },
-  {
-   "id": 339,
-   "job": 74,
-   "at": "2026-11-12 08:57:25",
-   "kind": "enviado",
-   "text": "tennisbio script validate_recall --spotter --tag v13bola --from v13 --drop-ball-caches --set fine_pass.ball_from_spotting=true (claude 231)"
-  },
-  {
-   "id": 338,
-   "job": 72,
-   "at": "2026-11-12 08:44:12",
-   "kind": "empieza",
-   "text": "run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final"
-  },
-  {
-   "id": 337,
-   "job": 71,
-   "at": "2026-11-12 08:44:12",
-   "kind": "hecho",
-   "text": "código 0"
-  },
-  {
-   "id": 336,
-   "job": 73,
-   "at": "2026-11-12 08:25:59",
-   "kind": "enviado",
-   "text": "flujo informe (claude 230)"
-  },
-  {
-   "id": 335,
-   "job": 72,
-   "at": "2026-11-12 08:25:32",
-   "kind": "enviado",
-   "text": "tennisbio run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final (claude 229)"
-  },
-  {
-   "id": 334,
-   "job": 71,
-   "at": "2026-11-12 08:25:09",
-   "kind": "empieza",
-   "text": "script validate_recall --spotter --tag v13 --from base"
   }
  ]
 }
