@@ -1,10 +1,10 @@
 {
- "at": "2026-11-12 09:28:12",
- "firma": "f71fbe5687f3",
+ "at": "2026-11-12 09:28:28",
+ "firma": "b5d585230435",
  "ejecutor": {
   "vivo": true,
-  "pid": 5712,
-  "at": 1794472072.35841
+  "pid": 7452,
+  "at": 1794472105.3216422
  },
  "pausa": false,
  "en_curso": [],
@@ -18,7 +18,26 @@
   "quedan_s": 0,
   "hora": "2026-11-12 08:59:52"
  },
- "pendientes": [],
+ "pendientes": [
+  {
+   "id": 75,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script diag_export_esqueleto",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-12 09:28:25",
+   "started": null,
+   "finished": null,
+   "args": "[\"script\", \"diag_export_esqueleto\"]",
+   "source": "claude 232",
+   "log": "",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "recientes": [
   {
    "id": 74,
@@ -293,6 +312,48 @@
  ],
  "eventos": [
   {
+   "id": 356,
+   "job": 75,
+   "at": "2026-11-12 09:28:25",
+   "kind": "enviado",
+   "text": "tennisbio script diag_export_esqueleto (claude 232)"
+  },
+  {
+   "id": 355,
+   "job": null,
+   "at": "2026-11-12 09:28:25",
+   "kind": "ejecutor",
+   "text": "arranca (pid 7452)"
+  },
+  {
+   "id": 354,
+   "job": null,
+   "at": "2026-11-12 09:28:24",
+   "kind": "ejecutor",
+   "text": "arranca el siguiente con el código nuevo (pid 15828)"
+  },
+  {
+   "id": 353,
+   "job": null,
+   "at": "2026-11-12 09:28:24",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 352,
+   "job": null,
+   "at": "2026-11-12 09:28:24",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 351,
+   "job": null,
+   "at": "2026-11-12 09:28:23",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
    "id": 350,
    "job": 74,
    "at": "2026-11-12 09:27:54",
@@ -459,48 +520,6 @@
    "at": "2026-11-12 08:20:28",
    "kind": "ejecutor",
    "text": "arranca (pid 10440)"
-  },
-  {
-   "id": 326,
-   "job": null,
-   "at": "2026-11-12 08:20:27",
-   "kind": "ejecutor",
-   "text": "arranca el siguiente con el código nuevo (pid 9128)"
-  },
-  {
-   "id": 325,
-   "job": null,
-   "at": "2026-11-12 08:20:27",
-   "kind": "ejecutor",
-   "text": "termina"
-  },
-  {
-   "id": 324,
-   "job": null,
-   "at": "2026-11-12 08:20:27",
-   "kind": "ejecutor",
-   "text": "se reinicia con el código nuevo"
-  },
-  {
-   "id": 323,
-   "job": null,
-   "at": "2026-11-12 08:20:19",
-   "kind": "reiniciar",
-   "text": "ciclo"
-  },
-  {
-   "id": 322,
-   "job": null,
-   "at": "2026-11-12 08:20:07",
-   "kind": "ejecutor",
-   "text": "arranca (pid 16700)"
-  },
-  {
-   "id": 321,
-   "job": 70,
-   "at": "2026-11-12 08:10:34",
-   "kind": "hecho",
-   "text": "código 0"
   }
  ]
 }
