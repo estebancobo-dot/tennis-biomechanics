@@ -1,32 +1,13 @@
 {
- "at": "2026-11-12 03:56:38",
- "firma": "e096b554599c",
+ "at": "2026-11-12 04:06:19",
+ "firma": "4cf66c43841e",
  "ejecutor": {
   "vivo": true,
   "pid": 13256,
-  "at": 1794452196.9708612
+  "at": 1794452777.26658
  },
  "pausa": false,
- "en_curso": [
-  {
-   "id": 66,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script bench_fine_fps --match pegula --minutes 15 --tag rtmw2 --set fine_pass.refine=rtmw-x",
-   "state": "en curso",
-   "message": "",
-   "created": "2026-11-12 03:10:49",
-   "started": "2026-11-12 03:10:53",
-   "finished": null,
-   "args": "[\"script\", \"bench_fine_fps\", \"--match\", \"pegula\", \"--minutes\", \"15\", \"--tag\", \"rtmw2\", \"--set\", \"fine_pass.refine=rtmw-x\"]",
-   "source": "claude 222",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_66.log",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "en_curso": [],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "fine_doubtful",
@@ -39,6 +20,24 @@
  },
  "pendientes": [],
  "recientes": [
+  {
+   "id": 66,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script bench_fine_fps --match pegula --minutes 15 --tag rtmw2 --set fine_pass.refine=rtmw-x",
+   "state": "hecho",
+   "message": "",
+   "created": "2026-11-12 03:10:49",
+   "started": "2026-11-12 03:10:53",
+   "finished": "2026-11-12 04:05:54",
+   "args": "[\"script\", \"bench_fine_fps\", \"--match\", \"pegula\", \"--minutes\", \"15\", \"--tag\", \"rtmw2\", \"--set\", \"fine_pass.refine=rtmw-x\"]",
+   "source": "claude 222",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_66.log",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 65,
    "kind": "flujo",
@@ -290,27 +289,16 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_52.log",
    "paso": 6,
    "pasos": 6
-  },
-  {
-   "id": 51,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final",
-   "state": "hecho",
-   "message": "",
-   "created": "2026-11-11 16:29:14",
-   "started": "2026-11-11 16:29:24",
-   "finished": "2026-11-11 17:02:20",
-   "args": "[\"run\", \"--match\", \"elena-rybakina-jessica-pegula-miami-2026-quarter-final\"]",
-   "source": "claude 203",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_51.log",
-   "paso": 0,
-   "pasos": 0
   }
  ],
  "eventos": [
+  {
+   "id": 293,
+   "job": 66,
+   "at": "2026-11-12 04:05:57",
+   "kind": "hecho",
+   "text": "código 0"
+  },
   {
    "id": 292,
    "job": 66,
@@ -513,13 +501,6 @@
    "at": "2026-11-12 01:20:28",
    "kind": "empieza",
    "text": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)"
-  },
-  {
-   "id": 263,
-   "job": 61,
-   "at": "2026-11-12 01:20:26",
-   "kind": "enviado",
-   "text": "flujo informe (claude 217)"
   }
  ]
 }
