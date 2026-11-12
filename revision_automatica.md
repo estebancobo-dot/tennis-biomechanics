@@ -1,6 +1,6 @@
-# Revisión automática: FALLOS
+# Revisión automática: REGRESIÓN
 
-386 cumplidos · 30 no cumplidos · 111 sin golpes suficientes · 115 avisos (antes: 386 cumplidos, 30 no cumplidos)
+386 cumplidos · 32 no cumplidos · 111 sin golpes suficientes · 114 avisos (antes: 386 cumplidos, 30 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 135 de 260
 
@@ -149,6 +149,8 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 - **Registros con fecha y duración**: 64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba_completo.log: sin «termina fecha» al final
 - **Lista de partidos: rival, torneo, ronda y fecha**: 6 partidos; sin torneo: 1 (zheng-qinwen-elena-rybakina); sin ronda: 1 (zheng-qinwen-elena-rybakina); sin fecha: 1 (zheng-qinwen-elena-rybakina)
 - **Aplicación: lo que consume abierta**: CPU media 0.03 % (máx 0.06 %; objetivo ≤ 5 %), memoria hasta 1469 MB (objetivo ≤ 800) en 8 procesos; 2026-11-12 01:26:37
+- **Golpes con su pose en el contacto: smoke_tennis-yusipopen-final-sobolenko-rybakin**: cerca 21 de 32 (66%; objetivo ≥ 95%): reveses 7 de 8, derechas 10 de 13, saques 4 de 11 · lejos (medidas de la pose para medir): reveses 17 de 20, derechas 10 de 13, saques 11 de 13
+- **#1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final**: 6 comprobaciones: 1 falta, 1 aviso, 1 pocos datos, 3 ok; la peor: «Golpes con su pose en el contacto: smoke_tennis-yusipopen-final-sobolenko-rybakin» (cerca 21 de 32 (66%; objetivo ≥ 95%): reveses 7 de 8, derechas 10 de 13, saques 4 de 11 · lejos (medidas de la pose para)
 - **#66 Fechas y duración en los registros**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba)
 - **#160 la app que hiciste completa como se arranca, se puede usar ahora? (Chat, 19-10 08:11)**: 6 comprobaciones: 1 falta, 5 ok; la peor: «Aplicación: lo que consume abierta» (CPU media 0.03 % (máx 0.06 %; objetivo ≤ 5 %), memoria hasta 1469 MB (objetivo ≤ 800) en 8 procesos; 2026-11-12 01:26:37)
 - **#176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3)**: SIN HACER según el registro (#176, docs/peticiones_usuario.md)
@@ -175,3 +177,11 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 - **#255 Plano del swing: raqueta al lado o detrás del cuerpo en el armado (Vídeos de entrenadores, 12-10, pendiente)**: SIN HACER según el registro (#255, docs/peticiones_usuario.md)
 - **#257 Comparativa a fondo y catalogada con todo lo que existe: apps profesionales (Hawk-Eye/TennisViz, SwingVision, **: SIN HACER según el registro (#257, docs/peticiones_usuario.md)
 - **#258 Partidos y jugadores automáticos desde un nombre de fichero mínimo: normalizar los nombres, leer la ficha públ**: SIN HACER según el registro (#258, docs/peticiones_usuario.md)
+
+## Empeora respecto a la ejecución anterior
+
+- **#1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final**: aviso → falta: 6 comprobaciones: 1 falta, 1 aviso, 1 pocos datos, 3 ok; la peor: «Golpes con su pose en el contacto: smoke_tennis-yusipopen-final-sobolenko-rybakin» (cerca 21 de 32 (66%; objetivo ≥ 95%): reveses 7 d
+
+## Comprobaciones nuevas
+
+- Golpes con su pose en el contacto: smoke_tennis-yusipopen-final-sobolenko-rybakin: falta (cerca 21 de 32 (66%; objetivo ≥ 95%): reveses 7 de 8, derechas 10 de 13, saques 4 de 11 · lejos (medidas de la pose para medir): reveses 17 de 20, derechas 10 d)

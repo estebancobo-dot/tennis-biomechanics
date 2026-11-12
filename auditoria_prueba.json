@@ -4,9 +4,9 @@
  "near": 13,
  "summary": {
   "ok": 386,
-  "falta": 30,
+  "falta": 32,
   "pocos datos": 111,
-  "aviso": 115
+  "aviso": 114
  },
  "items": [
   {
@@ -3482,7 +3482,7 @@
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "50 carpetas, 38.1 GB en total (2026-11-12T10:10:09); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB"
+   "detail": "50 carpetas, 38.1 GB en total (2026-11-12T10:18:45); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB"
   },
   {
    "req": 5,
@@ -3573,7 +3573,7 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar",
    "status": "ok",
-   "detail": "terminó el 2026-11-12 10:08:12 en 0 min: 118 vídeos de 118 golpes"
+   "detail": "terminó el 2026-11-12 10:18:58 en 0 min: 118 vídeos de 118 golpes"
   },
   {
    "req": 2,
@@ -3723,18 +3723,25 @@
    "detail": "ninguna ejecución desde cero de 20 min de vídeo o más (prueba app_nuevo o poc del PC)"
   },
   {
+   "req": 1,
+   "area": "Golpes",
+   "name": "Golpes con su pose en el contacto: smoke_tennis-yusipopen-final-sobolenko-rybakin",
+   "status": "falta",
+   "detail": "cerca 21 de 32 (66%; objetivo ≥ 95%): reveses 7 de 8, derechas 10 de 13, saques 4 de 11 · lejos (medidas de la pose para medir): reveses 17 de 20, derechas 10 de 13, saques 11 de 13"
+  },
+  {
    "req": 9,
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-12_0853.csv (mín/media/máx): elena-rybakina-jessica-pegula- fine (4.5 min): CPU 25/47/86 %, iGPU 0/27/94 %, RAM máx 8.8 GB → uso medio: margen para repartir trabajo; elena-rybakina-jessica-pegula- fine_doubtful (2.0 min): CPU 2/23/39 %, iGPU 0/34/100 %, RAM máx 8.4 GB → equipo infrautilizado: trabajo en serie (se puede repartir); 28.0 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa); más recientes sin muestras de una etapa en marcha (ejecuciones desde las cachés): recursos_2026-11-12_0950.csv, recursos_2026-11-12_0938.csv"
+   "detail": "recursos_2026-11-12_0853.csv (mín/media/máx): elena-rybakina-jessica-pegula- fine (4.5 min): CPU 25/47/86 %, iGPU 0/27/94 %, RAM máx 8.8 GB → uso medio: margen para repartir trabajo; elena-rybakina-jessica-pegula- fine_doubtful (2.0 min): CPU 2/23/39 %, iGPU 0/34/100 %, RAM máx 8.4 GB → equipo infrautilizado: trabajo en serie (se puede repartir); 28.0 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa); más recientes sin muestras de una etapa en marcha (ejecuciones desde las cachés): recursos_2026-11-12_1018.csv, recursos_2026-11-12_0950.csv, recursos_2026-11-12_0938.csv"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
    "status": "ok",
-   "detail": "petición del 12-11 10:07, empezó a los 0.2 min; el PC estaba con otro trabajo hasta las 10:08 (1.2 min, no cuentan), empezó 0.0 min después de quedar libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
+   "detail": "petición del 12-11 10:07, empezó a los 0.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
   },
   {
    "req": 1,
@@ -3782,8 +3789,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final",
-   "status": "aviso",
-   "detail": "5 comprobaciones: 1 aviso, 1 pocos datos, 3 ok; la peor: «Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin» (10 de 13 puntos de su saque vistos con su saque encontrado (77%; objetivo ≥ 85%) (1 puntos más sin nadie jugando en la c)"
+   "status": "falta",
+   "detail": "6 comprobaciones: 1 falta, 1 aviso, 1 pocos datos, 3 ok; la peor: «Golpes con su pose en el contacto: smoke_tennis-yusipopen-final-sobolenko-rybakin» (cerca 21 de 32 (66%; objetivo ≥ 95%): reveses 7 de 8, derechas 10 de 13, saques 4 de 11 · lejos (medidas de la pose para)"
   },
   {
    "req": 11,

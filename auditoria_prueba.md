@@ -1,6 +1,6 @@
 # Auditoría de requisitos (forehand)
 
-13 golpes del lado cercano. ✔ 386 cumplidos · ✘ 30 no cumplidos · … 111 sin golpes suficientes en esta ejecución · ! 115 avisos
+13 golpes del lado cercano. ✔ 386 cumplidos · ✘ 32 no cumplidos · … 111 sin golpes suficientes en esta ejecución · ! 114 avisos
 
 ## Peticiones del usuario SIN TERMINAR: 135 de 260
 
@@ -145,6 +145,7 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 
 ## 1. Toda la taxonomía del golpe y todas sus variantes (situaciones)
 
+- ✘ **Golpes con su pose en el contacto: smoke_tennis-yusipopen-final-sobolenko-rybakin**: cerca 21 de 32 (66%; objetivo ≥ 95%): reveses 7 de 8, derechas 10 de 13, saques 4 de 11 · lejos (medidas de la pose para medir): reveses 17 de 20, derechas 10 de 13, saques 11 de 13
 - ! **Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 10 de 13 puntos de su saque vistos con su saque encontrado (77%; objetivo ≥ 85%) (1 puntos más sin nadie jugando en la cámara principal: la tele no los enseñó, no cuentan); sin saque: sin ningún golpe suyo 1, golpes suyos, pero ningún saque 3; sus saques encontrados caen en puntos de su saque 15, de la rival 5, fuera de los puntos leídos 4; en los puntos sin saque, su primer golpe encontrado llega 27.5 s (mediana de 3) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 3): tipo {'backhand/detector': 1, 'backhand/pose': 1, 'forehand/detector': 1}, lado {'far': 3}, 2 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 2, 'golpe_suyo_visto_y_perdido': 0, 'golpe_de_la_rival_antes': 0, 'nada_antes': 1, 'sin_primer_golpe': 1}; en los puntos sin ningún golpe suyo: con golpes de alguien (detector) 0, sin golpes de nadie 1, cámara principal 19.7 s (mediana), candidatos {'suyos_perdidos_despues': 0, 'solo_de_la_rival': 0, 'identidad_sin_decidir': 0, 'sin_candidatos': 1}, golpes suyos perdidos {'de_identidad_dudosa': 0, 'descartados_en_la_pasada_fina': 0}; primeros: 6.1-6.5 min (sin_golpes), 6.4-7.1 min (sin_saque), 8.3-9.2 min (sin_saque), 31.1-31.7 min (sin_saque)
 - ! **Volumen: forehand analizados en los partidos**: 26 golpes (13 cerca con todo el detalle, 13 lejos) en 1 partidos; objetivo ≥ 400 (docs/comparativa_apps.md §4.3)
 - ! **Identidad en los cambios de lado: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 66 de 67 planos decididos (99%; objetivo ≥ 95%); cambios de lado del marcador y ropa de acuerdo en 57 de 66 planos con las dos señales (86%; objetivo ≥ 90%); misma ropa dentro de un juego 75% (objetivo ≥ 95%); sus golpes: 32 cerca y 46 lejos (41% en el lado con menos); dudosos 1, sin decidir 0 · falla: cambios de lado y ropa de acuerdo 86% < 90%, ropa igual dentro de un juego 75% < 95%. Sin verdad anotada: coherencia, no validación
@@ -511,7 +512,7 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 - ✔ **Pruebas en este PC: test_speed_keeps_quality**: 4 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_export_end**: 7 bien, 0 fallan, 0 omitidas
 - ✔ **Progreso visible (progreso.json)**: último: fine_doubtful de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (20/20), 17 s, quedan ≈ 0 s, a las 2026-11-12 08:27:56
-- ✔ **Tamaño de la salida (tamanos.txt)**: 50 carpetas, 38.1 GB en total (2026-11-12T10:10:09); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB
+- ✔ **Tamaño de la salida (tamanos.txt)**: 50 carpetas, 38.1 GB en total (2026-11-12T10:18:45); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB
 - ✔ **Carpetas de pruebas antiguas**: ninguna carpeta de pruebas con más de 14 días sin usar
 - ✔ **Aplicación: ventana real y pantallas**: 66 pantallas pintadas, 0 problemas; ventana real: carga
 - ✔ **Aplicación: análisis en su índice**: 2 análisis y 30 partidos en el índice de la aplicación (leído del índice, datos/tennisbio.db)
@@ -521,9 +522,9 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 - ✔ **Partido smoke_tennis-yusipopen-final-sobolenko-rybakin: salida de cada etapa, ventanas y series**: 17 ficheros de etapa, 78 golpes con ventana y serie
 - ✔ **Informe: index.html, series y miniaturas**: 118 golpes; series que faltan 0, miniaturas que faltan 0
 - ✔ **Exportación: resumen PDF y un vídeo por golpe**: 118 vídeos
-- ✔ **Exportación terminada: exportar**: terminó el 2026-11-12 10:08:12 en 0 min: 118 vídeos de 118 golpes
+- ✔ **Exportación terminada: exportar**: terminó el 2026-11-12 10:18:58 en 0 min: 118 vídeos de 118 golpes
 - ✔ **Vista lateral: entrenamiento.json y un vídeo con esqueleto por golpe**: 91 de 91 vídeos
-- ✔ **Peticiones por GitHub Actions: espera hasta empezar**: petición del 12-11 10:07, empezó a los 0.2 min; el PC estaba con otro trabajo hasta las 10:08 (1.2 min, no cuentan), empezó 0.0 min después de quedar libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)
+- ✔ **Peticiones por GitHub Actions: espera hasta empezar**: petición del 12-11 10:07, empezó a los 0.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)
 
 ## 6. Sin fuentes externas (nada de vídeos de otros)
 
@@ -538,10 +539,11 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 - … **Tiempo desde cero**: ninguna ejecución desde cero de 20 min de vídeo o más (prueba app_nuevo o poc del PC)
 - ✔ **Tomas de cámara: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 0.7 min (objetivo ≤ 15 min)
 - ✔ **Tiempo de cada etapa frente a su ritmo en este PC: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 2 etapas comparadas con su mediana aquí; las que más tardan: players 48.2 min, score 19.2 min, court 16.6 min, scenes 2.4 min, fine 1.5 min; ninguna pasa de 2 veces su ritmo habitual
-- ✔ **Uso del PC por etapa (CPU, RAM, iGPU y disco)**: recursos_2026-11-12_0853.csv (mín/media/máx): elena-rybakina-jessica-pegula- fine (4.5 min): CPU 25/47/86 %, iGPU 0/27/94 %, RAM máx 8.8 GB → uso medio: margen para repartir trabajo; elena-rybakina-jessica-pegula- fine_doubtful (2.0 min): CPU 2/23/39 %, iGPU 0/34/100 %, RAM máx 8.4 GB → equipo infrautilizado: trabajo en serie (se puede repartir); 28.0 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa); más recientes sin muestras de una etapa en marcha (ejecuciones desde las cachés): recursos_2026-11-12_0950.csv, recursos_2026-11-12_0938.csv
+- ✔ **Uso del PC por etapa (CPU, RAM, iGPU y disco)**: recursos_2026-11-12_0853.csv (mín/media/máx): elena-rybakina-jessica-pegula- fine (4.5 min): CPU 25/47/86 %, iGPU 0/27/94 %, RAM máx 8.8 GB → uso medio: margen para repartir trabajo; elena-rybakina-jessica-pegula- fine_doubtful (2.0 min): CPU 2/23/39 %, iGPU 0/34/100 %, RAM máx 8.4 GB → equipo infrautilizado: trabajo en serie (se puede repartir); 28.0 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa); más recientes sin muestras de una etapa en marcha (ejecuciones desde las cachés): recursos_2026-11-12_1018.csv, recursos_2026-11-12_0950.csv, recursos_2026-11-12_0938.csv
 
 ## 11. Cada petición del usuario en el chat (docs/peticiones_usuario.md), una a una
 
+- ✘ **#1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final**: 6 comprobaciones: 1 falta, 1 aviso, 1 pocos datos, 3 ok; la peor: «Golpes con su pose en el contacto: smoke_tennis-yusipopen-final-sobolenko-rybakin» (cerca 21 de 32 (66%; objetivo ≥ 95%): reveses 7 de 8, derechas 10 de 13, saques 4 de 11 · lejos (medidas de la pose para)
 - ✘ **#66 Fechas y duración en los registros**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba)
 - ✘ **#160 la app que hiciste completa como se arranca, se puede usar ahora? (Chat, 19-10 08:11)**: 6 comprobaciones: 1 falta, 5 ok; la peor: «Aplicación: lo que consume abierta» (CPU media 0.03 % (máx 0.06 %; objetivo ≤ 5 %), memoria hasta 1469 MB (objetivo ≤ 800) en 8 procesos; 2026-11-12 01:26:37)
 - ✘ **#176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3)**: SIN HACER según el registro (#176, docs/peticiones_usuario.md)
@@ -568,7 +570,6 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 - ✘ **#255 Plano del swing: raqueta al lado o detrás del cuerpo en el armado (Vídeos de entrenadores, 12-10, pendiente)**: SIN HACER según el registro (#255, docs/peticiones_usuario.md)
 - ✘ **#257 Comparativa a fondo y catalogada con todo lo que existe: apps profesionales (Hawk-Eye/TennisViz, SwingVision, **: SIN HACER según el registro (#257, docs/peticiones_usuario.md)
 - ✘ **#258 Partidos y jugadores automáticos desde un nombre de fichero mínimo: normalizar los nombres, leer la ficha públ**: SIN HACER según el registro (#258, docs/peticiones_usuario.md)
-- ! **#1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final**: 5 comprobaciones: 1 aviso, 1 pocos datos, 3 ok; la peor: «Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin» (10 de 13 puntos de su saque vistos con su saque encontrado (77%; objetivo ≥ 85%) (1 puntos más sin nadie jugando en la c)
 - ! **#2 Ver informe y salidas en el móvil**: A MEDIAS según el registro (#2); no se comprueba en las salidas: aplazado por el usuario (móvil al final)
 - ! **#7 Empuñadura en la espera y al golpear**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 5 comprobaciones: 5 ok
 - ! **#9 Información, no tablas; profesional, «con sentido humano», nivel de las apps punteras**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 9 comprobaciones: 9 ok

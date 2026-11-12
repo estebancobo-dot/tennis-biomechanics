@@ -21,7 +21,7 @@
 | B3 Base · mejores modelos (estado del arte medido) | 10 | 0 | 0 | 1 | 9 | 0 | Cada candidato medido frente al actual (precisión con datos anotados y fotogramas/s en el PC) | ok | no |
 | B4 Base · no perder golpes | 6 | 0 | 0 | 5 | 1 | 0 | Recall F3Set y RacketVision por lado y tipo, sin bajar la precisión | falla | no |
 | B5 Base · exportación | 1 | 0 | 0 | 1 | 0 | 0 | Vídeos por golpe en ≤ 20 min sin cuelgues | ok | no |
-| B6 Base · referencia definitiva de los 4 partidos | 4 | 0 | 0 | 4 | 0 | 0 | 4 partidos sin errores de etapa; auditoría generada | ok | no |
+| B6 Base · referencia definitiva de los 4 partidos | 4 | 0 | 0 | 4 | 0 | 0 | 4 partidos sin errores de etapa; auditoría generada | falla | no |
 | B7 Base · aplicación autónoma e infraestructura | 36 | 0 | 0 | 11 | 25 | 0 | Un partido nuevo de principio a fin sin el ciclo ni el chat; capturas de cada pantalla sin fallos | ok | no |
 | B8 Base · orquestador único (aplicación y chat con el mismo código y los mismos datos) | 8 | 0 | 6 | 2 | 0 | 0 | Fases A-F de docs/orquestador.md; un trabajo enviado desde el chat, pausado en la aplicación y reanudado desde el chat en el PC | falla | no |
 | P0 Producto · rediseño completo de la aplicación (comparativa profesional, UX, aprendizaje, gestión, gráficos) | 4 | 3 | 1 | 0 | 0 | 0 | Diseño desde la comparativa con las apps profesionales; capturas de cada pantalla comparadas con las de referencia, sin restos inútiles ni nada fijo en el código | sin medir | no |
@@ -47,7 +47,7 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 - **B3**: peticiones sin comprobar o que fallan: #58
 - **B4**: prueba principal: Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin: aviso, Cobertura del saque dicha en el informe: aviso; peticiones sin comprobar o que fallan: #23, #151, #155, #205, #218
 - **B5**: peticiones sin comprobar o que fallan: #41
-- **B6**: peticiones sin comprobar o que fallan: #1, #134, #233, #234
+- **B6**: prueba principal: Golpes con su pose en el contacto: smoke_tennis-yusipopen-final-sobolenko-rybakin: falta; peticiones sin comprobar o que fallan: #1, #134, #233, #234
 - **B7**: peticiones sin comprobar o que fallan: #18, #20, #21, #22, #37, #51, #66, #119, #160, #226, #242
 - **B8**: prueba principal: Orquestador: espera hasta empezar cada trabajo: aviso; peticiones sin comprobar o que fallan: #246, #247, #248, #249, #250, #251, #259, #260
 - **P0**: prueba principal: Aplicación: rediseño : sin medir; peticiones sin comprobar o que fallan: #256, #257, #252, #258
@@ -56,7 +56,7 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 
 | # | Petición | Paquete | Registro | Nivel | Lo que comprueba la auditoría |
 |---|---|---|---|---|---|
-| 1 | Derecha de Rybakina en sus 4 partidos completos, una vez y al final (10-10 17:27; 11-10 19 | B6 | HECHO | 2 comprobación que falla | 5 comprobaciones: 1 aviso, 1 pocos datos, 3 ok; la peor: «Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin» (10  |
+| 1 | Derecha de Rybakina en sus 4 partidos completos, una vez y al final (10-10 17:27; 11-10 19 | B6 | HECHO | 2 comprobación que falla | 6 comprobaciones: 1 falta, 1 aviso, 1 pocos datos, 3 ok; la peor: «Golpes con su pose en el contacto: smoke_tennis-yusipopen-final-sobolenko |
 | 2 | Ver informe y salidas en el móvil (11-10 18:21, 18:29, 18:33) | P6 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#2); no se comprueba en las salidas: aplazado por el usuario (móvil al final) |
 | 4 | Responder de forma profesional a «¿qué hay que hacer para pegar como X?», con todas las po | P1 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 201 comprobaciones: 33 pocos datos, 168 ok; la peor: «1. Fases · Golpe del riva |
 | 5 | Taxonomía completa con todas las variantes (bola rápida/lenta, alta/baja, corta/profunda,  | M5 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 32 comprobaciones: 17 pocos datos, 15 ok; la peor: «Golpe angulado (#132)» (0 g |
