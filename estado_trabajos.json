@@ -1,13 +1,32 @@
 {
- "at": "2026-11-12 04:06:19",
- "firma": "4cf66c43841e",
+ "at": "2026-11-12 04:06:58",
+ "firma": "9769102bfbf2",
  "ejecutor": {
   "vivo": true,
-  "pid": 13256,
-  "at": 1794452777.26658
+  "pid": 13008,
+  "at": 1794452818.1925795
  },
  "pausa": false,
- "en_curso": [],
+ "en_curso": [
+  {
+   "id": 67,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script validate_recall --spotter --tag base",
+   "state": "en curso",
+   "message": "",
+   "created": "2026-11-12 04:06:54",
+   "started": "2026-11-12 04:06:58",
+   "finished": null,
+   "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"base\"]",
+   "source": "claude 223",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_67.log",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "fine_doubtful",
@@ -293,6 +312,55 @@
  ],
  "eventos": [
   {
+   "id": 300,
+   "job": 67,
+   "at": "2026-11-12 04:06:58",
+   "kind": "empieza",
+   "text": "script validate_recall --spotter --tag base"
+  },
+  {
+   "id": 299,
+   "job": 67,
+   "at": "2026-11-12 04:06:54",
+   "kind": "enviado",
+   "text": "tennisbio script validate_recall --spotter --tag base (claude 223)"
+  },
+  {
+   "id": 298,
+   "job": null,
+   "at": "2026-11-12 04:06:38",
+   "kind": "ejecutor",
+   "text": "arranca (pid 13008)"
+  },
+  {
+   "id": 297,
+   "job": null,
+   "at": "2026-11-12 04:06:37",
+   "kind": "ejecutor",
+   "text": "arranca el siguiente con el código nuevo (pid 15008)"
+  },
+  {
+   "id": 296,
+   "job": null,
+   "at": "2026-11-12 04:06:37",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 295,
+   "job": null,
+   "at": "2026-11-12 04:06:37",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 294,
+   "job": null,
+   "at": "2026-11-12 04:06:31",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
    "id": 293,
    "job": 66,
    "at": "2026-11-12 04:05:57",
@@ -452,55 +520,6 @@
    "at": "2026-11-12 01:21:02",
    "kind": "enviado",
    "text": "tennisbio script bench_fine_fps --match pegula --minutes 15 --tag rtmw --set fine_pass.refine=rtmw-x (claude 219)"
-  },
-  {
-   "id": 270,
-   "job": 61,
-   "at": "2026-11-12 01:20:47",
-   "kind": "paso",
-   "text": "5/6 Auditoria"
-  },
-  {
-   "id": 269,
-   "job": 62,
-   "at": "2026-11-12 01:20:44",
-   "kind": "enviado",
-   "text": "tennisbio script app_recursos (claude 218)"
-  },
-  {
-   "id": 268,
-   "job": 61,
-   "at": "2026-11-12 01:20:43",
-   "kind": "paso",
-   "text": "4/6 Informe del saque"
-  },
-  {
-   "id": 267,
-   "job": 61,
-   "at": "2026-11-12 01:20:37",
-   "kind": "paso",
-   "text": "3/6 Informe del reves"
-  },
-  {
-   "id": 266,
-   "job": 61,
-   "at": "2026-11-12 01:20:30",
-   "kind": "paso",
-   "text": "2/6 Informe de la derecha"
-  },
-  {
-   "id": 265,
-   "job": 61,
-   "at": "2026-11-12 01:20:29",
-   "kind": "paso",
-   "text": "1/6 Registro de partidos"
-  },
-  {
-   "id": 264,
-   "job": 61,
-   "at": "2026-11-12 01:20:28",
-   "kind": "empieza",
-   "text": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)"
   }
  ]
 }

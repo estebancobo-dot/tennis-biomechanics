@@ -31,3 +31,4 @@
 2026-11-12T01:21:21 peticion 220: trabajo 64 en la cola: tennisbio script bench_fine_fps --match pegula --minutes 15 --tag bola --set fine_pass.ball_from_spotting=true
 2026-11-12T03:10:33 peticion 221: trabajo 65 en la cola: flujo prevision
 2026-11-12T03:10:50 peticion 222: trabajo 66 en la cola: tennisbio script bench_fine_fps --match pegula --minutes 15 --tag rtmw2 --set fine_pass.refine=rtmw-x
+2026-11-12T04:06:54 peticion 223: trabajo 67 en la cola: tennisbio script validate_recall --spotter --tag base

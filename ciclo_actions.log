@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261112031032
+Start time: 20261112040626
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
-Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 17404
+Host Application: powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
+Process ID: 11996
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -16,21 +16,34 @@ WSManStackVersion: 3.0
 PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
-git : To https://github.com/estebancobo-dot/tennis-biomechanics.git
-At C:\tenis\tennis-biomech\scripts\windows\comun.ps1:241 char:9
-+         git -C $d push -q origin pc-logs 2>$null
-+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : NotSpecified: (To https://gith...iomechanics.git:String) [], RemoteException
-    + FullyQualifiedErrorId : NativeCommandError
- ! [remote rejected]   pc-logs -> pc-logs (cannot lock ref 'refs/heads/pc-logs': is at 
-b615a8277ec0d4c8a719d93f0e8d54ca68b813ef but expected e7ec6717fb16e4464017afd8e2eef4b667aa095c)
-error: failed to push some refs to 'https://github.com/estebancobo-dot/tennis-biomechanics.git'
-No se pudo enviar el registro a Claude (sin red o sin permiso en GitHub).
-Registro enviado a Claude (no hace falta copiar nada).
 
-Registro enviado a Claude (no hace falta copiar nada).
-Empezado 2026-11-12 03:10:22 - terminado 2026-11-12 03:11:01 - duracion total 39 s
-**********************
-Windows PowerShell transcript end
-End time: 20261112031101
-**********************
+==> [2026-11-12 04:06:26] Codigo nuevo (e51d077 -> a735fe1): 4 ficheros
+    config/peticion_pc.txt
+    docs/estado_proyecto.md
+    scripts/validate_recall.py
+    tests/test_tiempos_etapas.py
+Updating e51d077..a735fe1
+Fast-forward
+ config/peticion_pc.txt       | 14 ++++++++++++++
+ docs/estado_proyecto.md      |  4 ++--
+ scripts/validate_recall.py   | 46 ++++++++++++++++++++++++++++++++++++++++----
+ tests/test_tiempos_etapas.py | 10 ++++++++++
+ 4 files changed, 68 insertions(+), 6 deletions(-)
+Resolved 126 packages in 1ms
+Checked 91 packages in 5ms
+balltrack.onnx     OK 45 MB
+racketpose.onnx    OK 53 MB
+transnetv2.onnx    OK 31 MB
+rtmw3d-x.onnx      OK 369 MB
+rtmw-x_384x288.onnx OK 229 MB
+court_tcd.onnx     OK 42 MB
+motionagformer_xs.onnx OK 9 MB
+yolo11m-pose_640.onnx OK 84 MB
+yolo11m-pose_960.onnx OK 84 MB
+yolo11m-pose_1280.onnx OK 85 MB
+yolo11m-pose_1920.onnx OK 86 MB
+Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (ya estaba)
+el ejecutor se reinicia al acabar el trabajo en curso
+    (paso terminado en 23 s)
+
+==> [2026-11-12 04:06:49] Que hace falta: informe
