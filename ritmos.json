@@ -1,12 +1,6 @@
 {
  "fine:unidad": [
   {
-   "s": 0.7039,
-   "units": 173,
-   "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
-   "date": "2026-11-08 17:50"
-  },
-  {
    "s": 1.004,
    "units": 289,
    "match": "zheng-qinwen-elena-rybakina",
@@ -179,15 +173,15 @@
    "units": 169,
    "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
    "date": "2026-11-12 12:23"
+  },
+  {
+   "s": 0.8508,
+   "units": 169,
+   "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "date": "2026-11-12 12:54"
   }
  ],
  "fine:minuto": [
-  {
-   "s": 1.804,
-   "video_min": 71.4,
-   "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
-   "date": "2026-11-08 17:50"
-  },
   {
    "s": 2.542,
    "video_min": 116.7,
@@ -361,6 +355,12 @@
    "video_min": 71.4,
    "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
    "date": "2026-11-12 12:23"
+  },
+  {
+   "s": 2.108,
+   "video_min": 71.4,
+   "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "date": "2026-11-12 12:54"
   }
  ],
  "identity:minuto": [
@@ -547,12 +547,6 @@
  ],
  "views:unidad": [
   {
-   "s": 0.1172,
-   "units": 964,
-   "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
-   "date": "2026-11-04 14:53"
-  },
-  {
    "s": 0.1082,
    "units": 1654,
    "match": "zheng-qinwen-elena-rybakina",
@@ -725,15 +719,15 @@
    "units": 964,
    "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
    "date": "2026-11-12 12:17"
+  },
+  {
+   "s": 0.1369,
+   "units": 964,
+   "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "date": "2026-11-12 12:51"
   }
  ],
  "views:minuto": [
-  {
-   "s": 1.645,
-   "video_min": 71.4,
-   "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
-   "date": "2026-11-04 14:53"
-  },
   {
    "s": 1.578,
    "video_min": 116.7,
@@ -907,6 +901,12 @@
    "video_min": 71.4,
    "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
    "date": "2026-11-12 12:17"
+  },
+  {
+   "s": 1.933,
+   "video_min": 71.4,
+   "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "date": "2026-11-12 12:51"
   }
  ],
  "identity:unidad": [
@@ -1469,6 +1469,12 @@
    "units": 234,
    "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
    "date": "2026-11-12 12:48"
+  },
+  {
+   "s": 0.4855,
+   "units": 522,
+   "match": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
+   "date": "2026-11-12 12:58"
   }
  ],
  "score:minuto": [
@@ -1585,6 +1591,12 @@
    "video_min": 71.4,
    "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
    "date": "2026-11-12 12:48"
+  },
+  {
+   "s": 2.271,
+   "video_min": 112.2,
+   "match": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
+   "date": "2026-11-12 12:58"
   }
  ],
  "players:unidad": [

@@ -166,10 +166,10 @@
   "rewrote": {}
  },
  "fine": {
-  "fingerprint": "e3f17f85d9a91bb1",
+  "fingerprint": "b81fd407dd272af2",
   "version": "16",
-  "seconds": 325.7,
-  "finished": "2026-11-12 12:23:20",
+  "seconds": 150.4,
+  "finished": "2026-11-12 12:54:16",
   "summary": {
    "candidates": 169,
    "confirmed": 165,
@@ -189,17 +189,14 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "raqueta": 53.1,
-    "cuerdas_y_3d": 50.8,
-    "jugadora_lejana": 27.4,
-    "pista_ventana": 25.0,
-    "analisis_ventana": 23.0,
-    "recorte": 6.1,
-    "cribado": 4.7,
+    "cuerdas_y_3d": 50.5,
+    "jugadora_lejana": 30.8,
+    "pista_ventana": 27.6,
+    "analisis_ventana": 25.0,
+    "recorte": 6.9,
+    "cribado": 5.1,
     "pose_medida_lejana": 0.5,
-    "pose": 0.5,
-    "bola_en_paralelo_cpu": 0,
-    "espera_bola_en_paralelo": 0.0
+    "pose": 0.5
    },
    "counts": {
     "overlap_s": 0.0,
@@ -207,11 +204,10 @@
     "posed_frames": 23105,
     "impacts": 261,
     "kept_impacts": 166,
-    "racket_frames": 186,
+    "racket_frames": 0,
     "whole_window_again": 0,
     "frames_960_far": 0,
-    "far_measure_windows": 11,
-    "windows_ball_ahead": 94
+    "far_measure_windows": 11
    }
   },
   "out_hash": "ffafba546552b315be5f",
@@ -219,10 +215,10 @@
   "rewrote": {}
  },
  "fine_opponent": {
-  "fingerprint": "e3101637157e662f",
+  "fingerprint": "225311d7331eb8c5",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-12 12:23:37",
+  "finished": "2026-11-12 12:54:17",
   "summary": {
    "enabled": false
   },
@@ -258,10 +254,10 @@
   "rewrote": {}
  },
  "views": {
-  "fingerprint": "24e38c99cc21bc88",
+  "fingerprint": "c6d00d573a4f375d",
   "version": "6",
-  "seconds": 157.4,
-  "finished": "2026-11-12 12:17:54",
+  "seconds": 138.0,
+  "finished": "2026-11-12 12:51:46",
   "summary": {
    "views": 492,
    "repeticion_principal": 36,
@@ -281,7 +277,7 @@
   "fingerprint": "27b8c1c77fb18a46",
   "version": "1",
   "seconds": 0.2,
-  "finished": "2026-11-12 12:23:21",
+  "finished": "2026-11-12 12:54:17",
   "summary": {
    "strokes": 165,
    "with_replay": 29,
@@ -297,10 +293,10 @@
   }
  },
  "fine_doubtful": {
-  "fingerprint": "94cf7f40dcf83d89",
+  "fingerprint": "2e01fbab7f10335f",
   "version": "1",
-  "seconds": 9.9,
-  "finished": "2026-11-12 12:23:47",
+  "seconds": 9.0,
+  "finished": "2026-11-12 12:54:26",
   "summary": {
    "candidates": 14,
    "confirmed": 4,
@@ -319,9 +315,9 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "analisis_ventana": 3.6,
-    "cuerdas_y_3d": 2.4,
-    "recorte": 1.0,
+    "analisis_ventana": 3.2,
+    "cuerdas_y_3d": 2.3,
+    "recorte": 0.8,
     "cribado": 0.2,
     "pose": 0.0,
     "jugadora_lejana": 0.0,

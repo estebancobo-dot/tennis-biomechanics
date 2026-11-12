@@ -56,10 +56,10 @@
   "rewrote": {}
  },
  "score": {
-  "fingerprint": "5804622df122b370",
-  "version": "10",
-  "seconds": 253.5,
-  "finished": "2026-11-12 12:28:04",
+  "fingerprint": "bb90222f25512852",
+  "version": "11",
+  "seconds": 254.8,
+  "finished": "2026-11-12 12:58:44",
   "summary": {
    "readings": 500,
    "pressure": 172,
@@ -68,7 +68,7 @@
    "server_read": 500,
    "server_source": "marker + alternancia"
   },
-  "out_hash": "b8a0ebbd7fce715cd1b7",
+  "out_hash": "3d5299d271fb51ba8002",
   "scheme": 2,
   "rewrote": {}
  },
