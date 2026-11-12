@@ -1,10 +1,10 @@
 {
- "at": "2026-11-12 10:35:43",
- "firma": "cf8c6037c217",
+ "at": "2026-11-12 10:36:13",
+ "firma": "682a98cb43be",
  "ejecutor": {
   "vivo": true,
   "pid": 4892,
-  "at": 1794476143.5382395
+  "at": 1794476159.5516155
  },
  "pausa": false,
  "en_curso": [
@@ -28,16 +28,35 @@
   }
  ],
  "progreso": {
-  "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
-  "etapa": "fine_doubtful",
-  "hecho": 47,
-  "total": 47,
-  "porcentaje": 100.0,
-  "segundos": 72,
+  "partido": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+  "etapa": "score",
+  "hecho": 1,
+  "total": 234,
+  "porcentaje": 0.4,
+  "segundos": 0,
   "quedan_s": 0,
-  "hora": "2026-11-12 08:59:52"
+  "hora": "2026-11-12 10:35:45"
  },
- "pendientes": [],
+ "pendientes": [
+  {
+   "id": 82,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script diag_pose_contacto",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-12 10:36:03",
+   "started": null,
+   "finished": null,
+   "args": "[\"script\", \"diag_pose_contacto\"]",
+   "source": "claude 239",
+   "log": "",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "recientes": [
   {
    "id": 80,
@@ -312,6 +331,13 @@
  ],
  "eventos": [
   {
+   "id": 416,
+   "job": 82,
+   "at": "2026-11-12 10:36:03",
+   "kind": "enviado",
+   "text": "tennisbio script diag_pose_contacto (claude 239)"
+  },
+  {
    "id": 415,
    "job": 81,
    "at": "2026-11-12 10:35:43",
@@ -513,13 +539,6 @@
    "at": "2026-11-12 10:00:31",
    "kind": "hecho",
    "text": "código 0"
-  },
-  {
-   "id": 386,
-   "job": 78,
-   "at": "2026-11-12 10:00:17",
-   "kind": "empieza",
-   "text": "script diag_export_clip 0312430 0966569 0925800 0048549"
   }
  ]
 }
