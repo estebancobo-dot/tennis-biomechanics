@@ -87,3 +87,39 @@ def test_preflight_refuses_a_run_whose_worst_case_passes_the_limit(tmp_path, mon
     assert (tmp_path / "prevision.md").exists()
     monkeypatch.setattr(sys, "argv", ["preflight.py", "--max-h", "9"])
     assert pf.main() == 0 and "NO SE LANZA" not in capsys.readouterr().out
+
+
+def test_a_rate_of_another_version_of_the_stage_is_not_a_measure_of_it(tmp_path):
+    """12-11 (R17): the spotter was timed without the ball of the match (1.4 s per minute of video); with it the ball
+    model runs over all the play. The rate of spotting v1 must not stand for v2: flagged and measured first."""
+    B.record_stage(tmp_path, "spotting", 100, 71.4, "osaka", "1")              # without the ball
+    row = [{"match": "x", "video_min": 100, "seconds": {}, "stages": {"spotting": "stale"}}]
+    md, _ = B.forecast(row, tmp_path)
+    ver = B.stage_version("spotting")
+    assert ver != "1"
+    assert f"**medido con otra versión** (ahora v{ver})" in md and "spotting → se miden antes" in md
+    B.record_stage(tmp_path, "spotting", 3600, 71.4, "osaka", ver)             # with the ball: ~50 s per minute
+    md, total = B.forecast(row, tmp_path)
+    assert "medido en partido entero" in md and "otra versión" not in md
+    assert abs(total - 3600 / 71.4 * 100) < 1                                  # only the current version's rate
+
+
+def test_rates_written_before_versions_count_until_a_versioned_one_exists(tmp_path):
+    B.record_stage(tmp_path, "fine", 1800, 120, "a")                           # before 12-11: no version
+    assert B.per_minute(tmp_path, "fine", B.stage_version("fine"))[0] == 15.0
+    B.record_stage(tmp_path, "fine", 3600, 120, "b", B.stage_version("fine"))
+    assert B.per_minute(tmp_path, "fine", B.stage_version("fine")) == (30.0, True, 30.0)
+
+
+def test_the_pipeline_records_the_version_with_the_rate(tmp_path):
+    import json as _j
+    B.record_stage(tmp_path, "fine", 600, 100, "m", B.stage_version("fine"))
+    B.record_unit(tmp_path, "fine", 2.0, 100, "m", B.stage_version("fine"))
+    d = _j.loads((tmp_path / B.RATES).read_text(encoding="utf-8"))
+    assert d["fine:minuto"][0]["v"] == d["fine:unidad"][0]["v"] == B.stage_version("fine")
+    import ast
+    from pathlib import Path
+    src = (Path(__file__).resolve().parents[1] / "src" / "tennisbio" / "pipeline.py").read_text(encoding="utf-8")
+    calls = [n for n in ast.walk(ast.parse(src)) if isinstance(n, ast.Call) and isinstance(n.func, ast.Attribute)
+             and n.func.attr in ("record_stage", "record_unit")]
+    assert len(calls) == 2 and all(len(c.args) == 6 for c in calls)            # both pass the stage's version

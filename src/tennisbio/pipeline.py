@@ -87,7 +87,8 @@ class Context:
             out = self.progress_file().parent
             if p["ended"]:
                 if el >= budget.REAL_RUN_S:
-                    budget.record_unit(out, p.get("stage", ""), el / max(1, total), total, self.match.id)
+                    budget.record_unit(out, p.get("stage", ""), el / max(1, total), total, self.match.id,
+                                       budget.stage_version(p.get("stage", "")))
             elif not p.get("alarmed"):
                 al = budget.check(self.cfg, out, p.get("stage", ""), el, done, total)
                 if al:
@@ -579,7 +580,8 @@ def run(ctx: Context, names=None, force=False, upstream=True, parallel: bool | N
         try:                               # its rate per minute of video on this machine (tennisbio.budget)
             from . import budget
             info = json.loads(ctx.path("probe.json").read_text(encoding="utf-8")) if ctx.path("probe.json").exists() else {}
-            budget.record_stage(ctx.progress_file().parent, n, dt, (info.get("duration") or 0) / 60, ctx.match.id)
+            budget.record_stage(ctx.progress_file().parent, n, dt, (info.get("duration") or 0) / 60, ctx.match.id,
+                                STAGES[n].version)
         except Exception:  # noqa: BLE001 — never breaks the run
             pass
 

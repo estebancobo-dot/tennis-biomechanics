@@ -52,18 +52,48 @@ def _add(path: Path, stage: str, entry: dict):
     _save(path, d)
 
 
-def record_unit(out: Path, stage: str, s_per_unit: float, units: int, match: str):
+def stage_version(stage: str) -> str | None:
+    """The version of a registered stage (None for a name the pipeline does not know)."""
+    from .pipeline import STAGES
+    st = STAGES.get(stage)
+    return st.version if st is not None else None
+
+
+def _versioned(entry: dict, version: str | None) -> dict:
+    return {**entry, "v": version} if version is not None else entry
+
+
+def current(es: list[dict], version: str | None) -> tuple[list[dict], bool]:
+    """(the rates that measure the stage's code of now, whether they do). 12-11: a rate was used whatever version of
+    the stage made it, and the fastest was taken: the spotter measured without the ball of the match (R17, 1.4 s per
+    minute of video) would have stood for the spotter with it (the ball model over all the play, hours). Entries carry
+    the stage's version since then; once one of the current version exists only those count. Without one: the entries
+    of other versions, said (False), so the forecast flags the stage; entries written before versions existed count
+    only while no entry has a version."""
+    if version is None:
+        return es, True
+    cur = [e for e in es if e.get("v") == version]
+    if cur:
+        return cur, True
+    tagged = [e for e in es if "v" in e]
+    return (tagged, False) if tagged else (es, True)
+
+
+def record_unit(out: Path, stage: str, s_per_unit: float, units: int, match: str, version: str | None = None):
     """The finished stage's seconds per unit of its progress (a whole-stage figure)."""
     if units > 0 and s_per_unit > 0:
-        _add(Path(out) / RATES, f"{stage}:unidad", {"s": round(s_per_unit, 4), "units": int(units), "match": match,
-                                                   "date": time.strftime("%Y-%m-%d %H:%M")})
+        _add(Path(out) / RATES, f"{stage}:unidad", _versioned({"s": round(s_per_unit, 4), "units": int(units),
+                                                               "match": match, "date": time.strftime("%Y-%m-%d %H:%M")},
+                                                              version))
 
 
-def record_stage(out: Path, stage: str, seconds: float, video_min: float | None, match: str):
+def record_stage(out: Path, stage: str, seconds: float, video_min: float | None, match: str,
+                 version: str | None = None):
     """The finished stage's seconds per minute of video, when it really computed (≥ REAL_RUN_S)."""
     if seconds >= REAL_RUN_S and video_min and video_min > 0:
-        _add(Path(out) / RATES, f"{stage}:minuto", {"s": round(seconds / video_min, 3), "video_min": round(video_min, 1),
-                                                   "match": match, "date": time.strftime("%Y-%m-%d %H:%M")})
+        _add(Path(out) / RATES, f"{stage}:minuto", _versioned({"s": round(seconds / video_min, 3),
+                                                               "video_min": round(video_min, 1), "match": match,
+                                                               "date": time.strftime("%Y-%m-%d %H:%M")}, version))
 
 
 def budget_per_unit(cfg: dict, out: Path, stage: str) -> tuple[float | None, str]:
@@ -71,7 +101,8 @@ def budget_per_unit(cfg: dict, out: Path, stage: str) -> tuple[float | None, str
     b = (cfg.get("budgets") or {}).get(stage)
     if b:
         return float(b), "configuración"
-    past = [e["s"] for e in _load(Path(out) / RATES).get(f"{stage}:unidad", [])]
+    es, same = current(_load(Path(out) / RATES).get(f"{stage}:unidad", []), stage_version(stage))
+    past = [e["s"] for e in es] if same else []          # another version's pace is no budget for this one
     if len(past) >= 2:
         # the slowest run here, not the median (04-11, request 94: the median came from runs that only read their
         # caches, and a stage that really computed raised a false alarm)
@@ -104,14 +135,16 @@ def raise_alarm(out: Path, match: str, stage: str, text: str):
     _save(p, d)
 
 
-def per_minute(out: Path, stage: str) -> tuple[float | None, bool, float | None]:
+def per_minute(out: Path, stage: str, version: str | None = None) -> tuple[float | None, bool, float | None]:
     """(fastest seconds per minute of video of a stage here, whether one of them was a whole match, slowest): the
-    fastest is a run from its caches, the slowest one that computed everything (04-11: a median mixed the two)."""
-    es = _load(Path(out) / RATES).get(f"{stage}:minuto", [])
+    fastest is a run from its caches, the slowest one that computed everything (04-11: a median mixed the two).
+    version: only the rates of that version of the stage (current); measured with another one, the whole-match flag
+    is False (the forecast says it and the stage is measured first)."""
+    es, same = current(_load(Path(out) / RATES).get(f"{stage}:minuto", []), version)
     if not es:
         return None, False, None
     v = [e["s"] for e in es]
-    return float(min(v)), any(e.get("video_min", 0) >= WHOLE_MATCH_MIN for e in es), float(max(v))
+    return float(min(v)), same and any(e.get("video_min", 0) >= WHOLE_MATCH_MIN for e in es), float(max(v))
 
 
 def forecast(rows: list[dict], out: Path) -> tuple[str, float]:
@@ -125,12 +158,15 @@ def forecast(rows: list[dict], out: Path) -> tuple[str, float]:
         for n, st in r["stages"].items():
             if st == "ok":
                 continue
-            rate, whole, slow = per_minute(out, n)
+            ver = stage_version(n)
+            rate, whole, slow = per_minute(out, n, ver)
+            other = rate is not None and not current(_load(Path(out) / RATES).get(f"{n}:minuto", []), ver)[1]
             last = (r.get("seconds") or {}).get(n) or 0.0
             vm = r.get("video_min") or 0
             est = rate * vm if rate and vm else last              # from its caches
             hi = max(slow * vm if slow and vm else 0.0, last, est)  # computing everything
             basis = ("medido en partido entero" if whole else
+                     f"**medido con otra versión** (ahora v{ver})" if other else
                      "**sin medir en partido entero**" if rate else "**sin medir aquí**")
             rng = f"{est / 60:.0f} min" if hi - est < 60 else f"{est / 60:.0f}-{hi / 60:.0f} min"
             if st == "upstream":          # re-runs only if a stage above comes out different (pipeline 1.7)
