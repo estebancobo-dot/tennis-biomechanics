@@ -4,13 +4,12 @@
    "dominio": "golpes",
    "caracteristica": "funcional",
    "capa": "pc",
-   "ok": 25,
-   "aviso": 4,
+   "ok": 26,
+   "aviso": 3,
    "falta": 4,
    "pocos datos": 0,
    "fallan": [
     "Golpes encontrados frente al marcador: sin-fecha_f43dd2_rybakina",
-    "Saques por punto de su saque: sin-fecha_f43dd2_rybakina",
     "Saques por punto de su saque: sin-fecha_584c5b_rybakina",
     "Identidad en los cambios de lado: sin-fecha_f43dd2_rybakina",
     "Golpes con su pose en el contacto: sin-fecha_584c5b_rybakina",
@@ -19,7 +18,7 @@
     "Golpes con su pose en el contacto: sin-fecha_49723c_rybakina"
    ],
    "n": 33,
-   "score": 0.7575757575757576,
+   "score": 0.7878787878787878,
    "accepted": false
   },
   {
@@ -39,16 +38,16 @@
    "dominio": "taxonomia",
    "caracteristica": "exactitud",
    "capa": "pc",
-   "ok": 4,
+   "ok": 5,
    "aviso": 1,
    "falta": 1,
-   "pocos datos": 1,
+   "pocos datos": 0,
    "fallan": [
     "forehand: medidas que dependen de la cámara (la cámara explica ≥ 10% de su variación)",
     "Valores dentro de límites físicos"
    ],
-   "n": 6,
-   "score": 0.6666666666666666,
+   "n": 7,
+   "score": 0.7142857142857143,
    "accepted": false
   },
   {
@@ -159,18 +158,16 @@
    "dominio": "plataforma",
    "caracteristica": "fiabilidad",
    "capa": "pc",
-   "ok": 10,
-   "aviso": 3,
-   "falta": 1,
+   "ok": 13,
+   "aviso": 2,
+   "falta": 0,
    "pocos datos": 0,
    "fallan": [
     "Golpes dudosos (duda sobre el golpe, no sobre una medida)",
-    "Registros con fecha y duración",
-    "Orquestador: espera hasta empezar cada trabajo",
-    "Comprobaciones que saben fallar"
+    "Orquestador: espera hasta empezar cada trabajo"
    ],
-   "n": 14,
-   "score": 0.7142857142857143,
+   "n": 15,
+   "score": 0.8666666666666667,
    "accepted": false
   },
   {
@@ -371,12 +368,12 @@
  ],
  "domains": {
   "golpes": {
-   "ok": 26,
+   "ok": 27,
    "n": 34,
    "cells": 2,
    "unmeasured": 0,
    "accepted": 1,
-   "score": 0.7647058823529411
+   "score": 0.7941176470588235
   },
   "pantallas": {
    "ok": 53,
@@ -387,12 +384,12 @@
    "score": 0.9636363636363636
   },
   "taxonomia": {
-   "ok": 176,
-   "n": 179,
+   "ok": 177,
+   "n": 180,
    "cells": 3,
    "unmeasured": 1,
    "accepted": 1,
-   "score": 0.9832402234636871
+   "score": 0.9833333333333333
   },
   "aprendizaje": {
    "ok": 30,
@@ -411,12 +408,12 @@
    "score": 1.0
   },
   "plataforma": {
-   "ok": 57,
-   "n": 61,
+   "ok": 60,
+   "n": 62,
    "cells": 4,
    "unmeasured": 1,
    "accepted": 2,
-   "score": 0.9344262295081968
+   "score": 0.967741935483871
   },
   "exportacion": {
    "ok": 1,
@@ -445,20 +442,20 @@
  },
  "characteristics": {
   "funcional": {
-   "ok": 263,
+   "ok": 264,
    "n": 274,
    "cells": 8,
    "unmeasured": 0,
    "accepted": 6,
-   "score": 0.9598540145985401
+   "score": 0.9635036496350365
   },
   "exactitud": {
-   "ok": 40,
-   "n": 47,
+   "ok": 41,
+   "n": 48,
    "cells": 6,
    "unmeasured": 2,
    "accepted": 2,
-   "score": 0.851063829787234
+   "score": 0.8541666666666666
   },
   "usabilidad": {
    "ok": 16,
@@ -469,12 +466,12 @@
    "score": 0.8421052631578947
   },
   "fiabilidad": {
-   "ok": 22,
-   "n": 28,
+   "ok": 25,
+   "n": 29,
    "cells": 2,
    "unmeasured": 0,
    "accepted": 0,
-   "score": 0.7857142857142857
+   "score": 0.8620689655172413
   },
   "rendimiento": {
    "ok": 17,
@@ -503,12 +500,12 @@
  },
  "layers": {
   "pc": {
-   "ok": 268,
-   "n": 287,
+   "ok": 273,
+   "n": 289,
    "cells": 12,
    "unmeasured": 2,
    "accepted": 5,
-   "score": 0.9337979094076655
+   "score": 0.9446366782006921
   },
   "pantallas": {
    "ok": 54,
@@ -538,9 +535,9 @@
  "unmapped": {},
  "threshold": 0.95,
  "total": {
-  "ok": 388,
-  "n": 415,
-  "score": 0.9349397590361446,
+  "ok": 393,
+  "n": 417,
+  "score": 0.9424460431654677,
   "cells": 25,
   "accepted": 10,
   "unmeasured": 7

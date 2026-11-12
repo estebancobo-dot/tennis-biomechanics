@@ -1,32 +1,13 @@
 {
- "at": "2026-11-12 12:30:46",
- "firma": "a69ec65b34ba",
+ "at": "2026-11-12 12:35:28",
+ "firma": "93e1ca3aa9ab",
  "ejecutor": {
   "vivo": true,
   "pid": 11456,
-  "at": 1794483046.6831925
+  "at": 1794483324.801568
  },
  "pausa": false,
- "en_curso": [
-  {
-   "id": 91,
-   "kind": "flujo",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
-   "state": "en curso",
-   "message": "paso 5/6: Auditoria",
-   "created": "2026-11-12 12:11:05",
-   "started": "2026-11-12 12:30:26",
-   "finished": null,
-   "args": "[\"informe\"]",
-   "source": "claude 248",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_91.log",
-   "paso": 4,
-   "pasos": 6
-  }
- ],
+ "en_curso": [],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "identity",
@@ -39,6 +20,24 @@
  },
  "pendientes": [],
  "recientes": [
+  {
+   "id": 91,
+   "kind": "flujo",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
+   "state": "hecho",
+   "message": "6 pasos",
+   "created": "2026-11-12 12:11:05",
+   "started": "2026-11-12 12:30:26",
+   "finished": "2026-11-12 12:35:12",
+   "args": "[\"informe\"]",
+   "source": "claude 248",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_91.log",
+   "paso": 6,
+   "pasos": 6
+  },
   {
    "id": 90,
    "kind": "comando",
@@ -290,27 +289,23 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_77.log",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 76,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script export_fotogramas 0312430 0221547 0925800 0048549",
-   "state": "hecho",
-   "message": "",
-   "created": "2026-11-12 09:42:16",
-   "started": "2026-11-12 09:42:25",
-   "finished": "2026-11-12 09:42:30",
-   "args": "[\"script\", \"export_fotogramas\", \"0312430\", \"0221547\", \"0925800\", \"0048549\"]",
-   "source": "claude 233",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_76.log",
-   "paso": 0,
-   "pasos": 0
   }
  ],
  "eventos": [
+  {
+   "id": 480,
+   "job": 91,
+   "at": "2026-11-12 12:35:14",
+   "kind": "hecho",
+   "text": "código 0"
+  },
+  {
+   "id": 479,
+   "job": 91,
+   "at": "2026-11-12 12:35:12",
+   "kind": "paso",
+   "text": "6/6 Modelo de calidad"
+  },
   {
    "id": 478,
    "job": 91,
@@ -506,20 +501,6 @@
    "at": "2026-11-12 11:57:26",
    "kind": "empieza",
    "text": "script diag_saques --match f43dd2"
-  },
-  {
-   "id": 450,
-   "job": null,
-   "at": "2026-11-12 11:57:26",
-   "kind": "ejecutor",
-   "text": "arranca (pid 11716)"
-  },
-  {
-   "id": 449,
-   "job": null,
-   "at": "2026-11-12 11:57:24",
-   "kind": "ejecutor",
-   "text": "arranca el siguiente con el código nuevo (pid 15256)"
   }
  ]
 }
