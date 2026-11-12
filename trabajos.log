@@ -48,3 +48,4 @@
 2026-11-12T10:27:58 peticion 237: trabajo 80 en la cola: tennisbio script diag_sin_pose --match b8b713 --n 4
 2026-11-12T10:35:40 peticion 238: trabajo 81 en la cola: tennisbio run --match us-open-2026-r4-naomi-osaka-elena-rybakina
 2026-11-12T10:36:04 peticion 239: trabajo 82 en la cola: tennisbio script diag_pose_contacto
+2026-11-12T10:36:36 peticion 240: trabajo 83 en la cola: tennisbio script validate_recall --spotter --tag v13r --from v13
