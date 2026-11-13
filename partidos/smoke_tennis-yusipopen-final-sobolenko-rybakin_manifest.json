@@ -119,22 +119,22 @@
   "rewrote": {}
  },
  "candidates": {
-  "fingerprint": "bfef7249b467a8bf",
+  "fingerprint": "cb48904a7e9ebcd6",
   "version": "16",
   "seconds": 0.9,
-  "finished": "2026-11-12 15:34:46",
+  "finished": "2026-11-13 00:56:17",
   "summary": {
-   "candidates": 184,
-   "far": 95,
-   "with_audio": 145,
+   "candidates": 191,
+   "far": 97,
+   "with_audio": 150,
    "source": "spotter",
-   "opponent_strokes": 81,
-   "identity_unknown": 20,
+   "opponent_strokes": 85,
+   "identity_unknown": 24,
    "replay_strokes_skipped": 0,
    "replay_runs": 0,
    "audio_track": 0
   },
-  "out_hash": "11bfb24788269f668ce7",
+  "out_hash": "23265866fa809aef97ef",
   "scheme": 2,
   "rewrote": {}
  },
@@ -255,10 +255,10 @@
   "rewrote": {}
  },
  "views": {
-  "fingerprint": "11224e6a2f1ae9b8",
+  "fingerprint": "c345aec8a79e12e7",
   "version": "6",
-  "seconds": 46.3,
-  "finished": "2026-11-12 15:35:33",
+  "seconds": 54.8,
+  "finished": "2026-11-13 00:57:12",
   "summary": {
    "views": 123,
    "repeticion_principal": 22,
@@ -266,11 +266,11 @@
    "frontal": 1,
    "primer_plano": 95,
    "otra": 2,
-   "links": 332,
+   "links": 334,
    "linked_views": 115,
-   "slowmo_links": 5
+   "slowmo_links": 4
   },
-  "out_hash": "dcba2f25c21e2515fcd8",
+  "out_hash": "256833baeba467b3ebb5",
   "scheme": 2,
   "rewrote": {}
  },
@@ -294,16 +294,16 @@
   }
  },
  "spotting": {
-  "fingerprint": "c9d5139714fe512b",
-  "version": "1",
-  "seconds": 12.7,
-  "finished": "2026-11-12 08:26:03",
+  "fingerprint": "c4232251095d11cc",
+  "version": "2",
+  "seconds": 992.4,
+  "finished": "2026-11-13 00:56:16",
   "summary": {
    "enabled": true,
-   "strokes": 181,
-   "near": 87,
-   "far": 94,
-   "out_of_play": 1240,
+   "strokes": 187,
+   "near": 92,
+   "far": 95,
+   "out_of_play": 1230,
    "threshold": 0.1,
    "fps": 10.0,
    "model_fps": 10.0,
@@ -311,12 +311,22 @@
    "audio_track": 0,
    "seconds": {
     "jugadores_y_audio": 0.1,
-    "rasgos": 11.7,
-    "bola": 0.0,
-    "modelo": 0.1
+    "rasgos": 8.7,
+    "bola": 982.8,
+    "modelo": 0.3
+   },
+   "inputs": {
+    "near_seen": 0.657,
+    "far_seen": 0.034,
+    "play_min": 10.8
+   },
+   "ball": {
+    "min": 10.8,
+    "seen": 0.573,
+    "play_min": 10.8
    }
   },
-  "out_hash": "ba1de766a177dd7af82b",
+  "out_hash": "0af27abf247a739b6107",
   "scheme": 2,
   "rewrote": {}
  },
