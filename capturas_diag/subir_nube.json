@@ -1,0 +1,31 @@
+{
+ "fecha": "2026-11-13T19:53:00",
+ "pc_tag": "v18",
+ "gb": 4.09,
+ "minutos": 1.8,
+ "subidos": [
+  "/models/",
+  "/datasets/f3set/recall/videos/20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin.json",
+  "/datasets/f3set/recall/videos/20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin.mp4",
+  "/datasets/f3set/recall/videos/20220907-M-US_Open-QF-Jannik_Sinner-Carlos_Alcaraz.json",
+  "/datasets/f3set/recall/videos/20220907-M-US_Open-QF-Jannik_Sinner-Carlos_Alcaraz.mp4",
+  "/datasets/f3set/recall/videos/20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina.json",
+  "/datasets/f3set/recall/videos/20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina.mp4",
+  "/datasets/f3set/recall/videos/20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka.json",
+  "/datasets/f3set/recall/videos/20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka.mp4",
+  "/datasets/f3set/recall/videos/20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina.json",
+  "/datasets/f3set/recall/videos/20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina.mp4",
+  "/datasets/f3set/test.json",
+  "/datasets/f3set/train.json",
+  "/datasets/f3set/val.json",
+  "/datasets/f3set/videos.csv",
+  "/pc/reports/recall_validation_detector_v18.json",
+  "/pc/reports/recall_validation_detector_v18.md",
+  "/pc/salidas_v18/recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin/manifest.json",
+  "/pc/salidas_v18/recall_20230124_w_australian_open_qf_jelena_ostapenko_elena_rybakin/manifest.json",
+  "/pc/salidas_v18/recall_20230126_w_australian_open_sf_elena_rybakina_victoria_azaren/manifest.json",
+  "/pc/salidas_v18/recall_20230128_w_australian_open_f_aryna_sabalenka_elena_rybakina/manifest.json",
+  "/pc/local.yaml"
+ ],
+ "fallidos": []
+}

@@ -1,32 +1,13 @@
 {
- "at": "2026-11-13 19:51:18",
- "firma": "d1cce0cdc05d",
+ "at": "2026-11-13 19:53:07",
+ "firma": "bb93f3350105",
  "ejecutor": {
   "vivo": true,
   "pid": 7588,
-  "at": 1794595878.1023293
+  "at": 1794595974.1401932
  },
  "pausa": false,
- "en_curso": [
-  {
-   "id": 131,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script subir_nube --pc-tag v18",
-   "state": "en curso",
-   "message": "",
-   "created": "2026-11-13 19:51:09",
-   "started": "2026-11-13 19:51:14",
-   "finished": null,
-   "args": "[\"script\", \"subir_nube\", \"--pc-tag\", \"v18\"]",
-   "source": "claude 291",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_131.log",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "en_curso": [],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "fine_doubtful",
@@ -39,6 +20,24 @@
  },
  "pendientes": [],
  "recientes": [
+  {
+   "id": 131,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script subir_nube --pc-tag v18",
+   "state": "hecho",
+   "message": "",
+   "created": "2026-11-13 19:51:09",
+   "started": "2026-11-13 19:51:14",
+   "finished": "2026-11-13 19:53:00",
+   "args": "[\"script\", \"subir_nube\", \"--pc-tag\", \"v18\"]",
+   "source": "claude 291",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_131.log",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 130,
    "kind": "comando",
@@ -290,27 +289,16 @@
    "log": "",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 116,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script validate_recall --spotter --tag v17 --from v16",
-   "state": "cancelado",
-   "message": "cancelado (claude 279)",
-   "created": "2026-11-13 05:16:11",
-   "started": null,
-   "finished": null,
-   "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"v17\", \"--from\", \"v16\"]",
-   "source": "claude 276",
-   "log": "",
-   "paso": 0,
-   "pasos": 0
   }
  ],
  "eventos": [
+  {
+   "id": 716,
+   "job": 131,
+   "at": "2026-11-13 19:53:02",
+   "kind": "hecho",
+   "text": "código 0"
+  },
   {
    "id": 715,
    "job": 131,
@@ -513,13 +501,6 @@
    "at": "2026-11-13 18:36:36",
    "kind": "paso",
    "text": "1/3 Auditoria anterior apartada"
-  },
-  {
-   "id": 686,
-   "job": 125,
-   "at": "2026-11-13 18:36:35",
-   "kind": "empieza",
-   "text": "flujo «medidas_prueba»: Medidas de la prueba (_smoke) de nuevo desde sus caches, su informe y la revision automatica"
   }
  ]
 }
