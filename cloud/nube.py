@@ -318,3 +318,12 @@ def gpu_key(nvidia_smi_name: str) -> str:
 
 def cost(seconds: float, gpu: str, cores: float, gib: float) -> float:
     return round(seconds * (PRICE_S.get(gpu, 0.0) + cores * CORE_S + gib * GIB_S), 2)
+
+
+def used(rows: list[dict], cores: float, gib: float) -> tuple[float, float]:
+    """(cores, GiB) Modal bills: the greater of what was reserved and what was used on average (13-11: Osaka's test
+    reserved 8 cores and used about 18 of the 24 the container sees; the estimate from the reservation was too low)."""
+    c = [float(r["cpu_pct"]) / 100 * float(r.get("cores") or 0) for r in rows if r.get("cpu_pct") is not None]
+    m = [float(r["ram_gb"]) * 1e9 / 2 ** 30 for r in rows if r.get("ram_gb") is not None]
+    return (round(max(cores, statistics.fmean(c)), 1) if c else cores,
+            round(max(gib, statistics.fmean(m)), 1) if m else gib)

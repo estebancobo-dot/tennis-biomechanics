@@ -353,7 +353,8 @@ def partido(match_id: str) -> dict:
     man_f = DATA / "output" / match_id / "manifest.json"
     man = json.loads(man_f.read_text(encoding="utf-8")) if man_f.exists() else {}
     est.update(estado="hecho" if rc == 0 else "error", codigo=rc, segundos=round(secs),
-               coste_usd=nube.cost(secs, gpu, CORES, GIB), fin=time.strftime("%Y-%m-%d %H:%M:%S"),
+               coste_usd=nube.cost(secs, gpu, *nube.used(samples, CORES, GIB)),
+               cores_y_gib_cobrados=nube.used(samples, CORES, GIB), fin=time.strftime("%Y-%m-%d %H:%M:%S"),
                etapas={k: v.get("seconds") for k, v in man.items() if isinstance(v, dict) and "seconds" in v},
                fallos={k: v.get("faults") for k, v in man.items() if isinstance(v, dict) and v.get("faults")},
                recursos=nube.summarize_resources(samples),

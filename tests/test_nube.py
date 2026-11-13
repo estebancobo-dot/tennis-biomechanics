@@ -405,3 +405,12 @@ def test_cuda_sessions_give_back_the_memory_a_run_no_longer_needs():
     src = (ROOT / "cloud" / "arranque" / "nube_gpu.py").read_text(encoding="utf-8")
     assert 'add_run_config_entry("memory.enable_memory_arena_shrinkage", "gpu:0")' in src
     assert '"CUDAExecutionProvider" in self.get_providers()' in src           # never on a CPU-only session
+
+
+def test_the_cost_counts_the_cores_used_when_more_than_reserved():
+    """13-11: Modal bills the greater of the reserved and the used CPU; Osaka's test used ~18 cores of 24 visible."""
+    rows = [{"cpu_pct": 75.0, "cores": 24, "ram_gb": 18.0}, {"cpu_pct": 75.0, "cores": 24, "ram_gb": 18.0}]
+    assert nube.used(rows, 8.0, 32) == (18.0, 32)
+    assert nube.used([{"cpu_pct": 10.0, "cores": 24}], 8.0, 32) == (8.0, 32)
+    assert nube.used([], 8.0, 32) == (8.0, 32)
+    assert nube.cost(3600, "T4", *nube.used(rows, 8.0, 32)) > nube.cost(3600, "T4", 8.0, 32)
