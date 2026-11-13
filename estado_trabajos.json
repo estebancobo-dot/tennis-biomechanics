@@ -1,13 +1,32 @@
 {
- "at": "2026-11-13 19:51:11",
- "firma": "74cab494ae30",
+ "at": "2026-11-13 19:51:18",
+ "firma": "d1cce0cdc05d",
  "ejecutor": {
   "vivo": true,
   "pid": 7588,
-  "at": 1794595862.0741363
+  "at": 1794595878.1023293
  },
  "pausa": false,
- "en_curso": [],
+ "en_curso": [
+  {
+   "id": 131,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script subir_nube --pc-tag v18",
+   "state": "en curso",
+   "message": "",
+   "created": "2026-11-13 19:51:09",
+   "started": "2026-11-13 19:51:14",
+   "finished": null,
+   "args": "[\"script\", \"subir_nube\", \"--pc-tag\", \"v18\"]",
+   "source": "claude 291",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_131.log",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "fine_doubtful",
@@ -18,26 +37,7 @@
   "quedan_s": 0,
   "hora": "2026-11-13 18:25:58"
  },
- "pendientes": [
-  {
-   "id": 131,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script subir_nube --pc-tag v18",
-   "state": "pendiente",
-   "message": "",
-   "created": "2026-11-13 19:51:09",
-   "started": null,
-   "finished": null,
-   "args": "[\"script\", \"subir_nube\", \"--pc-tag\", \"v18\"]",
-   "source": "claude 291",
-   "log": "",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "pendientes": [],
  "recientes": [
   {
    "id": 130,
@@ -312,6 +312,13 @@
  ],
  "eventos": [
   {
+   "id": 715,
+   "job": 131,
+   "at": "2026-11-13 19:51:14",
+   "kind": "empieza",
+   "text": "script subir_nube --pc-tag v18"
+  },
+  {
    "id": 714,
    "job": 131,
    "at": "2026-11-13 19:51:09",
@@ -513,13 +520,6 @@
    "at": "2026-11-13 18:36:35",
    "kind": "empieza",
    "text": "flujo «medidas_prueba»: Medidas de la prueba (_smoke) de nuevo desde sus caches, su informe y la revision automatica"
-  },
-  {
-   "id": 685,
-   "job": 125,
-   "at": "2026-11-13 18:36:29",
-   "kind": "enviado",
-   "text": "flujo medidas_prueba (ciclo)"
   }
  ]
 }
