@@ -11,7 +11,7 @@ paquetes:
   B2:
     nombre: "Base · robustez (nada se cuelga, todo se recupera)"
     cierre: "Prueba por cada caso de error y cuelgue; 0 etapas con error en la referencia"
-    peticiones: [13, 225, 232, 265]
+    peticiones: [13, 225, 232, 265, 267]
     prueba: ["^Golpes que fallaron al procesarse", "?^Etapas con errores", "^Partido .*: salida de cada etapa"]
   B3:
     nombre: "Base · mejores modelos (estado del arte medido)"
@@ -42,7 +42,7 @@ paquetes:
   B8:
     nombre: "Base · orquestador único (aplicación y chat con el mismo código y los mismos datos)"
     cierre: "Fases A-F de docs/orquestador.md; un trabajo enviado desde el chat, pausado en la aplicación y reanudado desde el chat en el PC"
-    peticiones: [246, 247, 248, 249, 250, 251, 259, 260, 261, 262, 263, 264]
+    peticiones: [246, 247, 248, 249, 250, 251, 259, 260, 261, 262, 263, 264, 266]
     prueba: ["^Orquestador: "]
   P0:
     # 11-11 (usuario): justo después de la Base y antes de las medidas

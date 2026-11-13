@@ -24,6 +24,28 @@ Conceptos (glosario en `CLAUDE.md`): **Plan** (corto / medio / largo) → **Paqu
 usuario pertenece a un paquete; un paquete está **aceptado** cuando su prueba principal pasa en las salidas reales
 (tabla «¿Cerrado?» de `estado_real_partidos.md`, calculada, no a mano).
 
+**Por qué se llegó aquí (13-11, #267; respuesta al usuario, sin excusas: es trabajo de Claude).**
+1. *Funciones antes que base*: 267 peticiones, muchas medidas y pantallas encima de una base sin cerrar (B1-B8 abiertos;
+   la revisión automática del 13-11: 137 de 263 peticiones sin terminar, 28 comprobaciones no cumplidas).
+2. *Ninguna política de errores*: la regla implícita «el análisis nunca se para» convirtió fallos en vacíos silenciosos
+   (323 `except`, ~268 sin decir nada). R17 (el detector sin la bola) estuvo tres semanas a la vista («bola 0 s» en cada
+   registro) sin que nada lo parara.
+3. *Lo validado no era lo que corría*: F3Set en carpetas planas, los partidos en la biblioteca; ninguna prueba exigía
+   que dieran lo mismo (R20 ahora sí).
+4. *Comprobar que algo existe, no lo que contiene*: la auditoría llega después y solo ve lo que alguien pensó en mirar;
+   no había contratos de datos al terminar cada etapa (#265).
+5. *«Hecho» sin verlo en las salidas reales* (09-11) y *varios cambios a la vez antes de cada validación* (v16 midió
+   R14 + R16 juntos: no se sabe cuál pierde precisión, R22).
+6. *Sesiones que empiezan sin memoria*: cada una arreglaba lo último que fallaba en vez de seguir el plan (de ahí la
+   tabla única de tareas, 11-11).
+Remedios: #264 (R17-R20) y #265 (niveles C0-C4, contratos por etapa, ningún `except` sin clasificar, inyección de fallos,
+puerta de aceptación); una validación por cambio en el PC cuando el cambio puede mover resultados.
+
+**Qué va en paralelo (13-11, #266):** la nube escribe el código (#265) mientras el PC valida por la cola lo ya subido
+(R17 en Osaka y Pegula, diagnósticos R22). Es secuencial lo que necesita el resultado de otra cosa: la validación final en
+el PC (Osaka, Pegula, F3Set) necesita #265 terminado; la previsión y el plan de los 6 partidos necesitan esa validación;
+los 6 partidos, la aprobación del usuario (#262).
+
 **Índice de documentos:** `docs/README.md` (cuál manda para cada cosa). **Guía de Ivanovic** (#143, #189-#198) y **matriz del
 usuario de 15 puntos** (#84-#98): sus puntos son peticiones de los paquetes M1-M7 y P1, que van después de la Base.
 
@@ -102,6 +124,10 @@ arte, huecos y lo que sobra; diseño, prototipo, aplicación nueva (#252). Medio
 | R20 | **La misma etapa da lo mismo en la biblioteca que en una carpeta plana** (#264): prueba que pasa la pasada barata, el detector y los candidatos por las dos estructuras y exige el mismo resultado (F3Set valida carpetas planas; los partidos corren en la biblioteca) | nube | la prueba falla con el fallo de R17 y pasa con su arreglo | **hecha (12-11)**: `tests/test_library_same_as_flat.py` (detector con la bola y candidatos en las dos estructuras: mismos golpes, misma bola, mismos resúmenes); con el fallo de R17 puesto a propósito la prueba falla (bola de 250 muestras frente a ninguna) |
 | R21 | **La previsión de tiempo no distinguía la versión de cada etapa** (12-11, visto con la bola de R17): los ritmos guardados (`ritmos.json`) no decían con qué versión de la etapa se midieron y la previsión tomaba el más rápido; el detector medido sin la bola del partido (1,4 s por minuto de vídeo) habría pasado por el detector con ella (el modelo de la bola sobre todo el juego: en F3Set, 4 compilaciones, ~4 h frente a 25 min de la v15). Ahora cada ritmo lleva la versión de su etapa; solo cuentan los de la versión de ahora y una etapa medida solo con otra lo dice («medido con otra versión») y se mide antes, sola | nube | pruebas de `tests/test_budget.py`; la previsión del análisis desde cero con el detector medido con la bola en Osaka y Pegula (265-266) | código hecho (12-11); la previsión, tras 265-266 |
 | R22 | **F3Set v16 pierde 0,9 puntos de precisión y 2 golpes** (13-11; código de R14 + R16, sin R17). Golpe a golpe (497 anotados de las 3 compilaciones válidas): gana 4 que v15 perdía (sin seguimiento 10 → 3, el relleno de huecos de pista de R16) y pierde 8: 3 de un mismo punto de Azarenka que pasa a la otra jugadora (identidad) y 5 de la jugadora del fondo (3 no propuestos por el detector, 2 no confirmados); 4 golpes falsos más (Azarenka +1, Sabalenka +3). La evaluación no decía cuáles eran los falsos: ahora los lista y marca si caen en un hueco de pista rellenado (`recall_eval.filled_court_gaps`) | nube + PC | 268-269 (v15 y v16 evaluados otra vez, sin ejecutar nada) y 270 (los tramos de identidad decididos al revés): causa de cada pérdida → arreglo o motivo medido | código del diagnóstico hecho (13-11); peticiones 268-270 en la cola tras 265-267 |
+| R23 | **#265 (1/4) Mecanismo de fallos por niveles** (aprobado el 13-11): catálogo `config/fallos.yaml` (cada modo de fallo con su nivel, efecto, cómo se detecta, reacción, presupuesto y prueba), `tennisbio/faults.py` (`fault(código, detalle)`: C0 para el partido y no se publica; C1 se marca y el análisis completo no se acepta; C2 se aísla con presupuesto y sube a C0; C3 reintento limitado; C4 solo registro), registro por etapa en el manifiesto y en `fallos.json`, contratos de datos al terminar cada etapa, comprobación «Fallos por niveles» (puerta) | nube | pruebas de inyección: cada nivel reacciona como dice el catálogo | en curso (13-11) |
+| R24 | **#265 (2/4) Ningún `except` sin clasificar**: los 323 sitios, módulo a módulo (primero el análisis: etapas, pasada fina, vídeo, modelos; después orquestador, biblioteca, auditoría, aplicación); cada uno relanza, llama a `fault()` o es un resultado esperado con su motivo escrito (`# esperado: …`) | nube | prueba que recorre el código: 0 sin clasificar; cada código usado está en el catálogo y cada entrada del catálogo se usa y tiene su prueba | pendiente |
+| R25 | **#265 (3/4) Contratos por etapa con sus umbrales** (lo que hoy mira la auditoría después: cámara principal, pista, sonido, marcador, jugadoras vistas, bola, pose en el contacto) comprobados al terminar cada etapa: vacío = C0, por debajo del mínimo = C1 | nube | una prueba por contrato que lo incumple | pendiente |
+| R26 | **#265 (4/4) Validación en el PC de todo junto** (R17 + R22 + #265): Osaka, Pegula y F3Set con el código final; previsión de los 6 partidos (R21) | PC (~8-10 h) | F3Set sin perder golpes ni precisión frente a v15, Osaka y Pegula ≥ 85 % de saques y la bola ≥ 90 % del juego, 0 C0 y 0 C1 en «Fallos por niveles» | pendiente |
 | 11 | Análisis completo de los 6 partidos **desde cero** (carpetas nuevas; las anteriores al archivo, solo se copia su clic) y flujo «completo» | PC (~21 h), **después de R1-R13 y solo con la aprobación del usuario (#262, 12-11)** | su auditoría y la tabla de cierre recalculada (`estado_real_partidos.md`) cierran B1-B7 y #242 | al final, sin fallos conocidos (#247) · **Previsión 221 (12-11 03:10)**: 1,1-20,8 h (desde las cachés - calculando todo); se rehacen marcador, identidad, pasada fina, golpes dudosos y recortes en los 6 partidos. Las decisiones de R2/R3 (bola reutilizada, RTMW) van antes: cambian la pasada fina entera · **12-11 23:30: esa previsión y el «~21 h» se quedan cortos**: ninguna medida de un partido real incluía la bola del partido para el detector (R17: salía vacía en la biblioteca); se suma el modelo de la bola sobre el juego de cada partido (por medir en Osaka y Pegula, 265-266; R21). La previsión nueva sale después |
 
 **P0 (después de la Base; su análisis y diseño se adelantan en paralelo en la nube):** P0.1 plan de bajo nivel (`docs/p0_plan.md`:
