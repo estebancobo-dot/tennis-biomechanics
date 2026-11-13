@@ -36,10 +36,25 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     env:
-      MODAL_TOKEN_ID: ${{ secrets.MODAL_TOKEN_ID }}
-      MODAL_TOKEN_SECRET: ${{ secrets.MODAL_TOKEN_SECRET }}
+      # tal como el usuario los pego (13-11: con espacios, "Token ID is malformed"); el paso "Clave de Modal" saca de
+      # ellos las dos claves, ak-... y as-..., aunque se pegara el comando entero que ensena Modal o al reves
+      CLAVE_MODAL_1: ${{ secrets.MODAL_TOKEN_ID }}
+      CLAVE_MODAL_2: ${{ secrets.MODAL_TOKEN_SECRET }}
       PYTHONUTF8: "1"
     steps:
+      - name: Clave de Modal
+        run: |
+          todo="$CLAVE_MODAL_1 $CLAVE_MODAL_2"
+          id=$(printf '%s' "$todo" | grep -oE 'ak-[A-Za-z0-9]+' | head -n 1 || true)
+          sec=$(printf '%s' "$todo" | grep -oE 'as-[A-Za-z0-9]+' | head -n 1 || true)
+          if [ -z "$id" ] || [ -z "$sec" ]; then
+            echo "Los secretos MODAL_TOKEN_ID y MODAL_TOKEN_SECRET no contienen una clave de Modal (ak-... y as-...)"
+            exit 1
+          fi
+          echo "::add-mask::$id"
+          echo "::add-mask::$sec"
+          echo "MODAL_TOKEN_ID=$id" >> "$GITHUB_ENV"
+          echo "MODAL_TOKEN_SECRET=$sec" >> "$GITHUB_ENV"
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:

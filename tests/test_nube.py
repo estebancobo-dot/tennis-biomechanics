@@ -153,9 +153,37 @@ def test_the_workflow_only_runs_by_hand_with_the_users_key():
     assert set(on["workflow_dispatch"]["inputs"]["accion"]["options"]) == {"comprobar", "f3set", "recoger"}
     job = wf["jobs"]["nube"]
     assert job["if"] == "github.repository_owner == 'estebancobo-dot'"
-    assert job["env"]["MODAL_TOKEN_ID"] == "${{ secrets.MODAL_TOKEN_ID }}"
-    assert job["env"]["MODAL_TOKEN_SECRET"] == "${{ secrets.MODAL_TOKEN_SECRET }}"
+    assert job["env"]["CLAVE_MODAL_1"] == "${{ secrets.MODAL_TOKEN_ID }}"
+    assert job["env"]["CLAVE_MODAL_2"] == "${{ secrets.MODAL_TOKEN_SECRET }}"
     assert wf["permissions"] == {"contents": "read"}
+    first = job["steps"][0]
+    assert first["name"] == "Clave de Modal" and "::add-mask::" in first["run"]     # masked before any use
+
+
+def test_the_key_step_finds_both_keys_however_they_were_pasted(tmp_path):
+    """13-11: the user's first secret had spaces around it («Token ID is malformed»); also the whole command Modal shows
+    pasted in one secret, or the two swapped."""
+    import shutil
+    if not shutil.which("bash"):
+        import pytest
+        pytest.skip("sin bash")
+    wf = yaml.safe_load((ROOT / ".github" / "workflows" / "nube.yml").read_text(encoding="utf-8"))
+    script = wf["jobs"]["nube"]["steps"][0]["run"]
+    cases = [(" ak-ABC123 ", "as-XYZ789\n"), ("modal token set --token-id ak-ABC123 --token-secret as-XYZ789", ""),
+             ("as-XYZ789", "ak-ABC123")]
+    for one, two in cases:
+        env_file = tmp_path / "env"
+        env_file.write_text("")
+        r = subprocess.run(["bash", "-c", script], capture_output=True, text=True,
+                           env={"PATH": os.environ.get("PATH", ""), "CLAVE_MODAL_1": one, "CLAVE_MODAL_2": two,
+                                "GITHUB_ENV": str(env_file)})
+        assert r.returncode == 0, r.stdout + r.stderr
+        assert env_file.read_text().splitlines() == ["MODAL_TOKEN_ID=ak-ABC123", "MODAL_TOKEN_SECRET=as-XYZ789"]
+    env_file.write_text("")
+    r = subprocess.run(["bash", "-c", script], capture_output=True, text=True,
+                       env={"PATH": os.environ.get("PATH", ""), "CLAVE_MODAL_1": "hola", "CLAVE_MODAL_2": "",
+                            "GITHUB_ENV": str(env_file)})
+    assert r.returncode == 1 and env_file.read_text() == ""
 
 
 def test_nothing_the_pc_runs_knows_about_the_cloud():
