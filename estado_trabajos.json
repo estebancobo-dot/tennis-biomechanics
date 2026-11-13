@@ -1,10 +1,10 @@
 {
- "at": "2026-11-13 19:53:07",
- "firma": "bb93f3350105",
+ "at": "2026-11-13 19:54:11",
+ "firma": "d6f0a1b75c30",
  "ejecutor": {
   "vivo": true,
-  "pid": 7588,
-  "at": 1794595974.1401932
+  "pid": 13884,
+  "at": 1794596042.9391794
  },
  "pausa": false,
  "en_curso": [],
@@ -18,7 +18,26 @@
   "quedan_s": 0,
   "hora": "2026-11-13 18:25:58"
  },
- "pendientes": [],
+ "pendientes": [
+  {
+   "id": 132,
+   "kind": "flujo",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "flujo «informe_prueba»: Informe y auditoria de la prueba (_smoke) desde sus golpes guardados y la revision automatica",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-13 19:54:11",
+   "started": null,
+   "finished": null,
+   "args": "[\"informe_prueba\"]",
+   "source": "ciclo",
+   "log": "",
+   "paso": 0,
+   "pasos": 3
+  }
+ ],
  "recientes": [
   {
    "id": 131,
@@ -293,6 +312,48 @@
  ],
  "eventos": [
   {
+   "id": 722,
+   "job": 132,
+   "at": "2026-11-13 19:54:11",
+   "kind": "enviado",
+   "text": "flujo informe_prueba (ciclo)"
+  },
+  {
+   "id": 721,
+   "job": null,
+   "at": "2026-11-13 19:54:02",
+   "kind": "ejecutor",
+   "text": "arranca (pid 13884)"
+  },
+  {
+   "id": 720,
+   "job": null,
+   "at": "2026-11-13 19:54:02",
+   "kind": "ejecutor",
+   "text": "arranca el siguiente con el código nuevo (pid 7840)"
+  },
+  {
+   "id": 719,
+   "job": null,
+   "at": "2026-11-13 19:54:02",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 718,
+   "job": null,
+   "at": "2026-11-13 19:54:02",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 717,
+   "job": null,
+   "at": "2026-11-13 19:53:52",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
    "id": 716,
    "job": 131,
    "at": "2026-11-13 19:53:02",
@@ -459,48 +520,6 @@
    "at": "2026-11-13 18:42:38",
    "kind": "hecho",
    "text": "código 0"
-  },
-  {
-   "id": 692,
-   "job": 126,
-   "at": "2026-11-13 18:42:28",
-   "kind": "empieza",
-   "text": "script diag_identity --match osaka pegula zheng gauff sobolenko --conflictos --n 24"
-  },
-  {
-   "id": 691,
-   "job": 126,
-   "at": "2026-11-13 18:42:24",
-   "kind": "enviado",
-   "text": "tennisbio script diag_identity --match osaka pegula zheng gauff sobolenko --conflictos --n 24 (claude 286)"
-  },
-  {
-   "id": 690,
-   "job": 125,
-   "at": "2026-11-13 18:42:08",
-   "kind": "hecho",
-   "text": "código 0"
-  },
-  {
-   "id": 689,
-   "job": 125,
-   "at": "2026-11-13 18:42:06",
-   "kind": "paso",
-   "text": "3/3 Revision automatica"
-  },
-  {
-   "id": 688,
-   "job": 125,
-   "at": "2026-11-13 18:36:36",
-   "kind": "paso",
-   "text": "2/3 Medidas de la prueba"
-  },
-  {
-   "id": 687,
-   "job": 125,
-   "at": "2026-11-13 18:36:36",
-   "kind": "paso",
-   "text": "1/3 Auditoria anterior apartada"
   }
  ]
 }
