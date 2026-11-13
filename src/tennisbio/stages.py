@@ -230,7 +230,12 @@ def play_mask(sc: dict, court: dict | None) -> np.ndarray:
     12-11 (B4, Osaka – Rybakina): the main camera does not move inside a shot, so a short stretch (≤ COURT_GAP_FILL_S)
     where the lines were not found, in a shot where they were, is play too: a graphic over the court («SERVING FOR THE
     MATCH» on a dissolve) or the last second of a short shot left her serve out of play, its features zero and the
-    detector blind (64:17 and 33:04 of that match). A shot where the court is never found stays out."""
+    detector blind (64:17 and 33:04 of that match). A shot where the court is never found stays out.
+
+    13-11 (R22): only after the court has been found in the shot (a gap inside it or at its end), never its first
+    seconds before the court appears: there the shot is still dissolving from the one before, and the people of that
+    image joined the run of the near player (F3Set, Azarenka: a run 6.6 s longer, its clothes a mix of two players, a
+    point given to the other one). The Osaka serves R16 recovered had the court from the first frame of their shot."""
     n = max([s["end"] for s in sc["shots"]] + [0])
     main = np.zeros(n, bool)
     for s in sc["shots"]:
@@ -247,6 +252,8 @@ def play_mask(sc: dict, court: dict | None) -> np.ndarray:
         if not s["main_camera"] or not has[a:b].any():
             continue
         i = a
+        while i < b and not has[i]:          # the start of the shot, before the court appears: never filled
+            i += 1
         while i < b:
             if has[i]:
                 i += 1
@@ -267,7 +274,7 @@ def _fp16_setting(c) -> dict:
     return {"fp16": True} if uses_fp16(c) else {}
 
 
-@stage("players", "5", deps=("scenes", "court"),   # 5 (12-11): short court gaps inside a main-camera shot are play
+@stage("players", "6", deps=("scenes", "court"),   # 5 (12-11): short court gaps inside a main-camera shot are play; 6 (13-11): never its start
        settings=lambda c: {"fps": c["cheap_pass"]["fps"], "imgsz": c["cheap_pass"].get("imgsz", 960), **_fp16_setting(c)},
        outputs=("players.npz",), resource=lambda c: "gpu" if c.get("device", "cpu") == "dml" else "cpu")
 def st_players(ctx: Context):
@@ -1426,7 +1433,7 @@ def _surname(name: str) -> str:
     return name.strip().split()[-1] if name and name.strip() else ""
 
 
-@stage("score", "12",  # 9 (11-11): games stacked in one OCR box split between the rows; 10 (12-11): server by alternation; 11: voted by games; 12: play_mask
+@stage("score", "13",  # 13 (13-11): play_mask never fills the start of a shot; 9 (11-11): games stacked in one OCR box split between the rows; 10 (12-11): server by alternation; 11: voted by games; 12: play_mask
        deps=("scenes", "court"), settings=lambda c: {"every_s": (c.get("score") or {}).get("every_s", 5.0)},
        outputs=("score.json",), match_fields=lambda m: {"player": m.player.name, "opponent": m.opponent}, resource="cpu")
 def st_score(ctx: Context):

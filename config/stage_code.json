@@ -28,8 +28,8 @@
   ]
  },
  "players": {
-  "version": "5",
-  "hash": "02b234e4515d3027",
+  "version": "6",
+  "hash": "a0c5efc7917dab57",
   "modules": [
    "io.video",
    "pipeline",
@@ -119,8 +119,8 @@
   ]
  },
  "score": {
-  "version": "12",
-  "hash": "9c06577a81b312d7",
+  "version": "13",
+  "hash": "afbd487f21cc50e2",
   "modules": [
    "faults",
    "io.video",

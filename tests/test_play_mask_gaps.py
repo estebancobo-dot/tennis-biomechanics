@@ -37,3 +37,18 @@ def test_long_stretches_and_shots_without_the_court_stay_out():
 def test_without_court_json_the_main_camera_as_before():
     sc = _sc([(0, 10, True), (10, 20, False)])
     assert play_mask(sc, None).tolist() == [True] * 10 + [False] * 10
+
+
+def test_the_start_of_a_shot_before_the_court_appears_is_never_filled():
+    """13-11 (R22): the first seconds of a shot without the court are still the dissolve from the shot before; filled,
+    its people joined the near player's run (F3Set, Azarenka: a point given to the other player)."""
+    sc = _sc([(0, 100, True)])
+    court = {"shots": [{"start": 0, "end": 40, "H": None}, {"start": 40, "end": 100, "H": [[1]]}]}
+    m = play_mask(sc, court)
+    assert not m[:40].any() and m[40:].all()
+    # a gap after the court was found, and the end of the shot, are still filled
+    court = {"shots": [{"start": 0, "end": 30, "H": None}, {"start": 30, "end": 50, "H": [[1]]},
+                       {"start": 50, "end": 70, "H": None}, {"start": 70, "end": 90, "H": [[1]]},
+                       {"start": 90, "end": 100, "H": None}]}
+    m = play_mask(sc, court)
+    assert not m[:30].any() and m[30:].all()
