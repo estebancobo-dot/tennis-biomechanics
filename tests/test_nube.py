@@ -190,7 +190,7 @@ def test_the_workflow_only_runs_by_hand_with_the_users_key():
     on = wf.get("on") or wf.get(True)
     assert list(on) == ["workflow_dispatch"]                       # never by a push
     assert set(on["workflow_dispatch"]["inputs"]["accion"]["options"]) == {"comprobar", "f3set", "prueba", "partidos",
-                                                                      "diagnostico", "recoger"}
+                                                                      "diagnostico", "parar", "recoger"}
     job = wf["jobs"]["nube"]
     assert job["if"] == "github.repository_owner == 'estebancobo-dot'"
     assert job["env"]["CLAVE_MODAL_1"] == "${{ secrets.MODAL_TOKEN_ID }}"
@@ -382,3 +382,15 @@ def test_in_the_cloud_sessions_are_made_with_the_cuda_options(tmp_path):
     r = subprocess.run([sys.executable, "-c", code], env=env, capture_output=True, text=True, timeout=120)
     assert r.returncode == 0, r.stderr[-800:]
     assert r.stdout.strip().splitlines()[-1] == "True True"
+
+
+def test_a_run_that_goes_wrong_can_be_stopped_alone():
+    """13-11: Pegula's test with the code before the GPU fix kept failing windows: «parar» cancels the given runs by
+    their id (fc-..., printed by every launch), the others go on; the ids reach the shell as data, never as code."""
+    wf = yaml.safe_load((ROOT / ".github" / "workflows" / "nube.yml").read_text(encoding="utf-8"))
+    step = next(s for s in wf["jobs"]["nube"]["steps"] if s.get("name") == "Parar trabajos")
+    assert step["env"] == {"LLAMADAS": "${{ inputs.llamadas }}"} and "${{" not in step["run"]
+    deploy = next(s for s in wf["jobs"]["nube"]["steps"] if s.get("name") == "Desplegar")
+    assert "parar" in deploy["if"]
+    src = (ROOT / "cloud" / "lanzar.py").read_text(encoding="utf-8")
+    assert 'r"fc-[A-Za-z0-9]+"' in src and "FunctionCall.from_id(fc).cancel()" in src

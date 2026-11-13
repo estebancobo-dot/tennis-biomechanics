@@ -5,6 +5,7 @@
 """
 import argparse
 import json
+import re
 
 import modal
 
@@ -13,8 +14,9 @@ APP = "tennisbio"
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("accion", choices=("ping", "comprobar", "f3set", "partidos", "prueba", "diagnostico"))
+    ap.add_argument("accion", choices=("ping", "comprobar", "f3set", "partidos", "prueba", "diagnostico", "parar"))
     ap.add_argument("--partidos", default="", help="partidos: sus id separados por comas (un contenedor cada uno)")
+    ap.add_argument("--llamadas", default="", help="parar: los fc-... que dio cada lanzamiento, separados por comas")
     ap.add_argument("--tag", default="nube")
     ap.add_argument("--max-points", type=int, default=0)
     ap.add_argument("--matches", default="")
@@ -25,6 +27,16 @@ def main() -> int:
         with modal.enable_output():
             res = modal.Function.from_name(APP, a.accion).remote()
         print(json.dumps(res, ensure_ascii=False, indent=1))
+        return 0
+    if a.accion == "parar":                      # 13-11: cut one run that goes wrong, leaving the others running
+        ids = [x.strip() for x in a.llamadas.split(",") if x.strip()]
+        bad = [x for x in ids if not re.fullmatch(r"fc-[A-Za-z0-9]+", x)]
+        if bad or not ids:
+            print(f"identificadores no validos (fc-...): {bad or 'ninguno'}")
+            return 2
+        for fc in ids:
+            modal.FunctionCall.from_id(fc).cancel()
+            print(f"parada en la nube: {fc}")
         return 0
     if a.accion == "diagnostico":                # 13-11: which ffmpeg cleans the match's .ts (CPU only, cents)
         ids = [x.strip() for x in a.partidos.split(",") if x.strip()]

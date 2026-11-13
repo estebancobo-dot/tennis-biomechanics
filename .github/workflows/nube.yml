@@ -5,6 +5,7 @@
 #   f3set:     despliega y lanza la validacion F3Set en la nube; vuelve al momento (la ejecucion sigue alli)
 #   prueba:    10 minutos de cada partido dado, analizados como un partido (minutos y centimos)
 #   partidos:  despliega y lanza los partidos dados (cada uno en su contenedor, a la vez); vuelve al momento
+#   parar:     cancela en la nube los trabajos dados por su identificador (fc-..., el que imprime cada lanzamiento)
 #   diagnostico: que ffmpeg limpia el .ts de cada partido dado (solo CPU, centimos; recoger con tag diag_ts)
 #   recoger:   trae el estado, el registro y la comparacion con el PC de una ejecucion (runs/<tag>; un partido:
 #              runs/partido_<id>)
@@ -13,9 +14,9 @@ on:
   workflow_dispatch:
     inputs:
       accion:
-        description: "comprobar | f3set | prueba | partidos | diagnostico | recoger"
+        description: "comprobar | f3set | prueba | partidos | diagnostico | parar | recoger"
         type: choice
-        options: [comprobar, f3set, prueba, partidos, diagnostico, recoger]
+        options: [comprobar, f3set, prueba, partidos, diagnostico, parar, recoger]
         default: comprobar
       tag:
         description: "nombre de la ejecucion (runs/<tag>)"
@@ -31,6 +32,10 @@ on:
         default: v17
       partidos:
         description: "partidos: sus id separados por comas (cada uno en su contenedor, a la vez)"
+        type: string
+        default: ""
+      llamadas:
+        description: "parar: los fc-... de los trabajos a cancelar, separados por comas"
         type: string
         default: ""
 permissions:
@@ -72,7 +77,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install "modal>=1.0,<2" pyyaml
       - name: Desplegar
-        if: inputs.accion != 'recoger'
+        if: inputs.accion != 'recoger' && inputs.accion != 'parar'
         run: modal deploy cloud/modal_app.py
       - name: Comprobar
         if: inputs.accion == 'comprobar'
@@ -96,6 +101,11 @@ jobs:
       - name: Lanzar diagnostico del .ts
         if: inputs.accion == 'diagnostico'
         run: python cloud/lanzar.py diagnostico --partidos "${{ inputs.partidos }}"
+      - name: Parar trabajos
+        if: inputs.accion == 'parar'
+        env:
+          LLAMADAS: ${{ inputs.llamadas }}
+        run: python cloud/lanzar.py parar --llamadas "$LLAMADAS"
       - name: Recoger
         if: inputs.accion == 'recoger'
         run: |
