@@ -191,6 +191,15 @@ abrirse comprueba que el ejecutor único vive y si no lo arranca; (2) pausar/rea
 `orchestrator.status` (en curso, paso N de M, eventos, pausa); (5) el icono junto al reloj, del mismo estado;
 (6) «Añadir partido» → registro único + trabajo en la cola; (7) pruebas y capturas en el PC.
 
+**Paquete N, prueba N0 en paralelo (13-11, #273, aprobada por el usuario «sí, empieza con el código»)** — guía y
+pasos del usuario en `docs/nube_n0.md`; no toca nada de lo que corre en el PC
+| # | Tarea | Dónde | Validación | Estado |
+|---|---|---|---|---|
+| N0.1 | Código: `cloud/` (Modal: imagen con las dependencias bloqueadas y onnxruntime-gpu 1.24.4; «dml» con sesiones en CUDA), flujo «Nube» de GitHub Actions, `scripts/subir_nube.py`, `5_conectar_nube.bat`, comparación PC/nube | nube (código) | `tests/test_nube.py` (14 pruebas); ningún módulo del paquete cambia | hecho (13-11) |
+| N0.2 | Cuenta de Modal con tope 0 € (límite de uso 30 $), token, secretos `MODAL_TOKEN_ID`/`MODAL_TOKEN_SECRET` en GitHub | usuario (una vez) | el flujo «Nube» → comprobar despliega y ve la L4 | pendiente del usuario |
+| N0.3 | Clave en el PC (`5_conectar_nube.bat`, cuando el PC traiga el código tras la validación) y subida de modelos y compilaciones de F3Set por la cola (`script subir_nube`) | usuario (1 min) + PC | `capturas_diag/nube_clave.json` y `subir_nube.json` en pc-logs | pendiente |
+| N0.4 | F3Set en la L4 desde cero y comparación golpe a golpe con el PC (v17) | Modal | `runs/nube/comparacion.md`: veredicto, k por etapa, coste | pendiente |
+
 **Decisión del usuario (13-11, #271/#272):** después de los 6 partidos (cierre de la Base) y antes de P0, toda la
 aplicación pasa a la nube: paquete **N** en `config/plan_peticiones.yaml` (`docs/analisis_nube.md` §8, §13), con un
 **tope de 0 € al mes** (crédito mensual de Modal con el tope de la cuenta; si se agota, se espera al mes siguiente). Hasta

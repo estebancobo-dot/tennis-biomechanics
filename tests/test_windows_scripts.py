@@ -14,7 +14,9 @@ WIN = ROOT / "scripts" / "windows"
 BATS = sorted(ROOT.glob("[0-9]*.bat"))
 # the one script that asks something: GitHub's one-time code to connect the PC with Actions (4_conectar_github.bat,
 # done once by the user; not part of installing, testing or analysing)
-ASKS = {"instalar_runner.ps1"}
+ASKS = {"instalar_runner.ps1",
+        # 13-11 (#273): the Modal key of the cloud's proof of concept, pasted once (5_conectar_nube.bat)
+        "clave_nube.ps1"}
 
 
 def _launched(bat: Path) -> list[Path]:

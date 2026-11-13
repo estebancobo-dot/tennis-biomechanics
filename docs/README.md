@@ -29,7 +29,8 @@ Cada documento tiene **un solo papel**. Si dos dicen cosas distintas, manda el *
 | `aprendido_entrenadores.md`, `investigacion_youtube_usuario.md`, `analisis_referencias.md`, `referencias_externas.md` | Contenido de «Cópiala/Aprende» (paquete P1) |
 | `estado_del_arte.md`, `comparativa_apps.md` | Modelos (B3) y comparación con las apps profesionales (P4) |
 | `escenarios_producto.md`, `arquitectura_producto.md`, `diseno_definitivo.md` | Producto (P2, P5) |
-| `analisis_nube.md` (13-11, #268) | Toda la aplicación en la nube: análisis sin implementar (P6; reabre la decisión #145 solo si el usuario lo decide) |
+| `analisis_nube.md` (13-11, #268, #271-#273) | Toda la aplicación en la nube: análisis, costes, proveedores; decisión del usuario: paquete N tras los 6 partidos, 0 €/mes |
+| `nube_n0.md` (13-11, #273) | Prueba de la nube (N0): pasos de una vez del usuario (Modal, GitHub, PC) y cómo se hace sin tocar el PC |
 | `maqueta-informe.html`, `maqueta_leccion_armado.html`, `maqueta_aplicacion.html` | Maquetas de diseño (datos inventados) |
 | `matriz_en_la_web.md` | Generado por `scripts/matrix_in_web.py`: qué punto de la matriz se ve en la web |
 | `como_ejecutar.md` | Instrucciones de instalación en el PC |

@@ -1,7 +1,12 @@
 """Requests #43 «el PC no es servidor» and #145 «nada en la nube ni de pago»: the code never opens a server on the PC,
 the window and the reports are files opened from the disk, nothing is uploaded anywhere and every address in the
 code is a free public download (models, datasets, fonts, videos to learn from). Run on the PC with the other tests
-(pruebas.xml), so the audit ties both requests to this module."""
+(pruebas.xml), so the audit ties both requests to this module.
+
+13-11 (#271-#273): the user decided that the whole application moves to the cloud after the 6 matches (package N, 0 € a
+month). Until then the one exception is N0, the proof of concept: scripts/subir_nube.py uploads, once and by the single
+queue, the PC's models and the F3Set compilations to the user's own Modal volume (cloud/, which never runs on the PC).
+Nothing else on the PC sends anything out; the match videos are not uploaded."""
 import re
 import tomllib
 from pathlib import Path
@@ -54,6 +59,19 @@ def test_the_window_and_the_reports_are_files_opened_from_the_disk():
 
 def test_nothing_is_uploaded_anywhere():
     assert not _lines(UPLOAD), _lines(UPLOAD)
+
+
+# 13-11 (#273): the only upload on the PC, to the user's own Modal volume (see the module docstring)
+CLOUD_UPLOAD = re.compile(r"[\"']volume[\"'],\s*[\"']put[\"']|modal\s+volume\s+put")
+CLOUD_UPLOADERS = {"scripts/subir_nube.py"}
+
+
+def test_the_only_upload_is_the_proof_of_concept_to_the_users_own_volume():
+    where = {ln.split(":", 1)[0].replace("\\", "/") for ln in _lines(CLOUD_UPLOAD)}
+    assert where == CLOUD_UPLOADERS, where
+    src = (ROOT / "scripts" / "subir_nube.py").read_text(encoding="utf-8")
+    assert 'VOLUME = "tennisbio-datos"' in src                     # one volume, the user's
+    # what it uploads (never a match video) is checked on a tree in tests/test_nube.py
 
 
 def test_every_address_in_the_code_is_a_free_public_download():
