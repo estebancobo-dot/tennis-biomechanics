@@ -1327,3 +1327,11 @@ id: 285
 accion: control
 orden: reanudar
 # 285 (13-11): la parada 16 deja la cola en pausa ("jobs pause now"); se reanuda para la validacion final 280-284
+---
+id: 286
+accion: medir
+script: diag_identity
+argumentos: --match osaka pegula zheng gauff sobolenko --conflictos --n 24
+# 286 (13-11): con el clic, la ropa sola decide cada plano con ropa clara; en Osaka 8 planos en que la ropa y los
+# cambios de lado del marcador no dicen lo mismo (125 de 133 de acuerdo) y "misma ropa dentro de un juego" 93 %. Los
+# fotogramas enteros de esos planos (las dos jugadoras y el marcador) con lo que dice cada senal, para ver quien acierta

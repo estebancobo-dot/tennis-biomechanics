@@ -42,7 +42,30 @@ def tile(frame, lines) -> np.ndarray:
     return img
 
 
-def diag(m, cfg, root: Path, out: Path, n: int) -> dict:
+def conflicts(ident: dict, pick: dict | None) -> tuple[list[int], dict]:
+    """13-11: the runs where the two cues disagree once the user's click is applied (apply_pick: with the click, clothes
+    alone decide every run with clear clothes): the clothes say one player is near, the end changes read on the
+    scoreboard (her parity, the majority of the runs decided as hers) say the other. Returns (indices, summary)."""
+    from collections import Counter as _C
+    from tennisbio.identity import apply_pick
+    new, why = apply_pick(ident, pick)
+    runs = new.get("runs", [])
+    par = _C(r["end_changes"] % 2 for r in runs if r.get("near_is_target") and r.get("end_changes") is not None)
+    if not par:
+        return [], {"pick": why, "her_parity": None}
+    hers = par.most_common(1)[0][0]
+    idx = [i for i, r in enumerate(runs) if r.get("end_changes") is not None and r.get("near_is_target") is not None
+           and (r["end_changes"] % 2 == hers) != bool(r["near_is_target"])]
+    fps = float(ident.get("fps") or 1.0)
+    rows = [{"i": i, "t": round(runs[i]["start"] / fps), "s": round((runs[i]["end"] - runs[i]["start"]) / fps, 1),
+             "grupo": runs[i].get("cluster"), "margen": runs[i].get("clothes_margin"), "cambios": runs[i]["end_changes"],
+             "decision_ella_cerca": runs[i]["near_is_target"], "metodo": runs[i].get("method"),
+             "cambios_dicen_ella_cerca": runs[i]["end_changes"] % 2 == hers} for i in idx]
+    return idx, {"pick": why, "her_parity": hers, "con_cambios": sum(r.get("end_changes") is not None for r in runs),
+                 "en_desacuerdo": len(idx), "runs": rows, "_final": runs}
+
+
+def diag(m, cfg, root: Path, out: Path, n: int, only_conflicts: bool = False) -> dict:
     from tennisbio import layout
     from tennisbio import match_files as mf
 
@@ -98,9 +121,21 @@ def diag(m, cfg, root: Path, out: Path, n: int) -> dict:
     if not Path(video).exists() or not runs:
         return {**res, "error": "sin vídeo" if runs else "sin planos"}
     idx = sorted({int(i) for i in np.linspace(0, len(runs) - 1, min(n, len(runs)))})
+    final = runs
+    if only_conflicts:                    # the runs where clothes (with the click) and the end changes disagree
+        from tennisbio.identity import PICK_FILE
+        pf = mf.at(d, PICK_FILE)
+        pick = json.loads(pf.read_text(encoding="utf-8")) if pf.exists() else None
+        idx, cf = conflicts(ident, pick)
+        final = cf.pop("_final", runs)
+        res["conflictos"] = cf
+        idx = idx[:n]
     tiles = []
+    hers = (res.get("conflictos") or {}).get("her_parity")
     for i in idx:
-        r = {**runs[i], "_fps": fps}
+        r = {**final[i], "_fps": fps}
+        if only_conflicts and hers is not None:      # what the end changes say, on the tile
+            r["ends_said"] = f"cambios dicen ella cerca={final[i]['end_changes'] % 2 == hers}"
         t = (r["start"] + r["end"]) / 2 / fps
         sr = stages.score_at(score, t, max_age_s=150.0) if score else None
         tiles.append(tile(stages.grab_frame(Path(video), t), label(r, None if sr is None else sr.get("games"))))
@@ -110,7 +145,7 @@ def diag(m, cfg, root: Path, out: Path, n: int) -> dict:
         while len(part) % 3:
             part.append(np.zeros_like(tiles[0]))
         rows = [np.hstack(part[j:j + 3]) for j in range(0, len(part), 3)]
-        p = out / f"identidad_{m.id[:40]}_{k // 12}.jpg"
+        p = out / f"identidad_{'conflictos_' if only_conflicts else ''}{m.id[:40]}_{k // 12}.jpg"
         cv2.imwrite(str(p), np.vstack(rows), [cv2.IMWRITE_JPEG_QUALITY, 80])
         saved.append(p.name)
     return {**res, "images": saved}
@@ -121,6 +156,8 @@ def main():
     ap.add_argument("out", nargs="?")
     ap.add_argument("--match", nargs="+")
     ap.add_argument("--n", type=int, default=24)
+    ap.add_argument("--conflictos", action="store_true",
+                    help="13-11: solo los planos en que la ropa (con el clic) y los cambios de lado no dicen lo mismo")
     args = ap.parse_args()
     cfg = load_config()
     root = Path(cfg.get("paths", {}).get("output", "output"))
@@ -131,7 +168,7 @@ def main():
         if args.match and not any(s in m.id for s in args.match):
             continue
         try:
-            r = diag(m, cfg, root, out, args.n)
+            r = diag(m, cfg, root, out, args.n, args.conflictos)
         except Exception as e:  # noqa: BLE001 — one broken match never stops the others
             r = {"match": m.id, "error": f"{type(e).__name__}: {e}"[:300]}
         print(json.dumps({k: v for k, v in r.items() if k != "games_sequence"}, ensure_ascii=False), flush=True)
