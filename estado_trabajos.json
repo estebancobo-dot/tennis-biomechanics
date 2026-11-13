@@ -1,41 +1,41 @@
 {
- "at": "2026-11-13 08:00:16",
- "firma": "bfe588a1f27f",
+ "at": "2026-11-13 08:20:08",
+ "firma": "90016e1c9bbc",
  "ejecutor": {
   "vivo": true,
   "pid": 18632,
-  "at": 1794553214.1618595
+  "at": 1794554400.5251212
  },
  "pausa": false,
  "en_curso": [
   {
-   "id": 119,
-   "kind": "comando",
+   "id": 120,
+   "kind": "flujo",
    "match": null,
    "player": null,
    "stroke": null,
-   "reason": "run --match us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
    "state": "en curso",
-   "message": "",
-   "created": "2026-11-13 06:10:37",
-   "started": "2026-11-13 06:19:30",
+   "message": "paso 5/6: Auditoria",
+   "created": "2026-11-13 06:10:52",
+   "started": "2026-11-13 08:16:34",
    "finished": null,
-   "args": "[\"run\", \"--match\", \"us-open-2026-r4-naomi-osaka-elena-rybakina\"]",
-   "source": "claude 280",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_119.log",
-   "paso": 0,
-   "pasos": 0
+   "args": "[\"informe\"]",
+   "source": "claude 281",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_120.log",
+   "paso": 4,
+   "pasos": 6
   }
  ],
  "progreso": {
   "partido": "us-open-2026-r4-naomi-osaka-elena-rybakina",
-  "etapa": "fine",
-  "hecho": 218,
-  "total": 234,
-  "porcentaje": 93.2,
-  "segundos": 3853,
-  "quedan_s": 283,
-  "hora": "2026-11-13 07:59:59"
+  "etapa": "fine_doubtful",
+  "hecho": 21,
+  "total": 21,
+  "porcentaje": 100.0,
+  "segundos": 303,
+  "quedan_s": 0,
+  "hora": "2026-11-13 08:16:31"
  },
  "pendientes": [
   {
@@ -109,27 +109,27 @@
    "log": "",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 120,
-   "kind": "flujo",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
-   "state": "pendiente",
-   "message": "",
-   "created": "2026-11-13 06:10:52",
-   "started": null,
-   "finished": null,
-   "args": "[\"informe\"]",
-   "source": "claude 281",
-   "log": "",
-   "paso": 0,
-   "pasos": 6
   }
  ],
  "recientes": [
+  {
+   "id": 119,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "run --match us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "state": "hecho",
+   "message": "",
+   "created": "2026-11-13 06:10:37",
+   "started": "2026-11-13 06:19:30",
+   "finished": "2026-11-13 08:16:32",
+   "args": "[\"run\", \"--match\", \"us-open-2026-r4-naomi-osaka-elena-rybakina\"]",
+   "source": "claude 280",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_119.log",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 118,
    "kind": "flujo",
@@ -381,27 +381,58 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_105.log",
    "paso": 6,
    "pasos": 6
-  },
-  {
-   "id": 104,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script validate_recall --spotter --tag v16 --from v15",
-   "state": "hecho",
-   "message": "",
-   "created": "2026-11-12 15:37:06",
-   "started": "2026-11-12 19:31:49",
-   "finished": "2026-11-13 00:33:48",
-   "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"v16\", \"--from\", \"v15\"]",
-   "source": "claude 263",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_104.log",
-   "paso": 0,
-   "pasos": 0
   }
  ],
  "eventos": [
+  {
+   "id": 660,
+   "job": 120,
+   "at": "2026-11-13 08:16:57",
+   "kind": "paso",
+   "text": "5/6 Auditoria"
+  },
+  {
+   "id": 659,
+   "job": 120,
+   "at": "2026-11-13 08:16:52",
+   "kind": "paso",
+   "text": "4/6 Informe del saque"
+  },
+  {
+   "id": 658,
+   "job": 120,
+   "at": "2026-11-13 08:16:46",
+   "kind": "paso",
+   "text": "3/6 Informe del reves"
+  },
+  {
+   "id": 657,
+   "job": 120,
+   "at": "2026-11-13 08:16:36",
+   "kind": "paso",
+   "text": "2/6 Informe de la derecha"
+  },
+  {
+   "id": 656,
+   "job": 120,
+   "at": "2026-11-13 08:16:35",
+   "kind": "paso",
+   "text": "1/6 Registro de partidos"
+  },
+  {
+   "id": 655,
+   "job": 120,
+   "at": "2026-11-13 08:16:34",
+   "kind": "empieza",
+   "text": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)"
+  },
+  {
+   "id": 654,
+   "job": 119,
+   "at": "2026-11-13 08:16:34",
+   "kind": "hecho",
+   "text": "código 0"
+  },
   {
    "id": 653,
    "job": 119,
@@ -562,55 +593,6 @@
    "at": "2026-11-13 06:10:21",
    "kind": "cancelar",
    "text": "claude 279"
-  },
-  {
-   "id": 630,
-   "job": 114,
-   "at": "2026-11-13 06:10:08",
-   "kind": "parado",
-   "text": "vuelve a la cola; reanuda desde las cachés"
-  },
-  {
-   "id": 629,
-   "job": null,
-   "at": "2026-11-13 06:10:08",
-   "kind": "pausa",
-   "text": "ya (parada)"
-  },
-  {
-   "id": 628,
-   "job": 118,
-   "at": "2026-11-13 05:17:01",
-   "kind": "enviado",
-   "text": "flujo informe (claude 278)"
-  },
-  {
-   "id": 627,
-   "job": 117,
-   "at": "2026-11-13 05:16:36",
-   "kind": "enviado",
-   "text": "tennisbio run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final (claude 277)"
-  },
-  {
-   "id": 626,
-   "job": 116,
-   "at": "2026-11-13 05:16:11",
-   "kind": "enviado",
-   "text": "tennisbio script validate_recall --spotter --tag v17 --from v16 (claude 276)"
-  },
-  {
-   "id": 625,
-   "job": 115,
-   "at": "2026-11-13 05:15:46",
-   "kind": "enviado",
-   "text": "flujo informe (claude 275)"
-  },
-  {
-   "id": 624,
-   "job": 114,
-   "at": "2026-11-13 05:15:28",
-   "kind": "empieza",
-   "text": "run --match us-open-2026-r4-naomi-osaka-elena-rybakina"
   }
  ]
 }

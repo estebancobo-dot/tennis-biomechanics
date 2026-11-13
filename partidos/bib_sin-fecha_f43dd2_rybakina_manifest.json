@@ -173,74 +173,73 @@
   "faults": {}
  },
  "fine": {
-  "fingerprint": "17e81332a491d0e7",
+  "fingerprint": "03209bede6e37f4b",
   "version": "16",
-  "seconds": 9518.0,
-  "finished": "2026-11-13 03:54:14",
+  "seconds": 4525.8,
+  "finished": "2026-11-13 08:11:05",
   "summary": {
-   "candidates": 232,
-   "confirmed": 223,
+   "candidates": 234,
+   "confirmed": 226,
    "errors": 0,
    "warnings": [],
    "forehands": 119,
    "windows": 122,
    "gate": {
     "windows_gated": 0,
-    "windows_passed": 117,
+    "windows_passed": 118,
     "windows_ungated": 0,
     "reasons": {
      "detector": 49,
-     "golpe_de_bola": 46,
+     "golpe_de_bola": 47,
      "bola_no_vista": 22
     },
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "raqueta": 5871.0,
-    "bola_en_paralelo_cpu": 3887.7,
-    "pose": 2153.9,
-    "pose_modelo_hybrid": 1394.7,
-    "pose_modelo_yolo": 733.7,
-    "bola": 550.1,
-    "pose_medida_lejana": 492.9,
-    "cuerdas_y_3d": 240.9,
-    "recorte": 115.5,
-    "jugadora_lejana": 53.7,
-    "pista_ventana": 34.1,
-    "analisis_ventana": 31.9,
-    "cribado": 6.2,
-    "espera_bola_en_paralelo": 0.0
+    "raqueta": 6507.8,
+    "pose": 1732.4,
+    "pose_modelo_hybrid": 1619.7,
+    "bola": 158.7,
+    "cuerdas_y_3d": 112.8,
+    "pose_modelo_yolo": 83.9,
+    "jugadora_lejana": 54.8,
+    "pista_ventana": 41.6,
+    "analisis_ventana": 36.7,
+    "pose_medida_lejana": 35.2,
+    "recorte": 28.1,
+    "cribado": 7.5
    },
    "counts": {
-    "overlap_s": 4.9,
-    "frames": 30709,
-    "posed_frames": 30709,
-    "impacts": 349,
-    "kept_impacts": 225,
-    "racket_frames": 5523,
+    "overlap_s": 5.1,
+    "frames": 31071,
+    "posed_frames": 31071,
+    "impacts": 352,
+    "kept_impacts": 228,
+    "racket_frames": 4724,
     "whole_window_again": 0,
-    "frames_960_far": 3504,
-    "frames_modelo_yolo": 14034,
-    "far_measure_windows": 19,
-    "frames_modelo_hybrid": 16120,
-    "windows_ball_ahead": 44
+    "frames_960_far": 200,
+    "far_measure_windows": 20,
+    "frames_modelo_yolo": 1264,
+    "frames_modelo_hybrid": 12976
    }
   },
-  "out_hash": "d64750e9cdf365d4259e",
+  "out_hash": "5c39d449c5b21e37b631",
   "scheme": 2,
-  "rewrote": {}
+  "rewrote": {},
+  "faults": {}
  },
  "fine_opponent": {
-  "fingerprint": "c46a92172eb7bcf6",
+  "fingerprint": "cc07695b24b99a25",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-13 03:55:17",
+  "finished": "2026-11-13 08:11:25",
   "summary": {
    "enabled": false
   },
   "out_hash": "dafe9abfb6c998959474",
   "scheme": 2,
-  "rewrote": {}
+  "rewrote": {},
+  "faults": {}
  },
  "spotting": {
   "fingerprint": "78150eda3dfd941e",
@@ -302,29 +301,30 @@
   "faults": {}
  },
  "views_link": {
-  "fingerprint": "d6bcebbbc3b7acc8",
+  "fingerprint": "c19c81ca54d20b7a",
   "version": "1",
-  "seconds": 0.4,
-  "finished": "2026-11-13 03:54:15",
+  "seconds": 0.3,
+  "finished": "2026-11-13 08:11:06",
   "summary": {
-   "strokes": 223,
+   "strokes": 226,
    "with_replay": 40,
-   "with_other_camera": 200,
+   "with_other_camera": 201,
    "with_slowmo": 4,
-   "replay_share": 0.179,
-   "other_share": 0.897
+   "replay_share": 0.177,
+   "other_share": 0.889
   },
-  "out_hash": "6516c3010e956bd9aebe",
+  "out_hash": "cd06dcaebbafae4c2a3e",
   "scheme": 2,
   "rewrote": {
-   "fine": "5676bfd2df42bb5e607d"
-  }
+   "fine": "6520a12feb5fe13e6bbf"
+  },
+  "faults": {}
  },
  "fine_doubtful": {
-  "fingerprint": "1d5074d48a5158ef",
+  "fingerprint": "85604ef05ae72818",
   "version": "1",
-  "seconds": 476.4,
-  "finished": "2026-11-13 04:03:14",
+  "seconds": 306.2,
+  "finished": "2026-11-13 08:16:32",
   "summary": {
    "candidates": 21,
    "confirmed": 7,
@@ -337,24 +337,22 @@
     "windows_passed": 7,
     "windows_ungated": 0,
     "reasons": {
-     "golpe_de_bola": 1,
-     "bola_no_vista": 6
+     "bola_no_vista": 6,
+     "golpe_de_bola": 1
     },
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "raqueta": 322.9,
-    "bola_en_paralelo_cpu": 180.5,
-    "pose": 102.4,
-    "pose_modelo_hybrid": 101.1,
-    "recorte": 17.9,
-    "bola": 13.2,
-    "cuerdas_y_3d": 10.9,
-    "analisis_ventana": 1.3,
-    "cribado": 0.3,
+    "raqueta": 358.2,
+    "pose": 169.0,
+    "pose_modelo_hybrid": 165.1,
+    "bola": 33.2,
+    "analisis_ventana": 5.5,
+    "cuerdas_y_3d": 4.0,
+    "recorte": 1.5,
+    "cribado": 0.4,
     "jugadora_lejana": 0.0,
-    "pista_ventana": 0.0,
-    "espera_bola_en_paralelo": 0.0
+    "pista_ventana": 0.0
    },
    "counts": {
     "overlap_s": 0.0,
@@ -365,50 +363,64 @@
     "racket_frames": 272,
     "whole_window_again": 0,
     "frames_960_far": 0,
-    "frames_modelo_hybrid": 1002,
-    "windows_ball_ahead": 4
+    "frames_modelo_hybrid": 1002
    }
   },
   "out_hash": "dd6fc6596307434e8cea",
   "scheme": 2,
-  "rewrote": {}
+  "rewrote": {},
+  "faults": {}
  },
  "view_clips": {
-  "fingerprint": "84af021ef2a051fb",
+  "fingerprint": "3a96f737ca85d4f9",
   "version": "1",
-  "seconds": 58.0,
-  "finished": "2026-11-13 03:55:14",
+  "seconds": 17.0,
+  "finished": "2026-11-13 08:11:23",
   "summary": {
    "enabled": true,
-   "linked_strokes": 205,
-   "views": 512,
-   "clips": 310,
-   "cut": 68,
-   "reused": 235,
+   "linked_strokes": 207,
+   "views": 508,
+   "clips": 309,
+   "cut": 0,
+   "reused": 302,
    "failed": 7,
-   "seconds": 57.9,
-   "clip_seconds": 1786.6,
-   "strokes_with_clip": 204
+   "seconds": 17.0,
+   "clip_seconds": 1776.6,
+   "strokes_with_clip": 206
   },
-  "out_hash": "4a91ef54b71a0b8242f1",
+  "out_hash": "994fe84f3b5e7f1cc2e7",
   "scheme": 2,
-  "rewrote": {}
+  "rewrote": {},
+  "faults": {
+   "toma.sin_recorte": {
+    "nivel": "C2",
+    "n": 7,
+    "ejemplos": [
+     "v001147104_01098.mp4 (RuntimeError: no se pudo recortar la toma de 1.1 s en 1147.1 s (ed intra mode\n[h264 @ 000002582d5fae00] error while decoding MB 3 0, bytestream 50671\n[h264 @ 000002582d4c4100] Reference 2 >= 2\n[h264 @ 000002582d4c4)",
+     "v001242800_00400.mp4 (RuntimeError: no se pudo recortar la toma de 0.4 s en 1242.8 s (00235b4df0280] Missing reference picture, default is 2147483647\n[h264 @ 00000235b4ff7dc0] reference picture missing during reorder\n[h264 @ 00000235b4f)",
+     "v001544792_00846.mp4 (RuntimeError: no se pudo recortar la toma de 0.8 s en 1544.8 s (57cd540] error while decoding MB 4 0, bytestream 81343\n[h264 @ 000001f7c47a4040] top block unavailable for requested intra mode\n[h264 @ 000001f7c47a40)",
+     "v001604700_00700.mp4 (RuntimeError: no se pudo recortar la toma de 0.7 s en 1604.7 s (94ea00] mmco: unref short failure\n[h264 @ 000002568194ea00] number of reference frames (0+5) exceeds max (4; probably corrupt input), discarding one\n[)",
+     "v001709800_00700.mp4 (RuntimeError: no se pudo recortar la toma de 0.7 s en 1709.8 s (df2c0] Decoding error: Invalid data found when processing input\n[h264 @ 0000024372138140] reference picture missing during reorder\n[h264 @ 00000243721)"
+    ]
+   }
+  }
  },
  "slowmo_fine": {
-  "fingerprint": "46edd885de9bf625",
+  "fingerprint": "a634585f183e7804",
   "version": "1",
-  "seconds": 2.5,
-  "finished": "2026-11-13 03:55:17",
+  "seconds": 0.9,
+  "finished": "2026-11-13 08:11:25",
   "summary": {
    "enabled": true,
    "slowmo_strokes": 2,
    "measured": 2,
    "failed": 0,
    "frames": 62,
-   "seconds": 2.5
+   "seconds": 0.8
   },
   "out_hash": "be5a77a8cc3d251583e7",
   "scheme": 2,
-  "rewrote": {}
+  "rewrote": {},
+  "faults": {}
  }
 }
