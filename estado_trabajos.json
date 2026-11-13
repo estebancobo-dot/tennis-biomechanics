@@ -1,32 +1,13 @@
 {
- "at": "2026-11-13 20:09:50",
- "firma": "431610918a1d",
+ "at": "2026-11-13 20:10:33",
+ "firma": "1a370f884ce6",
  "ejecutor": {
   "vivo": true,
   "pid": 8124,
-  "at": 1794596990.1391816
+  "at": 1794597028.1532824
  },
  "pausa": false,
- "en_curso": [
-  {
-   "id": 134,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script subir_nube --que partidos",
-   "state": "en curso",
-   "message": "",
-   "created": "2026-11-13 20:01:27",
-   "started": "2026-11-13 20:04:39",
-   "finished": null,
-   "args": "[\"script\", \"subir_nube\", \"--que\", \"partidos\"]",
-   "source": "claude 293",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_134.log",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "en_curso": [],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "fine_doubtful",
@@ -39,6 +20,24 @@
  },
  "pendientes": [],
  "recientes": [
+  {
+   "id": 134,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script subir_nube --que partidos",
+   "state": "hecho",
+   "message": "",
+   "created": "2026-11-13 20:01:27",
+   "started": "2026-11-13 20:04:39",
+   "finished": "2026-11-13 20:10:07",
+   "args": "[\"script\", \"subir_nube\", \"--que\", \"partidos\"]",
+   "source": "claude 293",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_134.log",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 133,
    "kind": "flujo",
@@ -290,27 +289,16 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_120.log",
    "paso": 6,
    "pasos": 6
-  },
-  {
-   "id": 119,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "run --match us-open-2026-r4-naomi-osaka-elena-rybakina",
-   "state": "hecho",
-   "message": "",
-   "created": "2026-11-13 06:10:37",
-   "started": "2026-11-13 06:19:30",
-   "finished": "2026-11-13 08:16:32",
-   "args": "[\"run\", \"--match\", \"us-open-2026-r4-naomi-osaka-elena-rybakina\"]",
-   "source": "claude 280",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_119.log",
-   "paso": 0,
-   "pasos": 0
   }
  ],
  "eventos": [
+  {
+   "id": 741,
+   "job": 134,
+   "at": "2026-11-13 20:10:08",
+   "kind": "hecho",
+   "text": "código 0"
+  },
   {
    "id": 740,
    "job": 134,
@@ -513,13 +501,6 @@
    "at": "2026-11-13 19:51:02",
    "kind": "empieza",
    "text": "script diag_otros_partidos --match osaka pegula zheng gauff sobolenko --t 4628 11586 12203 12217"
-  },
-  {
-   "id": 711,
-   "job": 130,
-   "at": "2026-11-13 19:50:52",
-   "kind": "enviado",
-   "text": "tennisbio script diag_otros_partidos --match osaka pegula zheng gauff sobolenko --t 4628 11586 12203 12217 (claude 290)"
   }
  ]
 }
