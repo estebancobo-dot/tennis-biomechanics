@@ -155,16 +155,16 @@
   "faults": {}
  },
  "spotting": {
-  "fingerprint": "a659ad2f650bad48",
-  "version": "1",
-  "seconds": 22.2,
-  "finished": "2026-11-12 17:17:38",
+  "fingerprint": "965204d32c498fc5",
+  "version": "2",
+  "seconds": 2602.8,
+  "finished": "2026-11-13 14:35:26",
   "summary": {
    "enabled": true,
-   "strokes": 684,
-   "near": 367,
-   "far": 317,
-   "out_of_play": 3561,
+   "strokes": 900,
+   "near": 448,
+   "far": 452,
+   "out_of_play": 3575,
    "threshold": 0.1,
    "fps": 10.0,
    "model_fps": 10.0,
@@ -172,54 +172,67 @@
    "audio_track": 0,
    "seconds": {
     "jugadores_y_audio": 0.1,
-    "rasgos": 21.8,
-    "bola": 0.1,
+    "rasgos": 23.7,
+    "bola": 2574.6,
     "modelo": 0.1
+   },
+   "inputs": {
+    "near_seen": 0.938,
+    "far_seen": 0.001,
+    "play_min": 36.0
+   },
+   "ball": {
+    "min": 36.0,
+    "seen": 0.696,
+    "play_min": 36.0
    }
   },
-  "out_hash": "92bf005182812a8d9632",
+  "out_hash": "85ada032d9455d369995",
   "scheme": 2,
-  "rewrote": {}
+  "rewrote": {},
+  "faults": {}
  },
  "candidates": {
-  "fingerprint": "d7b73f544c03b8e4",
+  "fingerprint": "9493bc3bfdcb8a62",
   "version": "16",
   "seconds": 3.2,
-  "finished": "2026-11-12 17:17:41",
+  "finished": "2026-11-13 14:35:30",
   "summary": {
-   "candidates": 699,
-   "far": 330,
-   "with_audio": 610,
+   "candidates": 902,
+   "far": 455,
+   "with_audio": 839,
    "source": "spotter",
-   "opponent_strokes": 313,
-   "identity_unknown": 42,
-   "replay_strokes_skipped": 12,
+   "opponent_strokes": 419,
+   "identity_unknown": 43,
+   "replay_strokes_skipped": 5,
    "replay_runs": 0,
    "audio_track": 0
   },
-  "out_hash": "d846aaf63cb9d9f80c70",
+  "out_hash": "ac4625cc291d8a027a9e",
   "scheme": 2,
-  "rewrote": {}
+  "rewrote": {},
+  "faults": {}
  },
  "views": {
-  "fingerprint": "bd8186a2272d9e8d",
+  "fingerprint": "4eb9b311b3c80841",
   "version": "6",
-  "seconds": 203.4,
-  "finished": "2026-11-12 17:21:05",
+  "seconds": 209.1,
+  "finished": "2026-11-13 14:38:59",
   "summary": {
-   "views": 884,
-   "repeticion_principal": 39,
+   "views": 885,
+   "repeticion_principal": 40,
    "lateral": 24,
    "frontal": 7,
    "primer_plano": 742,
    "otra": 72,
-   "links": 1971,
-   "linked_views": 797,
-   "slowmo_links": 37
+   "links": 2165,
+   "linked_views": 808,
+   "slowmo_links": 28
   },
-  "out_hash": "dbe760975ef7d7365410",
+  "out_hash": "d5ccb29fec550bcda76d",
   "scheme": 2,
-  "rewrote": {}
+  "rewrote": {},
+  "faults": {}
  },
  "fine": {
   "fingerprint": "233383c99b5f0188",
