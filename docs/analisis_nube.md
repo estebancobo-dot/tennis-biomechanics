@@ -477,6 +477,90 @@ Tamaño relativo: **S** = un módulo, cambio localizado con su prueba; **M** = v
 3. ¿Se aceptan las retransmisiones en un almacén privado de un tercero, en la UE? ¿Se guardan para poder recalcular o se borran tras cada análisis?
 4. ¿El PC se queda como segundo dispositivo o se retira cuando la nube esté validada?
 
+**Respuestas del usuario (13-11, más tarde):**
+- La meta es pasar **todo** a la nube.
+- Los vídeos **se suben y se borran al terminar**; si hace falta recalcular, se vuelven a subir.
+- Motivo: el PC está al límite (iGPU al 99 % durante horas) y no lo puede usar.
+- **Por ahora solo análisis: no se cambia nada.** Quedan sin decidir el tope de gasto y si el PC se retira; la tabla de §11 sirve para decidirlo.
+
+---
+
+## 11. Resumen de costes al mes y alternativas (13-11, tras la respuesta del usuario)
+
+### 11.1 De qué depende el coste
+- **Cómputo:**
+  - Un partido medio de los 6 (119 min de vídeo) cuesta **4,4-6,5 h de PC** (2,2-3,3 veces el vídeo, medido).
+  - Una validación de F3Set cuesta ~5 h de PC (v16).
+  - En la nube: **horas de GPU = horas de PC / k**. k es la aceleración de una GPU L4 frente a la iGPU; **no está medida** (fase N0). Lo probable es 3-10 y el peor caso es 1.
+- **Precio por hora de un contenedor L4 con su CPU y memoria** (visto el 13-11-2026, cambia; casi todo de agregadores, sin la página oficial):
+  - **Modal ~1,12 $/h**: L4 0,80 $ + 4 núcleos × 0,047 $ + 16 GiB × 0,008 $. Con la región UE fijada, ×1,5-1,75 según un agregador.
+  - **RunPod sin servidor ~0,69-0,75 $/h**: sus fuentes no coinciden.
+  - **Google Cloud Run ~1,05 $/h**.
+  - **AWS g6 spot ~0,45-0,6 $/h**: bajo demanda, 1,02 $ en París.
+  - **Vast.ai ~0,33 $/h**.
+- **Almacenamiento**, con «subir y borrar el vídeo al terminar»:
+  - solo los resultados, 0,3-2 GB por partido, y los modelos; 10-40 GB en total;
+  - R2: 10 GB gratis y 0,015 $/GB-mes después, sin coste por descargar → **0-0,5 $/mes**;
+  - un vídeo de 5 GB guardado un día cuesta céntimos.
+- **Guardar los vídeos en vez de borrarlos** costaría ~0,08 $/mes por partido en R2: los 6, ~0,45 $/mes. **Borrar es una decisión de derechos y privacidad, no de dinero.**
+  - Lo que cuesta borrar es volver a subir el vídeo cuando cambie algo de la pasada barata o del detector: los 6 partidos, 30-40 GB, son ~1,3-1,8 h a 50 Mbps.
+  - Lo que solo toca la pasada fina podría hacerse sin el vídeo entero si se guardan las ventanas de ±1 s (a medir cuánto ocupan).
+
+### 11.2 Tres meses tipo (horas de PC → horas de GPU)
+| Mes tipo | Qué incluye | Horas de PC | GPU, k = 3-10 | GPU, k = 1 |
+|---|---|---|---|---|
+| **Ligero** | 4 partidos nuevos | 18-26 h | 1,8-8,7 h | 18-26 h |
+| **Uso + recálculo** | 4 nuevos y rehacer los 6 de la biblioteca una vez | 44-65 h | 4,4-22 h | 44-65 h |
+| **Desarrollo** (como estas semanas) | 30 validaciones de F3Set (una por cambio), los 6 rehechos dos veces, 4 nuevos | 220-254 h | 22-85 h | 220-254 h |
+
+### 11.3 Coste al mes por alternativa (en dólares; cómputo y almacenamiento; probable k = 3-10, entre paréntesis el peor caso k = 1)
+| Alternativa | Fijo al mes | Ligero | Uso + recálculo | Desarrollo | Gratis incluido | Encaje |
+|---|---|---|---|---|---|---|
+| **Modal + Cloudflare R2 + Access** (recomendada) | 0 $ (plan gratuito) + R2 0-0,5 $ | **0 $** (0 $) | **0 $** (19-43 $) | **0-65 $** (216-254 $) | 30 $/mes de crédito, cada mes (~27 h de L4 con CPU y memoria) | Python nativo, reparto por ventana, se apaga solo, cola y web incluidas. Sin región UE fija; con ella, más caro |
+| **RunPod sin servidor + R2** | 0 $ (+2 $ si usa su disco de red de 30 GB) | 1-7 $ (12-20 $) | 3-17 $ (30-49 $) | 15-64 $ (152-190 $) | No | Barato; pensado para una función de inferencia: la cola y los flujos hay que montarlos encima |
+| **Google Cloud** (Cloud Run con L4 + almacenamiento GCS) | ~1 $ | 2-9 $ (19-27 $) | 5-23 $ (46-68 $) | 23-89 $ (231-267 $) | 300 $ una sola vez, 90 días. La cuenta de prueba no tiene GPU: hay que pasar a cuenta de pago, y según una guía se conserva el crédito | Región UE posible, contratos de protección de datos; más configuración; cuota de GPU a pedir |
+| **AWS** (Batch con g6 spot + S3 + Step Functions) | ~1 $ (+0,09 $/GB descargado a partir de 100 GB) | 1-5 $ (8-16 $) | 2-13 $ (19-39 $) | 10-51 $ (99-152 $) | No (créditos solo por programas) | El más barato de los grandes con spot; el que más piezas y permisos pide |
+| **Vast.ai + R2** | 0-0,5 $ | 0,6-3 $ (6-9 $) | 1,5-7 $ (15-21 $) | 7-28 $ (73-84 $) | No | El más barato, pero **las máquinas son de particulares**: mal sitio para retransmisiones; las máquinas desaparecen (menos automático) |
+| **Hetzner GEX44** (servidor con GPU propio, UE) | **~200-250 €** (184-232 €/mes + 79 € de alta) | igual | igual | igual | No | Un «PC en la nube» siempre encendido: sin coste por hora, pero una sola GPU (sin reparto) y caro salvo uso intenso |
+| **Solo gratis: Kaggle + Cloudflare** | 0 $ | — | — | Las validaciones de F3Set, quizá gratis | ~15-30 h/semana de T4 o P100 (cuota que flota, no publicada) | **Solo para datos públicos (F3Set)**: no para las retransmisiones ni como servicio automático fiable |
+
+Lectura:
+- **Con uso normal, la nube sale prácticamente gratis con Modal**: los 30 $ de crédito mensual cubren el cómputo probable de los meses «ligero» y «uso + recálculo».
+- **El mes de desarrollo es el caro.** Lo es solo si la GPU acelera poco (k bajo). Por eso N0, medir k, va primero: con k = 5 el desarrollo saldría por ~20-30 $/mes con Modal, crédito ya descontado.
+- **Hetzner** solo compensa con un uso muy intenso y continuo, que no es este caso.
+- **Ninguna opción gratuita permanente** sirve para analizar las retransmisiones sin intervención:
+  - Colab necesita la pestaña abierta.
+  - Kaggle sirve para datos públicos.
+  - Hugging Face ZeroGPU da minutos al día.
+  - Lightning AI pasó en septiembre a un crédito único de 30 créditos.
+  - El crédito de Google es único y de 90 días.
+
+### 11.4 Alternativas por pieza (gratis y de pago)
+| Pieza | Gratis | De pago | Propuesta |
+|---|---|---|---|
+| Subida del vídeo | Subida por partes y reanudable a R2 desde el navegador (URL firmadas) | Igual en S3 o GCS (subir no cuesta en ninguno) | R2 |
+| Almacén | R2: 10 GB gratis y descargas gratis | R2 0,015 $/GB-mes; S3 ~0,023 $ + 0,09 $/GB descargado; GCS similar; Backblaze B2 ~6-7 $/TB | R2 |
+| Cómputo con GPU | Crédito mensual de Modal (30 $); Kaggle solo para F3Set | Modal, RunPod, Cloud Run, AWS Batch, Vast.ai, Hetzner (tabla 11.3) | Modal |
+| Cola y orquestación | La de Modal (funciones, colas, tareas programadas) | Temporal Cloud, Prefect Cloud, AWS Step Functions, GCP Workflows | Modal (la misma plataforma; menos piezas) |
+| Web (subir, clic de identidad, aprobar, informes) | Endpoints web de Modal, Cloudflare Pages/Workers | Cualquier servidor web | La `ui.html` de hoy servida por Modal o Pages |
+| Acceso privado | Cloudflare Access (gratis hasta 50 usuarios, sin tarjeta) | Access desde 7 $/usuario/mes; IAP de Google; Cognito de AWS | Cloudflare Access gratis |
+| Avisos al móvil (falta el clic, terminó, fallo C0/C1) | ntfy o un bot de Telegram | Pushover (pago único) | ntfy o Telegram |
+| Registros y estado | En el propio almacén (R2) y la consulta de Modal | Grafana Cloud, Datadog | R2 + Modal (Claude los lee por API, sin `pc-logs`) |
+| Pruebas | GitHub Actions (CPU) y la nube de Claude, como hoy | Una prueba de referencia con GPU por versión: céntimos en Modal | Igual que hoy + la de GPU |
+
+**Total recomendado (Modal + R2 + Access + ntfy):**
+- fijo **0-0,5 $/mes**;
+- con uso normal, **0 $/mes de cómputo**, dentro del crédito;
+- en un mes de desarrollo intenso, **0-65 $** si k es 3-10, y hasta ~250 $ si la GPU no acelerara nada (k = 1). Lo evita el tope de gasto y se sabe tras N0.
+
+Fuentes añadidas el 13-11-2026:
+- Modal: [plan gratuito con 30 $/mes, L4 y CPU/memoria por segundo (morphllm)](https://www.morphllm.com/modal-pricing), [beam.cloud](https://www.beam.cloud/blog/modal-pricing-explained), [usagepricing](https://www.usagepricing.com/blueprint/modal).
+- Google Cloud: [prueba de Google Cloud sin cuota de GPU (foro de Google)](https://discuss.google.dev/t/300-free-trial-is-useless-without-gpu-quota-my-trial-period-is-wasting-away/290091), [programa gratuito oficial](https://docs.cloud.google.com/free/docs/free-cloud-features), [GPU en Cloud Run](https://docs.cloud.google.com/run/docs/configuring/services/gpu).
+- RunPod: [precios oficiales sin servidor](https://docs.runpod.io/serverless/pricing), [producto](https://www.runpod.io/product/serverless).
+- Kaggle: [cuota que flota (gpuperhour)](https://gpuperhour.com/blog/free-cloud-gpus-and-credits).
+- Lightning AI: [crédito único desde septiembre de 2026 (usagepricing)](https://www.usagepricing.com/blueprint/activity/lightning-ai-2026-09-21-gpu-rate-card-reprice).
+- Cloudflare: [Access gratis hasta 50 usuarios (blog de Cloudflare)](https://blog.cloudflare.com:8443/teams-plans), [límites del plan gratuito](https://zerometric.net/research/cloudflare-zero-trust-free-plan-limits-2026/), [R2 y su capa gratuita (withorb)](https://www.withorb.com/pricing-atlas/cloudflare).
+
 ---
 
 ## Fuentes (vistas el 13-11-2026)
