@@ -271,3 +271,69 @@ def test_an_audit_check_without_its_data_is_not_met(tmp_path):
     res = json.loads((tmp_path / "auditoria" / "auditoria.json").read_text(encoding="utf-8"))
     it = next(i for i in res["items"] if i["name"] == "Fallos por niveles: auditoría")
     assert it["status"] == "falta" and "auditoria.dato_ilegible" in it["detail"]
+
+
+@pytest.mark.parametrize("stage, probe_s, summary, code", [
+    ("probe", None, {"duration_min": 0}, "entrada.vacia"),
+    ("scenes", 6000, {"main_camera_shots": 0, "main_camera_min": 0}, "entrada.vacia"),
+    ("scenes", 6000, {"main_camera_shots": 3, "main_camera_min": 5.0}, "entrada.cobertura_baja"),          # 5 of 100 min
+    ("court", None, {"main_camera_min": 40.0, "with_court": 0, "court_share": 0.0}, "entrada.vacia"),
+    ("court", None, {"main_camera_min": 40.0, "with_court": 10, "court_share": 0.3}, "entrada.cobertura_baja"),
+    ("audio", 6000, {"tracks": 1, "onsets": 0}, "entrada.vacia"),
+    ("audio", 6000, {"tracks": 1, "onsets": 200}, "entrada.cobertura_baja"),                              # 2 per minute
+    ("audio", 6000, {"tracks": 0, "onsets": 0}, "entrada.cobertura_baja"),                                # no sound track
+    ("score", None, {"readings": 0, "note": "sin OCR instalado"}, "entrada.cobertura_baja"),
+    ("score", None, {"readings": 100, "server_read": 30}, "entrada.cobertura_baja"),
+    ("spotting", None, {"enabled": True, "inputs": {"near_seen": 0.0, "far_seen": 0.6, "play_min": 30}}, "entrada.vacia"),
+    ("spotting", None, {"enabled": True, "inputs": {"near_seen": 0.8, "far_seen": 0.1, "play_min": 30}}, "entrada.cobertura_baja"),
+    ("fine", None, {"candidates": 300, "confirmed": 0}, "golpes.ninguno"),
+])
+def test_every_contract_stops_an_empty_input_and_marks_a_poor_one(tmp_path, stage, probe_s, summary, code):
+    """R25 (#265): the inputs of the models are checked as each stage ends: empty is C0 (the match stops), under the
+    floors of «Entradas de los modelos» is C1 (marked); a stage within them raises nothing."""
+    from tennisbio import contracts as K
+    ctx = _ctx(tmp_path)
+    ctx.dir.mkdir(parents=True, exist_ok=True)
+    if probe_s:
+        ctx.path("probe.json").write_text(json.dumps({"duration": probe_s}), encoding="utf-8")
+    with F.collecting() as col:
+        if F.level(code) == "C0":
+            with pytest.raises(F.CriticalFault) as ei:
+                K.CONTRACTS[stage](ctx, summary)
+            assert ei.value.code == code
+        else:
+            K.CONTRACTS[stage](ctx, summary)
+            assert code in col.counts
+
+
+def test_a_stage_within_its_contract_raises_nothing(tmp_path):
+    from tennisbio import contracts as K
+    ctx = _ctx(tmp_path)
+    ctx.dir.mkdir(parents=True, exist_ok=True)
+    ctx.path("probe.json").write_text(json.dumps({"duration": 6000}), encoding="utf-8")
+    good = {"probe": {"duration_min": 100}, "scenes": {"main_camera_shots": 300, "main_camera_min": 60},
+            "court": {"main_camera_min": 60, "with_court": 280, "court_share": 0.9}, "audio": {"tracks": 2, "onsets": 2000},
+            "score": {"readings": 900, "server_read": 800},
+            "spotting": {"enabled": True, "inputs": {"near_seen": 0.9, "far_seen": 0.8, "play_min": 50}},
+            "fine": {"candidates": 400, "confirmed": 350}}
+    with F.collecting() as col:
+        for st, sm in good.items():
+            K.CONTRACTS[st](ctx, sm)
+    assert col.counts == {}
+
+
+def test_the_pipeline_applies_the_contract_of_the_real_stage(tmp_path):
+    """R25: run_stage checks the contract of the package's stage when it ends (a C0 there stops the match)."""
+    from tennisbio import contracts as K, stages as S  # noqa: F401  (registers the stages)
+    ctx = _ctx(tmp_path)
+    ctx.dir.mkdir(parents=True, exist_ok=True)
+    real = pipeline.STAGES["probe"]
+    orig = real.run
+    try:                                     # the real probe stage, on a video without duration
+        real.run = lambda c: (ctx.path("probe.json").write_text("{}"), {"duration_min": 0})[1]
+        real.run.__module__ = "tennisbio.stages"
+        with pytest.raises(F.CriticalFault) as ei:
+            pipeline.run_stage("probe", ctx)
+        assert ei.value.code == "entrada.vacia"
+    finally:
+        real.run = orig
