@@ -13,7 +13,8 @@ APP = "tennisbio"
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("accion", choices=("ping", "comprobar", "f3set"))
+    ap.add_argument("accion", choices=("ping", "comprobar", "f3set", "partidos", "prueba"))
+    ap.add_argument("--partidos", default="", help="partidos: sus id separados por comas (un contenedor cada uno)")
     ap.add_argument("--tag", default="nube")
     ap.add_argument("--max-points", type=int, default=0)
     ap.add_argument("--matches", default="")
@@ -25,6 +26,18 @@ def main() -> int:
             res = modal.Function.from_name(APP, a.accion).remote()
         print(json.dumps(res, ensure_ascii=False, indent=1))
         return 0
+    if a.accion == "prueba":                     # 13-11: 10 minutes of a match before the whole of it
+        ids = [x.strip() for x in a.partidos.split(",") if x.strip()]
+        fn = modal.Function.from_name(APP, "prueba")
+        for mid in ids:
+            print(f"prueba lanzada en la nube: {mid} ({fn.spawn(mid).object_id})")
+        return 0 if ids else 2
+    if a.accion == "partidos":                   # 13-11: a batch of matches, side by side
+        ids = [x.strip() for x in a.partidos.split(",") if x.strip()]
+        fn = modal.Function.from_name(APP, "partido")
+        for mid in ids:
+            print(f"partido lanzado en la nube: {mid} ({fn.spawn(mid).object_id})")
+        return 0 if ids else 2
     call = modal.Function.from_name(APP, "f3set").spawn(tag=a.tag, max_points=a.max_points, matches=a.matches,
                                                         pc_tag=a.pc_tag)
     print(f"F3Set lanzado en la nube (tag {a.tag}): {call.object_id}")

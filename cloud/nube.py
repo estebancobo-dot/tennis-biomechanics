@@ -36,8 +36,70 @@ def local_yaml(data: Path, pc_local: dict | None = None) -> dict:
     """config/local.yaml of the cloud: the PC's own settings (so that both run the same configuration), its paths
     replaced by the volume's and without the Windows hardware decoder."""
     cfg = {k: v for k, v in (pc_local or {}).items() if k not in PC_ONLY}
-    cfg["paths"] = {"output": (data / "output").as_posix(), "videos": (data / "videos").as_posix()}
+    cfg["paths"] = {"output": (data / "output").as_posix(), "videos": (data / "videos").as_posix(),
+                    "library": (data / "biblioteca").as_posix()}
+    cfg["registry"] = {**(cfg.get("registry") or {}), "source": "yaml"}      # the cloud's catalogue (cloud_catalog)
     return cfg
+
+
+def library_dir(entry: dict, library: Path) -> Path:
+    """Where a match of the PC's list (registro_partidos.json: its folder as a Windows path) lives in the uploaded
+    library: the same path from «partidos» on."""
+    from pathlib import PureWindowsPath
+    parts = PureWindowsPath(str(entry.get("carpeta") or "")).parts
+    if "partidos" in parts:
+        return library.joinpath(*parts[parts.index("partidos"):])
+    return library / "partidos" / (parts[-1] if parts else str(entry.get("id")))
+
+
+def cloud_catalog(registry: list[dict], library: Path) -> dict:
+    """config/matches.yaml of the cloud (13-11, everything in Modal): each match of the PC's list with its video as
+    uploaded (/data/videos/<id><ext>, scripts/subir_nube.py) and what its record says (opponent, tournament, date,
+    round, surface). The cloud keeps the catalogue alone (registry.source: yaml) and flat output folders."""
+    out = []
+    for m in registry:
+        ext = Path(str(m.get("video") or "").replace("\\", "/")).suffix.lower()
+        f = library_dir(m, library) / "partido.json"
+        info = json.loads(f.read_text(encoding="utf-8")) if f.exists() else {}
+        e = {"id": str(m["id"]), "video": f"{m['id']}{ext}",
+             "player": str(m.get("jugador") or info.get("jugadora") or info.get("player") or ""),
+             "opponent": str(m.get("rival") or info.get("opponent") or "")}
+        for k in ("tournament", "date", "surface", "round"):
+            if info.get(k):
+                e[k] = str(info[k])
+        out.append(e)
+    return {"matches": out}
+
+
+TEST_PREFIX = "_prueba_"
+
+
+def test_entries(matches: list[dict], videos: Path) -> list[dict]:
+    """The catalogue entries of the 10-minute tests (modal_app.prueba): a clip `_prueba_<id><ext>` in the videos folder
+    is a match of its own with its source match's data (and no identity click)."""
+    by_id = {m["id"]: m for m in matches}
+    out = []
+    for f in sorted(videos.glob(f"{TEST_PREFIX}*")) if videos.is_dir() else []:
+        src = by_id.get(f.stem[len(TEST_PREFIX):])
+        if src is not None:
+            out.append({**src, "id": f.stem, "video": f.name})
+    return out
+
+
+def place_clicks(registry: list[dict], library: Path, out_root: Path) -> list[str]:
+    """The user's identity click of each match (etapas/identidad_clic.json in the library) in its flat output folder,
+    where the identity stage reads it; never over one already there. Returns the matches that have it."""
+    import shutil
+    done = []
+    for m in registry:
+        src = library_dir(m, library) / "etapas" / "identidad_clic.json"
+        dst = out_root / str(m["id"]) / "identidad_clic.json"
+        if src.exists():
+            dst.parent.mkdir(parents=True, exist_ok=True)
+            if not dst.exists():
+                shutil.copyfile(src, dst)
+            done.append(str(m["id"]))
+    return done
 
 
 def write_local_yaml(repo: Path, data: Path) -> dict:

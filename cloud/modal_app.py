@@ -191,3 +191,102 @@ def f3set(tag: str = "nube", max_points: int = 0, matches: str = "", pc_tag: str
     stop.set()
     vol.commit()
     return est
+
+
+def _catalog() -> list[dict]:
+    """The cloud's config/matches.yaml from the PC's list of matches, and each match's click in its folder."""
+    import json
+
+    import yaml
+
+    import nube
+    reg_f = DATA / "pc" / "registro_partidos.json"
+    registry = json.loads(reg_f.read_text(encoding="utf-8")) if reg_f.exists() else []
+    cat = nube.cloud_catalog(registry, DATA / "biblioteca")
+    cat["matches"] += nube.test_entries(cat["matches"], DATA / "videos")     # the 10-minute tests (prueba)
+    Path("/repo/config/matches.yaml").write_text(yaml.safe_dump(cat, allow_unicode=True, sort_keys=False),
+                                                 encoding="utf-8")
+    nube.place_clicks(registry, DATA / "biblioteca", DATA / "output")
+    return cat["matches"]
+
+
+@app.function(**SPEC, timeout=24 * 3600, retries=modal.Retries(max_retries=1))
+def partido(match_id: str) -> dict:
+    """13-11 (night, the user's decision: everything in Modal): one match from scratch with the PC's code
+    (`tennisbio run --match`), in its own container, so the matches of a batch run side by side. Its state, log and
+    stage times in /data/runs/partido_<id>/; a retry after a lost GPU goes on from the stages already done."""
+    import json
+    import subprocess
+    import sys
+    import threading
+    import time
+
+    import nube
+
+    _prepare()
+    matches = {m["id"]: m for m in _catalog()}
+    run = DATA / "runs" / f"partido_{match_id}"
+    smi = subprocess.run(["nvidia-smi", "--query-gpu=name", "--format=csv,noheader"], capture_output=True, text=True,
+                         timeout=60)
+    gpu = nube.gpu_key(smi.stdout)
+    est = {"partido": match_id, "estado": "en curso", "inicio": time.strftime("%Y-%m-%d %H:%M:%S"), "gpu": gpu,
+           "cores": CORES, "gib": GIB, "en_catalogo": match_id in matches,
+           "clic": (DATA / "output" / match_id / "identidad_clic.json").exists()}
+    _save(run, est)
+    vol.commit()
+    if match_id not in matches:
+        est.update(estado="error", nota=f"{match_id} no está en la lista de partidos del PC")
+        _save(run, est)
+        vol.commit()
+        return est
+    stop = threading.Event()
+
+    def committer():
+        while not stop.wait(120):
+            try:
+                vol.commit()
+            except Exception as e:  # noqa: BLE001 — the next one commits
+                print(f"AVISO nube: commit ({e})")
+    threading.Thread(target=committer, daemon=True).start()
+    t0 = time.time()
+    with open(run / "log.txt", "a", encoding="utf-8") as lg:
+        p = subprocess.Popen([sys.executable, "-m", "tennisbio.cli", "run", "--match", match_id], cwd="/repo",
+                             stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+        for line in p.stdout:
+            lg.write(line)
+            lg.flush()
+            print(line, end="")
+        rc = p.wait()
+    secs = time.time() - t0
+    man_f = DATA / "output" / match_id / "manifest.json"
+    man = json.loads(man_f.read_text(encoding="utf-8")) if man_f.exists() else {}
+    est.update(estado="hecho" if rc == 0 else "error", codigo=rc, segundos=round(secs),
+               coste_usd=nube.cost(secs, gpu, CORES, GIB), fin=time.strftime("%Y-%m-%d %H:%M:%S"),
+               etapas={k: v.get("seconds") for k, v in man.items() if isinstance(v, dict) and "seconds" in v},
+               fallos={k: v.get("faults") for k, v in man.items() if isinstance(v, dict) and v.get("faults")})
+    _save(run, est)
+    stop.set()
+    vol.commit()
+    return est
+
+
+@app.function(**SPEC, timeout=3 * 3600)
+def prueba(match_id: str, inicio_s: int = 600, duracion_s: int = 600) -> dict:
+    """13-11 (the user: «¿un smoke test antes que un partido entero?»): `duracion_s` of a match from `inicio_s`, cut
+    without re-encoding, analysed as a match of its own (`_prueba_<id>`, no identity click: the click is for the whole
+    match) with the same code: the whole chain in the cloud in minutes and cents before a match takes GPU hours."""
+    import subprocess
+
+    _prepare()
+    matches = {m["id"]: m for m in _catalog()}
+    if match_id not in matches:
+        return {"estado": "error", "nota": f"{match_id} no está en la lista de partidos del PC"}
+    src = matches[match_id]
+    pid = f"_prueba_{match_id}"
+    ext = Path(src["video"]).suffix
+    clip = DATA / "videos" / f"{pid}{ext}"
+    if not clip.exists():
+        subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", str(inicio_s), "-i", str(DATA / "videos" / src["video"]),
+                        "-t", str(duracion_s), "-c", "copy", str(clip)], check=True, timeout=1800)
+    vol.commit()
+    return partido.local(pid)                 # its catalogue entry comes from the clip (nube.test_entries)

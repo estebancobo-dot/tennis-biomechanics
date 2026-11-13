@@ -52,7 +52,8 @@ def test_the_cloud_runs_the_pcs_settings_with_its_own_paths():
     pc = {"paths": {"output": "C:\\tenis\\output", "videos": "C:\\tenis\\videos"}, "hwaccel": "d3d11va", "device": "dml",
           "fine_pass": {"workers": 2}}
     cfg = nube.local_yaml(Path("/data"), pc)
-    assert cfg["paths"] == {"output": "/data/output", "videos": "/data/videos"}
+    assert cfg["paths"] == {"output": "/data/output", "videos": "/data/videos", "library": "/data/biblioteca"}
+    assert cfg["registry"]["source"] == "yaml"                     # the cloud's own catalogue
     assert "hwaccel" not in cfg                                     # the Windows decoder
     assert cfg["device"] == "dml" and cfg["fine_pass"] == {"workers": 2}
 
@@ -167,7 +168,7 @@ def test_the_workflow_only_runs_by_hand_with_the_users_key():
     wf = yaml.safe_load((ROOT / ".github" / "workflows" / "nube.yml").read_text(encoding="utf-8"))
     on = wf.get("on") or wf.get(True)
     assert list(on) == ["workflow_dispatch"]                       # never by a push
-    assert set(on["workflow_dispatch"]["inputs"]["accion"]["options"]) == {"comprobar", "f3set", "recoger"}
+    assert set(on["workflow_dispatch"]["inputs"]["accion"]["options"]) == {"comprobar", "f3set", "prueba", "partidos", "recoger"}
     job = wf["jobs"]["nube"]
     assert job["if"] == "github.repository_owner == 'estebancobo-dot'"
     assert job["env"]["CLAVE_MODAL_1"] == "${{ secrets.MODAL_TOKEN_ID }}"
@@ -237,3 +238,49 @@ def test_the_matches_upload_takes_each_video_and_its_record_never_the_results(tm
     assert without == plan - {"/videos/tennis-yusipopen-polufinal-gauff-rybakina.mkv"}
     from tennisbio.fresh import KEEP_LIBRARY                  # the same files «desde cero» keeps (but the video)
     assert set(subir_nube.MATCH_FILES) == {k for k in KEEP_LIBRARY if not k.endswith(".mkv")}
+
+
+def test_the_cloud_catalogue_and_clicks_come_from_the_pcs_list(tmp_path):
+    lib, out = tmp_path / "biblioteca", tmp_path / "output"
+    d = lib / "partidos" / "sin-fecha" / "sin-fecha_f43dd2_rybakina"
+    (d / "etapas").mkdir(parents=True)
+    (d / "partido.json").write_text(json.dumps({"tournament": "US Open", "round": "R4", "date": "2026-09-01"}))
+    (d / "etapas" / "identidad_clic.json").write_text('{"near_is_target": true}')
+    reg = [{"id": "us-open-2026-r4-naomi-osaka-elena-rybakina", "jugador": "rybakina", "rival": "Naomi Osaka",
+            "video": "C:\\tenis\\videos\\US Open 2026.R4.Naomi Osaka - Elena Rybakina.ts",
+            "carpeta": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_f43dd2_rybakina"}]
+    cat = nube.cloud_catalog(reg, lib)
+    assert cat == {"matches": [{"id": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+                                "video": "us-open-2026-r4-naomi-osaka-elena-rybakina.ts", "player": "rybakina",
+                                "opponent": "Naomi Osaka", "tournament": "US Open", "date": "2026-09-01", "round": "R4"}]}
+    assert nube.place_clicks(reg, lib, out) == ["us-open-2026-r4-naomi-osaka-elena-rybakina"]
+    click = out / "us-open-2026-r4-naomi-osaka-elena-rybakina" / "identidad_clic.json"
+    assert json.loads(click.read_text()) == {"near_is_target": True}
+    click.write_text('{"kept": 1}')                                  # never over one already there
+    nube.place_clicks(reg, lib, out)
+    assert json.loads(click.read_text()) == {"kept": 1}
+
+
+def test_the_cloud_catalogue_loads_as_the_pcs_matches_yaml(tmp_path):
+    """The catalogue written in the cloud is read by tennisbio.catalog as config/matches.yaml (the video under
+    paths.videos, the player's config)."""
+    import shutil
+
+    import yaml
+
+    from tennisbio import catalog
+    cfgdir = tmp_path / "config"
+    shutil.copytree(ROOT / "config" / "players", cfgdir / "players")
+    cat = {"matches": [{"id": "m1", "video": "m1.mkv", "player": "rybakina", "opponent": "Jessica Pegula"}]}
+    (cfgdir / "matches.yaml").write_text(yaml.safe_dump(cat), encoding="utf-8")
+    (ms,) = catalog.load_matches({"paths": {"videos": "/data/videos"}, "registry": {"source": "yaml"}}, cfgdir)
+    assert ms.id == "m1" and ms.video == Path("/data/videos/m1.mkv") and ms.opponent == "Jessica Pegula"
+
+
+def test_a_10_minute_test_clip_is_a_match_of_its_own(tmp_path):
+    (tmp_path / "_prueba_m1.ts").write_text("clip")
+    (tmp_path / "_prueba_otro.ts").write_text("clip")               # its source is not in the list: ignored
+    ms = [{"id": "m1", "video": "m1.ts", "player": "rybakina", "opponent": "Naomi Osaka"}]
+    assert nube.test_entries(ms, tmp_path) == [{"id": "_prueba_m1", "video": "_prueba_m1.ts", "player": "rybakina",
+                                               "opponent": "Naomi Osaka"}]
+    assert nube.test_entries(ms, tmp_path / "no") == []

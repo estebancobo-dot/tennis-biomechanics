@@ -3,15 +3,18 @@
 # la cuenta de Modal en su credito mensual deja cada mes en 0 euros (docs/nube_n0.md). El PC no interviene.
 #   comprobar: despliega y mira la GPU, CUDA, los modelos y los datos subidos (minutos)
 #   f3set:     despliega y lanza la validacion F3Set en la nube; vuelve al momento (la ejecucion sigue alli)
-#   recoger:   trae el estado, el registro y la comparacion con el PC de una ejecucion (runs/<tag>)
+#   prueba:    10 minutos de cada partido dado, analizados como un partido (minutos y centimos)
+#   partidos:  despliega y lanza los partidos dados (cada uno en su contenedor, a la vez); vuelve al momento
+#   recoger:   trae el estado, el registro y la comparacion con el PC de una ejecucion (runs/<tag>; un partido:
+#              runs/partido_<id>)
 name: Nube
 on:
   workflow_dispatch:
     inputs:
       accion:
-        description: "comprobar | f3set | recoger"
+        description: "comprobar | f3set | prueba | partidos | recoger"
         type: choice
-        options: [comprobar, f3set, recoger]
+        options: [comprobar, f3set, prueba, partidos, recoger]
         default: comprobar
       tag:
         description: "nombre de la ejecucion (runs/<tag>)"
@@ -25,6 +28,10 @@ on:
         description: "la ejecucion del PC con la que se compara"
         type: string
         default: v17
+      partidos:
+        description: "partidos: sus id separados por comas (cada uno en su contenedor, a la vez)"
+        type: string
+        default: ""
 permissions:
   contents: read
 concurrency:
@@ -79,15 +86,21 @@ jobs:
       - name: Lanzar F3Set
         if: inputs.accion == 'f3set'
         run: python cloud/lanzar.py f3set --tag "${{ inputs.tag }}" --max-points "${{ inputs.max_points }}" --pc-tag "${{ inputs.pc_tag }}"
+      - name: Lanzar prueba (10 min de cada partido dado)
+        if: inputs.accion == 'prueba'
+        run: python cloud/lanzar.py prueba --partidos "${{ inputs.partidos }}"
+      - name: Lanzar partidos
+        if: inputs.accion == 'partidos'
+        run: python cloud/lanzar.py partidos --partidos "${{ inputs.partidos }}"
       - name: Recoger
         if: inputs.accion == 'recoger'
         run: |
           modal volume ls tennisbio-datos /runs || true
           modal volume get --force tennisbio-datos "/runs/${{ inputs.tag }}" nube-out
-          for f in nube-out/estado.json nube-out/comparacion.md; do
-            if [ -f "$f" ]; then echo "===== $f"; cat "$f"; fi
-          done
-          if [ -f nube-out/log.txt ]; then echo "===== log (ultimas 120 lineas)"; tail -n 120 nube-out/log.txt; fi
+          # 13-11: modal volume get deja la carpeta dentro de nube-out: se busca en todo nube-out
+          find nube-out -type f | head -50
+          for f in $(find nube-out -name estado.json -o -name comparacion.md); do echo "===== $f"; cat "$f"; done
+          for f in $(find nube-out -name log.txt); do echo "===== $f (ultimas 120 lineas)"; tail -n 120 "$f"; done
       - name: Guardar lo recogido
         if: inputs.accion == 'recoger'
         uses: actions/upload-artifact@v4
