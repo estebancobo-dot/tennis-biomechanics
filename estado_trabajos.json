@@ -1,6 +1,6 @@
 {
- "at": "2026-11-13 05:15:09",
- "firma": "6e756e20f8ab",
+ "at": "2026-11-13 05:15:26",
+ "firma": "c96871bddc8e",
  "ejecutor": {
   "vivo": true,
   "pid": 17768,
@@ -18,7 +18,26 @@
   "quedan_s": 0,
   "hora": "2026-11-13 04:06:50"
  },
- "pendientes": [],
+ "pendientes": [
+  {
+   "id": 114,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "run --match us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-13 05:15:23",
+   "started": null,
+   "finished": null,
+   "args": "[\"run\", \"--match\", \"us-open-2026-r4-naomi-osaka-elena-rybakina\"]",
+   "source": "claude 274",
+   "log": "",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "recientes": [
   {
    "id": 113,
@@ -293,6 +312,13 @@
  ],
  "eventos": [
   {
+   "id": 623,
+   "job": 114,
+   "at": "2026-11-13 05:15:23",
+   "kind": "enviado",
+   "text": "tennisbio run --match us-open-2026-r4-naomi-osaka-elena-rybakina (claude 274)"
+  },
+  {
    "id": 622,
    "job": 113,
    "at": "2026-11-13 05:15:08",
@@ -494,13 +520,6 @@
    "at": "2026-11-13 04:30:14",
    "kind": "empieza",
    "text": "script validate_recall --spotter --tag v15 --skip-run --report-suffix _e"
-  },
-  {
-   "id": 593,
-   "job": 109,
-   "at": "2026-11-13 04:30:14",
-   "kind": "enviado",
-   "text": "tennisbio script validate_recall --spotter --tag v15 --skip-run --report-suffix _e (claude 268)"
   }
  ]
 }
