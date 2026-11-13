@@ -1,6 +1,6 @@
-# Revisión automática: REGRESIÓN
+# Revisión automática: FALLOS
 
-407 cumplidos · 30 no cumplidos · 98 sin golpes suficientes · 127 avisos (antes: 411 cumplidos, 28 no cumplidos)
+408 cumplidos · 30 no cumplidos · 98 sin golpes suficientes · 126 avisos (antes: 407 cumplidos, 30 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 144 de 274
 
@@ -185,19 +185,6 @@ Registro `docs/peticiones_usuario.md`: 119 hechas · 123 a medias · 21 sin hace
 - **#257 Comparativa a fondo y catalogada con todo lo que existe: apps profesionales (Hawk-Eye/TennisViz, SwingVision, **: SIN HACER según el registro (#257, docs/peticiones_usuario.md)
 - **#258 Partidos y jugadores automáticos desde un nombre de fichero mínimo: normalizar los nombres, leer la ficha públ**: SIN HACER según el registro (#258, docs/peticiones_usuario.md)
 
-## Empeora respecto a la ejecución anterior
+## Mejora
 
-- **Registros con fecha y duración**: ok → falta: 64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba_completo.log: sin «termina fecha» al final
-- **Peticiones por GitHub Actions: espera hasta empezar**: ok → aviso: petición del 13-11 16:08, empezó a los 147.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)
-- **#66 Fechas y duración en los registros**: ok → falta: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba)
-- **Comprobaciones que saben fallar**: ok → aviso: sin el registro de las pruebas en este PC (comprobaciones_pruebas/rec_*.json)
-
-## Comprobaciones nuevas
-
-- #268 Analizar qué haría falta para que toda la aplicación corra en la nube y el usuario solo tenga que subir los pa: aviso (A MEDIAS según el registro (#268); sin comprobación automática asignada)
-- #270 Qué tipo de cosas quedan de la Base antes de los 6 partidos (fallos graves, medios, leves, medidas incorrectas: aviso (sin comprobación automática asignada)
-- #271 ¿Cerrar todo con la forma de trabajar actual y después pasar a la nube, o pasar a la nube cuanto antes? (Chat,: aviso (sin comprobación automática asignada)
-- #272 Cómo se trabajaría en la nube de pago y cuánto costaría; que sea autónomo (Claude lo hace todo con conectores,: aviso (A MEDIAS según el registro (#272); sin comprobación automática asignada)
-- #273 Cómo avanzar con la prueba de concepto de la nube en paralelo; si los proveedores propuestos son los únicos co: aviso (A MEDIAS según el registro (#273); sin comprobación automática asignada)
-- #274 Arreglar el fundido (R22) y lanzar F3Set v18 sin esperar; qué pasa con lo que está en marcha. El usuario no pu: aviso (sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok)
-- #269 Estado y progreso: cuánto falta para lanzar los 6 partidos, qué hay en marcha y pendiente en la nube y en el P: aviso (sin comprobación automática asignada)
+- Peticiones por GitHub Actions: espera hasta empezar: aviso → ok
