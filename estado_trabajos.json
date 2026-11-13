@@ -1,41 +1,22 @@
 {
- "at": "2026-11-13 05:49:53",
- "firma": "4152de2ac54e",
+ "at": "2026-11-13 06:10:11",
+ "firma": "ad029bb33976",
  "ejecutor": {
   "vivo": true,
   "pid": 17768,
-  "at": 1794545393.9990256
+  "at": 1794546594.9902515
  },
- "pausa": false,
- "en_curso": [
-  {
-   "id": 114,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "run --match us-open-2026-r4-naomi-osaka-elena-rybakina",
-   "state": "en curso",
-   "message": "",
-   "created": "2026-11-13 05:15:23",
-   "started": "2026-11-13 05:15:28",
-   "finished": null,
-   "args": "[\"run\", \"--match\", \"us-open-2026-r4-naomi-osaka-elena-rybakina\"]",
-   "source": "claude 274",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_114.log",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "pausa": true,
+ "en_curso": [],
  "progreso": {
   "partido": "us-open-2026-r4-naomi-osaka-elena-rybakina",
   "etapa": "fine",
-  "hecho": 118,
+  "hecho": 133,
   "total": 232,
-  "porcentaje": 50.9,
-  "segundos": 1962,
-  "quedan_s": 1896,
-  "hora": "2026-11-13 05:48:49"
+  "porcentaje": 57.3,
+  "segundos": 3157,
+  "quedan_s": 2350,
+  "hora": "2026-11-13 06:08:44"
  },
  "pendientes": [
   {
@@ -109,6 +90,24 @@
    "log": "",
    "paso": 0,
    "pasos": 6
+  },
+  {
+   "id": 114,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "run --match us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "state": "pendiente",
+   "message": "parado: sigue donde se quedó",
+   "created": "2026-11-13 05:15:23",
+   "started": "2026-11-13 05:15:28",
+   "finished": null,
+   "args": "[\"run\", \"--match\", \"us-open-2026-r4-naomi-osaka-elena-rybakina\"]",
+   "source": "claude 274",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_114.log",
+   "paso": 0,
+   "pasos": 0
   }
  ],
  "recientes": [
@@ -385,6 +384,20 @@
  ],
  "eventos": [
   {
+   "id": 630,
+   "job": 114,
+   "at": "2026-11-13 06:10:08",
+   "kind": "parado",
+   "text": "vuelve a la cola; reanuda desde las cachés"
+  },
+  {
+   "id": 629,
+   "job": null,
+   "at": "2026-11-13 06:10:08",
+   "kind": "pausa",
+   "text": "ya (parada)"
+  },
+  {
    "id": 628,
    "job": 118,
    "at": "2026-11-13 05:17:01",
@@ -579,20 +592,6 @@
    "at": "2026-11-13 04:31:10",
    "kind": "hecho",
    "text": "código 0"
-  },
-  {
-   "id": 600,
-   "job": 111,
-   "at": "2026-11-13 04:31:08",
-   "kind": "empieza",
-   "text": "script diag_identidad_f3set --match azarenka --a salidas_v15 --b salidas_v16"
-  },
-  {
-   "id": 599,
-   "job": 111,
-   "at": "2026-11-13 04:31:04",
-   "kind": "enviado",
-   "text": "tennisbio script diag_identidad_f3set --match azarenka --a salidas_v15 --b salidas_v16 (claude 270)"
   }
  ]
 }
