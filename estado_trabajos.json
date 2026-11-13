@@ -1,10 +1,10 @@
 {
- "at": "2026-11-13 18:36:29",
- "firma": "0658e8142b6e",
+ "at": "2026-11-13 18:42:13",
+ "firma": "607451edc9b9",
  "ejecutor": {
   "vivo": true,
   "pid": 11132,
-  "at": 1794591375.913443
+  "at": 1794591716.0697148
  },
  "pausa": false,
  "en_curso": [],
@@ -18,7 +18,8 @@
   "quedan_s": 0,
   "hora": "2026-11-13 18:25:58"
  },
- "pendientes": [
+ "pendientes": [],
+ "recientes": [
   {
    "id": 125,
    "kind": "flujo",
@@ -26,19 +27,17 @@
    "player": null,
    "stroke": null,
    "reason": "flujo «medidas_prueba»: Medidas de la prueba (_smoke) de nuevo desde sus caches, su informe y la revision automatica",
-   "state": "pendiente",
-   "message": "",
+   "state": "hecho",
+   "message": "3 pasos",
    "created": "2026-11-13 18:36:29",
-   "started": null,
-   "finished": null,
+   "started": "2026-11-13 18:36:35",
+   "finished": "2026-11-13 18:42:06",
    "args": "[\"medidas_prueba\"]",
    "source": "ciclo",
-   "log": "",
-   "paso": 0,
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_125.log",
+   "paso": 3,
    "pasos": 3
-  }
- ],
- "recientes": [
+  },
   {
    "id": 124,
    "kind": "flujo",
@@ -290,27 +289,44 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_111.log",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 110,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script validate_recall --spotter --tag v16 --skip-run --report-suffix _e",
-   "state": "hecho",
-   "message": "",
-   "created": "2026-11-13 04:30:40",
-   "started": "2026-11-13 04:30:46",
-   "finished": "2026-11-13 04:30:57",
-   "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"v16\", \"--skip-run\", \"--report-suffix\", \"_e\"]",
-   "source": "claude 269",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_110.log",
-   "paso": 0,
-   "pasos": 0
   }
  ],
  "eventos": [
+  {
+   "id": 690,
+   "job": 125,
+   "at": "2026-11-13 18:42:08",
+   "kind": "hecho",
+   "text": "código 0"
+  },
+  {
+   "id": 689,
+   "job": 125,
+   "at": "2026-11-13 18:42:06",
+   "kind": "paso",
+   "text": "3/3 Revision automatica"
+  },
+  {
+   "id": 688,
+   "job": 125,
+   "at": "2026-11-13 18:36:36",
+   "kind": "paso",
+   "text": "2/3 Medidas de la prueba"
+  },
+  {
+   "id": 687,
+   "job": 125,
+   "at": "2026-11-13 18:36:36",
+   "kind": "paso",
+   "text": "1/3 Auditoria anterior apartada"
+  },
+  {
+   "id": 686,
+   "job": 125,
+   "at": "2026-11-13 18:36:35",
+   "kind": "empieza",
+   "text": "flujo «medidas_prueba»: Medidas de la prueba (_smoke) de nuevo desde sus caches, su informe y la revision automatica"
+  },
   {
    "id": 685,
    "job": 125,
@@ -485,41 +501,6 @@
    "at": "2026-11-13 08:21:32",
    "kind": "paso",
    "text": "6/6 Modelo de calidad"
-  },
-  {
-   "id": 660,
-   "job": 120,
-   "at": "2026-11-13 08:16:57",
-   "kind": "paso",
-   "text": "5/6 Auditoria"
-  },
-  {
-   "id": 659,
-   "job": 120,
-   "at": "2026-11-13 08:16:52",
-   "kind": "paso",
-   "text": "4/6 Informe del saque"
-  },
-  {
-   "id": 658,
-   "job": 120,
-   "at": "2026-11-13 08:16:46",
-   "kind": "paso",
-   "text": "3/6 Informe del reves"
-  },
-  {
-   "id": 657,
-   "job": 120,
-   "at": "2026-11-13 08:16:36",
-   "kind": "paso",
-   "text": "2/6 Informe de la derecha"
-  },
-  {
-   "id": 656,
-   "job": 120,
-   "at": "2026-11-13 08:16:35",
-   "kind": "paso",
-   "text": "1/6 Registro de partidos"
   }
  ]
 }

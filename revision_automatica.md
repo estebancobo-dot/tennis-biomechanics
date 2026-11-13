@@ -1,10 +1,10 @@
-# Revisión automática: FALLOS
+# Revisión automática: REGRESIÓN
 
-411 cumplidos · 28 no cumplidos · 98 sin golpes suficientes · 118 avisos (antes: 407 cumplidos, 33 no cumplidos)
+407 cumplidos · 30 no cumplidos · 98 sin golpes suficientes · 127 avisos (antes: 411 cumplidos, 28 no cumplidos)
 
-## Peticiones del usuario SIN TERMINAR: 140 de 267
+## Peticiones del usuario SIN TERMINAR: 144 de 274
 
-Registro `docs/peticiones_usuario.md`: 116 hechas · 119 a medias · 21 sin hacer · 3 no medibles desde la tele · 8 no aplican. Que las comprobaciones de abajo pasen **no** significa que estas estén hechas.
+Registro `docs/peticiones_usuario.md`: 119 hechas · 123 a medias · 21 sin hacer · 3 no medibles desde la tele · 8 no aplican. Que las comprobaciones de abajo pasen **no** significa que estas estén hechas.
 
 - **#176 [FALTA]** Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3) — falta: La ventana acaba 0,8 s tras el impacto: medible alargándola.
 - **#189 [FALTA]** «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4) — falta: No está en `learn.py`.
@@ -146,13 +146,19 @@ Registro `docs/peticiones_usuario.md`: 116 hechas · 119 a medias · 21 sin hace
 - **#264 [PARCIAL]** Que no vuelvan a pasar fallos de este tamaño sin que se vean (Chat, 12-11, tras R17, el detector sin la bola en todos los partidos reales: … — falta: Se cierra con las tres tareas hechas y su prueba, antes de proponer la tarea 11.
 - **#265 [PARCIAL]** Gestión de errores y tolerancia a fallos definida por niveles de criticidad, como en las aplicaciones profesionales: cada escenario y cada … — falta: **Aprobada por el usuario el 13-11 («adelante con la gestión de errores por niveles»)**: se hace antes de los 6 partidos y se valida en el PC (Osaka, Pegula, F…
 - **#266 [PARCIAL]** Estado actual y hacer en paralelo todo lo que se pueda para acabar pronto, antes del análisis de los 6 partidos (Chat, 13-11: «¿cuál es el … — falta: Se cierra al enviar el plan de los 6 partidos con todo validado (tarea 11).
+- **#268 [PARCIAL]** Analizar qué haría falta para que toda la aplicación corra en la nube y el usuario solo tenga que subir los partidos: de arriba abajo, con … — falta: Se cierra con el documento entregado y la decisión del usuario (reabre #145, «nada en la nube ni de pago», 17-10). Faltan su tope de gasto y si el PC se retira…
+- **#272 [PARCIAL]** Cómo se trabajaría en la nube de pago y cuánto costaría; que sea autónomo (Claude lo hace todo con conectores, solo algún paso puntual obli… — falta: **Tope del usuario: 0 € al mes** (13-11; antes «como mucho 10 €»): el tope de la cuenta de Modal en su crédito mensual (30 $); si se agota, el trabajo espera a…
+- **#273 [PARCIAL]** Cómo avanzar con la prueba de concepto de la nube en paralelo; si los proveedores propuestos son los únicos con garantías y si se han revis… — falta: **13-11: aprobado por el usuario («sí, empieza con el código»).** Código N0 hecho (`cloud/`, flujo «Nube», `scripts/subir_nube.py`, `5_conectar_nube.bat`); pas…
+- **#274 [PARCIAL]** Arreglar el fundido (R22) y lanzar F3Set v18 sin esperar; qué pasa con lo que está en marcha. El usuario no puede valorar qué es «ruido» de… — falta: Criterio de Claude (el usuario no decide el ruido): v18 tiene que devolver el punto de Azarenka a Rybakina y no dar ningún golpe de la rival como suyo; cada go…
 
 
 ## No cumplidos
 
 - **Primera pantalla, anchura y nombres (diseño definitivo)**: vídeo de la lección en y=805–1159 de 900; al abrir 2 títulos, 609 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=1159 (más abajo que la primera pantalla, 900)
+- **Registros con fecha y duración**: 64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba_completo.log: sin «termina fecha» al final
 - **Lista de partidos: rival, torneo, ronda y fecha**: 6 partidos; sin torneo: 1 (zheng-qinwen-elena-rybakina); sin ronda: 1 (zheng-qinwen-elena-rybakina); sin fecha: 1 (zheng-qinwen-elena-rybakina)
 - **Aplicación: lo que consume abierta**: CPU media 0.03 % (máx 0.06 %; objetivo ≤ 5 %), memoria hasta 1469 MB (objetivo ≤ 800) en 8 procesos; 2026-11-12 01:26:37
+- **#66 Fechas y duración en los registros**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba)
 - **#160 la app que hiciste completa como se arranca, se puede usar ahora? (Chat, 19-10 08:11)**: 6 comprobaciones: 1 falta, 5 ok; la peor: «Aplicación: lo que consume abierta» (CPU media 0.03 % (máx 0.06 %; objetivo ≤ 5 %), memoria hasta 1469 MB (objetivo ≤ 800) en 8 procesos; 2026-11-12 01:26:37)
 - **#176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3)**: SIN HACER según el registro (#176, docs/peticiones_usuario.md)
 - **#189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4)**: SIN HACER según el registro (#189, docs/peticiones_usuario.md)
@@ -179,12 +185,19 @@ Registro `docs/peticiones_usuario.md`: 116 hechas · 119 a medias · 21 sin hace
 - **#257 Comparativa a fondo y catalogada con todo lo que existe: apps profesionales (Hawk-Eye/TennisViz, SwingVision, **: SIN HACER según el registro (#257, docs/peticiones_usuario.md)
 - **#258 Partidos y jugadores automáticos desde un nombre de fichero mínimo: normalizar los nombres, leer la ficha públ**: SIN HACER según el registro (#258, docs/peticiones_usuario.md)
 
-## Mejora
+## Empeora respecto a la ejecución anterior
 
-- Pruebas del código en este PC: falta → ok
-- Peticiones por GitHub Actions: espera hasta empezar: aviso → ok
-- #13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe: falta → aviso
-- #20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML: falta → pocos datos
-- #51 El código de la prueba es el de los casos reales: falta → aviso
-- #241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código: falta → ok
-- Comprobaciones que saben fallar: aviso → ok
+- **Registros con fecha y duración**: ok → falta: 64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba_completo.log: sin «termina fecha» al final
+- **Peticiones por GitHub Actions: espera hasta empezar**: ok → aviso: petición del 13-11 16:08, empezó a los 147.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)
+- **#66 Fechas y duración en los registros**: ok → falta: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba)
+- **Comprobaciones que saben fallar**: ok → aviso: sin el registro de las pruebas en este PC (comprobaciones_pruebas/rec_*.json)
+
+## Comprobaciones nuevas
+
+- #268 Analizar qué haría falta para que toda la aplicación corra en la nube y el usuario solo tenga que subir los pa: aviso (A MEDIAS según el registro (#268); sin comprobación automática asignada)
+- #270 Qué tipo de cosas quedan de la Base antes de los 6 partidos (fallos graves, medios, leves, medidas incorrectas: aviso (sin comprobación automática asignada)
+- #271 ¿Cerrar todo con la forma de trabajar actual y después pasar a la nube, o pasar a la nube cuanto antes? (Chat,: aviso (sin comprobación automática asignada)
+- #272 Cómo se trabajaría en la nube de pago y cuánto costaría; que sea autónomo (Claude lo hace todo con conectores,: aviso (A MEDIAS según el registro (#272); sin comprobación automática asignada)
+- #273 Cómo avanzar con la prueba de concepto de la nube en paralelo; si los proveedores propuestos son los únicos co: aviso (A MEDIAS según el registro (#273); sin comprobación automática asignada)
+- #274 Arreglar el fundido (R22) y lanzar F3Set v18 sin esperar; qué pasa con lo que está en marcha. El usuario no pu: aviso (sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok)
+- #269 Estado y progreso: cuánto falta para lanzar los 6 partidos, qué hay en marcha y pendiente en la nube y en el P: aviso (sin comprobación automática asignada)

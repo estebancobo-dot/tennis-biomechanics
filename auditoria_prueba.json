@@ -3,10 +3,10 @@
  "strokes": 25,
  "near": 13,
  "summary": {
-  "ok": 411,
-  "falta": 28,
+  "ok": 407,
+  "falta": 30,
   "pocos datos": 98,
-  "aviso": 118
+  "aviso": 127
  },
  "items": [
   {
@@ -2861,7 +2861,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»",
    "status": "ok",
-   "detail": "3105 caracteres de texto, 15 vídeos, 21 gráficos",
+   "detail": "3105 caracteres de texto, 16 vídeos, 21 gráficos",
    "file": "pantalla_1_aprende.jpg"
   },
   {
@@ -2925,7 +2925,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "2158 caracteres de texto, 16 vídeos, 0 gráficos",
+   "detail": "2155 caracteres de texto, 16 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -3453,21 +3453,21 @@
    "area": "Infraestructura",
    "name": "Progreso visible (progreso.json)",
    "status": "ok",
-   "detail": "último: fine_doubtful de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (24/24), 16 s, quedan ≈ 0 s, a las 2026-11-13 06:12:30"
+   "detail": "último: fine_doubtful de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (24/24), 18 s, quedan ≈ 0 s, a las 2026-11-13 18:38:18"
   },
   {
    "req": 5,
    "area": "Infraestructura",
    "name": "Registros con fecha y duración",
-   "status": "ok",
-   "detail": "66 de 66 registros con fecha de inicio y de fin o duración"
+   "status": "falta",
+   "detail": "64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba_completo.log: sin «termina fecha» al final"
   },
   {
    "req": 5,
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "51 carpetas, 38.3 GB en total (2026-11-13T18:30:27); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.9 GB"
+   "detail": "51 carpetas, 38.3 GB en total (2026-11-13T18:36:31); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.9 GB"
   },
   {
    "req": 5,
@@ -3537,7 +3537,7 @@
    "area": "Orquestador",
    "name": "Orquestador: espera hasta empezar cada trabajo",
    "status": "aviso",
-   "detail": "88 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 8 esperaron más de 5 min"
+   "detail": "89 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 8 esperaron más de 5 min"
   },
   {
    "req": 5,
@@ -3565,7 +3565,7 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar",
    "status": "ok",
-   "detail": "terminó el 2026-11-13 18:32:22 en 0 min: 118 vídeos de 118 golpes"
+   "detail": "terminó el 2026-11-13 18:38:53 en 0 min: 118 vídeos de 118 golpes"
   },
   {
    "req": 2,
@@ -3747,14 +3747,14 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-13_0629.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el players (2.0 min): CPU 17/23/32 %, iGPU 77/86/98 %, RAM máx 6.6 GB → iGPU al límite; us-open-2026-r4-naomi-osaka-el identity (2.0 min): CPU 15/33/60 %, iGPU 0/22/91 %, RAM máx 6.6 GB → equipo infrautilizado: trabajo en serie (se puede repartir); us-open-2026-r4-naomi-osaka-el views (2.0 min): CPU 19/34/49 %, iGPU 0/42/75 %, RAM máx 6.8 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine (65.5 min): CPU 22/76/100 %, iGPU 0/29/100 %, RAM máx 18.7 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el view_clips (0.2 min): CPU 13/13/13 %, iGPU 0/0/0 %, RAM máx 6.1 GB → equipo infrautilizado: trabajo en serie (se puede repartir); us-open-2026-r4-naomi-osaka-el fine_doubtful (5.2 min): CPU 5/59/100 %, iGPU 0/27/100 %, RAM máx 15.0 GB → uso medio: margen para repartir trabajo; 333.6 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa)"
+   "detail": "recursos_2026-11-13_0629.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el players (2.0 min): CPU 17/23/32 %, iGPU 77/86/98 %, RAM máx 6.6 GB → iGPU al límite; us-open-2026-r4-naomi-osaka-el identity (2.0 min): CPU 15/33/60 %, iGPU 0/22/91 %, RAM máx 6.6 GB → equipo infrautilizado: trabajo en serie (se puede repartir); us-open-2026-r4-naomi-osaka-el views (2.0 min): CPU 19/34/49 %, iGPU 0/42/75 %, RAM máx 6.8 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine (65.5 min): CPU 22/76/100 %, iGPU 0/29/100 %, RAM máx 18.7 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el view_clips (0.2 min): CPU 13/13/13 %, iGPU 0/0/0 %, RAM máx 6.1 GB → equipo infrautilizado: trabajo en serie (se puede repartir); us-open-2026-r4-naomi-osaka-el fine_doubtful (5.2 min): CPU 5/59/100 %, iGPU 0/27/100 %, RAM máx 15.0 GB → uso medio: margen para repartir trabajo; 339.6 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa)"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
-   "status": "ok",
-   "detail": "petición del 13-11 06:18, empezó a los 0.9 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
+   "status": "aviso",
+   "detail": "petición del 13-11 16:08, empezó a los 147.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
   },
   {
    "req": 1,
@@ -4222,8 +4222,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#66 Fechas y duración en los registros",
-   "status": "ok",
-   "detail": "2 comprobaciones: 2 ok"
+   "status": "falta",
+   "detail": "2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba)"
   },
   {
    "req": 11,
@@ -4573,7 +4573,7 @@
    "area": "Peticiones",
    "name": "#119 Automatizar todo el ciclo en el PC: el usuario no lanza pruebas ni avisa",
    "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (88 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 8 esperaron más de 5 min)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (89 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 8 esperaron más de 5 min)"
   },
   {
    "req": 11,
@@ -5378,7 +5378,7 @@
    "area": "Peticiones",
    "name": "#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min",
    "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (88 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 8 esperaron más de 5 min)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 2 aviso, 1 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (89 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 8 esperaron más de 5 min)"
   },
   {
    "req": 11,
@@ -5441,7 +5441,7 @@
    "area": "Peticiones",
    "name": "#246 Un único orquestador: mismo código y misma fuente de datos para la aplicación y el chat; monitorizar, pausar, ",
    "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (88 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 8 esperaron más de 5 min)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (89 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 8 esperaron más de 5 min)"
   },
   {
    "req": 11,
@@ -5591,11 +5591,60 @@
    "detail": "sin comprobación automática asignada"
   },
   {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#268 Analizar qué haría falta para que toda la aplicación corra en la nube y el usuario solo tenga que subir los pa",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#268); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#270 Qué tipo de cosas quedan de la Base antes de los 6 partidos (fallos graves, medios, leves, medidas incorrectas",
+   "status": "aviso",
+   "detail": "sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#271 ¿Cerrar todo con la forma de trabajar actual y después pasar a la nube, o pasar a la nube cuanto antes? (Chat,",
+   "status": "aviso",
+   "detail": "sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#272 Cómo se trabajaría en la nube de pago y cuánto costaría; que sea autónomo (Claude lo hace todo con conectores,",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#272); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#273 Cómo avanzar con la prueba de concepto de la nube en paralelo; si los proveedores propuestos son los únicos co",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#273); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#274 Arreglar el fundido (R22) y lanzar F3Set v18 sin esperar; qué pasa con lo que está en marcha. El usuario no pu",
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#269 Estado y progreso: cuánto falta para lanzar los 6 partidos, qué hay en marcha y pendiente en la nube y en el P",
+   "status": "aviso",
+   "detail": "sin comprobación automática asignada"
+  },
+  {
    "req": 5,
    "area": "Automático",
    "name": "Comprobaciones que saben fallar",
-   "status": "ok",
-   "detail": "484 de 561 tipos de comprobación con una prueba que las hace fallar; 59 sin ninguna prueba y 18 que nunca fallan en las pruebas; de las pruebas principales de la Base: 0"
+   "status": "aviso",
+   "detail": "sin el registro de las pruebas en este PC (comprobaciones_pruebas/rec_*.json)"
   },
   {
    "req": 12,

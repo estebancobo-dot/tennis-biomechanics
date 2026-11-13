@@ -1,13 +1,13 @@
 # Estado real de las peticiones (generado por `scripts/real_status.py`; no editar a mano)
 
-259 peticiones (sin las que no aplican). «HECHO» en el registro es la etiqueta de Claude; aquí cuenta solo lo que se comprueba. «Comprobado en salidas» = existe y es coherente con los datos reales, no que sea correcto; eso es «validado con verdad».
+266 peticiones (sin las que no aplican). «HECHO» en el registro es la etiqueta de Claude; aquí cuenta solo lo que se comprueba. «Comprobado en salidas» = existe y es coherente con los datos reales, no que sea correcto; eso es «validado con verdad».
 
 | Nivel | Peticiones |
 |---|---|
 | 0 sin construir | 21 |
-| 1 construido, sin comprobar | 77 |
-| 2 comprobación que falla | 80 |
-| 3 comprobado en salidas | 81 |
+| 1 construido, sin comprobar | 83 |
+| 2 comprobación que falla | 82 |
+| 3 comprobado en salidas | 80 |
 | 4 validado con verdad | 0 |
 
 ## Por paquete del plan (en el orden de ejecución)
@@ -19,11 +19,12 @@
 | B1 Base · velocidad y uso del PC | 10 | 0 | 0 | 8 | 2 | 0 | Un partido de 3,5 h desde cero en una noche (≤ 8 h) sin perder calidad (10-11, con el usuario); CPU/iGPU por etapa medidas en cada ejecución | falla | no |
 | B2 Base · robustez (nada se cuelga, todo se recupera) | 5 | 0 | 2 | 2 | 1 | 0 | Prueba por cada caso de error y cuelgue; 0 etapas con error en la referencia | falla | no |
 | B3 Base · mejores modelos (estado del arte medido) | 10 | 0 | 0 | 1 | 9 | 0 | Cada candidato medido frente al actual (precisión con datos anotados y fotogramas/s en el PC) | ok | no |
-| B4 Base · no perder golpes | 6 | 0 | 0 | 4 | 2 | 0 | Recall F3Set y RacketVision por lado y tipo, sin bajar la precisión | falla | no |
+| B4 Base · no perder golpes | 7 | 0 | 0 | 5 | 2 | 0 | Recall F3Set y RacketVision por lado y tipo, sin bajar la precisión | falla | no |
 | B5 Base · exportación | 1 | 0 | 0 | 1 | 0 | 0 | Vídeos por golpe en ≤ 20 min sin cuelgues | ok | no |
 | B6 Base · referencia definitiva de los 4 partidos | 4 | 0 | 0 | 4 | 0 | 0 | 4 partidos sin errores de etapa; auditoría generada | ok | no |
-| B7 Base · aplicación autónoma e infraestructura | 36 | 0 | 0 | 10 | 26 | 0 | Un partido nuevo de principio a fin sin el ciclo ni el chat; capturas de cada pantalla sin fallos | ok | no |
-| B8 Base · orquestador único (aplicación y chat con el mismo código y los mismos datos) | 13 | 0 | 10 | 3 | 0 | 0 | Fases A-F de docs/orquestador.md; un trabajo enviado desde el chat, pausado en la aplicación y reanudado desde el chat en el PC | falla | no |
+| B7 Base · aplicación autónoma e infraestructura | 36 | 0 | 0 | 11 | 25 | 0 | Un partido nuevo de principio a fin sin el ciclo ni el chat; capturas de cada pantalla sin fallos | ok | no |
+| B8 Base · orquestador único (aplicación y chat con el mismo código y los mismos datos) | 15 | 0 | 12 | 3 | 0 | 0 | Fases A-F de docs/orquestador.md; un trabajo enviado desde el chat, pausado en la aplicación y reanudado desde el chat en el PC | falla | no |
+| N Nube · toda la aplicación en la nube (el usuario solo sube los partidos), 0 € al mes | 4 | 0 | 4 | 0 | 0 | 0 | La nube da lo mismo que el PC en F3Set y en los 6 partidos (N0-N1); un partido nuevo de principio a fin desde la web (subir, clic, aprobar); gasto del mes 0 € con el tope de la cuenta | — | — |
 | P0 Producto · rediseño completo de la aplicación (comparativa profesional, UX, aprendizaje, gestión, gráficos) | 4 | 3 | 1 | 0 | 0 | 0 | Diseño desde la comparativa con las apps profesionales; capturas de cada pantalla comparadas con las de referencia, sin restos inútiles ni nada fijo en el código | sin medir | no |
 | M1 Medidas · fases, cadena cinética y ritmo | 12 | 0 | 7 | 3 | 2 | 0 | Cada medida: fiable en la auditoría (ruido < variación) y sin depender de la cámara | — | — |
 | M2 Medidas · pies y apoyos | 20 | 2 | 10 | 3 | 5 | 0 | Pasos y apoyos medidos en la mayoría de golpes; fiables en la auditoría | — | — |
@@ -42,14 +43,14 @@
 
 Lo que le falta a cada paquete de la Base para cerrarse:
 
-- **B1**: prueba principal: Tiempo desde cero: pocos datos; peticiones sin comprobar o que fallan: #14, #29, #75, #125, #137, #230, #231, #237
+- **B1**: prueba principal: Tiempo desde cero: pocos datos, Peticiones por GitHub Actions: espera hasta empezar: aviso; peticiones sin comprobar o que fallan: #14, #29, #75, #125, #137, #230, #231, #237
 - **B2**: prueba principal: Fallos por niveles: smoke_tennis-yusipopen-final-sobolenko-rybakin: aviso; peticiones sin comprobar o que fallan: #13, #225, #265, #267
 - **B3**: peticiones sin comprobar o que fallan: #58
-- **B4**: prueba principal: Cobertura del saque dicha en el informe: aviso; peticiones sin comprobar o que fallan: #23, #151, #205, #218
+- **B4**: prueba principal: Cobertura del saque dicha en el informe: aviso; peticiones sin comprobar o que fallan: #23, #151, #205, #218, #274
 - **B5**: peticiones sin comprobar o que fallan: #41
 - **B6**: peticiones sin comprobar o que fallan: #1, #134, #233, #234
-- **B7**: peticiones sin comprobar o que fallan: #18, #20, #21, #22, #37, #51, #119, #160, #226, #242
-- **B8**: prueba principal: Orquestador: espera hasta empezar cada trabajo: aviso; peticiones sin comprobar o que fallan: #246, #247, #248, #249, #250, #251, #259, #260, #261, #262, #263, #264, #266
+- **B7**: peticiones sin comprobar o que fallan: #18, #20, #21, #22, #37, #51, #66, #119, #160, #226, #242
+- **B8**: prueba principal: Orquestador: espera hasta empezar cada trabajo: aviso; peticiones sin comprobar o que fallan: #246, #247, #248, #249, #250, #251, #259, #260, #261, #262, #263, #264, #266, #269, #270
 - **P0**: prueba principal: Aplicación: rediseño : sin medir; peticiones sin comprobar o que fallan: #256, #257, #252, #258
 
 ## Cada petición
@@ -116,7 +117,7 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 | 59 | Diferencias solo por encima del error y en situaciones equivalentes (10-10 18:05) | M5 | HECHO | 3 comprobado en salidas | 6 comprobaciones: 6 ok |
 | 64 | Todos los tipos de desplazamiento, del split step a la recuperación, con cada tipo de paso | M2 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 10 comprobaciones: 10 ok |
 | 65 | El play del vídeo funciona (no solo un fotograma) (12-10 18:14, 21:03, 21:14) | P2 | HECHO | 3 comprobado en salidas | 11 comprobaciones: 11 ok |
-| 66 | Fechas y duración en los registros (12-10 18:25) | B7 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
+| 66 | Fechas y duración en los registros (12-10 18:25) | B7 | HECHO | 2 comprobación que falla | 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (64 de 66 registros con fecha de inicio y de fin o duración; sin  |
 | 67 | No borrar el trabajo hecho: lo complejo como extra (12-10 22:35; 13-10 05:48 p6) | P2 | HECHO | 3 comprobado en salidas | 13 comprobaciones: 13 ok |
 | 68 | La meta: mejorar mi derecha tomando la de X como base (12-10 22:25; 13-10 05:48 p5) | P1 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 8 comprobaciones: 1 pocos datos, 7 ok; la peor: «Tu ejemplo: derecha paralela,  |
 | 69 | Ejemplo: «derecha paralela, apoyo cerrado, parada, bola plana, lado derecho» (cómo lo hace | M5 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 pocos datos; la peor: «Tu ejemplo: derecha paralela, apoyo  |
@@ -284,7 +285,7 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 | 234 | Prueba de valor de la aplicación con los datos reales (27-10 07:21) | B6 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok |
 | 235 | Cadena cinética, footwork y timing: lo que define el golpe (27-10 09:33) | M1 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#235); sin comprobación automática asignada |
 | 236 | Huellas numeradas sobre los pies y patrones de pasos (27-10 09:38) | M2 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#236); sin comprobación automática asignada |
-| 237 | El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min (27-10 10 | B1 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Orquestador: espera hasta empezar ca |
+| 237 | El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min (27-10 10 | B1 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 2 aviso, 1 ok; la peor: «Orquestador: espera hasta empezar ca |
 | 238 | La validación es siempre automática; el usuario no valida la aplicación (27-10 11:42) | P3 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#238); sin comprobación automática asignada |
 | 239 | No se descarta ninguna petición (27-10 11:42) | D | HECHO | 1 construido, sin comprobar | sin comprobación automática asignada |
 | 240 | Comparar la aplicación con las profesionales una vez estén los golpes (27-10 11:42) | P4 | FALTA | 0 sin construir | SIN HACER según el registro (#240, docs/peticiones_usuario.md) |
@@ -315,3 +316,10 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 | 265 | Gestión de errores y tolerancia a fallos definida por niveles de criticidad, como en las a | B2 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#265); sin comprobación automática asignada |
 | 266 | Estado actual y hacer en paralelo todo lo que se pueda para acabar pronto, antes del análi | B8 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#266); sin comprobación automática asignada |
 | 267 | Explicar cómo se ha llegado a una situación tan mala en la aplicación (Chat, 13-11) | B2 | HECHO | 1 construido, sin comprobar | sin comprobación automática asignada |
+| 268 | Analizar qué haría falta para que toda la aplicación corra en la nube y el usuario solo te | N | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#268); sin comprobación automática asignada |
+| 270 | Qué tipo de cosas quedan de la Base antes de los 6 partidos (fallos graves, medios, leves, | B8 | HECHO | 1 construido, sin comprobar | sin comprobación automática asignada |
+| 271 | ¿Cerrar todo con la forma de trabajar actual y después pasar a la nube, o pasar a la nube  | N | HECHO | 1 construido, sin comprobar | sin comprobación automática asignada |
+| 272 | Cómo se trabajaría en la nube de pago y cuánto costaría; que sea autónomo (Claude lo hace  | N | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#272); sin comprobación automática asignada |
+| 273 | Cómo avanzar con la prueba de concepto de la nube en paralelo; si los proveedores propuest | N | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#273); sin comprobación automática asignada |
+| 274 | Arreglar el fundido (R22) y lanzar F3Set v18 sin esperar; qué pasa con lo que está en marc | B4 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok |
+| 269 | Estado y progreso: cuánto falta para lanzar los 6 partidos, qué hay en marcha y pendiente  | B8 | HECHO | 1 construido, sin comprobar | sin comprobación automática asignada |
