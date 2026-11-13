@@ -1,28 +1,28 @@
 {
- "at": "2026-11-13 04:30:52",
- "firma": "fdc20c88cf2b",
+ "at": "2026-11-13 04:31:08",
+ "firma": "df2f7fd03ff0",
  "ejecutor": {
   "vivo": true,
   "pid": 5016,
-  "at": 1794540652.8466983
+  "at": 1794540668.8604207
  },
  "pausa": false,
  "en_curso": [
   {
-   "id": 110,
+   "id": 111,
    "kind": "comando",
    "match": null,
    "player": null,
    "stroke": null,
-   "reason": "script validate_recall --spotter --tag v16 --skip-run --report-suffix _e",
+   "reason": "script diag_identidad_f3set --match azarenka --a salidas_v15 --b salidas_v16",
    "state": "en curso",
    "message": "",
-   "created": "2026-11-13 04:30:40",
-   "started": "2026-11-13 04:30:46",
+   "created": "2026-11-13 04:31:04",
+   "started": "2026-11-13 04:31:08",
    "finished": null,
-   "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"v16\", \"--skip-run\", \"--report-suffix\", \"_e\"]",
-   "source": "claude 269",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_110.log",
+   "args": "[\"script\", \"diag_identidad_f3set\", \"--match\", \"azarenka\", \"--a\", \"salidas_v15\", \"--b\", \"salidas_v16\"]",
+   "source": "claude 270",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_111.log",
    "paso": 0,
    "pasos": 0
   }
@@ -39,6 +39,24 @@
  },
  "pendientes": [],
  "recientes": [
+  {
+   "id": 110,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script validate_recall --spotter --tag v16 --skip-run --report-suffix _e",
+   "state": "hecho",
+   "message": "",
+   "created": "2026-11-13 04:30:40",
+   "started": "2026-11-13 04:30:46",
+   "finished": "2026-11-13 04:30:57",
+   "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"v16\", \"--skip-run\", \"--report-suffix\", \"_e\"]",
+   "source": "claude 269",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_110.log",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 109,
    "kind": "comando",
@@ -290,27 +308,30 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_96.log",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 95,
-   "kind": "flujo",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
-   "state": "hecho",
-   "message": "6 pasos",
-   "created": "2026-11-12 12:46:16",
-   "started": "2026-11-12 13:50:49",
-   "finished": "2026-11-12 13:55:46",
-   "args": "[\"informe\"]",
-   "source": "claude 254",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_95.log",
-   "paso": 6,
-   "pasos": 6
   }
  ],
  "eventos": [
+  {
+   "id": 600,
+   "job": 111,
+   "at": "2026-11-13 04:31:08",
+   "kind": "empieza",
+   "text": "script diag_identidad_f3set --match azarenka --a salidas_v15 --b salidas_v16"
+  },
+  {
+   "id": 599,
+   "job": 111,
+   "at": "2026-11-13 04:31:04",
+   "kind": "enviado",
+   "text": "tennisbio script diag_identidad_f3set --match azarenka --a salidas_v15 --b salidas_v16 (claude 270)"
+  },
+  {
+   "id": 598,
+   "job": 110,
+   "at": "2026-11-13 04:30:58",
+   "kind": "hecho",
+   "text": "código 0"
+  },
   {
    "id": 597,
    "job": 110,
@@ -499,27 +520,6 @@
    "at": "2026-11-13 00:39:35",
    "kind": "ejecutor",
    "text": "arranca (pid 9640)"
-  },
-  {
-   "id": 570,
-   "job": null,
-   "at": "2026-11-13 00:39:34",
-   "kind": "ejecutor",
-   "text": "arranca el siguiente con el código nuevo (pid 8696)"
-  },
-  {
-   "id": 569,
-   "job": null,
-   "at": "2026-11-13 00:39:34",
-   "kind": "ejecutor",
-   "text": "termina"
-  },
-  {
-   "id": 568,
-   "job": null,
-   "at": "2026-11-13 00:39:34",
-   "kind": "ejecutor",
-   "text": "se reinicia con el código nuevo"
   }
  ]
 }
