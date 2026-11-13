@@ -1251,3 +1251,9 @@ argumentos: --tag v16
 # el 96 %). Si F3Set (donde se entreno y se valida) si la tenia, es un desajuste como el de la bola (R17). Solo lee:
 # los 6 partidos y las 4 compilaciones de F3Set (salidas_v16), por que no se toma a la lejana (sin pista, menos de
 # dos personas, ninguna en la mitad lejana)
+---
+id: 273
+accion: medir
+script: diag_identidad_f3set
+argumentos: --match azaren --a salidas_v15 --b salidas_v16
+# 273 (13-11, R22): 270 salio vacio: las carpetas de F3Set llevan el nombre cortado a 60 letras ("..._victoria_azaren")
