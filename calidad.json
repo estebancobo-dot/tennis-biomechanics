@@ -4,8 +4,8 @@
    "dominio": "golpes",
    "caracteristica": "funcional",
    "capa": "pc",
-   "ok": 25,
-   "aviso": 5,
+   "ok": 26,
+   "aviso": 4,
    "falta": 3,
    "pocos datos": 0,
    "fallan": [
@@ -13,13 +13,12 @@
     "Saques por punto de su saque: sin-fecha_580c6f_rybakina",
     "Saques por punto de su saque: sin-fecha_b8b713_rybakina",
     "Identidad en los cambios de lado: sin-fecha_f43dd2_rybakina",
-    "Golpes del fondo: sin-fecha_f43dd2_rybakina",
     "Golpes con su pose en el contacto: sin-fecha_584c5b_rybakina",
     "Golpes con su pose en el contacto: sin-fecha_580c6f_rybakina",
     "Golpes con su pose en el contacto: sin-fecha_b8b713_rybakina"
    ],
    "n": 33,
-   "score": 0.7575757575757576,
+   "score": 0.7878787878787878,
    "accepted": false
   },
   {
@@ -157,31 +156,35 @@
    "dominio": "plataforma",
    "caracteristica": "fiabilidad",
    "capa": "pc",
-   "ok": 12,
-   "aviso": 2,
-   "falta": 1,
+   "ok": 10,
+   "aviso": 3,
+   "falta": 2,
    "pocos datos": 0,
    "fallan": [
     "Golpes dudosos (duda sobre el golpe, no sobre una medida)",
+    "Pruebas del código en este PC",
     "Registros con fecha y duración",
-    "Orquestador: espera hasta empezar cada trabajo"
+    "Orquestador: espera hasta empezar cada trabajo",
+    "Peticiones por GitHub Actions: espera hasta empezar"
    ],
    "n": 15,
-   "score": 0.8,
+   "score": 0.6666666666666666,
    "accepted": false
   },
   {
    "dominio": "plataforma",
    "caracteristica": "rendimiento",
    "capa": "pc",
-   "ok": 17,
-   "aviso": 0,
+   "ok": 16,
+   "aviso": 1,
    "falta": 0,
    "pocos datos": 5,
-   "fallan": [],
+   "fallan": [
+    "Tiempo desde cero"
+   ],
    "n": 17,
-   "score": 1.0,
-   "accepted": true
+   "score": 0.9411764705882353,
+   "accepted": false
   },
   {
    "dominio": "exportacion",
@@ -258,14 +261,24 @@
    "dominio": "modelos",
    "caracteristica": "exactitud",
    "capa": "verdad",
-   "ok": 21,
-   "aviso": 0,
+   "ok": 22,
+   "aviso": 9,
    "falta": 0,
    "pocos datos": 0,
-   "fallan": [],
-   "n": 21,
-   "score": 1.0,
-   "accepted": true
+   "fallan": [
+    "La bola del partido para el detector: sin-fecha_584c5b_rybakina",
+    "La bola del partido para el detector: sin-fecha_580c6f_rybakina",
+    "La bola del partido para el detector: sin-fecha_b8b713_rybakina",
+    "La bola del partido para el detector: sin-fecha_49723c_rybakina",
+    "Entradas de los modelos: sin-fecha_f43dd2_rybakina",
+    "Entradas de los modelos: sin-fecha_584c5b_rybakina",
+    "Entradas de los modelos: sin-fecha_580c6f_rybakina",
+    "Entradas de los modelos: sin-fecha_b8b713_rybakina",
+    "Entradas de los modelos: sin-fecha_49723c_rybakina"
+   ],
+   "n": 31,
+   "score": 0.7096774193548387,
+   "accepted": false
   },
   {
    "dominio": "taxonomia",
@@ -368,12 +381,12 @@
  ],
  "domains": {
   "golpes": {
-   "ok": 26,
+   "ok": 27,
    "n": 34,
    "cells": 2,
    "unmeasured": 0,
    "accepted": 1,
-   "score": 0.7647058823529411
+   "score": 0.7941176470588235
   },
   "pantallas": {
    "ok": 53,
@@ -408,12 +421,12 @@
    "score": 1.0
   },
   "plataforma": {
-   "ok": 59,
+   "ok": 56,
    "n": 62,
    "cells": 4,
    "unmeasured": 1,
-   "accepted": 2,
-   "score": 0.9516129032258065
+   "accepted": 1,
+   "score": 0.9032258064516129
   },
   "exportacion": {
    "ok": 1,
@@ -432,30 +445,30 @@
    "score": 0.7894736842105263
   },
   "modelos": {
-   "ok": 21,
-   "n": 21,
+   "ok": 22,
+   "n": 31,
    "cells": 2,
    "unmeasured": 1,
-   "accepted": 1,
-   "score": 1.0
+   "accepted": 0,
+   "score": 0.7096774193548387
   }
  },
  "characteristics": {
   "funcional": {
-   "ok": 264,
+   "ok": 265,
    "n": 274,
    "cells": 8,
    "unmeasured": 0,
    "accepted": 6,
-   "score": 0.9635036496350365
+   "score": 0.9671532846715328
   },
   "exactitud": {
-   "ok": 41,
-   "n": 48,
+   "ok": 42,
+   "n": 58,
    "cells": 6,
    "unmeasured": 2,
-   "accepted": 2,
-   "score": 0.8541666666666666
+   "accepted": 1,
+   "score": 0.7241379310344828
   },
   "usabilidad": {
    "ok": 16,
@@ -466,20 +479,20 @@
    "score": 0.8421052631578947
   },
   "fiabilidad": {
-   "ok": 24,
+   "ok": 22,
    "n": 29,
    "cells": 2,
    "unmeasured": 0,
    "accepted": 0,
-   "score": 0.8275862068965517
+   "score": 0.7586206896551724
   },
   "rendimiento": {
-   "ok": 17,
+   "ok": 16,
    "n": 17,
    "cells": 3,
    "unmeasured": 2,
-   "accepted": 1,
-   "score": 1.0
+   "accepted": 0,
+   "score": 0.9411764705882353
   },
   "mantenibilidad": {
    "ok": 30,
@@ -500,12 +513,12 @@
  },
  "layers": {
   "pc": {
-   "ok": 272,
+   "ok": 270,
    "n": 289,
    "cells": 12,
    "unmeasured": 2,
-   "accepted": 5,
-   "score": 0.9411764705882353
+   "accepted": 4,
+   "score": 0.9342560553633218
   },
   "pantallas": {
    "ok": 54,
@@ -516,12 +529,12 @@
    "score": 0.9473684210526315
   },
   "verdad": {
-   "ok": 36,
-   "n": 41,
+   "ok": 37,
+   "n": 51,
    "cells": 5,
    "unmeasured": 2,
-   "accepted": 2,
-   "score": 0.8780487804878049
+   "accepted": 1,
+   "score": 0.7254901960784313
   },
   "codigo": {
    "ok": 30,
@@ -535,11 +548,11 @@
  "unmapped": {},
  "threshold": 0.95,
  "total": {
-  "ok": 392,
-  "n": 417,
-  "score": 0.9400479616306955,
+  "ok": 391,
+  "n": 427,
+  "score": 0.9156908665105387,
   "cells": 25,
-  "accepted": 10,
+  "accepted": 8,
   "unmeasured": 7
  }
 }
