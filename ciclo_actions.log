@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261113061920
+Start time: 20261113183604
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
-Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 5628
+Host Application: powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
+Process ID: 9500
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -16,9 +16,101 @@ WSManStackVersion: 3.0
 PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
-Registro enviado a Claude (no hace falta copiar nada).
-Empezado 2026-11-13 06:19:09 - terminado 2026-11-13 06:19:30 - duracion total 22 s
+
+==> [2026-11-13 18:36:04] Codigo nuevo (1bae578 -> 41a9c3b): 27 ficheros
+    .github/workflows/nube.yml
+    5_conectar_nube.bat
+    CLAUDE.md
+    cloud/arranque/sitecustomize.py
+    cloud/lanzar.py
+    cloud/modal_app.py
+    cloud/nube.py
+    config/peticion_pc.txt
+    config/plan_peticiones.yaml
+    config/stage_code.json
+    docs/README.md
+    docs/analisis_nube.md
+    docs/estado_proyecto.md
+    docs/nube_n0.md
+    docs/peticiones_usuario.md
+    scripts/diag_identity.py
+    scripts/diag_play_mask.py
+    scripts/subir_nube.py
+    scripts/windows/clave_nube.ps1
+    src/tennisbio/audit.py
+    src/tennisbio/stages.py
+    tests/test_diag_identity_conflicts.py
+    tests/test_diag_play_mask.py
+    tests/test_local_only.py
+    tests/test_nube.py
+    tests/test_play_mask_gaps.py
+    tests/test_windows_scripts.py
+Updating 1bae578..41a9c3b
+Fast-forward
+ .github/workflows/nube.yml            |  97 +++++
+ 5_conectar_nube.bat                   |   4 +
+ CLAUDE.md                             |   5 +-
+ cloud/arranque/sitecustomize.py       |  46 +++
+ cloud/lanzar.py                       |  35 ++
+ cloud/modal_app.py                    | 185 +++++++++
+ cloud/nube.py                         | 160 +++++++
+ config/peticion_pc.txt                |  25 ++
+ config/plan_peticiones.yaml           |  10 +-
+ config/stage_code.json                |   8 +-
+ docs/README.md                        |   2 +
+ docs/analisis_nube.md                 | 758 ++++++++++++++++++++++++++++++++++
+ docs/estado_proyecto.md               |  73 +++-
+ docs/nube_n0.md                       |  99 +++++
+ docs/peticiones_usuario.md            |  15 +-
+ scripts/diag_identity.py              |  45 +-
+ scripts/diag_play_mask.py             | 167 ++++++++
+ scripts/subir_nube.py                 | 113 +++++
+ scripts/windows/clave_nube.ps1        |  40 ++
+ src/tennisbio/audit.py                |   2 +
+ src/tennisbio/stages.py               |  26 +-
+ tests/test_diag_identity_conflicts.py |  19 +
+ tests/test_diag_play_mask.py          |  41 ++
+ tests/test_local_only.py              |  20 +-
+ tests/test_nube.py                    | 202 +++++++++
+ tests/test_play_mask_gaps.py          |  23 ++
+ tests/test_windows_scripts.py         |   4 +-
+ 27 files changed, 2197 insertions(+), 27 deletions(-)
+ create mode 100644 .github/workflows/nube.yml
+ create mode 100644 5_conectar_nube.bat
+ create mode 100644 cloud/arranque/sitecustomize.py
+ create mode 100644 cloud/lanzar.py
+ create mode 100644 cloud/modal_app.py
+ create mode 100644 cloud/nube.py
+ create mode 100644 docs/analisis_nube.md
+ create mode 100644 docs/nube_n0.md
+ create mode 100644 scripts/diag_play_mask.py
+ create mode 100644 scripts/subir_nube.py
+ create mode 100644 scripts/windows/clave_nube.ps1
+ create mode 100644 tests/test_diag_identity_conflicts.py
+ create mode 100644 tests/test_diag_play_mask.py
+ create mode 100644 tests/test_nube.py
+Resolved 126 packages in 1ms
+Checked 91 packages in 11ms
+balltrack.onnx     OK 45 MB
+racketpose.onnx    OK 53 MB
+transnetv2.onnx    OK 31 MB
+rtmw3d-x.onnx      OK 369 MB
+rtmw-x_384x288.onnx OK 229 MB
+court_tcd.onnx     OK 42 MB
+motionagformer_xs.onnx OK 9 MB
+yolo11m-pose_640.onnx OK 84 MB
+yolo11m-pose_960.onnx OK 84 MB
+yolo11m-pose_1280.onnx OK 85 MB
+yolo11m-pose_1920.onnx OK 86 MB
+Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (ya estaba)
+el ejecutor se reinicia al acabar el trabajo en curso
+    (paso terminado en 25 s)
+
+==> [2026-11-13 18:36:29] Que hace falta: nada
+Ciclo automatico terminado (nada).
+    (paso terminado en 0 s)
+Empezado 2026-11-13 06:29:26 - terminado 2026-11-13 18:36:29 - duracion total 12 h 07 min
 **********************
 Windows PowerShell transcript end
-End time: 20261113061930
+End time: 20261113183629
 **********************

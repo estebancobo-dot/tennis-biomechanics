@@ -1,10 +1,10 @@
 {
- "at": "2026-11-13 18:35:55",
- "firma": "52b89e8331f2",
+ "at": "2026-11-13 18:36:29",
+ "firma": "0658e8142b6e",
  "ejecutor": {
   "vivo": true,
-  "pid": 18632,
-  "at": 1794591355.1334853
+  "pid": 11132,
+  "at": 1794591375.913443
  },
  "pausa": false,
  "en_curso": [],
@@ -18,7 +18,26 @@
   "quedan_s": 0,
   "hora": "2026-11-13 18:25:58"
  },
- "pendientes": [],
+ "pendientes": [
+  {
+   "id": 125,
+   "kind": "flujo",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "flujo «medidas_prueba»: Medidas de la prueba (_smoke) de nuevo desde sus caches, su informe y la revision automatica",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-13 18:36:29",
+   "started": null,
+   "finished": null,
+   "args": "[\"medidas_prueba\"]",
+   "source": "ciclo",
+   "log": "",
+   "paso": 0,
+   "pasos": 3
+  }
+ ],
  "recientes": [
   {
    "id": 124,
@@ -293,6 +312,48 @@
  ],
  "eventos": [
   {
+   "id": 685,
+   "job": 125,
+   "at": "2026-11-13 18:36:29",
+   "kind": "enviado",
+   "text": "flujo medidas_prueba (ciclo)"
+  },
+  {
+   "id": 684,
+   "job": null,
+   "at": "2026-11-13 18:36:15",
+   "kind": "ejecutor",
+   "text": "arranca (pid 11132)"
+  },
+  {
+   "id": 683,
+   "job": null,
+   "at": "2026-11-13 18:36:15",
+   "kind": "ejecutor",
+   "text": "arranca el siguiente con el código nuevo (pid 18712)"
+  },
+  {
+   "id": 682,
+   "job": null,
+   "at": "2026-11-13 18:36:15",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 681,
+   "job": null,
+   "at": "2026-11-13 18:36:15",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 680,
+   "job": null,
+   "at": "2026-11-13 18:36:10",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
    "id": 679,
    "job": 124,
    "at": "2026-11-13 18:35:35",
@@ -459,48 +520,6 @@
    "at": "2026-11-13 08:16:35",
    "kind": "paso",
    "text": "1/6 Registro de partidos"
-  },
-  {
-   "id": 655,
-   "job": 120,
-   "at": "2026-11-13 08:16:34",
-   "kind": "empieza",
-   "text": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)"
-  },
-  {
-   "id": 654,
-   "job": 119,
-   "at": "2026-11-13 08:16:34",
-   "kind": "hecho",
-   "text": "código 0"
-  },
-  {
-   "id": 653,
-   "job": 119,
-   "at": "2026-11-13 06:19:30",
-   "kind": "empieza",
-   "text": "run --match us-open-2026-r4-naomi-osaka-elena-rybakina"
-  },
-  {
-   "id": 652,
-   "job": null,
-   "at": "2026-11-13 06:19:21",
-   "kind": "reanudar",
-   "text": "claude 285"
-  },
-  {
-   "id": 651,
-   "job": 124,
-   "at": "2026-11-13 06:19:02",
-   "kind": "enviado",
-   "text": "flujo informe_prueba (ciclo)"
-  },
-  {
-   "id": 650,
-   "job": null,
-   "at": "2026-11-13 06:18:50",
-   "kind": "ejecutor",
-   "text": "arranca (pid 18632)"
   }
  ]
 }
