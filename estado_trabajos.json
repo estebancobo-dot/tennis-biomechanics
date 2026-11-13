@@ -1,6 +1,6 @@
 {
- "at": "2026-11-13 19:50:25",
- "firma": "23e16e1df2ec",
+ "at": "2026-11-13 19:50:38",
+ "firma": "89453bd8902f",
  "ejecutor": {
   "vivo": true,
   "pid": 7588,
@@ -18,7 +18,26 @@
   "quedan_s": 0,
   "hora": "2026-11-13 18:25:58"
  },
- "pendientes": [],
+ "pendientes": [
+  {
+   "id": 129,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script diag_play_mask --tags v15 v17 --match osaka pegula --window azaren,1090,1115",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-13 19:50:36",
+   "started": null,
+   "finished": null,
+   "args": "[\"script\", \"diag_play_mask\", \"--tags\", \"v15\", \"v17\", \"--match\", \"osaka\", \"pegula\", \"--window\", \"azaren,1090,1115\"]",
+   "source": "claude 289",
+   "log": "",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "recientes": [
   {
    "id": 128,
@@ -293,6 +312,13 @@
  ],
  "eventos": [
   {
+   "id": 708,
+   "job": 129,
+   "at": "2026-11-13 19:50:36",
+   "kind": "enviado",
+   "text": "tennisbio script diag_play_mask --tags v15 v17 --match osaka pegula --window azaren,1090,1115 (claude 289)"
+  },
+  {
    "id": 707,
    "job": 128,
    "at": "2026-11-13 19:50:20",
@@ -494,13 +520,6 @@
    "at": "2026-11-13 18:35:35",
    "kind": "hecho",
    "text": "código 0"
-  },
-  {
-   "id": 678,
-   "job": 124,
-   "at": "2026-11-13 18:35:33",
-   "kind": "paso",
-   "text": "3/3 Revision automatica"
   }
  ]
 }

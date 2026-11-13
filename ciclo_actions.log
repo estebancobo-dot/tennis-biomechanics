@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261113194616
+Start time: 20261113195035
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
-Host Application: powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 12588
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
+Process ID: 4136
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -15,59 +15,4 @@ CLRVersion: 4.0.30319.42000
 WSManStackVersion: 3.0
 PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
-**********************
-
-==> [2026-11-13 19:46:16] Codigo nuevo (41a9c3b -> 4d645c2): 11 ficheros
-    cloud/arranque/nube_gpu.py
-    cloud/modal_app.py
-    cloud/nube.py
-    config/peticion_pc.txt
-    docs/estado_proyecto.md
-    docs/nube_n0.md
-    scripts/diag_otros_partidos.py
-    scripts/diag_play_mask.py
-    scripts/windows/clave_nube.ps1
-    tests/test_diag_otros_partidos.py
-    tests/test_nube.py
-Updating 41a9c3b..4d645c2
-Fast-forward
- cloud/arranque/{sitecustomize.py => nube_gpu.py} |  15 +--
- cloud/modal_app.py                               |  12 ++-
- cloud/nube.py                                    |   8 +-
- config/peticion_pc.txt                           |  22 ++++
- docs/estado_proyecto.md                          |   9 +-
- docs/nube_n0.md                                  |   2 +-
- scripts/diag_otros_partidos.py                   | 125 +++++++++++++++++++++++
- scripts/diag_play_mask.py                        |   8 +-
- scripts/windows/clave_nube.ps1                   |  60 ++++++++---
- tests/test_diag_otros_partidos.py                |  56 ++++++++++
- tests/test_nube.py                               |  28 +++--
- 11 files changed, 303 insertions(+), 42 deletions(-)
- rename cloud/arranque/{sitecustomize.py => nube_gpu.py} (63%)
- create mode 100644 scripts/diag_otros_partidos.py
- create mode 100644 tests/test_diag_otros_partidos.py
-Resolved 126 packages in 1ms
-Checked 91 packages in 10ms
-balltrack.onnx     OK 45 MB
-racketpose.onnx    OK 53 MB
-transnetv2.onnx    OK 31 MB
-rtmw3d-x.onnx      OK 369 MB
-rtmw-x_384x288.onnx OK 229 MB
-court_tcd.onnx     OK 42 MB
-motionagformer_xs.onnx OK 9 MB
-yolo11m-pose_640.onnx OK 84 MB
-yolo11m-pose_960.onnx OK 84 MB
-yolo11m-pose_1280.onnx OK 85 MB
-yolo11m-pose_1920.onnx OK 86 MB
-Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (ya estaba)
-el ejecutor se reinicia al acabar el trabajo en curso
-    (paso terminado en 24 s)
-
-==> [2026-11-13 19:46:41] Que hace falta: nada
-Ciclo automatico terminado (nada).
-    (paso terminado en 0 s)
-Empezado 2026-11-13 18:43:21 - terminado 2026-11-13 19:46:41 - duracion total 1 h 03 min
-**********************
-Windows PowerShell transcript end
-End time: 20261113194641
 **********************
