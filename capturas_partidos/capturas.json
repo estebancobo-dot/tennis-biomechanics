@@ -5,7 +5,7 @@
    "title": "Cópiala (Aprende su derecha, con su patrón típico)",
    "text_chars": 3260,
    "charts": 21,
-   "videos": 16,
+   "videos": 11,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
@@ -30,9 +30,9 @@
   },
   {
    "title": "Sus golpes (Videoteca y pista)",
-   "text_chars": 8417,
+   "text_chars": 8489,
    "charts": 1,
-   "videos": 16,
+   "videos": 11,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
@@ -57,16 +57,16 @@
   },
   {
    "title": "Análisis de golpe",
-   "text_chars": 6132,
-   "charts": 33,
-   "videos": 17,
+   "text_chars": 5400,
+   "charts": 29,
+   "videos": 12,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
-   "dashes": 9,
-   "ball_moments": 5,
+   "dashes": 7,
+   "ball_moments": 3,
    "feet_cycle": 9,
-   "ball_measures": 5,
+   "ball_measures": 3,
    "body_hip": 4,
    "body_base": 4,
    "body_trunk": 2,
@@ -85,9 +85,9 @@
   },
   {
    "title": "Comparar dos golpes",
-   "text_chars": 79947,
+   "text_chars": 81548,
    "charts": 2,
-   "videos": 16,
+   "videos": 11,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
@@ -104,7 +104,7 @@
    "intro": true,
    "external_links": 0,
    "tables": 0,
-   "sentences": 7,
+   "sentences": 6,
    "many_lines": 0,
    "tab": "comparar",
    "file": "pantalla_4_comparar.jpg",
@@ -112,9 +112,9 @@
   },
   {
    "title": "Conclusiones (Panel y Comparativas)",
-   "text_chars": 5653,
+   "text_chars": 5872,
    "charts": 22,
-   "videos": 16,
+   "videos": 11,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
@@ -131,7 +131,7 @@
    "intro": true,
    "external_links": 0,
    "tables": 1,
-   "sentences": 1,
+   "sentences": 3,
    "many_lines": 0,
    "tab": "conclusiones",
    "file": "pantalla_5_conclusiones.jpg",
@@ -139,13 +139,13 @@
   },
   {
    "title": "Tabla de golpes (Explorador)",
-   "text_chars": 5505,
+   "text_chars": 5504,
    "charts": 0,
-   "videos": 16,
+   "videos": 11,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
-   "dashes": 20,
+   "dashes": 21,
    "ball_moments": 0,
    "feet_cycle": 0,
    "ball_measures": 0,
@@ -168,7 +168,7 @@
    "title": "Vista lateral (entreno)",
    "text_chars": 7620,
    "charts": 0,
-   "videos": 16,
+   "videos": 11,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
@@ -195,7 +195,7 @@
    "title": "Fiabilidad de las medidas",
    "text_chars": 2436,
    "charts": 0,
-   "videos": 16,
+   "videos": 11,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
@@ -222,7 +222,7 @@
    "title": "Datos del análisis",
    "text_chars": 2805,
    "charts": 0,
-   "videos": 16,
+   "videos": 11,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
@@ -325,7 +325,7 @@
  ],
  "learn": {
   "combinations": 2050,
-  "with_exact_strokes": 1294,
+  "with_exact_strokes": 1342,
   "checkpoints_checked": 184500,
   "failures": [],
   "rows_all": 90,
@@ -333,12 +333,12 @@
   "targeted_all": 54,
   "glossed_all": 76,
   "signature": 1,
-  "style": "Estilo de su derecha: preparación amplia (66 %) · apoyo variable (la más frecuente, abierto, en 36 %) · efecto liftado (de abajo arriba) (70 %).",
+  "style": "Estilo de su derecha: preparación amplia (66 %) · apoyo variable (la más frecuente, abierto, en 36 %) · efecto liftado (de abajo arriba) (68 %).",
   "example": {
    "exact": 0,
    "near": 3,
    "rows": 90,
-   "valued": 83,
+   "valued": 84,
    "bad": []
   }
  },
@@ -372,7 +372,7 @@
     "strings": true,
     "repeats": 0,
     "reason": "",
-    "reps": 346,
+    "reps": 349,
     "video": true,
     "height": 1253
    },
@@ -389,7 +389,7 @@
     "strings": true,
     "repeats": 0,
     "reason": "",
-    "reps": 277,
+    "reps": 280,
     "video": true,
     "height": 1387
    },
@@ -406,9 +406,9 @@
     "strings": true,
     "repeats": 0,
     "reason": "",
-    "reps": 300,
+    "reps": 303,
     "video": true,
-    "height": 1326
+    "height": 1401
    },
    {
     "phase": "acceleration",
@@ -416,16 +416,16 @@
     "valued": 3,
     "checked": 3,
     "drilled": 3,
-    "words": 90,
+    "words": 94,
     "focus_words": 17,
     "focus_body": false,
     "practice": true,
     "strings": true,
     "repeats": 0,
     "reason": "",
-    "reps": 298,
+    "reps": 301,
     "video": true,
-    "height": 1233
+    "height": 1212
    },
    {
     "phase": "impact",
@@ -440,9 +440,9 @@
     "strings": true,
     "repeats": 0,
     "reason": "",
-    "reps": 346,
+    "reps": 349,
     "video": true,
-    "height": 1477
+    "height": 1516
    },
    {
     "phase": "extension",
@@ -457,7 +457,7 @@
     "strings": true,
     "repeats": 0,
     "reason": "",
-    "reps": 346,
+    "reps": 349,
     "video": true,
     "height": 1536
    },
@@ -474,7 +474,7 @@
     "strings": true,
     "repeats": 0,
     "reason": "",
-    "reps": 299,
+    "reps": 301,
     "video": true,
     "height": 1176
    },
@@ -484,16 +484,16 @@
     "valued": 3,
     "checked": 3,
     "drilled": 3,
-    "words": 103,
+    "words": 112,
     "focus_words": 15,
     "focus_body": false,
     "practice": true,
     "strings": true,
     "repeats": 0,
     "reason": "",
-    "reps": 299,
+    "reps": 301,
     "video": true,
-    "height": 1084
+    "height": 1348
    },
    {
     "phase": "feet",
@@ -508,7 +508,7 @@
     "strings": false,
     "repeats": 0,
     "reason": "",
-    "reps": 301,
+    "reps": 304,
     "video": true,
     "height": 1202
    }
@@ -521,9 +521,15 @@
     ]
    },
    {
+    "phase": "loaded",
+    "why": [
+     "la lección mide 1401 px (más de pantalla y media)"
+    ]
+   },
+   {
     "phase": "impact",
     "why": [
-     "la lección mide 1477 px (más de pantalla y media)"
+     "la lección mide 1516 px (más de pantalla y media)"
     ]
    },
    {

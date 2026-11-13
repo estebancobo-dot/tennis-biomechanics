@@ -3,9 +3,9 @@
  "strokes": 25,
  "near": 13,
  "summary": {
-  "ok": 407,
-  "falta": 33,
-  "pocos datos": 97,
+  "ok": 411,
+  "falta": 28,
+  "pocos datos": 98,
   "aviso": 118
  },
  "items": [
@@ -2861,7 +2861,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»",
    "status": "ok",
-   "detail": "3105 caracteres de texto, 16 vídeos, 21 gráficos",
+   "detail": "3105 caracteres de texto, 15 vídeos, 21 gráficos",
    "file": "pantalla_1_aprende.jpg"
   },
   {
@@ -2925,7 +2925,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "2155 caracteres de texto, 16 vídeos, 0 gráficos",
+   "detail": "2158 caracteres de texto, 16 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -3226,10 +3226,10 @@
    "req": 5,
    "area": "Automático",
    "name": "Pruebas del código en este PC",
-   "status": "falta",
-   "detail": "código 1258cc2 (2026-11-13T05:20:12): 1176 bien, 1 fallan, 0 errores; fallan: tests/test_faults.py::test_every_contract_stops_an_empty_input_and_marks_a_poor_one[spotting-None-summary11-entrada.cobertura_baja]",
-   "passed": 1176,
-   "failed": 1
+   "status": "ok",
+   "detail": "código 446465f (2026-11-13T06:22:15): 1178 bien, 0 fallan, 0 errores",
+   "passed": 1178,
+   "failed": 0
   },
   {
    "req": 5,
@@ -3467,7 +3467,7 @@
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "51 carpetas, 38.3 GB en total (2026-11-13T06:12:03); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.9 GB"
+   "detail": "51 carpetas, 38.3 GB en total (2026-11-13T18:30:27); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.9 GB"
   },
   {
    "req": 5,
@@ -3516,7 +3516,7 @@
    "area": "Automático",
    "name": "Ninguna ventana vacía del análisis en la pantalla del PC",
    "status": "ok",
-   "detail": "ninguna consola nuestra entre las 5 ventanas visibles (2026-11-13 06:10:42)"
+   "detail": "ninguna consola nuestra entre las 5 ventanas visibles (2026-11-13 18:30:09)"
   },
   {
    "req": 5,
@@ -3530,14 +3530,14 @@
    "area": "Orquestador",
    "name": "Orquestador: ejecutor vivo cuando hay trabajo",
    "status": "ok",
-   "detail": "ejecutor vivo; 5 trabajos esperando; cola en pausa"
+   "detail": "ejecutor vivo; 0 trabajos esperando"
   },
   {
    "req": 5,
    "area": "Orquestador",
    "name": "Orquestador: espera hasta empezar cada trabajo",
    "status": "aviso",
-   "detail": "82 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 8 esperaron más de 5 min"
+   "detail": "88 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 8 esperaron más de 5 min"
   },
   {
    "req": 5,
@@ -3565,7 +3565,7 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar",
    "status": "ok",
-   "detail": "terminó el 2026-11-13 06:13:09 en 0 min: 118 vídeos de 118 golpes"
+   "detail": "terminó el 2026-11-13 18:32:22 en 0 min: 118 vídeos de 118 golpes"
   },
   {
    "req": 2,
@@ -3747,14 +3747,14 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-13_0129.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el fine (175.0 min): CPU 11/53/97 %, iGPU 0/27/100 %, RAM máx 11.4 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el view_clips (1.0 min): CPU 19/45/70 %, iGPU 0/0/0 %, RAM máx 9.1 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine_doubtful (7.2 min): CPU 21/50/77 %, iGPU 0/19/89 %, RAM máx 11.0 GB → uso medio: margen para repartir trabajo; elena-rybakina-jessica-pegula- court (4.0 min): CPU 23/54/93 %, iGPU 0/7/43 %, RAM máx 7.0 GB → uso medio: margen para repartir trabajo; 60.8 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa)"
+   "detail": "recursos_2026-11-13_0629.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el players (2.0 min): CPU 17/23/32 %, iGPU 77/86/98 %, RAM máx 6.6 GB → iGPU al límite; us-open-2026-r4-naomi-osaka-el identity (2.0 min): CPU 15/33/60 %, iGPU 0/22/91 %, RAM máx 6.6 GB → equipo infrautilizado: trabajo en serie (se puede repartir); us-open-2026-r4-naomi-osaka-el views (2.0 min): CPU 19/34/49 %, iGPU 0/42/75 %, RAM máx 6.8 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine (65.5 min): CPU 22/76/100 %, iGPU 0/29/100 %, RAM máx 18.7 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el view_clips (0.2 min): CPU 13/13/13 %, iGPU 0/0/0 %, RAM máx 6.1 GB → equipo infrautilizado: trabajo en serie (se puede repartir); us-open-2026-r4-naomi-osaka-el fine_doubtful (5.2 min): CPU 5/59/100 %, iGPU 0/27/100 %, RAM máx 15.0 GB → uso medio: margen para repartir trabajo; 333.6 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa)"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
-   "status": "aviso",
-   "detail": "petición del 13-11 05:24, empezó a los 45.7 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
+   "status": "ok",
+   "detail": "petición del 13-11 06:18, empezó a los 0.9 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
   },
   {
    "req": 1,
@@ -3879,8 +3879,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe",
-   "status": "falta",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código 1258cc2 (2026-11-13T05:20:12): 1176 bien, 1 fallan, 0 errores; fallan: tests/test_faults.py::test_every_contract_)"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok"
   },
   {
    "req": 11,
@@ -3928,8 +3928,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML",
-   "status": "falta",
-   "detail": "3 comprobaciones: 1 falta, 1 pocos datos, 1 ok; la peor: «Pruebas del código en este PC» (código 1258cc2 (2026-11-13T05:20:12): 1176 bien, 1 fallan, 0 errores; fallan: tests/test_faults.py::test_every_contract_)"
+   "status": "pocos datos",
+   "detail": "3 comprobaciones: 1 pocos datos, 2 ok; la peor: «Tiempo desde cero» (ninguna ejecución desde cero de 20 min de vídeo o más (prueba app_nuevo o poc del PC))"
   },
   {
    "req": 11,
@@ -4145,8 +4145,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#51 El código de la prueba es el de los casos reales",
-   "status": "falta",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código 1258cc2 (2026-11-13T05:20:12): 1176 bien, 1 fallan, 0 errores; fallan: tests/test_faults.py::test_every_contract_)"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -4573,7 +4573,7 @@
    "area": "Peticiones",
    "name": "#119 Automatizar todo el ciclo en el PC: el usuario no lanza pruebas ni avisa",
    "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (82 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 8 esperaron más de 5 min)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (88 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 8 esperaron más de 5 min)"
   },
   {
    "req": 11,
@@ -5378,7 +5378,7 @@
    "area": "Peticiones",
    "name": "#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min",
    "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 2 aviso, 1 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (82 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 8 esperaron más de 5 min)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (88 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 8 esperaron más de 5 min)"
   },
   {
    "req": 11,
@@ -5405,8 +5405,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código",
-   "status": "falta",
-   "detail": "2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código 1258cc2 (2026-11-13T05:20:12): 1176 bien, 1 fallan, 0 errores; fallan: tests/test_faults.py::test_every_contract_)"
+   "status": "ok",
+   "detail": "2 comprobaciones: 2 ok"
   },
   {
    "req": 11,
@@ -5441,7 +5441,7 @@
    "area": "Peticiones",
    "name": "#246 Un único orquestador: mismo código y misma fuente de datos para la aplicación y el chat; monitorizar, pausar, ",
    "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (82 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 8 esperaron más de 5 min)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (88 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 8 esperaron más de 5 min)"
   },
   {
    "req": 11,
@@ -5594,8 +5594,8 @@
    "req": 5,
    "area": "Automático",
    "name": "Comprobaciones que saben fallar",
-   "status": "aviso",
-   "detail": "sin el registro de las pruebas en este PC (comprobaciones_pruebas/rec_*.json)"
+   "status": "ok",
+   "detail": "484 de 561 tipos de comprobación con una prueba que las hace fallar; 59 sin ninguna prueba y 18 que nunca fallan en las pruebas; de las pruebas principales de la Base: 0"
   },
   {
    "req": 12,
