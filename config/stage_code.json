@@ -1,7 +1,7 @@
 {
  "probe": {
   "version": "2",
-  "hash": "864bf8a69f434e9d",
+  "hash": "5fb8e401e3241db4",
   "modules": [
    "io.video",
    "pipeline"
@@ -9,9 +9,10 @@
  },
  "scenes": {
   "version": "3",
-  "hash": "6f0bb291a2a83204",
+  "hash": "9a3bd80e77a2bfdd",
   "modules": [
    "config",
+   "faults",
    "io.video",
    "pipeline",
    "scenes"
@@ -19,7 +20,7 @@
  },
  "audio": {
   "version": "2",
-  "hash": "aea108db669eb2dc",
+  "hash": "ea97558e875cad70",
   "modules": [
    "impacts",
    "io.video",
@@ -28,7 +29,7 @@
  },
  "players": {
   "version": "5",
-  "hash": "d776063b5f25ef42",
+  "hash": "02b234e4515d3027",
   "modules": [
    "io.video",
    "pipeline",
@@ -38,10 +39,11 @@
  },
  "identity": {
   "version": "13",
-  "hash": "9dae5dfc6f32d54a",
+  "hash": "885ece83fab8b0ee",
   "modules": [
    "clothes",
    "court_metrics",
+   "faults",
    "identity",
    "io.video",
    "kinematics",
@@ -52,12 +54,13 @@
  },
  "spotting": {
   "version": "2",
-  "hash": "e4eaf8891628fe1b",
+  "hash": "8cbc55464bae8d05",
   "modules": [
    "ball",
    "ball_features",
    "config",
    "court_metrics",
+   "faults",
    "impacts",
    "kinematics",
    "pipeline",
@@ -68,7 +71,7 @@
  },
  "candidates": {
   "version": "16",
-  "hash": "39ab750f946fc032",
+  "hash": "785296433d471901",
   "modules": [
    "court_metrics",
    "identity",
@@ -83,10 +86,11 @@
  },
  "views": {
   "version": "6",
-  "hash": "d1184acd9bc8dd60",
+  "hash": "619fdffc9545ad89",
   "modules": [
    "court",
    "court_metrics",
+   "faults",
    "io.video",
    "kinematics",
    "pipeline",
@@ -99,7 +103,7 @@
  },
  "views_link": {
   "version": "1",
-  "hash": "01a731e6ebca6676",
+  "hash": "47fb58917c398d91",
   "modules": [
    "pipeline",
    "views"
@@ -107,16 +111,18 @@
  },
  "court": {
   "version": "6",
-  "hash": "af8560709fe597ab",
+  "hash": "e83158ac1e7400b5",
   "modules": [
    "court",
+   "faults",
    "pipeline"
   ]
  },
  "score": {
   "version": "12",
-  "hash": "14afc4fd2489e10e",
+  "hash": "9c06577a81b312d7",
   "modules": [
+   "faults",
    "io.video",
    "pipeline",
    "scoreboard"

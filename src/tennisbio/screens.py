@@ -66,7 +66,7 @@ def _browser(p):
     tried = []
     try:
         return p.chromium.launch(**kw)                     # Playwright's own Chromium
-    except Exception as e:  # noqa: BLE001 — not installed: the next ones
+    except Exception as e:  # esperado: not installed: the next browser is tried (none at all raises)
         tried.append(f"Chromium de Playwright: {str(e).splitlines()[0][:120]}")
     exes = [os.environ.get("TENNISBIO_BROWSER", "")]
     if sys.platform == "win32":
@@ -77,7 +77,7 @@ def _browser(p):
         if exe and Path(exe).exists():
             try:
                 return p.chromium.launch(executable_path=exe, **kw)
-            except Exception as e:  # noqa: BLE001
+            except Exception as e:  # esperado: the next browser is tried
                 tried.append(f"{exe}: {str(e).splitlines()[0]}")
     raise RuntimeError("no hay navegador para las capturas (se instala con `uv run playwright install chromium`)"
                        + (": " + " | ".join(tried) if tried else ""))
@@ -114,7 +114,7 @@ def _test_plays(pg) -> list[dict]:
             out.append({"name": name, "present": True, "plays": bool(t1 != t0 and not paused), "mode": mode, "play_error": err})
             if tab == "comparar" and not paused:
                 btn.click()
-        except Exception as e:                    # a broken button is a finding, never a crash
+        except Exception as e:  # esperado: a broken button is a finding of its check, written in it
             out.append({"name": name, "present": True, "plays": False, "error": str(e)[:120]})
     return out
 
@@ -170,20 +170,20 @@ def capture(report_html: Path, dest: Path, wait_ms: int = 2500) -> Path:
         try:
             from .learn_check import check_page
             meta["learn"] = check_page(pg)
-        except Exception as e:                    # a broken screen is a finding, never a crash
+        except Exception as e:  # esperado: a broken screen is a finding, written in its check
             meta["learn"] = {"error": str(e)[:300]}
         # the entry screen and every screen against the definitive design (first screen, width, names)
         try:
             from .learn_check import check_entry
             meta["entry"] = check_entry(pg)
-        except Exception as e:
+        except Exception as e:  # esperado: a broken screen is a finding, written in its check
             meta["entry"] = {"error": str(e)[:300]}
         # «La lección»: each phase, video first and at most 3 keys with value, drill and check
         try:
             from .learn_check import check_lesson
             pg.emulate_media(reduced_motion="no-preference")
             meta["lesson"] = check_lesson(pg)
-        except Exception as e:
+        except Exception as e:  # esperado: a broken screen is a finding, written in its check
             meta["lesson"] = {"error": str(e)[:300]}
         b.close()
     out = dest / "capturas.json"

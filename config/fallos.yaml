@@ -1,0 +1,498 @@
+# Catálogo de modos de fallo (#265, aprobado por el usuario el 13-11). Cada sitio del código que captura un error
+# lanza uno de estos códigos con tennisbio.faults.fault(código, detalle); el nivel decide la reacción, no quien
+# escribe esa línea. tests/test_faults.py comprueba que cada código usado está aquí, que cada entrada se usa en el
+# código y que su prueba existe.
+#
+# Niveles:
+#   C0 crítico      el resultado sería falso: se para el partido, no se publica nada, el trabajo falla con su motivo
+#   C1 degradante   vale pero es peor, y se puede medir: sigue, marcado en el manifiesto y en el informe; un análisis
+#                   completo NO se acepta con ninguno («Fallos por niveles» en la auditoría)
+#   C2 local        falla una unidad (ventana, golpe, toma, fotograma): se aísla y se registra; por encima de su
+#                   presupuesto (fracción de las unidades) sube a su `escala_a`
+#   C3 transitorio  pasajero (iGPU perdida, fichero bloqueado, red): reintento limitado (`intentos`, `espera_s`) o la
+#                   etapa se repite; agotado, sube a su `escala_a`
+#   C4 informativo  cosmético o sin efecto en el resultado: solo se registra
+#
+# Campos: nivel, donde (módulo), efecto, deteccion, reaccion, prueba (tests/<fichero>.py::<función>) y, si aplica,
+# presupuesto (fracción), total_en (clave del resumen de la etapa con el número de unidades), escala_a, intentos,
+# espera_s.
+
+fallos:
+  # ------------------------------------------------------------------ C0: el partido se para
+  etapa.sin_salida:
+    nivel: C0
+    donde: contracts.check
+    efecto: "una etapa termina sin dejar una de las salidas que declara: lo que dependa de ella leería un vacío"
+    deteccion: "contrato general al terminar cada etapa"
+    reaccion: "para el partido; la etapa no queda hecha"
+    prueba: tests/test_faults.py::test_a_stage_that_leaves_no_output_stops_the_match
+  bola.vacia:
+    nivel: C0
+    donde: stages.st_spotting
+    efecto: "el detector de golpes se entrenó con la bola y sin ella encuentra otros golpes (R17)"
+    deteccion: "la bola del partido cubre menos del 25 % del juego"
+    reaccion: "para el partido"
+    prueba: tests/test_spotting_stage.py::test_spotting_stops_when_the_match_ball_is_missing
+  modelo.bola_falta:
+    nivel: C0
+    donde: stages._ball_tracker, stages._fine
+    efecto: "sin el modelo de la bola los golpes no se deciden con la bola (docs/validacion.md: F1 0,3 sin ella)"
+    deteccion: "models/balltrack.onnx no existe"
+    reaccion: "para el partido; reinstalar (1_instalar.bat)"
+    prueba: tests/test_faults.py::test_the_fine_pass_stops_without_the_ball_model
+  modelo.detector_falta:
+    nivel: C0
+    donde: stages.st_spotting
+    efecto: "el detector de golpes elegido no está: no hay candidatos del detector"
+    deteccion: "el fichero del detector no existe"
+    reaccion: "para el partido"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+  modelo.detector_clases:
+    nivel: C0
+    donde: stages.st_spotting
+    efecto: "el detector tiene otras clases que el proceso: sus salidas se leerían mal"
+    deteccion: "las clases del modelo no son spotting.CLASSES"
+    reaccion: "para el partido; volver a entrenar"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+  ventanas.demasiadas:
+    nivel: C0
+    donde: stages._fine (presupuesto de ventana.fallida)
+    efecto: "demasiados golpes candidatos sin analizar: el partido no tendría sus golpes"
+    deteccion: "más del presupuesto de ventana.fallida"
+    reaccion: "para el partido"
+    prueba: tests/test_faults.py::test_a_window_budget_over_its_share_stops_the_match
+  presupuesto.superado:
+    nivel: C0
+    donde: faults.check_budget (un C2 sin escala_a propia)
+    efecto: "una unidad falla más de lo permitido"
+    deteccion: "fallos / unidades > presupuesto"
+    reaccion: "para el partido"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+  reintentos.agotados:
+    nivel: C0
+    donde: faults.retry (un C3 sin escala_a propia)
+    efecto: "un fallo pasajero que no pasa"
+    deteccion: "los intentos se agotan"
+    reaccion: "para el partido"
+    prueba: tests/test_faults.py::test_a_transient_fault_is_retried_and_then_escalated
+
+  entrada.ilegible:
+    nivel: C0
+    donde: view_stages._read y otras lecturas de salidas de etapas de las que se depende
+    efecto: "una etapa leería un vacío en vez de la salida de la que depende"
+    deteccion: "falta o JSON dañado"
+    reaccion: "para el partido"
+    prueba: tests/test_faults.py::test_a_missing_input_of_a_stage_stops_it
+
+  # ------------------------------------------------------------------ C1: sigue, marcado; el completo no se acepta
+  bola.cobertura_baja:
+    nivel: C1
+    donde: stages.st_spotting
+    efecto: "el detector tiene la bola en menos juego del que se validó"
+    deteccion: "la bola del partido cubre menos del 90 % del juego"
+    reaccion: "sigue marcado"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+  modelo.transnet:
+    nivel: C1
+    donde: stages.st_scenes
+    efecto: "cortes de plano solo con histogramas de color (peores en fundidos)"
+    deteccion: "TransNetV2 falta, no carga o falla al ejecutarse"
+    reaccion: "sigue con histogramas, marcado"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+  modelo.ocr_falta:
+    nivel: C1
+    donde: stages.st_score
+    efecto: "sin marcador: identidad sin el icono de saque, sin presión ni puntos"
+    deteccion: "rapidocr no está instalado"
+    reaccion: "sigue sin marcador, marcado"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+  modelo.personas_tomas:
+    nivel: C1
+    donde: stages.st_views
+    efecto: "tomas de otras cámaras sin el tamaño de las personas: menos confianza al enlazarlas"
+    deteccion: "el detector de personas no carga"
+    reaccion: "sigue, marcado"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+  modelo.raqueta_falta:
+    nivel: C1
+    donde: stages._fine
+    efecto: "sin orientación de las cuerdas (requisito 4 del usuario)"
+    deteccion: "models/racketpose.onnx no existe"
+    reaccion: "sigue sin cuerdas, marcado"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+  modelo.mano3d_falta:
+    nivel: C1
+    donde: stages._fine
+    efecto: "cuerdas y rotaciones sin 3D"
+    deteccion: "models/rtmw3d-x.onnx no existe"
+    reaccion: "sigue en 2D, marcado"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+  modelo.tronco3d_falta:
+    nivel: C1
+    donde: stages (pasada fina, giro del tronco)
+    efecto: "giro 3D del tronco con RTMW3D en vez de MotionAGFormer (el adoptado el 03-11)"
+    deteccion: "el modelo de MotionAGFormer no está"
+    reaccion: "sigue con la lectura anterior, marcado"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+  identidad.ropa_sin_video:
+    nivel: C1
+    donde: stages (ropa de la identidad)
+    efecto: "la ropa se mira en la caja entera en vez del recorte: identidad menos segura"
+    deteccion: "el vídeo no se puede leer en la etapa de identidad"
+    reaccion: "sigue, marcado"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+
+  modelo.pista_tcd:
+    nivel: C1
+    donde: stages.st_court
+    efecto: "pista solo por la búsqueda de líneas (91 % de puntos a 7 px frente a 95,6 %)"
+    deteccion: "el detector de 14 puntos falta o no carga"
+    reaccion: "sigue con las líneas, marcado"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+  modelo.raqueta_no_carga:
+    nivel: C1
+    donde: view_stages (cámara lenta)
+    efecto: "repeticiones a cámara lenta sin la raqueta"
+    deteccion: "el modelo de raqueta no carga"
+    reaccion: "sigue con el brazo, marcado"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+
+  registro.no_legible:
+    nivel: C1
+    donde: catalog.load_matches
+    efecto: "el registro de partidos (base de datos) no se lee: se usa config/matches.yaml"
+    deteccion: "excepción al leer el registro"
+    reaccion: "sigue con el catálogo, marcado"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+  registro.partido_omitido:
+    nivel: C1
+    donde: registry.matches
+    efecto: "un partido del registro queda fuera del análisis"
+    deteccion: "la ficha de su jugadora no carga"
+    reaccion: "sigue sin él, marcado"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+  exportacion.muchos_fallos:
+    nivel: C1
+    donde: export (presupuesto de video.exportado_fallido)
+    efecto: "muchos vídeos de golpes sin exportar"
+    deteccion: "más del presupuesto de video.exportado_fallido"
+    reaccion: "sigue, marcado"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+
+  partido.sin_video:
+    nivel: C1
+    donde: cli (run)
+    efecto: "un partido del registro sin analizar: su vídeo ya no está"
+    deteccion: "pipeline.MissingVideo"
+    reaccion: "se conservan sus resultados anteriores; marcado"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+
+  auditoria.dato_ilegible:
+    nivel: C1
+    donde: audit (cada comprobación)
+    efecto: "una comprobación de la auditoría no puede leer su dato: no se puede dar por buena"
+    deteccion: "fichero dañado o ilegible al comprobar"
+    reaccion: "la auditoría sigue; su «Fallos por niveles: auditoría» queda ✘"
+    prueba: tests/test_faults.py::test_an_audit_check_without_its_data_is_not_met
+
+  biblioteca.fichero_danado:
+    nivel: C1
+    donde: library.read_json
+    efecto: "un fichero de la biblioteca dañado (ficha del partido, índice de golpes)"
+    deteccion: "JSON ilegible"
+    reaccion: "se trata como si no estuviera; marcado"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+
+  # ------------------------------------------------------------------ C2: una unidad, con presupuesto
+  ventana.fallida:
+    nivel: C2
+    donde: stages._fine (y cada proceso de la pasada fina)
+    efecto: "los golpes candidatos de una ventana no se analizan (strokes_errores.json)"
+    deteccion: "excepción al analizar la ventana"
+    reaccion: "se aísla; por encima del 2 % de los candidatos, ventanas.demasiadas"
+    presupuesto: 0.02
+    escala_a: ventanas.demasiadas
+    prueba: tests/test_faults.py::test_a_window_budget_over_its_share_stops_the_match
+  golpe.medida:
+    nivel: C2
+    donde: stages (medidas de la jugadora lejana)
+    efecto: "una medida de un golpe no se calcula (queda «—»)"
+    deteccion: "excepción al medir"
+    reaccion: "se aísla; por encima del 10 % de los golpes confirmados, golpes.medidas_fallidas"
+    presupuesto: 0.10
+    total_en: confirmed
+    escala_a: golpes.medidas_fallidas
+    prueba: tests/test_faults.py::test_a_stage_budget_from_its_summary_escalates
+  golpes.medidas_fallidas:
+    nivel: C1
+    donde: pipeline.run_stage (presupuesto de golpe.medida)
+    efecto: "muchas medidas de golpes sin calcular"
+    deteccion: "más del presupuesto de golpe.medida"
+    reaccion: "sigue, marcado"
+    prueba: tests/test_faults.py::test_a_stage_budget_from_its_summary_escalates
+  golpe.giro3d:
+    nivel: C2
+    donde: stages (pasada fina, giro del tronco)
+    efecto: "un golpe sin el giro 3D del tronco (se queda la lectura anterior)"
+    deteccion: "excepción de MotionAGFormer en una ventana"
+    reaccion: "se aísla; por encima del 10 % de los golpes, golpes.giro3d_fallido"
+    presupuesto: 0.10
+    total_en: confirmed
+    escala_a: golpes.giro3d_fallido
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+  golpes.giro3d_fallido:
+    nivel: C1
+    donde: pipeline.run_stage (presupuesto de golpe.giro3d)
+    efecto: "muchos golpes sin el giro 3D del tronco"
+    deteccion: "más del presupuesto de golpe.giro3d"
+    reaccion: "sigue, marcado"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+  rival.sin_ficha:
+    nivel: C2
+    donde: stages (análisis de la rival)
+    efecto: "la rival sin ficha: diestra si matches.yaml no dice otra cosa; sus medidas se reflejarían mal si es zurda"
+    deteccion: "config/players/<rival>.yaml no existe"
+    reaccion: "sigue con la mano del registro, registrado"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+  fotograma.fallido:
+    nivel: C2
+    donde: stages (tomas de otras cámaras)
+    efecto: "un fotograma sin su medida (tamaño de las personas, inclinación de la cámara)"
+    deteccion: "excepción al medir ese fotograma"
+    reaccion: "se aísla"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+  fotograma.colgado:
+    nivel: C2
+    donde: stages.grab_frame
+    efecto: "un fotograma que ffmpeg no devuelve en 120 s: como si no estuviera"
+    deteccion: "tiempo agotado"
+    reaccion: "se aísla"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+
+  ventana.sin_sonido:
+    nivel: C2
+    donde: clip_pipeline
+    efecto: "una ventana sin sonido: el impacto sin el audio"
+    deteccion: "ffmpeg no extrae el sonido en 600 s"
+    reaccion: "se aísla"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+  pista.fotograma_tcd:
+    nivel: C2
+    donde: court._tcd_fit
+    efecto: "un fotograma con la pista por las líneas en vez del detector"
+    deteccion: "excepción del detector en ese fotograma"
+    reaccion: "se aísla"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+  video.lectura_cortada:
+    nivel: C2
+    donde: io.video (lectura por tiempos)
+    efecto: "una lectura termina antes de su último fotograma pedido"
+    deteccion: "menos fotogramas leídos que pedidos"
+    reaccion: "se aísla y se registra cuántos"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+  toma.sin_recorte:
+    nivel: C2
+    donde: view_stages.st_view_clips
+    efecto: "una toma de otra cámara sin su recorte de vídeo"
+    deteccion: "excepción al recortar"
+    reaccion: "se aísla"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+  golpe.camara_lenta:
+    nivel: C2
+    donde: view_stages.st_slowmo_fine
+    efecto: "un golpe sin medir en su repetición a cámara lenta"
+    deteccion: "excepción al medirlo"
+    reaccion: "se aísla"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+
+  video.exportado_fallido:
+    nivel: C2
+    donde: export
+    efecto: "un vídeo de golpe, típico o comparación sin exportar"
+    deteccion: "excepción al codificar"
+    reaccion: "se aísla; por encima del 5 % de los golpes, exportacion.muchos_fallos"
+    presupuesto: 0.05
+    escala_a: exportacion.muchos_fallos
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+  informe.frase:
+    nivel: C2
+    donde: explain
+    efecto: "una frase del informe sin escribir"
+    deteccion: "excepción al componerla"
+    reaccion: "se aísla"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+
+  app.dato_ilegible:
+    nivel: C2
+    donde: app (tarjetas, índice, motor)
+    efecto: "una tarjeta o pantalla de la aplicación sin uno de sus datos"
+    deteccion: "fichero del partido ilegible"
+    reaccion: "se aísla; la pantalla sigue"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+
+  # ------------------------------------------------------------------ C3: pasajero
+  gpu.perdida:
+    nivel: C3
+    donde: stages._fine
+    efecto: "la iGPU se pierde (DirectML): los golpes de esas ventanas quedan sin analizar"
+    deteccion: "mensaje de dispositivo perdido (pose.estimator.DEVICE_LOST)"
+    reaccion: "la etapa queda incompleta y se repite en la siguiente ejecución, desde sus cachés"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+  procesos.paralelos_caidos:
+    nivel: C3
+    donde: stages._fine_parallel
+    efecto: "un proceso de la pasada fina muere: sus ventanas se hacen después una a una (mismo resultado, más lento)"
+    deteccion: "excepción del grupo de procesos"
+    reaccion: "las ventanas que faltan, una a una"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+  bola_paralelo.fallo:
+    nivel: C3
+    donde: stages._fine (bola por adelantado en la CPU)
+    efecto: "la bola de unas ventanas no se calculó por adelantado: se hace en la iGPU (mismo resultado)"
+    deteccion: "errores del hilo de la bola"
+    reaccion: "se rehace en la iGPU"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+
+  gpu.a_cpu:
+    nivel: C3
+    donde: pose.estimator
+    efecto: "la iGPU no responde tras recrear la sesión: se sigue en la CPU (mismo modelo, más lento)"
+    deteccion: "segundo fallo de DirectML"
+    reaccion: "sigue en la CPU"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+
+  cola.bloqueada:
+    nivel: C3
+    donde: orchestrator (latido y control del trabajo)
+    efecto: "la base de datos de la cola bloqueada un momento"
+    deteccion: "sqlite ocupada"
+    reaccion: "se vuelve a leer en la siguiente vuelta"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+  ejecutor.sin_sucesor:
+    nivel: C3
+    donde: orchestrator
+    efecto: "el ejecutor con código nuevo no arranca al siguiente"
+    deteccion: "excepción al arrancarlo"
+    reaccion: "el ciclo del PC lo arranca"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+  ejecutor.no_arranca:
+    nivel: C3
+    donde: app.window
+    efecto: "la ventana no puede arrancar el ejecutor único"
+    deteccion: "excepción al arrancarlo"
+    reaccion: "el ciclo del PC lo arranca"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+  indice.sin_wal:
+    nivel: C3
+    donde: app.db
+    efecto: "el índice sin modo WAL: un escritor puede esperar al otro"
+    deteccion: "sqlite no acepta el modo"
+    reaccion: "sigue con la espera de 30 s"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+
+  # ------------------------------------------------------------------ C4: solo se registra
+  escenas.principal_por_color:
+    nivel: C4
+    donde: stages.st_scenes
+    efecto: "la cámara principal se reconoce por el color (no se ven las líneas desde el fondo); el juego sigue exigiendo la pista"
+    deteccion: "main_rule colour"
+    reaccion: "registrado"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+  cache.danada:
+    nivel: C4
+    donde: pipeline.load_npz
+    efecto: "una caché dañada: se borra y se calcula de nuevo (mismo resultado)"
+    deteccion: "no se puede leer"
+    reaccion: "se calcula de nuevo"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+  manifiesto.danado:
+    nivel: C4
+    donde: pipeline.load_manifest
+    efecto: "el manifiesto dañado se aparta: el partido se calcula de nuevo (mismo resultado, horas)"
+    deteccion: "JSON ilegible"
+    reaccion: "se aparta a manifest.damaged.json y se empieza de nuevo"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+  alarma_tiempo.fallo:
+    nivel: C4
+    donde: pipeline.Context.progress
+    efecto: "la alarma de tiempo de una etapa no se calcula"
+    deteccion: "excepción en tennisbio.budget"
+    reaccion: "registrado"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+  progreso.no_escrito:
+    nivel: C4
+    donde: pipeline.Context.progress
+    efecto: "progreso.json sin actualizar (la aplicación y el ciclo lo leen)"
+    deteccion: "OSError al escribir"
+    reaccion: "registrado"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+  ritmo.no_guardado:
+    nivel: C4
+    donde: pipeline.run (ritmos.json)
+    efecto: "el ritmo de una etapa no se guarda para las previsiones"
+    deteccion: "OSError o JSON ilegible"
+    reaccion: "registrado"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+  modelo.yolo_onnx:
+    nivel: C4
+    donde: pose.backend, pose.yolo
+    efecto: "YOLO en PyTorch en vez de ONNX (el mismo modelo, más lento)"
+    deteccion: "la exportación o la carga del ONNX falla"
+    reaccion: "sigue en PyTorch"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+  modelo.fp16:
+    nivel: C4
+    donde: pose.backend
+    efecto: "el modelo de pose en precisión completa en vez de media (mismos puntos, < 1 px)"
+    deteccion: "no se puede preparar la copia fp16"
+    reaccion: "sigue con el normal"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+  fotogramas_clave.sin_lista:
+    nivel: C4
+    donde: io.video.keyframe_times
+    efecto: "sin la lista de fotogramas clave: se leen los exactos (mismos fotogramas, más lento)"
+    deteccion: "ffprobe no responde"
+    reaccion: "sigue con los exactos"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+  lectura.opcional_danada:
+    nivel: C4
+    donde: report, catalog, stage_times, budget, check_coverage
+    efecto: "un fichero auxiliar dañado se deja fuera (resumen de la auditoría en el informe, ficha guardada, ritmos, tiempos)"
+    deteccion: "JSON ilegible"
+    reaccion: "registrado"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+  catalogo.no_legible:
+    nivel: C4
+    donde: catalog.find_match
+    efecto: "una prueba sin su entrada del catálogo (el análisis lee el catálogo con load_matches, que falla)"
+    deteccion: "excepción al leer el catálogo"
+    reaccion: "registrado"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+  ejecutor.no_oculto:
+    nivel: C4
+    donde: orchestrator
+    efecto: "el ejecutor sigue en su ventana en vez de oculto"
+    deteccion: "no pudo arrancarse oculto"
+    reaccion: "sigue trabajando"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+  cola.no_apuntado:
+    nivel: C4
+    donde: orchestrator
+    efecto: "el final del ejecutor sin apuntar en la cola"
+    deteccion: "excepción al apuntarlo"
+    reaccion: "el bloqueo se suelta igual"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+  biblioteca.indice_rehecho:
+    nivel: C4
+    donde: library
+    efecto: "el índice de la biblioteca dañado se rehace desde las carpetas (mismo contenido)"
+    deteccion: "sqlite.DatabaseError"
+    reaccion: "se rehace"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level
+  app.cosmetico:
+    nivel: C4
+    donde: app.window
+    efecto: "el icono junto al reloj o su texto"
+    deteccion: "excepción de la bandeja"
+    reaccion: "registrado"
+    prueba: tests/test_faults.py::test_every_catalogued_fault_reacts_as_its_level

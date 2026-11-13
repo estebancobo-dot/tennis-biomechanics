@@ -106,7 +106,7 @@ def devices(run=_ps) -> list[dict]:
         return []
     try:
         out = json.loads(run(_LIST, 60) or "[]")
-    except (OSError, ValueError, subprocess.SubprocessError):
+    except (OSError, ValueError, subprocess.SubprocessError):  # esperado: no phone found
         return []
     return [{"name": d.get("name") or "Móvil", "path": d.get("path"), "storages": d.get("storages") or []}
             for d in (out if isinstance(out, list) else [out]) if d and d.get("path")]
@@ -130,7 +130,7 @@ def send(folder: Path, device: dict, run=_ps, stamp: str | None = None) -> dict:
     try:
         r = json.loads(run(send_script(folder, device["path"], new, page, trash, expected, timeout_s, folder.name),
                            2 * timeout_s + 120) or "{}")
-    except (OSError, ValueError, subprocess.SubprocessError) as e:
+    except (OSError, ValueError, subprocess.SubprocessError) as e:  # esperado: returned as not sent, with why
         r = {"ok": False, "why": f"{type(e).__name__}: {e}"[:200]}
     finally:
         shutil.rmtree(trash, ignore_errors=True)          # the older copies, once off the phone

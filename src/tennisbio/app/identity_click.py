@@ -75,7 +75,7 @@ def cached(match_dir: Path) -> dict | None:
         meta = json.loads((d / PHOTOS / META).read_text(encoding="utf-8"))
         if meta.get("key") == _identity_key(d) and all(Path(p["path"]).exists() for p in meta.get("photos", [])):
             return meta
-    except (OSError, ValueError):
+    except (OSError, ValueError):  # esperado: a damaged or old photo set is made again
         pass
     return None
 

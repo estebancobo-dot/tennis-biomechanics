@@ -14,6 +14,7 @@ from .. import pipeline
 from . import jobs, notify, storage
 from .db import STROKE_ES
 from .engine import MAIN_STAGES, USABLE
+from ..faults import fault
 
 STAGE_ES = {"probe": "Lectura", "scenes": "Planos", "audio": "Audio", "court": "Pista", "players": "Jugadoras",
             "score": "Marcador", "identity": "Identidad", "candidates": "Candidatos", "fine": "Pasada fina"}
@@ -28,7 +29,7 @@ def _version() -> str:
     try:
         from importlib.metadata import version
         v = version("tennisbio")
-    except Exception:                     # noqa: BLE001 — running from the source tree
+    except Exception:  # esperado: running from the source tree: version 0
         v = "0"
     try:
         from ..config import ROOT
@@ -36,7 +37,7 @@ def _version() -> str:
         ref = ROOT / ".git" / head[5:] if head.startswith("ref: ") else None
         h = (ref.read_text().strip() if ref and ref.exists() else head)[:7]
         return f"{v} · {h}"
-    except OSError:
+    except OSError:  # esperado: no git: the version alone
         return v
 
 
@@ -98,7 +99,7 @@ def _progress(app) -> dict | None:
             d = json.loads(p.read_text(encoding="utf-8"))
             if time.time() - time.mktime(time.strptime(d.get("hora", ""), "%Y-%m-%d %H:%M:%S")) < 3600:
                 return d
-        except (OSError, ValueError, OverflowError):
+        except (OSError, ValueError, OverflowError):  # esperado: not a recent one: the next
             continue
     return None
 
@@ -132,7 +133,8 @@ def _match_rows(app, running: dict | None, prog: dict | None) -> list[dict]:
             from .cards import card
             try:
                 cd = card(m, d, app.paths.data, names.get(m["player"], ""))
-            except Exception:  # noqa: BLE001 — a card that cannot be made never hides the match
+            except Exception as e:  # noqa: BLE001 — a card that cannot be made never hides the match
+                fault("app.dato_ilegible", str(m.get('id', '')), exc=e)
                 cd = None
         out.append({
             "id": m["id"], "label": match_label(m), "state": m["state"], "note": m["note"] or "",
@@ -224,7 +226,7 @@ def storage_info(app) -> dict:
     try:
         du = shutil.disk_usage(out if out.exists() else out.anchor or ".")
         total, free = du.total, storage.free_bytes(out)
-    except OSError:
+    except OSError:  # esperado: unknown disk: 0 shown
         total, free = 0, 0
     regen = storage.regenerable(out)
     reg_set = {str(p) for p in regen}

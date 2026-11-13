@@ -17,6 +17,7 @@ from pathlib import Path
 from . import backup, jobs, mobile, notify, phone, state, storage, videos
 from .core import App
 from .db import STROKE_ES
+from ..faults import fault
 
 UI = Path(__file__).with_name("ui.html")
 VIDEO_TYPES = ("Vídeos (*.mp4;*.mkv;*.ts;*.mov;*.avi;*.webm)", "Todos los ficheros (*.*)")
@@ -155,7 +156,7 @@ class Api:
             return {**st, "photos": [], **({"check": ck} if ck and ck.get("distinguishable") is False else {})}
         try:
             ps = ic.photo_set(d, Path(video))      # 09-11: checked photos (by clothes, or by ends when alike)
-        except Exception as e:  # noqa: BLE001 — the screen says why instead of failing
+        except Exception as e:  # esperado: the screen says why
             return {**st, "photos": [], "error": f"{type(e).__name__}: {e}"[:200]}
         return {**st, "by": ps["by"], "check": ps["check"],
                 "photos": [{"cluster": p["cluster"], "t": p["t"], "src": "data:image/jpeg;base64,"
@@ -177,7 +178,7 @@ class Api:
                 d = dir_of(Path((cfg.get("paths") or {}).get("output") or "output"), m, cfg)
                 if mf.at(d, "identity.json").exists():
                     return d
-        except Exception:  # noqa: BLE001 — the index's folder still works
+        except Exception:  # esperado: the index's folder still works
             pass
         return self._app.engine.dir(match_id)
 
@@ -248,7 +249,7 @@ class Api:
                                    f"Copia de seguridad hecha en {root}: {res['copied']} ficheros nuevos o cambiados"
                                    f" ({storage._gb(res['bytes'])} GB). " + ("Nada se ha borrado." if not res["errors"]
                                                                              else f"{len(res['errors'])} ficheros no se pudieron copiar."))
-            except Exception as e:               # noqa: BLE001 — it does not fit, the drive was pulled out…
+            except Exception as e:  # esperado: said to the user in a notice
                 self._app.db.notice("backup", "aviso", f"La copia de seguridad no se hizo: {e}")
             finally:
                 self.backup_progress = None
@@ -293,7 +294,7 @@ class Api:
                 self._app.db.notice(f"movil_{aid}", "ok" if not bad and (not sent or sent["ok"]) else "aviso",
                                    f"Copia para el móvil lista: {res['with_video']} golpes con vídeo, {storage._gb(res['bytes'])} GB. "
                                    + where + (f"; {bad} golpes sin vídeo (su clip no está o no se pudo convertir)." if bad else "."))
-            except Exception as e:               # noqa: BLE001 — no space, no analysis yet, ffmpeg missing…
+            except Exception as e:  # esperado: said to the user in a notice
                 self._app.db.notice(f"movil_{aid}", "aviso", f"La copia para el móvil no se hizo. {e}")
             finally:
                 self.mobile_progress = None
@@ -345,6 +346,7 @@ def worker(cfg: dict, stop: threading.Event, idle_s: float = 30.0, tray=None, lo
                 if r == "arrancado" and log:
                     log("cola: ejecutor único arrancado")
             except Exception as e:  # noqa: BLE001 — the window goes on; the cycle starts the worker too
+                fault("ejecutor.no_arranca", exc=e)
                 if log:
                     log(f"cola: no se pudo arrancar el ejecutor único ({type(e).__name__}: {e})")
             notify.send_pending(app.db)
@@ -418,7 +420,7 @@ def tray_image(size: int = 64):
     d.rounded_rectangle([2, 2, size - 3, size - 3], radius=size // 5, fill=(212, 240, 58, 255))
     try:
         f = ImageFont.truetype("arialbd.ttf", size // 2 - 4)
-    except OSError:
+    except OSError:  # esperado: no Arial: the default font (the icon only)
         f = ImageFont.load_default()
     d.text((size / 2, size / 2), "TB", fill=(17, 17, 17, 255), font=f, anchor="mm")
     return im
@@ -445,8 +447,8 @@ class Tray:
     def update(self, text: str):
         try:
             self.icon.title = text
-        except Exception:                         # noqa: BLE001 — the icon is cosmetic: never stop the queue
-            pass
+        except Exception as e:  # noqa: BLE001 — the icon is cosmetic: never stop the queue
+            fault("app.cosmetico", "título del icono", exc=e)
 
     def open(self, *_):
         self.win.show()
@@ -478,7 +480,7 @@ def already_open(app) -> bool:
     f = app.paths.data / "ventana.pid"
     try:
         pid = int(f.read_text().strip())
-    except (OSError, ValueError):
+    except (OSError, ValueError):  # esperado: no pid: no window running
         pid = 0
     if pid and pid != os.getpid() and jobs._alive(pid):
         return True
@@ -502,14 +504,14 @@ class Watch:
             f.parent.mkdir(parents=True, exist_ok=True)
             if f.exists() and f.stat().st_size > 2e6:          # bounded: the last runs only
                 f.replace(f.with_suffix(".anterior.log"))
-        except OSError:
+        except OSError:  # esperado: the log is not rotated this time
             pass
 
     def log(self, msg: str):
         try:
             with self.lock, open(self.f, "a", encoding="utf-8") as fh:
                 fh.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')} (+{time.time() - self.t0:.1f} s) {msg}\n")
-        except OSError:
+        except OSError:  # esperado: only this line of the window's log is missing
             pass
 
     def wrap(self, api):
@@ -545,7 +547,7 @@ class Watch:
                 try:
                     with open(self.f, "a", encoding="utf-8") as fh:
                         faulthandler.dump_traceback(file=fh, all_threads=True)
-                except OSError:
+                except OSError:  # esperado: only the dump of the threads is missing
                     pass
 
 
@@ -564,7 +566,7 @@ def run(cfg: dict, with_queue: bool = True) -> int:
     watch.log("página escrita")
     try:
         import webview
-    except ImportError:
+    except ImportError:  # esperado: no pywebview: the browser fallback, said
         webview = None
     if webview is None:
         return fallback(app, page, "falta el motor de la ventana (pywebview)")
@@ -576,14 +578,15 @@ def run(cfg: dict, with_queue: bool = True) -> int:
         try:                                     # maximized from the start (24-10); F11 toggles full screen
             api._window = webview.create_window("Tennisbio", url=str(page), js_api=api, width=1360, height=900,
                                                min_size=(900, 600), maximized=True)
-        except TypeError:                        # an older pywebview without `maximized`
+        except TypeError:  # esperado: an older pywebview without maximized
             api._window = webview.create_window("Tennisbio", url=str(page), js_api=api, width=1360, height=900, min_size=(900, 600))
         tray = None
         try:
             tray = Tray(app, api._window, stop)
             api._window.events.closing += tray.on_closing
             tray.start()
-        except Exception as e:                   # noqa: BLE001 — without the icon, closing the window stops the queue
+        except Exception as e:  # noqa: BLE001 — without the icon, closing the window stops the queue
+            fault("app.cosmetico", "icono junto al reloj", exc=e)
             print(f"Sin icono junto al reloj: {e}")
         if with_queue:
             threading.Thread(target=worker, args=(cfg, stop), kwargs={"tray": tray, "log": watch.log}, name="cola",
@@ -591,7 +594,7 @@ def run(cfg: dict, with_queue: bool = True) -> int:
         watch.log("ventana abierta")
         webview.start()
         watch.log("ventana cerrada")
-    except Exception as e:                       # noqa: BLE001 — no WebView2 runtime, no display…
+    except Exception as e:  # esperado: the fallback page says why
         stop.set()
         watch.log(f"la ventana no arrancó: {type(e).__name__}: {e}")
         return fallback(app, page, f"la ventana no arrancó ({type(e).__name__}: {e})")
@@ -599,7 +602,7 @@ def run(cfg: dict, with_queue: bool = True) -> int:
         stop.set()
         try:
             (app.paths.data / "ventana.pid").unlink()
-        except OSError:
+        except OSError:  # esperado: no pid file left
             pass
     app.close()
     return 0

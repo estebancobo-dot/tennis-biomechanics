@@ -144,6 +144,10 @@ def test_every_fine_stage_uses_the_pool_and_gives_the_same_file(fake, monkeypatc
     monkeypatch.setattr(stages, "available_ram_gb", lambda: 20.0)
     monkeypatch.setattr(stages, "_fine_one", lambda ctx, p, g, *a: [{"match_time_s": c["t"], "stroke": "forehand",
                                                                      "who": c["target"]} for c in g])
+    # #265: without the ball model the fine pass stops (C0 modelo.bola_falta); here a stand-in that is never run
+    (tmp / "ball.onnx").write_bytes(b"")
+    monkeypatch.setattr(stages, "_fine_model_files", lambda ctx: (tmp / "ball.onnx", None, None, {}, []))
+    monkeypatch.setattr(stages, "_fine_models", lambda ctx: (None, None, None, {}, None, None))
     pools = []
     real = stages._fine_parallel
     monkeypatch.setattr(stages, "_fine_parallel", lambda *a: pools.append(a[3]) or real(*a))

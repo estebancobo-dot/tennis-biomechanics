@@ -58,7 +58,7 @@ def _state(r: dict):
         return None
     try:
         games = tuple((int(a), int(b)) for a, b in games)
-    except (TypeError, ValueError):
+    except (TypeError, ValueError):  # esperado: games that are not numbers: unknown
         return None
     if any(a < 0 or b < 0 or a > 7 or b > 7 for a, b in games[:-1]) or any(x > 13 for x in games[-1]):
         return None

@@ -70,7 +70,7 @@ def archive(d: Path, dest: Path, moves: list[str]) -> int:
         dst.parent.mkdir(parents=True, exist_ok=True)
         try:
             os.replace(src, dst)
-        except OSError:
+        except OSError:  # esperado: another drive: moved by copying
             shutil.move(str(src), str(dst))
         n += 1
     return n
@@ -85,7 +85,7 @@ def archive_root(d: Path, cfg: dict, out_root: Path, stamp: str) -> Path:
     if lib is not None:
         try:
             return Path(lib) / "archivo" / f"desde_cero_{stamp}" / d.relative_to(Path(lib).resolve())
-        except ValueError:
+        except ValueError:  # esperado: not in the library: the output's archive
             pass
     return Path(out_root) / "archivo" / f"desde_cero_{stamp}" / d.name
 

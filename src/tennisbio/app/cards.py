@@ -10,6 +10,7 @@ import re
 from pathlib import Path
 
 from .. import match_files as mf
+from ..faults import fault
 
 MONTHS = ("ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic")
 
@@ -40,7 +41,7 @@ def _default_name() -> str:
         from ..catalog import load_player
         from ..config import default_player
         return load_player(default_player()).name
-    except Exception:  # noqa: BLE001 — no configured player: the card shows no name rather than a wrong one
+    except Exception:  # esperado: no configured player: the card shows no name rather than a wrong one
         return ""
 
 
@@ -55,8 +56,8 @@ def _known_players() -> dict:
             name = (yaml.safe_load(f.read_text(encoding="utf-8")) or {}).get("name")
             if name:
                 out.setdefault(name.split()[-1].lower(), name)
-    except Exception:  # noqa: BLE001 — the fixed table alone
-        pass
+    except Exception as e:  # noqa: BLE001 — the fixed table alone
+        fault("lectura.opcional_danada", "fichas de jugadoras", exc=e)
     return out
 
 
@@ -93,13 +94,14 @@ def _photos(d: Path) -> list[dict]:
         return []
     try:
         runs = json.loads(ident.read_text(encoding="utf-8")).get("runs", [])
-    except (OSError, ValueError):
+    except (OSError, ValueError) as e:
+        fault("app.dato_ilegible", str(ident), exc=e)
         return []
     out = []
     for f in sorted(fdir.glob("*.jpg")):
         try:
             c = int(f.stem)
-        except ValueError:
+        except ValueError:  # esperado: not a numbered photo
             continue
         out.append({"cluster": c, "path": str(f), "starts": [r.get("start", 0) for r in runs if r.get("cluster") == c]})
     return out
@@ -115,7 +117,8 @@ def _her_cluster(d: Path, photos: list[dict]) -> int | None:
         if p.get("simulated"):
             return None
         ident = json.loads(mf.at(d, "identity.json").read_text(encoding="utf-8"))
-    except (OSError, ValueError):
+    except (OSError, ValueError) as e:
+        fault("app.dato_ilegible", str(d), exc=e)
         return None
     fps = float(ident.get("fps") or 1.0)
     t = float(p.get("t", -1)) * fps + 1e-6                 # the photo is in the middle of its run: the run started before
@@ -145,7 +148,7 @@ def _thumb(d: Path, video: str, dest: Path) -> str:
         h = 180
         cv2.imwrite(str(dest), cv2.resize(fr, (int(fr.shape[1] * h / fr.shape[0]), h)), [cv2.IMWRITE_JPEG_QUALITY, 80])
         return str(dest)
-    except Exception:  # noqa: BLE001 — no frame: the card shows the drawn court
+    except Exception:  # esperado: no frame: the card shows the drawn court
         return ""
 
 
@@ -157,7 +160,8 @@ def _board_rival(d: Path) -> str:
     (Zverev-Sinner: «Rival»)."""
     try:
         sc = json.loads(mf.at(d, "score.json").read_text(encoding="utf-8"))
-    except (OSError, ValueError):
+    except (OSError, ValueError) as e:
+        fault("app.dato_ilegible", str(d), exc=e)
         return ""
     o = str(sc.get("opponent") or "").strip()
     return o.title() if o else ""
@@ -172,7 +176,7 @@ def card(m: dict, d: Path, data_dir: Path, her_name: str) -> dict:
         c = json.loads(cache.read_text(encoding="utf-8"))
         if c.get("stamp") == stamp and (not c.get("thumb") or Path(c["thumb"]).exists()):
             return c
-    except (OSError, ValueError):
+    except (OSError, ValueError):  # esperado: a damaged card cache is made again
         pass
     info = parse_name(m["id"] + " " + Path(m.get("vpath") or "").stem)
     tour = m.get("tournament") or info["tournament"]
@@ -196,6 +200,6 @@ def card(m: dict, d: Path, data_dir: Path, her_name: str) -> dict:
     try:
         cache.parent.mkdir(parents=True, exist_ok=True)
         cache.write_text(json.dumps(c, ensure_ascii=False), encoding="utf-8")
-    except OSError:
+    except OSError:  # esperado: the card is made again next time
         pass
     return c

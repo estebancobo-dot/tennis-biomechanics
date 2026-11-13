@@ -33,6 +33,7 @@ from pathlib import Path
 from typing import Callable, Iterable
 
 from .catalog import ascii_id
+from .faults import fault
 from .pipeline import video_sample
 
 STROKES = ("forehand", "backhand", "serve", "volley", "overhead")
@@ -124,7 +125,7 @@ def parse_date(date) -> _dt.date | None:
         return None
     try:
         return _dt.date.fromisoformat(t[:10])
-    except ValueError:
+    except ValueError:  # esperado: a date that does not parse: unknown
         return None
 
 
@@ -249,7 +250,7 @@ def write_bytes_atomic(path: Path, data: bytes):
     except OSError as e:
         try:
             tmp.unlink(missing_ok=True)
-        except OSError:
+        except OSError:  # esperado: the temporary file was already gone
             pass
         raise _user_error(e, path) from e
 
@@ -259,10 +260,14 @@ def write_json_atomic(path: Path, obj):
 
 
 def read_json(path: Path):
-    """The JSON of a file, or None when it is missing or damaged."""
+    """The JSON of a file, or None when it is missing or damaged (#265: damaged is the C1 biblioteca.fichero_danado,
+    never a silent None)."""
     try:
         return json.loads(Path(path).read_text(encoding="utf-8"))
-    except (OSError, ValueError, UnicodeDecodeError):
+    except FileNotFoundError:  # esperado: not there: None
+        return None
+    except (OSError, ValueError, UnicodeDecodeError) as e:
+        fault("biblioteca.fichero_danado", str(path), exc=e)
         return None
 
 
@@ -339,7 +344,8 @@ class Library:
                                    f"tiene permiso de escritura y que no está abierta en otro programa.") from e
             db = self._reset_index()
             fresh = True
-        except sqlite3.DatabaseError:
+        except sqlite3.DatabaseError as e:
+            fault("biblioteca.indice_rehecho", str(self.db_path), exc=e)
             if db is not None:
                 db.close()
             db = self._reset_index()
@@ -602,7 +608,7 @@ class Library:
                     if not f.is_file() or f.stat().st_size not in sizes:
                         continue
                     fp = video_sample(f)
-                except OSError:
+                except OSError:  # esperado: a file that cannot be read is not the moved video
                     continue
                 if fp in missing and fp not in found:
                     found[fp] = str(f)
@@ -661,7 +667,7 @@ def _remove_empty_dirs(d: Path, stop: Path):
     while d != stop and stop in d.parents:
         try:
             d.rmdir()
-        except OSError:
+        except OSError:  # esperado: a folder that is not empty stays
             return
         d = d.parent
 
@@ -696,7 +702,8 @@ def _load_players(config_dir: Path | None = None) -> dict[str, str]:
     for f in sorted((Path(config_dir or CONFIG_DIR) / "players").glob("*.yaml")):
         try:
             out[f.stem] = (yaml.safe_load(f.read_text(encoding="utf-8-sig")) or {}).get("name") or f.stem
-        except (OSError, ValueError):
+        except (OSError, ValueError) as e:
+            fault("lectura.opcional_danada", f.name, exc=e)
             out[f.stem] = f.stem
     return out
 
@@ -709,7 +716,8 @@ def _load_catalog(config_dir: Path | None = None) -> dict[str, dict]:
     f = Path(config_dir or CONFIG_DIR) / "matches.yaml"
     try:
         return {str(m["id"]): dict(m) for m in (yaml.safe_load(f.read_text(encoding="utf-8-sig")) or {}).get("matches", [])}
-    except (OSError, ValueError, KeyError, TypeError, AttributeError):
+    except (OSError, ValueError, KeyError, TypeError, AttributeError) as e:
+        fault("lectura.opcional_danada", str(f), exc=e)
         return {}
 
 
@@ -720,7 +728,7 @@ def _split_analysis(name: str) -> tuple[str, str] | None:
     pid, s = name.rsplit("_", 1)
     try:
         return pid, stroke_slug(s)
-    except LibraryError:
+    except LibraryError:  # esperado: not a stroke name
         return None
 
 
@@ -731,7 +739,7 @@ def _split_report(name: str) -> tuple[str | None, str] | None:
         return None
     try:
         s = stroke_slug(parts[-1])
-    except LibraryError:
+    except LibraryError:  # esperado: not a stroke name
         return None
     return ("_".join(parts[:-1]) or None), s
 
@@ -891,12 +899,12 @@ def read_journal(journal: Path) -> set[str]:
     done = set()
     try:
         lines = Path(journal).read_text(encoding="utf-8").splitlines()
-    except OSError:
+    except OSError:  # esperado: no journal yet: nothing done
         return done
     for line in lines:                                  # a line cut by a crash is ignored (that op is redone)
         try:
             done.add(json.loads(line)["op"])
-        except (ValueError, KeyError, TypeError):
+        except (ValueError, KeyError, TypeError):  # esperado: a line cut by a crash: that operation is done again
             continue
     return done
 

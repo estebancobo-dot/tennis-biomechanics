@@ -110,7 +110,7 @@ def propose(db: DB, path: Path, probe=_probe) -> Proposal:
         info = probe(path)
         prop.duration, prop.fps, prop.interlaced = float(info.duration), float(info.fps), bool(info.interlaced)
         prop.audio = bool(getattr(info, "audio_tracks", 0) or getattr(info, "audio_rate", None))
-    except Exception as e:                          # unreadable: say so in Spanish, never retry blindly
+    except Exception as e:  # esperado: said to the user as the video's flag (danado)
         prop.flags["danado"] = f"El vídeo no se puede leer ({str(e)[:160]}). Prueba a descargarlo otra vez."
         return prop
     if not prop.audio:

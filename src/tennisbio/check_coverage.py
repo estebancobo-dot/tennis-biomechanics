@@ -13,6 +13,7 @@ from __future__ import annotations
 import json
 import re
 from pathlib import Path
+from .faults import fault
 
 REC_ENV = "TENNISBIO_REC_CHECKS"
 REC_DIR = "comprobaciones_pruebas"          # <output>/comprobaciones_pruebas/rec_*.json on the PC
@@ -58,7 +59,8 @@ def recorded(folder: Path) -> dict[tuple[str, str], set[str]]:
         try:
             for a, n, s in json.loads(f.read_text(encoding="utf-8")):
                 out.setdefault((a, n), set()).add(s)
-        except (OSError, ValueError, TypeError):
+        except (OSError, ValueError, TypeError) as e:
+            fault("lectura.opcional_danada", f.name, exc=e)
             continue
     return out
 

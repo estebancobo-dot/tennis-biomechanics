@@ -21,6 +21,8 @@ import statistics
 import time
 from pathlib import Path
 
+from .faults import fault
+
 RATES = "ritmos.json"
 ALARMS = "alarmas.json"
 KEEP = 30                     # entries kept per stage
@@ -32,7 +34,9 @@ WARM_FRAC, WARM_S = 0.05, 120.0
 def _load(path: Path) -> dict:
     try:
         return json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, ValueError):
+    except (OSError, ValueError) as e:
+        if path.exists():                # no file yet is the first run, not a fault
+            fault("lectura.opcional_danada", str(path), exc=e)
         return {}
 
 
@@ -41,8 +45,8 @@ def _save(path: Path, data: dict):
     try:
         path.parent.mkdir(parents=True, exist_ok=True)
         write_atomic(path, json.dumps(data, ensure_ascii=False, indent=1))
-    except OSError:
-        pass
+    except OSError as e:
+        fault("ritmo.no_guardado", str(path), exc=e)
 
 
 def _add(path: Path, stage: str, entry: dict):

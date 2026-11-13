@@ -24,6 +24,8 @@ import sys
 import time
 from pathlib import Path
 
+from .faults import fault
+
 HEARTBEAT_S = 15.0            # the worker says it is alive this often
 ALIVE_S = 90.0                # a worker silent longer than this is dead (its lock is gone with its process anyway)
 POLL_S = 2.0                  # how often the worker looks at the controls while a job runs
@@ -79,7 +81,7 @@ class WorkerLock:
             else:
                 import fcntl
                 fcntl.flock(self.f.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
-        except OSError:
+        except OSError:  # esperado: another worker holds the lock
             self.f.close()
             self.f = None
             return False
@@ -100,7 +102,7 @@ class WorkerLock:
             else:
                 import fcntl
                 fcntl.flock(self.f.fileno(), fcntl.LOCK_UN)
-        except OSError:
+        except OSError:  # esperado: the lock was already released
             pass
         self.f.close()
         self.f = None
@@ -186,11 +188,11 @@ def _kill_tree(p: subprocess.Popen) -> None:
         import signal
         try:
             os.killpg(p.pid, signal.SIGKILL)
-        except (ProcessLookupError, PermissionError):
+        except (ProcessLookupError, PermissionError):  # esperado: no process group: the process alone is killed
             p.kill()
     try:
         p.wait(timeout=30)
-    except subprocess.TimeoutExpired:
+    except subprocess.TimeoutExpired:  # esperado: killed just before: the OS reaps it
         pass
 
 
@@ -236,7 +238,7 @@ def _log(cfg: dict | None, msg: str) -> None:
     try:
         with open(worker_log(cfg), "a", encoding="utf-8") as f:
             f.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')} pid {os.getpid()} {msg}\n")
-    except OSError:
+    except OSError:  # esperado: only the worker's own log line is missing
         pass
 
 
@@ -260,7 +262,7 @@ def _alone_in_own_console() -> bool:
             return False
         ids = (ctypes.c_uint32 * 8)()
         return k.GetConsoleProcessList(ids, 8) == 1
-    except Exception:  # noqa: BLE001 — never stops a worker from starting
+    except Exception:  # esperado: the console cannot be asked: the worker stays where it is
         return False
 
 
@@ -274,6 +276,7 @@ def leave_visible_console(alone=_alone_in_own_console, successor=None, env=None)
     try:
         (successor or _start_successor)({HIDDEN_RESPAWN_ENV: "1"})
     except Exception as e:  # noqa: BLE001 — it keeps working in its window rather than leave the queue without a worker
+        fault("ejecutor.no_oculto", exc=e)
         _log(None, f"no pudo arrancar oculto: {e}")
         return False
     _log(None, "estaba en una ventana propia: arranca otro oculto y termina")
@@ -332,6 +335,7 @@ def serve(cfg: dict, once: bool = False, idle_s: float = 10.0, stop=lambda: Fals
             db.set_setting("ejecutor", {"pid": None, "at": time.time()})
             write_status(db, status_file)
         except Exception as e:  # noqa: BLE001 — the lock is released and the successor started all the same
+            fault("cola.no_apuntado", "final del ejecutor", exc=e)
             _log(cfg, f"no pudo apuntar su final: {e}")
         lock.release()                     # first: the successor takes the lock (it stops if another worker holds it)
         if renew:
@@ -339,6 +343,7 @@ def serve(cfg: dict, once: bool = False, idle_s: float = 10.0, stop=lambda: Fals
                 p = successor()
                 event(db, None, "ejecutor", f"arranca el siguiente con el código nuevo (pid {getattr(p, 'pid', '?')})")
             except Exception as e:  # noqa: BLE001 — the cycle starts one if this failed
+                fault("ejecutor.sin_sucesor", exc=e)
                 _log(cfg, f"no pudo arrancar el siguiente: {e}")
         db.close()
     return 0
@@ -382,6 +387,7 @@ def _serve_step(db, paths, jobs, now, once: bool, idle_s: float, stop, status_fi
                 out["beat"] = _beat(db, status_file)
             ctl = (db.one("SELECT control FROM jobs WHERE id=?", job["id"]) or {}).get("control") or ""
         except Exception as e:  # noqa: BLE001 — 12-11: a locked database while the job runs never kills the worker
+            fault("cola.bloqueada", f"trabajo {job['id']}", exc=e)
             _log(None, f"latido o control del trabajo {job['id']} no leído: {e}")
             continue
         if ctl in ("cancelar", "pausar") or stop():
@@ -453,9 +459,9 @@ def run_flow(db, job: dict, cfg: dict) -> int:
             r = subprocess.run(_step_argv(st, out), timeout=lim, env={**os.environ, "PYTHONUTF8": "1", "PYTHONIOENCODING": "utf-8"})
             ok = r.returncode == 0
             why = f"código {r.returncode}"
-        except subprocess.TimeoutExpired:
+        except subprocess.TimeoutExpired:  # esperado: the step fails with its reason
             ok, why = False, f"más de {st.get('limite_min')} min"
-        except Exception as e:  # noqa: BLE001 — said in the job
+        except Exception as e:  # esperado: the step fails with its reason
             ok, why = False, f"{type(e).__name__}: {e}"
         if not ok:
             event(db, job["id"], "paso fallido", f"{i + 1} {st.get('nombre', '')}: {why}")
@@ -477,9 +483,9 @@ def run_command(db, job: dict) -> int:
     t0 = time.time()
     try:
         rc = cli_main(args)
-    except SystemExit as e:
+    except SystemExit as e:  # esperado: the command's exit code is the job's
         rc = e.code if isinstance(e.code, int) else (0 if e.code is None else 1)
-    except Exception as e:  # noqa: BLE001 — said in the job, the queue goes on
+    except Exception as e:  # esperado: the job fails with its message; the queue goes on
         import traceback
         traceback.print_exc()
         jobs._finish(db, job, "error", f"{type(e).__name__}: {str(e)[:300]}", t0)
@@ -525,7 +531,8 @@ def status(db, events: int = 30, output: Path | None = None) -> dict:
     if pf is not None and pf.exists():
         try:
             prog = json.loads(pf.read_text(encoding="utf-8"))
-        except (OSError, ValueError):
+        except (OSError, ValueError) as e:
+            fault("lectura.opcional_danada", str(pf), exc=e)
             prog = None
     import hashlib
     firma = hashlib.sha1(json.dumps([alive, bool(db.setting("pausa", False)),
@@ -546,5 +553,5 @@ def write_status(db, f: Path | None) -> None:
         from .pipeline import write_atomic
         Path(f).parent.mkdir(parents=True, exist_ok=True)
         write_atomic(Path(f), json.dumps(status(db, output=Path(f).parent), ensure_ascii=False, indent=1, default=str))
-    except OSError:
-        pass
+    except OSError as e:
+        fault("progreso.no_escrito", "estado de la cola", exc=e)

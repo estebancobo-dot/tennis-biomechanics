@@ -1,9 +1,10 @@
 """Command line: `tennisbio run --all`, `tennisbio run --match ID --stages fine`, `tennisbio status`."""
 import argparse
+import json
 import sys
 from pathlib import Path
 
-from . import layout
+from . import faults, layout
 from . import match_files as _mf
 from .catalog import load_matches
 from .config import load_config
@@ -26,7 +27,7 @@ def _utf8_streams():
         try:
             if s is not None and (getattr(s, "encoding", "") or "").lower().replace("-", "") != "utf8":
                 s.reconfigure(encoding="utf-8", errors="replace")
-        except (AttributeError, ValueError):
+        except (AttributeError, ValueError):  # esperado: a stream that cannot be reconfigured keeps its encoding
             pass
 
 
@@ -43,7 +44,7 @@ def _script(name: str, argv: list[str]) -> int:
     sys.argv = [str(f), *argv]
     try:
         runpy.run_path(str(f), run_name="__main__")
-    except SystemExit as e:
+    except SystemExit as e:  # esperado: the script's exit code is the job's
         return e.code if isinstance(e.code, int) else (0 if e.code is None else 1)
     finally:
         sys.argv = old
@@ -144,17 +145,55 @@ def _registry(args) -> int:
 
 
 def main(argv=None):
+    """The command, with a collector of the faults raised outside any stage (#265: the catalogue, a report, an
+    export…); they are written to <output>/fallos/<command>.json, which the audit's «Fallos por niveles» reads."""
+    from . import faults
     _utf8_streams()
+    with faults.collecting(lambda m: print(m, flush=True)) as col:
+        rc = _guarded(argv)
+    _save_command_faults(argv, col, rc)
+    return rc
+
+
+def _guarded(argv=None) -> int:
+    from . import faults
     try:
         return _main(argv)
-    except KeyboardInterrupt:
+    except KeyboardInterrupt:  # esperado: stopped by the user; the next run goes on where it was
         print("\nInterrumpido. Al relanzar se continúa donde se quedó.")
         return 130
-    except Exception as e:                    # a message the user can act on, the detail in the log
+    except faults.CriticalFault as e:  # esperado: a C0 outside the stages: the command fails with its code
+        print(f"\nPARADO por un fallo crítico ({e.code}): {e.detail}")
+        _guarded.critical = {"codigo": e.code, "detalle": e.detail[:500]}
+        return 2
+    except Exception as e:  # esperado: the command fails (1) with its message, the detail in the log
         import traceback
         traceback.print_exc()
         print(f"\nERROR: {e}\nPasa a Claude el fichero de registro (.log) de C:\\tenis\\output.")
         return 1
+
+
+COMMAND_FAULTS = ("run", "report", "export", "registry", "desde-cero")    # the commands whose faults the audit reads
+
+
+def _save_command_faults(argv, col, rc: int):
+    """<output>/fallos/<command>.json: the faults of the last run of that command outside the stages, and its C0."""
+    import time
+    args = list(sys.argv[1:] if argv is None else argv)
+    cmd = args[0] if args else ""
+    crit = getattr(_guarded, "critical", None)
+    _guarded.critical = None
+    if cmd not in COMMAND_FAULTS:
+        return
+    try:
+        from .config import load_config
+        out = Path((load_config().get("paths") or {}).get("output") or "output") / "fallos"
+        out.mkdir(parents=True, exist_ok=True)
+        pipeline.write_atomic(out / f"{cmd}.json", json.dumps(
+            {"hora": time.strftime("%Y-%m-%d %H:%M:%S"), "argumentos": args, "salida": rc, "c0": crit,
+             "fallos": col.summary()}, ensure_ascii=False, indent=1))
+    except (OSError, ValueError) as e:  # esperado: printed: the faults were already in the log, line by line
+        print(f"AVISO: no se pudo guardar el registro de fallos de «{cmd}» ({e})")
 
 
 def _main(argv=None):
@@ -289,12 +328,13 @@ def _main(argv=None):
                 print(f"{m.id}: {'ejecutado ' + ', '.join(done) if done else 'al día'}")
         except pipeline.MissingVideo:
             print(f"{m.id}: el vídeo ya no está ({m.video}); se conservan sus resultados")
-        except pipeline.DiskFull as e:          # every other match would fail the same way
+            faults.fault("partido.sin_video", f"{m.id}: {m.video}")
+        except pipeline.DiskFull as e:  # esperado: the command stops (1): every other match would fail the same way
             print(f"{m.id}: {e}")
             return 1
         except KeyboardInterrupt:
             raise
-        except Exception as e:                # one bad match never stops the others
+        except Exception as e:  # esperado: that match failed (its C0 is in its fallos.json); the others go on, the command returns 1
             import traceback
             ctx.log(traceback.format_exc())
             print(f"{m.id}: ERROR ({e}); se sigue con los demás. Detalle en {ctx.dir / 'registro.log'}")
@@ -306,19 +346,31 @@ def _main(argv=None):
 
 def run_audit(root: Path, report: Path, dest: Path, stroke: str = "forehand", dirs: list[Path] | None = None) -> int:
     """Screenshots of the report (if the browser can be driven) and the audit of every match folder
-    under root (or only `dirs`: the matches of one analysis); prints the summary and what is not met."""
+    under root (or only `dirs`: the matches of one analysis); prints the summary and what is not met. #265: the
+    audit's own faults (a check that cannot read its data) are an item of this same audit."""
+    with faults.collecting(lambda m: print(m, flush=True)) as col:
+        return _run_audit(root, report, dest, stroke, dirs, col)
+
+
+def _run_audit(root: Path, report: Path, dest: Path, stroke: str, dirs: list[Path] | None, col) -> int:
     from .audit import audit, write
 
     shots = dest / "capturas"
     try:
         from .screens import capture
         capture(report / "index.html", shots)
-    except Exception as e:                    # no browser: the audit goes on without the screens
+    except Exception as e:  # esperado: the audit gets the item «Capturas del informe» not met
         print(f"AVISO: no se pudieron hacer las capturas del informe ({e})")
         shots = None
+        shots_error = f"{type(e).__name__}: {str(e)[:200]}"
+    else:
+        shots_error = None
     if dirs is None:
         dirs = [d for d in sorted(root.iterdir()) if d.is_dir() and (_mf.at(d, "manifest.json")).exists()] if root.exists() else []
     res = audit(dirs, report, stroke, shots)
+    if shots_error:                            # #265: a check that cannot run is a check not met, never a silence
+        res["items"].append({"req": 2, "area": "Auditoría", "name": "Capturas del informe", "status": "falta",
+                             "detail": f"no se pudieron hacer ({shots_error}): las comprobaciones de pantalla no valen"})
     # the PDF summary: exists, how many pages, and a copy for Claude to read (uploaded with the logs)
     es = {"forehand": "derecha", "backhand": "reves", "overhead": "saque"}[stroke]
     pdf = next((p for p in (report.parent / "exportar" / "resumen.pdf", report.parent / f"exportar_{es}" / "resumen.pdf") if p.exists()), None)
@@ -340,8 +392,17 @@ def run_audit(root: Path, report: Path, dest: Path, stroke: str = "forehand", di
     try:                                       # 11-11 (R1): which checks no test has ever made fail
         from .check_coverage import coverage_item
         res["items"].append(coverage_item(res["items"], [root, root.parent, root.parent.parent]))
-    except Exception as e:                     # noqa: BLE001 — never stops the audit
+    except Exception as e:  # noqa: BLE001  # esperado: a check that cannot run is an item not met (#265)
         print(f"AVISO: no se pudo comparar la auditoría con las pruebas ({e})")
+        res["items"].append({"req": 9, "area": "Auditoría", "name": "Comprobaciones con un caso que las haga fallar",
+                             "status": "falta", "detail": f"no se pudo calcular ({type(e).__name__}: {str(e)[:200]})"})
+    from .audit import FAULTS_ITEM
+    fl = col.summary()
+    bad = [f"{v['nivel']} {c} ×{v['n']}" + (f" ({'; '.join(v['ejemplos'][:2])})" if v["ejemplos"] else "")
+           for c, v in fl.items() if v["nivel"] in ("C0", "C1")]
+    res["items"].append({"req": 12, "area": "Robustez", "name": f"{FAULTS_ITEM}: auditoría", "status": "falta" if bad else "ok",
+                         "detail": ("; ".join(bad) + ": comprobaciones sin sus datos, no valen") if bad else
+                         ("sin fallos" if not fl else ", ".join(f"{v['nivel']} {c} ×{v['n']}" for c, v in fl.items()))})
     res["summary"] = {st: sum(i["status"] == st for i in res["items"]) for st in ("ok", "falta", "pocos datos", "aviso")}
     md = write(res, dest)
     try:                                       # the honest status of every request, per plan package (02-11)
@@ -349,7 +410,7 @@ def run_audit(root: Path, report: Path, dest: Path, stroke: str = "forehand", di
         txt, counts = render(res)
         (Path(dest) / "estado_real_peticiones.md").write_text(txt, encoding="utf-8")
         print("Peticiones: " + " · ".join(f"{v} {k}" for k, v in counts.items()))
-    except Exception as e:                     # noqa: BLE001 — never stops the audit
+    except Exception as e:  # noqa: BLE001  # esperado: printed; the audit's items are already written
         print(f"AVISO: no se pudo calcular el estado real de las peticiones ({e})")
     s = res["summary"]
     print(f"Auditoría: {s['ok']} cumplidos, {s['falta']} no cumplidos, {s['pocos datos']} sin golpes suficientes, "
@@ -370,7 +431,7 @@ def _logger(d: Path):
             d.mkdir(parents=True, exist_ok=True)
             with open(_mf.at(d, "registro.log"), "a", encoding="utf-8") as f:
                 f.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')} {msg}\n")
-        except OSError:
+        except OSError:  # esperado: the line was printed; only its copy in registro.log is missing
             pass
     return log
 

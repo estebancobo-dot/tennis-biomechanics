@@ -17,6 +17,7 @@ from pathlib import Path
 
 from ..config import ROOT
 from .db import DB, STROKE_ES, now
+from ..faults import fault
 
 _review = None
 
@@ -47,7 +48,7 @@ def _move(src: Path, dst: Path):
         shutil.rmtree(dst)
     try:
         src.rename(dst)
-    except OSError:
+    except OSError:  # esperado: another drive: copied
         shutil.copytree(src, dst)
         shutil.rmtree(src, ignore_errors=True)
 
@@ -55,7 +56,8 @@ def _move(src: Path, dst: Path):
 def counts(audit_json: Path) -> dict:
     try:
         items = json.loads(audit_json.read_text(encoding="utf-8")).get("items", [])
-    except (OSError, ValueError):
+    except (OSError, ValueError) as e:
+        fault("lectura.opcional_danada", str(audit_json), exc=e)
         return {}
     return {s: sum(i.get("status") == s for i in items) for s in ("ok", "falta", "pocos datos", "aviso")}
 

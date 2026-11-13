@@ -62,6 +62,7 @@ areas:
   "Automático": [plataforma, fiabilidad, pc]
   "Infraestructura": [plataforma, fiabilidad, pc]
   "Orquestador": [plataforma, fiabilidad, pc]
+  "Robustez": [plataforma, fiabilidad, pc]          # #265 (13-11): «Fallos por niveles» de cada partido
   "Peticiones del PC": [plataforma, fiabilidad, pc]
   "Pruebas en este PC": [plataforma, mantenibilidad, codigo]
   "Modelos": [modelos, exactitud, verdad]

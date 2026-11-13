@@ -80,7 +80,7 @@ def free_regenerable(output: Path) -> float:
             n = size_of(p)
             shutil.rmtree(p) if p.is_dir() else p.unlink()
             freed += n
-        except OSError:
+        except OSError:  # esperado: in use or already gone: the rest still goes
             pass                                   # in use or already gone: the rest still goes
     return freed
 

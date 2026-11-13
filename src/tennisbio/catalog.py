@@ -5,6 +5,7 @@ from pathlib import Path
 import yaml
 
 from .config import CONFIG_DIR
+from .faults import fault
 
 
 @dataclass
@@ -80,6 +81,7 @@ def load_matches(cfg: dict, config_dir: Path = CONFIG_DIR) -> list[Match]:
             return registry.matches(cfg, out, config_dir)
         except Exception as e:  # noqa: BLE001 — a broken database never stops the analysis: the catalogue
             print(f"AVISO: registro de partidos no legible ({type(e).__name__}: {e}); se usa config/matches.yaml")
+            fault("registro.no_legible", exc=e)
     return out
 
 
@@ -109,7 +111,8 @@ def catalog_entry(cfg: dict, source_name: str | None = None, match_id: str | Non
     is no catalogue, it cannot be read or no entry matches (a test run must still run)."""
     try:
         entries = load_matches(cfg, config_dir)
-    except Exception:                     # no catalogue, a broken one or a missing player profile
+    except Exception as e:                # noqa: BLE001 — no catalogue, a broken one or a missing player profile
+        fault("catalogo.no_legible", exc=e)
         return None
     for m in entries:
         vname = Path(str(m.video)).name
@@ -137,8 +140,8 @@ def trial_match(match_id: str, video: Path, player: Player, cfg: dict, source: P
         try:
             saved = json.loads(info.read_text(encoding="utf-8"))
             fields.update({k: str(v) for k, v in saved.items() if k in CATALOG_FIELDS and v})
-        except (OSError, ValueError, AttributeError):
-            pass
+        except (OSError, ValueError, AttributeError) as e:
+            fault("lectura.opcional_danada", str(info), exc=e)
     entry = catalog_entry(cfg, source.name if source else None, match_id, config_dir)
     if entry is not None:
         fields.update({k: getattr(entry, k) for k in CATALOG_FIELDS if getattr(entry, k)})

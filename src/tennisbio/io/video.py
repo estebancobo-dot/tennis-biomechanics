@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import Iterator
 
 import numpy as np
+from ..faults import fault
 
 
 @dataclass
@@ -36,7 +37,7 @@ def _rate(s: dict) -> float:
     for key in ("avg_frame_rate", "r_frame_rate"):
         try:
             v = float(Fraction(s.get(key) or "0/1"))
-        except (ZeroDivisionError, ValueError):
+        except (ZeroDivisionError, ValueError):  # esperado: a rate ffprobe does not give: the next key
             v = 0.0
         if 1.0 < v < 400.0:
             return v
@@ -46,7 +47,7 @@ def _rate(s: dict) -> float:
 def _float(v) -> float:
     try:
         return float(v)
-    except (TypeError, ValueError):
+    except (TypeError, ValueError):  # esperado: no number in the probe: 0
         return 0.0
 
 
@@ -78,7 +79,7 @@ def probe(path: str | Path) -> VideoInfo:
         try:
             dur = float(v)
             break
-        except (TypeError, ValueError):
+        except (TypeError, ValueError):  # esperado: no duration there: the next field (none at all is a VideoError)
             continue
     if dur <= 0 and video.get("nb_frames"):
         dur = int(video["nb_frames"]) / fps
@@ -87,7 +88,7 @@ def probe(path: str | Path) -> VideoInfo:
     # variable frame rate: the two rates disagree clearly
     try:
         r, a = float(Fraction(video.get("r_frame_rate", "0/1"))), float(Fraction(video.get("avg_frame_rate", "0/1")))
-    except (ZeroDivisionError, ValueError):
+    except (ZeroDivisionError, ValueError):  # esperado: a rate ffprobe does not give: unknown (0)
         r = a = 0.0
     return VideoInfo(
         path=path,
@@ -123,7 +124,7 @@ def auto_hwaccel() -> str | None:
                     # frames kept on the GPU: fails instead of silently falling back to the CPU
                     r = subprocess.run(["ffmpeg", "-v", "error", "-hwaccel", "d3d11va", "-hwaccel_output_format", "d3d11",
                                         "-i", f, "-f", "null", "-"], capture_output=True, timeout=60)
-                except subprocess.TimeoutExpired:       # a driver that hangs: decode on the CPU
+                except subprocess.TimeoutExpired:  # esperado: a driver that hangs: decode on the CPU (same frames)
                     r = None
                 if r is not None and r.returncode == 0 and Path(f).exists():
                     _HW["v"] = "d3d11va"
@@ -261,7 +262,7 @@ def _frames_at_run(info: VideoInfo, targets: list[str], hwaccel: str | None,
                 break
             try:
                 ft = times.get(timeout=PTS_WAIT_S)
-            except queue.Empty:
+            except queue.Empty:  # esperado: no time for this frame: the read ends, said below
                 ft = None
             if ft is None:
                 break
@@ -270,6 +271,8 @@ def _frames_at_run(info: VideoInfo, targets: list[str], hwaccel: str | None,
             while i < len(rel) and rel[i] <= ft + Fraction(1, 2_000_000):
                 yield frame
                 i += 1
+        if i < len(rel):                         # #265: the read ended before its last frame, never silently
+            fault("video.lectura_cortada", f"{info.path.name}: {i} de {len(rel)} fotogramas pedidos")
     finally:
         proc.stdout.close()
         proc.kill()
@@ -287,7 +290,8 @@ def seek_frame(info: VideoInfo, t: str | float) -> np.ndarray | None:
     try:
         raw = subprocess.run(["ffmpeg", "-v", "error", "-nostdin", "-ss", t, "-i", str(info.path), "-frames:v", "1", "-an",
                               "-f", "rawvideo", "-pix_fmt", "bgr24", "pipe:1"], capture_output=True, timeout=120).stdout
-    except subprocess.TimeoutExpired:          # one frame that hangs: none, as one that is not there
+    except subprocess.TimeoutExpired as e:     # one frame that hangs: none, as one that is not there
+        fault("fotograma.colgado", f"{info.path.name} a {t} s", exc=e)
         return None
     n = info.width * info.height * 3
     return np.frombuffer(raw[:n], np.uint8).reshape(info.height, info.width, 3) if len(raw) >= n else None
@@ -303,7 +307,8 @@ def seek_keyframe(info: VideoInfo, t: float) -> np.ndarray | None:
         raw = subprocess.run(["ffmpeg", "-v", "error", "-nostdin", "-ss", f"{t:.3f}", "-i", str(info.path),
                               "-frames:v", "1", "-an", "-f", "rawvideo", "-pix_fmt", "bgr24", "pipe:1"],
                              capture_output=True, timeout=120).stdout
-    except subprocess.TimeoutExpired:
+    except subprocess.TimeoutExpired as e:
+        fault("fotograma.colgado", f"{info.path.name}: fotograma clave a {t:.3f} s", exc=e)
         return None
     n = info.width * info.height * 3
     return np.frombuffer(raw[:n], np.uint8).reshape(info.height, info.width, 3) if len(raw) >= n else None
@@ -325,7 +330,8 @@ def keyframe_times(info: VideoInfo) -> np.ndarray:
     try:
         out = subprocess.run(["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries", "packet=pts_time,flags",
                               "-of", "csv=p=0", str(info.path)], capture_output=True, text=True, timeout=900).stdout
-    except (subprocess.TimeoutExpired, OSError):
+    except (subprocess.TimeoutExpired, OSError) as e:      # the callers read exact frames instead: same frames
+        fault("fotogramas_clave.sin_lista", info.path.name, exc=e)
         return np.zeros(0)
     ts = []
     for line in out.splitlines():
@@ -333,7 +339,7 @@ def keyframe_times(info: VideoInfo) -> np.ndarray:
         if "K" in f:
             try:
                 ts.append(float(a))
-            except ValueError:
+            except ValueError:  # esperado: a packet line without a time
                 pass
     # relative to the start of the video, like every other time here and like `-ss` (04-11: in a .ts the packets start
     # at the file's start_time, e.g. 1.4 s or more; Osaka's identity read its clothes that far off her keypoints)
@@ -392,11 +398,11 @@ def frames_at(info: VideoInfo, times: list[float], hwaccel: str | None = None, d
                     try:
                         q.put(item, timeout=0.5)
                         break
-                    except queue.Full:
+                    except queue.Full:  # esperado: the consumer is busy: try again (or stop when asked)
                         continue
                 if stop.is_set():
                     break
-        except BaseException as e:          # handed to the caller
+        except BaseException as e:  # esperado: handed to the caller, which raises it
             item = e
         else:
             item = done
@@ -406,7 +412,7 @@ def frames_at(info: VideoInfo, times: list[float], hwaccel: str | None = None, d
             try:
                 q.put(item, timeout=0.5)
                 break
-            except queue.Full:
+            except queue.Full:  # esperado: the consumer is busy: try again (or stop when asked)
                 continue
 
     th = threading.Thread(target=produce, daemon=True)
@@ -434,7 +440,7 @@ def timeline(path: str | Path) -> dict:
     for line in out.splitlines():
         try:
             t.append(float(line.strip().strip(",")))
-        except ValueError:
+        except ValueError:  # esperado: a line without a time
             continue
     t = np.array(t)
     if len(t) < 3:
@@ -482,7 +488,7 @@ def capture_frames(path: str | Path, prefetch: int = 4) -> Iterator[np.ndarray]:
             try:
                 q.put(item, timeout=0.1)
                 return True
-            except queue.Full:
+            except queue.Full:  # esperado: the consumer is busy: try again (or stop when asked)
                 continue
         return False
 
@@ -493,7 +499,7 @@ def capture_frames(path: str | Path, prefetch: int = 4) -> Iterator[np.ndarray]:
                 ok, frame = cap.read()
                 if not ok or not put(frame):
                     break
-        except BaseException as e:            # handed to the consumer, never lost in the thread
+        except BaseException as e:  # esperado: handed to the consumer, which raises it (never lost in the thread)
             put(e)
         finally:
             cap.release()
@@ -536,7 +542,7 @@ def read_ahead(source, prefetch: int = 4, stats: dict | None = None) -> Iterator
             try:
                 q.put(item, timeout=0.1)
                 return True
-            except queue.Full:
+            except queue.Full:  # esperado: the consumer is busy: try again (or stop when asked)
                 continue
         return False
 
@@ -548,14 +554,14 @@ def read_ahead(source, prefetch: int = 4, stats: dict | None = None) -> Iterator
                 t0 = time.perf_counter()
                 try:
                     item = next(it)
-                except StopIteration:
+                except StopIteration:  # esperado: the frames ended
                     break
                 finally:
                     if stats is not None:
                         stats["busy_s"] += time.perf_counter() - t0
                 if not put(item):
                     break
-        except BaseException as e:            # handed to the consumer, never lost in the thread
+        except BaseException as e:  # esperado: handed to the consumer, which raises it (never lost in the thread)
             put(e)
         finally:
             close = getattr(it, "close", None)

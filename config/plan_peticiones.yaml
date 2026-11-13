@@ -12,7 +12,7 @@ paquetes:
     nombre: "Base · robustez (nada se cuelga, todo se recupera)"
     cierre: "Prueba por cada caso de error y cuelgue; 0 etapas con error en la referencia"
     peticiones: [13, 225, 232, 265, 267]
-    prueba: ["^Golpes que fallaron al procesarse", "?^Etapas con errores", "^Partido .*: salida de cada etapa"]
+    prueba: ["^Golpes que fallaron al procesarse", "?^Etapas con errores", "^Partido .*: salida de cada etapa", "^Fallos por niveles"]
   B3:
     nombre: "Base · mejores modelos (estado del arte medido)"
     cierre: "Cada candidato medido frente al actual (precisión con datos anotados y fotogramas/s en el PC)"

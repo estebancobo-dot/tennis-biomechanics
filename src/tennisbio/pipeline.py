@@ -17,6 +17,7 @@ from dataclasses import dataclass, field, replace
 from pathlib import Path
 from typing import Callable
 
+from . import faults
 from .catalog import Match
 from .match_files import at as _at, is_library
 
@@ -95,16 +96,16 @@ class Context:
                     p["alarmed"] = True
                     self.log(f"  ALARMA de tiempo: {al}")
                     budget.raise_alarm(out, self.match.id, p.get("stage", ""), al)
-        except Exception:  # noqa: BLE001 — the budget never breaks a stage
-            pass
+        except Exception as e:  # noqa: BLE001 — the time budget never breaks a stage: counted with its cause
+            faults.fault("alarma_tiempo.fallo", str(p.get("stage", "")), exc=e)
         try:
             with _PROGRESS_LOCK:            # two stages at once write the same file
                 write_atomic(self.progress_file(), json.dumps({
                     "partido": self.match.id, "etapa": p.get("stage"), "hecho": done, "total": total,
                     "porcentaje": round(frac * 100, 1), "segundos": round(el), "quedan_s": None if left is None else round(left),
                     "hora": time.strftime("%Y-%m-%d %H:%M:%S")}, ensure_ascii=False))
-        except OSError:
-            pass
+        except OSError as e:
+            faults.fault("progreso.no_escrito", exc=e)
 
     def progress_file(self) -> Path:
         """<output>/progreso.json (the PC uploads it); beside the match folder before the library."""
@@ -171,7 +172,7 @@ def video_fingerprint(path: Path, d: Path | None = None) -> str:
     p = _at(d, "video.json")
     try:
         rec = json.loads(p.read_text(encoding="utf-8")) if p.exists() else None
-    except (json.JSONDecodeError, UnicodeDecodeError, OSError):
+    except (json.JSONDecodeError, UnicodeDecodeError, OSError):  # esperado: a damaged record is made again from the video
         rec = None
     if rec and rec.get("size") == st.st_size:
         if rec.get("mtime") == int(st.st_mtime):
@@ -305,7 +306,8 @@ def load_npz(path):
         d = np.load(path, allow_pickle=True)
         d = {k: d[k] for k in d.files}
         return d
-    except Exception:
+    except Exception as e:  # noqa: BLE001 — any damage: the cache is deleted and computed again, counted
+        faults.fault("cache.danada", path.name, exc=e)
         path.unlink(missing_ok=True)
         return None
 
@@ -316,7 +318,8 @@ def load_manifest(d: Path) -> dict:
         return {}
     try:
         return json.loads(p.read_text(encoding="utf-8"))
-    except (json.JSONDecodeError, UnicodeDecodeError):     # damaged: start over for this match
+    except (json.JSONDecodeError, UnicodeDecodeError) as e:     # damaged: start over for this match
+        faults.fault("manifiesto.danado", str(p), exc=e)
         p.replace(p.with_name("manifest.damaged.json"))
         return {}
 
@@ -359,7 +362,7 @@ def output_hash(name: str, ctx: Context) -> str | None:
                 h.update(json.dumps(_stable(json.loads(p.read_text(encoding="utf-8"))), sort_keys=True,
                                     ensure_ascii=False).encode())
                 continue
-            except (ValueError, UnicodeDecodeError):
+            except (ValueError, UnicodeDecodeError):  # esperado: not JSON after all, hashed byte for byte below
                 pass
         with open(p, "rb") as f:
             for chunk in iter(lambda: f.read(1 << 20), b""):
@@ -559,7 +562,8 @@ def run(ctx: Context, names=None, force=False, upstream=True, parallel: bool | N
         """Hashes of the JSON outputs of n's dependencies before it runs (to see which ones it rewrites)."""
         return {d: _json_outputs_hash(d, ctx) for d in STAGES[n].all_deps(ctx.cfg)}
 
-    def finish(n: str, fp: str, summary: dict, t0: float, t1: float, before: dict | None = None):
+    def finish(n: str, fp: str, summary: dict, t0: float, t1: float, before: dict | None = None,
+               fl: dict | None = None):
         dt = t1 - t0
         ov = _overlap((t0, t1), spans)
         spans.append((t0, t1))
@@ -575,6 +579,9 @@ def run(ctx: Context, names=None, force=False, upstream=True, parallel: bool | N
         m[n][REWROTE] = {d: h for d, h in after.items() if h is not None and h != before[d]}
         if ov > 0:
             m[n]["overlap_s"] = round(ov, 1)
+        m[n]["faults"] = fl or {}          # #265: its faults by level (empty: none); the audit's «Fallos por niveles»
+        if fl:
+            log(f"[{ctx.match.id}] {n}: fallos " + ", ".join(f"{v['nivel']} {c} ×{v['n']}" for c, v in fl.items()))
         save_manifest(ctx.dir, m)          # after every stage, so an interruption loses little
         done.append(n)
         try:                               # its rate per minute of video on this machine (tennisbio.budget)
@@ -582,16 +589,16 @@ def run(ctx: Context, names=None, force=False, upstream=True, parallel: bool | N
             info = json.loads(ctx.path("probe.json").read_text(encoding="utf-8")) if ctx.path("probe.json").exists() else {}
             budget.record_stage(ctx.progress_file().parent, n, dt, (info.get("duration") or 0) / 60, ctx.match.id,
                                 STAGES[n].version)
-        except Exception:  # noqa: BLE001 — never breaks the run
-            pass
+        except (OSError, ValueError) as e:  # the rate for the next forecasts only: recorded, the run goes on
+            faults.fault("ritmo.no_guardado", f"{n}", exc=e)
 
     def worker(n: str, sub: Context):
         t0 = time.time()
         try:
-            res, err = STAGES[n].run(sub) or {}, None
-        except BaseException as e:          # handed to the calling thread
-            res, err = None, e
-        events.put((n, res, err, t0, time.time()))
+            (res, fl), err = run_stage(n, sub), None
+        except BaseException as e:  # esperado: handed to the calling thread, which raises it
+            res, fl, err = None, None, e
+        events.put((n, res, err, t0, time.time(), fl))
 
     fps: dict[str, str] = {}
     befores: dict[str, dict] = {}
@@ -625,8 +632,8 @@ def run(ctx: Context, names=None, force=False, upstream=True, parallel: bool | N
             if not threaded:                                 # alone, in this thread, as always
                 ctx._prog["stage"] = n
                 t0 = time.time()
-                summary = st.run(ctx) or {}
-                finish(n, fp, summary, t0, time.time(), before)
+                summary, fl = run_stage(n, ctx)
+                finish(n, fp, summary, t0, time.time(), before, fl)
                 started = True
                 break                                        # rescan: what depends on it may be ready
             fps[n] = fp
@@ -642,18 +649,51 @@ def run(ctx: Context, names=None, force=False, upstream=True, parallel: bool | N
         if not running:
             break                                            # nothing left that can start (after an error)
         try:
-            n, res, err, t0, t1 = events.get(timeout=0.5)    # a timeout keeps Ctrl+C working on Windows
-        except queue.Empty:
+            n, res, err, t0, t1, fl = events.get(timeout=0.5)    # a timeout keeps Ctrl+C working on Windows
+        except queue.Empty:  # esperado: nothing finished in this half second, the loop looks again
             continue
         running.pop(n, None)
         if err is not None:
             log(f"[{ctx.match.id}] {n} falló: {type(err).__name__}: {err}")
             errors.append(err)
         else:
-            finish(n, fps[n], res, t0, t1, befores.get(n))
+            finish(n, fps[n], res, t0, t1, befores.get(n), fl)
     if errors:
         raise errors[0]
     return done
+
+
+FAULTS_FILE = "fallos.json"
+
+
+def run_stage(n: str, c: Context) -> tuple[dict, dict]:
+    """(summary, faults) of one stage (#265): it runs with its own fault collector and its data contract is checked
+    as soon as it ends (tennisbio.contracts), not days later in the audit. A C0 (CriticalFault) is written to
+    fallos.json beside the manifest before it goes up: the stage is not recorded as done and the job fails with it."""
+    from . import contracts
+    with faults.collecting(c.log) as col:
+        try:
+            summary = STAGES[n].run(c) or {}
+            contracts.check(n, c, summary)
+            faults.check_stage_budgets(col, summary)
+        except faults.CriticalFault as e:
+            record_critical(c, n, e, col.summary())
+            raise
+        return summary, col.summary()
+
+
+def record_critical(c: Context, n: str, e: "faults.CriticalFault", fl: dict):
+    """Appends the C0 of stage n to <match>/fallos.json (the last 50); the audit says it until the stage is done again."""
+    f = c.path("manifest.json").parent / FAULTS_FILE
+    try:
+        d = json.loads(f.read_text(encoding="utf-8")) if f.exists() else {}
+    except ValueError:  # esperado: a damaged record of past faults starts again; this C0 is still raised
+        d = {}
+    d.setdefault("c0", []).append({"etapa": n, "codigo": e.code, "detalle": e.detail[:500],
+                                   "hora": time.strftime("%Y-%m-%d %H:%M:%S"), "fallos": fl})
+    d["c0"] = d["c0"][-50:]
+    f.parent.mkdir(parents=True, exist_ok=True)
+    write_atomic(f, json.dumps(d, ensure_ascii=False, indent=1))
 
 
 # the stages that show and measure the replays linked to her strokes (#218, 09-11) live in their own module, so that

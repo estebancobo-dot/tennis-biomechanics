@@ -20,6 +20,8 @@ from .impacts import audio_onsets, swing_peaks
 from .io.video import frames_at, keyframe_times, keyframes_at, probe, read_ahead, read_frames
 from .kinematics import body_height, clean, speed, to_body_frame
 from .config import model_state, resolve_path
+from . import faults
+from .faults import fault
 from .pipeline import Context, savez_atomic, stage, write_atomic
 from .scenes import analyse_video
 from .skeleton import Skeleton
@@ -102,7 +104,7 @@ def st_scenes(ctx: Context):
     else:
         try:
             model = CutModel(onnx, ctx.cfg.get("device", "cpu"))
-        except Exception as e:                    # noqa: BLE001 — broken model file: histograms
+        except Exception as e:  # esperado: broken model file: histograms, recorded below as the C1 modelo.transnet
             why = f"no se pudo cargar TransNetV2 ({str(e)[:150]})"
     read_fps = max(fps, float(sc.get("fps", 25))) if model else fps
     total = int(info.duration * read_fps)
@@ -118,8 +120,10 @@ def st_scenes(ctx: Context):
         why = f"TransNetV2 falló ({res['error']})"
     if why:
         ctx.log(f"  AVISO: cortes de plano solo con histogramas de color: {why}")
+        fault("modelo.transnet", why)
     if res.get("main_rule") == "colour" and shots:
         ctx.log("  AVISO: no se ven las líneas de la pista desde el fondo; cámara principal solo por el color")
+        fault("escenas.principal_por_color")
     _write(ctx.path("scenes.json"), {"fps": fps, "shots": [vars(s) for s in shots], "detector": res.get("detector"),
                                      "main_rule": res.get("main_rule")})
     main = [s for s in shots if s.main_camera]
@@ -434,6 +438,7 @@ def run_clothes(ctx: Context, d: dict, tracks: list, court: dict | None, per_run
         info = probe(video)
     except Exception as e:  # noqa: BLE001  (no video: the players stage's whole-box histograms instead)
         ctx.log(f"  ropa: no se puede leer el vídeo ({type(e).__name__}); se usa la apariencia de la caja entera")
+        fault("identidad.ropa_sin_video", exc=e)
         return None, []
     fps, frames = float(d["fps"]), d["frames"]
     want = []                                                    # (time read, run, frame index in run)
@@ -736,8 +741,8 @@ def _ball_tracker(ctx: Context):
     bcfg = ctx.cfg.get("ball") or {}
     bpath = resolve_path(bcfg.get("onnx"))
     if bpath is None or not bpath.exists():
-        raise FileNotFoundError("falta el modelo de bola (models/balltrack.onnx), que necesita el detector entrenado "
-                                "con la bola; ejecuta 1_instalar.bat")
+        fault("modelo.bola_falta", "models/balltrack.onnx, que necesita el detector entrenado con la bola; "
+                                   "ejecuta 1_instalar.bat")
     return BallTracker(str(bpath), ctx.cfg.get("device", "cpu"), bcfg.get("threshold", 0.5),
                        static_batch=bool(bcfg.get("static_batch", True)) and ctx.cfg.get("device", "cpu") == "dml",
                        fp16=bool(bcfg.get("fp16", True)))
@@ -759,12 +764,11 @@ def st_spotting(ctx: Context):
 
     onnx = _spotter_path(ctx.cfg)
     if onnx is None or not onnx.exists():
-        raise FileNotFoundError(f"falta el detector de golpes entrenado ({onnx}); vuelve a instalar o apaga "
-                                "`spotter.enabled` en config/local.yaml")
+        fault("modelo.detector_falta", f"{onnx}; vuelve a instalar o apaga `spotter.enabled` en config/local.yaml")
     meta = model_meta(onnx)
     if list(meta.get("classes") or []) != list(CLASSES):
-        raise ValueError(f"el detector entrenado tiene otras clases ({meta.get('classes')}) que el proceso "
-                         f"({list(CLASSES)}): hay que volver a entrenarlo")
+        fault("modelo.detector_clases", f"el detector entrenado tiene otras clases ({meta.get('classes')}) que el "
+                                        f"proceso ({list(CLASSES)}): hay que volver a entrenarlo")
     F = int(meta.get("feature_dim", FEATURE_DIM))
     took = {}                                  # where the stage's time goes (02-11: 50 min on 35 min of a new video)
     t_ = time.time()
@@ -809,8 +813,10 @@ def st_spotting(ctx: Context):
                 f"{100 * ball_cov['seen']:.0f} %")
         # 12-11: a model trained with the ball, run without it, finds other strokes (every library match until today)
         if play_min >= 1.0 and ball_cov["min"] < 0.25 * play_min:
-            raise RuntimeError(f"la bola del partido solo cubre {ball_cov['min']:.1f} de {play_min:.1f} min de juego: "
-                               "el detector se entrenó con ella y sin ella encuentra otros golpes")
+            fault("bola.vacia", f"la bola del partido solo cubre {ball_cov['min']:.1f} de {play_min:.1f} min de juego: "
+                                "el detector se entrenó con ella y sin ella encuentra otros golpes")
+        if play_min >= 1.0 and ball_cov["min"] < 0.9 * play_min:     # #265: under the audit's floor (≥ 90 %)
+            fault("bola.cobertura_baja", f"{ball_cov['min']:.1f} de {play_min:.1f} min de juego")
         feats["X"] = np.concatenate([feats["X"], ball_feats(tr, len(feats["X"]), fps)], axis=1)
     mfps = float(meta.get("fps") or fps)
     if abs(fps - mfps) > 1e-6:
@@ -1082,6 +1088,7 @@ def _sample_views(ctx: Context, scenes: dict, shots: list[int], main_pitch) -> d
             model = _pose_detector(ctx.cfg)
         except Exception as e:                   # noqa: BLE001 — without it: no people size, lower confidence
             ctx.log(f"  AVISO: tomas sin tamaño de las personas (no se pudo cargar el modelo: {str(e)[:150]})")
+            fault("modelo.personas_tomas", exc=e)
     items = sorted((t, i) for i in shots for t in sample_times(scenes, i, st["samples"]))
     per: dict[int, list] = {}
     fits = 0
@@ -1115,7 +1122,7 @@ def _sample_views(ctx: Context, scenes: dict, shots: list[int], main_pitch) -> d
         t_ = _time.time()
         try:
             (t, i), (_, fr) = next(it)
-        except StopIteration:
+        except StopIteration:  # esperado: the last sample was read
             break
         took["lectura"] += _time.time() - t_
         n += 1
@@ -1128,7 +1135,8 @@ def _sample_views(ctx: Context, scenes: dict, shots: list[int], main_pitch) -> d
             try:
                 b, _, _ = model.predict(fr, conf=0.3)
                 ph = float(((b[:, 3] - b[:, 1]).max() / fr.shape[0])) if len(b) else 0.0
-            except Exception:                    # noqa: BLE001 — one frame without people size
+            except Exception as e:               # noqa: BLE001 — one frame without people size
+                fault("fotograma.fallido", f"tamaño de las personas a {t:.1f} s", exc=e)
                 ph = None
             took["personas"] += _time.time() - t_
         ev = frame_evidence(fr, ph)
@@ -1139,8 +1147,8 @@ def _sample_views(ctx: Context, scenes: dict, shots: list[int], main_pitch) -> d
                 fit = fit_court(fr)
                 if fit is not None:
                     ev["pitch_deg"] = round(camera_pitch_deg(fit, fr.shape), 1)
-            except Exception:                    # noqa: BLE001 — no tilt for this frame
-                pass
+            except Exception as e:               # noqa: BLE001 — no tilt for this frame
+                fault("fotograma.fallido", f"inclinación de la cámara a {t:.1f} s", exc=e)
             took["pista"] += _time.time() - t_
         per.setdefault(i, []).append(ev)
     ctx.log(f"  tomas: {len(keyed)} fotogramas clave y {len(exact)} exactos ({len(kt)} claves en el vídeo); "
@@ -1209,7 +1217,8 @@ def grab_frame(video: Path, t: float) -> np.ndarray | None:
     try:
         raw = subprocess.run(["ffmpeg", "-v", "error", "-nostdin", "-ss", f"{t:.3f}", "-i", str(video), "-frames:v", "1",
                               "-f", "image2pipe", "-vcodec", "bmp", "pipe:1"], capture_output=True, timeout=120).stdout
-    except subprocess.TimeoutExpired:          # one frame that hangs: none, as one that is not there
+    except subprocess.TimeoutExpired as e:     # one frame that hangs: none, as one that is not there
+        fault("fotograma.colgado", f"{Path(video).name} a {t:.2f} s", exc=e)
         return None
     return cv2.imdecode(np.frombuffer(raw, np.uint8), cv2.IMREAD_COLOR) if raw else None
 
@@ -1402,7 +1411,9 @@ def st_court(ctx: Context, n_fit=6, min_score=0.5, every_s=8.0, step_s=2.0, refi
     ok = [o for o in out if o["H"] is not None]
     main_f = sum(s["end"] - s["start"] for s in main)
     court_f = sum(o["end"] - o["start"] for o in ok)
-    from .court import _tcd
+    from .court import _TCD, TCD_ONNX, _tcd
+    if _tcd() is None and str((ctx.cfg.get("court") or {}).get("detector", "tcd14")).lower() == "tcd14":
+        fault("modelo.pista_tcd", _TCD.get("error") or f"falta {TCD_ONNX.name}: pista solo por las líneas")
     return {"detector": "tcd14" if _tcd() is not None else "lineas",
             "segments": len(out), "with_court": len(ok), "known_court_reused": cnt["known"], "searched": cnt["search"],
             "filled_same_view": cnt["filled"], "samples": len(samples), "court_presets": len(known),
@@ -1424,8 +1435,9 @@ def st_score(ctx: Context):
     fps, every = sc["fps"], (ctx.cfg.get("score") or {}).get("every_s", 5.0)
     try:
         from .scoreboard import ScoreReader, discover_opponent, learn_server
-    except ImportError:
+    except ImportError as e:
         _write(ctx.path("score.json"), {"readings": [], "note": "uv sync --extra ocr"})
+        fault("modelo.ocr_falta", "uv sync --extra ocr", exc=e)
         return {"readings": 0, "note": "sin OCR instalado"}
     mains = [s for s in sc["shots"] if s["main_camera"]]
     court = _read(ctx.path("court.json")) if ctx.path("court.json").exists() else {}
@@ -1521,7 +1533,7 @@ def point_won(score: dict, t: float, horizon_s=60.0):
                 return [(int(a), int(b)) for a, b in g], [rank.get(str(p_), int(p_) if str(p_).isdigit() else 0) for p_ in pts]
             try:
                 (g0, p0), (g1, p1) = key(before), key(r)
-            except (TypeError, ValueError):
+            except (TypeError, ValueError):  # esperado: a reading without games or points has no key
                 return None
             if (g0, p0) == (g1, p1):
                 continue
@@ -1591,7 +1603,7 @@ def far_start(clip: Path, H, search_s=2.0, step=5) -> dict | None:
 def _valid_video(p: Path) -> bool:
     try:
         return probe(p).duration > 0.2
-    except Exception:
+    except Exception:  # noqa: BLE001  # esperado: a file ffprobe cannot read is not a valid video
         return False
 
 
@@ -1700,8 +1712,8 @@ def opponent_profile(match):
     if oid:
         try:
             return load_player(oid)
-        except FileNotFoundError:           # no profile yet: right-handed by default, named as in the catalog
-            pass
+        except FileNotFoundError as e:      # no profile yet: right-handed by default, named as in the catalog
+            fault("rival.sin_ficha", f"{oid}: mano {match.extra.get('opponent_hand', 'right (supuesta)')}", exc=e)
     return Player(id="opponent", name=match.opponent or "Rival", hand=match.extra.get("opponent_hand", "right"))
 
 
@@ -1784,7 +1796,7 @@ def available_ram_gb() -> float | None:
         with open("/proc/meminfo", encoding="ascii") as fh:
             info = {ln.split(":")[0]: ln.split()[1] for ln in fh}
         return int(info["MemAvailable"]) / 2 ** 20
-    except Exception:                             # noqa: BLE001 — unknown: no limit from it
+    except Exception:  # noqa: BLE001  # esperado: memory unknown on this system: no limit from it
         return None
 
 
@@ -1816,6 +1828,17 @@ def _fine_worker_init(match, cfg: dict, d: str, player):
                onsets=load_onsets(ctx), scenes=scenes, ball=ball, rpose=rpose, wb3d=wb3d, fcfg=fcfg)
 
 
+def _window_failed(g: list, e: BaseException) -> list[dict]:
+    """The errors of a window that failed (one per candidate, strokes_errores.json) and its fault (#265): the iGPU lost
+    is C3 (the stage is marked incomplete and repeated next time, from its caches), anything else is C2 within the
+    budget of ventana.fallida (checked when the pass ends)."""
+    msg = f"{type(e).__name__}: {e}"
+    fault("gpu.perdida" if _device_lost_msg(msg) else "ventana.fallida", f"{g[0]['t']:.1f} s ({len(g)} candidatos)",
+          exc=e)
+    tr = traceback.format_exc()[-1500:]
+    return [{"t": c["t"], "error": msg, "trace": tr} for c in g]
+
+
 def _fine_worker(job) -> dict:
     """One window in a process of the fine pass: its strokes, errors, log lines and where its time went."""
     i, g, (pre, post, interlaced, ph) = job
@@ -1826,13 +1849,16 @@ def _fine_worker(job) -> dict:
     _GATE.update(passed=0, gated=0, off=0, reasons={}, seconds_gated=0.0, dropped=[])
     w["lines"].clear()
     strokes, errors = [], []
-    try:
-        strokes = _fine_one(w["ctx"], w["p"], g, pre, post, interlaced, ph, w["court"], w["score"], w["onsets"],
-                            w["scenes"], w["ball"], w["rpose"], w["wb3d"], w["fcfg"])
-    except Exception as e:                        # one bad window never stops the match
-        for c in g:
-            errors.append({"t": c["t"], "error": f"{type(e).__name__}: {e}", "trace": traceback.format_exc()[-1500:]})
-    return {"i": i, "n": len(g), "strokes": strokes, "errors": errors, "lines": list(w["lines"]),
+    with faults.collecting(w["lines"].append) as col:       # this process's faults go back with its result
+        try:
+            strokes = _fine_one(w["ctx"], w["p"], g, pre, post, interlaced, ph, w["court"], w["score"], w["onsets"],
+                                w["scenes"], w["ball"], w["rpose"], w["wb3d"], w["fcfg"])
+        except faults.CriticalFault:
+            raise
+        except Exception as e:  # fallo: ventana.fallida or gpu.perdida (_window_failed); one window never stops the match
+            errors += _window_failed(g, e)
+        fl = col.summary()
+    return {"i": i, "n": len(g), "strokes": strokes, "errors": errors, "lines": list(w["lines"]), "faults": fl,
             "times": dict(_TIMES), "counts": dict(_COUNTS),
             "gate": {**_GATE, "reasons": dict(_GATE["reasons"]), "dropped": list(_GATE.get("dropped", []))}}
 
@@ -1866,11 +1892,15 @@ def _fine_parallel(ctx: Context, p, groups: list, workers: int, args: tuple, too
                 for line in r["lines"]:
                     ctx.log(line)
                 _merge_fine_stats(r)
+                faults.active().merge(r.get("faults"))
                 left.discard(r["i"])
                 took(r)
+    except faults.CriticalFault:
+        raise
     except Exception as e:                        # noqa: BLE001 — a process that died: the rest here, one by one
         ctx.log(f"  AVISO: ventanas en paralelo interrumpidas ({type(e).__name__}: {str(e)[:160]}); "
                 f"quedan {len(left)}, se hacen una a una")
+        fault("procesos.paralelos_caidos", f"quedan {len(left)} ventanas", exc=e)
     return sorted(left)
 
 
@@ -1930,7 +1960,7 @@ def _fine(ctx: Context, p, keep, out_name: str):
     onsets = load_onsets(ctx)
     scenes = _read(ctx.path("scenes.json")) if ctx.path("scenes.json").exists() else {"fps": 1, "shots": []}
     # the models are loaded only where they run: here when the windows go one by one, in each process otherwise
-    bpath, _, _, fcfg, warnings = _fine_model_files(ctx)
+    bpath, rp_f, hp_f, fcfg, warnings = _fine_model_files(ctx)
     ball = rpose = wb3d = None
     pre, post = ctx.cfg["fine_pass"]["window_s"] + 0.3, ctx.cfg["fine_pass"]["window_s"]
     if bpath is not None:     # reach back to the opponent's hit (time available, split step) and
@@ -1938,6 +1968,13 @@ def _fine(ctx: Context, p, keep, out_name: str):
         post = max(post, ctx.cfg["fine_pass"].get("ball_tail_s", 1.4))
     for w in warnings:
         ctx.log(f"  AVISO: {w}")
+    if bpath is None:                     # #265: the strokes are decided with the ball (docs/validacion.md)
+        fault("modelo.bola_falta", "models/balltrack.onnx")
+    if (ctx.cfg.get("racket_face") or {}).get("enabled", True):
+        if rp_f is None:
+            fault("modelo.raqueta_falta", "models/racketpose.onnx: sin orientación de las cuerdas")
+        if hp_f is None:
+            fault("modelo.mano3d_falta", "models/rtmw3d-x.onnx: cuerdas y rotaciones sin 3D")
     interlaced = bool(_read(ctx.path("probe.json")).get("interlaced")) if ctx.path("probe.json").exists() else False
     ph = window_cache_key(ctx.cfg)
     strokes, errors = [], []
@@ -1993,9 +2030,10 @@ def _fine(ctx: Context, p, keep, out_name: str):
             try:
                 strokes += _fine_one(ctx, p, g, pre, post, interlaced, ph, court, score, onsets, scenes, ball, rpose,
                                      wb3d, fcfg)
-            except Exception as e:                    # one bad window never stops the match
-                for c in g:
-                    errors.append({"t": c["t"], "error": f"{type(e).__name__}: {e}", "trace": traceback.format_exc()[-1500:]})
+            except faults.CriticalFault:
+                raise
+            except Exception as e:  # fallo: ventana.fallida or gpu.perdida (_window_failed); one window never stops the match
+                errors += _window_failed(g, e)
             done += len(g)
             ctx.progress(done, len(kept), f"golpes candidatos · {len(strokes)} confirmados · "
                                           f"{_GATE['gated']} ventanas descartadas sin pose")
@@ -2010,8 +2048,13 @@ def _fine(ctx: Context, p, keep, out_name: str):
             if ahead.errors:
                 warnings.append(f"bola en paralelo: falló en {len(ahead.errors)} ventanas (hechas en la iGPU): "
                                 + next(iter(ahead.errors.values()))[:200])
+                fault("bola_paralelo.fallo", f"{len(ahead.errors)} ventanas, hechas después en la iGPU: "
+                      + next(iter(ahead.errors.values()))[:200])
     strokes.sort(key=lambda d: d["match_time_s"])
     errors.sort(key=lambda e: e["t"])                  # the same file whatever order the windows ended in
+    # #265: one bad window never stops the match, but more than the budget (config/fallos.yaml) is no result
+    faults.check_budget("ventana.fallida", sum(not _device_lost_msg(e["error"]) for e in errors), len(kept),
+                        "golpes candidatos")
     _rally_position(strokes, cands, scenes)
     if out_name == "strokes.json" and score:
         # B4 (04-11): her first stroke in a point of her serve is her serve (point_count.serves_by_rule)
@@ -2203,7 +2246,7 @@ def _drop_orphans(ctx: Context, cands: list[dict], strokes: list[dict], others: 
         parts = f.name.split(".")[0].split("_")
         try:
             t0, dur = int(parts[0][1:]) / 1000, int(parts[1]) / 1000
-        except (IndexError, ValueError):
+        except (IndexError, ValueError):  # esperado: another file in windows/, not a window
             continue
         if wids is not None and f"{parts[0]}_{parts[1]}" in wids:
             continue
@@ -2382,8 +2425,11 @@ def _far_measure_run(ctx, p, clip: Path, cache: Path, fi: dict, H_win, hmode: st
                      side="far", prefetch=fp.get("pose_prefetch", True), court_H=H_win, height_scale=hmode,
                      follow_tag=FAR_MEASURE_TAG, pose_only=True,
                      **{k: fi.get(k) for k in ("roi", "init_box", "max_bottom", "init_frame", "far_H")})
+    except faults.CriticalFault:
+        raise
     except Exception as e:  # noqa: BLE001 — measuring only: the strokes stay as decided, said in the log
         ctx.log(f"  ventana {clip.stem}: pose para medir (lejana) no disponible: {e}")
+        fault("golpe.medida", f"pose para medir (lejana) en {clip.stem}", exc=e)
         return None
     st = m.stats or {}
     _TIMES["pose_medida_lejana"] = _TIMES.get("pose_medida_lejana", 0.0) + float(m.timing.get("pose", 0.0))
@@ -2421,8 +2467,10 @@ def _far_measures(m, H, stroke: str, impact: int, opp: int | None, height_m: flo
         sanitize(ch)
         if ch["contact_height_pct"] is not None:
             out["contact_height_pct"] = ch["contact_height_pct"]
-    except Exception:  # noqa: BLE001 — her height or the window too short: no contact height, as without pose
-        pass
+    except faults.CriticalFault:
+        raise
+    except Exception as e:  # noqa: BLE001 — her height or the window too short: no contact height, as without pose
+        fault("golpe.medida", "altura del contacto (lejana)", exc=e)
     return out
 
 
@@ -2666,8 +2714,13 @@ def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets
                 d["metrics"].update(tm)
                 ser["face"]["rot3d"] = {str(f): [round(v, 1) for v in rt[:2]] + [round(v, 3) for v in rt[2:]]
                                         for f, rt in trot.items()}
+            except faults.CriticalFault:
+                raise
             except Exception as e:  # noqa: BLE001 — the former reading stays; said in the log
                 ctx.log(f"  giro 3D del tronco (MotionAGFormer) no disponible en {clip.name}: {e}")
+                fault("golpe.giro3d", clip.name, exc=e)
+        else:
+            fault("modelo.tronco3d_falta", "MotionAGFormer: se queda la lectura de RTMW3D")
     # who won the point (from the next change of the scoreboard); target = row 0 of the scoreboard
     pw = point_won(score, t_imp)
     if pw is not None:

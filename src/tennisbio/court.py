@@ -13,6 +13,7 @@ from itertools import combinations
 
 import cv2
 import numpy as np
+from .faults import fault
 
 W_DOUBLES, W_SINGLES = 10.97, 8.23
 LENGTH, SERVICE = 23.77, 6.40          # service line distance from the net
@@ -281,8 +282,9 @@ def _tcd():
             if str((cfg.get("court") or {}).get("detector", "tcd14")).lower() == "tcd14" and TCD_ONNX.exists():
                 from .court_tcd import CourtTcd
                 _TCD["m"] = CourtTcd(TCD_ONNX, cfg.get("device", "cpu"))
-        except Exception as e:                    # noqa: BLE001 — the line search still works
+        except Exception as e:  # noqa: BLE001  # esperado: the court stage raises the C1 modelo.pista_tcd with it
             print(f"AVISO: el detector de pista de 14 puntos no se pudo cargar ({str(e)[:120]}); se buscan las líneas")
+            _TCD["error"] = f"{type(e).__name__}: {str(e)[:160]}"
     return _TCD["m"]
 
 
@@ -294,7 +296,8 @@ def _tcd_fit(frame: np.ndarray, masks: LineMasks) -> CourtFit | None:
         return None
     try:
         fit = m.fit(frame)
-    except Exception:                             # noqa: BLE001 — a frame the detector fails on: the line search
+    except Exception as e:                        # noqa: BLE001 — a frame the detector fails on: the line search
+        fault("pista.fotograma_tcd", exc=e)
         return None
     if fit is None or not plausible(fit.H, masks.shape):
         return None

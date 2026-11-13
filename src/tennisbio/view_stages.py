@@ -16,6 +16,7 @@ import json
 import time
 from pathlib import Path
 
+from .faults import fault
 from .pipeline import Context, stage, write_atomic
 
 CLIPS_FILE = "view_clips.json"
@@ -27,10 +28,12 @@ def _write(path: Path, obj):
 
 
 def _read(path: Path, default=None):
+    """An output of a stage these depend on. #265: missing or damaged is C0 (entrada.ilegible), never `default`: the
+    clips and slow-motion strokes of no strokes looked like a match without replays."""
     try:
         return json.loads(Path(path).read_text(encoding="utf-8"))
-    except (OSError, ValueError):
-        return default
+    except (OSError, ValueError) as e:
+        fault("entrada.ilegible", str(path), exc=e)
 
 
 def _clips_settings(c: dict) -> dict:
@@ -78,6 +81,7 @@ def st_view_clips(ctx: Context):
         except Exception as e:                    # noqa: BLE001 — that clip is missing; the others are cut
             failed.append(name)
             ctx.log(f"  AVISO: toma sin recorte ({name}): {str(e)[:160]}")
+            fault("toma.sin_recorte", name, exc=e)
     for f in folder.glob("v*.mp4") if folder.exists() and st["enabled"] else []:
         if f.name not in files:                   # a view no longer linked to any stroke
             f.unlink(missing_ok=True)
@@ -117,6 +121,7 @@ def _racket_model(ctx: Context):
         return RacketPose(p, ctx.cfg.get("device", "cpu"), bool((ctx.cfg.get("racket_face") or {}).get("fp16", False)))
     except Exception as e:                        # noqa: BLE001 — the arm is still measured
         ctx.log(f"  AVISO: cámara lenta sin raqueta (no se pudo cargar el modelo: {str(e)[:150]})")
+        fault("modelo.raqueta_no_carga", "cámara lenta sin raqueta", exc=e)
         return None
 
 
@@ -149,6 +154,7 @@ def st_slowmo_fine(ctx: Context):
             except Exception as e:                # noqa: BLE001 — that stroke is not measured; the others are
                 failed += 1
                 ctx.log(f"  AVISO: cámara lenta de {stroke_key(s)} sin medir: {str(e)[:160]}")
+                fault("golpe.camara_lenta", stroke_key(s), exc=e)
                 continue
             if got is not None:
                 rows.append({"key": stroke_key(s), "stroke_id": s.get("stroke_id"), "stroke": s.get("stroke"),

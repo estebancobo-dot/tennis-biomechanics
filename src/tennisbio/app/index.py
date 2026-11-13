@@ -14,6 +14,7 @@ from ..catalog import Player, ascii_id
 from ..config import CONFIG_DIR
 from ..pipeline import load_manifest, video_sample
 from .db import DB, Paths, now
+from ..faults import fault
 
 DEFAULT_HEIGHT = 1.80
 IDENTITY_MIN = 0.8         # share of the near player's shots whose identity was decided (end changes of the
@@ -47,7 +48,8 @@ def import_players(db: DB, config_dir: Path = CONFIG_DIR):
     for f in sorted((config_dir / "players").glob("*.yaml")):
         try:
             d = yaml.safe_load(f.read_text(encoding="utf-8-sig")) or {}
-        except (OSError, yaml.YAMLError):
+        except (OSError, yaml.YAMLError) as e:
+            fault("lectura.opcional_danada", f.name, exc=e)
             continue
         known = db.one("SELECT aliases FROM players WHERE id=?", f.stem)
         db.upsert("players", {"id": f.stem, "name": d.get("name", f.stem), "hand": d.get("hand", "right"),
@@ -68,7 +70,8 @@ def import_catalog(db: DB, cfg: dict, config_dir: Path = CONFIG_DIR):
         return
     try:
         entries = (yaml.safe_load(path.read_text(encoding="utf-8-sig")) or {}).get("matches") or []
-    except (OSError, yaml.YAMLError):
+    except (OSError, yaml.YAMLError) as e:
+        fault("lectura.opcional_danada", str(path), exc=e)
         return
     videos = Path(cfg.get("paths", {}).get("videos", "."))
     for e in entries:
@@ -141,7 +144,8 @@ def rebuild(db: DB, paths: Paths, cfg: dict, config_dir: Path = CONFIG_DIR, fres
         if _mf.test_info(d).exists():
             try:
                 info = json.loads(_mf.test_info(d).read_text(encoding="utf-8"))
-            except (OSError, ValueError):
+            except (OSError, ValueError) as e:
+                fault("app.dato_ilegible", str(d), exc=e)
                 info = {}
         sample = ""
         try:
@@ -152,8 +156,8 @@ def rebuild(db: DB, paths: Paths, cfg: dict, config_dir: Path = CONFIG_DIR, fres
                 # the videos folder, and the run's own folder (test runs cut their clip next to their matches)
                 db.upsert("videos", {"sample": sample, "size": v.get("size", 0), "path": _find_video([paths.videos, d.parent], v),
                                      "added": now()}, "sample")
-        except (OSError, ValueError):
-            pass
+        except (OSError, ValueError) as e:
+            fault("app.dato_ilegible", str(d), exc=e)
         state, note = state_from_manifest(man, d)
         # relative inside <output>; a library folder is outside it (absolute: Engine.dir joins it as it is)
         rel = d.relative_to(paths.output).as_posix() if d.is_relative_to(paths.output) else d.as_posix()
@@ -178,7 +182,8 @@ def rebuild(db: DB, paths: Paths, cfg: dict, config_dir: Path = CONFIG_DIR, fres
             a = json.loads(f.read_text(encoding="utf-8"))
             db.upsert("analyses", {k: a[k] for k in ("id", "player", "stroke", "version", "state", "verdict", "counts",
                                                       "n_strokes", "updated") if k in a})
-        except (OSError, ValueError, KeyError):
+        except (OSError, ValueError, KeyError) as e:
+            fault("app.dato_ilegible", f.name, exc=e)
             continue
 
 
@@ -202,8 +207,8 @@ def catalog_origins(cfg: dict, paths: Paths) -> dict:
             if d.exists():
                 out["dirs"][str(Path(d).resolve())] = m.id
                 out["_renamed"][Path(d).name] = m.id
-    except Exception:  # noqa: BLE001 — without the catalogue the folders are listed as before
-        pass
+    except Exception as e:  # noqa: BLE001 — without the catalogue the folders are listed as before
+        fault("catalogo.no_legible", exc=e)
     return out
 
 
@@ -237,7 +242,8 @@ def _with_library(res: list[tuple[str, Path]], library: Path, origins: dict | No
         d = m.parent.parent
         try:
             mid = json.loads((d / "partido.json").read_text(encoding="utf-8")).get("origen")
-        except (OSError, ValueError):
+        except (OSError, ValueError) as e:
+            fault("app.dato_ilegible", str(d), exc=e)
             mid = None
         mid = mid or (origins or {}).get(str(d.resolve())) or d.name
         by[mid] = d
@@ -254,7 +260,7 @@ def _find_video(places: list[Path], rec: dict) -> str:
             try:
                 if f.is_file() and f.stat().st_size == rec.get("size") and video_sample(f) == rec.get("sample"):
                     return str(f)
-            except OSError:
+            except OSError:  # esperado: a file that cannot be read is not the video
                 continue
     return ""
 

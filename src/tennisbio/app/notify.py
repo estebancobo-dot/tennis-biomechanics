@@ -45,7 +45,7 @@ def can_show() -> dict:
         r = subprocess.run(["powershell.exe", "-NoProfile", "-NonInteractive", "-EncodedCommand", enc], timeout=30,
                            capture_output=True, text=True, creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
         return {"ok": r.returncode == 0, "why": (r.stderr or "").strip()[-200:]}
-    except (OSError, subprocess.SubprocessError) as e:
+    except (OSError, subprocess.SubprocessError) as e:  # esperado: returned as not sent, with why
         return {"ok": False, "why": str(e)[:200]}
 
 
@@ -59,7 +59,7 @@ def show(title: str, text: str) -> bool:
         subprocess.run(["powershell.exe", "-NoProfile", "-NonInteractive", "-EncodedCommand", enc], timeout=20,
                        capture_output=True, creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
         return True
-    except (OSError, subprocess.SubprocessError):
+    except (OSError, subprocess.SubprocessError):  # esperado: returned as not sent
         return False
 
 

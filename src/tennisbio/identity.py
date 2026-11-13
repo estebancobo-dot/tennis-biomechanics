@@ -59,13 +59,13 @@ def end_changes(games: list, points=None, tiebreak: bool = False) -> int | None:
         done = sum((int(a) + int(b) + 1) // 2 for a, b in games[:-1])
         a, b = games[-1]
         cur = (int(a) + int(b) + 1) // 2
-    except (TypeError, ValueError):
+    except (TypeError, ValueError):  # esperado: games that are not numbers: unknown
         return None
     tb = 0
     if tiebreak and points:
         try:
             tb = (int(points[0]) + int(points[1])) // 6
-        except (TypeError, ValueError):
+        except (TypeError, ValueError):  # esperado: points that are not numbers: no tie-break change
             tb = 0
     return done + cur + tb
 
@@ -76,7 +76,7 @@ def _valid_sets(games) -> bool:
     WON 10/18 9/10» read as sets [[1, 9], [0, 1], [1, 0]])."""
     try:
         sets = [(int(a), int(b)) for a, b in games]
-    except (TypeError, ValueError):
+    except (TypeError, ValueError):  # esperado: games that are not numbers: not a valid score
         return False
     if not sets or len(sets) > 5:
         return False

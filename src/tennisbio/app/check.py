@@ -17,13 +17,13 @@ def window_engine() -> dict:
     try:
         import webview  # noqa: F401
         out["pywebview"] = True
-    except Exception as e:                       # noqa: BLE001
+    except Exception as e:  # esperado: written in the check's result
         out["pywebview_error"] = f"{type(e).__name__}: {e}"[:200]
     try:
         import pystray
         pystray.Icon("tennisbio-comprobacion", window.tray_image(), "Tennisbio")      # built, never shown
         out["bandeja"] = True
-    except Exception as e:                       # noqa: BLE001
+    except Exception as e:  # esperado: written in the check's result
         out["bandeja"] = f"{type(e).__name__}: {e}"[:200]
     if sys.platform == "win32":
         from . import notify
@@ -35,7 +35,7 @@ def window_engine() -> dict:
                 with winreg.OpenKey(root, key.replace("WOW6432Node\\", "") if root == winreg.HKEY_CURRENT_USER else key) as k:
                     out["webview2"] = winreg.QueryValueEx(k, "pv")[0]
                     break
-            except OSError:
+            except OSError:  # esperado: not this registry key: the next one
                 continue
     return out
 
@@ -53,11 +53,11 @@ def live_window(app, dest: Path, timeout_s: float = 120.0) -> dict:
         subprocess.run([sys.executable, "-m", "tennisbio.app.check", "--viva", str(page), str(res_f)], timeout=timeout_s,
                        capture_output=True, creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
         timed_out = False
-    except subprocess.TimeoutExpired:
+    except subprocess.TimeoutExpired:  # esperado: said in the check's result (timed_out)
         timed_out = True
     try:
         out = json.loads(res_f.read_text(encoding="utf-8"))
-    except (OSError, ValueError):
+    except (OSError, ValueError):  # esperado: no result: the check fails (opened False)
         out = {"opened": False, "ready": False, "bridge": None}
     if timed_out:
         out["error"] = f"sin respuesta en {timeout_s:.0f} s: se cerró a la fuerza (lo último: {out.get('step', 'arrancando')})"
@@ -135,7 +135,7 @@ def _live_child(page: str, res_f: str, wait_s: float = 60.0):
                             break
                         time.sleep(0.25)
             out["step"] = "hecho"
-        except Exception as e:                   # noqa: BLE001
+        except Exception as e:  # esperado: written in the check's result
             out["error"] = f"{type(e).__name__}: {e}"[:300]
         save()
         w.destroy()
@@ -184,7 +184,7 @@ def check(app, dest: Path, shots: bool = True, real: bool = False) -> dict:
         try:
             bk = backup.plan(app, dest / "copia_prueba")
             res_backup = {"ficheros": bk["files"], "bytes": bk["bytes"]}
-        except Exception as e:                   # noqa: BLE001
+        except Exception as e:  # esperado: a problem of the check, listed
             res_backup = {"error": f"{type(e).__name__}: {e}"[:200]}
             problems.append(f"la copia a USB no sabe qué copiar: {res_backup['error']}")
     else:
@@ -260,7 +260,7 @@ def check_mobile(app, dest: Path) -> dict:
         t0 = time.time()
         try:
             r = mobile.make(app.paths, a["player"], a["stroke"], web=a["web"], dest=a["dest"])
-        except Exception as e:                   # noqa: BLE001
+        except Exception as e:  # esperado: a problem of the check, listed
             problems.append(f"{a['id']}: la copia no se hizo: {type(e).__name__}: {e}"[:300])
             continue
         r["seconds"] = round(time.time() - t0, 1)
@@ -294,7 +294,7 @@ def check_mobile(app, dest: Path) -> dict:
                         if name == "movil":       # the control: the same copy drawn without its scale
                             pg.screenshot(path=str(dest / f"movil_{a['id']}_golpe.png"))
                             pics["sin_escala"] = pg.evaluate(FRAME_JS, [sid, 1])
-                    except Exception as e:       # noqa: BLE001
+                    except Exception as e:  # esperado: a problem of the check, listed
                         problems.append(f"{a['id']} ({name}): no se pudo dibujar su golpe: {e}"[:300])
             b.close()
         if not sid and r["with_video"]:

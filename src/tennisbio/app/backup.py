@@ -34,7 +34,7 @@ def removable_drives() -> list[dict]:
             try:
                 du = shutil.disk_usage(root)
                 out.append({"root": root, "free": du.free, "total": du.total})
-            except OSError:
+            except OSError:  # esperado: a drive that cannot be asked is not offered
                 continue
     return out
 
@@ -45,7 +45,7 @@ def _place(app, d: Path) -> Path:
     for root, name in ((app.paths.output, "output"), (app.paths.library_root, "biblioteca")):
         try:
             return Path(name) / Path(d).resolve().relative_to(Path(root).resolve())
-        except ValueError:
+        except ValueError:  # esperado: not under this root: the next
             continue
     return Path("partidos") / Path(d).name
 
@@ -83,7 +83,7 @@ def _files(app, videos: bool) -> list[tuple[Path, Path]]:
 def _same(src: Path, dst: Path) -> bool:
     try:
         a, b = src.stat(), dst.stat()
-    except OSError:
+    except OSError:  # esperado: not there: not the same
         return False
     return a.st_size == b.st_size and abs(a.st_mtime - b.st_mtime) < 2.5        # FAT keeps 2 s
 
@@ -115,7 +115,7 @@ def run(app, dest_root: Path, videos: bool = False, progress=None) -> dict:
             tmp.replace(dst)                         # a pulled-out drive never leaves a half file under the real name
             copied += 1
             done_b += src.stat().st_size
-        except OSError as e:
+        except OSError as e:  # esperado: listed in the backup's errors, said to the user
             errors.append(f"{src.name}: {e}")
         if progress:
             progress(i + 1, len(p["todo"]), done_b)
@@ -126,7 +126,7 @@ def run(app, dest_root: Path, videos: bool = False, progress=None) -> dict:
         with app.db.lock:
             app.db.con.backup(dst)
         dst.close()
-    except (sqlite3.Error, OSError) as e:
+    except (sqlite3.Error, OSError) as e:  # esperado: listed in the backup's errors, said to the user
         errors.append(f"índice: {e}")
     res = {"when": now(), "dest": str(base), "copied": copied, "bytes": done_b, "errors": errors[:20],
            "seconds": round(time.time() - t0, 1), "videos": videos}

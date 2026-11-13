@@ -284,7 +284,7 @@ class CutStream:
             try:
                 p = np.asarray(self.run(np.stack(self.pending)), np.float32).reshape(len(self.pending), TN_WINDOW)
                 self.out.extend(p[:, TN_CONTEXT:TN_CONTEXT + TN_STEP])
-            except Exception as e:                 # noqa: BLE001 — any failure → histogram fallback
+            except Exception as e:  # noqa: BLE001  # esperado: kept in self.error; the stage raises the C1 modelo.transnet
                 self.error = e
         self.pending = []
 

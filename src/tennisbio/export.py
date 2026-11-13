@@ -26,6 +26,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 from . import match_files as _mf
 from . import findings as F
+from .faults import check_budget, fault
 
 W, H = 1280, 720
 OUT_FPS = 25
@@ -407,7 +408,7 @@ def encoder_name() -> str:
         e = (load_config().get("export") or {}).get("encoder")
         if e in ENCODERS:
             return e
-    except Exception:  # noqa: BLE001 — no configuration: the default
+    except Exception:  # noqa: BLE001  # esperado: no configuration: the default encoder
         pass
     return "libx264"
 
@@ -434,7 +435,7 @@ class Encoder:
     def abort(self):
         try:
             self.p.stdin.close()
-        except OSError:
+        except OSError:  # esperado: the encoder had already closed
             pass
         self.p.kill()
         self.p.wait()
@@ -720,7 +721,7 @@ def _export_workers() -> int:
         w = (load_config().get("export") or {}).get("workers")
         if w:
             return int(w)
-    except Exception:  # noqa: BLE001 — no configuration: the default
+    except Exception:  # noqa: BLE001  # esperado: no configuration: the default workers
         pass
     return max(1, (os.cpu_count() or 3) // 3)
 
@@ -736,7 +737,7 @@ def encode_stroke(job) -> tuple[str, str | None]:
             enc.write(img)
         enc.close()
         return s["id"], None
-    except Exception as e:  # noqa: BLE001 — reported by the caller; the other strokes go on
+    except Exception as e:  # noqa: BLE001  # fallo: video.exportado_fallido (the caller records it); the others go on
         if enc is not None:
             enc.abort()
         return s["id"], str(e)[:300]
@@ -779,7 +780,7 @@ def _export(matches, out_root: Path, dest: Path, stroke, player_id, reel_max, st
     sig_path = dest / "golpes" / "firmas.json"
     try:
         sigs = json.loads(sig_path.read_text(encoding="utf-8"))
-    except (OSError, ValueError):
+    except (OSError, ValueError):  # esperado: no signatures: every clip is made again (same clips)
         sigs = {}
     # and with the encoder: reels join clips without re-encoding, so they must all come from the same one
     # 12-11 (#263): and with the code that draws and encodes each video (encode_stroke and all it reaches in this
@@ -798,7 +799,7 @@ def _export(matches, out_root: Path, dest: Path, stroke, player_id, reel_max, st
         # re-encoded every video, ~50 min, for unchanged strokes)
         try:
             ser_sig = hashlib.sha1(ser.read_bytes()).hexdigest()
-        except OSError:
+        except OSError:  # esperado: no series signature: the clip is made again
             ser_sig = None
         sig = hashlib.sha1((base + str(ser_sig) + json.dumps({k: v for k, v in s.items() if not k.startswith("_")},
                                                                   sort_keys=True, default=str)).encode()).hexdigest()[:12]
@@ -816,8 +817,8 @@ def _export(matches, out_root: Path, dest: Path, stroke, player_id, reel_max, st
         # 10 min and says where it was (27-10)
         try:
             (dest / "en_curso.txt").write_text(f"{sid} {time.strftime('%Y-%m-%d %H:%M:%S')} {k}/{len(jobs)}", encoding="utf-8")
-        except OSError:
-            pass
+        except OSError as e:
+            fault("progreso.no_escrito", "en_curso.txt de la exportación", exc=e)
         if k % 10 == 0:
             log(f"  golpes {k}/{len(jobs)} ({time.time() - t0:.0f} s, {n_workers} procesos)")
 
@@ -835,6 +836,7 @@ def _export(matches, out_root: Path, dest: Path, stroke, player_id, reel_max, st
                 done += 1
             else:                          # one broken window must not stop the export
                 log(f"  {sid}: no se pudo exportar ({err})")
+                fault("video.exportado_fallido", f"{sid}: {err}")
                 paths.pop(sid, None)
                 failed.append({"id": sid, "error": err})
             progress(k, sid)
@@ -848,6 +850,7 @@ def _export(matches, out_root: Path, dest: Path, stroke, player_id, reel_max, st
                 sigs.pop(f.stem, None)
     sig_path.write_text(json.dumps(sigs), encoding="utf-8")
     log(f"Golpes: {done} nuevos, {len(paths)} en {dest / 'golpes'}")
+    check_budget("video.exportado_fallido", len(failed), len(jobs), "vídeos de golpes")
 
     # reels: title card + (for a finding) its typical strokes side by side + its strokes
     reel_names = {}
@@ -880,8 +883,9 @@ def _export(matches, out_root: Path, dest: Path, stroke, player_id, reel_max, st
                               (f"Típico del resto · {m['name']} {F.fmt_metric(m, ta['m'][fnd.k])}",
                                f"Típico de este grupo · {m['name']} {F.fmt_metric(m, tb['m'][fnd.k])}"), pc)
                     parts.append(pc)
-                except Exception as e:
+                except Exception as e:  # noqa: BLE001 — that comparison is missing; the reel goes on
                     log(f"  comparación de {name}: {e}")
+                    fault("video.exportado_fallido", f"comparación de {name}", exc=e)
         parts += [paths[s["id"]] for s in sel]
         concat(parts, dest / "montajes" / name)
         reel_names[text] = name
@@ -893,7 +897,8 @@ def _export(matches, out_root: Path, dest: Path, stroke, player_id, reel_max, st
         try:
             typ = StrokeClip(s, ctx)
             break
-        except Exception:
+        except Exception as e:  # noqa: BLE001 — the next most typical stroke
+            fault("video.exportado_fallido", f"típico {s.get('id')}", exc=e)
             continue
     pdf = dest / "resumen.pdf"
     pdf_summary(pdf, data, dist, finds, concl, typ, ctx, reel_names)

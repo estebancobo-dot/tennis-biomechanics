@@ -51,6 +51,7 @@ KEY_MOMENTS = {"ready": "espera / split step", "takeback": "inicio de preparaci�
                "finish": "terminación", "recovery": "recuperación"}
 # physical limits of what is shown (a value outside them is a measurement error that got through)
 from . import match_files as _mf
+from .faults import fault
 from .limits import BALL_INCOMING_KMH, METRIC_LIMITS
 from .pipeline import total_seconds
 
@@ -131,7 +132,7 @@ def _code_ref(ident: str) -> bool | None:
     import importlib
     try:
         return hasattr(importlib.import_module(f"tennisbio.{m.group(1)}"), m.group(2))
-    except Exception:
+    except Exception:  # esperado: a module that does not import: the cited code does not exist (the check says it)
         return False
 
 
@@ -139,7 +140,7 @@ def report_data(html: Path) -> dict | None:
     """The data the report page was built with (embedded as `const DATA = …;`)."""
     try:
         txt = html.read_text(encoding="utf-8")
-    except OSError:
+    except OSError:  # esperado: no report page: the checks say it is missing
         return None
     m = re.search(r"const DATA = (\{.*?\});\n", txt, re.S)
     return json.loads(m.group(1)) if m else None
@@ -527,7 +528,8 @@ def recall_items(match_dirs: list[Path]) -> list[dict]:
         try:
             readings = json.loads(sc.read_text(encoding="utf-8")).get("readings") or []
             strokes = json.loads(st.read_text(encoding="utf-8")) if st.exists() else []
-        except (OSError, ValueError):
+        except (OSError, ValueError) as e:
+            fault("auditoria.dato_ilegible", "recall_items", exc=e)
             continue
         counts = count_points(readings)
         serves = sum(s.get("stroke") == "overhead" for s in strokes)
@@ -545,14 +547,16 @@ def recall_items(match_dirs: list[Path]) -> list[dict]:
                     counts = seen_counts(counts, un)
                     unseen_txt = (f" (sin {un['all']} puntos en los que nadie juega en la cámara principal: la tele no "
                                   f"los enseñó, {un['hers']} de su saque)")
-        except (OSError, ValueError, KeyError, TypeError):
+        except (OSError, ValueError, KeyError, TypeError) as e:
+            fault("auditoria.dato_ilegible", "recall_items", exc=e)
             pass
         status, detail = recall_verdict(len(strokes), serves, counts)
         detail += unseen_txt
         sides = f" ({sum(s.get('side') != 'far' for s in strokes)} cerca, {sum(s.get('side') == 'far' for s in strokes)} lejos)"
         try:                                      # strokes of undecided identity: analysed, kept apart, not hers yet
             doubt = json.loads((_mf.at(d, "strokes_doubtful.json")).read_text(encoding="utf-8")) if (_mf.at(d, "strokes_doubtful.json")).exists() else []
-        except (OSError, ValueError):
+        except (OSError, ValueError) as e:
+            fault("auditoria.dato_ilegible", "recall_items", exc=e)
             doubt = []
         if doubt:
             sides += f"; además {len(doubt)} de identidad dudosa, apartados (no cuentan como suyos)"
@@ -624,8 +628,8 @@ def recall_items(match_dirs: list[Path]) -> list[dict]:
                                  + ("; primeros: " + ", ".join(f"{x['t0'] / 60:.1f}-{x['t1'] / 60:.1f} min ({x['cause']})"
                                                                for x in g["gaps"][:8]) if g["gaps"] else ""),
                                  serve_gaps=g))
-        except Exception as e:  # noqa: BLE001 — the audit must still be written
-            out.append(_item(1, "Golpes", f"Saques por punto de su saque: {d.name}", "aviso", f"no se pudo calcular ({e})"))
+        except Exception as e:  # esperado: a check that cannot run is a check not met (#265)
+            out.append(_item(1, "Golpes", f"Saques por punto de su saque: {d.name}", "falta", f"no se pudo calcular ({e})"))
     return out
 
 
@@ -682,7 +686,8 @@ def _latest_recall_summary(out_root: Path) -> tuple[str, dict] | None:
             continue
         try:
             r = json.loads(f.read_text(encoding="utf-8"))
-        except (OSError, ValueError):
+        except (OSError, ValueError) as e:
+            fault("auditoria.dato_ilegible", "_latest_recall_summary", exc=e)
             continue
         s = r.get("summary_valid") or r.get("summary") or {}
         if s:
@@ -762,7 +767,8 @@ def with_click(d: Path, summ: dict | None) -> dict | None:
     try:
         ident = json.loads(idf.read_text(encoding="utf-8"))
         pick = json.loads(pf.read_text(encoding="utf-8"))
-    except (OSError, ValueError):
+    except (OSError, ValueError) as e:
+        fault("auditoria.dato_ilegible", "with_click", exc=e)
         return summ
     new, why = apply_pick(ident, pick)
     if why.get("pick") != "aplicado":
@@ -900,7 +906,8 @@ def f3set_sides_items(out_root: Path) -> list[dict]:
             try:
                 r, fname = json.loads(f.read_text(encoding="utf-8")), name
                 break
-            except (OSError, ValueError):
+            except (OSError, ValueError) as e:
+                fault("auditoria.dato_ilegible", "f3set_sides_items", exc=e)
                 continue
     if r is None:
         return [_item(1, "Golpes", n, "aviso", "sin recuento de F3Set (recall_validation_detector.json)") for n in names]
@@ -949,8 +956,8 @@ def b4_items(match_dirs: list[Path], items: list[dict], stroke: str, near: int, 
                 cands = cj.get("candidates", cj) if isinstance(cj, dict) else cj
                 n_far = sum(c.get("side") == "far" and c.get("target", c.get("identity")) is True for c in cands) or None
             out.append(far_end_item(d.name, sides, (man.get("fine") or {}).get("summary"), far_s, n_far))
-        except Exception as e:  # noqa: BLE001 — the audit must still be written
-            out.append(_item(1, "Golpes", f"Identidad en los cambios de lado: {d.name}", "aviso", f"no se pudo calcular ({e})"))
+        except Exception as e:  # esperado: a check that cannot run is a check not met (#265)
+            out.append(_item(1, "Golpes", f"Identidad en los cambios de lado: {d.name}", "falta", f"no se pudo calcular ({e})"))
     return out
 
 
@@ -969,7 +976,8 @@ def serve_coverage(d: Path) -> dict | None:
     strokes = load("strokes.json", [])
     try:
         doubt = load("strokes_doubtful.json", [])
-    except (OSError, ValueError):
+    except (OSError, ValueError) as e:
+        fault("auditoria.dato_ilegible", "serve_coverage", exc=e)
         doubt = []
     shots = []
     scn = load("scenes.json")
@@ -993,7 +1001,7 @@ def serve_coverage_text(match_dirs: list[tuple[str, Path]]) -> dict:
     for label, d in match_dirs:
         try:
             c = serve_coverage(d)
-        except (OSError, ValueError, KeyError, TypeError) as e:
+        except (OSError, ValueError, KeyError, TypeError) as e:  # esperado: written as the row of its match («no se pudo calcular»)
             rows.append({"match": label, "text": f"no se pudo calcular ({e})"})
             continue
         if c is None:
@@ -1021,8 +1029,8 @@ def serve_coverage_item(match_dirs: list[Path], report_html: Path | None) -> dic
         return _item(1, "Golpes", name, "aviso", f"no se encontró el informe del saque ({report_html})")
     try:
         txt = unescape(report_html.read_text(encoding="utf-8"))
-    except OSError as e:
-        return _item(1, "Golpes", name, "aviso", f"no se pudo leer el informe del saque ({e})")
+    except OSError as e:  # esperado: a check that cannot run is a check not met (#265)
+        return _item(1, "Golpes", name, "falta", f"no se pudo leer el informe del saque ({e})")
     exp = serve_coverage_text([(d.name, d) for d in match_dirs])
     want = ([(r["match"], r["text"]) for r in exp["matches"]] + [("total", exp["total"].split(" (solo")[0])]
             + [("limitación", exp["limitation"])])
@@ -1056,14 +1064,16 @@ def camera_items(match_dirs: list[Path], stroke: str = "forehand", weak_below: i
             continue
         try:
             strokes = json.loads(f.read_text(encoding="utf-8"))
-        except (OSError, ValueError):
+        except (OSError, ValueError) as e:
+            fault("auditoria.dato_ilegible", "camera_items", exc=e)
             continue
         for s in strokes:
             if s.get("stroke") != stroke or s.get("side") == "far" or not s.get("series"):
                 continue
             try:
                 ser = json.loads((f.parent / s["series"]).read_text(encoding="utf-8"))
-            except (OSError, ValueError):
+            except (OSError, ValueError) as e:
+                fault("auditoria.dato_ilegible", "camera_items", exc=e)
                 continue
             cam = camera_of(ser.get("H"), (s.get("height_scale") or {}).get("px"), s.get("camera_pitch_deg"))
             if cam:
@@ -1102,7 +1112,8 @@ def views_items(match_dirs: list[Path], min_strokes: int = 20) -> list[dict]:
         try:
             strokes = json.loads(st.read_text(encoding="utf-8"))
             vs = json.loads((_mf.at(d, "views.json")).read_text(encoding="utf-8")).get("summary") or {}
-        except (OSError, ValueError):
+        except (OSError, ValueError) as e:
+            fault("auditoria.dato_ilegible", "views_items", exc=e)
             continue
         c = coverage(strokes)
         det = (f"{c['replay_share']:.0%} de sus golpes con repetición enlazada ({c['with_replay']} de {c['strokes']}, "
@@ -1121,7 +1132,8 @@ SLOWMO_OK = 0.5            # share of her slow-motion replays measured (she can 
 def _json_doc(f: Path) -> dict:
     try:
         doc = json.loads(f.read_text(encoding="utf-8")) if f.exists() else {}
-    except (OSError, ValueError):
+    except (OSError, ValueError) as e:
+        fault("auditoria.dato_ilegible", "_json_doc", exc=e)
         return {}
     return doc if isinstance(doc, dict) else {}
 
@@ -1137,7 +1149,8 @@ def view_clips_items(match_dirs: list[Path], report_dir: Path | None, stroke: st
     if report_dir is not None and (report_dir / "index.html").exists():
         try:
             html = (report_dir / "index.html").read_text(encoding="utf-8")
-        except OSError:
+        except OSError as e:
+            fault("auditoria.dato_ilegible", "view_clips_items", exc=e)
             html = ""
     out = []
     for d in match_dirs:
@@ -1147,7 +1160,8 @@ def view_clips_items(match_dirs: list[Path], report_dir: Path | None, stroke: st
         name = f"Repeticiones en el informe: {d.name}"
         try:
             strokes = [s for s in json.loads(st.read_text(encoding="utf-8")) if s.get("stroke") == stroke]
-        except (OSError, ValueError):
+        except (OSError, ValueError) as e:
+            fault("auditoria.dato_ilegible", "view_clips_items", exc=e)
             continue
         linked = [s for s in strokes if s.get("views")]
         if not linked:
@@ -1194,7 +1208,8 @@ def slowmo_items(match_dirs: list[Path], report_dir: Path | None, stroke: str = 
     if report_dir is not None and (report_dir / "index.html").exists():
         try:
             html = (report_dir / "index.html").read_text(encoding="utf-8")
-        except OSError:
+        except OSError as e:
+            fault("auditoria.dato_ilegible", "slowmo_items", exc=e)
             html = None
     out = []
     for d in match_dirs:
@@ -1206,7 +1221,8 @@ def slowmo_items(match_dirs: list[Path], report_dir: Path | None, stroke: str = 
         name = f"Medidas en la cámara lenta: {d.name}"
         try:
             strokes = [s for s in json.loads(st.read_text(encoding="utf-8")) if s.get("stroke") == stroke and s.get("side") != "far"]
-        except (OSError, ValueError):
+        except (OSError, ValueError) as e:
+            fault("auditoria.dato_ilegible", "slowmo_items", exc=e)
             continue
         want = [s for s in strokes if slowmo_view(s) is not None]
         if not want:
@@ -1353,7 +1369,7 @@ def _codecs(files: list[Path]) -> dict:
             r = subprocess.run(["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries", "stream=codec_name",
                                 "-of", "csv=p=0", str(f)], capture_output=True, text=True, timeout=20)
             out[f.name] = r.stdout.strip() or "?"
-        except (OSError, subprocess.SubprocessError):
+        except (OSError, subprocess.SubprocessError):  # esperado: codec unknown: shown as «?», which the check fails
             out[f.name] = "?"
     return out
 
@@ -1738,8 +1754,8 @@ def module_tests_items(xml: Path | None) -> list[dict]:
     import xml.etree.ElementTree as ET
     try:
         root = ET.parse(xml).getroot()
-    except (ET.ParseError, OSError) as e:
-        return [_item(5, "Pruebas en este PC", f"Pruebas en este PC: {m}", "aviso", f"pruebas.xml ilegible ({e})")
+    except (ET.ParseError, OSError) as e:  # esperado: a check that cannot run is a check not met (#265)
+        return [_item(5, "Pruebas en este PC", f"Pruebas en este PC: {m}", "falta", f"pruebas.xml ilegible ({e})")
                 for m in MODULE_TESTS]
     per: dict[str, dict] = {m: {"ok": 0, "fail": [], "skip": 0} for m in MODULE_TESTS}
     for tc in root.iter("testcase"):
@@ -1797,7 +1813,8 @@ def candidate_items(out_root: Path) -> list[dict]:
     if f is not None:
         try:
             rep = json.loads(f.read_text(encoding="utf-8"))
-        except (OSError, ValueError):
+        except (OSError, ValueError) as e:
+            fault("auditoria.dato_ilegible", "candidate_items", exc=e)
             rep = None
     out = []
     for name, (what, ours) in CANDIDATE_MODELS.items():
@@ -1831,8 +1848,8 @@ def models_in_use_items(cfg: dict | None = None) -> list[dict]:
         try:
             from .config import load_config
             cfg = load_config()
-        except Exception as e:  # noqa: BLE001 — the audit must still be written
-            return [_item(12, "Modelos", "Modelo en uso: configuración", "aviso", f"no se pudo leer la configuración ({e})")]
+        except Exception as e:  # esperado: a check that cannot run is a check not met (#265)
+            return [_item(12, "Modelos", "Modelo en uso: configuración", "falta", f"no se pudo leer la configuración ({e})")]
     from . import court, trunk3d
 
     def has(p) -> bool:
@@ -1875,7 +1892,8 @@ def spotter_items(match_dirs: list[Path]) -> list[dict]:
         f = _mf.at(d, "manifest.json")
         try:
             man = json.loads(f.read_text(encoding="utf-8")) if f.exists() else {}
-        except (OSError, ValueError):
+        except (OSError, ValueError) as e:
+            fault("auditoria.dato_ilegible", "spotter_items", exc=e)
             continue
         cand = (man.get("candidates") or {}).get("summary") or {}
         if not cand:
@@ -1964,11 +1982,85 @@ def inputs_items(match_dirs: list[Path]) -> list[dict]:
         f = _mf.at(d, "manifest.json")
         try:
             man = json.loads(f.read_text(encoding="utf-8")) if f.exists() else {}
-        except (OSError, ValueError):
+        except (OSError, ValueError) as e:
+            fault("auditoria.dato_ilegible", "inputs_items", exc=e)
             continue
         it = inputs_item(d.name, man)
         if it:
             out.append(it)
+    return out
+
+
+FAULTS_ITEM = "Fallos por niveles"
+
+
+def faults_item(match: str, man: dict, c0: list[dict]) -> dict | None:
+    """#265 (13-11), the acceptance gate of a match: its stages' faults by level (manifest[stage]["faults"]) and the
+    C0 that stopped a stage (fallos.json) while that stage has not been done again since. ✘ with any C0 pending or any
+    C1 (a full analysis is never accepted with one); C2-C4 are listed. None without any stage run."""
+    stages = {n: e for n, e in man.items() if isinstance(e, dict) and "fingerprint" in e}
+    if not stages:
+        return None
+    pending = [x for x in c0 if str((stages.get(x.get("etapa")) or {}).get("finished") or "") < str(x.get("hora") or "")]
+    old = sorted(n for n, e in stages.items() if "faults" not in e)
+    by_level: dict[str, dict[str, int]] = {}
+    for n, e in stages.items():
+        for code, v in (e.get("faults") or {}).items():
+            lv = v.get("nivel", "?")
+            by_level.setdefault(lv, {})[f"{code} ({n})"] = by_level.get(lv, {}).get(f"{code} ({n})", 0) + int(v.get("n", 0))
+    parts = []
+    if pending:
+        parts.append("C0 sin resolver: " + "; ".join(f"{x.get('codigo')} en {x.get('etapa')} ({x.get('hora')}): "
+                                                    f"{str(x.get('detalle'))[:160]}" for x in pending[-3:]))
+    for lv in ("C1", "C2", "C3", "C4"):
+        if by_level.get(lv):
+            parts.append(f"{lv}: " + ", ".join(f"{k} ×{v}" for k, v in sorted(by_level[lv].items())))
+    if old:
+        parts.append(f"etapas sin registro de fallos (hechas antes del 13-11): {', '.join(old)}")
+    st = "falta" if pending or by_level.get("C1") else "aviso" if old else "ok"
+    return _item(12, "Robustez", f"{FAULTS_ITEM}: {match}", st,
+                 ("; ".join(parts) or "ningún fallo en sus etapas") + (". Un análisis completo no se acepta con un C0 "
+                                                                         "sin resolver ni con un C1" if st == "falta" else ""))
+
+
+def faults_items(match_dirs: list[Path]) -> list[dict]:
+    from .pipeline import FAULTS_FILE
+    out = []
+    for d in match_dirs:
+        f = _mf.at(d, "manifest.json")
+        try:
+            man = json.loads(f.read_text(encoding="utf-8")) if f.exists() else {}
+            c0f = f.parent / FAULTS_FILE
+            c0 = (json.loads(c0f.read_text(encoding="utf-8")) or {}).get("c0") or [] if c0f.exists() else []
+        except (OSError, ValueError) as e:  # esperado: returned as its item (falta)
+            out.append(_item(12, "Robustez", f"{FAULTS_ITEM}: {d.name}", "falta", f"no se puede leer su registro ({e})"))
+            continue
+        it = faults_item(d.name, man, c0)
+        if it:
+            out.append(it)
+    return out
+
+
+def command_faults_items(out_root: Path) -> list[dict]:
+    """#265: the faults of the last run of each command outside its stages (<output>/fallos/<command>.json, written by
+    cli.main): ✘ with a C0 or a C1 (a match without its video, the registry unreadable, many videos not exported)."""
+    out = []
+    d = Path(out_root) / "fallos"
+    for f in sorted(d.glob("*.json")) if d.is_dir() else []:
+        try:
+            rec = json.loads(f.read_text(encoding="utf-8"))
+        except (OSError, ValueError) as e:  # esperado: returned as its item (falta)
+            out.append(_item(12, "Robustez", f"{FAULTS_ITEM}: orden {f.stem}", "falta", f"no se puede leer su registro ({e})"))
+            continue
+        fl = rec.get("fallos") or {}
+        bad = [f"{c} ×{v.get('n')}" for c, v in fl.items() if v.get("nivel") in ("C0", "C1")]
+        rest = [f"{v.get('nivel')} {c} ×{v.get('n')}" for c, v in fl.items() if v.get("nivel") not in ("C0", "C1")]
+        crit = rec.get("c0")
+        st = "falta" if crit or bad else "ok"
+        det = "; ".join(x for x in ((f"C0 {crit.get('codigo')}: {str(crit.get('detalle'))[:160]}" if crit else ""),
+                                    ("C1: " + ", ".join(bad)) if bad else "", ", ".join(rest)) if x) or "ningún fallo"
+        out.append(_item(12, "Robustez", f"{FAULTS_ITEM}: orden {f.stem}", st,
+                         f"{det} (última vez: {rec.get('hora')}, {' '.join(rec.get('argumentos') or [])})"))
     return out
 
 
@@ -1982,14 +2074,16 @@ def stage_time_items(match_dirs: list[Path], out_root: Path) -> list[dict]:
     try:
         rates = json.loads(rf.read_text(encoding="utf-8")) if rf else {}
         alarms = (json.loads(af.read_text(encoding="utf-8")) if (af := _find(out_root, ALARMS)) else {}).get("alarmas") or []
-    except (OSError, ValueError):
+    except (OSError, ValueError) as e:
+        fault("auditoria.dato_ilegible", "stage_time_items", exc=e)
         rates, alarms = {}, []
     out = []
     for d in match_dirs:
         f = _mf.at(d, "manifest.json")
         try:
             man = json.loads(f.read_text(encoding="utf-8")) if f.exists() else {}
-        except (OSError, ValueError):
+        except (OSError, ValueError) as e:
+            fault("auditoria.dato_ilegible", "stage_time_items", exc=e)
             continue
         dur = ((man.get("probe") or {}).get("summary") or {}).get("duration_min")
         if not dur:
@@ -2034,7 +2128,8 @@ def parallel_items(match_dirs: list[Path]) -> list[dict]:
         f = _mf.at(d, "manifest.json")
         try:
             man = json.loads(f.read_text(encoding="utf-8")) if f.exists() else {}
-        except (OSError, ValueError):
+        except (OSError, ValueError) as e:
+            fault("auditoria.dato_ilegible", "parallel_items", exc=e)
             continue
         ov = {st: e.get("overlap_s", 0) for st, e in man.items() if isinstance(e, dict) and e.get("overlap_s")}
         if not any(isinstance(e, dict) and e.get("seconds") for e in man.values()):
@@ -2059,15 +2154,15 @@ def resources_items(out_root: Path) -> list[dict]:
         spec = importlib.util.spec_from_file_location("resources_summary", ROOT / "scripts" / "resources_summary.py")
         rs = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(rs)
-    except Exception as e:  # noqa: BLE001 — the audit must still be written
-        return [_item(9, "Uso del PC", name, "aviso", f"no se pudo cargar resources_summary ({e})")]
+    except Exception as e:  # esperado: a check that cannot run is a check not met (#265)
+        return [_item(9, "Uso del PC", name, "falta", f"no se pudo cargar resources_summary ({e})")]
     # the latest run with samples of a stage running (08-11: a run from the caches can end before any sample falls
     # inside a stage, and its file alone said nothing about the PC); the newer empty ones are named
     groups, after_min, used, skipped = [], 0.0, None, []
     for f in reversed(files[-10:]):
         try:
             allg = [g for g in rs.summarize(rs.read([f])) if g.get("etapa")]
-        except Exception:  # noqa: BLE001 — a damaged file is skipped, and said
+        except Exception:  # esperado: a damaged file is skipped and said (skipped)
             skipped.append(f.name)
             continue
         # samples once the stage named had ended are not that stage's (07-11, #230): apart, at the end
@@ -2096,7 +2191,7 @@ def _request_time(repo: Path = ROOT):
         r = subprocess.run(["git", "log", "-1", "--format=%ct", "--", "config/peticion_pc.txt", ".github/workflows/pc.yml"],
                            cwd=repo, capture_output=True, text=True, timeout=20)
         return datetime.fromtimestamp(int(r.stdout.strip())) if r.stdout.strip() else None
-    except (OSError, ValueError, subprocess.SubprocessError):
+    except (OSError, ValueError, subprocess.SubprocessError):  # esperado: no git here: unknown
         return None
 
 
@@ -2116,13 +2211,14 @@ def _previous_job_end(folder: Path, before, skip: str = "ciclo_actions.log"):
             with f.open("rb") as h:
                 h.seek(max(f.stat().st_size - 8192, 0))
                 tail = h.read().decode("utf-8", errors="replace")
-        except OSError:
+        except OSError as e:
+            fault("auditoria.dato_ilegible", "_previous_job_end", exc=e)
             continue
         for pat, fmt in pats:
             for s in re.findall(pat, tail):
                 try:
                     t = datetime.strptime(s, fmt) if fmt else datetime.fromisoformat(s.replace(" ", "T"))
-                except ValueError:
+                except ValueError:  # esperado: a date that does not parse: the next one
                     continue
                 if t <= before + timedelta(minutes=1) and (best is None or t > best):
                     best = t
@@ -2223,7 +2319,7 @@ def _doc_date(text: str):
             return date(int(d.group(1)), int(d.group(2)), int(d.group(3)))
         if d := re.match(r"(?:(\d{1,2}) de )?([a-záéíóú]+)(?: de)? (\d{4})", s):
             return date(int(d.group(3)), _MONTHS[d.group(2)], int(d.group(1) or 1))
-    except (KeyError, ValueError):
+    except (KeyError, ValueError):  # esperado: a date that does not parse: unknown
         return None
     return None
 
@@ -2237,7 +2333,8 @@ def _latest_recall(out_root: Path):
             continue
         try:
             r = json.loads(f.read_text(encoding="utf-8"))
-        except (OSError, ValueError):
+        except (OSError, ValueError) as e:
+            fault("auditoria.dato_ilegible", "_latest_recall", exc=e)
             continue
         s = r.get("summary_valid") or r.get("summary") or {}
         tot = s.get("total") or {}
@@ -2261,7 +2358,8 @@ def comparison_doc_item(items: list[dict], out_root: Path, doc: Path | None = No
     bf = _find(out_root, "bench_candidates.json", "datasets/reports/bench_candidates.json")
     try:
         bench = json.loads(bf.read_text(encoding="utf-8")) if bf else {}
-    except (OSError, ValueError):
+    except (OSError, ValueError) as e:
+        fault("auditoria.dato_ilegible", "comparison_doc_item", exc=e)
         bench = {}
     res = bench.get("results") or {}
     stale, good = [], []
@@ -2301,7 +2399,7 @@ def comparison_doc_item(items: list[dict], out_root: Path, doc: Path | None = No
     gen = str(bench.get("generated") or "")
     try:
         last = datetime.fromisoformat(gen.replace(" ", "T")).date() if gen else None
-    except ValueError:
+    except ValueError:  # esperado: a date that does not parse: unknown
         last = None
     if dd is None:
         stale.append("sin fecha legible en su línea «Estado:»")
@@ -2342,13 +2440,15 @@ def pose_at_contact_items(match_dirs: list[Path]) -> list[dict]:
             continue
         try:
             strokes = json.loads(f.read_text(encoding="utf-8"))
-        except (OSError, ValueError):
+        except (OSError, ValueError) as e:
+            fault("auditoria.dato_ilegible", "pose_at_contact_items", exc=e)
             continue
         by = {}
         for s in strokes:
             try:
                 ser = json.loads(_mf.at(d, s["series"]).read_text(encoding="utf-8")) if s.get("series") else {}
-            except (OSError, ValueError):
+            except (OSError, ValueError) as e:
+                fault("auditoria.dato_ilegible", "pose_at_contact_items", exc=e)
                 ser = {}
             k = (s.get("side") or "near", s.get("stroke") or "?")
             n, ok = by.get(k, (0, 0))
@@ -2403,6 +2503,8 @@ def base_items(match_dirs: list[Path], out_root: Path, cfg: dict | None = None) 
     items = []
     for fn in (lambda: candidate_items(out_root), lambda: models_in_use_items(cfg), lambda: spotter_items(match_dirs),
                lambda: inputs_items(match_dirs),          # #264 (12-11): every input of the models per match
+               lambda: faults_items(match_dirs),          # #265 (13-11): the acceptance gate by fault level
+               lambda: command_faults_items(out_root),
                lambda: stage_time_items(match_dirs, out_root), lambda: parallel_items(match_dirs),
                lambda: [_scratch_time(out_root, cfg)], lambda: pose_at_contact_items(match_dirs),
                lambda: resources_items(out_root), lambda: [actions_item(out_root)],
@@ -2412,8 +2514,9 @@ def base_items(match_dirs: list[Path], out_root: Path, cfg: dict | None = None) 
                lambda: [comparison_doc_item(items, out_root)]):
         try:
             items += fn()
-        except Exception as e:  # noqa: BLE001 — one check that breaks never stops the audit
-            items.append(_item(9, "Auditoría", "Comprobaciones de la base (B1, B3)", "aviso", f"no se pudo calcular ({e})"))
+        except Exception as e:  # noqa: BLE001  # esperado: a check that breaks is a check not met (#265), the others go on
+            items.append(_item(9, "Auditoría", "Comprobaciones de la base (B1, B3)", "falta",
+                               f"no se pudo calcular ({type(e).__name__}: {e})"))
     return items
 
 def _scratch_time(out_root: Path, cfg: dict | None) -> dict:
@@ -2439,7 +2542,7 @@ def progress_item(bases: list[Path]) -> dict:
         return _item(5, "Infraestructura", name, "aviso", "no se encontró progreso.json (ninguna etapa ha dicho su avance aquí)")
     try:
         p = json.loads(f.read_text(encoding="utf-8"))
-    except (OSError, ValueError) as e:
+    except (OSError, ValueError) as e:  # esperado: returned as its item (falta)
         return _item(5, "Infraestructura", name, "falta", f"progreso.json ilegible ({e})")
     need = ("partido", "etapa", "hecho", "total", "porcentaje", "hora")
     miss = [k for k in need if p.get(k) is None]
@@ -2503,7 +2606,7 @@ def logs_item(bases: list[Path], now: float | None = None) -> dict:
         try:
             age = now - f.stat().st_mtime
             why = log_dates(f.read_text(encoding="utf-8-sig", errors="replace"), 0.0 if live else age)
-        except OSError as e:
+        except OSError as e:  # esperado: said in its item (ilegible)
             why = f"ilegible ({e})"
         if why:
             bad.append(f"{f.name}: {why}")
@@ -2558,7 +2661,7 @@ def old_test_folders_item(bases: list[Path], now: float | None = None, days: flo
     for d in sorted(p for p in out.glob("_poc*") if p.is_dir()):
         try:
             last = max([d.stat().st_mtime] + [c.stat().st_mtime for c in d.iterdir()])
-        except OSError:
+        except OSError:  # esperado: a folder that vanished meanwhile
             continue
         if now - last > days * 86400:
             old.append((d.name, sizes.get(d.name)))
@@ -2589,7 +2692,7 @@ def app_items(bases: list[Path]) -> list[dict]:
         return out
     try:
         v = json.loads(f.read_text(encoding="utf-8"))
-    except (OSError, ValueError) as e:
+    except (OSError, ValueError) as e:  # esperado: returned as its items (falta)
         return [_item(5, "Aplicación", n, "falta", f"ventana.json ilegible ({e})") for n in names]
     live, idx, probs = v.get("live") or {}, v.get("index") or {}, v.get("problems") or []
     ok_win = not probs and (v.get("screens") or 0) > 0 and live.get("ready") is True
@@ -2624,7 +2727,7 @@ def app_index_counts(bases: list[Path]) -> tuple[int, int] | None:
                         con.execute("SELECT count(*) FROM matches").fetchone()[0])
             finally:
                 con.close()
-        except sqlite3.Error:
+        except sqlite3.Error:  # esperado: the next copy of the database is tried
             continue
     return None
 
@@ -2644,8 +2747,8 @@ def app_cost_item(bases: list[Path], today: str | None = None) -> dict:
         return _item(5, "Aplicación", APP_COST_ITEM, "aviso", "sin medir (petición «medir app_recursos» del PC)")
     try:
         r = json.loads(f.read_text(encoding="utf-8"))
-    except (OSError, ValueError) as e:
-        return _item(5, "Aplicación", APP_COST_ITEM, "aviso", f"app_recursos.json ilegible ({e})")
+    except (OSError, ValueError) as e:  # esperado: a check that cannot run is a check not met (#265)
+        return _item(5, "Aplicación", APP_COST_ITEM, "falta", f"app_recursos.json ilegible ({e})")
     if r.get("error") or r.get("cpu_media_pct") is None:
         return _item(5, "Aplicación", APP_COST_ITEM, "falta", f"no se pudo medir: {r.get('error') or 'sin muestras'}")
     day = (today or _dt.date.today().isoformat())[:10]
@@ -2676,8 +2779,8 @@ def visible_windows_item(bases: list[Path], today: str | None = None) -> dict:
         return _item(5, "Automático", WINDOWS_ITEM, "pocos datos", "sin la lista de ventanas del PC (scripts/ventanas_visibles.py)")
     try:
         r = json.loads(f.read_text(encoding="utf-8"))
-    except (OSError, ValueError) as e:
-        return _item(5, "Automático", WINDOWS_ITEM, "aviso", f"ventanas_visibles.json ilegible ({e})")
+    except (OSError, ValueError) as e:  # esperado: a check that cannot run is a check not met (#265)
+        return _item(5, "Automático", WINDOWS_ITEM, "falta", f"ventanas_visibles.json ilegible ({e})")
     rows = r.get("ventanas") if isinstance(r, dict) else r
     if isinstance(rows, dict):                     # one window: PowerShell's ConvertTo-Json gives an object, not a list
         rows = [rows] if "name" in rows else []
@@ -2689,7 +2792,7 @@ def visible_windows_item(bases: list[Path], today: str | None = None) -> dict:
     if when:
         try:
             age = (_dt.date.fromisoformat((today or _dt.date.today().isoformat())[:10]) - _dt.date.fromisoformat(when)).days
-        except ValueError:
+        except ValueError:  # esperado: a date that does not parse: unknown age
             age = None
     if ours:
         ex = "; ".join(f"{w.get('name')} «{(w.get('title') or '')[:60]}» desde {w.get('start')}" for w in ours[:3])
@@ -2719,8 +2822,8 @@ def match_list_item(bases: list[Path]) -> dict:
             rows = [dict(r) for r in con.execute("SELECT * FROM matches")]
         finally:
             con.close()
-    except sqlite3.Error as e:
-        return _item(5, "Aplicación", MATCH_LIST_ITEM, "aviso", f"no se pudo leer el registro ({e})")
+    except sqlite3.Error as e:  # esperado: a check that cannot run is a check not met (#265)
+        return _item(5, "Aplicación", MATCH_LIST_ITEM, "falta", f"no se pudo leer el registro ({e})")
     rows = [r for r in rows if ":" not in str(r.get("id")) and r.get("state") != "archivado"]
     if not rows:
         return _item(5, "Aplicación", MATCH_LIST_ITEM, "aviso", "ningún partido en el registro")
@@ -2751,7 +2854,7 @@ def new_match_own_failures(base: Path) -> list[str] | None:
     for a in auds:
         try:
             items = json.loads(a.read_text(encoding="utf-8")).get("items", [])
-        except (OSError, ValueError):
+        except (OSError, ValueError):  # esperado: said in the list (auditoría ilegible)
             out.append(f"{a.parents[1].name}: auditoría ilegible")
             continue
         out += [f"{i.get('name')}: {(i.get('detail') or '')[:120]}" for i in items if i.get("status") == "falta"
@@ -2818,7 +2921,8 @@ def orchestrator_items(bases: list[Path], now_s: float | None = None) -> list[di
         m = re.search(r"\{.*\}", txt, re.S)
         try:
             res = json.loads(m.group(0)) if m else {}
-        except ValueError:
+        except ValueError as e:
+            fault("auditoria.dato_ilegible", "orchestrator_items", exc=e)
             res = {}
         checks = res.get("checks") or {}
         bad = [k for k, v in checks.items() if v is not True]
@@ -2843,11 +2947,11 @@ def orchestrator_items(bases: list[Path], now_s: float | None = None) -> list[di
                 "ORDER BY started")]
         finally:
             con.close()
-    except sqlite3.Error as e:
-        return out + [_item(5, "Orquestador", n, "aviso", f"no se pudo leer la cola ({e})") for n in (ORCH_ALIVE_ITEM, ORCH_WAIT_ITEM)]
+    except sqlite3.Error as e:  # esperado: a check that cannot run is a check not met (#265)
+        return out + [_item(5, "Orquestador", n, "falta", f"no se pudo leer la cola ({e})") for n in (ORCH_ALIVE_ITEM, ORCH_WAIT_ITEM)]
     try:
         hb = json.loads(beat[0]) if beat else {}
-    except (TypeError, ValueError):
+    except (TypeError, ValueError):  # esperado: a heartbeat that is not JSON: none
         hb = {}
     alive = bool(hb.get("pid")) and now_s - float(hb.get("at") or 0) <= ORCH_HEARTBEAT_S
     is_paused = bool(paused) and str(paused[0]).lower() in ("true", "1")
@@ -2860,7 +2964,7 @@ def orchestrator_items(bases: list[Path], now_s: float | None = None) -> list[di
     def ts(x):
         try:
             return _d.strptime(str(x)[:19], "%Y-%m-%d %H:%M:%S").timestamp()
-        except ValueError:
+        except ValueError:  # esperado: a time that does not parse: unknown
             return None
     # a job's wait: from its queuing to its start, minus the time another job was running (it waited its turn)
     spans = [(ts(r["started"]), ts(r["finished"]) or now_s) for r in rows if ts(r["started"]) is not None]
@@ -2910,8 +3014,8 @@ def manual_review_item(bases: list[Path]) -> dict:
                 rows = con.execute("SELECT id, kind, match, reason FROM jobs WHERE state='por confirmar' ORDER BY id").fetchall()
             finally:
                 con.close()
-        except sqlite3.Error as e:
-            return _item(5, "Automático", MANUAL_REVIEW_ITEM, "aviso", f"no se pudo leer el índice de la aplicación ({e})")
+        except sqlite3.Error as e:  # esperado: a check that cannot run is a check not met (#265)
+            return _item(5, "Automático", MANUAL_REVIEW_ITEM, "falta", f"no se pudo leer el índice de la aplicación ({e})")
         if rows:
             ex = "; ".join(f"#{r[0]} {r[1]} {r[2] or ''} ({(r[3] or '')[:60]})" for r in rows[:3])
             return _item(5, "Automático", MANUAL_REVIEW_ITEM, "aviso",
@@ -2952,8 +3056,8 @@ def side_checks(out_root: Path) -> list[dict]:
                            f"{len(v)} vídeos, {n} con texto (docs/aprendido_entrenadores.md); nunca en el informe"))
     try:
         items += infrastructure_items(out_root)
-    except Exception as e:  # noqa: BLE001 — the audit must still be written
-        items.append(_item(5, "Infraestructura", "Comprobaciones de la infraestructura del PC", "aviso", f"no se pudieron hacer ({e})"))
+    except Exception as e:  # esperado: a check that cannot run is a check not met (#265)
+        items.append(_item(5, "Infraestructura", "Comprobaciones de la infraestructura del PC", "falta", f"no se pudieron hacer ({e})"))
     return items
 
 
@@ -2976,7 +3080,8 @@ def file_tree_items(match_dirs: list[Path], report_dir: Path | None, out_root: P
         # the application analysed has not run that stage, and that is not a missing file (the app's new match failed so)
         try:
             ran = set(json.loads(_mf.at(d, "manifest.json").read_text(encoding="utf-8")))
-        except (OSError, ValueError):
+        except (OSError, ValueError) as e:
+            fault("auditoria.dato_ilegible", "file_tree_items", exc=e)
             ran = set()
         miss = [f"{n}/{o}" for n, st in STAGES.items() for o in st.outputs
                 if not ok(_mf.at(d, o)) and not (n in OPTIONAL_STAGES and n not in ran)]
@@ -3030,7 +3135,7 @@ def _skeleton_pixels(video: Path, t: float = 0.5) -> tuple[int, int] | None:
     try:
         r = subprocess.run(["ffmpeg", "-v", "error", "-ss", f"{t:.2f}", "-i", str(video), "-frames:v", "1", "-f", "image2pipe",
                             "-vcodec", "png", "-"], capture_output=True, timeout=30)
-    except (OSError, subprocess.SubprocessError):
+    except (OSError, subprocess.SubprocessError):  # esperado: no frame: the check goes on without it
         return None
     img = cv2.imdecode(np.frombuffer(r.stdout, np.uint8), cv2.IMREAD_COLOR) if r.stdout else None
     if img is None:
@@ -3058,7 +3163,7 @@ def export_videos_item(d: Path) -> dict | None:
                                 "stream=codec_name:format=duration", "-of", "default=nw=1", str(v)],
                                capture_output=True, text=True, timeout=20)
             info = dict(ln.split("=", 1) for ln in r.stdout.splitlines() if "=" in ln)
-        except (OSError, subprocess.SubprocessError):
+        except (OSError, subprocess.SubprocessError):  # esperado: unreadable: an empty probe, which the check fails
             info = {}
         codec, dur = info.get("codec_name", "?"), float(info.get("duration") or 0)
         if codec not in BROWSER_CODECS:
@@ -3111,7 +3216,7 @@ def export_end_item(d: Path) -> dict:
     if mt(END_RECORD) is not None:            # removed when an export starts: there only if the last one ended
         try:
             rec = json.loads((d / END_RECORD).read_text(encoding="utf-8"))
-        except (OSError, ValueError) as e:
+        except (OSError, ValueError) as e:  # esperado: returned as its item (falta)
             return _item(5, "Ficheros", name, "falta", f"{END_RECORD} ilegible ({e})")
         bad = rec.get("failed") or []
         return _item(5, "Ficheros", name, "falta" if bad else "ok",
@@ -3186,7 +3291,7 @@ def to_markdown(res: dict) -> str:
     try:
         from .requests_check import pending_markdown
         out += [pending_markdown(), ""]
-    except Exception as e:                       # the audit must still be written
+    except Exception as e:  # esperado: written in the audit's text instead of the list
         out += [f"## Peticiones del usuario SIN TERMINAR: no se pudo leer el registro ({e})", ""]
     for req, title in REQUIREMENTS.items():
         its = [i for i in res["items"] if i["req"] == req]

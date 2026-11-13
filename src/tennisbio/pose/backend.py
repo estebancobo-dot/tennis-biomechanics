@@ -8,6 +8,7 @@ from functools import lru_cache
 from pathlib import Path
 
 import numpy as np
+from ..faults import fault
 
 from .yolo_onnx import MODELS_DIR
 
@@ -28,20 +29,23 @@ class PoseModel:
             try:                                   # export once (needs the 'yolo' extra)
                 from .yolo_onnx import export_onnx
                 path = export_onnx(self.name, self.imgsz)
-            except Exception:
+            except Exception as e:  # noqa: BLE001 — PyTorch instead: the same model, slower
+                fault("modelo.yolo_onnx", f"{self.name}: no se pudo exportar", exc=e)
                 path = None
         if path is not None and path.exists() and fp16 and device == "dml":
             try:
                 from .variants import to_fp16
                 path, self.fp16 = to_fp16(path), True
-            except Exception as e:
+            except Exception as e:  # noqa: BLE001 — the full-precision model: the same points (< 1 px)
                 print(f"AVISO: no se pudo preparar la copia en media precisión de {path.name} ({e}); se usa la normal")
+                fault("modelo.fp16", path.name, exc=e)
         if path is not None and path.exists():
             try:
                 from .yolo_onnx import YoloOnnx
                 self.onnx = YoloOnnx(path, device)
-            except Exception as e:
+            except Exception as e:  # noqa: BLE001 — PyTorch on the CPU: the same model, slower
                 print(f"AVISO: no se pudo cargar {path.name} ({e}); se usa PyTorch en la CPU")
+                fault("modelo.yolo_onnx", f"{path.name}: no carga", exc=e)
         self.torch = None
         if self.onnx is None:
             from ultralytics import YOLO

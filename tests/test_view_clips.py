@@ -8,6 +8,8 @@ from pathlib import Path
 import numpy as np
 import pytest
 
+from tennisbio.faults import CriticalFault
+
 from tennisbio import audit as A
 from tennisbio import pipeline, real_status, stages  # noqa: F401  (registers the stages)
 from tennisbio import view_stages as VS
@@ -36,6 +38,8 @@ def ctx_for(tmp_path, cfg=None, vid=None) -> Context:
     out.mkdir(exist_ok=True)
     c = Context(Match("m1", vid or tmp_path / "v.mp4", Player("p", "P", height_m=1.84)), cfg or {}, out, log=lambda *_: None)
     c.progress = lambda *a, **k: None
+    if not c.path("probe.json").exists():          # #265: written by the probe stage on every match (missing is C0)
+        c.path("probe.json").write_text(json.dumps({"interlaced": False}), encoding="utf-8")
     return c
 
 
@@ -110,7 +114,10 @@ def test_view_clips_cuts_each_clip_once_and_never_touches_strokes(tmp_path):
 
 def test_view_clips_without_strokes_or_switched_off(tmp_path):
     ctx = ctx_for(tmp_path)
-    assert VS.st_view_clips(ctx)["clips"] == 0                             # no strokes.json: an empty plan, no error
+    with pytest.raises(CriticalFault):                                     # #265: no strokes.json is C0, never «no clips»
+        VS.st_view_clips(ctx)
+    ctx.path("strokes.json").write_text("[]", encoding="utf-8")
+    assert VS.st_view_clips(ctx)["clips"] == 0                             # no strokes: an empty plan, no error
     ctx.path("strokes.json").write_text(json.dumps([stroke(4.0, [REPLAY])]), encoding="utf-8")
     ctx.cfg = {"views": {"clips": {"enabled": False}}}
     s = VS.st_view_clips(ctx)

@@ -68,7 +68,7 @@ def ground_track(img: np.ndarray, sk: Skeleton, P: np.ndarray, height_m: float, 
     Hz = np.column_stack([P[:, 0], P[:, 1], P[:, 2] * z + P[:, 3]])
     try:
         Hi = np.linalg.inv(Hz)
-    except np.linalg.LinAlgError:
+    except np.linalg.LinAlgError:  # esperado: a degenerate homography: no scale from it
         return None
     q = np.c_[mid, np.ones(len(mid))] @ Hi.T
     with np.errstate(invalid="ignore", divide="ignore"):

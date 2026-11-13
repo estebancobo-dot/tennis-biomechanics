@@ -164,7 +164,8 @@ def test_actions_wait_does_not_count_the_time_the_pc_was_busy(tmp_path):
 def test_base_items_never_break_the_audit(tmp_path, monkeypatch):
     monkeypatch.setattr(A, "candidate_items", lambda out: 1 / 0)
     items = A.base_items([], tmp_path, cfg={})
-    assert any(i["name"] == "Comprobaciones de la base (B1, B3)" and i["status"] == "aviso" for i in items)
+    # #265: a check that breaks is a check not met («falta»), the others still run
+    assert any(i["name"] == "Comprobaciones de la base (B1, B3)" and i["status"] == "falta" for i in items)
     assert any(i["name"].startswith("Peticiones por GitHub Actions") for i in items)
 
 

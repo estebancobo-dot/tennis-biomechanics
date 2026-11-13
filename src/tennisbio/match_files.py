@@ -25,10 +25,13 @@ def player_dir(match_dir: Path) -> Path:
     """golpes/<jugadora>/ of the analysed player (partido.json «jugadora», else the only folder there)."""
     d = Path(match_dir)
     who = None
-    try:
-        who = json.loads((d / "partido.json").read_text(encoding="utf-8")).get("jugadora")
-    except (OSError, ValueError):
-        pass
+    f = d / "partido.json"
+    if f.exists():                       # a flat folder has none
+        try:
+            who = json.loads(f.read_text(encoding="utf-8")).get("jugadora")
+        except (OSError, ValueError) as e:   # #265: a damaged record would send her files to another folder
+            from .faults import fault
+            fault("entrada.ilegible", str(f), exc=e)
     if not who:
         sub = sorted(p.name for p in (d / "golpes").glob("*") if p.is_dir()) if (d / "golpes").is_dir() else []
         who = sub[0] if len(sub) == 1 else "jugadora"

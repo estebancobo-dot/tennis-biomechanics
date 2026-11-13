@@ -9,6 +9,7 @@ from .. import pipeline, stages
 from ..catalog import Match, save_test_info
 from . import index
 from .db import DB, Paths
+from ..faults import fault
 
 assert stages  # importing the module registers the stages
 
@@ -52,7 +53,8 @@ class Engine:
         if not opp and (_mf.at(d, "score.json")).exists():
             try:
                 opp = json.loads((_mf.at(d, "score.json")).read_text(encoding="utf-8")).get("opponent") or ""
-            except (OSError, ValueError):
+            except (OSError, ValueError) as e:
+                fault("app.dato_ilegible", str(d), exc=e)
                 opp = ""
         # the id the stages always knew (a library folder is named by its slug; partido.json keeps the old id):
         # a different id could change what the stages infer from it (the surface) and their fingerprints
@@ -60,7 +62,8 @@ class Engine:
         if _mf.is_library(d):
             try:
                 name = json.loads((d / "partido.json").read_text(encoding="utf-8")).get("origen") or match_id
-            except (OSError, ValueError):
+            except (OSError, ValueError) as e:
+                fault("app.dato_ilegible", str(d), exc=e)
                 name = match_id
         # a match of the catalogue (config/matches.yaml) is the very Match the automatic cycle builds (05-11, request
         # 111: the index's rival and surface replaced the catalogue's, so score and the fine passes looked changed and
@@ -84,7 +87,8 @@ class Engine:
             from ..catalog import load_matches
             from ..config import load_config
             ms = load_matches(load_config())
-        except Exception:  # noqa: BLE001 — no catalogue: the index's data, as before
+        except Exception as e:  # noqa: BLE001 — no catalogue: the index's data, as before
+            fault("catalogo.no_legible", exc=e)
             return None
         vp = Path(vpath).name.lower() if vpath else None
         return next((m for m in ms if m.id == name or (vp and Path(m.video).name.lower() == vp)), None)
@@ -118,7 +122,7 @@ class Engine:
                                       round=r.get("round") or "", surface=r.get("surface") or "",
                                       players=[getattr(who, "name", r["player"]), r.get("opponent") or ""])
                 d = added.dir
-        except LibraryError:
+        except LibraryError:  # esperado: the video is gone: no folder for it
             return None
         (d / "etapas").mkdir(parents=True, exist_ok=True)
         p = d / "partido.json"
@@ -159,7 +163,7 @@ class Engine:
                            % ",".join("?" * len(USABLE)), player, player, *USABLE):
             try:
                 m, d = self.match(r["id"]), self.dir(r["id"])
-            except KeyError:
+            except KeyError:  # esperado: a match no longer in the index
                 continue
             # the report finds each match by its folder (layout.dir_of): a library folder is named by its slug,
             # not by the match id, so the folder goes with the match (05-11, plan 6.3)
@@ -173,7 +177,8 @@ class Engine:
             f = _mf.at(d, "strokes.json" if m.player.id == player else "strokes_opponent.json")
             try:
                 n += sum(s.get("stroke") == stroke for s in json.loads(f.read_text(encoding="utf-8")))
-            except (OSError, ValueError, TypeError):
+            except (OSError, ValueError, TypeError) as e:
+                fault("app.dato_ilegible", str(f), exc=e)
                 continue
         return n
 

@@ -85,7 +85,7 @@ def start_time(video_id: str) -> float | None:
     try:
         mo, d, y, hh, mi, ss, ms = (int(x) for x in video_id.split("_")[:7])
         return datetime(y, mo, d, hh, mi, ss).timestamp() + ms / 1000.0
-    except ValueError:
+    except ValueError:  # esperado: a name without the date: unknown
         return None
 
 

@@ -21,6 +21,7 @@ from . import layout as _layout
 from . import match_files as _mf
 from .catalog import Match
 from .pipeline import total_seconds
+from .faults import fault
 
 
 def opponent_profile(match):
@@ -280,8 +281,8 @@ def run_info(matches, out_root: Path) -> dict:
             c = lambda st: sum(i.get("status") == st for i in items)
             info["audit"] = {"ok": c("ok"), "falta": c("falta"), "pocos": c("pocos datos"), "aviso": c("aviso"),
                              "date": time.strftime("%Y-%m-%d %H:%M", time.localtime(a.stat().st_mtime))}
-        except (ValueError, OSError):
-            pass
+        except (ValueError, OSError) as e:
+            fault("lectura.opcional_danada", str(a), exc=e)
     for r in (out_root / "revision_automatica.md", out_root.parent / "revision_automatica.md"):
         if r.exists():
             info["review"] = r.read_text(encoding="utf-8").splitlines()[0].lstrip("# ").strip()
@@ -508,7 +509,8 @@ def thumbnail(video: Path, t: float, box: list | None, out: Path, width=360) -> 
     try:
         r = subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", f"{max(0.0, t):.3f}", "-i", str(video), "-frames:v", "1",
                             "-vf", vf, "-q:v", "4", str(out)], capture_output=True, timeout=120)
-    except subprocess.TimeoutExpired:
+    except subprocess.TimeoutExpired as e:
+        fault("fotograma.colgado", f"{Path(video).name} a {t:.2f} s (informe)", exc=e)
         return False
     return r.returncode == 0 and out.exists()
 
@@ -555,8 +557,8 @@ def practice_data(out_root: Path, dest: Path) -> dict | None:
         if f.exists():
             try:
                 pr = json.loads(f.read_text(encoding="utf-8"))
-            except (OSError, ValueError):
-                return None
+            except (OSError, ValueError) as e:
+                fault("entrada.ilegible", str(f), exc=e)
             pr["base"] = Path(os.path.relpath(d / "clips", dest)).as_posix()
             # the rule of the analysis applied to older files too: a contact not confirmed by the sound
             # is shown but never measured (in practice videos the wrist peak alone falls in the backswing)
@@ -579,8 +581,8 @@ def stroke_views_of(d: Path) -> tuple[dict, dict]:
         f = _mf.at(d, name)
         try:
             doc = json.loads(f.read_text(encoding="utf-8")) if f.exists() else {}
-        except (OSError, ValueError):
-            doc = {}
+        except (OSError, ValueError) as e:
+            fault("entrada.ilegible", str(f), exc=e)
         return doc if isinstance(doc, dict) else {}
 
     clips: dict = {}

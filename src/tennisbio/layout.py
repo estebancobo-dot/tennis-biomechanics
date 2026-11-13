@@ -71,7 +71,7 @@ def dir_of(out_root: Path, match, cfg: dict | None = None) -> Path:
                                   round=match.round, players=[getattr(match.player, "name", match.player.id), match.opponent],
                                   surface=match.surface)
             slug = added.slug
-        except LibraryError:                         # the video is gone: its results stay where they are
+        except LibraryError:  # esperado: the video is gone: its results stay where they are
             slug = _by_origin(lib, match.id)
         if slug is None:
             return Path(out_root) / match.id

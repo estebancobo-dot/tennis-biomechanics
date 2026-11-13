@@ -11,6 +11,7 @@ from pathlib import Path
 import cv2
 
 import numpy as np
+from .faults import fault
 
 from .io.video import open_capture
 from .impacts import Impact, audio_onsets, fuse, fuse_with_ball, swing_peaks
@@ -69,7 +70,8 @@ def _tee(frames, feed):
 def _load_ball_cache(bcache: Path):
     try:
         return np.load(bcache) if bcache.exists() else None
-    except Exception:                 # damaged cache
+    except Exception as e:  # noqa: BLE001 — damaged cache: computed again
+        fault("cache.danada", bcache.name, exc=e)
         bcache.unlink(missing_ok=True)
         return None
 
@@ -114,7 +116,8 @@ def load_audio(video: Path, sr=22050):
         try:
             r = subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(video), "-vn", "-ac", "1", "-ar", str(sr), str(wav)],
                                capture_output=True, timeout=600)
-        except subprocess.TimeoutExpired:      # the sound of a clip that hangs: none, as a clip without sound
+        except subprocess.TimeoutExpired as e:  # the sound of a clip that hangs: none, as a clip without sound
+            fault("ventana.sin_sonido", Path(video).name, exc=e)
             return np.zeros(0), sr
         if r.returncode or not wav.exists():
             return np.zeros(0), sr

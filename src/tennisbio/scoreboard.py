@@ -271,7 +271,7 @@ def serve_parity(reading: dict) -> int | None:
         return None
     try:
         return int(sum(int(a) + int(b) for a, b in g)) % 2
-    except (TypeError, ValueError):
+    except (TypeError, ValueError):  # esperado: games that are not numbers: unknown
         return None
 
 
@@ -370,7 +370,7 @@ def _tiebreak(r: dict) -> bool:
     g = r.get("games") or []
     try:
         return bool(r.get("tiebreak")) or (bool(g) and [int(x) for x in g[-1]] == [6, 6])
-    except (TypeError, ValueError):
+    except (TypeError, ValueError):  # esperado: games that are not numbers: not a tie-break
         return False
 
 
@@ -478,7 +478,7 @@ class ScoreReader:
             try:
                 res, _ = self.ocr(img, use_cls=False)
                 return res or []
-            except TypeError:
+            except TypeError:  # esperado: an OCR version without use_cls: called without it
                 self._cls_kw = False
         res, _ = self.ocr(img)
         return res or []

@@ -10,6 +10,7 @@ import json
 from pathlib import Path
 
 from .budget import REAL_RUN_S
+from .faults import fault
 
 HEAVY = ("scenes", "players", "spotting", "fine")
 POSE_SHARE = 0.35        # a fine pass that computed: its pose takes most of it (0.49-1.0 measured; 0.26 re-reading)
@@ -28,7 +29,7 @@ def manifests(root: Path, depth: int = 7) -> list[Path]:
         if k < depth:
             try:
                 todo += [(c, k + 1) for c in d.iterdir() if c.is_dir() and c.name not in SKIP]
-            except OSError:
+            except OSError:  # esperado: a folder that cannot be listed is not walked
                 pass
     return sorted(out)
 
@@ -77,7 +78,8 @@ def _parts(e: dict) -> dict:
 def table(f: Path) -> dict | None:
     try:
         man = json.loads(Path(f).read_text(encoding="utf-8"))
-    except (OSError, ValueError):
+    except (OSError, ValueError) as e:
+        fault("lectura.opcional_danada", str(f), exc=e)
         return None
     dur = duration_min(man)
     st = {n: e for n, e in man.items() if isinstance(e, dict) and "seconds" in e}
@@ -106,7 +108,7 @@ def roots_of(cfg: dict) -> list[Path]:
         lib = library_root(cfg)
         if lib.exists() and not str(lib.resolve()).startswith(str(root.resolve())):
             roots.append(lib)
-    except Exception:  # noqa: BLE001 - without a library only the output is read
+    except Exception:  # noqa: BLE001  # esperado: without a library only the output is read
         pass
     return roots
 

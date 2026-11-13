@@ -14,6 +14,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from .catalog import CONFIG_DIR, Match, load_player
+from .faults import fault
 
 
 def enabled(cfg: dict) -> bool:
@@ -84,7 +85,8 @@ def matches(cfg: dict, yaml_matches: list[Match], config_dir: Path = CONFIG_DIR)
             continue
         try:
             player = load_player(r["player"], config_dir)
-        except (OSError, ValueError, TypeError):
+        except (OSError, ValueError, TypeError) as e:   # #265: a match left out is never silent
+            fault("registro.partido_omitido", f"{mid}: sin ficha de {r.get('player')}", exc=e)
             continue
         d = _abs_dir(cfg, r.get("dir") or "")
         out.append(Match(id=mid, video=Path(v["path"]), player=player, opponent=r.get("opponent") or "",

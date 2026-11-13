@@ -75,7 +75,7 @@ def _alive(pid) -> bool:
             return code.value == 259                                             # STILL_ACTIVE
         os.kill(int(pid), 0)
         return True
-    except (OSError, ValueError, AttributeError):
+    except (OSError, ValueError, AttributeError):  # esperado: no such process: not alive
         return False
 
 
@@ -222,13 +222,13 @@ def run_one(db: DB, paths: Paths, engine, cfg: dict, job: dict) -> str:
     except KeyboardInterrupt:
         db.x("UPDATE jobs SET state='pendiente', pid=NULL, message='interrumpido: sigue donde se quedó' WHERE id=?", job["id"])
         raise
-    except MissingVideo:
+    except MissingVideo:  # esperado: said in the job and the match (aviso)
         if job.get("match"):
             db.x("UPDATE matches SET state='con aviso', note=? WHERE id=?",
                  "El vídeo ya no está: se conservan sus resultados; para recalcularlo hace falta el vídeo.", job["match"])
         _finish(db, job, "aviso", "el vídeo ya no está; se conservan sus resultados", t0)
         return "aviso"
-    except DiskFull as e:
+    except DiskFull as e:  # esperado: said in the job (esperando espacio)
         freed = storage.free_regenerable(paths.output)
         if job["attempts"] < DISK_RETRIES and freed > 1e9:
             _retry(db, job, f"disco lleno: liberados {storage._gb(freed)} GB regenerables; se reanuda")
@@ -236,7 +236,7 @@ def run_one(db: DB, paths: Paths, engine, cfg: dict, job: dict) -> str:
         db.x("UPDATE jobs SET state='esperando espacio', pid=NULL, message=? WHERE id=?", str(e), job["id"])
         db.notice("disk_wait", "aviso", f"{_what(db, job)}: {e}")
         return "esperando espacio"
-    except Exception as e:                       # noqa: BLE001 — every error has its answer and the queue goes on
+    except Exception as e:  # esperado: every error has its answer in the job (retry, CPU, aviso, or error with its diagnostic)
         if is_gpu_error(e) and job.get("device") != "cpu":
             n = job["attempts"] + 1
             if n >= GPU_RETRIES:

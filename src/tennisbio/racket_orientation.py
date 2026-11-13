@@ -11,6 +11,7 @@ from pathlib import Path
 import cv2
 
 import numpy as np
+from .faults import fault
 
 from .io.video import open_capture
 from .racket import pick_racket
@@ -148,7 +149,8 @@ class ModelMemo:
                     d = pickle.load(fh)
                 if d.get("tag") == self.tag:
                     self.data = d["out"]
-            except Exception:                        # noqa: BLE001 — a damaged memo is recomputed
+            except Exception as e:                   # noqa: BLE001 — a damaged memo is recomputed
+                fault("cache.danada", Path(path).name, exc=e)
                 self.data = {}
 
     @staticmethod

@@ -75,7 +75,7 @@ def angled_shot(court_pos, shot_bounce, shot_in) -> str | None:
         return None
     try:
         px, bx, by = float(court_pos[0]), float(shot_bounce[0]), float(shot_bounce[1])
-    except (TypeError, ValueError, IndexError):
+    except (TypeError, ValueError, IndexError):  # esperado: no position or bounce: unknown
         return None
     short = by <= FAR_SERVICE_Y + 1e-9
     wide = abs(bx) >= ANGLE_WIDE_M - 1e-9
@@ -89,7 +89,7 @@ def near_net(court_pos) -> bool | None:
         return None
     try:
         return float(court_pos[1]) >= NEAR_NET_Y_M - 1e-9
-    except (TypeError, ValueError, IndexError):
+    except (TypeError, ValueError, IndexError):  # esperado: no position: unknown
         return None
 
 

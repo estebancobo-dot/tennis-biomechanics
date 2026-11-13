@@ -43,7 +43,7 @@ def _size(path: Path) -> tuple[int, int] | None:
                            creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
         w, h = (int(x) for x in r.stdout.strip().split(",")[:2])
         return w, h
-    except (OSError, ValueError, subprocess.SubprocessError):
+    except (OSError, ValueError, subprocess.SubprocessError):  # esperado: unknown size
         return None
 
 

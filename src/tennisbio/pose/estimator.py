@@ -1,5 +1,6 @@
 """Person detection and 2D pose (rtmlib YOLOX + RTMPose Halpe26) on a chosen device."""
 import numpy as np
+from ..faults import fault
 import onnxruntime as ort
 from rtmlib import YOLOX, RTMPose
 
@@ -53,8 +54,9 @@ class RecoveringSession:
             try:
                 self._sess = self._make(self._device)
                 return self._sess.run(*args, **kwargs)
-            except Exception as e:                # noqa: BLE001
+            except Exception as e:                # noqa: BLE001 — the CPU: the same model and results, slower
                 print(f"AVISO: la iGPU sigue sin responder ({str(e)[:160]}); se sigue en la CPU")
+                fault("gpu.a_cpu", str(e)[:160], exc=e)
                 _dml_lost = True
         self._sess = self._make("cpu")
         return self._sess.run(*args, **kwargs)

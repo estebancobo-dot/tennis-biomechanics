@@ -9,6 +9,7 @@ from pathlib import Path
 import cv2
 
 import numpy as np
+from ..faults import fault
 
 from ..io.video import open_capture
 from ..pipeline import savez_atomic
@@ -167,7 +168,8 @@ def _seg_model(seg_model="yolo11m-seg.pt", imgsz=960, device="cpu"):
     if not onnx.exists():
         try:
             onnx = export_onnx(name, imgsz)
-        except Exception:
+        except Exception as e:  # noqa: BLE001 — PyTorch instead: the same model, slower
+            fault("modelo.yolo_onnx", f"{name}_{imgsz}: no se pudo exportar", exc=e)
             onnx = None
     seg_onnx = YoloOnnx(onnx, device) if onnx is not None and onnx.exists() else None
     if seg_onnx is not None:
@@ -225,7 +227,7 @@ def serve(handler, inp, out):
         try:
             handler(json.loads(line))
             reply = {"ok": True}
-        except Exception as e:
+        except Exception as e:  # esperado: the error goes back to the parent in the reply
             reply = {"ok": False, "error": f"{type(e).__name__}: {e}\n{traceback.format_exc()[-1200:]}"}
         out.write((json.dumps(reply) + "\n").encode("ascii"))
         out.flush()
@@ -266,7 +268,7 @@ class SegWorker:
         try:
             self.log.seek(0)
             return self.log.read().decode("utf-8", "replace")
-        except Exception:
+        except Exception:  # esperado: only the text of its log, for a message
             return ""
 
     def run(self, video, frames, out) -> tuple[bool, int | None, str]:
@@ -288,23 +290,23 @@ class SegWorker:
                 self.proc.kill()
                 try:
                     self.proc.wait(timeout=10)            # reaped: alive() is False from here on
-                except Exception:
+                except Exception:  # esperado: killed just before: nothing left to wait for
                     pass
                 rd.join(10)
                 return False, None, f"sin respuesta en {self.timeout_s(len(job['frames'])):.0f} s (colgado)\n{self._stderr()}"
             line = got[0] if got else b""
-        except (OSError, ValueError):                 # broken pipe: it had already died
+        except (OSError, ValueError):  # esperado: broken pipe: it had already died, handled just below
             line = b""
         if not line:                                  # died: crash in the driver, out of memory...
             try:
                 code = self.proc.wait(timeout=10)
-            except Exception:
+            except Exception:  # esperado: it does not end: killed
                 self.proc.kill()
                 code = self.proc.wait()
             return False, code, self._stderr()
         try:
             reply = json.loads(line)
-        except ValueError:
+        except ValueError:  # esperado: a reply that is not JSON: returned as the failure it is
             return False, None, f"respuesta inesperada: {line[:200]!r}\n{self._stderr()}"
         if reply.get("ok"):
             return True, 0, ""
@@ -315,13 +317,13 @@ class SegWorker:
             if self.proc.stdin and not self.proc.stdin.closed:
                 self.proc.stdin.close()
             self.proc.wait(timeout=10)
-        except Exception:
+        except Exception:  # esperado: it does not close: killed
             self.proc.kill()
             self.proc.wait()
         for f in (self.proc.stdout, self.log):
             try:
                 f.close()
-            except Exception:
+            except Exception:  # esperado: closing what is already closed
                 pass
 
 

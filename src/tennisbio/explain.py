@@ -5,6 +5,7 @@ and usual range); a sentence whose numbers are missing is simply not written.
 import math
 
 from .model import FACTORS, MIN_N
+from .faults import fault
 
 PHASE_TITLES = {"ready": "Espera", "takeback": "Preparación", "loaded": "Armado", "acceleration": "Aceleración",
                 "impact": "Impacto", "extension": "Extensión", "finish": "Terminación", "recovery": "Recuperación"}
@@ -432,7 +433,8 @@ def phase_cards(model: dict, stroke: str, factor: str | None = None, level: str 
                 continue
             try:
                 text = build(t)
-            except (TypeError, ValueError, KeyError):
+            except (TypeError, ValueError, KeyError) as e:
+                fault("informe.frase", key, exc=e)
                 continue
             e = eff.get(key)
             if e:                         # the value in this situation, not only the difference

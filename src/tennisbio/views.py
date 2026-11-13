@@ -532,7 +532,7 @@ def cut_view_clip(video, t0: float, dur: float, dest, interlaced: bool = False, 
     def valid(p) -> bool:
         try:
             return probe(p).duration > 0.2
-        except Exception:                        # noqa: BLE001 — unreadable: not valid
+        except Exception:  # noqa: BLE001  # esperado: a file ffprobe cannot read is not a valid clip
             return False
 
     if dest.exists() and valid(dest):

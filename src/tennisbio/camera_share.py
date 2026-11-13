@@ -36,7 +36,7 @@ def camera_of(H, height_px=None, pitch=None) -> dict | None:
             p = H @ np.array([x, y, 1.0])
             return p[:2] / p[2]
         nl, nr, fl, fr = img(-5.485, 0.0), img(5.485, 0.0), img(-5.485, 23.77), img(5.485, 23.77)
-    except (TypeError, ValueError):
+    except (TypeError, ValueError):  # esperado: no usable homography: no share
         return None
     nw, fw = float(np.linalg.norm(nr - nl)), float(np.linalg.norm(fr - fl))
     if not np.isfinite([nw, fw]).all() or nw <= 0:

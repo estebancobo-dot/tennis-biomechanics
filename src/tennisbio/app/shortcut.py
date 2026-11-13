@@ -61,5 +61,5 @@ def create(data_dir: Path, only_if_missing: bool = False, link: Path | None = No
         if r.returncode != 0 or not out:
             return {"link": str(link) if link else None, "made": False, "error": (r.stderr or "sin salida").strip()[-300:]}
         return {"link": out[-1], "made": True}
-    except (OSError, subprocess.SubprocessError) as e:
+    except (OSError, subprocess.SubprocessError) as e:  # esperado: returned with its error
         return {"link": None, "made": False, "error": f"{type(e).__name__}: {e}"[:300]}

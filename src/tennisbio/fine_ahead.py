@@ -67,7 +67,7 @@ class BallAhead:
             ok = True
             try:
                 self.job(j)
-            except Exception as e:           # this window is left to the main thread, as without the worker
+            except Exception as e:  # fallo: bola_paralelo.fallo (the fine pass records self.errors); the main thread does it
                 ok = False
                 self.errors[j] = f"{type(e).__name__}: {e}"
             with self._cv:

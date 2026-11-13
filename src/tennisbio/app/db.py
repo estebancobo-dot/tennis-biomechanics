@@ -10,6 +10,7 @@ import threading
 import time
 from dataclasses import dataclass
 from pathlib import Path
+from ..faults import fault
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS videos (
@@ -97,8 +98,8 @@ class DB:
         try:
             self.con.execute("PRAGMA journal_mode=WAL")
             self.con.execute("PRAGMA busy_timeout=30000")
-        except sqlite3.DatabaseError:
-            pass
+        except sqlite3.DatabaseError as e:
+            fault("indice.sin_wal", exc=e)
         self.con.executescript(SCHEMA)
         cols = {r[1] for r in self.con.execute("PRAGMA table_info(matches)")}
         if "dir" not in cols:                       # an index from before the match folder was kept
@@ -162,7 +163,7 @@ def healthy(path: Path) -> bool:
             return ok
         finally:
             con.close()
-    except sqlite3.DatabaseError:
+    except sqlite3.DatabaseError:  # esperado: not a database
         return False
 
 

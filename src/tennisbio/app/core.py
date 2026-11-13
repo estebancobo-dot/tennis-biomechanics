@@ -80,7 +80,7 @@ class App:
                 continue
             try:
                 stale = self.engine.stale(r["id"], self.cfg)
-            except (MissingVideo, KeyError, OSError):
+            except (MissingVideo, KeyError, OSError):  # esperado: no video: its results are kept and counted (no_video)
                 no_video += 1                              # no video: its results are kept as they are
                 stale = []                                 # ... and still feed her analysis
             if not stale:
@@ -145,7 +145,7 @@ class App:
                 for name in ("manifest.json", "strokes.json"):
                     try:
                         newest = max(newest, _mf.at(d, name).stat().st_mtime)
-                    except OSError:
+                    except OSError:  # esperado: a file that is not there
                         continue
             if newest and time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(newest)) > (a.get("updated") or ""):
                 jobs.enqueue(self.db, "informe", player=a["player"], stroke=a["stroke"],
