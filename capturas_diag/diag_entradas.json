@@ -1,0 +1,176 @@
+{
+ "partidos": {
+  "us-open-2026-r4-naomi-osaka-elena-rybakina": {
+   "play_min": 17.0,
+   "near_seen": 0.963,
+   "far_seen": 0.001,
+   "sample": 10216,
+   "with_court": 0.896,
+   "two_or_more_boxes": 0.027,
+   "a_box_on_the_far_half": 0.001,
+   "feet_y_m_percentiles": [
+    -26.4,
+    -4.1,
+    -2.7,
+    1.5,
+    25.7
+   ],
+   "boxes_per_frame": 1.14
+  },
+  "zheng-qinwen-elena-rybakina": {
+   "play_min": 33.4,
+   "near_seen": 0.882,
+   "far_seen": 0.001,
+   "sample": 19461,
+   "with_court": 1.0,
+   "two_or_more_boxes": 0.081,
+   "a_box_on_the_far_half": 0.001,
+   "feet_y_m_percentiles": [
+    -6.9,
+    -4.0,
+    -0.5,
+    9.3,
+    13.4
+   ],
+   "boxes_per_frame": 1.07
+  },
+  "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5": {
+   "play_min": 36.9,
+   "near_seen": 0.888,
+   "far_seen": 0.001,
+   "sample": 21340,
+   "with_court": 1.0,
+   "two_or_more_boxes": 0.07,
+   "a_box_on_the_far_half": 0.001,
+   "feet_y_m_percentiles": [
+    -6.6,
+    -5.4,
+    -3.1,
+    -0.2,
+    23.2
+   ],
+   "boxes_per_frame": 1.1
+  },
+  "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5": {
+   "play_min": 44.0,
+   "near_seen": 0.906,
+   "far_seen": 0.02,
+   "sample": 25156,
+   "with_court": 1.0,
+   "two_or_more_boxes": 0.132,
+   "a_box_on_the_far_half": 0.02,
+   "feet_y_m_percentiles": [
+    -2.0,
+    1.9,
+    8.8,
+    12.7,
+    32.3
+   ],
+   "boxes_per_frame": 1.45
+  },
+  "elena-rybakina-jessica-pegula-miami-2026-quarter-final": {
+   "play_min": 36.2,
+   "near_seen": 0.927,
+   "far_seen": 0.001,
+   "sample": 21715,
+   "with_court": 0.95,
+   "two_or_more_boxes": 0.153,
+   "a_box_on_the_far_half": 0.001,
+   "feet_y_m_percentiles": [
+    -2.9,
+    -1.2,
+    2.5,
+    10.8,
+    12.4
+   ],
+   "boxes_per_frame": 1.15
+  },
+  "zverev-alexander-sinner-jannik-indian-wells-2026-semi-final": {
+   "play_min": 22.6,
+   "near_seen": 0.886,
+   "far_seen": 0.006,
+   "sample": 12760,
+   "with_court": 1.0,
+   "two_or_more_boxes": 0.121,
+   "a_box_on_the_far_half": 0.006,
+   "feet_y_m_percentiles": [
+    -6.7,
+    -6.0,
+    -4.8,
+    -2.2,
+    10.8
+   ],
+   "boxes_per_frame": 1.25
+  }
+ },
+ "f3set": {
+  "recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin": {
+   "play_min": 12.8,
+   "near_seen": 0.964,
+   "far_seen": 0.001,
+   "sample": 7653,
+   "with_court": 0.967,
+   "two_or_more_boxes": 0.018,
+   "a_box_on_the_far_half": 0.001,
+   "feet_y_m_percentiles": [
+    -3.8,
+    -0.7,
+    0.5,
+    11.6,
+    41.4
+   ],
+   "boxes_per_frame": 1.02
+  },
+  "recall_20230124_w_australian_open_qf_jelena_ostapenko_elena_rybakin": {
+   "play_min": 7.4,
+   "near_seen": 0.927,
+   "far_seen": 0.002,
+   "sample": 4425,
+   "with_court": 0.979,
+   "two_or_more_boxes": 0.056,
+   "a_box_on_the_far_half": 0.002,
+   "feet_y_m_percentiles": [
+    -5.3,
+    -1.0,
+    -0.5,
+    3.3,
+    7.9
+   ],
+   "boxes_per_frame": 1.09
+  },
+  "recall_20230126_w_australian_open_sf_elena_rybakina_victoria_azaren": {
+   "play_min": 12.3,
+   "near_seen": 0.908,
+   "far_seen": 0.001,
+   "sample": 7387,
+   "with_court": 0.988,
+   "two_or_more_boxes": 0.024,
+   "a_box_on_the_far_half": 0.001,
+   "feet_y_m_percentiles": [
+    -5.5,
+    -3.5,
+    -1.1,
+    3.1,
+    11.5
+   ],
+   "boxes_per_frame": 1.03
+  },
+  "recall_20230128_w_australian_open_f_aryna_sabalenka_elena_rybakina": {
+   "play_min": 19.7,
+   "near_seen": 0.946,
+   "far_seen": 0.001,
+   "sample": 11817,
+   "with_court": 0.973,
+   "two_or_more_boxes": 0.076,
+   "a_box_on_the_far_half": 0.001,
+   "feet_y_m_percentiles": [
+    -3.7,
+    -0.8,
+    0.7,
+    8.3,
+    10.3
+   ],
+   "boxes_per_frame": 1.09
+  }
+ }
+}

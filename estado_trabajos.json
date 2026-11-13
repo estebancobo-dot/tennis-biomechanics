@@ -1,32 +1,13 @@
 {
- "at": "2026-11-13 04:48:31",
- "firma": "7abaf1112ce7",
+ "at": "2026-11-13 04:50:15",
+ "firma": "b9dfad8aa4aa",
  "ejecutor": {
   "vivo": true,
   "pid": 16736,
-  "at": 1794541708.689123
+  "at": 1794541812.8320096
  },
  "pausa": false,
- "en_curso": [
-  {
-   "id": 112,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script diag_entradas --tag v16",
-   "state": "en curso",
-   "message": "",
-   "created": "2026-11-13 04:48:21",
-   "started": "2026-11-13 04:48:22",
-   "finished": null,
-   "args": "[\"script\", \"diag_entradas\", \"--tag\", \"v16\"]",
-   "source": "claude 272",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_112.log",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "en_curso": [],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "court",
@@ -39,6 +20,24 @@
  },
  "pendientes": [],
  "recientes": [
+  {
+   "id": 112,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script diag_entradas --tag v16",
+   "state": "hecho",
+   "message": "",
+   "created": "2026-11-13 04:48:21",
+   "started": "2026-11-13 04:48:22",
+   "finished": "2026-11-13 04:49:40",
+   "args": "[\"script\", \"diag_entradas\", \"--tag\", \"v16\"]",
+   "source": "claude 272",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_112.log",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 111,
    "kind": "comando",
@@ -290,27 +289,16 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_98.log",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 97,
-   "kind": "flujo",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "flujo «prevision»: Que etapas se rehacen en cada partido y cuanto tardarian, sin ejecutar nada",
-   "state": "hecho",
-   "message": "2 pasos",
-   "created": "2026-11-12 14:54:05",
-   "started": "2026-11-12 14:54:13",
-   "finished": "2026-11-12 14:54:18",
-   "args": "[\"prevision\"]",
-   "source": "claude 256",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_97.log",
-   "paso": 2,
-   "pasos": 2
   }
  ],
  "eventos": [
+  {
+   "id": 609,
+   "job": 112,
+   "at": "2026-11-13 04:49:42",
+   "kind": "hecho",
+   "text": "código 0"
+  },
   {
    "id": 608,
    "job": 112,
@@ -513,13 +501,6 @@
    "at": "2026-11-13 04:20:07",
    "kind": "empieza",
    "text": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)"
-  },
-  {
-   "id": 579,
-   "job": 107,
-   "at": "2026-11-13 04:20:07",
-   "kind": "cancelado",
-   "text": ""
   }
  ]
 }
