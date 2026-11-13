@@ -1,6 +1,6 @@
-﻿commit: 89059cf
-inicio: 2026-11-13T04:26:48
-fin: 2026-11-13T04:37:32
+﻿commit: 2965b76
+inicio: 2026-11-13T04:41:02
+fin: 2026-11-13T04:58:31
 codigo: 0
 ...........................................................s.......ss..s [  5%]
 ss...................................................................... [ 11%]
@@ -20,11 +20,6 @@ ss...................................................................... [ 11%]
 ........................................................................ [ 95%]
 .........s..........................................                     [100%]
 ============================== warnings summary ===============================
-tests/test_app_window.py::test_the_pc_check_finds_nothing_wrong_in_the_cases
-tests/test_no_unbounded_calls.py::test_every_module_compiles
-  C:\tenis\tennis-biomech\src\tennisbio\screens.py:20: DeprecationWarning: invalid escape sequence '\d'
-    _JS_SCREEN = """(tab) => {
-
 tests/test_body_scale.py::test_court_scale_without_any_face_seen
 tests/test_fine_ranges.py::test_pose_ranges_fall_back_to_the_whole_window_when_her_height_is_not_seen
   C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
@@ -46,5 +41,9 @@ tests/test_fine_ranges.py::test_pose_ranges_start_from_the_person_the_ball_leave
   C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:85: RuntimeWarning: invalid value encountered in divide
     rel = (kp - hip_center(kp, sk)[:, None, :]) / (h[:, None, None] if h.ndim == 1 else h)
 
+tests/test_no_unbounded_calls.py::test_every_module_compiles
+  C:\tenis\tennis-biomech\src\tennisbio\screens.py:20: DeprecationWarning: invalid escape sequence '\d'
+    _JS_SCREEN = """(tab) => {
+
 -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-1177 passed, 27 skipped, 28 warnings in 630.73s (0:10:30)
+1177 passed, 27 skipped, 27 warnings in 1038.93s (0:17:18)
