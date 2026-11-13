@@ -1,10 +1,10 @@
 {
- "at": "2026-11-13 20:10:33",
- "firma": "1a370f884ce6",
+ "at": "2026-11-13 20:18:56",
+ "firma": "4aede9630a33",
  "ejecutor": {
   "vivo": true,
-  "pid": 8124,
-  "at": 1794597028.1532824
+  "pid": 10984,
+  "at": 1794597519.0339315
  },
  "pausa": false,
  "en_curso": [],
@@ -18,7 +18,26 @@
   "quedan_s": 0,
   "hora": "2026-11-13 18:25:58"
  },
- "pendientes": [],
+ "pendientes": [
+  {
+   "id": 135,
+   "kind": "flujo",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "flujo «informe_prueba»: Informe y auditoria de la prueba (_smoke) desde sus golpes guardados y la revision automatica",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-13 20:18:56",
+   "started": null,
+   "finished": null,
+   "args": "[\"informe_prueba\"]",
+   "source": "ciclo",
+   "log": "",
+   "paso": 0,
+   "pasos": 3
+  }
+ ],
  "recientes": [
   {
    "id": 134,
@@ -293,6 +312,48 @@
  ],
  "eventos": [
   {
+   "id": 747,
+   "job": 135,
+   "at": "2026-11-13 20:18:56",
+   "kind": "enviado",
+   "text": "flujo informe_prueba (ciclo)"
+  },
+  {
+   "id": 746,
+   "job": null,
+   "at": "2026-11-13 20:18:39",
+   "kind": "ejecutor",
+   "text": "arranca (pid 10984)"
+  },
+  {
+   "id": 745,
+   "job": null,
+   "at": "2026-11-13 20:18:38",
+   "kind": "ejecutor",
+   "text": "arranca el siguiente con el código nuevo (pid 2296)"
+  },
+  {
+   "id": 744,
+   "job": null,
+   "at": "2026-11-13 20:18:38",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 743,
+   "job": null,
+   "at": "2026-11-13 20:18:38",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 742,
+   "job": null,
+   "at": "2026-11-13 20:18:37",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
    "id": 741,
    "job": 134,
    "at": "2026-11-13 20:10:08",
@@ -459,48 +520,6 @@
    "at": "2026-11-13 19:54:02",
    "kind": "ejecutor",
    "text": "se reinicia con el código nuevo"
-  },
-  {
-   "id": 717,
-   "job": null,
-   "at": "2026-11-13 19:53:52",
-   "kind": "reiniciar",
-   "text": "ciclo"
-  },
-  {
-   "id": 716,
-   "job": 131,
-   "at": "2026-11-13 19:53:02",
-   "kind": "hecho",
-   "text": "código 0"
-  },
-  {
-   "id": 715,
-   "job": 131,
-   "at": "2026-11-13 19:51:14",
-   "kind": "empieza",
-   "text": "script subir_nube --pc-tag v18"
-  },
-  {
-   "id": 714,
-   "job": 131,
-   "at": "2026-11-13 19:51:09",
-   "kind": "enviado",
-   "text": "tennisbio script subir_nube --pc-tag v18 (claude 291)"
-  },
-  {
-   "id": 713,
-   "job": 130,
-   "at": "2026-11-13 19:51:04",
-   "kind": "hecho",
-   "text": "código 0"
-  },
-  {
-   "id": 712,
-   "job": 130,
-   "at": "2026-11-13 19:51:02",
-   "kind": "empieza",
-   "text": "script diag_otros_partidos --match osaka pegula zheng gauff sobolenko --t 4628 11586 12203 12217"
   }
  ]
 }

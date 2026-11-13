@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261113200046
+Start time: 20261113201832
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
 Host Application: powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 15568
+Process ID: 9996
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -17,20 +17,18 @@ PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
 
-==> [2026-11-13 20:00:46] Codigo nuevo (d2ccb81 -> 57e14af): 4 ficheros
+==> [2026-11-13 20:18:32] Codigo nuevo (57e14af -> f131bce): 3 ficheros
     config/peticion_pc.txt
     scripts/subir_nube.py
-    tests/test_local_only.py
     tests/test_nube.py
-Updating d2ccb81..57e14af
+Updating 57e14af..f131bce
 Fast-forward
- config/peticion_pc.txt   | 10 +++++++++-
- scripts/subir_nube.py    | 52 +++++++++++++++++++++++++++++++++++++++++-------
- tests/test_local_only.py |  3 ++-
- tests/test_nube.py       | 21 +++++++++++++++++++
- 4 files changed, 77 insertions(+), 9 deletions(-)
+ config/peticion_pc.txt |  7 +++++++
+ scripts/subir_nube.py  | 13 +++++++++----
+ tests/test_nube.py     | 10 +++++++---
+ 3 files changed, 23 insertions(+), 7 deletions(-)
 Resolved 126 packages in 1ms
-Checked 91 packages in 3ms
+Checked 91 packages in 7ms
 balltrack.onnx     OK 45 MB
 racketpose.onnx    OK 53 MB
 transnetv2.onnx    OK 31 MB
@@ -46,11 +44,11 @@ Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (ya estaba)
 el ejecutor se reinicia al acabar el trabajo en curso
     (paso terminado en 24 s)
 
-==> [2026-11-13 20:01:10] Que hace falta: nada
+==> [2026-11-13 20:18:56] Que hace falta: nada
 Ciclo automatico terminado (nada).
     (paso terminado en 0 s)
-Empezado 2026-11-13 20:00:41 - terminado 2026-11-13 20:01:10 - duracion total 30 s
+Empezado 2026-11-13 20:18:26 - terminado 2026-11-13 20:18:56 - duracion total 30 s
 **********************
 Windows PowerShell transcript end
-End time: 20261113200110
+End time: 20261113201856
 **********************
