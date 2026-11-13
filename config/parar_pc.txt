@@ -1,4 +1,6 @@
 # Parada a distancia de un trabajo del PC que va mal (24-10). Claude pone aqui un id nuevo ("id: N") y el
 # ciclo automatico, al ver un trabajo en marcha, lo corta una sola vez por id (output\paradas.log).
 # Sin linea "id:" no se para nada.
-id: 15
+id: 16
+# 16 (13-11): corta Osaka con el codigo anterior al arreglo de R22 (trabajo 114, cancelado por 279) y el recalculo
+# de medidas que el ciclo lanzo fuera de la cola (bloquea las ordenes de la cola y comparte la iGPU); 285 reanuda
