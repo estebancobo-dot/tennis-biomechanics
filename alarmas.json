@@ -59,6 +59,12 @@
    "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
    "etapa": "fine_doubtful",
    "texto": "fine_doubtful: 44.83 s por unidad frente a 19.08 de presupuesto (la más lenta de 9 ejecuciones aquí), 2.3 veces; a este ritmo quedan 28 min"
+  },
+  {
+   "hora": "2026-11-13 06:22:06",
+   "partido": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "etapa": "score",
+   "texto": "score: 5.48 s por unidad frente a 2.16 de presupuesto (la más lenta de 22 ejecuciones aquí), 2.5 veces; a este ritmo quedan 20 min"
   }
  ]
 }

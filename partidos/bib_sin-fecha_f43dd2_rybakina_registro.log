@@ -11819,3 +11819,61 @@
 2026-11-13 06:20:04   [players] players:   3 % (349/10180 fotogramas con jugadoras) · 30 s · quedan ≈ 14 min
 2026-11-13 06:20:21   [score] score:   1 % (3/251 muestras · 0 lecturas · 3 OCR) · 48 s · quedan ≈ 67 min
 2026-11-13 06:20:34   [players] players:   7 % (663/10180 fotogramas con jugadoras) · 61 s · quedan ≈ 15 min
+2026-11-13 06:20:57   [score] score:   2 % (5/251 muestras · 0 lecturas · 5 OCR) · 85 s · quedan ≈ 69 min
+2026-11-13 06:21:04   [players] players:  10 % (981/10180 fotogramas con jugadoras) · 2 min · quedan ≈ 14 min
+2026-11-13 06:21:34   [players] players:  13 % (1303/10180 fotogramas con jugadoras) · 2 min · quedan ≈ 14 min
+2026-11-13 06:21:35   [score] score:   3 % (7/251 muestras · 0 lecturas · 7 OCR) · 2 min · quedan ≈ 71 min
+2026-11-13 06:22:05   [players] players:  16 % (1651/10180 fotogramas con jugadoras) · 3 min · quedan ≈ 13 min
+2026-11-13 06:22:06   [score] score:  11 % (28/251 muestras · 10 lecturas · 28 OCR) · 3 min · quedan ≈ 20 min
+2026-11-13 06:22:06   [score] ALARMA de tiempo: score: 5.48 s por unidad frente a 2.16 de presupuesto (la más lenta de 22 ejecuciones aquí), 2.5 veces; a este ritmo quedan 20 min
+2026-11-13 06:22:35   [players] players:  20 % (2009/10180 fotogramas con jugadoras) · 3 min · quedan ≈ 12 min
+2026-11-13 06:22:36   [score] score:  22 % (54/251 muestras · 22 lecturas · 49 OCR) · 3 min · quedan ≈ 11 min
+2026-11-13 06:23:05   [players] players:  23 % (2356/10180 fotogramas con jugadoras) · 4 min · quedan ≈ 12 min
+2026-11-13 06:23:08   [score] score:  34 % (85/251 muestras · 42 lecturas · 70 OCR) · 4 min · quedan ≈ 7 min
+2026-11-13 06:23:35   [players] players:  27 % (2706/10180 fotogramas con jugadoras) · 4 min · quedan ≈ 11 min
+2026-11-13 06:23:38   [score] score:  43 % (107/251 muestras · 54 lecturas · 91 OCR) · 4 min · quedan ≈ 6 min
+2026-11-13 06:24:05   [players] players:  30 % (3062/10180 fotogramas con jugadoras) · 5 min · quedan ≈ 11 min
+2026-11-13 06:24:08   [score] score:  51 % (128/251 muestras · 71 lecturas · 112 OCR) · 5 min · quedan ≈ 4 min
+2026-11-13 06:24:35   [players] players:  34 % (3420/10180 fotogramas con jugadoras) · 5 min · quedan ≈ 10 min
+2026-11-13 06:24:39   [score] score:  61 % (154/251 muestras · 96 lecturas · 134 OCR) · 5 min · quedan ≈ 3 min
+2026-11-13 06:25:05   [players] players:  37 % (3774/10180 fotogramas con jugadoras) · 6 min · quedan ≈ 9 min
+2026-11-13 06:25:10   [score] score:  71 % (179/251 muestras · 117 lecturas · 156 OCR) · 6 min · quedan ≈ 2 min
+2026-11-13 06:25:35   [players] players:  41 % (4140/10180 fotogramas con jugadoras) · 6 min · quedan ≈ 9 min
+2026-11-13 06:25:41   [score] score:  81 % (203/251 muestras · 138 lecturas · 178 OCR) · 6 min · quedan ≈ 87 s
+2026-11-13 06:26:05   [players] players:  44 % (4488/10180 fotogramas con jugadoras) · 7 min · quedan ≈ 8 min
+2026-11-13 06:26:11   [score] score:  90 % (227/251 muestras · 161 lecturas · 200 OCR) · 7 min · quedan ≈ 42 s
+2026-11-13 06:26:35   [players] players:  48 % (4846/10180 fotogramas con jugadoras) · 7 min · quedan ≈ 8 min
+2026-11-13 06:26:41   [score] score:  99 % (249/251 muestras · 181 lecturas · 221 OCR) · 7 min · quedan ≈ 3 s
+2026-11-13 06:26:44   [score] score: 100 % (251/251 muestras · 183 lecturas · 223 OCR) · 7 min · quedan ≈ 0 s
+2026-11-13 06:26:46   [score] marcador: 251 muestras en juego, 224 OCR (184 lecturas)
+2026-11-13 06:26:46   [score] saque en el marcador: 184 de 184 lecturas (marker + aprendido + alternancia; marca de color 66, sigue la alternancia en 98% de 66; aprendida sí, sigue la alternancia en 88% de 112); por la alternancia de cada juego: 54 corregidas y 56 completadas (primer saque claro en el 100% de 15 juegos)
+2026-11-13 06:26:46 [us-open-2026-r4-naomi-osaka-elena-rybakina] score terminada a las 06:26:46 en 7.2 min
+2026-11-13 06:27:05   [players] players:  52 % (5327/10180 fotogramas con jugadoras) · 8 min · quedan ≈ 7 min
+2026-11-13 06:27:35   [players] players:  58 % (5872/10180 fotogramas con jugadoras) · 8 min · quedan ≈ 6 min
+2026-11-13 06:28:05   [players] players:  63 % (6416/10180 fotogramas con jugadoras) · 9 min · quedan ≈ 5 min
+2026-11-13 06:28:35   [players] players:  68 % (6962/10180 fotogramas con jugadoras) · 9 min · quedan ≈ 4 min
+2026-11-13 06:29:05   [players] players:  74 % (7507/10180 fotogramas con jugadoras) · 10 min · quedan ≈ 3 min
+2026-11-13 06:29:35   [players] players:  79 % (8051/10180 fotogramas con jugadoras) · 10 min · quedan ≈ 3 min
+2026-11-13 06:30:05   [players] players:  84 % (8585/10180 fotogramas con jugadoras) · 11 min · quedan ≈ 2 min
+2026-11-13 06:30:35   [players] players:  90 % (9128/10180 fotogramas con jugadoras) · 11 min · quedan ≈ 76 s
+2026-11-13 06:31:05   [players] players:  95 % (9674/10180 fotogramas con jugadoras) · 12 min · quedan ≈ 36 s
+2026-11-13 06:31:33   [players] players: 100 % (10180/10180 fotogramas con jugadoras) · 12 min · quedan ≈ 0 s
+2026-11-13 06:31:34   [players] tiempo: 12.0 min para 10180 fotogramas a 960 px · modelo 11.3 min · leer vídeo y preparar la entrada 9.3 min en otro hilo (espera real 0.8 min) · apariencia 0.2 min en otro hilo
+2026-11-13 06:31:34 [us-open-2026-r4-naomi-osaka-elena-rybakina] players terminada a las 06:31:34 en 12.0 min (7.2 min a la vez que otra etapa)
+2026-11-13 06:31:34 [us-open-2026-r4-naomi-osaka-elena-rybakina] identity… (2026-11-13 06:31:34, etapa 7 de 16)
+2026-11-13 06:31:36   identity:   0 % (1/832 fotogramas (ropa)) · 0 s · quedan ≈ 0 s
+2026-11-13 06:32:06   identity:  42 % (352/832 fotogramas (ropa)) · 30 s · quedan ≈ 41 s
+2026-11-13 06:32:36   identity:  81 % (670/832 fotogramas (ropa)) · 60 s · quedan ≈ 15 s
+2026-11-13 06:32:49   identity: 100 % (832/832 fotogramas (ropa)) · 74 s · quedan ≈ 0 s
+2026-11-13 06:32:49   ropa: 832 fotogramas · leerlos 64 s, medir la ropa 10 s
+2026-11-13 06:32:49   identidad: 140/140 planos · ropa y cambios de lado de acuerdo en 125, solo cambios de lado 0, solo ropa 7, la ropa corrige el marcador en 8, el saque visto en 0, dudosos 0 · ropa: ropa (torso y pantalón o falda, sin la pista), separación 4.46
+2026-11-13 06:32:49   grupos de ropa: dos personas (dos personas (ropa distinta y de acuerdo con los cambios de lado); de acuerdo con los cambios de lado 0.94 en 133 planos, distancia entre su ropa típica 0.848) · clic por la ropa
+2026-11-13 06:32:49 [us-open-2026-r4-naomi-osaka-elena-rybakina] identity terminada a las 06:32:49 en 1.3 min
+2026-11-13 06:32:50 [us-open-2026-r4-naomi-osaka-elena-rybakina] spotting… (2026-11-13 06:32:50, etapa 8 de 16)
+2026-11-13 06:33:07   la bola del partido se hizo con otro modelo o código, o salió vacía: se calcula de nuevo
+2026-11-13 06:33:10   bola: 0.0 de 17.0 min de juego
+2026-11-13 06:35:40   bola: 2.1 de 17.0 min de juego
+2026-11-13 06:38:11   bola: 4.2 de 17.0 min de juego
+2026-11-13 06:41:25   bola: 7.0 de 17.0 min de juego
+2026-11-13 06:44:27   bola: 9.5 de 17.0 min de juego
+2026-11-13 06:47:36   bola: 12.2 de 17.0 min de juego

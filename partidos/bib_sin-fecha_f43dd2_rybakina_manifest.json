@@ -67,45 +67,47 @@
   "rewrote": {}
  },
  "score": {
-  "fingerprint": "f1051dbbb5a32cb8",
-  "version": "12",
-  "seconds": 547.7,
-  "finished": "2026-11-12 15:44:49",
+  "fingerprint": "9553acc39535794c",
+  "version": "13",
+  "seconds": 434.9,
+  "finished": "2026-11-13 06:26:46",
   "summary": {
-   "readings": 185,
+   "readings": 184,
    "pressure": 36,
-   "samples": 252,
-   "ocr_calls": 225,
-   "server_read": 185,
+   "samples": 251,
+   "ocr_calls": 224,
+   "server_read": 184,
    "server_source": "marker + aprendido + alternancia"
   },
-  "out_hash": "27317c04923938fb9b78",
-  "scheme": 2,
-  "rewrote": {}
- },
- "players": {
-  "fingerprint": "27d3b990166fd043",
-  "version": "5",
-  "seconds": 876.7,
-  "finished": "2026-11-12 15:50:18",
-  "summary": {
-   "frames": 10216,
-   "wall_min": 14.6,
-   "model_min": 13.3,
-   "read_min": 11.2,
-   "wait_min": 1.3,
-   "appearance_min": 0.2
-  },
-  "out_hash": "4d5eb5e9db29d20866f5",
+  "out_hash": "995d108f86e10741c5d3",
   "scheme": 2,
   "rewrote": {},
-  "overlap_s": 547.7
+  "faults": {}
+ },
+ "players": {
+  "fingerprint": "c43946d9eaf519e9",
+  "version": "6",
+  "seconds": 722.2,
+  "finished": "2026-11-13 06:31:34",
+  "summary": {
+   "frames": 10180,
+   "wall_min": 12.0,
+   "model_min": 11.3,
+   "read_min": 9.3,
+   "wait_min": 0.8,
+   "appearance_min": 0.2
+  },
+  "out_hash": "c3bd0b568235d6130282",
+  "scheme": 2,
+  "rewrote": {},
+  "overlap_s": 434.9,
+  "faults": {}
  },
  "identity": {
-  "fingerprint": "e1c3294ab60f7241",
+  "fingerprint": "6edc5cc472eed515",
   "version": "13",
-  "seconds": 79.3,
-  "finished": "2026-11-12 15:51:37",
+  "seconds": 75.9,
+  "finished": "2026-11-13 06:32:49",
   "summary": {
    "runs": 140,
    "confidence": 0.94,
@@ -144,9 +146,10 @@
     }
    }
   },
-  "out_hash": "4f8fd3bf7ca93c5ba5f3",
+  "out_hash": "22bffb8125364778e676",
   "scheme": 2,
-  "rewrote": {}
+  "rewrote": {},
+  "faults": {}
  },
  "candidates": {
   "fingerprint": "37c55e18c686a2df",
