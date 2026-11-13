@@ -3929,3 +3929,23 @@
 2026-11-13 13:49:03   identity:   0 % (1/1748 fotogramas (ropa)) · 0 s · quedan ≈ 0 s
 2026-11-13 13:49:33   identity:  17 % (295/1748 fotogramas (ropa)) · 30 s · quedan ≈ 2 min
 2026-11-13 13:50:04   identity:  34 % (590/1748 fotogramas (ropa)) · 60 s · quedan ≈ 2 min
+2026-11-13 13:50:34   identity:  50 % (882/1748 fotogramas (ropa)) · 2 min · quedan ≈ 89 s
+2026-11-13 13:51:04   identity:  67 % (1173/1748 fotogramas (ropa)) · 2 min · quedan ≈ 59 s
+2026-11-13 13:51:34   identity:  84 % (1464/1748 fotogramas (ropa)) · 3 min · quedan ≈ 29 s
+2026-11-13 13:52:04   identity: 100 % (1748/1748 fotogramas (ropa)) · 3 min · quedan ≈ 0 s
+2026-11-13 13:52:04   ropa: 1748 fotogramas · leerlos 165 s, medir la ropa 16 s
+2026-11-13 13:52:04   identidad: 289/296 planos · ropa y cambios de lado de acuerdo en 0, solo cambios de lado 289, solo ropa 0, la ropa corrige el marcador en 0, el saque visto en 0, dudosos 0 · ropa: ropa (torso y pantalón o falda, sin la pista), separación 1.82
+2026-11-13 13:52:04   grupos de ropa: NO distinguibles (los grupos no siguen los cambios de lado del marcador (55 % de 262 planos); de acuerdo con los cambios de lado 0.55 en 262 planos, distancia entre su ropa típica 0.593) · clic por los cambios de lado
+2026-11-13 13:52:04 [elena-rybakina-jessica-pegula-miami-2026-quarter-final] identity terminada a las 13:52:04 en 3.1 min
+2026-11-13 13:52:04 [elena-rybakina-jessica-pegula-miami-2026-quarter-final] spotting… (2026-11-13 13:52:04, etapa 8 de 16)
+2026-11-13 13:52:28   la bola del partido se hizo con otro modelo o código, o salió vacía: se calcula de nuevo
+2026-11-13 13:52:32   bola: 0.1 de 36.0 min de juego
+2026-11-13 13:55:59   bola: 3.0 de 36.0 min de juego
+2026-11-13 13:59:12   bola: 5.7 de 36.0 min de juego
+2026-11-13 14:01:39   bola: 7.7 de 36.0 min de juego
+2026-11-13 14:04:30   bola: 10.1 de 36.0 min de juego
+2026-11-13 14:07:47   bola: 12.9 de 36.0 min de juego
+2026-11-13 14:10:35   bola: 15.2 de 36.0 min de juego
+2026-11-13 14:13:24   bola: 17.6 de 36.0 min de juego
+2026-11-13 14:16:02   bola: 19.8 de 36.0 min de juego
+2026-11-13 14:19:06   bola: 22.4 de 36.0 min de juego

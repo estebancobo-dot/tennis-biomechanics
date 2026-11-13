@@ -107,14 +107,14 @@
   "rewrote": {}
  },
  "identity": {
-  "fingerprint": "0f178e67bb864933",
+  "fingerprint": "1be7aaeccdba5c09",
   "version": "13",
-  "seconds": 178.9,
-  "finished": "2026-11-12 17:17:16",
+  "seconds": 187.8,
+  "finished": "2026-11-13 13:52:04",
   "summary": {
    "runs": 296,
-   "confidence": 0.53,
-   "votes": 164,
+   "confidence": 0.54,
+   "votes": 166,
    "agree": 0,
    "ends_only": 289,
    "clothes_only": 0,
@@ -131,27 +131,28 @@
    "clothes": {
     "source": "ropa (torso y pantalón o falda, sin la pista)",
     "runs": 296,
-    "clear": 267,
+    "clear": 269,
     "margin_median": 0.3,
     "separation": 1.82,
     "far_pairs": 0,
     "far_opposite": null,
-    "same_game_pairs": 216,
+    "same_game_pairs": 220,
     "same_game_same": 0.95,
     "check": {
      "distinguishable": false,
-     "why": "los grupos no siguen los cambios de lado del marcador (55 % de 260 planos)",
-     "parity_runs": 260,
+     "why": "los grupos no siguen los cambios de lado del marcador (55 % de 262 planos)",
+     "parity_runs": 262,
      "parity_agree": 0.55,
-     "centroid_dist": 0.596,
-     "vote_runs": 157,
-     "vote_agree": 0.54
+     "centroid_dist": 0.593,
+     "vote_runs": 159,
+     "vote_agree": 0.55
     }
    }
   },
-  "out_hash": "e274b18b129dcc80fd0c",
+  "out_hash": "3e9373507bfd3514c4cd",
   "scheme": 2,
-  "rewrote": {}
+  "rewrote": {},
+  "faults": {}
  },
  "spotting": {
   "fingerprint": "a659ad2f650bad48",
