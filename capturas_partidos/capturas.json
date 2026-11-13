@@ -85,7 +85,7 @@
   },
   {
    "title": "Comparar dos golpes",
-   "text_chars": 79913,
+   "text_chars": 79947,
    "charts": 2,
    "videos": 16,
    "black_canvases": 0,
@@ -372,7 +372,7 @@
     "strings": true,
     "repeats": 0,
     "reason": "",
-    "reps": 345,
+    "reps": 346,
     "video": true,
     "height": 1253
    },
@@ -389,7 +389,7 @@
     "strings": true,
     "repeats": 0,
     "reason": "",
-    "reps": 276,
+    "reps": 277,
     "video": true,
     "height": 1387
    },
@@ -406,7 +406,7 @@
     "strings": true,
     "repeats": 0,
     "reason": "",
-    "reps": 299,
+    "reps": 300,
     "video": true,
     "height": 1326
    },
@@ -423,7 +423,7 @@
     "strings": true,
     "repeats": 0,
     "reason": "",
-    "reps": 297,
+    "reps": 298,
     "video": true,
     "height": 1233
    },
@@ -440,7 +440,7 @@
     "strings": true,
     "repeats": 0,
     "reason": "",
-    "reps": 345,
+    "reps": 346,
     "video": true,
     "height": 1477
    },
@@ -457,7 +457,7 @@
     "strings": true,
     "repeats": 0,
     "reason": "",
-    "reps": 345,
+    "reps": 346,
     "video": true,
     "height": 1536
    },
@@ -474,7 +474,7 @@
     "strings": true,
     "repeats": 0,
     "reason": "",
-    "reps": 298,
+    "reps": 299,
     "video": true,
     "height": 1176
    },
@@ -491,7 +491,7 @@
     "strings": true,
     "repeats": 0,
     "reason": "",
-    "reps": 298,
+    "reps": 299,
     "video": true,
     "height": 1084
    },
@@ -508,7 +508,7 @@
     "strings": false,
     "repeats": 0,
     "reason": "",
-    "reps": 300,
+    "reps": 301,
     "video": true,
     "height": 1202
    }

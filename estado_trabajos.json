@@ -1,30 +1,30 @@
 {
- "at": "2026-11-13 08:20:16",
- "firma": "90016e1c9bbc",
+ "at": "2026-11-13 08:30:11",
+ "firma": "0f5249ec4132",
  "ejecutor": {
   "vivo": true,
   "pid": 18632,
-  "at": 1794554416.5321374
+  "at": 1794555009.0099113
  },
  "pausa": false,
  "en_curso": [
   {
-   "id": 120,
-   "kind": "flujo",
+   "id": 121,
+   "kind": "comando",
    "match": null,
    "player": null,
    "stroke": null,
-   "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
+   "reason": "script validate_recall --spotter --tag v17 --from v16",
    "state": "en curso",
-   "message": "paso 5/6: Auditoria",
-   "created": "2026-11-13 06:10:52",
-   "started": "2026-11-13 08:16:34",
+   "message": "",
+   "created": "2026-11-13 06:11:12",
+   "started": "2026-11-13 08:21:34",
    "finished": null,
-   "args": "[\"informe\"]",
-   "source": "claude 281",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_120.log",
-   "paso": 4,
-   "pasos": 6
+   "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"v17\", \"--from\", \"v16\"]",
+   "source": "claude 282",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_121.log",
+   "paso": 0,
+   "pasos": 0
   }
  ],
  "progreso": {
@@ -91,27 +91,27 @@
    "log": "",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 121,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script validate_recall --spotter --tag v17 --from v16",
-   "state": "pendiente",
-   "message": "",
-   "created": "2026-11-13 06:11:12",
-   "started": null,
-   "finished": null,
-   "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"v17\", \"--from\", \"v16\"]",
-   "source": "claude 282",
-   "log": "",
-   "paso": 0,
-   "pasos": 0
   }
  ],
  "recientes": [
+  {
+   "id": 120,
+   "kind": "flujo",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
+   "state": "hecho",
+   "message": "6 pasos",
+   "created": "2026-11-13 06:10:52",
+   "started": "2026-11-13 08:16:34",
+   "finished": "2026-11-13 08:21:33",
+   "args": "[\"informe\"]",
+   "source": "claude 281",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_120.log",
+   "paso": 6,
+   "pasos": 6
+  },
   {
    "id": 119,
    "kind": "comando",
@@ -363,27 +363,30 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_106.log",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 105,
-   "kind": "flujo",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
-   "state": "hecho",
-   "message": "6 pasos",
-   "created": "2026-11-12 15:38:10",
-   "started": "2026-11-13 00:33:50",
-   "finished": "2026-11-13 00:39:03",
-   "args": "[\"informe\"]",
-   "source": "claude 264",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_105.log",
-   "paso": 6,
-   "pasos": 6
   }
  ],
  "eventos": [
+  {
+   "id": 663,
+   "job": 121,
+   "at": "2026-11-13 08:21:34",
+   "kind": "empieza",
+   "text": "script validate_recall --spotter --tag v17 --from v16"
+  },
+  {
+   "id": 662,
+   "job": 120,
+   "at": "2026-11-13 08:21:34",
+   "kind": "hecho",
+   "text": "código 0"
+  },
+  {
+   "id": 661,
+   "job": 120,
+   "at": "2026-11-13 08:21:32",
+   "kind": "paso",
+   "text": "6/6 Modelo de calidad"
+  },
   {
    "id": 660,
    "job": 120,
@@ -569,27 +572,6 @@
   {
    "id": 634,
    "job": 117,
-   "at": "2026-11-13 06:10:21",
-   "kind": "cancelar",
-   "text": "claude 279"
-  },
-  {
-   "id": 633,
-   "job": 116,
-   "at": "2026-11-13 06:10:21",
-   "kind": "cancelar",
-   "text": "claude 279"
-  },
-  {
-   "id": 632,
-   "job": 115,
-   "at": "2026-11-13 06:10:21",
-   "kind": "cancelar",
-   "text": "claude 279"
-  },
-  {
-   "id": 631,
-   "job": 114,
    "at": "2026-11-13 06:10:21",
    "kind": "cancelar",
    "text": "claude 279"

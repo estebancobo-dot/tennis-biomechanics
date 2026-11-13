@@ -156,35 +156,35 @@
    "dominio": "plataforma",
    "caracteristica": "fiabilidad",
    "capa": "pc",
-   "ok": 10,
-   "aviso": 3,
-   "falta": 2,
+   "ok": 17,
+   "aviso": 7,
+   "falta": 0,
    "pocos datos": 0,
    "fallan": [
     "Golpes dudosos (duda sobre el golpe, no sobre una medida)",
-    "Pruebas del código en este PC",
-    "Registros con fecha y duración",
     "Orquestador: espera hasta empezar cada trabajo",
-    "Peticiones por GitHub Actions: espera hasta empezar"
+    "Fallos por niveles: sin-fecha_f43dd2_rybakina",
+    "Fallos por niveles: sin-fecha_584c5b_rybakina",
+    "Fallos por niveles: sin-fecha_580c6f_rybakina",
+    "Fallos por niveles: sin-fecha_b8b713_rybakina",
+    "Fallos por niveles: sin-fecha_49723c_rybakina"
    ],
-   "n": 15,
-   "score": 0.6666666666666666,
+   "n": 24,
+   "score": 0.7083333333333334,
    "accepted": false
   },
   {
    "dominio": "plataforma",
    "caracteristica": "rendimiento",
    "capa": "pc",
-   "ok": 16,
-   "aviso": 1,
+   "ok": 18,
+   "aviso": 0,
    "falta": 0,
-   "pocos datos": 5,
-   "fallan": [
-    "Tiempo desde cero"
-   ],
-   "n": 17,
-   "score": 0.9411764705882353,
-   "accepted": false
+   "pocos datos": 4,
+   "fallan": [],
+   "n": 18,
+   "score": 1.0,
+   "accepted": true
   },
   {
    "dominio": "exportacion",
@@ -261,8 +261,8 @@
    "dominio": "modelos",
    "caracteristica": "exactitud",
    "capa": "verdad",
-   "ok": 22,
-   "aviso": 9,
+   "ok": 23,
+   "aviso": 8,
    "falta": 0,
    "pocos datos": 0,
    "fallan": [
@@ -270,14 +270,13 @@
     "La bola del partido para el detector: sin-fecha_580c6f_rybakina",
     "La bola del partido para el detector: sin-fecha_b8b713_rybakina",
     "La bola del partido para el detector: sin-fecha_49723c_rybakina",
-    "Entradas de los modelos: sin-fecha_f43dd2_rybakina",
     "Entradas de los modelos: sin-fecha_584c5b_rybakina",
     "Entradas de los modelos: sin-fecha_580c6f_rybakina",
     "Entradas de los modelos: sin-fecha_b8b713_rybakina",
     "Entradas de los modelos: sin-fecha_49723c_rybakina"
    ],
    "n": 31,
-   "score": 0.7096774193548387,
+   "score": 0.7419354838709677,
    "accepted": false
   },
   {
@@ -421,12 +420,12 @@
    "score": 1.0
   },
   "plataforma": {
-   "ok": 56,
-   "n": 62,
+   "ok": 65,
+   "n": 72,
    "cells": 4,
    "unmeasured": 1,
-   "accepted": 1,
-   "score": 0.9032258064516129
+   "accepted": 2,
+   "score": 0.9027777777777778
   },
   "exportacion": {
    "ok": 1,
@@ -445,12 +444,12 @@
    "score": 0.7894736842105263
   },
   "modelos": {
-   "ok": 22,
+   "ok": 23,
    "n": 31,
    "cells": 2,
    "unmeasured": 1,
    "accepted": 0,
-   "score": 0.7096774193548387
+   "score": 0.7419354838709677
   }
  },
  "characteristics": {
@@ -463,12 +462,12 @@
    "score": 0.9671532846715328
   },
   "exactitud": {
-   "ok": 42,
+   "ok": 43,
    "n": 58,
    "cells": 6,
    "unmeasured": 2,
    "accepted": 1,
-   "score": 0.7241379310344828
+   "score": 0.7413793103448276
   },
   "usabilidad": {
    "ok": 16,
@@ -479,20 +478,20 @@
    "score": 0.8421052631578947
   },
   "fiabilidad": {
-   "ok": 22,
-   "n": 29,
+   "ok": 29,
+   "n": 38,
    "cells": 2,
    "unmeasured": 0,
    "accepted": 0,
-   "score": 0.7586206896551724
+   "score": 0.7631578947368421
   },
   "rendimiento": {
-   "ok": 16,
-   "n": 17,
+   "ok": 18,
+   "n": 18,
    "cells": 3,
    "unmeasured": 2,
-   "accepted": 0,
-   "score": 0.9411764705882353
+   "accepted": 1,
+   "score": 1.0
   },
   "mantenibilidad": {
    "ok": 30,
@@ -513,12 +512,12 @@
  },
  "layers": {
   "pc": {
-   "ok": 270,
-   "n": 289,
+   "ok": 279,
+   "n": 299,
    "cells": 12,
    "unmeasured": 2,
-   "accepted": 4,
-   "score": 0.9342560553633218
+   "accepted": 5,
+   "score": 0.9331103678929766
   },
   "pantallas": {
    "ok": 54,
@@ -529,12 +528,12 @@
    "score": 0.9473684210526315
   },
   "verdad": {
-   "ok": 37,
+   "ok": 38,
    "n": 51,
    "cells": 5,
    "unmeasured": 2,
    "accepted": 1,
-   "score": 0.7254901960784313
+   "score": 0.7450980392156863
   },
   "codigo": {
    "ok": 30,
@@ -548,11 +547,11 @@
  "unmapped": {},
  "threshold": 0.95,
  "total": {
-  "ok": 391,
-  "n": 427,
-  "score": 0.9156908665105387,
+  "ok": 401,
+  "n": 437,
+  "score": 0.9176201372997712,
   "cells": 25,
-  "accepted": 8,
+  "accepted": 9,
   "unmeasured": 7
  }
 }
