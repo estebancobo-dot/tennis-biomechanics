@@ -1,30 +1,30 @@
 {
- "at": "2026-11-13 20:01:33",
- "firma": "172f0b5d230e",
+ "at": "2026-11-13 20:09:50",
+ "firma": "431610918a1d",
  "ejecutor": {
   "vivo": true,
   "pid": 8124,
-  "at": 1794596493.9035244
+  "at": 1794596990.1391816
  },
  "pausa": false,
  "en_curso": [
   {
-   "id": 133,
-   "kind": "flujo",
+   "id": 134,
+   "kind": "comando",
    "match": null,
    "player": null,
    "stroke": null,
-   "reason": "flujo «informe_prueba»: Informe y auditoria de la prueba (_smoke) desde sus golpes guardados y la revision automatica",
+   "reason": "script subir_nube --que partidos",
    "state": "en curso",
-   "message": "paso 2/3: Informe de la prueba",
-   "created": "2026-11-13 20:01:10",
-   "started": "2026-11-13 20:01:17",
+   "message": "",
+   "created": "2026-11-13 20:01:27",
+   "started": "2026-11-13 20:04:39",
    "finished": null,
-   "args": "[\"informe_prueba\"]",
-   "source": "ciclo",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_133.log",
-   "paso": 1,
-   "pasos": 3
+   "args": "[\"script\", \"subir_nube\", \"--que\", \"partidos\"]",
+   "source": "claude 293",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_134.log",
+   "paso": 0,
+   "pasos": 0
   }
  ],
  "progreso": {
@@ -37,27 +37,26 @@
   "quedan_s": 0,
   "hora": "2026-11-13 18:25:58"
  },
- "pendientes": [
+ "pendientes": [],
+ "recientes": [
   {
-   "id": 134,
-   "kind": "comando",
+   "id": 133,
+   "kind": "flujo",
    "match": null,
    "player": null,
    "stroke": null,
-   "reason": "script subir_nube --que partidos",
-   "state": "pendiente",
-   "message": "",
-   "created": "2026-11-13 20:01:27",
-   "started": null,
-   "finished": null,
-   "args": "[\"script\", \"subir_nube\", \"--que\", \"partidos\"]",
-   "source": "claude 293",
-   "log": "",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
- "recientes": [
+   "reason": "flujo «informe_prueba»: Informe y auditoria de la prueba (_smoke) desde sus golpes guardados y la revision automatica",
+   "state": "hecho",
+   "message": "3 pasos",
+   "created": "2026-11-13 20:01:10",
+   "started": "2026-11-13 20:01:17",
+   "finished": "2026-11-13 20:04:39",
+   "args": "[\"informe_prueba\"]",
+   "source": "ciclo",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_133.log",
+   "paso": 3,
+   "pasos": 3
+  },
   {
    "id": 132,
    "kind": "flujo",
@@ -309,27 +308,30 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_119.log",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 118,
-   "kind": "flujo",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
-   "state": "cancelado",
-   "message": "cancelado (claude 279)",
-   "created": "2026-11-13 05:17:01",
-   "started": null,
-   "finished": null,
-   "args": "[\"informe\"]",
-   "source": "claude 278",
-   "log": "",
-   "paso": 0,
-   "pasos": 6
   }
  ],
  "eventos": [
+  {
+   "id": 740,
+   "job": 134,
+   "at": "2026-11-13 20:04:39",
+   "kind": "empieza",
+   "text": "script subir_nube --que partidos"
+  },
+  {
+   "id": 739,
+   "job": 133,
+   "at": "2026-11-13 20:04:39",
+   "kind": "hecho",
+   "text": "código 0"
+  },
+  {
+   "id": 738,
+   "job": 133,
+   "at": "2026-11-13 20:04:39",
+   "kind": "paso",
+   "text": "3/3 Revision automatica"
+  },
   {
    "id": 737,
    "job": 134,
@@ -518,27 +520,6 @@
    "at": "2026-11-13 19:50:52",
    "kind": "enviado",
    "text": "tennisbio script diag_otros_partidos --match osaka pegula zheng gauff sobolenko --t 4628 11586 12203 12217 (claude 290)"
-  },
-  {
-   "id": 710,
-   "job": 129,
-   "at": "2026-11-13 19:50:42",
-   "kind": "error",
-   "text": "código 1"
-  },
-  {
-   "id": 709,
-   "job": 129,
-   "at": "2026-11-13 19:50:40",
-   "kind": "empieza",
-   "text": "script diag_play_mask --tags v15 v17 --match osaka pegula --window azaren,1090,1115"
-  },
-  {
-   "id": 708,
-   "job": 129,
-   "at": "2026-11-13 19:50:36",
-   "kind": "enviado",
-   "text": "tennisbio script diag_play_mask --tags v15 v17 --match osaka pegula --window azaren,1090,1115 (claude 289)"
   }
  ]
 }
