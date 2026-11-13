@@ -1,10 +1,10 @@
 {
- "at": "2026-11-13 06:11:35",
- "firma": "ee54da14a893",
+ "at": "2026-11-13 06:11:54",
+ "firma": "16cecd2cc2dc",
  "ejecutor": {
   "vivo": true,
   "pid": 3148,
-  "at": 1794546689.8234978
+  "at": 1794546709.8277516
  },
  "pausa": true,
  "en_curso": [],
@@ -19,6 +19,24 @@
   "hora": "2026-11-13 06:08:44"
  },
  "pendientes": [
+  {
+   "id": 123,
+   "kind": "flujo",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-13 06:11:50",
+   "started": null,
+   "finished": null,
+   "args": "[\"informe\"]",
+   "source": "claude 284",
+   "log": "",
+   "paso": 0,
+   "pasos": 6
+  },
   {
    "id": 122,
    "kind": "comando",
@@ -366,6 +384,13 @@
  ],
  "eventos": [
   {
+   "id": 645,
+   "job": 123,
+   "at": "2026-11-13 06:11:50",
+   "kind": "enviado",
+   "text": "flujo informe (claude 284)"
+  },
+  {
    "id": 644,
    "job": 122,
    "at": "2026-11-13 06:11:32",
@@ -567,13 +592,6 @@
    "at": "2026-11-13 05:11:05",
    "kind": "ejecutor",
    "text": "se reinicia con el código nuevo"
-  },
-  {
-   "id": 615,
-   "job": null,
-   "at": "2026-11-13 05:11:03",
-   "kind": "reiniciar",
-   "text": "ciclo"
   }
  ]
 }
