@@ -75,3 +75,19 @@ prueba_pausa:
     - {nombre: "Registro de partidos", tennisbio: [registry, sync]}
     - {nombre: "Espera de 90 s (aqui se pausa)", script: [scripts/esperar.py, "90"]}
     - {nombre: "Lista de partidos", tennisbio: [registry, list, --json, "{salida}/registro_partidos.json"]}
+
+# 13-11 (R28): lo que el ciclo hacia el mismo al traer codigo nuevo (medidas de la prueba _smoke de nuevo desde sus
+# caches, o solo su informe, y la revision frente a la vez anterior) va ahora por la cola unica, detras de lo pedido
+# (prioridad 9): fuera de la cola tapaba las ordenes de la cola y compartia la iGPU con el trabajo en marcha
+medidas_prueba:
+  descripcion: "Medidas de la prueba (_smoke) de nuevo desde sus caches, su informe y la revision automatica"
+  pasos:
+    - {nombre: "Auditoria anterior apartada", script: [scripts/auto_cycle.py, snapshot, "{salida}/_smoke/auditoria/auditoria.json", "{salida}/_smoke/auditoria/auditoria_anterior.json"]}
+    - {nombre: "Medidas de la prueba", script: [scripts/recompute_measures.py]}
+    - {nombre: "Revision automatica", script: [scripts/auto_cycle.py, review, "{salida}/_smoke/auditoria/auditoria.json", "{salida}/_smoke/auditoria/auditoria_anterior.json", "{salida}/revision_automatica.md"]}
+informe_prueba:
+  descripcion: "Informe y auditoria de la prueba (_smoke) desde sus golpes guardados y la revision automatica"
+  pasos:
+    - {nombre: "Auditoria anterior apartada", script: [scripts/auto_cycle.py, snapshot, "{salida}/_smoke/auditoria/auditoria.json", "{salida}/_smoke/auditoria/auditoria_anterior.json"]}
+    - {nombre: "Informe de la prueba", script: [scripts/rebuild_report.py]}
+    - {nombre: "Revision automatica", script: [scripts/auto_cycle.py, review, "{salida}/_smoke/auditoria/auditoria.json", "{salida}/_smoke/auditoria/auditoria_anterior.json", "{salida}/revision_automatica.md"]}

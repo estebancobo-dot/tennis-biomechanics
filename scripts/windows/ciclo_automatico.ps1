@@ -801,18 +801,21 @@ try {
         Start-Process wscript.exe -ArgumentList @("//B", "`"$(Join-Path $PSScriptRoot 'oculto.vbs')`"",
             "`"$(Join-Path $PSScriptRoot 'pruebas_fondo.ps1')`"") | Out-Null
     } catch {}
-    if ($forzar) { $modo = "medidas"; Remove-Item "$Out\forzar_ciclo.txt" -Force -ErrorAction SilentlyContinue }
-    else {
+    # 13-11 (R28): lo que hace falta va por la cola unica (flujo medidas_prueba o informe_prueba, prioridad 9, detras de
+    # lo pedido); el ciclo ya no lo hace el mismo: fuera de la cola tapaba las ordenes (cancelar) y compartia la iGPU
+    if ($forzar) {
+        Tb jobs submit --source ciclo --prioridad 9 -- flujo medidas_prueba 2>&1 | Out-Host
+        $modo = "nada"; Remove-Item "$Out\forzar_ciclo.txt" -Force -ErrorAction SilentlyContinue
+    } else {
         $r = & uv run python scripts/auto_cycle.py decide @cambios | Select-Object -Last 1
-        $modo = if ($r) { "$r".Trim() } else { "informe" }
+        $modo = if ($r) { "$r".Trim() } else { "nada" }
     }
     Paso "Que hace falta: $modo"
     $aud = "$Out\_smoke\auditoria\auditoria.json"
     $prev = "$Out\_smoke\auditoria\auditoria_anterior.json"
     if ($modo -ne "nada" -and (Test-Path $aud)) { Copy-Item $aud $prev -Force }
     $ErrorActionPreference = "Stop"
-    if ($modo -eq "medidas") { Ejecutar uv @("run", "python", "scripts/recompute_measures.py") }
-    elseif ($modo -eq "informe") { Ejecutar uv @("run", "python", "scripts/rebuild_report.py") }
+    # (R28: el recalculo y el informe de la prueba ya no se ejecutan aqui: van en la cola, ver arriba)
     $ErrorActionPreference = "Continue"
     if ($modo -ne "nada") {
         Paso "Revision automatica frente a la ejecucion anterior"

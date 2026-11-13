@@ -108,9 +108,37 @@ def review(new: Path, old: Path, logs: list[Path]) -> tuple[str, str]:
     return verdict, "\n".join(out)
 
 
+FLOW_OF = {"medidas": "medidas_prueba", "informe": "informe_prueba"}
+QUEUE_PRIORITY = 9            # behind what was asked (the default is 5; lower goes first)
+
+
+def to_queue(mode: str, submit=None) -> str:
+    """13-11 (R28): what a code change needs goes to the single queue as a flow (FLOW_OF), behind what was asked;
+    returns what the cycle must still do itself: always «nada». Before, the cycle ran the recompute in its own process,
+    outside the queue: for an hour after the code of #265 (its window caches new) the queue's orders (a cancel) waited
+    for it and it shared the iGPU with the job running."""
+    if mode not in FLOW_OF:
+        return "nada"
+    if submit is None:
+        sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+        from tennisbio.cli import main as tb
+        submit = lambda flow: tb(["jobs", "submit", "--source", "ciclo", "--prioridad", str(QUEUE_PRIORITY), "--", "flujo", flow])
+    rc = submit(FLOW_OF[mode])
+    print(f"{mode}: en la cola como el flujo {FLOW_OF[mode]} (prioridad {QUEUE_PRIORITY})" if not rc else
+          f"{mode}: no se pudo poner en la cola (código {rc})")
+    return "nada"
+
+
 def main(argv: list[str]) -> int:
     if len(argv) >= 1 and argv[0] == "decide":
-        print(decide(argv[1:]))
+        # the cycle reads the last line: «nada», what it does itself; the work went to the queue (R28)
+        print(to_queue(decide(argv[1:])))
+        return 0
+    if len(argv) == 3 and argv[0] == "snapshot":          # the audit of before, kept for the review
+        import shutil
+        if Path(argv[1]).exists():
+            Path(argv[2]).parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(argv[1], argv[2])
         return 0
     if len(argv) >= 4 and argv[0] == "review":
         verdict, md = review(Path(argv[1]), Path(argv[2]), [Path(x) for x in argv[4:]])

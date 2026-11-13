@@ -243,3 +243,30 @@ def test_actions_job_waits_for_the_running_job_instead_of_leaving_the_request_to
     wf = (Path(__file__).resolve().parents[1] / ".github" / "workflows" / "pc.yml").read_text(encoding="utf-8")
     assert hours * 60 < int(re.search(r"timeout-minutes: (\d+)", wf).group(1))
     assert "concurrency:" in wf and "cancel-in-progress: false" in wf   # one Actions job at a time, none cancelled
+
+
+def test_what_a_code_change_needs_goes_to_the_single_queue(tmp_path):
+    """R28 (13-11): the cycle never runs the recompute itself (outside the queue it held back the queue's orders and
+    shared the iGPU): decide queues its flow behind what was asked and tells the cycle «nada»."""
+    from auto_cycle import FLOW_OF, QUEUE_PRIORITY, to_queue
+    got = []
+    assert to_queue("medidas", submit=lambda f: got.append(f) or 0) == "nada" and got == ["medidas_prueba"]
+    assert to_queue("informe", submit=lambda f: got.append(f) or 0) == "nada" and got[-1] == "informe_prueba"
+    assert to_queue("nada", submit=lambda f: got.append(f) or 0) == "nada" and len(got) == 2
+    from tennisbio.orchestrator import flows
+    fl = flows()
+    assert set(FLOW_OF.values()) <= set(fl) and QUEUE_PRIORITY > 5
+    assert [p["script"][0] for p in fl["medidas_prueba"]["pasos"]] == ["scripts/auto_cycle.py", "scripts/recompute_measures.py",
+                                                                     "scripts/auto_cycle.py"]
+
+
+def test_the_queue_takes_a_lower_priority_after_what_was_asked(tmp_path, monkeypatch):
+    from tennisbio import orchestrator as O
+    from tennisbio.app.db import DB
+    db = DB(tmp_path / "q.db")
+    O.ensure_schema(db) if hasattr(O, "ensure_schema") else None
+    a = O.submit(db, "comando", args=["run", "--all"], source="t")
+    b = O.submit(db, "flujo", args=["medidas_prueba"], source="ciclo", priority=9)
+    c = O.submit(db, "comando", args=["audit"], source="t")
+    order = [r["id"] for r in db.q("SELECT id FROM jobs WHERE state='pendiente' ORDER BY priority, id")]
+    assert order == [a, c, b]

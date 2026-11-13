@@ -91,10 +91,10 @@ def _jobs(args) -> int:
                 print("falta qué hacer: tennisbio jobs submit -- run --all | tennisbio jobs submit flujo completo")
                 return 2
             if what[0] == "flujo":       # «submit flujo NOMBRE» (also after «--»: no tennisbio command is called «flujo»)
-                jid = O.submit(db, "flujo", args=what[1:2], source=args.source)
+                jid = O.submit(db, "flujo", args=what[1:2], source=args.source, priority=args.prioridad)
                 print(f"trabajo {jid} en la cola: flujo {what[1] if len(what) > 1 else ''}")
             else:
-                jid = O.submit(db, "comando", args=what, source=args.source)
+                jid = O.submit(db, "comando", args=what, source=args.source, priority=args.prioridad)
                 print(f"trabajo {jid} en la cola: tennisbio {' '.join(what)}")
         elif args.action == "pause":
             print(O.pause(db, now_=bool(rest and rest[0] == "now"), source=args.source))
@@ -236,6 +236,8 @@ def _main(argv=None):
                     help="submit: -- <argumentos de tennisbio> | cancel: ID o all | run-one: ID | pause: now")
     jb.add_argument("--source", default="cli", help="quién lo pide (app, ciclo, claude…), para el registro de eventos")
     jb.add_argument("--json", default=None, help="status: escribe el estado en este fichero")
+    jb.add_argument("--prioridad", type=int, default=None,
+                    help="submit: orden en la cola (menor primero; 5 por defecto): 9 = detrás de lo pedido (13-11, R28)")
     dc = sub.add_parser("desde-cero", help="mueve al archivo lo calculado de cada partido (se conservan el clic, la ficha "
                                            "y el vídeo) para rehacerlos desde cero; sin --ejecutar solo dice qué movería")
     dc.add_argument("--ejecutar", action="store_true")

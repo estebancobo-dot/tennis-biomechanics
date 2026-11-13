@@ -1322,3 +1322,8 @@ accion: trabajo
 comando: flujo informe
 # 284 (13-11, R26): auditoria final: Osaka y Pegula (saques >= 85 %, bola >= 90 % del juego, pose en el contacto,
 # identidad, Fallos por niveles sin C0 ni C1) y F3Set v17
+---
+id: 285
+accion: control
+orden: reanudar
+# 285 (13-11): la parada 16 deja la cola en pausa ("jobs pause now"); se reanuda para la validacion final 280-284
