@@ -6,7 +6,8 @@ code is a free public download (models, datasets, fonts, videos to learn from). 
 13-11 (#271-#273): the user decided that the whole application moves to the cloud after the 6 matches (package N, 0 € a
 month). Until then the one exception is N0, the proof of concept: scripts/subir_nube.py uploads, once and by the single
 queue, the PC's models and the F3Set compilations to the user's own Modal volume (cloud/, which never runs on the PC).
-Nothing else on the PC sends anything out; the match videos are not uploaded."""
+Nothing else on the PC sends anything out. 13-11 (night): the user moved everything to Modal now; the same script uploads
+the match videos and their library records once (--que partidos), never the PC's results."""
 import re
 import tomllib
 from pathlib import Path

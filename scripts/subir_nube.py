@@ -5,7 +5,8 @@ by 5_conectar_nube.bat (<base>\\secretos\\modal.env, never in the repository). A
 
     accion: medir / script: subir_nube / argumentos: --pc-tag v17
 
-The match videos are NOT uploaded here (the matches go to the cloud only in N1, after the 6 matches, decision 13-11).
+13-11 (night, user's decision): everything moves to Modal at 0 EUR; `--que partidos` uploads the match videos and their
+library records (MATCH_FILES) once, so that the cloud analyses them from scratch. Results are never uploaded.
 """
 import argparse
 import json
@@ -57,6 +58,32 @@ def upload_plan(repo: Path, datasets: Path, pc_tag: str) -> list[tuple[Path, str
     return [(p, r) for p, r in plan if p.exists()]
 
 
+MATCH_FILES = ("partido.json", "video.json", "identidad_clic.json")     # what «desde cero» keeps of a match (#263)
+
+
+def partidos_plan(registry: list[dict], library: Path) -> list[tuple[Path, str]]:
+    """13-11 (decision del usuario: todo en Modal): what the cloud needs to analyse the matches from scratch: each
+    video (named by the match's ASCII id: the Russian names stay on the PC), its library folder's own files (the
+    match's record, its video's fingerprint, the user's identity click) at the same place under /biblioteca, the
+    players' records, and the PC's list of matches. Never the PC's results (they are recomputed in the cloud)."""
+    plan: list[tuple[Path, str]] = []
+    for m in registry:
+        v = Path(str(m.get("video") or ""))
+        if v.name and v.exists():
+            plan.append((v, f"/videos/{m['id']}{v.suffix.lower()}"))
+        d = Path(str(m.get("carpeta") or ""))
+        try:
+            rel = d.relative_to(library).as_posix()
+        except ValueError:
+            rel = f"partidos/{d.name}"
+        for f in MATCH_FILES:
+            if (d / f).exists():
+                plan.append((d / f, f"/biblioteca/{rel}/{f}"))
+    if (library / "jugadoras").is_dir():
+        plan.append((library / "jugadoras", "/biblioteca/jugadoras/"))
+    return plan
+
+
 def _modal(args: list[str], env: dict, timeout: int = 7200) -> subprocess.CompletedProcess:
     cmd = ["uv", "tool", "run", "--from", CLIENT, "modal", *args]
     return subprocess.run(cmd, env={**os.environ, **env}, capture_output=True, text=True, encoding="utf-8",
@@ -70,12 +97,21 @@ def _size(p: Path) -> int:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--pc-tag", default="v17", help="la ejecución de F3Set del PC con la que se compara la nube")
+    ap.add_argument("--que", choices=("f3set", "partidos"), default="f3set",
+                    help="f3set: modelos y compilaciones (prueba N0); partidos: los vídeos y sus fichas (todo en Modal)")
     ap.add_argument("--solo-plan", action="store_true", help="solo dice qué subiría")
     a = ap.parse_args()
     from tennisbio.config import load_config
-    out = Path((load_config().get("paths") or {}).get("output") or "output")
+    cfg = load_config()
+    out = Path((cfg.get("paths") or {}).get("output") or "output")
     datasets = out.parent / "datasets"
-    plan = upload_plan(ROOT, datasets, a.pc_tag)
+    if a.que == "partidos":
+        from tennisbio.library import library_root
+        reg = out / "registro_partidos.json"
+        registry = json.loads(reg.read_text(encoding="utf-8")) if reg.exists() else []
+        plan = partidos_plan(registry, library_root(cfg)) + ([(reg, "/pc/registro_partidos.json")] if reg.exists() else [])
+    else:
+        plan = upload_plan(ROOT, datasets, a.pc_tag)
     total = sum(_size(p) for p, _ in plan)
     print(f"Subir a la nube (volumen {VOLUME}): {len(plan)} ficheros o carpetas, {total / 1e9:.2f} GB")
     for p, r in plan:
@@ -86,7 +122,7 @@ def main() -> int:
     if not key:
         print(f"FALTA LA CLAVE DE MODAL: doble clic en 5_conectar_nube.bat (se guarda en {secrets_file(out)})")
         return 2
-    if not any(r.startswith("/datasets/f3set/recall/videos/") for _, r in plan):
+    if a.que == "f3set" and not any(r.startswith("/datasets/f3set/recall/videos/") for _, r in plan):
         print(f"FALTAN LAS COMPILACIONES DE F3SET en {datasets / 'f3set' / 'recall' / 'videos'}")
         return 2
     t0 = time.time()
@@ -96,15 +132,17 @@ def main() -> int:
         return 1
     done, failed = [], []
     for p, remote in plan:
-        r = _modal(["volume", "put", "--force", VOLUME, str(p), remote], key)
+        # a match video is GBs: up to 8 h each on a slow home connection
+        r = _modal(["volume", "put", "--force", VOLUME, str(p), remote], key,
+                   timeout=8 * 3600 if remote.startswith("/videos/") else 7200)
         (done if r.returncode == 0 else failed).append(remote)
         print(f"  {'bien' if r.returncode == 0 else 'FALLO'} {remote}"
               + ("" if r.returncode == 0 else f": {(r.stdout + r.stderr).strip()[-300:]}"), flush=True)
-    res = {"fecha": time.strftime("%Y-%m-%dT%H:%M:%S"), "pc_tag": a.pc_tag, "gb": round(total / 1e9, 2),
+    res = {"fecha": time.strftime("%Y-%m-%dT%H:%M:%S"), "que": a.que, "pc_tag": a.pc_tag, "gb": round(total / 1e9, 2),
            "minutos": round((time.time() - t0) / 60, 1), "subidos": done, "fallidos": failed}
     cd = out / "capturas_diag"                     # goes to pc-logs with the rest of the diagnoses
     cd.mkdir(parents=True, exist_ok=True)
-    (cd / "subir_nube.json").write_text(json.dumps(res, ensure_ascii=False, indent=1), encoding="utf-8")
+    (cd / f"subir_nube_{a.que}.json").write_text(json.dumps(res, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"Subido en {res['minutos']} min: {len(done)} bien, {len(failed)} con fallo")
     return 1 if failed else 0
 

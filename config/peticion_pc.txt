@@ -1370,7 +1370,7 @@ argumentos: --match osaka pegula zheng gauff sobolenko --t 4628 11586 12203 1221
 id: 291
 accion: medir
 script: subir_nube
-argumentos: --pc-tag v18
+argumentos: --pc-tag v17
 # 291 (13-11, N0): el usuario guardo la clave de Modal en el PC (Clave correcta). Sube UNA VEZ al volumen de Modal los
 # modelos, las compilaciones de F3Set y el informe y los tiempos de F3Set v18 (el mismo codigo que la nube); ningun
 # video de partido. Despues Claude lanza F3Set en la nube y lo compara golpe a golpe con la v18 del PC
@@ -1382,3 +1382,11 @@ trabajo: 127
 # 292 (13-11, decision del usuario): se para el analisis en el PC y todo pasa a Modal con gasto 0. Se cancela F3Set
 # v18 (127); se repetira en la nube. El PC solo sube los datos que solo el tiene (291 y la subida de los videos) y hace
 # los diagnosticos de lectura 289-290 (segundos)
+---
+id: 293
+accion: medir
+script: subir_nube
+argumentos: --que partidos
+# 293 (13-11, decision del usuario: todo en Modal con gasto 0): sube UNA VEZ los videos de los 6 partidos (con su id
+# ASCII) y lo que "desde cero" conserva de cada uno (partido.json, video.json, identidad_clic.json), las fichas de las
+# jugadoras y la lista de partidos; nada de resultados (se recalculan en la nube). 291 ahora compara con v17 (v18 cancelada)

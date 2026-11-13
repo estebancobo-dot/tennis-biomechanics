@@ -212,3 +212,24 @@ def test_nothing_the_pc_runs_knows_about_the_cloud():
         if re.search(r"^\s*(import|from)\s+(modal|nube|cloud)\b", txt, re.M) or "TENNISBIO_DML_IS_CUDA" in txt:
             bad.append(f.name)
     assert not bad, bad
+
+
+def test_the_matches_upload_takes_each_video_and_its_record_never_the_results(tmp_path):
+    lib, vids = tmp_path / "biblioteca", tmp_path / "videos"
+    d = lib / "partidos" / "sin-fecha" / "sin-fecha_580c6f_rybakina"
+    (d / "etapas").mkdir(parents=True)
+    (lib / "jugadoras" / "rybakina").mkdir(parents=True)
+    vids.mkdir()
+    v = vids / "Теннис.ЮСИПОПЕН.Полуфинал.Гауфф—Рыбакина.mkv"
+    v.write_text("video")
+    for f in ("partido.json", "video.json", "identidad_clic.json"):
+        (d / f).write_text("{}")
+    (d / "etapas" / "players.npz").write_text("result")                 # a result: never uploaded
+    reg = [{"id": "tennis-yusipopen-polufinal-gauff-rybakina", "video": str(v), "carpeta": str(d)},
+           {"id": "sin-video", "video": str(vids / "falta.mkv"), "carpeta": str(lib / "partidos" / "x")}]
+    plan = {r for _, r in subir_nube.partidos_plan(reg, lib)}
+    assert plan == {"/videos/tennis-yusipopen-polufinal-gauff-rybakina.mkv",
+                    "/biblioteca/partidos/sin-fecha/sin-fecha_580c6f_rybakina/partido.json",
+                    "/biblioteca/partidos/sin-fecha/sin-fecha_580c6f_rybakina/video.json",
+                    "/biblioteca/partidos/sin-fecha/sin-fecha_580c6f_rybakina/identidad_clic.json",
+                    "/biblioteca/jugadoras/"}
