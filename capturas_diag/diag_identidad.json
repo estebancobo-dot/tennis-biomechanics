@@ -1,48 +1,3638 @@
 [
  {
+  "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+  "dir": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_f43dd2_rybakina",
+  "runs": 140,
+  "ends_base": false,
+  "click_by": "clothes",
+  "target_cluster": 0,
+  "votes": 133,
+  "clothes": {
+   "source": "ropa (torso y pantalón o falda, sin la pista)",
+   "runs": 140,
+   "clear": 140,
+   "margin_median": 0.62,
+   "separation": 4.46,
+   "far_pairs": 0,
+   "far_opposite": null,
+   "same_game_pairs": 116,
+   "same_game_same": 0.93,
+   "check": {
+    "distinguishable": true,
+    "why": "dos personas (ropa distinta y de acuerdo con los cambios de lado)",
+    "parity_runs": 133,
+    "parity_agree": 0.94,
+    "centroid_dist": 0.848,
+    "vote_runs": 92,
+    "vote_agree": 0.98
+   }
+  },
+  "decided": 140,
+  "methods": {
+   "ropa": 7,
+   "ropa y cambios de lado": 125,
+   "ropa (corrige el marcador)": 8
+  },
+  "parity_by_cluster": {
+   "g1_par0": 67,
+   "g0_par0": 4,
+   "g0_par1": 58,
+   "g1_par1": 4
+  },
+  "votes_by_parity": {
+   "par0_votoFalse": 46,
+   "par1_votoTrue": 44,
+   "par1_votoFalse": 1,
+   "par0_votoTrue": 1
+  },
+  "games_sequence": [
+   [
+    564,
+    [
+     [
+      0,
+      0
+     ]
+    ],
+    0
+   ],
+   [
+    674,
+    [
+     [
+      1,
+      0
+     ]
+    ],
+    1
+   ],
+   [
+    766,
+    [
+     [
+      1,
+      1
+     ]
+    ],
+    0
+   ],
+   [
+    927,
+    [
+     [
+      2,
+      1
+     ]
+    ],
+    1
+   ],
+   [
+    1053,
+    [
+     [
+      3,
+      1
+     ]
+    ],
+    0
+   ],
+   [
+    1333,
+    [
+     [
+      4,
+      1
+     ]
+    ],
+    1
+   ],
+   [
+    1484,
+    [
+     [
+      5,
+      1
+     ]
+    ],
+    0
+   ],
+   [
+    1832,
+    [
+     [
+      6,
+      1
+     ],
+     [
+      0,
+      0
+     ]
+    ],
+    1
+   ],
+   [
+    1999,
+    [
+     [
+      6,
+      1
+     ],
+     [
+      0,
+      1
+     ]
+    ],
+    0
+   ],
+   [
+    2157,
+    [
+     [
+      6,
+      1
+     ],
+     [
+      1,
+      1
+     ]
+    ],
+    1
+   ],
+   [
+    2290,
+    [
+     [
+      6,
+      1
+     ]
+    ],
+    1
+   ],
+   [
+    2301,
+    [
+     [
+      1,
+      1
+     ]
+    ],
+    0
+   ],
+   [
+    2311,
+    [
+     [
+      6,
+      1
+     ],
+     [
+      1,
+      1
+     ]
+    ],
+    1
+   ],
+   [
+    2444,
+    [
+     [
+      6,
+      1
+     ],
+     [
+      1,
+      2
+     ]
+    ],
+    0
+   ],
+   [
+    2661,
+    [
+     [
+      6,
+      1
+     ],
+     [
+      2,
+      2
+     ]
+    ],
+    1
+   ],
+   [
+    2987,
+    [
+     [
+      6,
+      1
+     ],
+     [
+      2,
+      3
+     ]
+    ],
+    0
+   ],
+   [
+    3167,
+    [
+     [
+      6,
+      1
+     ],
+     [
+      3,
+      3
+     ]
+    ],
+    1
+   ],
+   [
+    3351,
+    [
+     [
+      6,
+      1
+     ],
+     [
+      4,
+      3
+     ]
+    ],
+    0
+   ],
+   [
+    3522,
+    [
+     [
+      6,
+      1
+     ],
+     [
+      5,
+      3
+     ]
+    ],
+    1
+   ],
+   [
+    3855,
+    [
+     [
+      6,
+      1
+     ],
+     [
+      5,
+      4
+     ]
+    ],
+    0
+   ]
+  ],
+  "sin_decidir": [
+   {
+    "t": 354,
+    "s": 2.0,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 210
+   },
+   {
+    "t": 467,
+    "s": 1.1,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 98
+   },
+   {
+    "t": 476,
+    "s": 1.8,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 89
+   },
+   {
+    "t": 505,
+    "s": 12.9,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 59
+   },
+   {
+    "t": 532,
+    "s": 4.8,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 33
+   },
+   {
+    "t": 552,
+    "s": 7.3,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 12
+   },
+   {
+    "t": 1810,
+    "s": 13.4,
+    "lectura_antes_s": 178,
+    "lectura_despues_s": 22
+   }
+  ],
+  "lecturas": {
+   "total": 184,
+   "con_juegos": 184,
+   "primera_t": 564,
+   "ultima_t": 3973
+  },
+  "conflictos": {
+   "pick": {
+    "pick": "aplicado",
+    "her_cluster": 0,
+    "changed": 0,
+    "by_click": 140
+   },
+   "her_parity": 1,
+   "con_cambios": 133,
+   "en_desacuerdo": 8,
+   "runs": [
+    {
+     "i": 9,
+     "t": 655,
+     "s": 4.8,
+     "grupo": 0,
+     "margen": 0.77,
+     "cambios": 0,
+     "decision_ella_cerca": true,
+     "metodo": "ropa + clic",
+     "cambios_dicen_ella_cerca": false
+    },
+    {
+     "i": 12,
+     "t": 714,
+     "s": 3.2,
+     "grupo": 1,
+     "margen": 0.36,
+     "cambios": 1,
+     "decision_ella_cerca": false,
+     "metodo": "ropa + clic",
+     "cambios_dicen_ella_cerca": true
+    },
+    {
+     "i": 20,
+     "t": 898,
+     "s": 4.0,
+     "grupo": 1,
+     "margen": 0.58,
+     "cambios": 1,
+     "decision_ella_cerca": false,
+     "metodo": "ropa + clic",
+     "cambios_dicen_ella_cerca": true
+    },
+    {
+     "i": 21,
+     "t": 909,
+     "s": 4.0,
+     "grupo": 1,
+     "margen": 0.63,
+     "cambios": 1,
+     "decision_ella_cerca": false,
+     "metodo": "ropa + clic",
+     "cambios_dicen_ella_cerca": true
+    },
+    {
+     "i": 40,
+     "t": 1321,
+     "s": 4.5,
+     "grupo": 0,
+     "margen": 0.76,
+     "cambios": 2,
+     "decision_ella_cerca": true,
+     "metodo": "ropa + clic",
+     "cambios_dicen_ella_cerca": false
+    },
+    {
+     "i": 60,
+     "t": 1983,
+     "s": 2.6,
+     "grupo": 0,
+     "margen": 0.67,
+     "cambios": 4,
+     "decision_ella_cerca": true,
+     "metodo": "ropa + clic",
+     "cambios_dicen_ella_cerca": false
+    },
+    {
+     "i": 77,
+     "t": 2438,
+     "s": 6.6,
+     "grupo": 1,
+     "margen": 0.53,
+     "cambios": 5,
+     "decision_ella_cerca": false,
+     "metodo": "ropa + clic",
+     "cambios_dicen_ella_cerca": true
+    },
+    {
+     "i": 98,
+     "t": 2971,
+     "s": 20.3,
+     "grupo": 0,
+     "margen": 0.74,
+     "cambios": 6,
+     "decision_ella_cerca": true,
+     "metodo": "ropa + clic",
+     "cambios_dicen_ella_cerca": false
+    }
+   ]
+  },
+  "images": [
+   "identidad_conflictos_us-open-2026-r4-naomi-osaka-elena-rybaki_0.jpg"
+  ]
+ },
+ {
+  "match": "zheng-qinwen-elena-rybakina",
+  "dir": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_584c5b_rybakina",
+  "runs": 276,
+  "ends_base": true,
+  "click_by": "clothes",
+  "target_cluster": 0,
+  "votes": 257,
+  "clothes": {
+   "source": "ropa (torso y pantalón o falda, sin la pista)",
+   "runs": 276,
+   "clear": 266,
+   "margin_median": 0.51,
+   "separation": 3.52,
+   "far_pairs": 1,
+   "far_opposite": 0.0,
+   "same_game_pairs": 224,
+   "same_game_same": 0.99,
+   "check": {
+    "distinguishable": true,
+    "why": "dos personas (ropa distinta y de acuerdo con los cambios de lado)",
+    "parity_runs": 257,
+    "parity_agree": 0.96,
+    "centroid_dist": 0.892
+   }
+  },
+  "decided": 274,
+  "methods": {
+   "ropa": 9,
+   "ropa y cambios de lado": 247,
+   "cambios de lado": 10,
+   "dudoso": 2,
+   "ropa (corrige el marcador)": 8
+  },
+  "parity_by_cluster": {
+   "g1_par1": 106,
+   "g0_par0": 148,
+   "g0_par1": 10,
+   "g1_par0": 3
+  },
+  "votes_by_parity": {
+   "par1_votoFalse": 58,
+   "par0_votoTrue": 100,
+   "par1_votoTrue": 13,
+   "par0_votoFalse": 3
+  },
+  "games_sequence": [
+   [
+    412,
+    [
+     [
+      1,
+      1
+     ]
+    ],
+    1
+   ],
+   [
+    700,
+    [
+     [
+      1,
+      2
+     ]
+    ],
+    0
+   ],
+   [
+    932,
+    [
+     [
+      2,
+      2
+     ]
+    ],
+    1
+   ],
+   [
+    1082,
+    [
+     [
+      2,
+      3
+     ]
+    ],
+    0
+   ],
+   [
+    1305,
+    [
+     [
+      3,
+      3
+     ]
+    ],
+    1
+   ],
+   [
+    1458,
+    [
+     [
+      3,
+      4
+     ]
+    ],
+    0
+   ],
+   [
+    1538,
+    [
+     [
+      7,
+      6
+     ],
+     [
+      1,
+      8
+     ],
+     [
+      1,
+      7
+     ],
+     [
+      6,
+      5
+     ]
+    ],
+    0
+   ],
+   [
+    1548,
+    [
+     [
+      3,
+      4
+     ]
+    ],
+    0
+   ],
+   [
+    1785,
+    [
+     [
+      3,
+      5
+     ]
+    ],
+    1
+   ],
+   [
+    2707,
+    [
+     [
+      3,
+      6
+     ]
+    ],
+    0
+   ],
+   [
+    2723,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      0,
+      0
+     ]
+    ],
+    0
+   ],
+   [
+    2734,
+    [
+     [
+      3,
+      6
+     ]
+    ],
+    0
+   ],
+   [
+    2901,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      1,
+      0
+     ]
+    ],
+    1
+   ],
+   [
+    3210,
+    [
+     [
+      3,
+      6
+     ]
+    ],
+    1
+   ],
+   [
+    3341,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      2,
+      0
+     ]
+    ],
+    0
+   ],
+   [
+    3499,
+    [
+     [
+      3,
+      6
+     ]
+    ],
+    1
+   ],
+   [
+    3537,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      3,
+      0
+     ]
+    ],
+    1
+   ],
+   [
+    3646,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      3,
+      1
+     ]
+    ],
+    0
+   ],
+   [
+    3742,
+    [
+     [
+      3,
+      6
+     ]
+    ],
+    0
+   ],
+   [
+    3767,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      3,
+      1
+     ]
+    ],
+    0
+   ],
+   [
+    3772,
+    [
+     [
+      3,
+      6
+     ]
+    ],
+    0
+   ],
+   [
+    3778,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      3,
+      1
+     ]
+    ],
+    0
+   ],
+   [
+    3811,
+    [
+     [
+      3,
+      6
+     ]
+    ],
+    0
+   ],
+   [
+    3848,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      3,
+      1
+     ]
+    ],
+    0
+   ],
+   [
+    3897,
+    [
+     [
+      3,
+      6
+     ]
+    ],
+    0
+   ],
+   [
+    3957,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      4,
+      1
+     ]
+    ],
+    1
+   ],
+   [
+    4024,
+    [
+     [
+      3,
+      6
+     ]
+    ],
+    1
+   ],
+   [
+    4040,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      4,
+      1
+     ]
+    ],
+    1
+   ],
+   [
+    4257,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      5,
+      1
+     ]
+    ],
+    0
+   ],
+   [
+    4371,
+    [
+     [
+      3,
+      6
+     ]
+    ],
+    0
+   ],
+   [
+    4376,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      5,
+      1
+     ]
+    ],
+    0
+   ],
+   [
+    4426,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      6,
+      1
+     ],
+     [
+      0,
+      0
+     ]
+    ],
+    1
+   ],
+   [
+    4669,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      6,
+      1
+     ],
+     [
+      0,
+      1
+     ]
+    ],
+    0
+   ],
+   [
+    4843,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      6,
+      1
+     ],
+     [
+      1,
+      1
+     ]
+    ],
+    1
+   ],
+   [
+    4975,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      6,
+      1
+     ]
+    ],
+    1
+   ],
+   [
+    5006,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      6,
+      1
+     ],
+     [
+      1,
+      1
+     ]
+    ],
+    1
+   ],
+   [
+    5039,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      6,
+      1
+     ]
+    ],
+    1
+   ],
+   [
+    5093,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      6,
+      1
+     ],
+     [
+      1,
+      2
+     ]
+    ],
+    0
+   ],
+   [
+    5248,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      6,
+      1
+     ],
+     [
+      2,
+      2
+     ]
+    ],
+    1
+   ],
+   [
+    5711,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      6,
+      1
+     ],
+     [
+      2,
+      3
+     ]
+    ],
+    0
+   ],
+   [
+    5867,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      6,
+      1
+     ],
+     [
+      3,
+      3
+     ]
+    ],
+    1
+   ],
+   [
+    6082,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      6,
+      1
+     ],
+     [
+      3,
+      4
+     ]
+    ],
+    0
+   ],
+   [
+    6427,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      6,
+      1
+     ],
+     [
+      4,
+      4
+     ]
+    ],
+    0
+   ],
+   [
+    6512,
+    [
+     [
+      2,
+      1
+     ],
+     [
+      0,
+      7
+     ]
+    ],
+    0
+   ],
+   [
+    6517,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      6,
+      1
+     ],
+     [
+      4,
+      4
+     ]
+    ],
+    0
+   ],
+   [
+    6806,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      6,
+      1
+     ],
+     [
+      5,
+      4
+     ]
+    ],
+    0
+   ],
+   [
+    6862,
+    [
+     [
+      1,
+      4
+     ]
+    ],
+    0
+   ],
+   [
+    6873,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      6,
+      1
+     ],
+     [
+      5,
+      4
+     ]
+    ],
+    null
+   ]
+  ],
+  "sin_decidir": [
+   {
+    "t": 138,
+    "s": 8.6,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 275
+   },
+   {
+    "t": 161,
+    "s": 4.2,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 251
+   },
+   {
+    "t": 190,
+    "s": 16.5,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 222
+   },
+   {
+    "t": 222,
+    "s": 3.5,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 190
+   },
+   {
+    "t": 240,
+    "s": 18.4,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 172
+   },
+   {
+    "t": 321,
+    "s": 8.6,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 91
+   },
+   {
+    "t": 342,
+    "s": 7.0,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 71
+   },
+   {
+    "t": 363,
+    "s": 5.8,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 49
+   },
+   {
+    "t": 382,
+    "s": 6.4,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 30
+   }
+  ],
+  "lecturas": {
+   "total": 454,
+   "con_juegos": 454,
+   "primera_t": 412,
+   "ultima_t": 6961
+  },
+  "conflictos": {
+   "pick": {
+    "pick": "aplicado",
+    "her_cluster": 0,
+    "changed": 2,
+    "by_click": 268
+   },
+   "her_parity": 0,
+   "con_cambios": 267,
+   "en_desacuerdo": 10,
+   "runs": [
+    {
+     "i": 104,
+     "t": 2706,
+     "s": 4.3,
+     "grupo": 0,
+     "margen": 0.18,
+     "cambios": 5,
+     "decision_ella_cerca": true,
+     "metodo": "ropa + clic",
+     "cambios_dicen_ella_cerca": false
+    },
+    {
+     "i": 109,
+     "t": 2809,
+     "s": 1.3,
+     "grupo": 0,
+     "margen": 0.7,
+     "cambios": 5,
+     "decision_ella_cerca": true,
+     "metodo": "ropa + clic",
+     "cambios_dicen_ella_cerca": false
+    },
+    {
+     "i": 110,
+     "t": 2820,
+     "s": 5.1,
+     "grupo": 0,
+     "margen": 0.71,
+     "cambios": 5,
+     "decision_ella_cerca": true,
+     "metodo": "ropa + clic",
+     "cambios_dicen_ella_cerca": false
+    },
+    {
+     "i": 111,
+     "t": 2832,
+     "s": 6.6,
+     "grupo": 0,
+     "margen": 0.68,
+     "cambios": 5,
+     "decision_ella_cerca": true,
+     "metodo": "ropa + clic",
+     "cambios_dicen_ella_cerca": false
+    },
+    {
+     "i": 112,
+     "t": 2860,
+     "s": 4.6,
+     "grupo": 0,
+     "margen": 0.73,
+     "cambios": 5,
+     "decision_ella_cerca": true,
+     "metodo": "ropa + clic",
+     "cambios_dicen_ella_cerca": false
+    },
+    {
+     "i": 113,
+     "t": 2872,
+     "s": 8.5,
+     "grupo": 0,
+     "margen": 0.67,
+     "cambios": 5,
+     "decision_ella_cerca": true,
+     "metodo": "ropa + clic",
+     "cambios_dicen_ella_cerca": false
+    },
+    {
+     "i": 136,
+     "t": 3499,
+     "s": 5.5,
+     "grupo": 1,
+     "margen": 0.32,
+     "cambios": 6,
+     "decision_ella_cerca": false,
+     "metodo": "ropa + clic",
+     "cambios_dicen_ella_cerca": true
+    },
+    {
+     "i": 137,
+     "t": 3511,
+     "s": 6.0,
+     "grupo": 1,
+     "margen": 0.44,
+     "cambios": 6,
+     "decision_ella_cerca": false,
+     "metodo": "ropa + clic",
+     "cambios_dicen_ella_cerca": true
+    },
+    {
+     "i": 186,
+     "t": 4628,
+     "s": 10.4,
+     "grupo": 0,
+     "margen": 0.08,
+     "cambios": 9,
+     "decision_ella_cerca": true,
+     "metodo": "ropa + clic",
+     "cambios_dicen_ella_cerca": false
+    },
+    {
+     "i": 268,
+     "t": 6805,
+     "s": 1.6,
+     "grupo": 1,
+     "margen": 0.25,
+     "cambios": 14,
+     "decision_ella_cerca": false,
+     "metodo": "ropa + clic",
+     "cambios_dicen_ella_cerca": true
+    }
+   ]
+  },
+  "images": [
+   "identidad_conflictos_zheng-qinwen-elena-rybakina_0.jpg"
+  ]
+ },
+ {
+  "match": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+  "dir": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_580c6f_rybakina",
+  "runs": 285,
+  "ends_base": false,
+  "click_by": "clothes",
+  "target_cluster": 0,
+  "votes": 206,
+  "clothes": {
+   "source": "ropa (torso y pantalón o falda, sin la pista)",
+   "runs": 285,
+   "clear": 268,
+   "margin_median": 0.53,
+   "separation": 2.97,
+   "far_pairs": 0,
+   "far_opposite": null,
+   "same_game_pairs": 167,
+   "same_game_same": 0.99,
+   "check": {
+    "distinguishable": true,
+    "why": "dos personas (ropa distinta y de acuerdo con los cambios de lado)",
+    "parity_runs": 206,
+    "parity_agree": 0.97,
+    "centroid_dist": 0.459
+   }
+  },
+  "decided": 281,
+  "methods": {
+   "ropa": 62,
+   "None": 4,
+   "ropa y cambios de lado": 199,
+   "cambios de lado": 13,
+   "ropa (corrige el marcador)": 7
+  },
+  "parity_by_cluster": {
+   "g0_par1": 95,
+   "g0_par0": 13,
+   "g1_par0": 109,
+   "g1_par1": 2
+  },
+  "votes_by_parity": {
+   "par1_votoTrue": 65,
+   "par1_votoFalse": 3,
+   "par0_votoTrue": 8,
+   "par0_votoFalse": 84
+  },
+  "games_sequence": [
+   [
+    2094,
+    [
+     [
+      2,
+      3
+     ]
+    ],
+    0
+   ],
+   [
+    2159,
+    [
+     [
+      6,
+      6
+     ]
+    ],
+    null
+   ],
+   [
+    2164,
+    [
+     [
+      2,
+      3
+     ]
+    ],
+    0
+   ],
+   [
+    2395,
+    [
+     [
+      2,
+      4
+     ]
+    ],
+    1
+   ],
+   [
+    2549,
+    [
+     [
+      2,
+      5
+     ]
+    ],
+    0
+   ],
+   [
+    2767,
+    [
+     [
+      3,
+      5
+     ]
+    ],
+    null
+   ],
+   [
+    3074,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      0,
+      0
+     ]
+    ],
+    0
+   ],
+   [
+    3238,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      1,
+      0
+     ]
+    ],
+    1
+   ],
+   [
+    3516,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      1,
+      1
+     ]
+    ],
+    0
+   ],
+   [
+    3521,
+    [
+     [
+      3,
+      1
+     ]
+    ],
+    0
+   ],
+   [
+    3528,
+    [
+     [
+      1,
+      6
+     ]
+    ],
+    0
+   ],
+   [
+    3553,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      1,
+      1
+     ]
+    ],
+    0
+   ],
+   [
+    3732,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      2,
+      1
+     ]
+    ],
+    1
+   ],
+   [
+    3858,
+    [
+     [
+      3,
+      1
+     ]
+    ],
+    1
+   ],
+   [
+    3868,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      2,
+      1
+     ]
+    ],
+    1
+   ],
+   [
+    3938,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      3,
+      1
+     ]
+    ],
+    0
+   ],
+   [
+    4083,
+    [
+     [
+      6,
+      7
+     ],
+     [
+      9,
+      3
+     ]
+    ],
+    null
+   ],
+   [
+    4093,
+    [
+     [
+      3,
+      1
+     ]
+    ],
+    1
+   ],
+   [
+    4103,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      4,
+      1
+     ]
+    ],
+    1
+   ],
+   [
+    4342,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      4,
+      2
+     ]
+    ],
+    0
+   ],
+   [
+    4599,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      4,
+      3
+     ]
+    ],
+    1
+   ],
+   [
+    4779,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      4,
+      4
+     ]
+    ],
+    0
+   ],
+   [
+    4944,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      5,
+      4
+     ]
+    ],
+    1
+   ],
+   [
+    5233,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      6,
+      4
+     ],
+     [
+      0,
+      0
+     ]
+    ],
+    0
+   ],
+   [
+    5496,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      6,
+      4
+     ],
+     [
+      1,
+      0
+     ]
+    ],
+    1
+   ],
+   [
+    5833,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      6,
+      4
+     ],
+     [
+      1,
+      1
+     ]
+    ],
+    0
+   ],
+   [
+    5994,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      6,
+      4
+     ],
+     [
+      2,
+      1
+     ]
+    ],
+    1
+   ],
+   [
+    6170,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      6,
+      4
+     ],
+     [
+      2,
+      2
+     ]
+    ],
+    0
+   ],
+   [
+    6350,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      6,
+      4
+     ],
+     [
+      3,
+      2
+     ]
+    ],
+    1
+   ],
+   [
+    6786,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      6,
+      4
+     ],
+     [
+      3,
+      3
+     ]
+    ],
+    0
+   ],
+   [
+    6816,
+    [
+     [
+      7,
+      7
+     ],
+     [
+      5,
+      5
+     ]
+    ],
+    null
+   ],
+   [
+    6821,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      6,
+      4
+     ],
+     [
+      3,
+      3
+     ]
+    ],
+    0
+   ],
+   [
+    6934,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      6,
+      4
+     ],
+     [
+      4,
+      3
+     ]
+    ],
+    1
+   ],
+   [
+    7151,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      6,
+      4
+     ],
+     [
+      5,
+      3
+     ]
+    ],
+    0
+   ],
+   [
+    7398,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      6,
+      4
+     ],
+     [
+      5,
+      4
+     ]
+    ],
+    1
+   ],
+   [
+    7947,
+    [
+     [
+      2,
+      2
+     ]
+    ],
+    1
+   ],
+   [
+    7970,
+    [
+     [
+      3,
+      6
+     ],
+     [
+      1,
+      0
+     ]
+    ],
+    1
+   ]
+  ],
+  "sin_decidir": [
+   {
+    "t": 140,
+    "s": 1.9,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 1953
+   },
+   {
+    "t": 148,
+    "s": 4.2,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 1946
+   },
+   {
+    "t": 159,
+    "s": 2.6,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 1935
+   },
+   {
+    "t": 173,
+    "s": 5.0,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 1921
+   },
+   {
+    "t": 766,
+    "s": 1.2,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 1328
+   },
+   {
+    "t": 782,
+    "s": 12.4,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 1312
+   },
+   {
+    "t": 802,
+    "s": 12.2,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 1292
+   },
+   {
+    "t": 829,
+    "s": 8.0,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 1265
+   },
+   {
+    "t": 852,
+    "s": 3.2,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 1242
+   },
+   {
+    "t": 867,
+    "s": 7.6,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 1227
+   },
+   {
+    "t": 892,
+    "s": 6.4,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 1201
+   },
+   {
+    "t": 911,
+    "s": 10.1,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 1182
+   },
+   {
+    "t": 937,
+    "s": 5.5,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 1157
+   },
+   {
+    "t": 1006,
+    "s": 18.3,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 1088
+   },
+   {
+    "t": 1038,
+    "s": 10.9,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 1056
+   },
+   {
+    "t": 1063,
+    "s": 4.2,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 1031
+   },
+   {
+    "t": 1084,
+    "s": 6.0,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 1010
+   },
+   {
+    "t": 1101,
+    "s": 10.9,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 993
+   },
+   {
+    "t": 1131,
+    "s": 4.8,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 963
+   },
+   {
+    "t": 1145,
+    "s": 8.5,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 949
+   },
+   {
+    "t": 1174,
+    "s": 4.7,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 920
+   },
+   {
+    "t": 1189,
+    "s": 8.2,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 905
+   },
+   {
+    "t": 1217,
+    "s": 5.9,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 877
+   },
+   {
+    "t": 1245,
+    "s": 19.3,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 849
+   },
+   {
+    "t": 1284,
+    "s": 5.3,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 810
+   },
+   {
+    "t": 1305,
+    "s": 6.2,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 789
+   },
+   {
+    "t": 1326,
+    "s": 3.9,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 768
+   },
+   {
+    "t": 1341,
+    "s": 9.2,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 753
+   },
+   {
+    "t": 1364,
+    "s": 3.8,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 730
+   },
+   {
+    "t": 1377,
+    "s": 5.6,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 717
+   },
+   {
+    "t": 1390,
+    "s": 8.2,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 704
+   },
+   {
+    "t": 1416,
+    "s": 6.2,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 678
+   },
+   {
+    "t": 1430,
+    "s": 11.0,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 664
+   },
+   {
+    "t": 1460,
+    "s": 3.6,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 633
+   },
+   {
+    "t": 1475,
+    "s": 5.3,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 619
+   },
+   {
+    "t": 1536,
+    "s": 5.1,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 558
+   },
+   {
+    "t": 1548,
+    "s": 7.6,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 546
+   },
+   {
+    "t": 1570,
+    "s": 5.5,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 524
+   },
+   {
+    "t": 1579,
+    "s": 3.9,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 514
+   },
+   {
+    "t": 1585,
+    "s": 6.6,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 509
+   },
+   {
+    "t": 1606,
+    "s": 3.9,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 488
+   },
+   {
+    "t": 1627,
+    "s": 4.9,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 467
+   },
+   {
+    "t": 1632,
+    "s": 4.0,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 462
+   },
+   {
+    "t": 1648,
+    "s": 5.8,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 446
+   },
+   {
+    "t": 1658,
+    "s": 4.7,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 436
+   },
+   {
+    "t": 1684,
+    "s": 2.4,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 410
+   },
+   {
+    "t": 1711,
+    "s": 8.2,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 383
+   },
+   {
+    "t": 1724,
+    "s": 3.4,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 370
+   },
+   {
+    "t": 1735,
+    "s": 5.9,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 359
+   },
+   {
+    "t": 1759,
+    "s": 7.3,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 335
+   },
+   {
+    "t": 1780,
+    "s": 5.8,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 314
+   },
+   {
+    "t": 1795,
+    "s": 14.6,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 299
+   },
+   {
+    "t": 1824,
+    "s": 6.2,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 270
+   },
+   {
+    "t": 1837,
+    "s": 5.9,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 257
+   },
+   {
+    "t": 1876,
+    "s": 21.1,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 218
+   },
+   {
+    "t": 1915,
+    "s": 8.6,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 179
+   },
+   {
+    "t": 1939,
+    "s": 5.3,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 155
+   },
+   {
+    "t": 1952,
+    "s": 7.0,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 142
+   },
+   {
+    "t": 1975,
+    "s": 6.0,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 119
+   },
+   {
+    "t": 1993,
+    "s": 5.9,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 100
+   },
+   {
+    "t": 2017,
+    "s": 3.9,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 77
+   },
+   {
+    "t": 2044,
+    "s": 4.9,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 50
+   },
+   {
+    "t": 3043,
+    "s": 9.5,
+    "lectura_antes_s": 164,
+    "lectura_despues_s": 32
+   },
+   {
+    "t": 3058,
+    "s": 4.6,
+    "lectura_antes_s": 180,
+    "lectura_despues_s": 16
+   },
+   {
+    "t": 7923,
+    "s": 9.7,
+    "lectura_antes_s": 392,
+    "lectura_despues_s": 24
+   },
+   {
+    "t": 7937,
+    "s": 11.4,
+    "lectura_antes_s": 406,
+    "lectura_despues_s": 10
+   }
+  ],
+  "lecturas": {
+   "total": 386,
+   "con_juegos": 386,
+   "primera_t": 2094,
+   "ultima_t": 7980
+  },
+  "conflictos": {
+   "pick": {
+    "pick": "aplicado",
+    "her_cluster": 0,
+    "changed": 0,
+    "by_click": 268
+   },
+   "her_parity": 1,
+   "con_cambios": 219,
+   "en_desacuerdo": 7,
+   "runs": [
+    {
+     "i": 127,
+     "t": 3729,
+     "s": 4.1,
+     "grupo": 0,
+     "margen": 0.46,
+     "cambios": 6,
+     "decision_ella_cerca": true,
+     "metodo": "ropa + clic",
+     "cambios_dicen_ella_cerca": false
+    },
+    {
+     "i": 134,
+     "t": 3857,
+     "s": 11.4,
+     "grupo": 0,
+     "margen": 0.46,
+     "cambios": 2,
+     "decision_ella_cerca": true,
+     "metodo": "ropa + clic",
+     "cambios_dicen_ella_cerca": false
+    },
+    {
+     "i": 177,
+     "t": 4934,
+     "s": 2.8,
+     "grupo": 1,
+     "margen": 0.63,
+     "cambios": 9,
+     "decision_ella_cerca": false,
+     "metodo": "ropa + clic",
+     "cambios_dicen_ella_cerca": true
+    },
+    {
+     "i": 216,
+     "t": 5992,
+     "s": 2.9,
+     "grupo": 1,
+     "margen": 0.53,
+     "cambios": 11,
+     "decision_ella_cerca": false,
+     "metodo": "ropa + clic",
+     "cambios_dicen_ella_cerca": true
+    },
+    {
+     "i": 251,
+     "t": 6815,
+     "s": 6.1,
+     "grupo": 0,
+     "margen": 0.54,
+     "cambios": 12,
+     "decision_ella_cerca": true,
+     "metodo": "ropa + clic",
+     "cambios_dicen_ella_cerca": false
+    },
+    {
+     "i": 274,
+     "t": 7388,
+     "s": 1.1,
+     "grupo": 0,
+     "margen": 0.41,
+     "cambios": 14,
+     "decision_ella_cerca": true,
+     "metodo": "ropa + clic",
+     "cambios_dicen_ella_cerca": false
+    },
+    {
+     "i": 275,
+     "t": 7394,
+     "s": 6.3,
+     "grupo": 0,
+     "margen": 0.5,
+     "cambios": 14,
+     "decision_ella_cerca": true,
+     "metodo": "ropa + clic",
+     "cambios_dicen_ella_cerca": false
+    }
+   ]
+  },
+  "images": [
+   "identidad_conflictos_tennis-yusipopen-polufinal-gauff-rybakin_0.jpg"
+  ]
+ },
+ {
+  "match": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
+  "dir": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_b8b713_rybakina",
+  "runs": 342,
+  "ends_base": true,
+  "click_by": "clothes",
+  "target_cluster": 1,
+  "votes": 293,
+  "clothes": {
+   "source": "ropa (torso y pantalón o falda, sin la pista)",
+   "runs": 342,
+   "clear": 314,
+   "margin_median": 0.72,
+   "separation": 5.84,
+   "far_pairs": 8,
+   "far_opposite": 0.25,
+   "same_game_pairs": 243,
+   "same_game_same": 0.98,
+   "check": {
+    "distinguishable": true,
+    "why": "dos personas (ropa distinta y de acuerdo con los cambios de lado)",
+    "parity_runs": 293,
+    "parity_agree": 0.96,
+    "centroid_dist": 0.866
+   }
+  },
+  "decided": 327,
+  "methods": {
+   "ropa": 21,
+   "None": 13,
+   "ropa y cambios de lado": 282,
+   "cambios de lado": 15,
+   "ropa (corrige el marcador)": 9,
+   "dudoso": 2
+  },
+  "parity_by_cluster": {
+   "g0_par1": 153,
+   "g1_par0": 136,
+   "g0_par0": 7,
+   "g1_par1": 12
+  },
+  "votes_by_parity": {
+   "par1_votoFalse": 101,
+   "par0_votoTrue": 90,
+   "par1_votoTrue": 1,
+   "par0_votoFalse": 1
+  },
+  "games_sequence": [
+   [
+    1030,
+    [
+     [
+      5,
+      1
+     ],
+     [
+      6,
+      4
+     ],
+     [
+      4,
+      6
+     ],
+     [
+      0,
+      3
+     ]
+    ],
+    0
+   ],
+   [
+    1035,
+    [
+     [
+      5,
+      4
+     ],
+     [
+      6,
+      6
+     ],
+     [
+      4,
+      3
+     ]
+    ],
+    null
+   ],
+   [
+    1044,
+    [
+     [
+      5,
+      1
+     ],
+     [
+      6,
+      4
+     ],
+     [
+      4,
+      6
+     ],
+     [
+      4,
+      3
+     ]
+    ],
+    0
+   ],
+   [
+    1053,
+    [
+     [
+      5,
+      1
+     ],
+     [
+      6,
+      4
+     ],
+     [
+      4,
+      6
+     ],
+     [
+      5,
+      4
+     ]
+    ],
+    0
+   ],
+   [
+    2654,
+    [
+     [
+      0,
+      0
+     ]
+    ],
+    1
+   ],
+   [
+    2774,
+    [
+     [
+      0,
+      1
+     ]
+    ],
+    0
+   ],
+   [
+    2908,
+    [
+     [
+      1,
+      1
+     ]
+    ],
+    1
+   ],
+   [
+    3305,
+    [
+     [
+      1,
+      2
+     ]
+    ],
+    0
+   ],
+   [
+    3489,
+    [
+     [
+      2,
+      2
+     ]
+    ],
+    1
+   ],
+   [
+    3742,
+    [
+     [
+      3,
+      2
+     ]
+    ],
+    0
+   ],
+   [
+    3815,
+    [
+     [
+      3,
+      1
+     ]
+    ],
+    null
+   ],
+   [
+    3820,
+    [
+     [
+      3,
+      2
+     ]
+    ],
+    0
+   ],
+   [
+    3863,
+    [
+     [
+      4,
+      2
+     ]
+    ],
+    1
+   ],
+   [
+    4212,
+    [
+     [
+      4,
+      3
+     ]
+    ],
+    0
+   ],
+   [
+    4520,
+    [
+     [
+      5,
+      3
+     ]
+    ],
+    1
+   ],
+   [
+    4701,
+    [
+     [
+      5,
+      4
+     ]
+    ],
+    0
+   ],
+   [
+    5226,
+    [
+     [
+      6,
+      4
+     ],
+     [
+      0,
+      0
+     ]
+    ],
+    1
+   ],
+   [
+    5418,
+    [
+     [
+      6,
+      4
+     ],
+     [
+      0,
+      1
+     ]
+    ],
+    0
+   ],
+   [
+    5455,
+    [
+     [
+      8,
+      2
+     ],
+     [
+      3,
+      5
+     ],
+     [
+      1,
+      4
+     ],
+     [
+      2,
+      1
+     ],
+     [
+      6,
+      6
+     ]
+    ],
+    null
+   ],
+   [
+    5476,
+    [
+     [
+      6,
+      4
+     ],
+     [
+      0,
+      1
+     ]
+    ],
+    0
+   ],
+   [
+    5615,
+    [
+     [
+      6,
+      4
+     ],
+     [
+      1,
+      1
+     ]
+    ],
+    1
+   ],
+   [
+    5964,
+    [
+     [
+      6,
+      4
+     ],
+     [
+      1,
+      2
+     ]
+    ],
+    0
+   ],
+   [
+    5969,
+    [
+     [
+      6,
+      4
+     ]
+    ],
+    0
+   ],
+   [
+    5993,
+    [
+     [
+      6,
+      4
+     ],
+     [
+      1,
+      2
+     ]
+    ],
+    0
+   ],
+   [
+    6129,
+    [
+     [
+      6,
+      4
+     ],
+     [
+      2,
+      2
+     ]
+    ],
+    1
+   ],
+   [
+    6294,
+    [
+     [
+      6,
+      4
+     ],
+     [
+      2,
+      3
+     ]
+    ],
+    0
+   ],
+   [
+    6489,
+    [
+     [
+      6,
+      4
+     ],
+     [
+      3,
+      3
+     ]
+    ],
+    1
+   ],
+   [
+    6633,
+    [
+     [
+      6,
+      4
+     ],
+     [
+      3,
+      4
+     ]
+    ],
+    0
+   ],
+   [
+    6822,
+    [
+     [
+      6,
+      4
+     ],
+     [
+      4,
+      4
+     ]
+    ],
+    1
+   ],
+   [
+    6960,
+    [
+     [
+      6,
+      4
+     ],
+     [
+      4,
+      5
+     ]
+    ],
+    0
+   ],
+   [
+    7241,
+    [
+     [
+      6,
+      4
+     ],
+     [
+      5,
+      5
+     ]
+    ],
+    1
+   ],
+   [
+    7642,
+    [
+     [
+      6,
+      4
+     ],
+     [
+      5,
+      6
+     ]
+    ],
+    0
+   ],
+   [
+    8183,
+    [
+     [
+      7,
+      7
+     ],
+     [
+      1,
+      1
+     ]
+    ],
+    null
+   ],
+   [
+    8188,
+    [
+     [
+      6,
+      4
+     ],
+     [
+      5,
+      7
+     ],
+     [
+      0,
+      0
+     ]
+    ],
+    1
+   ],
+   [
+    8678,
+    [
+     [
+      6,
+      4
+     ],
+     [
+      5,
+      7
+     ],
+     [
+      0,
+      1
+     ]
+    ],
+    0
+   ],
+   [
+    8789,
+    [
+     [
+      6,
+      4
+     ],
+     [
+      5,
+      7
+     ],
+     [
+      1,
+      1
+     ]
+    ],
+    1
+   ],
+   [
+    9137,
+    [
+     [
+      6,
+      4
+     ],
+     [
+      5,
+      7
+     ],
+     [
+      2,
+      1
+     ]
+    ],
+    0
+   ],
+   [
+    9332,
+    [
+     [
+      6,
+      4
+     ],
+     [
+      5,
+      7
+     ],
+     [
+      3,
+      1
+     ]
+    ],
+    1
+   ],
+   [
+    9366,
+    [
+     [
+      1,
+      3
+     ]
+    ],
+    null
+   ],
+   [
+    9371,
+    [
+     [
+      6,
+      4
+     ],
+     [
+      5,
+      7
+     ],
+     [
+      3,
+      1
+     ]
+    ],
+    1
+   ],
+   [
+    9460,
+    [
+     [
+      5,
+      4
+     ],
+     [
+      5,
+      1
+     ],
+     [
+      1,
+      0
+     ]
+    ],
+    null
+   ],
+   [
+    9464,
+    [
+     [
+      6,
+      4
+     ],
+     [
+      5,
+      7
+     ],
+     [
+      3,
+      1
+     ]
+    ],
+    1
+   ],
+   [
+    9594,
+    [
+     [
+      6,
+      4
+     ],
+     [
+      5,
+      7
+     ],
+     [
+      3,
+      2
+     ]
+    ],
+    0
+   ],
+   [
+    9729,
+    [
+     [
+      6,
+      4
+     ],
+     [
+      5,
+      7
+     ],
+     [
+      4,
+      2
+     ]
+    ],
+    1
+   ],
+   [
+    9766,
+    [
+     [
+      1,
+      6
+     ]
+    ],
+    null
+   ],
+   [
+    9771,
+    [
+     [
+      6,
+      4
+     ],
+     [
+      5,
+      7
+     ],
+     [
+      4,
+      2
+     ]
+    ],
+    1
+   ],
+   [
+    10126,
+    [
+     [
+      6,
+      4
+     ],
+     [
+      5,
+      7
+     ],
+     [
+      5,
+      2
+     ]
+    ],
+    0
+   ],
+   [
+    11550,
+    [
+     [
+      6,
+      4
+     ],
+     [
+      5,
+      5
+     ]
+    ],
+    1
+   ],
+   [
+    11558,
+    [
+     [
+      6,
+      4
+     ],
+     [
+      5,
+      6
+     ]
+    ],
+    0
+   ],
+   [
+    11638,
+    [
+     [
+      6,
+      4
+     ],
+     [
+      5,
+      7
+     ],
+     [
+      4,
+      2
+     ]
+    ],
+    1
+   ],
+   [
+    11651,
+    [
+     [
+      6,
+      4
+     ],
+     [
+      5,
+      7
+     ],
+     [
+      5,
+      2
+     ]
+    ],
+    0
+   ]
+  ],
+  "sin_decidir": [
+   {
+    "t": 374,
+    "s": 4.1,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 656
+   },
+   {
+    "t": 454,
+    "s": 7.7,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 575
+   },
+   {
+    "t": 467,
+    "s": 3.9,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 562
+   },
+   {
+    "t": 480,
+    "s": 7.0,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 550
+   },
+   {
+    "t": 503,
+    "s": 4.7,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 527
+   },
+   {
+    "t": 514,
+    "s": 5.1,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 516
+   },
+   {
+    "t": 529,
+    "s": 6.6,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 501
+   },
+   {
+    "t": 684,
+    "s": 4.0,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 346
+   },
+   {
+    "t": 701,
+    "s": 6.8,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 328
+   },
+   {
+    "t": 1607,
+    "s": 1.2,
+    "lectura_antes_s": 542,
+    "lectura_despues_s": 1047
+   },
+   {
+    "t": 2034,
+    "s": 3.2,
+    "lectura_antes_s": 969,
+    "lectura_despues_s": 620
+   },
+   {
+    "t": 2492,
+    "s": 1.3,
+    "lectura_antes_s": 1427,
+    "lectura_despues_s": 162
+   },
+   {
+    "t": 2508,
+    "s": 7.7,
+    "lectura_antes_s": 1443,
+    "lectura_despues_s": 146
+   },
+   {
+    "t": 2528,
+    "s": 9.8,
+    "lectura_antes_s": 1464,
+    "lectura_despues_s": 126
+   },
+   {
+    "t": 2543,
+    "s": 9.6,
+    "lectura_antes_s": 1478,
+    "lectura_despues_s": 111
+   },
+   {
+    "t": 2569,
+    "s": 6.8,
+    "lectura_antes_s": 1504,
+    "lectura_despues_s": 85
+   },
+   {
+    "t": 2593,
+    "s": 6.7,
+    "lectura_antes_s": 1528,
+    "lectura_despues_s": 61
+   },
+   {
+    "t": 2607,
+    "s": 9.0,
+    "lectura_antes_s": 1543,
+    "lectura_despues_s": 47
+   },
+   {
+    "t": 2637,
+    "s": 5.1,
+    "lectura_antes_s": 1572,
+    "lectura_despues_s": 17
+   },
+   {
+    "t": 5182,
+    "s": 1.2,
+    "lectura_antes_s": 182,
+    "lectura_despues_s": 44
+   },
+   {
+    "t": 5201,
+    "s": 19.0,
+    "lectura_antes_s": 200,
+    "lectura_despues_s": 26
+   },
+   {
+    "t": 8173,
+    "s": 1.6,
+    "lectura_antes_s": 259,
+    "lectura_despues_s": 10
+   },
+   {
+    "t": 10636,
+    "s": 7.7,
+    "lectura_antes_s": 321,
+    "lectura_despues_s": 914
+   },
+   {
+    "t": 10832,
+    "s": 16.4,
+    "lectura_antes_s": 517,
+    "lectura_despues_s": 718
+   },
+   {
+    "t": 10859,
+    "s": 12.5,
+    "lectura_antes_s": 544,
+    "lectura_despues_s": 691
+   },
+   {
+    "t": 10906,
+    "s": 5.7,
+    "lectura_antes_s": 591,
+    "lectura_despues_s": 644
+   },
+   {
+    "t": 10924,
+    "s": 10.2,
+    "lectura_antes_s": 609,
+    "lectura_despues_s": 626
+   },
+   {
+    "t": 11021,
+    "s": 2.3,
+    "lectura_antes_s": 706,
+    "lectura_despues_s": 529
+   },
+   {
+    "t": 11198,
+    "s": 2.0,
+    "lectura_antes_s": 883,
+    "lectura_despues_s": 352
+   },
+   {
+    "t": 11309,
+    "s": 2.3,
+    "lectura_antes_s": 994,
+    "lectura_despues_s": 241
+   },
+   {
+    "t": 11414,
+    "s": 3.3,
+    "lectura_antes_s": 1099,
+    "lectura_despues_s": 136
+   },
+   {
+    "t": 12005,
+    "s": 3.0,
+    "lectura_antes_s": 354,
+    "lectura_despues_s": 106
+   },
+   {
+    "t": 12014,
+    "s": 2.0,
+    "lectura_antes_s": 363,
+    "lectura_despues_s": 98
+   },
+   {
+    "t": 12343,
+    "s": 13.8,
+    "lectura_antes_s": 232,
+    "lectura_despues_s": null
+   }
+  ],
+  "lecturas": {
+   "total": 534,
+   "con_juegos": 534,
+   "primera_t": 1030,
+   "ultima_t": 12112
+  },
+  "conflictos": {
+   "pick": {
+    "pick": "aplicado",
+    "her_cluster": 1,
+    "changed": 4,
+    "by_click": 316
+   },
+   "her_parity": 0,
+   "con_cambios": 308,
+   "en_desacuerdo": 12,
+   "runs": [
+    {
+     "i": 27,
+     "t": 2737,
+     "s": 7.8,
+     "grupo": 0,
+     "margen": 0.87,
+     "cambios": 0,
+     "decision_ella_cerca": false,
+     "metodo": "ropa + clic",
+     "cambios_dicen_ella_cerca": true
+    },
+    {
+     "i": 28,
+     "t": 2748,
+     "s": 8.2,
+     "grupo": 0,
+     "margen": 0.89,
+     "cambios": 0,
+     "decision_ella_cerca": false,
+     "metodo": "ropa + clic",
+     "cambios_dicen_ella_cerca": true
+    },
+    {
+     "i": 67,
+     "t": 3725,
+     "s": 8.9,
+     "grupo": 0,
+     "margen": 0.85,
+     "cambios": 2,
+     "decision_ella_cerca": false,
+     "metodo": "ropa + clic",
+     "cambios_dicen_ella_cerca": true
+    },
+    {
+     "i": 72,
+     "t": 3814,
+     "s": 7.1,
+     "grupo": 0,
+     "margen": 0.87,
+     "cambios": 2,
+     "decision_ella_cerca": false,
+     "metodo": "ropa + clic",
+     "cambios_dicen_ella_cerca": true
+    },
+    {
+     "i": 85,
+     "t": 4191,
+     "s": 5.7,
+     "grupo": 1,
+     "margen": 0.69,
+     "cambios": 3,
+     "decision_ella_cerca": true,
+     "metodo": "ropa + clic",
+     "cambios_dicen_ella_cerca": false
+    },
+    {
+     "i": 86,
+     "t": 4202,
+     "s": 13.1,
+     "grupo": 1,
+     "margen": 0.73,
+     "cambios": 3,
+     "decision_ella_cerca": true,
+     "metodo": "ropa + clic",
+     "cambios_dicen_ella_cerca": false
+    },
+    {
+     "i": 106,
+     "t": 4691,
+     "s": 4.9,
+     "grupo": 0,
+     "margen": 0.89,
+     "cambios": 4,
+     "decision_ella_cerca": false,
+     "metodo": "ropa + clic",
+     "cambios_dicen_ella_cerca": true
+    },
+    {
+     "i": 196,
+     "t": 6954,
+     "s": 5.8,
+     "grupo": 1,
+     "margen": 0.69,
+     "cambios": 9,
+     "decision_ella_cerca": true,
+     "metodo": "ropa + clic",
+     "cambios_dicen_ella_cerca": false
+    },
+    {
+     "i": 328,
+     "t": 11586,
+     "s": 4.7,
+     "grupo": 1,
+     "margen": 0.08,
+     "cambios": 11,
+     "decision_ella_cerca": true,
+     "metodo": "ropa + clic",
+     "cambios_dicen_ella_cerca": false
+    },
+    {
+     "i": 331,
+     "t": 11627,
+     "s": 10.6,
+     "grupo": 1,
+     "margen": 0.21,
+     "cambios": 11,
+     "decision_ella_cerca": true,
+     "metodo": "ropa + clic",
+     "cambios_dicen_ella_cerca": false
+    },
+    {
+     "i": 339,
+     "t": 12203,
+     "s": 12.3,
+     "grupo": 1,
+     "margen": 0.13,
+     "cambios": 15,
+     "decision_ella_cerca": true,
+     "metodo": "ropa + clic",
+     "cambios_dicen_ella_cerca": false
+    },
+    {
+     "i": 340,
+     "t": 12217,
+     "s": 6.1,
+     "grupo": 1,
+     "margen": 0.13,
+     "cambios": 15,
+     "decision_ella_cerca": true,
+     "metodo": "ropa + clic",
+     "cambios_dicen_ella_cerca": false
+    }
+   ]
+  },
+  "images": [
+   "identidad_conflictos_tennis-yusipopen-final-sobolenko-rybakin_0.jpg"
+  ]
+ },
+ {
   "match": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "dir": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_49723c_rybakina",
-  "runs": 320,
+  "runs": 296,
   "ends_base": false,
   "click_by": "ends",
   "target_cluster": null,
-  "votes": 116,
+  "votes": 166,
   "clothes": {
    "source": "ropa (torso y pantalón o falda, sin la pista)",
-   "runs": 320,
-   "clear": 288,
-   "margin_median": 0.29,
-   "separation": 1.78,
-   "far_pairs": 1,
-   "far_opposite": 0.0,
-   "same_game_pairs": 193,
+   "runs": 296,
+   "clear": 269,
+   "margin_median": 0.3,
+   "separation": 1.82,
+   "far_pairs": 0,
+   "far_opposite": null,
+   "same_game_pairs": 220,
    "same_game_same": 0.95,
    "check": {
     "distinguishable": false,
-    "why": "los grupos no siguen los cambios de lado del marcador (50 % de 231 planos)",
-    "parity_runs": 231,
-    "parity_agree": 0.5,
-    "centroid_dist": 0.59
+    "why": "los grupos no siguen los cambios de lado del marcador (55 % de 262 planos)",
+    "parity_runs": 262,
+    "parity_agree": 0.55,
+    "centroid_dist": 0.593,
+    "vote_runs": 159,
+    "vote_agree": 0.55
    }
   },
-  "decided": 258,
+  "decided": 289,
   "methods": {
-   "None": 62,
-   "cambios de lado": 258
+   "None": 7,
+   "cambios de lado": 289
   },
   "parity_by_cluster": {
-   "g1_par1": 81,
-   "g0_par1": 43,
-   "g0_par0": 42,
-   "g1_par0": 92
+   "g1_par0": 88,
+   "g0_par0": 68,
+   "g1_par1": 85,
+   "g0_par1": 48
   },
   "votes_by_parity": {
-   "par1_votoTrue": 58,
-   "par1_votoFalse": 2,
-   "par0_votoFalse": 52,
-   "par0_votoTrue": 4
+   "par0_votoFalse": 96,
+   "par1_votoTrue": 65,
+   "par1_votoFalse": 3,
+   "par0_votoTrue": 2
   },
   "games_sequence": [
+   [
+    64,
+    [
+     [
+      0,
+      0
+     ],
+     [
+      1,
+      5
+     ]
+    ],
+    0
+   ],
+   [
+    88,
+    [
+     [
+      0,
+      0
+     ]
+    ],
+    0
+   ],
    [
     427,
     [
@@ -52,6 +3642,132 @@
      ]
     ],
     1
+   ],
+   [
+    594,
+    [
+     [
+      0,
+      2
+     ],
+     [
+      1,
+      5
+     ]
+    ],
+    0
+   ],
+   [
+    623,
+    [
+     [
+      0,
+      2
+     ]
+    ],
+    0
+   ],
+   [
+    689,
+    [
+     [
+      0,
+      2
+     ],
+     [
+      1,
+      4
+     ]
+    ],
+    1
+   ],
+   [
+    723,
+    [
+     [
+      0,
+      2
+     ]
+    ],
+    0
+   ],
+   [
+    911,
+    [
+     [
+      0,
+      3
+     ]
+    ],
+    1
+   ],
+   [
+    1010,
+    [
+     [
+      1,
+      0
+     ]
+    ],
+    1
+   ],
+   [
+    1015,
+    [
+     [
+      0,
+      3
+     ],
+     [
+      1,
+      3
+     ]
+    ],
+    1
+   ],
+   [
+    1037,
+    [
+     [
+      0,
+      3
+     ]
+    ],
+    1
+   ],
+   [
+    1224,
+    [
+     [
+      0,
+      4
+     ]
+    ],
+    0
+   ],
+   [
+    1248,
+    [
+     [
+      0,
+      4
+     ],
+     [
+      1,
+      5
+     ]
+    ],
+    0
+   ],
+   [
+    1287,
+    [
+     [
+      0,
+      4
+     ]
+    ],
+    0
    ],
    [
     1327,
@@ -65,7 +3781,17 @@
       7
      ]
     ],
-    null
+    1
+   ],
+   [
+    1338,
+    [
+     [
+      0,
+      4
+     ]
+    ],
+    0
    ],
    [
     1356,
@@ -79,6 +3805,30 @@
    ],
    [
     1488,
+    [
+     [
+      1,
+      5
+     ]
+    ],
+    0
+   ],
+   [
+    1575,
+    [
+     [
+      1,
+      5
+     ],
+     [
+      1,
+      3
+     ]
+    ],
+    0
+   ],
+   [
+    1625,
     [
      [
       1,
@@ -103,17 +3853,65 @@
       0
      ]
     ],
-    null
+    0
    ],
    [
-    1854,
+    1730,
     [
+     [
+      2,
+      5
+     ],
+     [
+      1,
+      5
+     ]
+    ],
+    1
+   ],
+   [
+    1748,
+    [
+     [
+      2,
+      5
+     ]
+    ],
+    1
+   ],
+   [
+    1790,
+    [
+     [
+      2,
+      5
+     ],
      [
       3,
       5
      ]
     ],
-    null
+    1
+   ],
+   [
+    1808,
+    [
+     [
+      2,
+      5
+     ]
+    ],
+    1
+   ],
+   [
+    1859,
+    [
+     [
+      3,
+      6
+     ]
+    ],
+    1
    ],
    [
     1861,
@@ -125,12 +3923,30 @@
      [
       0,
       0
+     ],
+     [
+      1,
+      5
      ]
     ],
     0
    ],
    [
-    1876,
+    1916,
+    [
+     [
+      2,
+      6
+     ],
+     [
+      0,
+      0
+     ]
+    ],
+    0
+   ],
+   [
+    1936,
     [
      [
       2,
@@ -141,14 +3957,14 @@
       0
      ],
      [
-      1,
-      0
+      3,
+      5
      ]
     ],
     0
    ],
    [
-    1888,
+    1966,
     [
      [
       2,
@@ -196,28 +4012,14 @@
     0
    ],
    [
-    2149,
-    [
-     [
-      3,
-      5
-     ]
-    ],
-    null
-   ],
-   [
     2171,
     [
      [
       3,
       5
-     ],
-     [
-      2,
-      5
      ]
     ],
-    null
+    0
    ],
    [
     2199,
@@ -227,7 +4029,7 @@
       6
      ]
     ],
-    1
+    0
    ],
    [
     2204,
@@ -244,11 +4046,121 @@
     1
    ],
    [
+    2236,
+    [
+     [
+      2,
+      6
+     ],
+     [
+      7,
+      0
+     ]
+    ],
+    1
+   ],
+   [
+    2241,
+    [
+     [
+      2,
+      6
+     ],
+     [
+      1,
+      0
+     ]
+    ],
+    1
+   ],
+   [
+    2246,
+    [
+     [
+      2,
+      6
+     ]
+    ],
+    0
+   ],
+   [
+    2251,
+    [
+     [
+      2,
+      6
+     ],
+     [
+      1,
+      0
+     ]
+    ],
+    1
+   ],
+   [
+    2279,
+    [
+     [
+      2,
+      6
+     ],
+     [
+      7,
+      0
+     ],
+     [
+      1,
+      3
+     ]
+    ],
+    1
+   ],
+   [
+    2301,
+    [
+     [
+      2,
+      6
+     ],
+     [
+      7,
+      0
+     ],
+     [
+      1,
+      4
+     ]
+    ],
+    0
+   ],
+   [
     2350,
     [
      [
       2,
-      4
+      6
+     ],
+     [
+      1,
+      7
+     ]
+    ],
+    0
+   ],
+   [
+    2369,
+    [
+     [
+      2,
+      6
+     ],
+     [
+      1,
+      1
+     ],
+     [
+      1,
+      5
      ]
     ],
     0
@@ -261,14 +4173,18 @@
       1
      ]
     ],
-    null
+    0
    ],
    [
     2408,
     [
      [
       2,
-      1
+      6
+     ],
+     [
+      7,
+      7
      ]
     ],
     0
@@ -288,7 +4204,25 @@
     [
      [
       2,
-      1
+      6
+     ],
+     [
+      1,
+      7
+     ],
+     [
+      1,
+      5
+     ]
+    ],
+    0
+   ],
+   [
+    2469,
+    [
+     [
+      2,
+      6
      ]
     ],
     0
@@ -299,6 +4233,10 @@
      [
       2,
       6
+     ],
+     [
+      2,
+      1
      ]
     ],
     1
@@ -308,25 +4246,15 @@
     [
      [
       2,
-      1
-     ],
-     [
-      2,
-      6
-     ]
-    ],
-    1
-   ],
-   [
-    2532,
-    [
-     [
-      2,
       6
      ],
      [
       2,
       1
+     ],
+     [
+      1,
+      5
      ]
     ],
     1
@@ -336,27 +4264,59 @@
     [
      [
       2,
-      1
+      6
      ],
      [
       2,
-      6
+      1
      ]
     ],
     1
    ],
    [
-    2561,
+    2600,
+    [
+     [
+      2,
+      6
+     ],
+     [
+      2,
+      1
+     ],
+     [
+      1,
+      3
+     ]
+    ],
+    1
+   ],
+   [
+    2605,
+    [
+     [
+      2,
+      6
+     ],
+     [
+      2,
+      1
+     ]
+    ],
+    1
+   ],
+   [
+    2628,
     [
      [
       2,
       6
      ]
     ],
-    1
+    0
    ],
    [
-    2571,
+    2651,
     [
      [
       2,
@@ -384,14 +4344,18 @@
     0
    ],
    [
-    2702,
+    2737,
     [
+     [
+      2,
+      1
+     ],
      [
       2,
       6
      ]
     ],
-    0
+    1
    ],
    [
     2763,
@@ -413,12 +4377,20 @@
      [
       2,
       6
+     ],
+     [
+      2,
+      2
+     ],
+     [
+      1,
+      3
      ]
     ],
     0
    ],
    [
-    2801,
+    2796,
     [
      [
       2,
@@ -432,7 +4404,7 @@
     0
    ],
    [
-    2821,
+    2957,
     [
      [
       2,
@@ -442,7 +4414,7 @@
     0
    ],
    [
-    2826,
+    2968,
     [
      [
       2,
@@ -451,92 +4423,6 @@
      [
       2,
       2
-     ]
-    ],
-    0
-   ],
-   [
-    2856,
-    [
-     [
-      2,
-      6
-     ]
-    ],
-    0
-   ],
-   [
-    2861,
-    [
-     [
-      2,
-      6
-     ],
-     [
-      2,
-      2
-     ]
-    ],
-    0
-   ],
-   [
-    2876,
-    [
-     [
-      2,
-      6
-     ]
-    ],
-    0
-   ],
-   [
-    2921,
-    [
-     [
-      2,
-      6
-     ],
-     [
-      2,
-      2
-     ]
-    ],
-    0
-   ],
-   [
-    3028,
-    [
-     [
-      2,
-      6
-     ]
-    ],
-    0
-   ],
-   [
-    3055,
-    [
-     [
-      2,
-      6
-     ],
-     [
-      2,
-      2
-     ]
-    ],
-    0
-   ],
-   [
-    3121,
-    [
-     [
-      2,
-      6
-     ],
-     [
-      2,
-      6
      ]
     ],
     0
@@ -556,17 +4442,25 @@
     1
    ],
    [
-    3146,
+    3164,
     [
      [
       2,
       6
+     ],
+     [
+      3,
+      2
+     ],
+     [
+      1,
+      5
      ]
     ],
     1
    ],
    [
-    3164,
+    3188,
     [
      [
       2,
@@ -580,17 +4474,25 @@
     1
    ],
    [
-    3224,
+    3256,
     [
      [
       2,
       6
+     ],
+     [
+      3,
+      2
+     ],
+     [
+      4,
+      9
      ]
     ],
-    1
+    0
    ],
    [
-    3234,
+    3272,
     [
      [
       2,
@@ -618,107 +4520,89 @@
     0
    ],
    [
-    3461,
-    [
-     [
-      2,
-      6
-     ]
-    ],
-    null
-   ],
-   [
-    3466,
+    3348,
     [
      [
       2,
       6
      ],
      [
-      5,
+      4,
+      2
+     ],
+     [
+      1,
+      5
+     ]
+    ],
+    0
+   ],
+   [
+    3387,
+    [
+     [
+      2,
+      6
+     ],
+     [
+      4,
       2
      ]
     ],
     0
    ],
    [
-    3541,
+    3436,
     [
      [
       2,
       6
+     ],
+     [
+      4,
+      2
+     ],
+     [
+      4,
+      9
+     ]
+    ],
+    1
+   ],
+   [
+    3461,
+    [
+     [
+      2,
+      6
+     ],
+     [
+      5,
+      2
+     ]
+    ],
+    1
+   ],
+   [
+    3531,
+    [
+     [
+      2,
+      6
+     ],
+     [
+      5,
+      2
+     ],
+     [
+      1,
+      3
      ]
     ],
     1
    ],
    [
     3557,
-    [
-     [
-      2,
-      6
-     ],
-     [
-      5,
-      2
-     ]
-    ],
-    1
-   ],
-   [
-    3580,
-    [
-     [
-      2,
-      6
-     ]
-    ],
-    1
-   ],
-   [
-    3585,
-    [
-     [
-      2,
-      6
-     ],
-     [
-      5,
-      2
-     ]
-    ],
-    1
-   ],
-   [
-    3685,
-    [
-     [
-      2,
-      6
-     ],
-     [
-      5,
-      5
-     ]
-    ],
-    1
-   ],
-   [
-    3690,
-    [
-     [
-      2,
-      6
-     ],
-     [
-      5,
-      6
-     ]
-    ],
-    1
-   ],
-   [
-    3707,
     [
      [
       2,
@@ -746,48 +4630,6 @@
     0
    ],
    [
-    3778,
-    [
-     [
-      2,
-      6
-     ],
-     [
-      5,
-      6
-     ]
-    ],
-    0
-   ],
-   [
-    3782,
-    [
-     [
-      2,
-      6
-     ],
-     [
-      5,
-      3
-     ]
-    ],
-    null
-   ],
-   [
-    3798,
-    [
-     [
-      2,
-      6
-     ],
-     [
-      5,
-      6
-     ]
-    ],
-    0
-   ],
-   [
     3910,
     [
      [
@@ -797,54 +4639,16 @@
      [
       5,
       3
-     ]
-    ],
-    0
-   ],
-   [
-    3915,
-    [
-     [
-      2,
-      6
      ],
      [
-      5,
-      6
+      1,
+      5
      ]
     ],
     0
    ],
    [
-    3942,
-    [
-     [
-      2,
-      6
-     ],
-     [
-      5,
-      3
-     ]
-    ],
-    0
-   ],
-   [
-    3994,
-    [
-     [
-      2,
-      6
-     ],
-     [
-      5,
-      6
-     ]
-    ],
-    0
-   ],
-   [
-    4019,
+    3971,
     [
      [
       2,
@@ -872,7 +4676,7 @@
     1
    ],
    [
-    4057,
+    4083,
     [
      [
       2,
@@ -880,13 +4684,39 @@
      ],
      [
       6,
-      6
+      3
+     ],
+     [
+      0,
+      0
+     ],
+     [
+      1,
+      5
      ]
     ],
     1
    ],
    [
-    4066,
+    4114,
+    [
+     [
+      2,
+      6
+     ],
+     [
+      6,
+      3
+     ],
+     [
+      0,
+      0
+     ]
+    ],
+    1
+   ],
+   [
+    4141,
     [
      [
       2,
@@ -900,7 +4730,61 @@
     1
    ],
    [
-    4083,
+    4153,
+    [
+     [
+      2,
+      6
+     ],
+     [
+      6,
+      3
+     ],
+     [
+      0,
+      0
+     ],
+     [
+      3,
+      5
+     ]
+    ],
+    1
+   ],
+   [
+    4174,
+    [
+     [
+      2,
+      6
+     ],
+     [
+      6,
+      3
+     ],
+     [
+      0,
+      0
+     ],
+     [
+      1,
+      5
+     ]
+    ],
+    1
+   ],
+   [
+    4202,
+    [
+     [
+      2,
+      6
+     ]
+    ],
+    0
+   ],
+   [
+    4207,
     [
      [
       2,
@@ -922,12 +4806,18 @@
     [
      [
       3,
-      5
-     ],
-     [
-      2,
       6
      ],
+     [
+      3,
+      2
+     ]
+    ],
+    0
+   ],
+   [
+    4227,
+    [
      [
       3,
       2
@@ -940,10 +4830,6 @@
     [
      [
       3,
-      5
-     ],
-     [
-      2,
       6
      ],
      [
@@ -951,7 +4837,7 @@
       3
      ]
     ],
-    0
+    1
    ],
    [
     4257,
@@ -962,17 +4848,31 @@
      ],
      [
       6,
+      3
+     ]
+    ],
+    1
+   ],
+   [
+    4298,
+    [
+     [
+      2,
       6
      ],
      [
-      1,
+      6,
       3
+     ],
+     [
+      7,
+      0
      ]
     ],
     0
    ],
    [
-    4326,
+    4314,
     [
      [
       2,
@@ -984,10 +4884,24 @@
      ],
      [
       1,
-      0
+      7
      ]
     ],
-    0
+    1
+   ],
+   [
+    4319,
+    [
+     [
+      2,
+      6
+     ],
+     [
+      6,
+      3
+     ]
+    ],
+    1
    ],
    [
     4330,
@@ -998,14 +4912,50 @@
      ],
      [
       6,
-      6
+      3
+     ],
+     [
+      7,
+      0
      ],
      [
       1,
+      5
+     ]
+    ],
+    0
+   ],
+   [
+    4344,
+    [
+     [
+      2,
+      6
+     ],
+     [
+      6,
       3
      ]
     ],
-    null
+    1
+   ],
+   [
+    4354,
+    [
+     [
+      2,
+      6
+     ],
+     [
+      6,
+      3
+     ],
+     [
+      1,
+      7
+     ]
+    ],
+    1
    ],
    [
     4384,
@@ -1016,7 +4966,7 @@
      ],
      [
       6,
-      6
+      3
      ]
     ],
     1
@@ -1030,11 +4980,55 @@
      ],
      [
       6,
-      6
+      3
      ],
      [
       2,
+      7
+     ],
+     [
+      1,
+      0
+     ]
+    ],
+    1
+   ],
+   [
+    4439,
+    [
+     [
+      2,
+      6
+     ],
+     [
+      6,
       3
+     ],
+     [
+      2,
+      0
+     ]
+    ],
+    1
+   ],
+   [
+    4469,
+    [
+     [
+      2,
+      6
+     ],
+     [
+      6,
+      3
+     ],
+     [
+      2,
+      7
+     ],
+     [
+      1,
+      0
      ]
     ],
     1
@@ -1047,8 +5041,16 @@
       6
      ],
      [
+      6,
+      3
+     ],
+     [
       2,
-      6
+      1
+     ],
+     [
+      1,
+      0
      ]
     ],
     1
@@ -1063,78 +5065,10 @@
      [
       6,
       3
-     ]
-    ],
-    0
-   ],
-   [
-    4545,
-    [
-     [
-      2,
-      6
-     ],
-     [
-      6,
-      3
      ],
      [
       2,
       1
-     ]
-    ],
-    0
-   ],
-   [
-    4550,
-    [
-     [
-      2,
-      6
-     ],
-     [
-      6,
-      6
-     ],
-     [
-      2,
-      3
-     ]
-    ],
-    0
-   ],
-   [
-    4569,
-    [
-     [
-      2,
-      6
-     ],
-     [
-      6,
-      3
-     ],
-     [
-      2,
-      1
-     ]
-    ],
-    0
-   ],
-   [
-    4574,
-    [
-     [
-      2,
-      6
-     ],
-     [
-      6,
-      6
-     ],
-     [
-      2,
-      3
      ]
     ],
     0
@@ -1153,6 +5087,10 @@
      [
       2,
       1
+     ],
+     [
+      1,
+      5
      ]
     ],
     0
@@ -1166,43 +5104,15 @@
      ],
      [
       6,
-      6
-     ],
-     [
-      2,
-      3
-     ]
-    ],
-    0
-   ],
-   [
-    4621,
-    [
-     [
-      2,
-      6
-     ],
-     [
-      6,
       3
      ],
      [
       2,
-      1
-     ]
-    ],
-    1
-   ],
-   [
-    4626,
-    [
-     [
-      2,
-      6
+      7
      ],
      [
-      2,
-      6
+      1,
+      5
      ]
     ],
     0
@@ -1216,24 +5126,6 @@
      ],
      [
       6,
-      6
-     ],
-     [
-      2,
-      3
-     ]
-    ],
-    0
-   ],
-   [
-    4689,
-    [
-     [
-      2,
-      6
-     ],
-     [
-      6,
       3
      ],
      [
@@ -1242,24 +5134,6 @@
      ]
     ],
     0
-   ],
-   [
-    4694,
-    [
-     [
-      2,
-      6
-     ],
-     [
-      6,
-      6
-     ],
-     [
-      2,
-      3
-     ]
-    ],
-    null
    ],
    [
     4702,
@@ -1273,14 +5147,14 @@
       3
      ],
      [
-      2,
+      1,
       1
      ]
     ],
-    0
+    1
    ],
    [
-    4734,
+    4723,
     [
      [
       2,
@@ -1288,11 +5162,11 @@
      ],
      [
       6,
-      6
+      3
      ],
      [
       2,
-      3
+      1
      ]
     ],
     0
@@ -1309,14 +5183,14 @@
       3
      ],
      [
-      2,
+      1,
       1
      ]
     ],
-    null
+    1
    ],
    [
-    4744,
+    4770,
     [
      [
       2,
@@ -1324,11 +5198,29 @@
      ],
      [
       6,
-      6
+      3
      ],
      [
       2,
+      1
+     ]
+    ],
+    0
+   ],
+   [
+    4782,
+    [
+     [
+      2,
+      6
+     ],
+     [
+      6,
       3
+     ],
+     [
+      2,
+      7
      ]
     ],
     0
@@ -1352,7 +5244,7 @@
     1
    ],
    [
-    4854,
+    4859,
     [
      [
       2,
@@ -1360,11 +5252,69 @@
      ],
      [
       6,
-      6
+      3
      ],
      [
       3,
+      7
+     ]
+    ],
+    1
+   ],
+   [
+    4900,
+    [
+     [
+      2,
+      6
+     ],
+     [
+      6,
       3
+     ],
+     [
+      3,
+      1
+     ]
+    ],
+    1
+   ],
+   [
+    4905,
+    [
+     [
+      2,
+      6
+     ],
+     [
+      6,
+      3
+     ],
+     [
+      3,
+      1
+     ],
+     [
+      3,
+      5
+     ]
+    ],
+    1
+   ],
+   [
+    4910,
+    [
+     [
+      2,
+      6
+     ],
+     [
+      6,
+      3
+     ],
+     [
+      3,
+      1
      ]
     ],
     1
@@ -1393,10 +5343,6 @@
      [
       6,
       3
-     ],
-     [
-      3,
-      1
      ]
     ],
     1
@@ -1410,203 +5356,31 @@
      ],
      [
       6,
-      6
-     ],
-     [
-      3,
-      3
-     ]
-    ],
-    1
-   ],
-   [
-    5049,
-    [
-     [
-      2,
-      6
-     ],
-     [
-      6,
       3
      ],
      [
-      3,
-      1
-     ]
-    ],
-    1
-   ],
-   [
-    5054,
-    [
-     [
-      2,
-      6
-     ],
-     [
-      6,
-      6
-     ],
-     [
-      3,
-      3
-     ]
-    ],
-    0
-   ],
-   [
-    5078,
-    [
-     [
-      2,
-      6
-     ],
-     [
-      6,
-      3
-     ],
-     [
-      3,
-      1
-     ]
-    ],
-    1
-   ],
-   [
-    5083,
-    [
-     [
-      2,
-      6
-     ],
-     [
-      6,
-      6
-     ],
-     [
-      3,
-      3
-     ]
-    ],
-    1
-   ],
-   [
-    5109,
-    [
-     [
-      2,
-      6
-     ],
-     [
-      6,
-      3
-     ]
-    ],
-    1
-   ],
-   [
-    5114,
-    [
-     [
-      2,
-      6
-     ],
-     [
-      6,
-      6
-     ],
-     [
-      3,
-      3
-     ]
-    ],
-    1
-   ],
-   [
-    5122,
-    [
-     [
-      2,
-      6
-     ],
-     [
-      6,
-      3
-     ]
-    ],
-    1
-   ],
-   [
-    5137,
-    [
-     [
-      2,
-      6
-     ],
-     [
-      6,
-      6
-     ],
-     [
-      3,
-      3
-     ]
-    ],
-    1
-   ],
-   [
-    5142,
-    [
-     [
-      2,
-      6
-     ],
-     [
-      6,
-      3
-     ]
-    ],
-    1
-   ],
-   [
-    5156,
-    [
-     [
-      2,
-      6
-     ],
-     [
-      6,
-      6
-     ],
-     [
-      3,
-      3
-     ]
-    ],
-    1
-   ],
-   [
-    5166,
-    [
-     [
-      2,
-      6
-     ],
-     [
-      6,
-      3
-     ],
-     [
-      3,
+      1,
       7
      ]
     ],
-    null
+    1
    ],
    [
-    5188,
+    4998,
+    [
+     [
+      2,
+      6
+     ],
+     [
+      6,
+      3
+     ]
+    ],
+    1
+   ],
+   [
+    5038,
     [
      [
       2,
@@ -1622,566 +5396,71 @@
      ]
     ],
     1
-   ],
-   [
-    5212,
-    [
-     [
-      2,
-      6
-     ],
-     [
-      6,
-      3
-     ],
-     [
-      3,
-      2
-     ]
-    ],
-    null
-   ],
-   [
-    5217,
-    [
-     [
-      2,
-      6
-     ],
-     [
-      3,
-      6
-     ]
-    ],
-    0
-   ],
-   [
-    5242,
-    [
-     [
-      2,
-      6
-     ],
-     [
-      6,
-      3
-     ],
-     [
-      3,
-      2
-     ]
-    ],
-    0
-   ],
-   [
-    5247,
-    [
-     [
-      2,
-      6
-     ],
-     [
-      6,
-      6
-     ],
-     [
-      3,
-      3
-     ]
-    ],
-    0
-   ],
-   [
-    5361,
-    [
-     [
-      2,
-      6
-     ],
-     [
-      6,
-      3
-     ],
-     [
-      3,
-      2
-     ]
-    ],
-    0
-   ],
-   [
-    5380,
-    [
-     [
-      2,
-      6
-     ],
-     [
-      6,
-      6
-     ],
-     [
-      3,
-      3
-     ]
-    ],
-    0
-   ],
-   [
-    5391,
-    [
-     [
-      2,
-      6
-     ],
-     [
-      6,
-      3
-     ],
-     [
-      3,
-      2
-     ]
-    ],
-    0
-   ],
-   [
-    5417,
-    [
-     [
-      2,
-      6
-     ],
-     [
-      6,
-      5
-     ],
-     [
-      3,
-      3
-     ]
-    ],
-    0
-   ],
-   [
-    5429,
-    [
-     [
-      2,
-      6
-     ],
-     [
-      6,
-      6
-     ],
-     [
-      3,
-      3
-     ]
-    ],
-    0
-   ],
-   [
-    5434,
-    [
-     [
-      2,
-      6
-     ],
-     [
-      6,
-      5
-     ],
-     [
-      3,
-      3
-     ]
-    ],
-    0
    ]
   ],
   "sin_decidir": [
    {
     "t": 65,
     "s": 3.3,
-    "lectura_antes_s": null,
-    "lectura_despues_s": 362
+    "lectura_antes_s": 1,
+    "lectura_despues_s": 6
    },
    {
     "t": 73,
     "s": 4.1,
-    "lectura_antes_s": null,
-    "lectura_despues_s": 354
+    "lectura_antes_s": 2,
+    "lectura_despues_s": 11
    },
    {
-    "t": 86,
-    "s": 6.3,
-    "lectura_antes_s": null,
-    "lectura_despues_s": 341
+    "t": 87,
+    "s": 8.7,
+    "lectura_antes_s": 4,
+    "lectura_despues_s": 1
    },
    {
-    "t": 91,
-    "s": 2.0,
-    "lectura_antes_s": null,
-    "lectura_despues_s": 336
+    "t": 2412,
+    "s": 8.4,
+    "lectura_antes_s": 4,
+    "lectura_despues_s": 1
    },
    {
-    "t": 108,
-    "s": 3.5,
-    "lectura_antes_s": null,
-    "lectura_despues_s": 319
-   },
-   {
-    "t": 119,
-    "s": 7.0,
-    "lectura_antes_s": null,
-    "lectura_despues_s": 308
-   },
-   {
-    "t": 125,
-    "s": 1.1,
-    "lectura_antes_s": null,
-    "lectura_despues_s": 302
-   },
-   {
-    "t": 149,
-    "s": 4.8,
-    "lectura_antes_s": null,
-    "lectura_despues_s": 278
-   },
-   {
-    "t": 152,
-    "s": 1.0,
-    "lectura_antes_s": null,
-    "lectura_despues_s": 275
-   },
-   {
-    "t": 168,
-    "s": 5.1,
-    "lectura_antes_s": null,
-    "lectura_despues_s": 258
-   },
-   {
-    "t": 172,
-    "s": 1.0,
-    "lectura_antes_s": null,
-    "lectura_despues_s": 255
-   },
-   {
-    "t": 180,
-    "s": 13.9,
-    "lectura_antes_s": null,
-    "lectura_despues_s": 247
-   },
-   {
-    "t": 213,
-    "s": 3.4,
-    "lectura_antes_s": null,
-    "lectura_despues_s": 213
-   },
-   {
-    "t": 234,
-    "s": 2.5,
-    "lectura_antes_s": null,
-    "lectura_despues_s": 193
-   },
-   {
-    "t": 237,
-    "s": 1.4,
-    "lectura_antes_s": null,
-    "lectura_despues_s": 190
-   },
-   {
-    "t": 243,
-    "s": 1.6,
-    "lectura_antes_s": null,
-    "lectura_despues_s": 184
-   },
-   {
-    "t": 267,
-    "s": 5.2,
-    "lectura_antes_s": null,
-    "lectura_despues_s": 160
-   },
-   {
-    "t": 277,
-    "s": 11.5,
-    "lectura_antes_s": null,
-    "lectura_despues_s": 150
-   },
-   {
-    "t": 305,
-    "s": 3.3,
-    "lectura_antes_s": null,
-    "lectura_despues_s": 122
-   },
-   {
-    "t": 313,
-    "s": 9.1,
-    "lectura_antes_s": null,
-    "lectura_despues_s": 114
-   },
-   {
-    "t": 343,
-    "s": 9.7,
-    "lectura_antes_s": null,
-    "lectura_despues_s": 84
-   },
-   {
-    "t": 358,
-    "s": 8.5,
-    "lectura_antes_s": null,
-    "lectura_despues_s": 68
-   },
-   {
-    "t": 695,
-    "s": 12.6,
-    "lectura_antes_s": 161,
-    "lectura_despues_s": 632
-   },
-   {
-    "t": 725,
-    "s": 4.8,
-    "lectura_antes_s": 191,
-    "lectura_despues_s": 602
-   },
-   {
-    "t": 738,
-    "s": 7.3,
-    "lectura_antes_s": 204,
-    "lectura_despues_s": 589
-   },
-   {
-    "t": 764,
-    "s": 3.7,
-    "lectura_antes_s": 230,
-    "lectura_despues_s": 563
-   },
-   {
-    "t": 780,
-    "s": 12.2,
-    "lectura_antes_s": 246,
-    "lectura_despues_s": 547
-   },
-   {
-    "t": 810,
-    "s": 7.7,
-    "lectura_antes_s": 276,
-    "lectura_despues_s": 516
-   },
-   {
-    "t": 815,
-    "s": 1.2,
-    "lectura_antes_s": 281,
-    "lectura_despues_s": 512
-   },
-   {
-    "t": 842,
-    "s": 4.5,
-    "lectura_antes_s": 309,
-    "lectura_despues_s": 484
-   },
-   {
-    "t": 858,
-    "s": 12.3,
-    "lectura_antes_s": 324,
-    "lectura_despues_s": 468
-   },
-   {
-    "t": 891,
-    "s": 6.8,
-    "lectura_antes_s": 358,
-    "lectura_despues_s": 435
-   },
-   {
-    "t": 910,
-    "s": 8.5,
-    "lectura_antes_s": 376,
-    "lectura_despues_s": 417
-   },
-   {
-    "t": 929,
-    "s": 4.7,
-    "lectura_antes_s": 395,
-    "lectura_despues_s": 397
-   },
-   {
-    "t": 941,
-    "s": 9.4,
-    "lectura_antes_s": 408,
-    "lectura_despues_s": 385
-   },
-   {
-    "t": 968,
-    "s": 13.8,
-    "lectura_antes_s": 435,
-    "lectura_despues_s": 358
-   },
-   {
-    "t": 998,
-    "s": 5.7,
-    "lectura_antes_s": 465,
-    "lectura_despues_s": 328
-   },
-   {
-    "t": 1015,
-    "s": 10.1,
-    "lectura_antes_s": 481,
-    "lectura_despues_s": 312
-   },
-   {
-    "t": 1040,
-    "s": 7.0,
-    "lectura_antes_s": 507,
-    "lectura_despues_s": 286
-   },
-   {
-    "t": 1052,
-    "s": 4.3,
-    "lectura_antes_s": 518,
-    "lectura_despues_s": 275
-   },
-   {
-    "t": 1063,
-    "s": 1.5,
-    "lectura_antes_s": 529,
-    "lectura_despues_s": 264
-   },
-   {
-    "t": 1076,
-    "s": 12.6,
-    "lectura_antes_s": 543,
-    "lectura_despues_s": 250
-   },
-   {
-    "t": 1110,
-    "s": 5.3,
-    "lectura_antes_s": 576,
-    "lectura_despues_s": 217
-   },
-   {
-    "t": 1127,
-    "s": 4.0,
-    "lectura_antes_s": 593,
-    "lectura_despues_s": 200
-   },
-   {
-    "t": 1139,
-    "s": 8.3,
-    "lectura_antes_s": 605,
-    "lectura_despues_s": 188
-   },
-   {
-    "t": 1163,
-    "s": 5.4,
-    "lectura_antes_s": 629,
-    "lectura_despues_s": 164
-   },
-   {
-    "t": 1184,
-    "s": 7.3,
-    "lectura_antes_s": 650,
-    "lectura_despues_s": 143
-   },
-   {
-    "t": 1225,
-    "s": 4.5,
-    "lectura_antes_s": 691,
-    "lectura_despues_s": 101
-   },
-   {
-    "t": 1251,
-    "s": 5.3,
-    "lectura_antes_s": 717,
-    "lectura_despues_s": 76
-   },
-   {
-    "t": 1265,
-    "s": 4.3,
-    "lectura_antes_s": 731,
-    "lectura_despues_s": 62
-   },
-   {
-    "t": 1278,
-    "s": 10.8,
-    "lectura_antes_s": 745,
-    "lectura_despues_s": 48
-   },
-   {
-    "t": 1287,
-    "s": 1.1,
-    "lectura_antes_s": 754,
-    "lectura_despues_s": 39
-   },
-   {
-    "t": 1309,
-    "s": 6.5,
-    "lectura_antes_s": 775,
-    "lectura_despues_s": 18
-   },
-   {
-    "t": 1328,
-    "s": 3.1,
+    "t": 2433,
+    "s": 2.7,
     "lectura_antes_s": 1,
-    "lectura_despues_s": 28
+    "lectura_despues_s": 10
    },
    {
-    "t": 1341,
-    "s": 6.9,
-    "lectura_antes_s": 14,
-    "lectura_despues_s": 15
-   },
-   {
-    "t": 1836,
-    "s": 8.0,
-    "lectura_antes_s": 116,
-    "lectura_despues_s": 18
+    "t": 2445,
+    "s": 5.9,
+    "lectura_antes_s": 2,
+    "lectura_despues_s": 3
    },
    {
     "t": 2471,
     "s": 6.2,
     "lectura_antes_s": 3,
     "lectura_despues_s": 2
-   },
-   {
-    "t": 2488,
-    "s": 1.6,
-    "lectura_antes_s": 0,
-    "lectura_despues_s": 7
-   },
-   {
-    "t": 2498,
-    "s": 7.0,
-    "lectura_antes_s": 3,
-    "lectura_despues_s": 2
-   },
-   {
-    "t": 2519,
-    "s": 4.3,
-    "lectura_antes_s": 2,
-    "lectura_despues_s": 14
-   },
-   {
-    "t": 4492,
-    "s": 7.4,
-    "lectura_antes_s": 3,
-    "lectura_despues_s": 2
-   },
-   {
-    "t": 4522,
-    "s": 4.9,
-    "lectura_antes_s": 2,
-    "lectura_despues_s": 23
    }
   ],
   "lecturas": {
-   "total": 407,
-   "con_juegos": 407,
-   "primera_t": 427,
+   "total": 516,
+   "con_juegos": 516,
+   "primera_t": 64,
    "ultima_t": 6686
   },
-  "images": [
-   "identidad_elena-rybakina-jessica-pegula-miami-2026_0.jpg"
-  ]
+  "conflictos": {
+   "pick": {
+    "pick": "aplicado",
+    "by": "ends",
+    "her_parity": 1,
+    "changed": 0,
+    "by_click": 289
+   },
+   "her_parity": 1,
+   "con_cambios": 289,
+   "en_desacuerdo": 0,
+   "runs": []
+  },
+  "images": []
  }
 ]

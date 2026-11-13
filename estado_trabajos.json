@@ -1,32 +1,13 @@
 {
- "at": "2026-11-13 18:42:34",
- "firma": "0c6e24d46f65",
+ "at": "2026-11-13 18:42:43",
+ "firma": "dc01607c6fd1",
  "ejecutor": {
   "vivo": true,
   "pid": 11132,
   "at": 1794591754.0954514
  },
  "pausa": false,
- "en_curso": [
-  {
-   "id": 126,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script diag_identity --match osaka pegula zheng gauff sobolenko --conflictos --n 24",
-   "state": "en curso",
-   "message": "",
-   "created": "2026-11-13 18:42:24",
-   "started": "2026-11-13 18:42:28",
-   "finished": null,
-   "args": "[\"script\", \"diag_identity\", \"--match\", \"osaka\", \"pegula\", \"zheng\", \"gauff\", \"sobolenko\", \"--conflictos\", \"--n\", \"24\"]",
-   "source": "claude 286",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_126.log",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "en_curso": [],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "fine_doubtful",
@@ -39,6 +20,24 @@
  },
  "pendientes": [],
  "recientes": [
+  {
+   "id": 126,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script diag_identity --match osaka pegula zheng gauff sobolenko --conflictos --n 24",
+   "state": "hecho",
+   "message": "",
+   "created": "2026-11-13 18:42:24",
+   "started": "2026-11-13 18:42:28",
+   "finished": "2026-11-13 18:42:37",
+   "args": "[\"script\", \"diag_identity\", \"--match\", \"osaka\", \"pegula\", \"zheng\", \"gauff\", \"sobolenko\", \"--conflictos\", \"--n\", \"24\"]",
+   "source": "claude 286",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_126.log",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 125,
    "kind": "flujo",
@@ -290,27 +289,16 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_112.log",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 111,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script diag_identidad_f3set --match azarenka --a salidas_v15 --b salidas_v16",
-   "state": "hecho",
-   "message": "",
-   "created": "2026-11-13 04:31:04",
-   "started": "2026-11-13 04:31:08",
-   "finished": "2026-11-13 04:31:10",
-   "args": "[\"script\", \"diag_identidad_f3set\", \"--match\", \"azarenka\", \"--a\", \"salidas_v15\", \"--b\", \"salidas_v16\"]",
-   "source": "claude 270",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_111.log",
-   "paso": 0,
-   "pasos": 0
   }
  ],
  "eventos": [
+  {
+   "id": 693,
+   "job": 126,
+   "at": "2026-11-13 18:42:38",
+   "kind": "hecho",
+   "text": "código 0"
+  },
   {
    "id": 692,
    "job": 126,
@@ -513,13 +501,6 @@
    "at": "2026-11-13 13:23:43",
    "kind": "hecho",
    "text": "código 0"
-  },
-  {
-   "id": 663,
-   "job": 121,
-   "at": "2026-11-13 08:21:34",
-   "kind": "empieza",
-   "text": "script validate_recall --spotter --tag v17 --from v16"
   }
  ]
 }
