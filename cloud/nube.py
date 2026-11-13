@@ -2,7 +2,7 @@
 
 The cloud runs the PC's own code unchanged: the same stages and the same configuration, with the device still named
 «dml», so that every code path is the PC's (GPU sessions, the half-precision pose model, two fine-pass workers, fixed
-ball batches). Only where an ONNX session is placed changes: on CUDA instead of DirectML (cloud/site/sitecustomize.py).
+ball batches). Only where an ONNX session is placed changes: on CUDA instead of DirectML (cloud/arranque/sitecustomize.py).
 It answers two questions before the cloud analyses a match (N1): does it give the same strokes as the PC, and how much
 faster is it (k, per stage).
 
@@ -145,6 +145,15 @@ def to_markdown(c: dict, gpu: str = "", cost_usd: float | None = None) -> str:
 # the price of the container (Modal, seen 13-11-2026 on modal.com/pricing): GPU, physical cores and memory per second
 PRICE_S = {"L4": 0.000222, "T4": 0.000164, "A10": 0.000306, "L40S": 0.000542}
 CORE_S, GIB_S = 0.0000131, 0.00000222
+
+
+def gpu_key(nvidia_smi_name: str) -> str:
+    """«NVIDIA L4» / «Tesla T4» (nvidia-smi) → the price key; the text itself when unknown."""
+    name = (nvidia_smi_name or "").strip().splitlines()[0] if (nvidia_smi_name or "").strip() else ""
+    for k in sorted(PRICE_S, key=len, reverse=True):
+        if k.lower() in name.lower().split():
+            return k
+    return name or "desconocida"
 
 
 def cost(seconds: float, gpu: str, cores: float, gib: float) -> float:

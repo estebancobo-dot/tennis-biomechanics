@@ -22,7 +22,7 @@ import subir_nube  # noqa: E402
 
 def _providers_in_new_process(env_extra: dict) -> str:
     env = {k: v for k, v in os.environ.items() if k != "TENNISBIO_DML_IS_CUDA"}
-    env.update({"PYTHONPATH": os.pathsep.join([str(ROOT / "src"), str(ROOT / "cloud" / "site")]), **env_extra})
+    env.update({"PYTHONPATH": os.pathsep.join([str(ROOT / "src"), str(ROOT / "cloud" / "arranque")]), **env_extra})
     code = "from tennisbio.pose import estimator as e; print(e.ORT_PROVIDERS['dml'])"
     r = subprocess.run([sys.executable, "-c", code], env=env, capture_output=True, text=True, timeout=120)
     return r.stdout.strip().splitlines()[-1]
@@ -98,6 +98,11 @@ def test_stage_seconds_sum_the_matches_manifests(tmp_path):
         (tmp_path / m).mkdir()
         (tmp_path / m / "manifest.json").write_text(json.dumps({"fine": {"seconds": s}, "probe": {"seconds": 1}}))
     assert nube.stage_seconds(tmp_path) == {"fine": 15.5, "probe": 2.0}
+
+
+def test_the_gpu_modal_gave_is_named_for_its_price():
+    assert nube.gpu_key("NVIDIA L4\n") == "L4" and nube.gpu_key("Tesla T4") == "T4"
+    assert nube.gpu_key("NVIDIA L40S") == "L40S" and nube.gpu_key("") == "desconocida"
 
 
 def test_cost_uses_the_container_price():

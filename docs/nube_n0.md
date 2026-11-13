@@ -86,7 +86,7 @@ DirectML y CUDA no dan los mismos decimales. Si sale «distinto», se ve qué go
   - `modal_app.py`: la imagen con las dependencias bloqueadas del proyecto y `onnxruntime-gpu` 1.24.4, la misma versión que la DirectML del PC; las funciones `comprobar` y `f3set`; volumen `tennisbio-datos`.
   - `lanzar.py`.
   - `nube.py`: preparar, comparar y coste.
-  - `site/sitecustomize.py`: en la nube, el dispositivo que la configuración llama «dml» pone sus sesiones en CUDA.
+  - `arranque/sitecustomize.py`: en la nube, el dispositivo que la configuración llama «dml» pone sus sesiones en CUDA.
 - **Así todo el código es el del PC:**
   - la pose en media precisión;
   - dos procesos de pasada fina;

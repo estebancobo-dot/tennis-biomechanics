@@ -17,6 +17,7 @@ import modal
 REPO = Path(__file__).resolve().parents[1]
 APP, VOLUME = "tennisbio", "tennisbio-datos"
 GPU, CORES, GIB = "L4", 8.0, 32           # like the PC: 8 cores; memory above its 20 GB (the fine pass used 18)
+GPUS = ["L4", "T4"]                       # 13-11: «waiting to be scheduled on a GPU_L4 worker»: a T4 when no L4 is free
 ORT_GPU = "1.24.4"                        # = onnxruntime-directml in uv.lock (the PC's): same version, other device
 MODAL_CLIENT = "modal>=1.0,<2"
 DATA = Path("/data")
@@ -39,18 +40,23 @@ image = (
         "uv pip uninstall --system onnxruntime",
         f"uv pip install --system 'onnxruntime-gpu[cuda,cudnn]=={ORT_GPU}'",
     )
-    .env({"TENNISBIO_DML_IS_CUDA": "1", "PYTHONPATH": "/repo/src:/repo/cloud:/repo/cloud/site",
-          "PYTHONUNBUFFERED": "1", "PYTHONUTF8": "1", "HOME": str(DATA / "home")})
+    # 13-11: no HOME on the volume (it does not exist yet while Modal starts the container: «Failed (runtime
+    # initialization)» in a loop); _prepare sets it for the analysis's own processes
+    .env({"TENNISBIO_DML_IS_CUDA": "1", "PYTHONPATH": "/repo/src:/repo/cloud:/repo/cloud/arranque",
+          "PYTHONUNBUFFERED": "1", "PYTHONUTF8": "1"})
     .add_local_dir(REPO, "/repo", ignore=IGNORE)
 )
 
-SPEC = dict(image=image, gpu=GPU, cpu=CORES, memory=GIB * 1024, volumes={str(DATA): vol})
+SPEC = dict(image=image, gpu=GPUS, cpu=CORES, memory=GIB * 1024, volumes={str(DATA): vol})
 
 
 def _prepare() -> dict:
+    import os
+
     import nube
     nube.use_volume_models(Path("/repo"), DATA)
     (DATA / "home").mkdir(parents=True, exist_ok=True)
+    os.environ["HOME"] = str(DATA / "home")       # model downloads (rtmlib) kept on the volume, for the children too
     return nube.write_local_yaml(Path("/repo"), DATA)
 
 
@@ -124,7 +130,10 @@ def f3set(tag: str = "nube", max_points: int = 0, matches: str = "", pc_tag: str
 
     _prepare()
     run = DATA / "runs" / tag
-    est = {"tag": tag, "estado": "en curso", "inicio": time.strftime("%Y-%m-%d %H:%M:%S"), "gpu": GPU,
+    smi = subprocess.run(["nvidia-smi", "--query-gpu=name", "--format=csv,noheader"], capture_output=True, text=True,
+                         timeout=60)
+    gpu = nube.gpu_key(smi.stdout)               # the one Modal gave (L4, or T4 when no L4 was free)
+    est = {"tag": tag, "estado": "en curso", "inicio": time.strftime("%Y-%m-%d %H:%M:%S"), "gpu": gpu,
            "cores": CORES, "gib": GIB, "pc_tag": pc_tag, "max_points": max_points, "matches": matches}
     _save(run, est)
     vol.commit()
@@ -154,7 +163,7 @@ def f3set(tag: str = "nube", max_points: int = 0, matches: str = "", pc_tag: str
         rc = p.wait()
     secs = time.time() - t0
     est.update(estado="hecho" if rc == 0 else "error", codigo=rc, segundos=round(secs),
-               coste_usd=nube.cost(secs, GPU, CORES, GIB), fin=time.strftime("%Y-%m-%d %H:%M:%S"))
+               coste_usd=nube.cost(secs, gpu, CORES, GIB), fin=time.strftime("%Y-%m-%d %H:%M:%S"))
     reports = DATA / "datasets" / "reports"
     cloud_rep = reports / f"recall_validation_detector_{tag}.json"
     pc_rep = DATA / "pc" / "reports" / f"recall_validation_detector_{pc_tag}.json"
@@ -166,7 +175,7 @@ def f3set(tag: str = "nube", max_points: int = 0, matches: str = "", pc_tag: str
                          nube.stage_seconds(DATA / "pc" / f"salidas_{pc_tag}"),
                          nube.stage_seconds(DATA / "datasets" / "f3set" / "recall" / f"salidas_{tag}"))
         (run / "comparacion.json").write_text(json.dumps(c, ensure_ascii=False, indent=1), encoding="utf-8")
-        (run / "comparacion.md").write_text(nube.to_markdown(c, GPU, est["coste_usd"]), encoding="utf-8")
+        (run / "comparacion.md").write_text(nube.to_markdown(c, gpu, est["coste_usd"]), encoding="utf-8")
         est.update(veredicto=c["verdict"], k_fine=c["k_fine"])
     else:
         est["nota"] = f"sin comparación: falta {'el informe de la nube' if not cloud_rep.exists() else pc_rep.name}"
