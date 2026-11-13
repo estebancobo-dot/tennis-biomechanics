@@ -102,7 +102,7 @@ paquetes:
   P6:
     nombre: "Producto · móvil (al final)"
     cierre: "Copia al móvil comprobada"
-    peticiones: [2, 154, 268, 271]
+    peticiones: [2, 154, 268, 271, 272]
   D:
     nombre: "Documentación y reglas de trabajo"
     cierre: "Documentos al día con el código (prueba de enlaces y fechas)"

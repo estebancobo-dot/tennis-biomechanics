@@ -592,6 +592,72 @@ Vale para el código, las pruebas, los documentos y lo ligero.
 
 ---
 
+## 13. Cómo se trabajaría, de forma autónoma, con 0-10 € al mes (13-11, #272)
+
+Condiciones del usuario:
+- todo automático, salvo algún paso puntual obligatorio;
+- **no más de 10 € al mes**, y mejor 0.
+
+### 13.1 El día a día
+| Quién | Qué | Cómo |
+|---|---|---|
+| **Claude** | Escribe el código, lo prueba y lo sube a la rama | Como hoy |
+| GitHub Actions (automático) | Al subir código, lo publica en Modal (`modal deploy`, unos segundos) | Un flujo de Actions con las claves de Modal guardadas en los secretos de GitHub |
+| **Claude** | Lanza trabajos: validación F3Set, un partido, el informe | Dispara un flujo de GitHub Actions con las herramientas de GitHub que ya tiene. Sustituye a `config/peticion_pc.txt` |
+| Modal (automático) | Ejecuta el trabajo; reparte la pasada fina por ventanas en varias GPU a la vez; se apaga al acabar | Las mismas etapas, contratos y fallos #265 |
+| Modal (automático) | Deja el estado, la auditoría y los registros en una rama `nube-logs` (como `pc-logs` hoy) y en el almacén | Con un token de GitHub guardado en los secretos de Modal |
+| **Claude** | Lee el resultado, corrige y vuelve a lanzar | Como hoy con `pc-logs`, sin esperar al ciclo de 10 min ni a que la cola del PC quede libre |
+| **Usuario** | Por partido: sube el vídeo desde una web (PC o móvil), hace el clic de identidad y aprueba el análisis (#262) | Una página web privada |
+| Móvil (automático) | Avisos: «falta el clic», «terminó», «fallo C0» | ntfy o Telegram, gratis |
+
+No hace falta un conector nuevo: Claude usa GitHub, que ya está conectado. Para hablar directamente con Cloudflare (crear el almacén y las claves), existe el formulario seguro de credenciales de esta sesión: el usuario escribe ahí la clave y Claude nunca la ve.
+
+### 13.2 Lo manual obligatorio (una sola vez, ~20-30 min guiados)
+1. **Crear la cuenta de Modal** (con la de GitHub):
+   - Las fuentes no coinciden en si pide tarjeta: algunas dicen que solo para pasar del crédito; otra, que los 30 $ se desbloquean con tarjeta y un cargo de verificación de 0,50 $.
+   - **Poner el tope de la cuenta** («Workspace budget», en la página oficial de precios): 30 $ para gastar 0 €; ~41 $ para un máximo de ~10 € al mes.
+   - Crear una clave de acceso y pegarla en los secretos del repositorio en GitHub.
+2. **Crear la cuenta de Cloudflare:**
+   - Según la comunidad de Cloudflare, R2 y el plan gratuito de Zero Trust (Access) **piden una tarjeta aunque no se cobre**.
+   - Crear la clave del almacén y pegarla en los secretos.
+   - Alternativa sin tarjeta: guardar en Modal y entrar con un enlace secreto. Es más sencillo, pero menos seguro y con límites de subida por verificar.
+3. **Un token de GitHub** para que Modal suba los registros a `nube-logs`.
+4. **ntfy o Telegram en el móvil** (opcional), para los avisos.
+
+### 13.3 Coste con tope
+| Pieza | Coste al mes | Por qué |
+|---|---|---|
+| Cómputo (Modal) | **0 €** hasta 30 $ de uso (crédito mensual); con el tope en 30 $ nunca se pasa | Uso normal: 5-25 $ si k = 3-10 (§11.3) |
+| Almacén (R2) | **0 €** hasta 10 GB; después, céntimos | El vídeo se borra al terminar; los resultados ocupan ~0,3-2 GB por partido |
+| Acceso privado (Access) | 0 € | Gratis hasta 50 usuarios |
+| GitHub Actions | 0 € | Publicar y lanzar gasta pocos minutos. Gratis en repositorios públicos; en privados, ~2000 min/mes según terceros |
+| Avisos | 0 € | ntfy o Telegram |
+| **Total** | **0 € con el tope en 30 $; como mucho ~10 € con el tope en ~41 $** | |
+
+**Dónde puede no llegar el crédito: un mes de desarrollo intenso** (30 validaciones de F3Set: 22-85 h de GPU si k = 3-10). Para seguir en 0-10 €:
+- **Medir k primero (N0).** Cabe en el crédito, así que cuesta 0 €.
+- **Validaciones escalonadas:**
+  - una compilación de F3Set para comprobar rápido cada cambio;
+  - las 4 compilaciones solo antes de aceptar.
+
+  El criterio de aceptación no cambia.
+- **F3Set en Kaggle**, gratis (~15-30 h/semana de T4 o P100; cuota que flota). Se lanza por su API (`kaggle kernels push`) desde GitHub Actions. Solo datos públicos; falta confirmar que la licencia de F3Set permite subirlo allí.
+- **Si se llega al tope**, el trabajo se para (un C0 nuevo, «presupuesto del mes agotado») y sigue el mes siguiente. Nunca se cobra de más.
+
+### 13.4 Lo que no cambia
+- La aprobación del usuario antes de un análisis completo (#262), salvo que él decida otra cosa.
+- Las pruebas antes de cada subida.
+- El modelo de fallos, la auditoría y los criterios de aceptación.
+- La nube se adopta solo si da lo mismo que el PC en F3Set y en los partidos (N0-N1).
+
+Fuentes añadidas el 13-11-2026:
+- Modal: [precios oficiales: 30 $ al mes y «Workspace budget»](https://modal.com/pricing); tarjeta: [aicreditmart](https://aicreditmart.com/ai-credits-providers/modal-startup-credits-how-to-get-up-to-25k-2026-guide/), [resourify](https://resourify.com/resources/modal); topes: [costbench](https://costbench.com/software/ai-gpu-cloud/modal/).
+- Cloudflare: [R2 pide tarjeta (comunidad)](https://community.cloudflare.com/t/why-using-r2-free-tier-involves-giving-card-info/945179), [Zero Trust gratis con tarjeta (comunidad)](https://community.cloudflare.com/t/choose-the-zero-trust-free-plan-with-no-payment-method/471877).
+- Kaggle: [API de kernels (oficial)](https://raw.githubusercontent.com/Kaggle/kaggle-api/main/docs/kernels.md), [GitHub Actions + Kaggle (dev.to)](https://dev.to/yasumorishima/kaggle-code-competitions-without-a-local-gpu-github-actions-kaggle-api-cloud-workflow-m3).
+- GitHub Actions: [minutos gratis (cicdcalculator)](https://cicdcalculator.com/github-actions-free-tier).
+
+---
+
 ## Fuentes (vistas el 13-11-2026)
 - Precios de GPU sin servidor:
   - Modal: [morphllm](https://www.morphllm.com/modal-pricing), [beam.cloud](https://www.beam.cloud/blog/modal-pricing-explained); oficial: [modal.com/pricing](https://modal.com/pricing).
