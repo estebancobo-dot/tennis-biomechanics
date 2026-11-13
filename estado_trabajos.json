@@ -1,13 +1,32 @@
 {
- "at": "2026-11-13 06:19:24",
- "firma": "defac5683eab",
+ "at": "2026-11-13 06:19:30",
+ "firma": "bfe588a1f27f",
  "ejecutor": {
   "vivo": true,
   "pid": 18632,
-  "at": 1794547150.7267013
+  "at": 1794547170.7305846
  },
  "pausa": false,
- "en_curso": [],
+ "en_curso": [
+  {
+   "id": 119,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "run --match us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "state": "en curso",
+   "message": "",
+   "created": "2026-11-13 06:10:37",
+   "started": "2026-11-13 06:19:30",
+   "finished": null,
+   "args": "[\"run\", \"--match\", \"us-open-2026-r4-naomi-osaka-elena-rybakina\"]",
+   "source": "claude 280",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_119.log",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "progreso": {
   "partido": "us-open-2026-r4-naomi-osaka-elena-rybakina",
   "etapa": "fine",
@@ -108,24 +127,6 @@
    "log": "",
    "paso": 0,
    "pasos": 6
-  },
-  {
-   "id": 119,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "run --match us-open-2026-r4-naomi-osaka-elena-rybakina",
-   "state": "pendiente",
-   "message": "",
-   "created": "2026-11-13 06:10:37",
-   "started": null,
-   "finished": null,
-   "args": "[\"run\", \"--match\", \"us-open-2026-r4-naomi-osaka-elena-rybakina\"]",
-   "source": "claude 280",
-   "log": "",
-   "paso": 0,
-   "pasos": 0
   }
  ],
  "recientes": [
@@ -402,6 +403,13 @@
  ],
  "eventos": [
   {
+   "id": 653,
+   "job": 119,
+   "at": "2026-11-13 06:19:30",
+   "kind": "empieza",
+   "text": "run --match us-open-2026-r4-naomi-osaka-elena-rybakina"
+  },
+  {
    "id": 652,
    "job": null,
    "at": "2026-11-13 06:19:21",
@@ -603,13 +611,6 @@
    "at": "2026-11-13 05:15:28",
    "kind": "empieza",
    "text": "run --match us-open-2026-r4-naomi-osaka-elena-rybakina"
-  },
-  {
-   "id": 623,
-   "job": 114,
-   "at": "2026-11-13 05:15:23",
-   "kind": "enviado",
-   "text": "tennisbio run --match us-open-2026-r4-naomi-osaka-elena-rybakina (claude 274)"
   }
  ]
 }
