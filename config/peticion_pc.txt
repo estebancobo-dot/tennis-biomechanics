@@ -1366,3 +1366,11 @@ script: diag_otros_partidos
 argumentos: --match osaka pegula zheng gauff sobolenko --t 4628 11586 12203 12217
 # 290 (13-11, R30): otros partidos dentro de la retransmision (Zheng 77 min: Shelton - Alcaraz; final: un dobles al
 # final y un estudio con el partido en una ventana): tramos sin su marcador, golpes suyos y planos de identidad en ellos
+---
+id: 291
+accion: medir
+script: subir_nube
+argumentos: --pc-tag v18
+# 291 (13-11, N0): el usuario guardo la clave de Modal en el PC (Clave correcta). Sube UNA VEZ al volumen de Modal los
+# modelos, las compilaciones de F3Set y el informe y los tiempos de F3Set v18 (el mismo codigo que la nube); ningun
+# video de partido. Despues Claude lanza F3Set en la nube y lo compara golpe a golpe con la v18 del PC
