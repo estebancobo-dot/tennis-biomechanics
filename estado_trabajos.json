@@ -1,10 +1,10 @@
 {
- "at": "2026-11-13 06:10:11",
- "firma": "ad029bb33976",
+ "at": "2026-11-13 06:10:24",
+ "firma": "30e9e75647f1",
  "ejecutor": {
   "vivo": true,
   "pid": 17768,
-  "at": 1794546594.9902515
+  "at": 1794546619.003575
  },
  "pausa": true,
  "en_curso": [],
@@ -18,7 +18,8 @@
   "quedan_s": 2350,
   "hora": "2026-11-13 06:08:44"
  },
- "pendientes": [
+ "pendientes": [],
+ "recientes": [
   {
    "id": 118,
    "kind": "flujo",
@@ -26,8 +27,8 @@
    "player": null,
    "stroke": null,
    "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
-   "state": "pendiente",
-   "message": "",
+   "state": "cancelado",
+   "message": "cancelado (claude 279)",
    "created": "2026-11-13 05:17:01",
    "started": null,
    "finished": null,
@@ -44,8 +45,8 @@
    "player": null,
    "stroke": null,
    "reason": "run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final",
-   "state": "pendiente",
-   "message": "",
+   "state": "cancelado",
+   "message": "cancelado (claude 279)",
    "created": "2026-11-13 05:16:36",
    "started": null,
    "finished": null,
@@ -62,8 +63,8 @@
    "player": null,
    "stroke": null,
    "reason": "script validate_recall --spotter --tag v17 --from v16",
-   "state": "pendiente",
-   "message": "",
+   "state": "cancelado",
+   "message": "cancelado (claude 279)",
    "created": "2026-11-13 05:16:11",
    "started": null,
    "finished": null,
@@ -80,8 +81,8 @@
    "player": null,
    "stroke": null,
    "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
-   "state": "pendiente",
-   "message": "",
+   "state": "cancelado",
+   "message": "cancelado (claude 279)",
    "created": "2026-11-13 05:15:46",
    "started": null,
    "finished": null,
@@ -98,8 +99,8 @@
    "player": null,
    "stroke": null,
    "reason": "run --match us-open-2026-r4-naomi-osaka-elena-rybakina",
-   "state": "pendiente",
-   "message": "parado: sigue donde se quedó",
+   "state": "cancelado",
+   "message": "cancelado (claude 279)",
    "created": "2026-11-13 05:15:23",
    "started": "2026-11-13 05:15:28",
    "finished": null,
@@ -108,9 +109,7 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_114.log",
    "paso": 0,
    "pasos": 0
-  }
- ],
- "recientes": [
+  },
   {
    "id": 113,
    "kind": "comando",
@@ -290,99 +289,51 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_104.log",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 103,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final",
-   "state": "hecho",
-   "message": "",
-   "created": "2026-11-12 15:36:05",
-   "started": "2026-11-12 16:49:04",
-   "finished": "2026-11-12 19:31:48",
-   "args": "[\"run\", \"--match\", \"elena-rybakina-jessica-pegula-miami-2026-quarter-final\"]",
-   "source": "claude 262",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_103.log",
-   "paso": 0,
-   "pasos": 0
-  },
-  {
-   "id": 102,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "run --match us-open-2026-r4-naomi-osaka-elena-rybakina",
-   "state": "hecho",
-   "message": "",
-   "created": "2026-11-12 15:35:33",
-   "started": "2026-11-12 15:35:40",
-   "finished": "2026-11-12 16:49:02",
-   "args": "[\"run\", \"--match\", \"us-open-2026-r4-naomi-osaka-elena-rybakina\"]",
-   "source": "claude 261",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_102.log",
-   "paso": 0,
-   "pasos": 0
-  },
-  {
-   "id": 101,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script diag_detector --match f43dd2 --t 2096.0 2124.5 2777.7 1410.9",
-   "state": "hecho",
-   "message": "",
-   "created": "2026-11-12 15:19:43",
-   "started": "2026-11-12 15:19:49",
-   "finished": "2026-11-12 15:20:07",
-   "args": "[\"script\", \"diag_detector\", \"--match\", \"f43dd2\", \"--t\", \"2096.0\", \"2124.5\", \"2777.7\", \"1410.9\"]",
-   "source": "claude 260",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_101.log",
-   "paso": 0,
-   "pasos": 0
-  },
-  {
-   "id": 100,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script diag_detector --match f43dd2 --t 2096.0 2124.5 1984.0 3856.8 2777.7",
-   "state": "hecho",
-   "message": "",
-   "created": "2026-11-12 15:05:23",
-   "started": "2026-11-12 15:05:26",
-   "finished": "2026-11-12 15:05:47",
-   "args": "[\"script\", \"diag_detector\", \"--match\", \"f43dd2\", \"--t\", \"2096.0\", \"2124.5\", \"1984.0\", \"3856.8\", \"2777.7\"]",
-   "source": "claude 259",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_100.log",
-   "paso": 0,
-   "pasos": 0
-  },
-  {
-   "id": 99,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script diag_saques --match 49723c --max 14",
-   "state": "hecho",
-   "message": "",
-   "created": "2026-11-12 14:54:45",
-   "started": "2026-11-12 14:54:55",
-   "finished": "2026-11-12 14:55:03",
-   "args": "[\"script\", \"diag_saques\", \"--match\", \"49723c\", \"--max\", \"14\"]",
-   "source": "claude 258",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_99.log",
-   "paso": 0,
-   "pasos": 0
   }
  ],
  "eventos": [
+  {
+   "id": 636,
+   "job": null,
+   "at": "2026-11-13 06:10:24",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
+   "id": 635,
+   "job": 118,
+   "at": "2026-11-13 06:10:21",
+   "kind": "cancelar",
+   "text": "claude 279"
+  },
+  {
+   "id": 634,
+   "job": 117,
+   "at": "2026-11-13 06:10:21",
+   "kind": "cancelar",
+   "text": "claude 279"
+  },
+  {
+   "id": 633,
+   "job": 116,
+   "at": "2026-11-13 06:10:21",
+   "kind": "cancelar",
+   "text": "claude 279"
+  },
+  {
+   "id": 632,
+   "job": 115,
+   "at": "2026-11-13 06:10:21",
+   "kind": "cancelar",
+   "text": "claude 279"
+  },
+  {
+   "id": 631,
+   "job": 114,
+   "at": "2026-11-13 06:10:21",
+   "kind": "cancelar",
+   "text": "claude 279"
+  },
   {
    "id": 630,
    "job": 114,
@@ -550,48 +501,6 @@
    "at": "2026-11-13 04:48:21",
    "kind": "enviado",
    "text": "tennisbio script diag_entradas --tag v16 (claude 272)"
-  },
-  {
-   "id": 606,
-   "job": null,
-   "at": "2026-11-13 04:40:52",
-   "kind": "ejecutor",
-   "text": "arranca (pid 16736)"
-  },
-  {
-   "id": 605,
-   "job": null,
-   "at": "2026-11-13 04:40:51",
-   "kind": "ejecutor",
-   "text": "arranca el siguiente con el código nuevo (pid 4084)"
-  },
-  {
-   "id": 604,
-   "job": null,
-   "at": "2026-11-13 04:40:51",
-   "kind": "ejecutor",
-   "text": "termina"
-  },
-  {
-   "id": 603,
-   "job": null,
-   "at": "2026-11-13 04:40:51",
-   "kind": "ejecutor",
-   "text": "se reinicia con el código nuevo"
-  },
-  {
-   "id": 602,
-   "job": null,
-   "at": "2026-11-13 04:40:41",
-   "kind": "reiniciar",
-   "text": "ciclo"
-  },
-  {
-   "id": 601,
-   "job": 111,
-   "at": "2026-11-13 04:31:10",
-   "kind": "hecho",
-   "text": "código 0"
   }
  ]
 }
