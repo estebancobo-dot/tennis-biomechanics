@@ -191,7 +191,15 @@ abrirse comprueba que el ejecutor único vive y si no lo arranca; (2) pausar/rea
 `orchestrator.status` (en curso, paso N de M, eventos, pausa); (5) el icono junto al reloj, del mismo estado;
 (6) «Añadir partido» → registro único + trabajo en la cola; (7) pruebas y capturas en el PC.
 
-**Ahora mismo (13-11 07:30):** PC = R26 por la cola (119 Osaka en curso; 120-123 detrás; 286 y 124 cuando la cola quede
+**Decisión del usuario (13-11, #271/#272):** después de los 6 partidos (cierre de la Base) y antes de P0, toda la
+aplicación pasa a la nube: paquete **N** en `config/plan_peticiones.yaml` (`docs/analisis_nube.md` §8, §13), con un
+**tope de 0 € al mes** (crédito mensual de Modal con el tope de la cuenta; si se agota, se espera al mes siguiente). Hasta
+entonces, todo sigue en el PC.
+
+**Ahora mismo (13-11 12:40):** PC = F3Set v17 (121) en curso desde las 08:21 (iGPU al 50-67 %, sin errores ni alarmas
+nuevas; 135 GB libres); detrás, Pegula (122), la auditoría final (123) y, con la cola libre, 286 (R29) y 124.
+
+**Antes (13-11 07:30):** PC = R26 por la cola (119 Osaka en curso; 120-123 detrás; 286 y 124 cuando la cola quede
 libre). Nube = Claude: el análisis de la nube (#268) en paralelo; R29 cuando llegue 286; después la previsión (R21) y el
 plan de los 6 partidos, que espera la aprobación del usuario (#262).
 **Si se acaban los tokens:** todo está en la rama y en el PC (cachés, cola en `datos/tennisbio.db`); la sesión siguiente

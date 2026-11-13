@@ -35,6 +35,9 @@ Después: revés, saque, volea y otros jugadores.
 9. **Rendimiento:** viable en el Beelink (iGPU, sin CUDA); un partido en horas, no días.
 10. **Orden:** primero la base completa de la derecha (no otros golpes); exportación hecha;
     **móvil/nube al final**, cuando todo funcione en el PC. El PC no puede ser servidor.
+    **Cambio (13-11, #271/#272):** toda la aplicación pasa a la nube **después de los 6 partidos** (cierre de la
+    Base) y **antes de P0** (paquete N, `docs/analisis_nube.md`); el usuario solo sube los vídeos (se borran al
+    terminar), hace el clic y aprueba. **Tope de gasto: 0 € al mes.** Hasta entonces, todo sigue en el PC. El móvil, al final.
 
 **Referencia de completitud:** `docs/matriz_cobertura.md` (taxonomía de la derecha con fuentes:
 ITF/Elliott-Reid-Crespo, Landlinger, Knudson, Tennis Australia, estudios de pies, sistemas
@@ -90,7 +93,7 @@ ERROR) y lo sube a `pc-logs`. No pedir al usuario que lance 2c/2d tras cada camb
    claves medidas, pies, cambios respecto a lo habitual; cada dato enlaza a sus vídeos.
 5. Validación automática de cada medida con clips públicos anotados.
 6. Velocidad: pose en la iGPU (ONNX/DirectML), menos trabajo repetido.
-7. Ejecución de los 4 partidos en el PC (una vez). 8. Móvil/nube.
+7. Ejecución de los 4 partidos en el PC (una vez). 8. Móvil/nube (13-11: la nube justo después de los 6 partidos, con 0 €/mes).
 
 ## Rutas (Windows, fuera del repo)
 - Vídeos: `C:\tenis\videos\` (~5 GB por partido, retransmisión completa). **Nunca a git.**
