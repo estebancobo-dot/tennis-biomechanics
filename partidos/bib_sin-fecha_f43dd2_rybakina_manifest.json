@@ -169,65 +169,68 @@
   "rewrote": {}
  },
  "fine": {
-  "fingerprint": "b062dbf0b8054fba",
+  "fingerprint": "17e81332a491d0e7",
   "version": "16",
-  "seconds": 3047.7,
-  "finished": "2026-11-12 16:45:02",
+  "seconds": 9518.0,
+  "finished": "2026-11-13 03:54:14",
   "summary": {
-   "candidates": 184,
-   "confirmed": 174,
+   "candidates": 232,
+   "confirmed": 223,
    "errors": 0,
    "warnings": [],
-   "forehands": 88,
-   "windows": 109,
+   "forehands": 119,
+   "windows": 122,
    "gate": {
     "windows_gated": 0,
-    "windows_passed": 103,
+    "windows_passed": 117,
     "windows_ungated": 0,
     "reasons": {
-     "detector": 44,
-     "golpe_de_bola": 38,
-     "bola_no_vista": 21
+     "detector": 49,
+     "golpe_de_bola": 46,
+     "bola_no_vista": 22
     },
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "pose": 2713.7,
-    "pose_modelo_hybrid": 2013.9,
-    "raqueta": 1960.2,
-    "bola": 734.3,
-    "pose_modelo_yolo": 671.8,
-    "pose_medida_lejana": 356.7,
-    "cuerdas_y_3d": 177.4,
-    "recorte": 63.9,
-    "pista_ventana": 31.4,
-    "analisis_ventana": 30.3,
-    "jugadora_lejana": 25.3,
-    "cribado": 5.8
+    "raqueta": 5871.0,
+    "bola_en_paralelo_cpu": 3887.7,
+    "pose": 2153.9,
+    "pose_modelo_hybrid": 1394.7,
+    "pose_modelo_yolo": 733.7,
+    "bola": 550.1,
+    "pose_medida_lejana": 492.9,
+    "cuerdas_y_3d": 240.9,
+    "recorte": 115.5,
+    "jugadora_lejana": 53.7,
+    "pista_ventana": 34.1,
+    "analisis_ventana": 31.9,
+    "cribado": 6.2,
+    "espera_bola_en_paralelo": 0.0
    },
    "counts": {
-    "overlap_s": 0.0,
-    "frames": 24486,
-    "posed_frames": 24486,
-    "impacts": 282,
-    "kept_impacts": 175,
-    "racket_frames": 4757,
+    "overlap_s": 4.9,
+    "frames": 30709,
+    "posed_frames": 30709,
+    "impacts": 349,
+    "kept_impacts": 225,
+    "racket_frames": 5523,
     "whole_window_again": 0,
-    "frames_960_far": 1439,
-    "frames_modelo_yolo": 10730,
-    "far_measure_windows": 10,
-    "frames_modelo_hybrid": 13756
+    "frames_960_far": 3504,
+    "frames_modelo_yolo": 14034,
+    "far_measure_windows": 19,
+    "frames_modelo_hybrid": 16120,
+    "windows_ball_ahead": 44
    }
   },
-  "out_hash": "b6387f2396c251ecec20",
+  "out_hash": "d64750e9cdf365d4259e",
   "scheme": 2,
   "rewrote": {}
  },
  "fine_opponent": {
-  "fingerprint": "d759c32660daa00c",
+  "fingerprint": "c46a92172eb7bcf6",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-12 16:45:40",
+  "finished": "2026-11-13 03:55:17",
   "summary": {
    "enabled": false
   },
@@ -293,108 +296,112 @@
   "rewrote": {}
  },
  "views_link": {
-  "fingerprint": "b7df8d51f68129d2",
+  "fingerprint": "d6bcebbbc3b7acc8",
   "version": "1",
-  "seconds": 0.3,
-  "finished": "2026-11-12 16:45:02",
+  "seconds": 0.4,
+  "finished": "2026-11-13 03:54:15",
   "summary": {
-   "strokes": 174,
-   "with_replay": 32,
-   "with_other_camera": 160,
-   "with_slowmo": 6,
-   "replay_share": 0.184,
-   "other_share": 0.92
+   "strokes": 223,
+   "with_replay": 40,
+   "with_other_camera": 200,
+   "with_slowmo": 4,
+   "replay_share": 0.179,
+   "other_share": 0.897
   },
-  "out_hash": "af8b8c0f980f9fed5f4f",
+  "out_hash": "6516c3010e956bd9aebe",
   "scheme": 2,
   "rewrote": {
-   "fine": "8a8f3559e1c44ac6dd3f"
+   "fine": "5676bfd2df42bb5e607d"
   }
  },
  "fine_doubtful": {
-  "fingerprint": "b02f4cb43ee89803",
+  "fingerprint": "1d5074d48a5158ef",
   "version": "1",
-  "seconds": 201.1,
-  "finished": "2026-11-12 16:49:02",
+  "seconds": 476.4,
+  "finished": "2026-11-13 04:03:14",
   "summary": {
-   "candidates": 18,
-   "confirmed": 8,
+   "candidates": 21,
+   "confirmed": 7,
    "errors": 0,
    "warnings": [],
    "forehands": 1,
-   "windows": 18,
+   "windows": 21,
    "gate": {
     "windows_gated": 0,
-    "windows_passed": 8,
+    "windows_passed": 7,
     "windows_ungated": 0,
     "reasons": {
-     "bola_no_vista": 8
+     "golpe_de_bola": 1,
+     "bola_no_vista": 6
     },
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "pose": 177.4,
-    "pose_modelo_hybrid": 173.5,
-    "raqueta": 140.2,
-    "bola": 34.1,
-    "cuerdas_y_3d": 14.0,
-    "recorte": 11.7,
-    "analisis_ventana": 4.8,
-    "cribado": 0.5,
+    "raqueta": 322.9,
+    "bola_en_paralelo_cpu": 180.5,
+    "pose": 102.4,
+    "pose_modelo_hybrid": 101.1,
+    "recorte": 17.9,
+    "bola": 13.2,
+    "cuerdas_y_3d": 10.9,
+    "analisis_ventana": 1.3,
+    "cribado": 0.3,
     "jugadora_lejana": 0.0,
-    "pista_ventana": 0.0
+    "pista_ventana": 0.0,
+    "espera_bola_en_paralelo": 0.0
    },
    "counts": {
     "overlap_s": 0.0,
-    "frames": 1090,
-    "posed_frames": 1090,
-    "impacts": 12,
-    "kept_impacts": 8,
-    "racket_frames": 331,
+    "frames": 1002,
+    "posed_frames": 1002,
+    "impacts": 10,
+    "kept_impacts": 7,
+    "racket_frames": 272,
     "whole_window_again": 0,
     "frames_960_far": 0,
-    "frames_modelo_hybrid": 1090
+    "frames_modelo_hybrid": 1002,
+    "windows_ball_ahead": 4
    }
   },
-  "out_hash": "f636519cec9495005404",
+  "out_hash": "dd6fc6596307434e8cea",
   "scheme": 2,
   "rewrote": {}
  },
  "view_clips": {
-  "fingerprint": "a7c8a5f8bfc5aac2",
+  "fingerprint": "84af021ef2a051fb",
   "version": "1",
-  "seconds": 30.2,
-  "finished": "2026-11-12 16:45:33",
+  "seconds": 58.0,
+  "finished": "2026-11-13 03:55:14",
   "summary": {
    "enabled": true,
-   "linked_strokes": 164,
-   "views": 445,
-   "clips": 291,
-   "cut": 26,
-   "reused": 261,
-   "failed": 4,
-   "seconds": 30.1,
-   "clip_seconds": 1701.3,
-   "strokes_with_clip": 164
+   "linked_strokes": 205,
+   "views": 512,
+   "clips": 310,
+   "cut": 68,
+   "reused": 235,
+   "failed": 7,
+   "seconds": 57.9,
+   "clip_seconds": 1786.6,
+   "strokes_with_clip": 204
   },
-  "out_hash": "3a260b605b6779968899",
+  "out_hash": "4a91ef54b71a0b8242f1",
   "scheme": 2,
   "rewrote": {}
  },
  "slowmo_fine": {
-  "fingerprint": "d425eb0936ca2109",
+  "fingerprint": "46edd885de9bf625",
   "version": "1",
-  "seconds": 6.7,
-  "finished": "2026-11-12 16:45:40",
+  "seconds": 2.5,
+  "finished": "2026-11-13 03:55:17",
   "summary": {
    "enabled": true,
    "slowmo_strokes": 2,
    "measured": 2,
    "failed": 0,
-   "frames": 67,
-   "seconds": 6.6
+   "frames": 62,
+   "seconds": 2.5
   },
-  "out_hash": "62a746705396ebe43771",
+  "out_hash": "be5a77a8cc3d251583e7",
   "scheme": 2,
   "rewrote": {}
  }

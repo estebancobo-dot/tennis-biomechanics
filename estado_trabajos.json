@@ -1,41 +1,41 @@
 {
- "at": "2026-11-13 03:40:11",
- "firma": "ea2ff163dd5a",
+ "at": "2026-11-13 04:10:08",
+ "firma": "cf593bf1a7bc",
  "ejecutor": {
   "vivo": true,
   "pid": 9640,
-  "at": 1794537608.2897694
+  "at": 1794539401.3647025
  },
  "pausa": false,
  "en_curso": [
   {
-   "id": 106,
+   "id": 107,
    "kind": "comando",
    "match": null,
    "player": null,
    "stroke": null,
-   "reason": "run --match us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "reason": "run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final",
    "state": "en curso",
    "message": "",
-   "created": "2026-11-13 00:40:11",
-   "started": "2026-11-13 00:40:15",
+   "created": "2026-11-13 00:40:36",
+   "started": "2026-11-13 04:03:17",
    "finished": null,
-   "args": "[\"run\", \"--match\", \"us-open-2026-r4-naomi-osaka-elena-rybakina\"]",
-   "source": "claude 265",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_106.log",
+   "args": "[\"run\", \"--match\", \"elena-rybakina-jessica-pegula-miami-2026-quarter-final\"]",
+   "source": "claude 266",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_107.log",
    "paso": 0,
    "pasos": 0
   }
  ],
  "progreso": {
-  "partido": "us-open-2026-r4-naomi-osaka-elena-rybakina",
-  "etapa": "fine",
-  "hecho": 218,
-  "total": 232,
-  "porcentaje": 94.0,
-  "segundos": 8574,
-  "quedan_s": 551,
-  "hora": "2026-11-13 03:39:40"
+  "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
+  "etapa": "court",
+  "hecho": 1355,
+  "total": 1355,
+  "porcentaje": 100.0,
+  "segundos": 195,
+  "quedan_s": 0,
+  "hora": "2026-11-13 04:06:50"
  },
  "pendientes": [
   {
@@ -55,27 +55,27 @@
    "log": "",
    "paso": 0,
    "pasos": 6
-  },
+  }
+ ],
+ "recientes": [
   {
-   "id": 107,
+   "id": 106,
    "kind": "comando",
    "match": null,
    "player": null,
    "stroke": null,
-   "reason": "run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final",
-   "state": "pendiente",
+   "reason": "run --match us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "state": "hecho",
    "message": "",
-   "created": "2026-11-13 00:40:36",
-   "started": null,
-   "finished": null,
-   "args": "[\"run\", \"--match\", \"elena-rybakina-jessica-pegula-miami-2026-quarter-final\"]",
-   "source": "claude 266",
-   "log": "",
+   "created": "2026-11-13 00:40:11",
+   "started": "2026-11-13 00:40:15",
+   "finished": "2026-11-13 04:03:14",
+   "args": "[\"run\", \"--match\", \"us-open-2026-r4-naomi-osaka-elena-rybakina\"]",
+   "source": "claude 265",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_106.log",
    "paso": 0,
    "pasos": 0
-  }
- ],
- "recientes": [
+  },
   {
    "id": 105,
    "kind": "flujo",
@@ -327,27 +327,23 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_92.log",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 91,
-   "kind": "flujo",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
-   "state": "hecho",
-   "message": "6 pasos",
-   "created": "2026-11-12 12:11:05",
-   "started": "2026-11-12 12:30:26",
-   "finished": "2026-11-12 12:35:12",
-   "args": "[\"informe\"]",
-   "source": "claude 248",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_91.log",
-   "paso": 6,
-   "pasos": 6
   }
  ],
  "eventos": [
+  {
+   "id": 577,
+   "job": 107,
+   "at": "2026-11-13 04:03:17",
+   "kind": "empieza",
+   "text": "run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final"
+  },
+  {
+   "id": 576,
+   "job": 106,
+   "at": "2026-11-13 04:03:17",
+   "kind": "hecho",
+   "text": "código 0"
+  },
   {
    "id": 575,
    "job": 108,
@@ -543,20 +539,6 @@
    "at": "2026-11-12 15:34:30",
    "kind": "ejecutor",
    "text": "arranca (pid 14256)"
-  },
-  {
-   "id": 547,
-   "job": null,
-   "at": "2026-11-12 15:34:29",
-   "kind": "ejecutor",
-   "text": "arranca el siguiente con el código nuevo (pid 14044)"
-  },
-  {
-   "id": 546,
-   "job": null,
-   "at": "2026-11-12 15:34:29",
-   "kind": "ejecutor",
-   "text": "termina"
   }
  ]
 }

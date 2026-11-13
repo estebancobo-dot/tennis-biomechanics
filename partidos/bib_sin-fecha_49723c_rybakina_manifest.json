@@ -34,11 +34,12 @@
   "rewrote": {}
  },
  "court": {
-  "fingerprint": "04684d9bf87f9479",
-  "version": "5",
-  "seconds": 249.8,
-  "finished": "2026-11-09 09:44:54",
+  "fingerprint": "00d64cb2454375f6",
+  "version": "6",
+  "seconds": 278.1,
+  "finished": "2026-11-13 04:07:55",
   "summary": {
+   "detector": "tcd14",
    "segments": 639,
    "with_court": 569,
    "known_court_reused": 1277,
