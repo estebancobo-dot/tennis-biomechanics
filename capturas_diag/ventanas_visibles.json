@@ -1,5 +1,5 @@
 {
- "fecha": "2026-11-13 19:30:10",
+ "fecha": "2026-11-13 19:40:12",
  "ventanas": [
   {
    "name": "ApplicationFrameHost",
@@ -9,15 +9,6 @@
    "parent": "svchost.exe",
    "parent_cmd": null,
    "start": "11/11/2026 09:26:40"
-  },
-  {
-   "name": "brave",
-   "title": "Borradores (317) - esteban.cobo@gmail.com - Gmail - Brave",
-   "pid": 14756,
-   "cmd": "\"C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe\" --source-shortcut-location=taskbar",
-   "parent": "explorer.exe",
-   "parent_cmd": "C:\\WINDOWS\\Explorer.EXE",
-   "start": "11/13/2026 19:17:50"
   },
   {
    "name": "claude",
@@ -54,15 +45,6 @@
    "parent": "svchost.exe",
    "parent_cmd": null,
    "start": "11/11/2026 09:38:37"
-  },
-  {
-   "name": "WindowsTerminal",
-   "title": "Windows PowerShell",
-   "pid": 11040,
-   "cmd": "\"C:\\Program Files\\WindowsApps\\Microsoft.WindowsTerminal_1.24.12741.0_x64__8wekyb3d8bbwe\\WindowsTerminal.exe\" -Embedding",
-   "parent": "svchost.exe",
-   "parent_cmd": null,
-   "start": "11/13/2026 19:18:42"
   }
  ]
 }
