@@ -1,12 +1,6 @@
 {
  "fine:unidad": [
   {
-   "s": 0.8319,
-   "units": 278,
-   "match": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
-   "date": "2026-11-08 22:32"
-  },
-  {
    "s": 1.1597,
    "units": 303,
    "match": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
@@ -181,15 +175,16 @@
    "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
    "date": "2026-11-13 08:11",
    "v": "16"
+  },
+  {
+   "s": 28.0559,
+   "units": 440,
+   "match": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
+   "date": "2026-11-13 18:05",
+   "v": "16"
   }
  ],
  "fine:minuto": [
-  {
-   "s": 1.78,
-   "video_min": 133.4,
-   "match": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
-   "date": "2026-11-08 22:32"
-  },
   {
    "s": 1.722,
    "video_min": 210.4,
@@ -364,6 +359,13 @@
    "video_min": 71.4,
    "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
    "date": "2026-11-13 08:11",
+   "v": "16"
+  },
+  {
+   "s": 110.306,
+   "video_min": 112.2,
+   "match": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
+   "date": "2026-11-13 18:05",
    "v": "16"
   }
  ],
@@ -1179,6 +1181,13 @@
    "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
    "date": "2026-11-13 08:16",
    "v": "1"
+  },
+  {
+   "s": 24.6904,
+   "units": 43,
+   "match": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
+   "date": "2026-11-13 18:25",
+   "v": "1"
   }
  ],
  "fine_doubtful:minuto": [
@@ -1261,6 +1270,13 @@
    "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
    "date": "2026-11-13 08:16",
    "v": "1"
+  },
+  {
+   "s": 9.501,
+   "video_min": 112.2,
+   "match": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
+   "date": "2026-11-13 18:25",
+   "v": "1"
   }
  ],
  "view_clips:unidad": [
@@ -1305,6 +1321,13 @@
    "units": 613,
    "match": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
    "date": "2026-11-11 17:00"
+  },
+  {
+   "s": 0.2187,
+   "units": 655,
+   "match": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
+   "date": "2026-11-13 18:07",
+   "v": "1"
   }
  ],
  "view_clips:minuto": [
@@ -1349,6 +1372,13 @@
    "video_min": 112.2,
    "match": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
    "date": "2026-11-11 17:00"
+  },
+  {
+   "s": 1.278,
+   "video_min": 112.2,
+   "match": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
+   "date": "2026-11-13 18:07",
+   "v": "1"
   }
  ],
  "court:unidad": [
