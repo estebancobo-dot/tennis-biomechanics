@@ -1,10 +1,10 @@
 {
- "at": "2026-11-13 20:22:43",
- "firma": "030fda1644bd",
+ "at": "2026-11-13 20:22:58",
+ "firma": "d736af35b6fa",
  "ejecutor": {
   "vivo": true,
   "pid": 10984,
-  "at": 1794597747.1532087
+  "at": 1794597765.1630156
  },
  "pausa": false,
  "en_curso": [],
@@ -18,7 +18,26 @@
   "quedan_s": 0,
   "hora": "2026-11-13 18:25:58"
  },
- "pendientes": [],
+ "pendientes": [
+  {
+   "id": 136,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script subir_nube --que partidos --sin-videos",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-13 20:22:55",
+   "started": null,
+   "finished": null,
+   "args": "[\"script\", \"subir_nube\", \"--que\", \"partidos\", \"--sin-videos\"]",
+   "source": "claude 294",
+   "log": "",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "recientes": [
   {
    "id": 135,
@@ -293,6 +312,13 @@
  ],
  "eventos": [
   {
+   "id": 753,
+   "job": 136,
+   "at": "2026-11-13 20:22:55",
+   "kind": "enviado",
+   "text": "tennisbio script subir_nube --que partidos --sin-videos (claude 294)"
+  },
+  {
    "id": 752,
    "job": 135,
    "at": "2026-11-13 20:22:35",
@@ -494,13 +520,6 @@
    "at": "2026-11-13 19:54:13",
    "kind": "paso",
    "text": "1/3 Auditoria anterior apartada"
-  },
-  {
-   "id": 723,
-   "job": 132,
-   "at": "2026-11-13 19:54:12",
-   "kind": "empieza",
-   "text": "flujo «informe_prueba»: Informe y auditoria de la prueba (_smoke) desde sus golpes guardados y la revision automatica"
   }
  ]
 }
