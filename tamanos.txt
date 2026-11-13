@@ -1,4 +1,4 @@
-fecha: 2026-11-13T04:10:18
+fecha: 2026-11-13T04:20:12
      265.6 MB  \output\analisis
        4.3 MB  \output\auditoria
        5.7 MB  \output\benchmark
@@ -12,7 +12,7 @@ fecha: 2026-11-13T04:10:18
      874.9 MB  \output\exportar_derecha
      636.3 MB  \output\exportar_reves
      636.3 MB  \output\exportar_saque
-     100.6 MB  \output\informe_derecha
+     101.6 MB  \output\informe_derecha
       66.1 MB  \output\informe_reves
       63.9 MB  \output\informe_saque
        0.1 MB  \output\investigacion
