@@ -1,13 +1,32 @@
 {
- "at": "2026-11-13 05:15:26",
- "firma": "c96871bddc8e",
+ "at": "2026-11-13 05:15:28",
+ "firma": "fb25e12b6ffe",
  "ejecutor": {
   "vivo": true,
   "pid": 17768,
-  "at": 1794543306.563523
+  "at": 1794543328.5840003
  },
  "pausa": false,
- "en_curso": [],
+ "en_curso": [
+  {
+   "id": 114,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "run --match us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "state": "en curso",
+   "message": "",
+   "created": "2026-11-13 05:15:23",
+   "started": "2026-11-13 05:15:28",
+   "finished": null,
+   "args": "[\"run\", \"--match\", \"us-open-2026-r4-naomi-osaka-elena-rybakina\"]",
+   "source": "claude 274",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_114.log",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "court",
@@ -18,26 +37,7 @@
   "quedan_s": 0,
   "hora": "2026-11-13 04:06:50"
  },
- "pendientes": [
-  {
-   "id": 114,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "run --match us-open-2026-r4-naomi-osaka-elena-rybakina",
-   "state": "pendiente",
-   "message": "",
-   "created": "2026-11-13 05:15:23",
-   "started": null,
-   "finished": null,
-   "args": "[\"run\", \"--match\", \"us-open-2026-r4-naomi-osaka-elena-rybakina\"]",
-   "source": "claude 274",
-   "log": "",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "pendientes": [],
  "recientes": [
   {
    "id": 113,
@@ -312,6 +312,13 @@
  ],
  "eventos": [
   {
+   "id": 624,
+   "job": 114,
+   "at": "2026-11-13 05:15:28",
+   "kind": "empieza",
+   "text": "run --match us-open-2026-r4-naomi-osaka-elena-rybakina"
+  },
+  {
    "id": 623,
    "job": 114,
    "at": "2026-11-13 05:15:23",
@@ -513,13 +520,6 @@
    "at": "2026-11-13 04:30:26",
    "kind": "hecho",
    "text": "código 0"
-  },
-  {
-   "id": 594,
-   "job": 109,
-   "at": "2026-11-13 04:30:14",
-   "kind": "empieza",
-   "text": "script validate_recall --spotter --tag v15 --skip-run --report-suffix _e"
   }
  ]
 }
