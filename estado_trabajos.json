@@ -1,32 +1,13 @@
 {
- "at": "2026-11-13 04:30:19",
- "firma": "ae9f2c0f41e3",
+ "at": "2026-11-13 04:30:26",
+ "firma": "2acd08d59f80",
  "ejecutor": {
   "vivo": true,
   "pid": 5016,
   "at": 1794540614.7545745
  },
  "pausa": false,
- "en_curso": [
-  {
-   "id": 109,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script validate_recall --spotter --tag v15 --skip-run --report-suffix _e",
-   "state": "en curso",
-   "message": "",
-   "created": "2026-11-13 04:30:14",
-   "started": "2026-11-13 04:30:14",
-   "finished": null,
-   "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"v15\", \"--skip-run\", \"--report-suffix\", \"_e\"]",
-   "source": "claude 268",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_109.log",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "en_curso": [],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "court",
@@ -39,6 +20,24 @@
  },
  "pendientes": [],
  "recientes": [
+  {
+   "id": 109,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script validate_recall --spotter --tag v15 --skip-run --report-suffix _e",
+   "state": "hecho",
+   "message": "",
+   "created": "2026-11-13 04:30:14",
+   "started": "2026-11-13 04:30:14",
+   "finished": "2026-11-13 04:30:25",
+   "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"v15\", \"--skip-run\", \"--report-suffix\", \"_e\"]",
+   "source": "claude 268",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_109.log",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 108,
    "kind": "flujo",
@@ -290,27 +289,16 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_95.log",
    "paso": 6,
    "pasos": 6
-  },
-  {
-   "id": 94,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script validate_recall --spotter --tag v15 --from v13r",
-   "state": "hecho",
-   "message": "",
-   "created": "2026-11-12 12:45:39",
-   "started": "2026-11-12 13:25:42",
-   "finished": "2026-11-12 13:50:48",
-   "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"v15\", \"--from\", \"v13r\"]",
-   "source": "claude 253",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_94.log",
-   "paso": 0,
-   "pasos": 0
   }
  ],
  "eventos": [
+  {
+   "id": 595,
+   "job": 109,
+   "at": "2026-11-13 04:30:26",
+   "kind": "hecho",
+   "text": "código 0"
+  },
   {
    "id": 594,
    "job": 109,
@@ -513,13 +501,6 @@
    "at": "2026-11-13 00:39:04",
    "kind": "hecho",
    "text": "código 0"
-  },
-  {
-   "id": 565,
-   "job": 105,
-   "at": "2026-11-13 00:39:02",
-   "kind": "paso",
-   "text": "6/6 Modelo de calidad"
   }
  ]
 }
