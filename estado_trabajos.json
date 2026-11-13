@@ -1,10 +1,10 @@
 {
- "at": "2026-11-13 04:40:16",
+ "at": "2026-11-13 04:47:32",
  "firma": "fdf8a3da322d",
  "ejecutor": {
   "vivo": true,
-  "pid": 5016,
-  "at": 1794541211.1423357
+  "pid": 16736,
+  "at": 1794541652.6452703
  },
  "pausa": false,
  "en_curso": [],
@@ -293,6 +293,41 @@
  ],
  "eventos": [
   {
+   "id": 606,
+   "job": null,
+   "at": "2026-11-13 04:40:52",
+   "kind": "ejecutor",
+   "text": "arranca (pid 16736)"
+  },
+  {
+   "id": 605,
+   "job": null,
+   "at": "2026-11-13 04:40:51",
+   "kind": "ejecutor",
+   "text": "arranca el siguiente con el código nuevo (pid 4084)"
+  },
+  {
+   "id": 604,
+   "job": null,
+   "at": "2026-11-13 04:40:51",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 603,
+   "job": null,
+   "at": "2026-11-13 04:40:51",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 602,
+   "job": null,
+   "at": "2026-11-13 04:40:41",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
    "id": 601,
    "job": 111,
    "at": "2026-11-13 04:31:10",
@@ -466,41 +501,6 @@
    "at": "2026-11-13 04:03:17",
    "kind": "empieza",
    "text": "run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final"
-  },
-  {
-   "id": 576,
-   "job": 106,
-   "at": "2026-11-13 04:03:17",
-   "kind": "hecho",
-   "text": "código 0"
-  },
-  {
-   "id": 575,
-   "job": 108,
-   "at": "2026-11-13 00:41:03",
-   "kind": "enviado",
-   "text": "flujo informe (claude 267)"
-  },
-  {
-   "id": 574,
-   "job": 107,
-   "at": "2026-11-13 00:40:36",
-   "kind": "enviado",
-   "text": "tennisbio run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final (claude 266)"
-  },
-  {
-   "id": 573,
-   "job": 106,
-   "at": "2026-11-13 00:40:15",
-   "kind": "empieza",
-   "text": "run --match us-open-2026-r4-naomi-osaka-elena-rybakina"
-  },
-  {
-   "id": 572,
-   "job": 106,
-   "at": "2026-11-13 00:40:11",
-   "kind": "enviado",
-   "text": "tennisbio run --match us-open-2026-r4-naomi-osaka-elena-rybakina (claude 265)"
   }
  ]
 }
