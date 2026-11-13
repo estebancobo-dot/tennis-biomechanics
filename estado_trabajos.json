@@ -1,10 +1,10 @@
 {
- "at": "2026-11-13 02:20:13",
+ "at": "2026-11-13 02:50:13",
  "firma": "ea2ff163dd5a",
  "ejecutor": {
   "vivo": true,
   "pid": 9640,
-  "at": 1794532804.1650226
+  "at": 1794534613.6695433
  },
  "pausa": false,
  "en_curso": [
@@ -30,12 +30,12 @@
  "progreso": {
   "partido": "us-open-2026-r4-naomi-osaka-elena-rybakina",
   "etapa": "fine",
-  "hecho": 140,
+  "hecho": 169,
   "total": 232,
-  "porcentaje": 60.3,
-  "segundos": 3628,
-  "quedan_s": 2384,
-  "hora": "2026-11-13 02:17:13"
+  "porcentaje": 72.8,
+  "segundos": 5526,
+  "quedan_s": 2060,
+  "hora": "2026-11-13 02:48:52"
  },
  "pendientes": [
   {
