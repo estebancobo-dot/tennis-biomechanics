@@ -1,6 +1,6 @@
 # Auditoría de requisitos (forehand)
 
-13 golpes del lado cercano. ✔ 404 cumplidos · ✘ 34 no cumplidos · … 89 sin golpes suficientes en esta ejecución · ! 128 avisos
+13 golpes del lado cercano. ✔ 407 cumplidos · ✘ 30 no cumplidos · … 89 sin golpes suficientes en esta ejecución · ! 129 avisos
 
 ## Peticiones del usuario SIN TERMINAR: 140 de 267
 
@@ -479,10 +479,9 @@ Registro `docs/peticiones_usuario.md`: 116 hechas · 119 a medias · 21 sin hace
 - ✘ **Registros con fecha y duración**: 64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba_completo.log: sin «termina fecha» al final
 - ✘ **Lista de partidos: rival, torneo, ronda y fecha**: 6 partidos; sin torneo: 1 (zheng-qinwen-elena-rybakina); sin ronda: 1 (zheng-qinwen-elena-rybakina); sin fecha: 1 (zheng-qinwen-elena-rybakina)
 - ✘ **Aplicación: lo que consume abierta**: CPU media 0.03 % (máx 0.06 %; objetivo ≤ 5 %), memoria hasta 1469 MB (objetivo ≤ 800) en 8 procesos; 2026-11-12 01:26:37
-- ✘ **Exportación terminada: exportar**: no terminó: no dejó el resumen PDF de esta exportación (último golpe tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5-1221881 2026-11-12 14:50:14 118/118)
 - ! **Golpes dudosos (duda sobre el golpe, no sobre una medida)**: 5 de 13 del lado cercano (38%); motivos: elbow_implausible_at_impact 3, phase 3, impact_without_audio 2. Otros 8 golpes solo tienen una medida que falta (raqueta no vista, valor imposible descartado): son válidos y no cuentan como dudosos
 - ! **Orquestador: espera hasta empezar cada trabajo**: 81 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 8 esperaron más de 5 min
-- ! **Peticiones por GitHub Actions: espera hasta empezar**: la última petición (13-11 05:02) no empezó por GitHub Actions; el último trabajo por Actions fue el 13-11 04:26
+- ! **Peticiones por GitHub Actions: espera hasta empezar**: la última petición (13-11 05:09) no empezó por GitHub Actions; el último trabajo por Actions fue el 13-11 04:26
 - ! **Comprobaciones que saben fallar**: sin el registro de las pruebas en este PC (comprobaciones_pruebas/rec_*.json)
 - ✔ **Golpes que fallaron al procesarse**: ninguno
 - ✔ **Golpes con dudas marcadas (se enseñan, no se piden)**: 16 golpes llevan dudas marcadas; el informe las enseña, no se piden al usuario
@@ -519,17 +518,18 @@ Registro `docs/peticiones_usuario.md`: 116 hechas · 119 a medias · 21 sin hace
 - ✔ **Pruebas en este PC: test_speed_keeps_quality**: 4 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_export_end**: 7 bien, 0 fallan, 0 omitidas
 - ✔ **Progreso visible (progreso.json)**: último: view_clips de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (97/97), 5 s, quedan ≈ 0 s, a las 2026-11-13 05:10:03
-- ✔ **Tamaño de la salida (tamanos.txt)**: 51 carpetas, 38.3 GB en total (2026-11-13T05:00:10); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.8 GB
+- ✔ **Tamaño de la salida (tamanos.txt)**: 51 carpetas, 38.3 GB en total (2026-11-13T05:10:47); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.8 GB
 - ✔ **Carpetas de pruebas antiguas**: ninguna carpeta de pruebas con más de 14 días sin usar
 - ✔ **Aplicación: ventana real y pantallas**: 66 pantallas pintadas, 0 problemas; ventana real: carga
 - ✔ **Aplicación: análisis en su índice**: 2 análisis y 30 partidos en el índice de la aplicación (leído del índice, datos/tennisbio.db)
 - ✔ **Aplicación: un partido nuevo de principio a fin**: terminó 2026-11-12T01:12:58 en 78.7 min; análisis actualizado
-- ✔ **Ninguna ventana vacía del análisis en la pantalla del PC**: ninguna consola nuestra entre las 5 ventanas visibles (2026-11-13 05:03:56)
+- ✔ **Ninguna ventana vacía del análisis en la pantalla del PC**: ninguna consola nuestra entre las 5 ventanas visibles (2026-11-13 05:11:22)
 - ✔ **Orquestador: prueba de extremo a extremo**: 5 de 5 comprobaciones bien; termina 2026-11-11T17:19:19
 - ✔ **Orquestador: ejecutor vivo cuando hay trabajo**: ejecutor vivo; 0 trabajos esperando
 - ✔ **Partido smoke_tennis-yusipopen-final-sobolenko-rybakin: salida de cada etapa, ventanas y series**: 17 ficheros de etapa, 79 golpes con ventana y serie
 - ✔ **Informe: index.html, series y miniaturas**: 118 golpes; series que faltan 0, miniaturas que faltan 0
 - ✔ **Exportación: resumen PDF y un vídeo por golpe**: 118 vídeos
+- ✔ **Exportación terminada: exportar**: terminó el 2026-11-13 05:11:34 en 0 min: 118 vídeos de 118 golpes
 - ✔ **Vista lateral: entrenamiento.json y un vídeo con esqueleto por golpe**: 91 de 91 vídeos
 
 ## 6. Sin fuentes externas (nada de vídeos de otros)
@@ -545,13 +545,11 @@ Registro `docs/peticiones_usuario.md`: 116 hechas · 119 a medias · 21 sin hace
 - ! **Tiempo desde cero**: 149 min para 35 min de vídeo (4.25 veces) ≈ 14.9 h para un partido de 3,5 h (objetivo ≤ 8.0 h); smoke_tennis-yusipopen-final-sobolenko-rybakin, 2026-11-13 05:10:03; las que más tardan: players 48 min, fine 34 min, score 19 min, court 17 min
 - ✔ **Tomas de cámara: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 0.9 min (objetivo ≤ 15 min)
 - ✔ **Tiempo de cada etapa frente a su ritmo en este PC: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 3 etapas comparadas con su mediana aquí; las que más tardan: players 48.2 min, fine 33.6 min, score 19.2 min, court 16.6 min, spotting 16.5 min; ninguna pasa de 2 veces su ritmo habitual
-- ✔ **Uso del PC por etapa (CPU, RAM, iGPU y disco)**: recursos_2026-11-13_0129.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el fine (127.5 min): CPU 11/51/97 %, iGPU 0/22/100 %, RAM máx 11.4 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el view_clips (1.0 min): CPU 19/45/70 %, iGPU 0/0/0 %, RAM máx 9.1 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine_doubtful (7.2 min): CPU 21/50/77 %, iGPU 0/19/89 %, RAM máx 11.0 GB → uso medio: margen para repartir trabajo; elena-rybakina-jessica-pegula- court (4.0 min): CPU 23/54/93 %, iGPU 0/7/43 %, RAM máx 7.0 GB → uso medio: margen para repartir trabajo; 56.0 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa)
+- ✔ **Uso del PC por etapa (CPU, RAM, iGPU y disco)**: recursos_2026-11-13_0129.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el fine (127.5 min): CPU 11/51/97 %, iGPU 0/22/100 %, RAM máx 11.4 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el view_clips (1.0 min): CPU 19/45/70 %, iGPU 0/0/0 %, RAM máx 9.1 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine_doubtful (7.2 min): CPU 21/50/77 %, iGPU 0/19/89 %, RAM máx 11.0 GB → uso medio: margen para repartir trabajo; elena-rybakina-jessica-pegula- court (4.0 min): CPU 23/54/93 %, iGPU 0/7/43 %, RAM máx 7.0 GB → uso medio: margen para repartir trabajo; 59.0 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa)
 
 ## 11. Cada petición del usuario en el chat (docs/peticiones_usuario.md), una a una
 
-- ✘ **#41 Exportación: cómo se ven y se graban**: a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 falta, 2 ok; la peor: «Exportación terminada: exportar» (no terminó: no dejó el resumen PDF de esta exportación (último golpe tennis-yusipopen-final-sobolenko-rybakina-12-09-202)
 - ✘ **#66 Fechas y duración en los registros**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba)
-- ✘ **#83 Árbol de ficheros generados y validados**: 6 comprobaciones: 1 falta, 5 ok; la peor: «Exportación terminada: exportar» (no terminó: no dejó el resumen PDF de esta exportación (último golpe tennis-yusipopen-final-sobolenko-rybakina-12-09-202)
 - ✘ **#160 la app que hiciste completa como se arranca, se puede usar ahora? (Chat, 19-10 08:11)**: 6 comprobaciones: 1 falta, 5 ok; la peor: «Aplicación: lo que consume abierta» (CPU media 0.03 % (máx 0.06 %; objetivo ≤ 5 %), memoria hasta 1469 MB (objetivo ≤ 800) en 8 procesos; 2026-11-12 01:26:37)
 - ✘ **#176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3)**: SIN HACER según el registro (#176, docs/peticiones_usuario.md)
 - ✘ **#189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4)**: SIN HACER según el registro (#189, docs/peticiones_usuario.md)
@@ -568,7 +566,6 @@ Registro `docs/peticiones_usuario.md`: 116 hechas · 119 a medias · 21 sin hace
 - ✘ **#224 Saques: plano, cortado o kick; primero o segundo**: SIN HACER según el registro (#224, docs/peticiones_usuario.md)
 - ✘ **#225 La aplicación no se cuelga ni ralentiza el PC**: a medias según el registro (ver docs/peticiones_usuario.md); 4 comprobaciones: 1 falta, 3 ok; la peor: «Aplicación: lo que consume abierta» (CPU media 0.03 % (máx 0.06 %; objetivo ≤ 5 %), memoria hasta 1469 MB (objetivo ≤ 800) en 8 procesos; 2026-11-12 01:26:37)
 - ✘ **#226 Lista de partidos profesional: nombres normalizados, torneo, ronda, fecha, fotos; sin pruebas (24-10, 25-10)**: a medias según el registro (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 falta; la peor: «Lista de partidos: rival, torneo, ronda y fecha» (6 partidos; sin torneo: 1 (zheng-qinwen-elena-rybakina); sin ronda: 1 (zheng-qinwen-elena-rybakina); sin fecha: 1 (zheng)
-- ✘ **#232 Ningún proceso que se pueda colgar sin probar; la exportación del revés se colgó**: 5 comprobaciones: 1 falta, 4 ok; la peor: «Exportación terminada: exportar» (no terminó: no dejó el resumen PDF de esta exportación (último golpe tennis-yusipopen-final-sobolenko-rybakina-12-09-202)
 - ✘ **#240 Comparar la aplicación con las profesionales una vez estén los golpes**: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
 - ✘ **#242 Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femeninos, un análisis po**: a medias según el registro (ver docs/peticiones_usuario.md); 6 comprobaciones: 1 falta, 5 ok; la peor: «Aplicación: lo que consume abierta» (CPU media 0.03 % (máx 0.06 %; objetivo ≤ 5 %), memoria hasta 1469 MB (objetivo ≤ 800) en 8 procesos; 2026-11-12 01:26:37)
 - ✘ **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
@@ -590,6 +587,7 @@ Registro `docs/peticiones_usuario.md`: 116 hechas · 119 a medias · 21 sin hace
 - ! **#25 Métricas por derecha: apoyo, base, rodillas, cadera, hombros, X-factor, codo, impacto, cadena, pista**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 5 comprobaciones: 5 ok
 - ! **#29 Fase 0: entorno y fps reales, con YOLO**: 3 comprobaciones: 2 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (149 min para 35 min de vídeo ≈ 14.9 h para un partido de 3,5 h (objetivo ≤ 8.0 h; todas sus etapas pesadas calcularon))
 - ! **#36 Mano y antebrazo, cierre de la muñeca**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok
+- ! **#41 Exportación: cómo se ven y se graban**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok
 - ! **#51 El código de la prueba es el de los casos reales**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
 - ! **#55 Ver una bola cerca de la red y un apoyo cerrado con golpe paralelo**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
 - ! **#58 La IA más moderna posible**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 15 comprobaciones: 15 ok
@@ -759,6 +757,7 @@ Registro `docs/peticiones_usuario.md`: 116 hechas · 119 a medias · 21 sin hace
 - ✔ **#80 Encadenar solo la prueba y las comprobaciones; que Claude lo monitorice**: 1 comprobaciones: 1 ok
 - ✔ **#81 Tamaño de la salida; comprobación sin gastar tokens**: 2 comprobaciones: 2 ok
 - ✔ **#82 Dónde se graban las salidas, qué va a git, qué se reutiliza**: 2 comprobaciones: 2 ok
+- ✔ **#83 Árbol de ficheros generados y validados**: 6 comprobaciones: 6 ok
 - ✔ **#87 Matriz §4 Apoyos (abierto, semiabierto, neutro o cerrado, salto, abierto extremo)**: 4 comprobaciones: 4 ok
 - ✔ **#98 Matriz §15 Contexto y ambiente (superficie, aerodinámica)**: 2 comprobaciones: 2 ok
 - ✔ **#99 Mejora 1 (entrenadores): líneas dibujadas sobre el fotograma**: 1 comprobaciones: 1 ok
@@ -804,6 +803,7 @@ Registro `docs/peticiones_usuario.md`: 116 hechas · 119 a medias · 21 sin hace
 - ✔ **#222 Un clic por partido para decir quién es ella**: 1 comprobaciones: 1 ok
 - ✔ **#227 Pantalla completa en la aplicación**: 1 comprobaciones: 1 ok
 - ✔ **#229 Renombrar el vídeo no rompe nada; el partido se identifica por su contenido**: 2 comprobaciones: 2 ok
+- ✔ **#232 Ningún proceso que se pueda colgar sin probar; la exportación del revés se colgó**: 5 comprobaciones: 5 ok
 - ✔ **#241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código**: 2 comprobaciones: 2 ok
 
 ## 12. Mejores modelos: cada candidato medido frente al actual y los adoptados en uso (B3)

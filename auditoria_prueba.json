@@ -3,10 +3,10 @@
  "strokes": 25,
  "near": 13,
  "summary": {
-  "ok": 404,
-  "falta": 34,
+  "ok": 407,
+  "falta": 30,
   "pocos datos": 89,
-  "aviso": 128
+  "aviso": 129
  },
  "items": [
   {
@@ -3467,7 +3467,7 @@
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "51 carpetas, 38.3 GB en total (2026-11-13T05:00:10); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.8 GB"
+   "detail": "51 carpetas, 38.3 GB en total (2026-11-13T05:10:47); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.8 GB"
   },
   {
    "req": 5,
@@ -3516,7 +3516,7 @@
    "area": "Automático",
    "name": "Ninguna ventana vacía del análisis en la pantalla del PC",
    "status": "ok",
-   "detail": "ninguna consola nuestra entre las 5 ventanas visibles (2026-11-13 05:03:56)"
+   "detail": "ninguna consola nuestra entre las 5 ventanas visibles (2026-11-13 05:11:22)"
   },
   {
    "req": 5,
@@ -3564,8 +3564,8 @@
    "req": 5,
    "area": "Ficheros",
    "name": "Exportación terminada: exportar",
-   "status": "falta",
-   "detail": "no terminó: no dejó el resumen PDF de esta exportación (último golpe tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5-1221881 2026-11-12 14:50:14 118/118)"
+   "status": "ok",
+   "detail": "terminó el 2026-11-13 05:11:34 en 0 min: 118 vídeos de 118 golpes"
   },
   {
    "req": 2,
@@ -3747,14 +3747,14 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-13_0129.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el fine (127.5 min): CPU 11/51/97 %, iGPU 0/22/100 %, RAM máx 11.4 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el view_clips (1.0 min): CPU 19/45/70 %, iGPU 0/0/0 %, RAM máx 9.1 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine_doubtful (7.2 min): CPU 21/50/77 %, iGPU 0/19/89 %, RAM máx 11.0 GB → uso medio: margen para repartir trabajo; elena-rybakina-jessica-pegula- court (4.0 min): CPU 23/54/93 %, iGPU 0/7/43 %, RAM máx 7.0 GB → uso medio: margen para repartir trabajo; 56.0 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa)"
+   "detail": "recursos_2026-11-13_0129.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el fine (127.5 min): CPU 11/51/97 %, iGPU 0/22/100 %, RAM máx 11.4 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el view_clips (1.0 min): CPU 19/45/70 %, iGPU 0/0/0 %, RAM máx 9.1 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine_doubtful (7.2 min): CPU 21/50/77 %, iGPU 0/19/89 %, RAM máx 11.0 GB → uso medio: margen para repartir trabajo; elena-rybakina-jessica-pegula- court (4.0 min): CPU 23/54/93 %, iGPU 0/7/43 %, RAM máx 7.0 GB → uso medio: margen para repartir trabajo; 59.0 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa)"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
    "status": "aviso",
-   "detail": "la última petición (13-11 05:02) no empezó por GitHub Actions; el último trabajo por Actions fue el 13-11 04:26"
+   "detail": "la última petición (13-11 05:09) no empezó por GitHub Actions; el último trabajo por Actions fue el 13-11 04:26"
   },
   {
    "req": 1,
@@ -4075,8 +4075,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#41 Exportación: cómo se ven y se graban",
-   "status": "falta",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 falta, 2 ok; la peor: «Exportación terminada: exportar» (no terminó: no dejó el resumen PDF de esta exportación (último golpe tennis-yusipopen-final-sobolenko-rybakina-12-09-202)"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok"
   },
   {
    "req": 11,
@@ -4341,8 +4341,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#83 Árbol de ficheros generados y validados",
-   "status": "falta",
-   "detail": "6 comprobaciones: 1 falta, 5 ok; la peor: «Exportación terminada: exportar» (no terminó: no dejó el resumen PDF de esta exportación (último golpe tennis-yusipopen-final-sobolenko-rybakina-12-09-202)"
+   "status": "ok",
+   "detail": "6 comprobaciones: 6 ok"
   },
   {
    "req": 11,
@@ -5342,8 +5342,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#232 Ningún proceso que se pueda colgar sin probar; la exportación del revés se colgó",
-   "status": "falta",
-   "detail": "5 comprobaciones: 1 falta, 4 ok; la peor: «Exportación terminada: exportar» (no terminó: no dejó el resumen PDF de esta exportación (último golpe tennis-yusipopen-final-sobolenko-rybakina-12-09-202)"
+   "status": "ok",
+   "detail": "5 comprobaciones: 5 ok"
   },
   {
    "req": 11,

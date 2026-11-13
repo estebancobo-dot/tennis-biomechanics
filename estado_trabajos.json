@@ -1,10 +1,10 @@
 {
- "at": "2026-11-13 05:10:35",
+ "at": "2026-11-13 05:13:46",
  "firma": "b9dfad8aa4aa",
  "ejecutor": {
   "vivo": true,
-  "pid": 13888,
-  "at": 1794543035.719466
+  "pid": 17768,
+  "at": 1794543226.5402653
  },
  "pausa": false,
  "en_curso": [],
@@ -293,6 +293,41 @@
  ],
  "eventos": [
   {
+   "id": 619,
+   "job": null,
+   "at": "2026-11-13 05:11:06",
+   "kind": "ejecutor",
+   "text": "arranca (pid 17768)"
+  },
+  {
+   "id": 618,
+   "job": null,
+   "at": "2026-11-13 05:11:05",
+   "kind": "ejecutor",
+   "text": "arranca el siguiente con el código nuevo (pid 408)"
+  },
+  {
+   "id": 617,
+   "job": null,
+   "at": "2026-11-13 05:11:05",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 616,
+   "job": null,
+   "at": "2026-11-13 05:11:05",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 615,
+   "job": null,
+   "at": "2026-11-13 05:11:03",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
    "id": 614,
    "job": null,
    "at": "2026-11-13 05:03:35",
@@ -466,41 +501,6 @@
    "at": "2026-11-13 04:26:33",
    "kind": "ejecutor",
    "text": "termina"
-  },
-  {
-   "id": 589,
-   "job": null,
-   "at": "2026-11-13 04:26:33",
-   "kind": "ejecutor",
-   "text": "se reinicia con el código nuevo"
-  },
-  {
-   "id": 588,
-   "job": null,
-   "at": "2026-11-13 04:26:30",
-   "kind": "reiniciar",
-   "text": "ciclo"
-  },
-  {
-   "id": 587,
-   "job": 108,
-   "at": "2026-11-13 04:25:43",
-   "kind": "hecho",
-   "text": "código 0"
-  },
-  {
-   "id": 586,
-   "job": 108,
-   "at": "2026-11-13 04:25:42",
-   "kind": "paso",
-   "text": "6/6 Modelo de calidad"
-  },
-  {
-   "id": 585,
-   "job": 108,
-   "at": "2026-11-13 04:21:06",
-   "kind": "paso",
-   "text": "5/6 Auditoria"
   }
  ]
 }

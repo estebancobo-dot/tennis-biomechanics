@@ -1,6 +1,6 @@
-# Revisión automática: REGRESIÓN
+# Revisión automática: FALLOS
 
-404 cumplidos · 34 no cumplidos · 89 sin golpes suficientes · 128 avisos (antes: 407 cumplidos, 30 no cumplidos)
+407 cumplidos · 30 no cumplidos · 89 sin golpes suficientes · 129 avisos (antes: 404 cumplidos, 34 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 140 de 267
 
@@ -154,10 +154,7 @@ Registro `docs/peticiones_usuario.md`: 116 hechas · 119 a medias · 21 sin hace
 - **Registros con fecha y duración**: 64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba_completo.log: sin «termina fecha» al final
 - **Lista de partidos: rival, torneo, ronda y fecha**: 6 partidos; sin torneo: 1 (zheng-qinwen-elena-rybakina); sin ronda: 1 (zheng-qinwen-elena-rybakina); sin fecha: 1 (zheng-qinwen-elena-rybakina)
 - **Aplicación: lo que consume abierta**: CPU media 0.03 % (máx 0.06 %; objetivo ≤ 5 %), memoria hasta 1469 MB (objetivo ≤ 800) en 8 procesos; 2026-11-12 01:26:37
-- **Exportación terminada: exportar**: no terminó: no dejó el resumen PDF de esta exportación (último golpe tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5-1221881 2026-11-12 14:50:14 118/118)
-- **#41 Exportación: cómo se ven y se graban**: a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 falta, 2 ok; la peor: «Exportación terminada: exportar» (no terminó: no dejó el resumen PDF de esta exportación (último golpe tennis-yusipopen-final-sobolenko-rybakina-12-09-202)
 - **#66 Fechas y duración en los registros**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba)
-- **#83 Árbol de ficheros generados y validados**: 6 comprobaciones: 1 falta, 5 ok; la peor: «Exportación terminada: exportar» (no terminó: no dejó el resumen PDF de esta exportación (último golpe tennis-yusipopen-final-sobolenko-rybakina-12-09-202)
 - **#160 la app que hiciste completa como se arranca, se puede usar ahora? (Chat, 19-10 08:11)**: 6 comprobaciones: 1 falta, 5 ok; la peor: «Aplicación: lo que consume abierta» (CPU media 0.03 % (máx 0.06 %; objetivo ≤ 5 %), memoria hasta 1469 MB (objetivo ≤ 800) en 8 procesos; 2026-11-12 01:26:37)
 - **#176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3)**: SIN HACER según el registro (#176, docs/peticiones_usuario.md)
 - **#189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4)**: SIN HACER según el registro (#189, docs/peticiones_usuario.md)
@@ -174,7 +171,6 @@ Registro `docs/peticiones_usuario.md`: 116 hechas · 119 a medias · 21 sin hace
 - **#224 Saques: plano, cortado o kick; primero o segundo**: SIN HACER según el registro (#224, docs/peticiones_usuario.md)
 - **#225 La aplicación no se cuelga ni ralentiza el PC**: a medias según el registro (ver docs/peticiones_usuario.md); 4 comprobaciones: 1 falta, 3 ok; la peor: «Aplicación: lo que consume abierta» (CPU media 0.03 % (máx 0.06 %; objetivo ≤ 5 %), memoria hasta 1469 MB (objetivo ≤ 800) en 8 procesos; 2026-11-12 01:26:37)
 - **#226 Lista de partidos profesional: nombres normalizados, torneo, ronda, fecha, fotos; sin pruebas (24-10, 25-10)**: a medias según el registro (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 falta; la peor: «Lista de partidos: rival, torneo, ronda y fecha» (6 partidos; sin torneo: 1 (zheng-qinwen-elena-rybakina); sin ronda: 1 (zheng-qinwen-elena-rybakina); sin fecha: 1 (zheng)
-- **#232 Ningún proceso que se pueda colgar sin probar; la exportación del revés se colgó**: 5 comprobaciones: 1 falta, 4 ok; la peor: «Exportación terminada: exportar» (no terminó: no dejó el resumen PDF de esta exportación (último golpe tennis-yusipopen-final-sobolenko-rybakina-12-09-202)
 - **#240 Comparar la aplicación con las profesionales una vez estén los golpes**: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
 - **#242 Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femeninos, un análisis po**: a medias según el registro (ver docs/peticiones_usuario.md); 6 comprobaciones: 1 falta, 5 ok; la peor: «Aplicación: lo que consume abierta» (CPU media 0.03 % (máx 0.06 %; objetivo ≤ 5 %), memoria hasta 1469 MB (objetivo ≤ 800) en 8 procesos; 2026-11-12 01:26:37)
 - **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
@@ -185,9 +181,9 @@ Registro `docs/peticiones_usuario.md`: 116 hechas · 119 a medias · 21 sin hace
 - **#257 Comparativa a fondo y catalogada con todo lo que existe: apps profesionales (Hawk-Eye/TennisViz, SwingVision, **: SIN HACER según el registro (#257, docs/peticiones_usuario.md)
 - **#258 Partidos y jugadores automáticos desde un nombre de fichero mínimo: normalizar los nombres, leer la ficha públ**: SIN HACER según el registro (#258, docs/peticiones_usuario.md)
 
-## Empeora respecto a la ejecución anterior
+## Mejora
 
-- **Exportación terminada: exportar**: ok → falta: no terminó: no dejó el resumen PDF de esta exportación (último golpe tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5-1221881 2026-11-12 14:50:14 118/118)
-- **#41 Exportación: cómo se ven y se graban**: aviso → falta: a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 falta, 2 ok; la peor: «Exportación terminada: exportar» (no terminó: no dejó el resumen PDF de esta exportación (último
-- **#83 Árbol de ficheros generados y validados**: ok → falta: 6 comprobaciones: 1 falta, 5 ok; la peor: «Exportación terminada: exportar» (no terminó: no dejó el resumen PDF de esta exportación (último golpe tennis-yusipopen-final-sobolenko-rybakina-12-09-202)
-- **#232 Ningún proceso que se pueda colgar sin probar; la exportación del revés se colgó**: ok → falta: 5 comprobaciones: 1 falta, 4 ok; la peor: «Exportación terminada: exportar» (no terminó: no dejó el resumen PDF de esta exportación (último golpe tennis-yusipopen-final-sobolenko-rybakina-12-09-202)
+- Exportación terminada: exportar: falta → ok
+- #41 Exportación: cómo se ven y se graban: falta → aviso
+- #83 Árbol de ficheros generados y validados: falta → ok
+- #232 Ningún proceso que se pueda colgar sin probar; la exportación del revés se colgó: falta → ok
