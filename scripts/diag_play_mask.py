@@ -5,7 +5,7 @@ its length; and, around the given seconds, the strip frame by frame (cut, court 
 there. For the F3Set compilations of the tags given and the library matches given (the R16 serves of Osaka and Pegula:
 which gaps a new rule must keep). Writes <output>/capturas_diag/diag_play_mask.json. Reads only.
 
-    uv run python scripts/diag_play_mask.py --tags v15 v17 --match osaka pegula --window azaren:1090:1115
+    uv run python scripts/diag_play_mask.py --tags v15 v17 --match osaka pegula --window azaren,1090,1115
 """
 from __future__ import annotations
 
@@ -137,11 +137,11 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--tags", nargs="*", default=["v17"], help="carpetas salidas_<tag> de F3Set")
     ap.add_argument("--match", nargs="*", default=[], help="partidos de la biblioteca (parte del nombre)")
-    ap.add_argument("--window", nargs="*", default=[], help="parte_del_nombre:t0:t1 (segundos)")
+    ap.add_argument("--window", nargs="*", default=[], help="parte_del_nombre,t0,t1 (segundos)")
     a = ap.parse_args()
     windows = []
-    for w in a.window:
-        sub, t0, t1 = w.split(":")
+    for w in a.window:                    # 13-11: commas (the PC's queue refuses «:» in the arguments, request 287)
+        sub, t0, t1 = w.replace(":", ",").split(",")
         windows.append((sub, float(t0), float(t1)))
     cfg = load_config()
     out = Path((cfg.get("paths") or {}).get("output") or "output")

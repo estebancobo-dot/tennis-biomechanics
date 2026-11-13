@@ -1352,3 +1352,17 @@ argumentos: --spotter --tag v18 --from v17
 # 288 (13-11, R22, aprobado por el usuario): F3Set con el arreglo del fundido (play_mask rellena un hueco solo tras
 # 0,5 s de pista; jugadores v7, marcador v14). Debe recuperar el punto de Azarenka (identidad_equivocada 8 -> 5) y no
 # dar golpes de la rival como suyos; frente a v15 (467 de 517, 0,945) y v17 (465, 0,936)
+---
+id: 289
+accion: medir
+script: diag_play_mask
+argumentos: --tags v15 v17 --match osaka pegula --window azaren,1090,1115
+# 289 (13-11, R22): la 287 con comas (la cola no admite ":" en los argumentos): los huecos que rellenaba la regla de
+# antes y si la de ahora (0,5 s de pista) los quita; el punto de Azarenka fotograma a fotograma; Osaka y Pegula
+---
+id: 290
+accion: medir
+script: diag_otros_partidos
+argumentos: --match osaka pegula zheng gauff sobolenko --t 4628 11586 12203 12217
+# 290 (13-11, R30): otros partidos dentro de la retransmision (Zheng 77 min: Shelton - Alcaraz; final: un dobles al
+# final y un estudio con el partido en una ventana): tramos sin su marcador, golpes suyos y planos de identidad en ellos
