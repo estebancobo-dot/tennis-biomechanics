@@ -1,52 +1,30 @@
-﻿commit: 70f942e
-inicio: 2026-11-13T00:39:43
-fin: 2026-11-13T00:52:25
-codigo: 1
-...........................................................s.......ss..s [  6%]
-ss...................................................................... [ 13%]
-........................................................................ [ 19%]
-........................................................................ [ 26%]
-........................................................................ [ 32%]
-........................................................................ [ 39%]
-........................................................................ [ 45%]
-...........................ssss.sss.sssss.ss............................ [ 52%]
-........................................................................ [ 58%]
+﻿commit: 89059cf
+inicio: 2026-11-13T04:26:48
+fin: 2026-11-13T04:37:32
+codigo: 0
+...........................................................s.......ss..s [  5%]
+ss...................................................................... [ 11%]
+........................................................................ [ 17%]
+........................................................................ [ 23%]
+........................................................................ [ 29%]
+........................................................................ [ 35%]
+........................................................................ [ 41%]
+........................................................................ [ 47%]
+....................................................ssss.sss.sssss.ss... [ 53%]
+........................................................................ [ 59%]
 ........................................................................ [ 65%]
 ........................................................................ [ 71%]
-........................................................................ [ 78%]
-........................................................................ [ 84%]
-.............................ssssss..................................... [ 91%]
-..................................F....................s................ [ 97%]
-..........................                                               [100%]
-================================== FAILURES ===================================
-______ test_a_run_hands_over_its_last_frame_without_decoding_to_the_end _______
-
-tmp_path = WindowsPath('C:/Users/esteb/AppData/Local/Temp/pytest-of-esteb/pytest-143/test_a_run_hands_over_its_last0')
-
-    def test_a_run_hands_over_its_last_frame_without_decoding_to_the_end(tmp_path):
-        """08-11 (request 231): ffmpeg passes a selected frame on only when the next one is selected (or at the end), so
-        each run of times decoded the rest of the video before giving its last frame (Osaka's identity: 13 min, ~7 whole
-        matches decoded). A run near the start of a long video now costs a small part of decoding it all."""
-        import time
-    
-        from tennisbio.io.video import frames_at
-        v = tmp_path / "long.mp4"
-        _ff("-f", "lavfi", "-i", "testsrc2=duration=600:size=320x180:rate=25", "-pix_fmt", "yuv420p", "-c:v", "libx264",
-            "-preset", "ultrafast", str(v))
-        info = probe(v)
-        t0 = time.perf_counter()
-        got = list(frames_at(info, [1.0, 1.5, 2.04], dense_s=60.0, prefetch=0))
-        early = time.perf_counter() - t0
-        t0 = time.perf_counter()
-        whole = list(frames_at(info, [1.0, 599.0], dense_s=1e9, prefetch=0))      # one run across the whole video
-        full = time.perf_counter() - t0
-        assert all(f is not None for _, f in got) and whole[-1][1] is not None
->       assert early < full / 3, (early, full)
-E       AssertionError: (1.6543153000529855, 0.9042102000676095)
-E       assert 1.6543153000529855 < (0.9042102000676095 / 3)
-
-tests\test_video.py:213: AssertionError
+........................................................................ [ 77%]
+........................................................................ [ 83%]
+.......................................................ssssss........... [ 89%]
+........................................................................ [ 95%]
+.........s..........................................                     [100%]
 ============================== warnings summary ===============================
+tests/test_app_window.py::test_the_pc_check_finds_nothing_wrong_in_the_cases
+tests/test_no_unbounded_calls.py::test_every_module_compiles
+  C:\tenis\tennis-biomech\src\tennisbio\screens.py:20: DeprecationWarning: invalid escape sequence '\d'
+    _JS_SCREEN = """(tab) => {
+
 tests/test_body_scale.py::test_court_scale_without_any_face_seen
 tests/test_fine_ranges.py::test_pose_ranges_fall_back_to_the_whole_window_when_her_height_is_not_seen
   C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
@@ -56,22 +34,17 @@ tests/test_far_measure.py: 17 warnings
   C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
     feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
 
-tests/test_fine_ranges.py::test_pose_ranges_start_from_the_person_the_ball_leaves
-  C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:85: RuntimeWarning: invalid value encountered in divide
-    rel = (kp - hip_center(kp, sk)[:, None, :]) / (h[:, None, None] if h.ndim == 1 else h)
-
+tests/test_faults.py::test_no_caught_error_is_left_unclassified
+tests/test_faults.py::test_the_catalogue_and_the_code_agree
 tests/test_no_hardcoded_player.py::test_no_player_name_in_the_code
 tests/test_no_unbounded_calls.py::test_every_subprocess_run_has_a_timeout
 tests/test_no_unbounded_calls.py::test_long_lived_processes_are_the_known_watched_ones
 tests/test_worker_hidden.py::test_no_process_of_ours_is_started_detached
   <unknown>:20: DeprecationWarning: invalid escape sequence '\d'
 
-tests/test_no_unbounded_calls.py::test_every_module_compiles
-  C:\tenis\tennis-biomech\src\tennisbio\screens.py:20: DeprecationWarning: invalid escape sequence '\d'
-    _JS_SCREEN = """(tab) => {
+tests/test_fine_ranges.py::test_pose_ranges_start_from_the_person_the_ball_leaves
+  C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:85: RuntimeWarning: invalid value encountered in divide
+    rel = (kp - hip_center(kp, sk)[:, None, :]) / (h[:, None, None] if h.ndim == 1 else h)
 
 -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-=========================== short test summary info ===========================
-FAILED tests/test_video.py::test_a_run_hands_over_its_last_frame_without_decoding_to_the_end - AssertionError: (1.6543153000529855, 0.9042102000676095)
-assert 1.6543153000529855 < (0.9042102000676095 / 3)
-1 failed, 1078 passed, 27 skipped, 25 warnings in 749.52s (0:12:29)
+1177 passed, 27 skipped, 28 warnings in 630.73s (0:10:30)
