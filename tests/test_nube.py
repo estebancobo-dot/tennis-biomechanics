@@ -414,3 +414,10 @@ def test_the_cost_counts_the_cores_used_when_more_than_reserved():
     assert nube.used([{"cpu_pct": 10.0, "cores": 24}], 8.0, 32) == (8.0, 32)
     assert nube.used([], 8.0, 32) == (8.0, 32)
     assert nube.cost(3600, "T4", *nube.used(rows, 8.0, 32)) > nube.cost(3600, "T4", 8.0, 32)
+
+
+def test_a_native_crash_in_the_cloud_prints_the_python_stack():
+    """13-11: Osaka's whole match ended with -11 (SIGSEGV) in the fine pass, with no trace; every Python process of the
+    image (the fine pass's spawned workers too) prints its stack on such a crash."""
+    src = (ROOT / "cloud" / "modal_app.py").read_text(encoding="utf-8")
+    assert '"PYTHONFAULTHANDLER": "1"' in src

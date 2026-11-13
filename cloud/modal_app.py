@@ -51,7 +51,9 @@ image = (
     )
     # 13-11: no HOME on the volume (it does not exist yet while Modal starts the container: «Failed (runtime
     # initialization)» in a loop); _prepare sets it for the analysis's own processes
-    .env({"TENNISBIO_DML_IS_CUDA": "1", "PYTHONUNBUFFERED": "1", "PYTHONUTF8": "1"})
+    # 13-11: PYTHONFAULTHANDLER: a native crash (Osaka's fine pass ended with -11) prints the Python stack of every
+    # thread, also in the fine pass's spawned workers
+    .env({"TENNISBIO_DML_IS_CUDA": "1", "PYTHONUNBUFFERED": "1", "PYTHONUTF8": "1", "PYTHONFAULTHANDLER": "1"})
     .add_local_dir(REPO, "/repo", ignore=IGNORE)
 )
 
