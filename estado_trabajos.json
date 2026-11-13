@@ -1,10 +1,10 @@
 {
- "at": "2026-11-13 06:10:42",
- "firma": "b63fddc957af",
+ "at": "2026-11-13 06:10:56",
+ "firma": "8c506648da33",
  "ejecutor": {
   "vivo": true,
   "pid": 3148,
-  "at": 1794546629.79655
+  "at": 1794546649.8083427
  },
  "pausa": true,
  "en_curso": [],
@@ -19,6 +19,24 @@
   "hora": "2026-11-13 06:08:44"
  },
  "pendientes": [
+  {
+   "id": 120,
+   "kind": "flujo",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-13 06:10:52",
+   "started": null,
+   "finished": null,
+   "args": "[\"informe\"]",
+   "source": "claude 281",
+   "log": "",
+   "paso": 0,
+   "pasos": 6
+  },
   {
    "id": 119,
    "kind": "comando",
@@ -312,6 +330,13 @@
  ],
  "eventos": [
   {
+   "id": 642,
+   "job": 120,
+   "at": "2026-11-13 06:10:52",
+   "kind": "enviado",
+   "text": "flujo informe (claude 281)"
+  },
+  {
    "id": 641,
    "job": 119,
    "at": "2026-11-13 06:10:37",
@@ -513,13 +538,6 @@
    "at": "2026-11-13 05:03:33",
    "kind": "ejecutor",
    "text": "arranca el siguiente con el código nuevo (pid 17088)"
-  },
-  {
-   "id": 612,
-   "job": null,
-   "at": "2026-11-13 05:03:33",
-   "kind": "ejecutor",
-   "text": "termina"
   }
  ]
 }
