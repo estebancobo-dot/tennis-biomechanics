@@ -1,10 +1,10 @@
 {
- "at": "2026-11-13 05:15:28",
- "firma": "fb25e12b6ffe",
+ "at": "2026-11-13 05:15:51",
+ "firma": "5f1f60517ef4",
  "ejecutor": {
   "vivo": true,
   "pid": 17768,
-  "at": 1794543328.5840003
+  "at": 1794543344.6028664
  },
  "pausa": false,
  "en_curso": [
@@ -37,7 +37,26 @@
   "quedan_s": 0,
   "hora": "2026-11-13 04:06:50"
  },
- "pendientes": [],
+ "pendientes": [
+  {
+   "id": 115,
+   "kind": "flujo",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-13 05:15:46",
+   "started": null,
+   "finished": null,
+   "args": "[\"informe\"]",
+   "source": "claude 275",
+   "log": "",
+   "paso": 0,
+   "pasos": 6
+  }
+ ],
  "recientes": [
   {
    "id": 113,
@@ -312,6 +331,13 @@
  ],
  "eventos": [
   {
+   "id": 625,
+   "job": 115,
+   "at": "2026-11-13 05:15:46",
+   "kind": "enviado",
+   "text": "flujo informe (claude 275)"
+  },
+  {
    "id": 624,
    "job": 114,
    "at": "2026-11-13 05:15:28",
@@ -513,13 +539,6 @@
    "at": "2026-11-13 04:30:40",
    "kind": "enviado",
    "text": "tennisbio script validate_recall --spotter --tag v16 --skip-run --report-suffix _e (claude 269)"
-  },
-  {
-   "id": 595,
-   "job": 109,
-   "at": "2026-11-13 04:30:26",
-   "kind": "hecho",
-   "text": "código 0"
   }
  ]
 }
