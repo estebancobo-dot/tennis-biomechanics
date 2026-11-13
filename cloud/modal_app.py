@@ -60,6 +60,16 @@ def _save(run: Path, est: dict) -> None:
     (run / "estado.json").write_text(json.dumps(est, ensure_ascii=False, indent=1), encoding="utf-8")
 
 
+@app.function(image=image, cpu=0.25, memory=512, volumes={str(DATA): vol}, timeout=120)
+def ping() -> dict:
+    """13-11: the GPU check waited 10 min without its container starting. The same image and volume without a GPU (a
+    fraction of a cent): if this starts and the check does not, the wait is for the GPU, not the image or the account."""
+    import platform
+    import sys
+    (DATA / "home").mkdir(parents=True, exist_ok=True)
+    return {"python": sys.version.split()[0], "plataforma": platform.platform(), "volumen": sorted(p.name for p in DATA.iterdir())}
+
+
 @app.function(**SPEC, timeout=600)
 def comprobar() -> dict:
     """Before spending GPU hours: the GPU, ONNX Runtime with CUDA (also in a new process, as the fine pass's workers),

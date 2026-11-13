@@ -13,16 +13,16 @@ APP = "tennisbio"
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("accion", choices=("comprobar", "f3set"))
+    ap.add_argument("accion", choices=("ping", "comprobar", "f3set"))
     ap.add_argument("--tag", default="nube")
     ap.add_argument("--max-points", type=int, default=0)
     ap.add_argument("--matches", default="")
     ap.add_argument("--pc-tag", default="v17")
     a = ap.parse_args()
-    if a.accion == "comprobar":
+    if a.accion in ("ping", "comprobar"):
         # 13-11: without enable_output the container's own output (start-up, errors) never reached the Actions log
         with modal.enable_output():
-            res = modal.Function.from_name(APP, "comprobar").remote()
+            res = modal.Function.from_name(APP, a.accion).remote()
         print(json.dumps(res, ensure_ascii=False, indent=1))
         return 0
     call = modal.Function.from_name(APP, "f3set").spawn(tag=a.tag, max_points=a.max_points, matches=a.matches,

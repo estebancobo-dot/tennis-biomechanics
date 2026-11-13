@@ -68,7 +68,14 @@ jobs:
         run: modal deploy cloud/modal_app.py
       - name: Comprobar
         if: inputs.accion == 'comprobar'
-        run: python cloud/lanzar.py comprobar
+        # 13-11: primero sin GPU (ping: si arranca, una espera es de la GPU); con limite de tiempo; si algo no
+        # termina, los registros de Modal de la aplicacion
+        run: |
+          rc=0
+          echo "===== ping (sin GPU)"; timeout 420 python cloud/lanzar.py ping || rc=1
+          echo "===== comprobar (GPU)"; timeout 900 python cloud/lanzar.py comprobar || rc=1
+          if [ "$rc" != "0" ]; then echo "===== registros de Modal"; timeout 90 modal app logs tennisbio || true; fi
+          exit $rc
       - name: Lanzar F3Set
         if: inputs.accion == 'f3set'
         run: python cloud/lanzar.py f3set --tag "${{ inputs.tag }}" --max-points "${{ inputs.max_points }}" --pc-tag "${{ inputs.pc_tag }}"
