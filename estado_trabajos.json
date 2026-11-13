@@ -1,10 +1,10 @@
 {
- "at": "2026-11-13 06:10:56",
- "firma": "8c506648da33",
+ "at": "2026-11-13 06:11:17",
+ "firma": "612578aba837",
  "ejecutor": {
   "vivo": true,
   "pid": 3148,
-  "at": 1794546649.8083427
+  "at": 1794546669.8178766
  },
  "pausa": true,
  "en_curso": [],
@@ -19,6 +19,24 @@
   "hora": "2026-11-13 06:08:44"
  },
  "pendientes": [
+  {
+   "id": 121,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script validate_recall --spotter --tag v17 --from v16",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-13 06:11:12",
+   "started": null,
+   "finished": null,
+   "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"v17\", \"--from\", \"v16\"]",
+   "source": "claude 282",
+   "log": "",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 120,
    "kind": "flujo",
@@ -330,6 +348,13 @@
  ],
  "eventos": [
   {
+   "id": 643,
+   "job": 121,
+   "at": "2026-11-13 06:11:12",
+   "kind": "enviado",
+   "text": "tennisbio script validate_recall --spotter --tag v17 --from v16 (claude 282)"
+  },
+  {
    "id": 642,
    "job": 120,
    "at": "2026-11-13 06:10:52",
@@ -531,13 +556,6 @@
    "at": "2026-11-13 05:03:35",
    "kind": "ejecutor",
    "text": "arranca (pid 13888)"
-  },
-  {
-   "id": 613,
-   "job": null,
-   "at": "2026-11-13 05:03:33",
-   "kind": "ejecutor",
-   "text": "arranca el siguiente con el código nuevo (pid 17088)"
   }
  ]
 }
