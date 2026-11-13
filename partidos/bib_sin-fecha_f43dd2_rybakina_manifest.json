@@ -149,22 +149,22 @@
   "rewrote": {}
  },
  "candidates": {
-  "fingerprint": "6c39cb79c3387c72",
+  "fingerprint": "37c55e18c686a2df",
   "version": "16",
-  "seconds": 3.1,
-  "finished": "2026-11-12 15:51:58",
+  "seconds": 3.6,
+  "finished": "2026-11-13 01:11:52",
   "summary": {
-   "candidates": 378,
-   "far": 167,
-   "with_audio": 324,
+   "candidates": 454,
+   "far": 216,
+   "with_audio": 388,
    "source": "spotter",
-   "opponent_strokes": 176,
-   "identity_unknown": 18,
-   "replay_strokes_skipped": 8,
-   "replay_runs": 2,
+   "opponent_strokes": 201,
+   "identity_unknown": 21,
+   "replay_strokes_skipped": 10,
+   "replay_runs": 3,
    "audio_track": 3
   },
-  "out_hash": "5efe657a98fc007ad372",
+  "out_hash": "c6a828f58a9f93591afb",
   "scheme": 2,
   "rewrote": {}
  },
@@ -236,15 +236,15 @@
   "rewrote": {}
  },
  "spotting": {
-  "fingerprint": "607c6fa3d0cef355",
-  "version": "1",
-  "seconds": 17.7,
-  "finished": "2026-11-12 15:51:55",
+  "fingerprint": "ef3fc7cb72a4b95c",
+  "version": "2",
+  "seconds": 1696.8,
+  "finished": "2026-11-13 01:11:49",
   "summary": {
    "enabled": true,
-   "strokes": 372,
-   "near": 209,
-   "far": 163,
+   "strokes": 454,
+   "near": 238,
+   "far": 216,
    "out_of_play": 2282,
    "threshold": 0.1,
    "fps": 10.0,
@@ -252,21 +252,31 @@
    "feature_dim": 122,
    "audio_track": 3,
    "seconds": {
-    "jugadores_y_audio": 1.7,
-    "rasgos": 15.5,
-    "bola": 0.1,
-    "modelo": 0.4
+    "jugadores_y_audio": 1.9,
+    "rasgos": 21.7,
+    "bola": 1671.6,
+    "modelo": 0.2
+   },
+   "inputs": {
+    "near_seen": 0.963,
+    "far_seen": 0.001,
+    "play_min": 17.0
+   },
+   "ball": {
+    "min": 17.0,
+    "seen": 0.762,
+    "play_min": 17.0
    }
   },
-  "out_hash": "9e0a6580875ada726fa9",
+  "out_hash": "11c8366d7fa82f5d2581",
   "scheme": 2,
   "rewrote": {}
  },
  "views": {
-  "fingerprint": "683d1e558010dff4",
+  "fingerprint": "9896f5696833be1e",
   "version": "6",
-  "seconds": 135.4,
-  "finished": "2026-11-12 15:54:14",
+  "seconds": 223.3,
+  "finished": "2026-11-13 01:15:36",
   "summary": {
    "views": 494,
    "repeticion_principal": 38,
@@ -274,11 +284,11 @@
    "frontal": 6,
    "primer_plano": 408,
    "otra": 17,
-   "links": 946,
-   "linked_views": 407,
-   "slowmo_links": 17
+   "links": 1004,
+   "linked_views": 399,
+   "slowmo_links": 16
   },
-  "out_hash": "11a95f6097778f24c0e3",
+  "out_hash": "b04876c2615a5be727c1",
   "scheme": 2,
   "rewrote": {}
  },

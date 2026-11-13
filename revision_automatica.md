@@ -1,10 +1,10 @@
-# Revisión automática: FALLOS
+# Revisión automática: REGRESIÓN
 
-407 cumplidos · 28 no cumplidos · 97 sin golpes suficientes · 115 avisos (antes: 403 cumplidos, 30 no cumplidos)
+407 cumplidos · 34 no cumplidos · 89 sin golpes suficientes · 121 avisos (antes: 407 cumplidos, 28 no cumplidos)
 
-## Peticiones del usuario SIN TERMINAR: 137 de 263
+## Peticiones del usuario SIN TERMINAR: 139 de 265
 
-Registro `docs/peticiones_usuario.md`: 115 hechas · 116 a medias · 21 sin hacer · 3 no medibles desde la tele · 8 no aplican. Que las comprobaciones de abajo pasen **no** significa que estas estén hechas.
+Registro `docs/peticiones_usuario.md`: 115 hechas · 117 a medias · 22 sin hacer · 3 no medibles desde la tele · 8 no aplican. Que las comprobaciones de abajo pasen **no** significa que estas estén hechas.
 
 - **#176 [FALTA]** Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3) — falta: La ventana acaba 0,8 s tras el impacto: medible alargándola.
 - **#189 [FALTA]** «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4) — falta: No está en `learn.py`.
@@ -27,6 +27,7 @@ Registro `docs/peticiones_usuario.md`: 115 hechas · 116 a medias · 21 sin hace
 - **#255 [FALTA]** Plano del swing: raqueta al lado o detrás del cuerpo en el armado (Vídeos de entrenadores, 12-10, pendiente) — falta: Medida nueva desde la raqueta y los hombros en el armado (fiable solo de lado: vista lateral de entreno).
 - **#257 [FALTA]** Comparativa a fondo y catalogada con todo lo que existe: apps profesionales (Hawk-Eye/TennisViz, SwingVision, Sportsbox, Dartfish…), apps d… — falta: Parte del análisis de P0: catálogo `config/referencias.yaml` (tipo, fuente, qué mide, cómo lo enseña, gráficos, UX, precio, plataforma), evaluación de cada ref…
 - **#258 [FALTA]** Partidos y jugadores automáticos desde un nombre de fichero mínimo: normalizar los nombres, leer la ficha pública completa de las dos jugad… — falta: P0 (gestión y catálogo): fuentes abiertas (p. ej. Wikidata) con caché; el revés que falte se deduce del vídeo o se pregunta solo eso; renombrar es seguro porqu…
+- **#265 [FALTA]** Gestión de errores y tolerancia a fallos definida por niveles de criticidad, como en las aplicaciones profesionales: cada escenario y cada … — falta: Antes de los 6 partidos si el usuario lo aprueba (plan enseñado, CLAUDE.md: «antes de escribir mucho código, enseñar el plan y esperar»). Estado al 12-11: 323 …
 - **#2 [PARCIAL]** Ver informe y salidas en el móvil (11-10 18:21, 18:29, 18:33) — falta: 19-10: copia hecha; el paso directo al Pixel 8 sin probar en el teléfono.
 - **#4 [PARCIAL]** Responder de forma profesional a «¿qué hay que hacer para pegar como X?», con todas las posibilidades y como base para cualquiera (11-10 19… — falta: Valores de 1 a 10 golpes, todos «provisional». SuD, `copy_cue` y `COACH` no se ven (≥12).
 - **#5 [PARCIAL]** Taxonomía completa con todas las variantes (bola rápida/lenta, alta/baja, corta/profunda, carrera/parada/salto, apoyo, dirección, ataque/de… — falta: 0 de 2.992 combinaciones con ≥12. Niveles vacíos: parada 0, paralela 0, rodilla 0, en el aire 0. 19-10: faltaban de su mensaje del 10-10 18:05 «ángulos» (golpe…
@@ -143,13 +144,18 @@ Registro `docs/peticiones_usuario.md`: 115 hechas · 116 a medias · 21 sin hace
 - **#259 [PARCIAL]** Saber dónde se va el tiempo de cada etapa, medido desde cero, y demostrar con medidas si cada etapa puede ir más rápido sin perder calidad … — falta: Tabla de tiempos de la prueba desde cero (petición 207) + por cada etapa pesada: alternativas medidas (tiempo y calidad); el indicador «Tiempo» de la auditoría…
 - **#261 [PARCIAL]** Que no se quede abierta en la pantalla del PC una ventana vacía de PowerShell mientras trabaja (Chat, 11-11 y 12-11: «hay un terminal abier… — falta: Causa hallada por la petición 242: el ejecutor arrancaba a su sucesor con DETACHED_PROCESS (Windows Terminal abría una consola para el intérprete). Arreglado 1…
 - **#263 [PARCIAL]** Antes de los 6 partidos: el código de la base es el último y está subido; el análisis es desde cero, sin nada de análisis anteriores; todo … — falta: Se cumple al lanzar la tarea 11 desde cero con su aprobación.
+- **#264 [PARCIAL]** Que no vuelvan a pasar fallos de este tamaño sin que se vean (Chat, 12-11, tras R17, el detector sin la bola en todos los partidos reales: … — falta: Se cierra con las tres tareas hechas y su prueba, antes de proponer la tarea 11.
 
 
 ## No cumplidos
 
 - **Primera pantalla, anchura y nombres (diseño definitivo)**: vídeo de la lección en y=805–1159 de 900; al abrir 2 títulos, 609 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=1159 (más abajo que la primera pantalla, 900)
+- **Pruebas del código en este PC**: código 70f942e (2026-11-13T00:52:25): 1078 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_its_last_frame_without_decoding_to_the_end
 - **Lista de partidos: rival, torneo, ronda y fecha**: 6 partidos; sin torneo: 1 (zheng-qinwen-elena-rybakina); sin ronda: 1 (zheng-qinwen-elena-rybakina); sin fecha: 1 (zheng-qinwen-elena-rybakina)
 - **Aplicación: lo que consume abierta**: CPU media 0.03 % (máx 0.06 %; objetivo ≤ 5 %), memoria hasta 1469 MB (objetivo ≤ 800) en 8 procesos; 2026-11-12 01:26:37
+- **#13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe**: a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código 70f942e (2026-11-13T00:52:25): 1078 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over)
+- **#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML**: 4 comprobaciones: 1 falta, 2 aviso, 1 ok; la peor: «Pruebas del código en este PC» (código 70f942e (2026-11-13T00:52:25): 1078 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over)
+- **#51 El código de la prueba es el de los casos reales**: a medias según el registro (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código 70f942e (2026-11-13T00:52:25): 1078 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over)
 - **#160 la app que hiciste completa como se arranca, se puede usar ahora? (Chat, 19-10 08:11)**: 6 comprobaciones: 1 falta, 5 ok; la peor: «Aplicación: lo que consume abierta» (CPU media 0.03 % (máx 0.06 %; objetivo ≤ 5 %), memoria hasta 1469 MB (objetivo ≤ 800) en 8 procesos; 2026-11-12 01:26:37)
 - **#176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3)**: SIN HACER según el registro (#176, docs/peticiones_usuario.md)
 - **#189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4)**: SIN HACER según el registro (#189, docs/peticiones_usuario.md)
@@ -167,6 +173,7 @@ Registro `docs/peticiones_usuario.md`: 115 hechas · 116 a medias · 21 sin hace
 - **#225 La aplicación no se cuelga ni ralentiza el PC**: a medias según el registro (ver docs/peticiones_usuario.md); 4 comprobaciones: 1 falta, 3 ok; la peor: «Aplicación: lo que consume abierta» (CPU media 0.03 % (máx 0.06 %; objetivo ≤ 5 %), memoria hasta 1469 MB (objetivo ≤ 800) en 8 procesos; 2026-11-12 01:26:37)
 - **#226 Lista de partidos profesional: nombres normalizados, torneo, ronda, fecha, fotos; sin pruebas (24-10, 25-10)**: a medias según el registro (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 falta; la peor: «Lista de partidos: rival, torneo, ronda y fecha» (6 partidos; sin torneo: 1 (zheng-qinwen-elena-rybakina); sin ronda: 1 (zheng-qinwen-elena-rybakina); sin fecha: 1 (zheng)
 - **#240 Comparar la aplicación con las profesionales una vez estén los golpes**: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
+- **#241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código 70f942e (2026-11-13T00:52:25): 1078 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over)
 - **#242 Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femeninos, un análisis po**: a medias según el registro (ver docs/peticiones_usuario.md); 6 comprobaciones: 1 falta, 5 ok; la peor: «Aplicación: lo que consume abierta» (CPU media 0.03 % (máx 0.06 %; objetivo ≤ 5 %), memoria hasta 1469 MB (objetivo ≤ 800) en 8 procesos; 2026-11-12 01:26:37)
 - **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
@@ -175,10 +182,39 @@ Registro `docs/peticiones_usuario.md`: 115 hechas · 116 a medias · 21 sin hace
 - **#255 Plano del swing: raqueta al lado o detrás del cuerpo en el armado (Vídeos de entrenadores, 12-10, pendiente)**: SIN HACER según el registro (#255, docs/peticiones_usuario.md)
 - **#257 Comparativa a fondo y catalogada con todo lo que existe: apps profesionales (Hawk-Eye/TennisViz, SwingVision, **: SIN HACER según el registro (#257, docs/peticiones_usuario.md)
 - **#258 Partidos y jugadores automáticos desde un nombre de fichero mínimo: normalizar los nombres, leer la ficha públ**: SIN HACER según el registro (#258, docs/peticiones_usuario.md)
+- **#265 Gestión de errores y tolerancia a fallos definida por niveles de criticidad, como en las aplicaciones profesio**: SIN HACER según el registro (#265, docs/peticiones_usuario.md)
+
+## Empeora respecto a la ejecución anterior
+
+- **Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin**: pocos datos → aviso: 131 min para 35 min de vídeo ≈ 13.1 h para un partido de 3,5 h (objetivo ≤ 8.0 h; todas sus etapas pesadas calcularon)
+- **Pruebas del código en este PC**: ok → falta: código 70f942e (2026-11-13T00:52:25): 1078 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_its_last_frame_without_decoding_to_the_end
+- **Tiempo desde cero**: pocos datos → aviso: 131 min para 35 min de vídeo (3.73 veces) ≈ 13.1 h para un partido de 3,5 h (objetivo ≤ 8.0 h); smoke_tennis-yusipopen-final-sobolenko-rybakin, 2026-11-13 01:22:21; las que más tardan: players 48 min,
+- **Peticiones por GitHub Actions: espera hasta empezar**: ok → aviso: petición del 12-11 18:54, empezó a los 344.7 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)
+- **#13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe**: aviso → falta: a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código 70f942e (2026-11-13T00:52:25): 1078 bien, 1 fallan, 0 err
+- **#14 Rendimiento: un partido en horas, no días**: pocos datos → aviso: a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 2 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (131 min para 35 min de vídeo ≈ 13.1 h p
+- **#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML**: pocos datos → falta: 4 comprobaciones: 1 falta, 2 aviso, 1 ok; la peor: «Pruebas del código en este PC» (código 70f942e (2026-11-13T00:52:25): 1078 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_
+- **#29 Fase 0: entorno y fps reales, con YOLO**: pocos datos → aviso: 3 comprobaciones: 2 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (131 min para 35 min de vídeo ≈ 13.1 h para un partido de 3,5 h (objetivo ≤ 8.0 h; todas sus etapas p
+- **#51 El código de la prueba es el de los casos reales**: aviso → falta: a medias según el registro (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código 70f942e (2026-11-13T00:52:25): 1078 bien, 1 fallan, 0 errores; 
+- **#75 Velocidad: «10 golpes en 5 horas es absurdo»**: pocos datos → aviso: a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 2 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (131 min para 35 min de vídeo ≈ 13.1 h p
+- **#125 Velocidad, rendimiento y algoritmia antes del tramo largo nocturno**: pocos datos → aviso: a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 2 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (131 min para 35 min de vídeo ≈ 13.1 h p
+- **#230 Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo**: pocos datos → aviso: a medias según el registro (ver docs/peticiones_usuario.md); 5 comprobaciones: 2 aviso, 3 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (131 min para 35 min de vídeo ≈ 13.1 h p
+- **#231 Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta**: pocos datos → aviso: 5 comprobaciones: 2 aviso, 3 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (131 min para 35 min de vídeo ≈ 13.1 h para un partido de 3,5 h (objetivo ≤ 8.0 h; todas sus etapas p
+- **#241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código**: ok → falta: 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código 70f942e (2026-11-13T00:52:25): 1078 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over)
 
 ## Mejora
 
-- Registros con fecha y duración: falta → ok
-- Peticiones por GitHub Actions: espera hasta empezar: aviso → ok
-- #66 Fechas y duración en los registros: falta → ok
-- Comprobaciones que saben fallar: aviso → ok
+- Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin: aviso → ok
+- #1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final: aviso → pocos datos
+- #155 es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 1: aviso → ok
+
+## Comprobaciones nuevas
+
+- La bola del partido para el detector: smoke_tennis-yusipopen-final-sobolenko-rybakin: ok (bola seguida en 10.8 de 10.8 min de juego, vista en el 57 %)
+- Entradas de los modelos: smoke_tennis-yusipopen-final-sobolenko-rybakin: aviso (FALTA: cortes sin TransNetV2 (None); pista solo en el 0 % de la cámara principal; marcador: 317 lecturas, quién saca en el 0 %; jugadora lejana vista solo en el)
+- #264 Que no vuelvan a pasar fallos de este tamaño sin que se vean (Chat, 12-11, tras R17, el detector sin la bola e: aviso (A MEDIAS según el registro (#264); sin comprobación automática asignada)
+- #265 Gestión de errores y tolerancia a fallos definida por niveles de criticidad, como en las aplicaciones profesio: falta (SIN HACER según el registro (#265, docs/peticiones_usuario.md))
+
+## Fiabilidad de las medidas
+
+- ahora: 80 medidas: 4 dudosa, 56 fiable, 14 no comprobable, 3 sesgo, 3 sin juzgar. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga
+- antes: 80 medidas: 3 dudosa, 56 fiable, 14 no comprobable, 1 ruido, 3 sesgo, 3 sin juzgar. No se dan como valor suyo (ruido): impact.face_tilt ±5.85. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga
