@@ -53,12 +53,12 @@ la auditoría las marcará «sin comprobación automática asignada».
 
 | Estado | Nº |
 |---|---|
-| HECHO | 117 |
-| PARCIAL | 120 |
+| HECHO | 118 |
+| PARCIAL | 121 |
 | FALTA | 21 |
 | NO MEDIBLE | 3 |
 | NO APLICA | 8 |
-| **Total** | **269** |
+| **Total** | **271** |
 
 **27-10:** filas 220-245 nuevas: todo lo pedido en el chat del 19-10 al 27-10 (releídos los mensajes) y lo que
 salió en la prueba de valor; ninguna fila borrada.
@@ -356,6 +356,8 @@ lateral (entreno)» · ≥12 = solo se muestra con 12 golpes o más (`model.MIN_
 | 266 | Estado actual y hacer en paralelo todo lo que se pueda para acabar pronto, antes del análisis de los 6 partidos (Chat, 13-11: «¿cuál es el estado actual? ¿se puede hacer todo en paralelo y acabar pronto antes del análisis de los 6 partidos?») | PARCIAL | tabla de tareas de `docs/estado_proyecto.md` (orden y qué va en paralelo: nube = código, PC = validación por la cola) | — | — | Se cierra al enviar el plan de los 6 partidos con todo validado (tarea 11). |
 | 267 | Explicar cómo se ha llegado a una situación tan mala en la aplicación (Chat, 13-11) | HECHO | respuesta en el chat y escrita en `docs/estado_proyecto.md`, «Por qué se llegó aquí (13-11)» | — | — | Las causas tienen su remedio en #264 y #265. |
 | 268 | Analizar qué haría falta para que toda la aplicación corra en la nube y el usuario solo tenga que subir los partidos: de arriba abajo, con el estado del arte actual, en nube pública (gratuita) y de pago, aprovechando lo que ya hay y con los mismos requisitos; para saber si se puede mejorar todo. Solo el análisis, sin implementar nada (Chat, 13-11) | PARCIAL | `docs/analisis_nube.md` (13-11, escrito en paralelo mientras el PC valida): se puede; recomienda no mover los partidos antes de cerrar la Base y, si el usuario lo aprueba, medir ya una GPU L4 (N0) y validar F3Set en la nube (N4); 4 preguntas para el usuario. **Respuesta del usuario (13-11):** la meta es pasar todo a la nube; los vídeos se suben y se borran al terminar (o se vuelven a subir); el PC está al límite y no lo puede usar; por ahora solo análisis, sin cambiar nada; pide una tabla de costes al mes con las alternativas gratuitas y de pago → `docs/analisis_nube.md` §11 | — | — | Se cierra con el documento entregado y la decisión del usuario (reabre #145, «nada en la nube ni de pago», 17-10). Faltan su tope de gasto y si el PC se retira. Implementarlo cambiaría el orden del plan (requisito 10: móvil y nube al final), así que solo se hace si el usuario lo decide. |
+| 270 | Qué tipo de cosas quedan de la Base antes de los 6 partidos (fallos graves, medios, leves, medidas incorrectas, otros); si el modelo de errores ya está hecho y funciona; si conviene cerrar la Base con un partido nuevo, con los 6 conocidos o con uno de ellos; si el resto de paquetes necesita tanto cálculo del PC o se puede hacer en la nube de ahora (Chat, 13-11) | HECHO | respuesta en el chat; `docs/estado_proyecto.md` («Qué queda de la Base, por tipo», 13-11) | — | — | Respuesta con lo medido: auditoría de Osaka (120) y consumo del PC (`recursos/`). |
+| 271 | ¿Cerrar todo con la forma de trabajar actual y después pasar a la nube, o pasar a la nube cuanto antes? (Chat, 13-11) | PARCIAL | recomendación en el chat y en `docs/analisis_nube.md` §12 | — | — | Decisión del usuario. Recomendación: cerrar la Base en el PC (es la referencia con la que se comprueba la nube) y pasar a la nube justo después, antes de P0 y de las medidas; la medida de la GPU (N0), en paralelo si la aprueba. |
 | 269 | Estado y progreso: cuánto falta para lanzar los 6 partidos, qué hay en marcha y pendiente en la nube y en el PC (en serie o en paralelo), qué queda para cerrar la Base, por qué seguimos así y qué falló por la noche (Chat, 13-11) | HECHO | respuesta en el chat; `docs/estado_proyecto.md`, «Resumen de la noche (12-11 → 13-11)» y la tabla de tareas | — | — | Como #266, el estado vive en la tabla de tareas. |
 
 ## Lo más grave que falta (por impacto en «copiar su derecha»)

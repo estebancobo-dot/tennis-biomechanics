@@ -72,6 +72,27 @@ los 6 partidos, la aprobación del usuario (#262).
   entrelazado, el más lento) → **~26-39 h, provisional** hasta la previsión. Si algo de R26 no cumple, otra vuelta de
   validación de 5-12 h antes.
 
+**Qué queda de la Base, por tipo (13-11 09:15, #270)**
+- **Grave (datos equivocados), en diagnóstico:**
+  - R29: en Osaka, 8 de 140 tramos donde la ropa y los cambios de lado no coinciden. Si el marcador acierta, sus golpes están asignados a la otra jugadora.
+  - «Misma ropa dentro de un juego» al 93 % apunta a que es la ropa la que se equivoca. 286 lo dirá.
+- **Validación pendiente (no son fallos conocidos):** R26 con F3Set v17 (121, en curso), Pegula (122) y la auditoría final (123).
+- **Lo arregla el propio análisis desde cero** (son resultados calculados con código viejo):
+  - la pose en el contacto en 4 partidos (58-79 %);
+  - los saques de 3 partidos en aviso;
+  - los vídeos de revés y saque;
+  - el «Tiempo desde cero».
+- **Leve:**
+  - 7 tomas de otra cámara sin recorte en Osaka (C2, `toma.sin_recorte`);
+  - la memoria de la aplicación abierta (1,45 GB; P0);
+  - Zheng sin torneo ni fecha (#258, P0);
+  - la espera hasta empezar de algún trabajo (aviso de B8).
+- **Medidas incorrectas:** ninguna conocida en la Base. Las medidas son M1-M7 (después); ninguna medida del cuerpo está validada con datos anotados (#12, nivel 4 = 0). Lo dice el informe.
+- **Consumo medido del PC (`recursos/`, 13-11):**
+  - en la pasada fina de Osaka, procesador al 76-82 % y memoria a 17,6-18,1 de 19,8 GB durante más de una hora; iGPU al 22-36 %;
+  - en F3Set (09:10), procesador al 90-95 % y memoria a 18 GB.
+  - El PC queda inutilizable durante los análisis; la memoria está al 91 %.
+
 **Índice de documentos:** `docs/README.md` (cuál manda para cada cosa). **Guía de Ivanovic** (#143, #189-#198) y **matriz del
 usuario de 15 puntos** (#84-#98): sus puntos son peticiones de los paquetes M1-M7 y P1, que van después de la Base.
 

@@ -563,6 +563,35 @@ Fuentes añadidas el 13-11-2026:
 
 ---
 
+## 12. ¿Cuándo pasar a la nube? (13-11, #271; la decisión es del usuario)
+
+**Recomendación: cerrar la Base en el PC tal como está y pasar a la nube justo después, antes de P0 y de las medidas (M1-M7).**
+
+Motivos:
+1. **A la Base le falta poco:** R26 y R29 (hoy) y el análisis de los 6 partidos (26-39 h).
+   - Portar ahora retrasaría ese cierre: N0 y N1 piden medir, montar y volver a validar F3Set y los partidos en CUDA.
+   - Además mezclaría dos cambios a la vez (algoritmo y máquina), que es justo la causa 5 de #267.
+2. **El análisis de los 6 en el PC es la referencia con la que se comprueba la nube** (N1: «la auditoría igual que en el PC»). Sin él, una diferencia en la nube no se sabría si es un fallo o una mejora.
+3. **Lo que viene después de la Base es donde más pesa el PC y donde más gana la nube:**
+   - P3 (validar cada medida con clips anotados);
+   - M2 (ventanas más largas para los pasos tras el golpe);
+   - M4, M6 (modelos o detectores nuevos, cada uno con su F3Set de ~5 h);
+   - P0: la aplicación nueva nacería como web, en vez de rehacer una ventana de Windows que después sobraría.
+4. **Mientras tanto, sin tocar el PC** y solo si el usuario lo aprueba (unos pocos dólares y una cuenta suya): **N0**, medir en una L4 la velocidad y que salgan los mismos golpes, con datos públicos. Así la migración se decide con números.
+
+Lo que no conviene:
+- Pasar a la nube **antes** de los 6 partidos: retrasa la Base y se pierde la referencia del PC.
+- Hacer P0 y las medidas **con el PC**: lo pesado de esos paquetes (validaciones de ~5 h cada una) es lo que hoy deja el PC inutilizable. El 13-11, en la pasada fina, iba al 76-82 % de procesador y 18 de 19,8 GB de memoria.
+
+**La nube de ahora (la de Claude)** no sirve para el cálculo pesado:
+- 4 procesadores, 15 GB de memoria y sin GPU;
+- se borra al terminar la sesión;
+- no tiene los vídeos ni los datos de los partidos.
+
+Vale para el código, las pruebas, los documentos y lo ligero.
+
+---
+
 ## Fuentes (vistas el 13-11-2026)
 - Precios de GPU sin servidor:
   - Modal: [morphllm](https://www.morphllm.com/modal-pricing), [beam.cloud](https://www.beam.cloud/blog/modal-pricing-explained); oficial: [modal.com/pricing](https://modal.com/pricing).
