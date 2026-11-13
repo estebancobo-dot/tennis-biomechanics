@@ -1242,3 +1242,12 @@ trabajo: 107
 # validacion final de todo junto (R26, codigo de #265) tiene que rehacer sus ventanas de todos modos (cambia
 # io/video.py, parte de la clave de las caches). Ahorra ~5 h; la auditoria 108 de Osaka y los diagnosticos de F3Set
 # (268-270) pasan delante
+---
+id: 272
+accion: medir
+script: diag_entradas
+argumentos: --tag v16
+# 272 (13-11): Osaka con la bola (265) tiene a la jugadora lejana en el 0 % de los rasgos del detector (la cercana en
+# el 96 %). Si F3Set (donde se entreno y se valida) si la tenia, es un desajuste como el de la bola (R17). Solo lee:
+# los 6 partidos y las 4 compilaciones de F3Set (salidas_v16), por que no se toma a la lejana (sin pista, menos de
+# dos personas, ninguna en la mitad lejana)
