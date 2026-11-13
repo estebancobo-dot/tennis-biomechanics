@@ -39,11 +39,14 @@ image = (
         "uv pip install --system -r /build/requirements.txt onnx",
         "uv pip uninstall --system onnxruntime",
         f"uv pip install --system 'onnxruntime-gpu[cuda,cudnn]=={ORT_GPU}'",
+        # 13-11: our folders on the path through a .pth file, never PYTHONPATH: setting it replaced Modal's own
+        # («No module named 'grpclib'» in /pkg/modal at start-up). sitecustomize is found there too.
+        "python -c \"import site, pathlib; pathlib.Path(site.getsitepackages()[0], 'tennisbio_nube.pth')"
+        ".write_text('/repo/src\\n/repo/cloud\\n/repo/cloud/arranque\\n')\"",
     )
     # 13-11: no HOME on the volume (it does not exist yet while Modal starts the container: «Failed (runtime
     # initialization)» in a loop); _prepare sets it for the analysis's own processes
-    .env({"TENNISBIO_DML_IS_CUDA": "1", "PYTHONPATH": "/repo/src:/repo/cloud:/repo/cloud/arranque",
-          "PYTHONUNBUFFERED": "1", "PYTHONUTF8": "1"})
+    .env({"TENNISBIO_DML_IS_CUDA": "1", "PYTHONUNBUFFERED": "1", "PYTHONUTF8": "1"})
     .add_local_dir(REPO, "/repo", ignore=IGNORE)
 )
 

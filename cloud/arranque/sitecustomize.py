@@ -1,4 +1,4 @@
-"""N0 (13-11, #273): imported by Python at start-up in the cloud's container (cloud/arranque is on PYTHONPATH there), also in
+"""N0 (13-11, #273): imported by Python at start-up in the cloud's container (cloud/arranque is on the path there, by a .pth file), also in
 the fine pass's worker processes (spawn). With TENNISBIO_DML_IS_CUDA=1 the device the configuration calls «dml» puts its
 ONNX sessions on CUDA: every code path stays the PC's (cloud/nube.py). Without the variable it does nothing.
 
