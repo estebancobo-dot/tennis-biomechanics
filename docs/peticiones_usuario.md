@@ -54,11 +54,11 @@ la auditoría las marcará «sin comprobación automática asignada».
 | Estado | Nº |
 |---|---|
 | HECHO | 119 |
-| PARCIAL | 121 |
+| PARCIAL | 122 |
 | FALTA | 21 |
 | NO MEDIBLE | 3 |
 | NO APLICA | 8 |
-| **Total** | **272** |
+| **Total** | **273** |
 
 **27-10:** filas 220-245 nuevas: todo lo pedido en el chat del 19-10 al 27-10 (releídos los mensajes) y lo que
 salió en la prueba de valor; ninguna fila borrada.
@@ -359,6 +359,7 @@ lateral (entreno)» · ≥12 = solo se muestra con 12 golpes o más (`model.MIN_
 | 270 | Qué tipo de cosas quedan de la Base antes de los 6 partidos (fallos graves, medios, leves, medidas incorrectas, otros); si el modelo de errores ya está hecho y funciona; si conviene cerrar la Base con un partido nuevo, con los 6 conocidos o con uno de ellos; si el resto de paquetes necesita tanto cálculo del PC o se puede hacer en la nube de ahora (Chat, 13-11) | HECHO | respuesta en el chat; `docs/estado_proyecto.md` («Qué queda de la Base, por tipo», 13-11) | — | — | Respuesta con lo medido: auditoría de Osaka (120) y consumo del PC (`recursos/`). |
 | 271 | ¿Cerrar todo con la forma de trabajar actual y después pasar a la nube, o pasar a la nube cuanto antes? (Chat, 13-11) | HECHO | recomendación en el chat y en `docs/analisis_nube.md` §12 | — | — | Decisión del usuario. Recomendación: cerrar la Base en el PC (es la referencia con la que se comprueba la nube) y pasar a la nube justo después, antes de P0 y de las medidas; la medida de la GPU (N0), en paralelo si la aprueba. **Decisión del usuario (13-11): a la nube después de los 6 partidos (cierre de la Base), antes de P0; paquete N.** |
 | 272 | Cómo se trabajaría en la nube de pago y cuánto costaría; que sea autónomo (Claude lo hace todo con conectores, solo algún paso puntual obligatorio a mano); **no más de 10 € al mes, mejor 0** (Chat, 13-11). **Decisión (13-11): tope de 0 € al mes** | PARCIAL | `docs/analisis_nube.md` §13: Modal (crédito mensual de 30 $ y tope de la cuenta) + Cloudflare R2/Access + GitHub Actions como puente (Claude lanza y lee por GitHub); pasos manuales de una vez; 0 € con el tope en 30 $, ~10 € como máximo con el tope en ~41 $ | — | — | **Tope del usuario: 0 € al mes** (13-11; antes «como mucho 10 €»): el tope de la cuenta de Modal en su crédito mensual (30 $); si se agota, el trabajo espera al mes siguiente. Se implementa en el paquete N, después de los 6 partidos. Decisión de cuándo pasar: #271. |
+| 273 | Cómo avanzar con la prueba de concepto de la nube en paralelo; si los proveedores propuestos son los únicos con garantías y si se han revisado todas las opciones a fecha de hoy (Chat, 13-11) | PARCIAL | `docs/analisis_nube.md` §14: segunda revisión (18 proveedores con crédito que se renueva, tope que corta, automatización y datos; Modal, el único que cumple con 0 €; Kaggle como complemento para F3Set) y plan de la prueba N0 en paralelo sin tocar el PC | — | — | El plan de N0 espera el visto bueno del usuario y sus pasos de una vez (cuenta de Modal con límite 0 $, clave en GitHub y en el PC para subir F3Set una vez). |
 | 269 | Estado y progreso: cuánto falta para lanzar los 6 partidos, qué hay en marcha y pendiente en la nube y en el PC (en serie o en paralelo), qué queda para cerrar la Base, por qué seguimos así y qué falló por la noche (Chat, 13-11) | HECHO | respuesta en el chat; `docs/estado_proyecto.md`, «Resumen de la noche (12-11 → 13-11)» y la tabla de tareas | — | — | Como #266, el estado vive en la tabla de tareas. |
 
 ## Lo más grave que falta (por impacto en «copiar su derecha»)

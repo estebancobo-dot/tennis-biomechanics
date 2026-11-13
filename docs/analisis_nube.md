@@ -658,6 +658,76 @@ Fuentes añadidas el 13-11-2026:
 
 ---
 
+## 14. Segunda revisión de proveedores (13-11, #273) y la prueba de concepto en paralelo
+
+La primera pasada (§5) **no fue completa**: casi todo salía de agregadores y quedaban proveedores sin mirar. Esta segunda
+pasada parte de las condiciones del usuario (0 € al mes, todo automático, algún paso manual de una vez) y mira cuatro
+cosas:
+- **crédito gratis que se renueva** (no uno de una sola vez);
+- **tope que corta de verdad** (no solo un aviso);
+- **que se pueda automatizar del todo**;
+- **garantías de los datos.**
+
+Los proveedores grandes no dan ningún acuerdo de servicio (SLA) en sus planes gratuitos. Precios y condiciones vistos el
+13-11-2026; cambian.
+
+| Proveedor | Gratis que se renueva | Tope que corta | Automático | Datos | Veredicto para 0 € |
+|---|---|---|---|---|---|
+| **Modal** | **30 $/mes** (página oficial) | **Sí**: el «spend limit» limita el gasto neto tras el crédito; al llegar, Modal para lo que costaría dinero (documentación oficial) | Sí (CLI, API, GitHub Actions) | SOC 2 Type II; DPA con cláusulas tipo de la UE (RGPD). Región solo UE: no confirmada, y fijar región cuesta más | **El único que cumple las tres condiciones** |
+| Beam | 30 $/mes según unas fuentes; 3 $/mes o 30 $ al registrarse según otras | Por verificar | Sí | Por verificar | Posible reserva; verificar en su página |
+| Kaggle | ~15-30 h/semana de GPU (T4 o P100; cuota que flota) | No hace falta: es gratis | Sí: sesiones de 12 h sin pantalla, por su API | Sus condiciones; solo datos públicos | **Complemento para F3Set**, nunca para las retransmisiones |
+| Cerebrium | 10-30 $ una sola vez (sin confirmar) | — | Sí | — | No (una vez) |
+| Lightning AI | 30 créditos una sola vez (desde sept. 2026) | — | Parcial | — | No |
+| Koyeb | Gratis cerrado a cuentas nuevas (tras su compra por Mistral) | — | — | — | No |
+| Northflank | GPU con prepago de 50 $ | — | Sí | — | No |
+| RunPod | Sin crédito gratis | Saldo prepagado (corta al acabarse) | Sí | — | No: cuesta dinero |
+| Google Cloud | 300 $ una vez, 90 días; la cuenta de prueba no tiene cuota de GPU | **No**: los presupuestos solo avisan, y los topes nuevos (nov. 2026) no cubren cómputo ni almacenamiento | Sí | Región UE, contratos | No para 0 € |
+| AWS | 100-200 $ una vez, 6 meses; el plan gratuito no cobra hasta pasar a pago | Sí mientras dura el plan gratuito | Sí | Región UE, contratos | No (temporal; la GPU pide cuota) |
+| Azure | No verificado hoy | — | — | — | Sin datos |
+| Colab gratis | Interactivo (se para al cerrar la pestaña) | — | **No** | — | No |
+| SageMaker Studio Lab | **Cerrado a usuarios nuevos** | — | — | — | No |
+| Paperspace gratis | Prácticamente desaparecido | — | — | — | No |
+| Scaleway (UE) | No | — | Sí | UE (Francia y Polonia) | De pago: L4 desde 0,79 €/h, por horas enteras (oficial) |
+| OVHcloud AI Training (UE) | No | — | Sí | UE | De pago: L4 0,91 $/h, por minutos (oficial) |
+| Nebius (UE) | No | — | Sí | UE, RGPD | De pago (precios de terceros) |
+| Vast.ai, SaladCloud | No | Saldo prepagado | Parcial | Máquinas de particulares | No para retransmisiones |
+
+**Conclusión:**
+- Con 0 € al mes, automático y con un tope que corta, la opción es **Modal**, con **Kaggle** como complemento gratis para las validaciones de F3Set.
+- Para guardar y servir los resultados, **Cloudflare R2 y Access** (gratis con tarjeta registrada), o el propio Modal.
+- Los proveedores europeos dan más garantías de datos, pero cuestan dinero.
+
+### 14.1 La prueba de concepto (N0), en paralelo y sin tocar el PC
+- **Qué:** la misma validación de F3Set v17 que hoy hace el PC (121), en una GPU L4 de Modal, con el mismo código.
+- **Qué se mide:**
+  - golpe a golpe frente al resultado del PC: los mismos golpes, la misma precisión y el mismo error de instante;
+  - el tiempo de cada etapa, es decir, k;
+  - el coste.
+- **Cómo:**
+  1. **Usuario, una vez (~15 min):**
+     - cuenta de Modal con la de GitHub;
+     - límite de gasto 0 $;
+     - una clave en dos secretos de GitHub;
+     - la misma clave una vez en el PC con un script de doble clic. Hace falta porque **YouTube no deja descargar desde centros de datos** (`scripts/validate_recall.py`) y las compilaciones de F3Set solo existen en el PC: se suben una vez (unos minutos, por la cola única).
+  2. **Claude (~1 día de código):**
+     - una carpeta `cloud/` fuera del paquete, que **no cambia nada de lo que corre en el PC**: ni huellas, ni versiones, ni dependencias de Windows. El proveedor CUDA se registra en tiempo de ejecución en `pose.estimator.ORT_PROVIDERS`, sin editar el fichero;
+     - un flujo de GitHub Actions que lanza la validación y deja el informe en una rama `nube-logs`;
+     - un script que compara la nube con el PC.
+  3. **Ejecución:** con el crédito mensual (0 €).
+- **Cuándo:** el código, ya, en paralelo; la ejecución, cuando estén la cuenta y la subida de F3Set. La subida va por la cola del PC detrás de la auditoría final (123) y no retrasa los 6 partidos.
+- **Qué decide:** si la nube da lo mismo que el PC y con qué k. Con eso, N1 (los partidos en la nube) justo después de los 6.
+
+Fuentes de esta revisión (13-11-2026):
+- Modal: [precios oficiales](https://modal.com/pricing), [topes de gasto (oficial)](https://modal.com/docs/guide/budgets), [seguridad (oficial)](https://modal.com/docs/guide/security), [DPA](https://modal.com/legal/dpa), [residencia de datos](https://modal.com/docs/guide/data-residency.md), [SOC 2 Type II](https://modal.com/blog/soc2type2).
+- Comparativas: [gpuperhour](https://gpuperhour.com/blog/free-cloud-gpus-and-credits), [spheron](https://www.spheron.network/blog/free-gpu-cloud-credits-2026/), [dev.to: 9 proveedores](https://dev.to/heckno/i-tested-9-serverless-gpu-providers-for-ai-inference-in-2026-heres-what-id-actually-use-4cf4), [awesome-free-compute](https://amitpandeytiktok.github.io/awesome-free-compute-2026/compute.html).
+- Beam: [precios](https://beam.cloud/pricing), [getdeploying](https://getdeploying.com/beam).
+- Otros proveedores sin servidor: [Cerebrium](https://cerebrium.ai/pricing), [Koyeb](https://www.srvrlss.io/provider/koyeb/), [Northflank](https://www.stork.ai/en/northflank).
+- AWS: [AWS Free Tier: 200 $ y plan gratuito](https://aws.amazon.com/about-aws/whats-new/2025/07/aws-free-tier-credits-month-free-plan/), [AWS Free Tier FAQ](https://aws.amazon.com/free/free-tier-faqs/).
+- Google Cloud: [prueba sin cuota de GPU](https://discuss.google.dev/t/300-free-trial-is-useless-without-gpu-quota-my-trial-period-is-wasting-away/290091), [topes nuevos de Google Cloud (InfoQ)](https://infoq.com/news/2026/11/google-cloud-spend-caps), [presupuestos y topes (oficial)](https://docs.cloud.google.com/billing/docs/how-to/budgets-spend-caps).
+- Proveedores europeos de pago: [Scaleway GPU (oficial)](https://www.scaleway.com/en/choose-the-right-gpu/), [OVHcloud AI Training (oficial)](https://support.us.ovhcloud.com/hc/en-us/articles/35407103762323-AI-Training-Billing-and-lifecycle), [Nebius](https://gpuperhour.com/providers/nebius).
+
+---
+
 ## Fuentes (vistas el 13-11-2026)
 - Precios de GPU sin servidor:
   - Modal: [morphllm](https://www.morphllm.com/modal-pricing), [beam.cloud](https://www.beam.cloud/blog/modal-pricing-explained); oficial: [modal.com/pricing](https://modal.com/pricing).
