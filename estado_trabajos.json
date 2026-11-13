@@ -1,10 +1,10 @@
 {
- "at": "2026-11-13 18:42:13",
- "firma": "607451edc9b9",
+ "at": "2026-11-13 18:42:26",
+ "firma": "fb40aef94ba1",
  "ejecutor": {
   "vivo": true,
   "pid": 11132,
-  "at": 1794591716.0697148
+  "at": 1794591738.0794127
  },
  "pausa": false,
  "en_curso": [],
@@ -18,7 +18,26 @@
   "quedan_s": 0,
   "hora": "2026-11-13 18:25:58"
  },
- "pendientes": [],
+ "pendientes": [
+  {
+   "id": 126,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script diag_identity --match osaka pegula zheng gauff sobolenko --conflictos --n 24",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-13 18:42:24",
+   "started": null,
+   "finished": null,
+   "args": "[\"script\", \"diag_identity\", \"--match\", \"osaka\", \"pegula\", \"zheng\", \"gauff\", \"sobolenko\", \"--conflictos\", \"--n\", \"24\"]",
+   "source": "claude 286",
+   "log": "",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "recientes": [
   {
    "id": 125,
@@ -293,6 +312,13 @@
  ],
  "eventos": [
   {
+   "id": 691,
+   "job": 126,
+   "at": "2026-11-13 18:42:24",
+   "kind": "enviado",
+   "text": "tennisbio script diag_identity --match osaka pegula zheng gauff sobolenko --conflictos --n 24 (claude 286)"
+  },
+  {
    "id": 690,
    "job": 125,
    "at": "2026-11-13 18:42:08",
@@ -494,13 +520,6 @@
    "at": "2026-11-13 08:21:34",
    "kind": "hecho",
    "text": "código 0"
-  },
-  {
-   "id": 661,
-   "job": 120,
-   "at": "2026-11-13 08:21:32",
-   "kind": "paso",
-   "text": "6/6 Modelo de calidad"
   }
  ]
 }
