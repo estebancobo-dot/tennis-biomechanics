@@ -1,13 +1,32 @@
 {
- "at": "2026-11-13 18:42:26",
- "firma": "fb40aef94ba1",
+ "at": "2026-11-13 18:42:34",
+ "firma": "0c6e24d46f65",
  "ejecutor": {
   "vivo": true,
   "pid": 11132,
-  "at": 1794591738.0794127
+  "at": 1794591754.0954514
  },
  "pausa": false,
- "en_curso": [],
+ "en_curso": [
+  {
+   "id": 126,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script diag_identity --match osaka pegula zheng gauff sobolenko --conflictos --n 24",
+   "state": "en curso",
+   "message": "",
+   "created": "2026-11-13 18:42:24",
+   "started": "2026-11-13 18:42:28",
+   "finished": null,
+   "args": "[\"script\", \"diag_identity\", \"--match\", \"osaka\", \"pegula\", \"zheng\", \"gauff\", \"sobolenko\", \"--conflictos\", \"--n\", \"24\"]",
+   "source": "claude 286",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_126.log",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "fine_doubtful",
@@ -18,26 +37,7 @@
   "quedan_s": 0,
   "hora": "2026-11-13 18:25:58"
  },
- "pendientes": [
-  {
-   "id": 126,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script diag_identity --match osaka pegula zheng gauff sobolenko --conflictos --n 24",
-   "state": "pendiente",
-   "message": "",
-   "created": "2026-11-13 18:42:24",
-   "started": null,
-   "finished": null,
-   "args": "[\"script\", \"diag_identity\", \"--match\", \"osaka\", \"pegula\", \"zheng\", \"gauff\", \"sobolenko\", \"--conflictos\", \"--n\", \"24\"]",
-   "source": "claude 286",
-   "log": "",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "pendientes": [],
  "recientes": [
   {
    "id": 125,
@@ -312,6 +312,13 @@
  ],
  "eventos": [
   {
+   "id": 692,
+   "job": 126,
+   "at": "2026-11-13 18:42:28",
+   "kind": "empieza",
+   "text": "script diag_identity --match osaka pegula zheng gauff sobolenko --conflictos --n 24"
+  },
+  {
    "id": 691,
    "job": 126,
    "at": "2026-11-13 18:42:24",
@@ -513,13 +520,6 @@
    "at": "2026-11-13 08:21:34",
    "kind": "empieza",
    "text": "script validate_recall --spotter --tag v17 --from v16"
-  },
-  {
-   "id": 662,
-   "job": 120,
-   "at": "2026-11-13 08:21:34",
-   "kind": "hecho",
-   "text": "código 0"
   }
  ]
 }
