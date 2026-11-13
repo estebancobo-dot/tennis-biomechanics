@@ -1,13 +1,32 @@
 {
- "at": "2026-11-13 18:43:00",
- "firma": "94ba4cfcf6ca",
+ "at": "2026-11-13 18:50:11",
+ "firma": "24d4715df897",
  "ejecutor": {
   "vivo": true,
   "pid": 11132,
-  "at": 1794591778.105864
+  "at": 1794592210.5066347
  },
  "pausa": false,
- "en_curso": [],
+ "en_curso": [
+  {
+   "id": 127,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script validate_recall --spotter --tag v18 --from v17",
+   "state": "en curso",
+   "message": "",
+   "created": "2026-11-13 18:42:58",
+   "started": "2026-11-13 18:43:08",
+   "finished": null,
+   "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"v18\", \"--from\", \"v17\"]",
+   "source": "claude 288",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_127.log",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "fine_doubtful",
@@ -18,26 +37,7 @@
   "quedan_s": 0,
   "hora": "2026-11-13 18:25:58"
  },
- "pendientes": [
-  {
-   "id": 127,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script validate_recall --spotter --tag v18 --from v17",
-   "state": "pendiente",
-   "message": "",
-   "created": "2026-11-13 18:42:58",
-   "started": null,
-   "finished": null,
-   "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"v18\", \"--from\", \"v17\"]",
-   "source": "claude 288",
-   "log": "",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "pendientes": [],
  "recientes": [
   {
    "id": 126,
@@ -312,6 +312,13 @@
  ],
  "eventos": [
   {
+   "id": 695,
+   "job": 127,
+   "at": "2026-11-13 18:43:08",
+   "kind": "empieza",
+   "text": "script validate_recall --spotter --tag v18 --from v17"
+  },
+  {
    "id": 694,
    "job": 127,
    "at": "2026-11-13 18:42:58",
@@ -513,13 +520,6 @@
    "at": "2026-11-13 18:26:00",
    "kind": "hecho",
    "text": "código 0"
-  },
-  {
-   "id": 665,
-   "job": 122,
-   "at": "2026-11-13 13:23:43",
-   "kind": "empieza",
-   "text": "run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final"
   }
  ]
 }
