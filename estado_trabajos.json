@@ -1,10 +1,10 @@
 {
- "at": "2026-11-13 06:10:24",
+ "at": "2026-11-13 06:10:29",
  "firma": "30e9e75647f1",
  "ejecutor": {
   "vivo": true,
-  "pid": 17768,
-  "at": 1794546619.003575
+  "pid": 3148,
+  "at": 1794546629.79655
  },
  "pausa": true,
  "en_curso": [],
@@ -293,6 +293,34 @@
  ],
  "eventos": [
   {
+   "id": 640,
+   "job": null,
+   "at": "2026-11-13 06:10:29",
+   "kind": "ejecutor",
+   "text": "arranca (pid 3148)"
+  },
+  {
+   "id": 639,
+   "job": null,
+   "at": "2026-11-13 06:10:29",
+   "kind": "ejecutor",
+   "text": "arranca el siguiente con el código nuevo (pid 1768)"
+  },
+  {
+   "id": 638,
+   "job": null,
+   "at": "2026-11-13 06:10:29",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 637,
+   "job": null,
+   "at": "2026-11-13 06:10:29",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
    "id": 636,
    "job": null,
    "at": "2026-11-13 06:10:24",
@@ -473,34 +501,6 @@
    "at": "2026-11-13 05:03:33",
    "kind": "ejecutor",
    "text": "se reinicia con el código nuevo"
-  },
-  {
-   "id": 610,
-   "job": null,
-   "at": "2026-11-13 05:03:33",
-   "kind": "reiniciar",
-   "text": "ciclo"
-  },
-  {
-   "id": 609,
-   "job": 112,
-   "at": "2026-11-13 04:49:42",
-   "kind": "hecho",
-   "text": "código 0"
-  },
-  {
-   "id": 608,
-   "job": 112,
-   "at": "2026-11-13 04:48:22",
-   "kind": "empieza",
-   "text": "script diag_entradas --tag v16"
-  },
-  {
-   "id": 607,
-   "job": 112,
-   "at": "2026-11-13 04:48:21",
-   "kind": "enviado",
-   "text": "tennisbio script diag_entradas --tag v16 (claude 272)"
   }
  ]
 }
