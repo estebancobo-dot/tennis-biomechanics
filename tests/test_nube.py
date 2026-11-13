@@ -394,3 +394,14 @@ def test_a_run_that_goes_wrong_can_be_stopped_alone():
     assert "parar" in deploy["if"]
     src = (ROOT / "cloud" / "lanzar.py").read_text(encoding="utf-8")
     assert 'r"fc-[A-Za-z0-9]+"' in src and "FunctionCall.from_id(fc).cancel()" in src
+
+
+def test_cuda_sessions_give_back_the_memory_a_run_no_longer_needs():
+    """13-11: Osaka's 4th test filled the T4 (14.6 of 15 GB) and 14 of 58 windows failed: every CUDA session shrinks
+    its arena after each run (idle sessions keep only their weights); a session that ended on the CPU runs as is."""
+    sys.path.insert(0, str(ROOT / "cloud" / "arranque"))
+    import nube_gpu
+    assert nube_gpu.SHRINK is True
+    src = (ROOT / "cloud" / "arranque" / "nube_gpu.py").read_text(encoding="utf-8")
+    assert 'add_run_config_entry("memory.enable_memory_arena_shrinkage", "gpu:0")' in src
+    assert '"CUDAExecutionProvider" in self.get_providers()' in src           # never on a CPU-only session

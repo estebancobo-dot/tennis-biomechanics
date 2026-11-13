@@ -18,6 +18,7 @@ TARGET = "tennisbio.pose.estimator"
 # heuristics within a small workspace.
 CUDA_OPTIONS = {"arena_extend_strategy": "kSameAsRequested", "cudnn_conv_algo_search": "HEURISTIC",
                 "cudnn_conv_use_max_workspace": "0"}
+SHRINK = True                              # give back the GPU memory a run no longer needs (CudaSession.run)
 
 
 def provider_options(providers) -> list | None:
@@ -40,13 +41,24 @@ def _patch(est) -> None:
         if not getattr(base, "_nube", False):
 
             class CudaSession(base):
-                """ONNX Runtime's session with CUDA_OPTIONS whenever it is put on CUDA by name."""
+                """ONNX Runtime's session with CUDA_OPTIONS whenever it is put on CUDA by name, and (13-11, Osaka's
+                4th test: 14.6 of 15 GB, 14 of 58 windows failed «Failed to allocate memory») the GPU memory a run
+                no longer needs given back after every run: idle sessions (the cheap pass's, still loaded in the
+                main process) keep only their weights, so the fine pass's workers have the rest."""
                 _nube = True
 
                 def __init__(self, path_or_bytes, sess_options=None, providers=None, provider_options=None, **kw):
                     if provider_options is None:
                         provider_options = globals()["provider_options"](providers)
                     super().__init__(path_or_bytes, sess_options, providers, provider_options, **kw)
+                    self._shrink = None
+                    if SHRINK and "CUDAExecutionProvider" in self.get_providers():
+                        self._shrink = ort.RunOptions()
+                        self._shrink.add_run_config_entry("memory.enable_memory_arena_shrinkage", "gpu:0")
+
+                def run(self, output_names, input_feed, run_options=None):
+                    return super().run(output_names, input_feed, run_options if run_options is not None
+                                       else self._shrink)
             ort.InferenceSession = CudaSession
     except Exception as e:  # noqa: BLE001 — said loudly: the run then is on the CPU, and «comprobar» shows it
         print(f"AVISO nube: no se pudo poner la GPU de la nube ({e})")
