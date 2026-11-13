@@ -87,6 +87,53 @@ def test_entries(matches: list[dict], videos: Path) -> list[dict]:
     return out
 
 
+_LAST_CPU: list[float] = []
+
+
+def _cpu_times() -> tuple[float, float]:
+    """(busy, total) jiffies of all cores from /proc/stat."""
+    f = [float(x) for x in Path("/proc/stat").read_text().splitlines()[0].split()[1:]]
+    idle = f[3] + (f[4] if len(f) > 4 else 0)
+    return sum(f) - idle, sum(f)
+
+
+def sample_resources() -> dict:
+    """13-11: one sample of what the container uses (GPU %, GPU memory, CPU % of the visible cores, RAM), every minute
+    of a match: whether the reserved cores, memory and GPU are used, to size them by what was measured."""
+    import subprocess
+    import time
+    s: dict = {"t": round(time.time()), "cores": len(os.sched_getaffinity(0)) if hasattr(os, "sched_getaffinity")
+               else os.cpu_count()}
+    try:                                       # /proc, not psutil (only ultralytics brings it; not in the image)
+        busy, total = _cpu_times()
+        pb, pt = _LAST_CPU or (busy, total)
+        _LAST_CPU[:] = [busy, total]
+        s["cpu_pct"] = round(100 * (busy - pb) / (total - pt), 1) if total > pt else None
+        mem = dict(ln.split(":", 1) for ln in Path("/proc/meminfo").read_text().splitlines() if ":" in ln)
+        kb = lambda k: float(mem[k].split()[0])  # noqa: E731
+        s["ram_gb"] = round((kb("MemTotal") - kb("MemAvailable")) * 1024 / 1e9, 2)
+    except (OSError, KeyError, ValueError):
+        pass
+    try:
+        r = subprocess.run(["nvidia-smi", "--query-gpu=utilization.gpu,memory.used", "--format=csv,noheader,nounits"],
+                           capture_output=True, text=True, timeout=30)
+        gpu, mem = (float(x) for x in r.stdout.strip().splitlines()[0].split(","))
+        s.update(gpu_pct=gpu, gpu_mem_gb=round(mem / 1024, 2))
+    except Exception:  # noqa: BLE001 — no GPU (a CPU-only function) or nvidia-smi busy: the CPU sample stays
+        pass
+    return s
+
+
+def summarize_resources(rows: list[dict]) -> dict:
+    """Mean and peak of each measure over a run's samples."""
+    out: dict = {"muestras": len(rows)}
+    for k in ("gpu_pct", "gpu_mem_gb", "cpu_pct", "ram_gb"):
+        v = [float(r[k]) for r in rows if r.get(k) is not None]
+        if v:
+            out[k] = {"media": round(statistics.fmean(v), 1), "max": round(max(v), 1)}
+    return out
+
+
 TS_SUFFIXES = (".ts", ".m2ts", ".mts", ".trp")
 # the probe stage's two tries (tennisbio.stages.st_probe; tests/test_nube.py keeps them equal)
 CLEAN_TRIES = ([], ["-fflags", "+genpts+igndts", "-avoid_negative_ts", "make_zero"])

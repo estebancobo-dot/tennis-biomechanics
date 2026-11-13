@@ -336,3 +336,18 @@ def test_the_10_minute_test_archives_its_earlier_run_and_reports_the_cleaning():
     body = src[src.index("def prueba("):]
     assert '"archivo"' in body and "shutil.move" in body and "rmtree" not in body      # never deleted
     assert "nube.clean_copy(" in body and '"limpieza"' in body
+
+
+def test_a_match_run_samples_what_the_container_uses():
+    """13-11: GPU, CPU and memory every minute of a match, to size the container by what was measured (cost)."""
+    nube.sample_resources()                                         # the CPU % is between two samples
+    s = nube.sample_resources()
+    assert {"t", "cpu_pct", "cores", "ram_gb"} <= set(s) and s["ram_gb"] > 0
+    rows = [{"gpu_pct": 40, "cpu_pct": 90, "ram_gb": 10}, {"gpu_pct": 60, "cpu_pct": 70, "ram_gb": 12},
+            {"cpu_pct": 80, "ram_gb": 11}]
+    out = nube.summarize_resources(rows)
+    assert out["muestras"] == 3 and out["gpu_pct"] == {"media": 50.0, "max": 60.0}
+    assert out["cpu_pct"] == {"media": 80.0, "max": 90.0} and "gpu_mem_gb" not in out
+    src = (ROOT / "cloud" / "modal_app.py").read_text(encoding="utf-8")
+    body = src[src.index("def partido("):src.index("def prueba(")]
+    assert "nube.sample_resources()" in body and "recursos=nube.summarize_resources(samples)" in body

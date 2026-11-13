@@ -328,7 +328,18 @@ def partido(match_id: str) -> dict:
                 vol.commit()
             except Exception as e:  # noqa: BLE001 — the next one commits
                 print(f"AVISO nube: commit ({e})")
+    samples: list[dict] = []
+
+    def sampler():                            # 13-11: what the container uses, every minute (recursos.jsonl)
+        while not stop.wait(60):
+            try:
+                samples.append(nube.sample_resources())
+                with open(run / "recursos.jsonl", "a", encoding="utf-8") as f:
+                    f.write(json.dumps(samples[-1]) + "\n")
+            except Exception as e:  # noqa: BLE001 — a missed sample, never the match
+                print(f"AVISO nube: muestra de recursos ({e})")
     threading.Thread(target=committer, daemon=True).start()
+    threading.Thread(target=sampler, daemon=True).start()
     t0 = time.time()
     with open(run / "log.txt", "a", encoding="utf-8") as lg:
         p = subprocess.Popen([sys.executable, "-m", "tennisbio.cli", "run", "--match", match_id], cwd="/repo",
@@ -344,7 +355,8 @@ def partido(match_id: str) -> dict:
     est.update(estado="hecho" if rc == 0 else "error", codigo=rc, segundos=round(secs),
                coste_usd=nube.cost(secs, gpu, CORES, GIB), fin=time.strftime("%Y-%m-%d %H:%M:%S"),
                etapas={k: v.get("seconds") for k, v in man.items() if isinstance(v, dict) and "seconds" in v},
-               fallos={k: v.get("faults") for k, v in man.items() if isinstance(v, dict) and v.get("faults")})
+               fallos={k: v.get("faults") for k, v in man.items() if isinstance(v, dict) and v.get("faults")},
+               recursos=nube.summarize_resources(samples))
     _save(run, est)
     stop.set()
     vol.commit()
