@@ -11620,3 +11620,5 @@
 2026-11-13 05:16:07   fine:   1 % (3/232 golpes candidatos · 3 confirmados · 0 ventanas descartadas sin pose) · 0 s · quedan ≈ 0 s
 2026-11-13 05:16:17   ventana w000528509_5117 (far, 2 candidatos): pasa · golpe del detector (sin golpe de bola visto)
 2026-11-13 05:16:36   ventana w000528509_5117: pose yolo en 239 de 239 fotogramas (19 s; modelo 19 s, 237 a 960 px por perderla) · bola 7 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura nan px (pose)
+2026-11-13 05:16:49   ventana w000528509_5117: pose solo para medir (lejana, buscándola de nuevo) en 12 s; buscada 5 veces, encontrada 2
+2026-11-13 05:16:49   fine:   2 % (5/232 golpes candidatos · 5 confirmados · 0 ventanas descartadas sin pose) · 42 s · quedan ≈ 32 min
