@@ -52,3 +52,26 @@ def test_the_start_of_a_shot_before_the_court_appears_is_never_filled():
                        {"start": 90, "end": 100, "H": None}]}
     m = play_mask(sc, court)
     assert not m[:30].any() and m[30:].all()
+
+
+def test_a_gap_right_after_a_dissolve_is_not_filled():
+    """13-11 (R22 again, F3Set v17 equal to v16): TransNetV2 cuts a dissolve near its middle, so the new shot opens with
+    a few frames where the court of the previous image is still found; the gap after them is not play. The R16 gaps
+    (Osaka 64:14, 1.1 s of court before the banner) are still filled."""
+    from tennisbio.stages import COURT_STEADY_S
+    sc = _sc([(0, 120, True)])
+    court = {"shots": [{"start": 0, "end": 3, "H": [[1]]}, {"start": 3, "end": 53, "H": None},
+                       {"start": 53, "end": 120, "H": [[1]]}]}
+    m = play_mask(sc, court)
+    assert m[:3].all() and not m[3:53].any() and m[53:].all()
+    # just enough court before the gap: filled
+    k = int(round(COURT_STEADY_S * 10))
+    court = {"shots": [{"start": 0, "end": k, "H": [[1]]}, {"start": k, "end": k + 40, "H": None},
+                       {"start": k + 40, "end": 120, "H": [[1]]}]}
+    assert play_mask(sc, court).all()
+    # a gap that is not filled breaks the run: the next gap needs the court again
+    court = {"shots": [{"start": 0, "end": 20, "H": [[1]]}, {"start": 20, "end": 90, "H": None},
+                       {"start": 90, "end": 92, "H": [[1]]}, {"start": 92, "end": 100, "H": None},
+                       {"start": 100, "end": 120, "H": [[1]]}]}
+    m = play_mask(sc, court)
+    assert not m[20:90].any() and not m[92:100].any() and m[100:].all()

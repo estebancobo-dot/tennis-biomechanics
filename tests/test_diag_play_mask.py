@@ -27,12 +27,14 @@ def _folder(tmp_path: Path) -> Path:
 
 def test_the_dissolve_case_is_described(tmp_path):
     r = D.report(_folder(tmp_path), [("azaren", 9.5, 16.0)])
-    (g,) = r["filled_gaps"]
-    assert g["t0"] == 10.3 and g["len_s"] == 5.0 and g["court_frames_before"] == 3
+    (g,) = r["filled_gaps"]                              # filled by v6 (F3Set v17)
+    assert g["t0"] == 10.3 and g["len_s"] == 5.0 and g["court_frames_before"] == 3 and g["court_run_before"] == 3
     assert g["first_court_frame_from_shot_start"] == 0 and g["from_shot_start_s"] == 0.3
-    assert r["summary"]["with_at_most_3_court_frames_before"] == 1
+    assert g["still_filled_now"] is False                   # the 0.5 s rule stops filling it
+    assert r["summary"]["with_at_most_3_court_frames_before"] == 1 and r["summary"]["dropped_now"] == [10.3]
     w = r["windows"][0]
     assert w["court"].startswith("11111|111") and w["identity_runs"][0]["near_is_target"] is False
+    assert w["play_v6"].count("1") > w["play"].count("1")
 
 
 def test_a_folder_without_scenes_says_so(tmp_path):

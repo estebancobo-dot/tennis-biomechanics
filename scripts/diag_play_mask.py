@@ -37,10 +37,44 @@ def court_found(sc: dict, court: dict | None) -> np.ndarray:
     return has
 
 
-def filled_gaps(sc: dict, court: dict | None) -> list[dict]:
-    """The stretches play_mask counts as play without the court found, with their shot and the court around them."""
+def play_mask_v6(sc: dict, court: dict | None) -> np.ndarray:
+    """play_mask as it was in players v6 / score v13 (13-11 morning, F3Set v17): any gap after the court was found in
+    the shot is filled, however briefly it was found. Kept here to show which gaps the 0.5 s rule stops filling."""
+    from tennisbio.stages import COURT_GAP_FILL_S
+    n = max([s["end"] for s in sc["shots"]] + [0])
+    main = np.zeros(n, bool)
+    for s in sc["shots"]:
+        main[s["start"]:s["end"]] = s["main_camera"]
+    if court is None or not court.get("shots"):
+        return main
+    has = court_found(sc, court)
+    fill = int(round(COURT_GAP_FILL_S * float(sc.get("fps") or 10.0)))
+    for s in sc["shots"]:
+        a, b = int(s["start"]), int(s["end"])
+        if not s["main_camera"] or not has[a:b].any():
+            continue
+        i = a
+        while i < b and not has[i]:
+            i += 1
+        while i < b:
+            if has[i]:
+                i += 1
+                continue
+            j = i
+            while j < b and not has[j]:
+                j += 1
+            if j - i <= fill:
+                has[i:j] = True
+            i = j
+    return main & has
+
+
+def filled_gaps(sc: dict, court: dict | None, mask=play_mask) -> list[dict]:
+    """The stretches `mask` counts as play without the court found, with their shot, the court around them and whether
+    today's play_mask still counts them."""
     fps = float(sc.get("fps") or 10.0)
-    play = play_mask(sc, court)
+    play = mask(sc, court)
+    now = play_mask(sc, court)
     has = court_found(sc, court)[:len(play)]
     filled = play & ~has
     out = []
@@ -49,11 +83,14 @@ def filled_gaps(sc: dict, court: dict | None) -> list[dict]:
         shot = next((s for s in sc["shots"] if s["start"] <= a < s["end"]), None)
         s0, s1 = (int(shot["start"]), int(shot["end"])) if shot else (int(a), int(b))
         before, after = has[s0:a], has[b:s1]
+        run = 0                                  # court frames without a break right before the gap
+        while a - 1 - run >= s0 and has[a - 1 - run]:
+            run += 1
         out.append({"t0": round(a / fps, 2), "t1": round(b / fps, 2), "len_s": round((b - a) / fps, 2),
                     "shot_s": [round(s0 / fps, 2), round(s1 / fps, 2)], "from_shot_start_s": round((a - s0) / fps, 2),
-                    "court_frames_before": int(before.sum()),
+                    "court_frames_before": int(before.sum()), "court_run_before": run,
                     "first_court_frame_from_shot_start": int(np.flatnonzero(before)[0]) if before.any() else None,
-                    "court_frames_after": int(after.sum())})
+                    "court_frames_after": int(after.sum()), "still_filled_now": bool(now[a:b].all())})
     return out
 
 
@@ -61,6 +98,7 @@ def strip(sc: dict, court: dict | None, ident: dict | None, t0: float, t1: float
     """Frame by frame between t0 and t1 s: | at a cut, court found (1/0), play (1/0); and the identity runs there."""
     fps = float(sc.get("fps") or 10.0)
     play = play_mask(sc, court)
+    old = play_mask_v6(sc, court)
     has = court_found(sc, court)
     a, b = max(0, int(t0 * fps)), min(len(play), int(t1 * fps))
     cuts = {int(s["start"]) for s in sc["shots"]}
@@ -77,17 +115,19 @@ def strip(sc: dict, court: dict | None, ident: dict | None, t0: float, t1: float
                 runs.append({k: r.get(k) for k in ("start", "end", "near_is_target", "method", "clothes_margin",
                                                     "clothes_says", "cluster")} | {"t0": round(rs, 2), "t1": round(re_, 2)})
     return {"t0": t0, "t1": t1, "fps": fps, "first_frame": a, "main_camera": line(main), "court": line(has),
-            "play": line(play), "identity_runs": runs}
+            "play_v6": line(old), "play": line(play), "identity_runs": runs}
 
 
 def report(d: Path, windows: list[tuple[str, float, float]]) -> dict:
     sc, court, ident = _read(d, "scenes.json"), _read(d, "court.json"), _read(d, "identity.json")
     if not sc:
         return {"error": f"sin scenes.json en {d}"}
-    g = filled_gaps(sc, court)
+    g = filled_gaps(sc, court, play_mask_v6)       # what v6 filled (F3Set v17), each with whether it is filled now
     res = {"fps": float(sc.get("fps") or 10.0), "filled_gaps": g,
-           "summary": {"gaps": len(g), "seconds": round(sum(x["len_s"] for x in g), 1),
-                       "with_at_most_3_court_frames_before": sum(x["court_frames_before"] <= 3 for x in g),
+           "summary": {"gaps_v6": len(g), "seconds_v6": round(sum(x["len_s"] for x in g), 1),
+                       "still_filled_now": sum(x["still_filled_now"] for x in g),
+                       "dropped_now": [x["t0"] for x in g if not x["still_filled_now"]],
+                       "with_at_most_3_court_frames_before": sum(x["court_run_before"] <= 3 for x in g),
                        "starting_within_2s_of_the_shot": sum(x["from_shot_start_s"] <= 2.0 for x in g)}}
     res["windows"] = [strip(sc, court, ident, t0, t1) for sub, t0, t1 in windows if sub.lower() in d.name.lower()]
     return res

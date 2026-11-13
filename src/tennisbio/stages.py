@@ -219,7 +219,8 @@ def _appearances(frame: np.ndarray, boxes: np.ndarray) -> np.ndarray:
     return np.array([appearance(frame, bb) for bb in boxes], np.float32).reshape(len(boxes), 32)
 
 
-COURT_GAP_FILL_S = 6.0      # 12-11: a stretch this short without the court found, inside a main-camera shot that has it
+COURT_STEADY_S = 0.5        # 13-11 (R22): the court found this long, without a break, before a gap that is filled
+COURT_GAP_FILL_S = 6.0     # 12-11: a stretch this short without the court found, inside a main-camera shot that has it
 
 
 def play_mask(sc: dict, court: dict | None) -> np.ndarray:
@@ -235,7 +236,12 @@ def play_mask(sc: dict, court: dict | None) -> np.ndarray:
     13-11 (R22): only after the court has been found in the shot (a gap inside it or at its end), never its first
     seconds before the court appears: there the shot is still dissolving from the one before, and the people of that
     image joined the run of the near player (F3Set, Azarenka: a run 6.6 s longer, its clothes a mix of two players, a
-    point given to the other one). The Osaka serves R16 recovered had the court from the first frame of their shot."""
+    point given to the other one). The Osaka serves R16 recovered had the court from the first frame of their shot.
+
+    13-11 (R22 again, F3Set v17 equal to v16): a gap is filled only after the court has been found for COURT_STEADY_S
+    without a break just before it. TransNetV2 puts the cut of a dissolve near its middle, so the new shot opens with the
+    second half of the dissolve, where the court of the previous image can still be found for a few frames; a gap
+    after those frames is not play. The R16 gaps had the court for longer (64:14 of Osaka: 1.1 s before the banner)."""
     n = max([s["end"] for s in sc["shots"]] + [0])
     main = np.zeros(n, bool)
     for s in sc["shots"]:
@@ -246,7 +252,9 @@ def play_mask(sc: dict, court: dict | None) -> np.ndarray:
     for o in court["shots"]:
         if o["H"] is not None:
             has[o["start"]:o["end"]] = True
-    fill = int(round(COURT_GAP_FILL_S * float(sc.get("fps") or 10.0)))
+    fps = float(sc.get("fps") or 10.0)
+    fill = int(round(COURT_GAP_FILL_S * fps))
+    steady = max(1, int(round(COURT_STEADY_S * fps)))
     for s in sc["shots"]:
         a, b = int(s["start"]), int(s["end"])
         if not s["main_camera"] or not has[a:b].any():
@@ -254,15 +262,19 @@ def play_mask(sc: dict, court: dict | None) -> np.ndarray:
         i = a
         while i < b and not has[i]:          # the start of the shot, before the court appears: never filled
             i += 1
+        seen = 0                             # frames with the court, without a break, just before i
         while i < b:
             if has[i]:
+                seen += 1
                 i += 1
                 continue
             j = i
             while j < b and not has[j]:
                 j += 1
-            if j - i <= fill:
-                has[i:j] = True
+            if j - i <= fill and seen >= steady:
+                has[i:j] = True              # play: the run of the court goes on through it
+            else:
+                seen = 0
             i = j
     return main & has
 
@@ -274,7 +286,7 @@ def _fp16_setting(c) -> dict:
     return {"fp16": True} if uses_fp16(c) else {}
 
 
-@stage("players", "6", deps=("scenes", "court"),   # 5 (12-11): short court gaps inside a main-camera shot are play; 6 (13-11): never its start
+@stage("players", "7", deps=("scenes", "court"),   # 5 (12-11): short court gaps inside a main-camera shot are play; 6 (13-11): never its start; 7 (13-11): only after 0.5 s of court (dissolves)
        settings=lambda c: {"fps": c["cheap_pass"]["fps"], "imgsz": c["cheap_pass"].get("imgsz", 960), **_fp16_setting(c)},
        outputs=("players.npz",), resource=lambda c: "gpu" if c.get("device", "cpu") == "dml" else "cpu")
 def st_players(ctx: Context):
@@ -1433,7 +1445,7 @@ def _surname(name: str) -> str:
     return name.strip().split()[-1] if name and name.strip() else ""
 
 
-@stage("score", "13",  # 13 (13-11): play_mask never fills the start of a shot; 9 (11-11): games stacked in one OCR box split between the rows; 10 (12-11): server by alternation; 11: voted by games; 12: play_mask
+@stage("score", "14",  # 14 (13-11): play_mask fills a gap only after 0.5 s of court (dissolves); 13 (13-11): play_mask never fills the start of a shot; 9 (11-11): games stacked in one OCR box split between the rows; 10 (12-11): server by alternation; 11: voted by games; 12: play_mask
        deps=("scenes", "court"), settings=lambda c: {"every_s": (c.get("score") or {}).get("every_s", 5.0)},
        outputs=("score.json",), match_fields=lambda m: {"player": m.player.name, "opponent": m.opponent}, resource="cpu")
 def st_score(ctx: Context):

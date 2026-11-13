@@ -1692,6 +1692,8 @@ PETITIONS.update({
     119: r"^Orquestador: ejecutor vivo|^Orquestador: espera hasta empezar",
     # 12-11: no empty console window of ours on the PC's screen (the worker's successor left one)
     261: r"^Ninguna ventana vacía del análisis",
+    # 13-11 (#274, R22): the dissolve fix is judged by F3Set: strokes found, precision and identity against the annotations
+    274: r"^Golpes encontrados frente a F3Set|^Golpes inventados: precisión en F3Set|^Identidad frente a F3Set",
 })
 ORDER = {"falta": 0, "aviso": 1, "pocos datos": 2, "ok": 3}
 # hours of processing per hour of video. The user's requirement 9 is «un partido en horas, no días»; the former

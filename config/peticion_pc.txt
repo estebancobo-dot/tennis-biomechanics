@@ -1344,3 +1344,11 @@ argumentos: --tags v15 v17 --match osaka pegula --window azaren:1090:1115
 # arreglo del principio del plano no cambio nada. Cada hueco de pista que rellena play_mask con lo que lo rodea (la
 # pista en los primeros fotogramas del plano, durante el fundido?) y la tira fotograma a fotograma del punto de
 # Azarenka; Osaka y Pegula para ver que huecos de R16 hay que conservar. Solo lee
+---
+id: 288
+accion: medir
+script: validate_recall
+argumentos: --spotter --tag v18 --from v17
+# 288 (13-11, R22, aprobado por el usuario): F3Set con el arreglo del fundido (play_mask rellena un hueco solo tras
+# 0,5 s de pista; jugadores v7, marcador v14). Debe recuperar el punto de Azarenka (identidad_equivocada 8 -> 5) y no
+# dar golpes de la rival como suyos; frente a v15 (467 de 517, 0,945) y v17 (465, 0,936)
