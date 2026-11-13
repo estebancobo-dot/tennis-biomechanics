@@ -1233,3 +1233,12 @@ accion: medir
 script: diag_identidad_f3set
 argumentos: --match azarenka --a salidas_v15 --b salidas_v16
 # 270 (13-11, R22): el punto de Azarenka que v16 da a la otra jugadora (3 golpes): tramos decididos al reves y por que
+---
+id: 271
+accion: control
+orden: cancelar
+trabajo: 107
+# 271 (13-11): se cancela Pegula con el codigo de R17 (107): Osaka ya valida la bola (106, 3 h 23 min) y la
+# validacion final de todo junto (R26, codigo de #265) tiene que rehacer sus ventanas de todos modos (cambia
+# io/video.py, parte de la clave de las caches). Ahorra ~5 h; la auditoria 108 de Osaka y los diagnosticos de F3Set
+# (268-270) pasan delante
