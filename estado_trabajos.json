@@ -1,32 +1,13 @@
 {
- "at": "2026-11-13 19:51:02",
- "firma": "8345cab64eb2",
+ "at": "2026-11-13 19:51:11",
+ "firma": "74cab494ae30",
  "ejecutor": {
   "vivo": true,
   "pid": 7588,
   "at": 1794595862.0741363
  },
  "pausa": false,
- "en_curso": [
-  {
-   "id": 130,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script diag_otros_partidos --match osaka pegula zheng gauff sobolenko --t 4628 11586 12203 12217",
-   "state": "en curso",
-   "message": "",
-   "created": "2026-11-13 19:50:52",
-   "started": "2026-11-13 19:51:02",
-   "finished": null,
-   "args": "[\"script\", \"diag_otros_partidos\", \"--match\", \"osaka\", \"pegula\", \"zheng\", \"gauff\", \"sobolenko\", \"--t\", \"4628\", \"11586\", \"12203\", \"12217\"]",
-   "source": "claude 290",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_130.log",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "en_curso": [],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "fine_doubtful",
@@ -37,8 +18,45 @@
   "quedan_s": 0,
   "hora": "2026-11-13 18:25:58"
  },
- "pendientes": [],
+ "pendientes": [
+  {
+   "id": 131,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script subir_nube --pc-tag v18",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-13 19:51:09",
+   "started": null,
+   "finished": null,
+   "args": "[\"script\", \"subir_nube\", \"--pc-tag\", \"v18\"]",
+   "source": "claude 291",
+   "log": "",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "recientes": [
+  {
+   "id": 130,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script diag_otros_partidos --match osaka pegula zheng gauff sobolenko --t 4628 11586 12203 12217",
+   "state": "hecho",
+   "message": "",
+   "created": "2026-11-13 19:50:52",
+   "started": "2026-11-13 19:51:02",
+   "finished": "2026-11-13 19:51:03",
+   "args": "[\"script\", \"diag_otros_partidos\", \"--match\", \"osaka\", \"pegula\", \"zheng\", \"gauff\", \"sobolenko\", \"--t\", \"4628\", \"11586\", \"12203\", \"12217\"]",
+   "source": "claude 290",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_130.log",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 129,
    "kind": "comando",
@@ -290,27 +308,23 @@
    "log": "",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 115,
-   "kind": "flujo",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
-   "state": "cancelado",
-   "message": "cancelado (claude 279)",
-   "created": "2026-11-13 05:15:46",
-   "started": null,
-   "finished": null,
-   "args": "[\"informe\"]",
-   "source": "claude 275",
-   "log": "",
-   "paso": 0,
-   "pasos": 6
   }
  ],
  "eventos": [
+  {
+   "id": 714,
+   "job": 131,
+   "at": "2026-11-13 19:51:09",
+   "kind": "enviado",
+   "text": "tennisbio script subir_nube --pc-tag v18 (claude 291)"
+  },
+  {
+   "id": 713,
+   "job": 130,
+   "at": "2026-11-13 19:51:04",
+   "kind": "hecho",
+   "text": "código 0"
+  },
   {
    "id": 712,
    "job": 130,
@@ -506,20 +520,6 @@
    "at": "2026-11-13 18:36:29",
    "kind": "enviado",
    "text": "flujo medidas_prueba (ciclo)"
-  },
-  {
-   "id": 684,
-   "job": null,
-   "at": "2026-11-13 18:36:15",
-   "kind": "ejecutor",
-   "text": "arranca (pid 11132)"
-  },
-  {
-   "id": 683,
-   "job": null,
-   "at": "2026-11-13 18:36:15",
-   "kind": "ejecutor",
-   "text": "arranca el siguiente con el código nuevo (pid 18712)"
   }
  ]
 }

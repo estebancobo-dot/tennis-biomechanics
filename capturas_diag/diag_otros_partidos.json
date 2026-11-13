@@ -1,0 +1,1782 @@
+{
+ "us-open-2026-r4-naomi-osaka-elena-rybakina": {
+  "unread_shots": 8,
+  "unread_min": 1.3,
+  "strokes": 226,
+  "strokes_in_unread": [],
+  "runs_in_unread": [
+   {
+    "t0": 499.0,
+    "t1": 511.9,
+    "near_is_target": false,
+    "method": "ropa",
+    "clothes_margin": 0.43
+   },
+   {
+    "t0": 548.7,
+    "t1": 556.0,
+    "near_is_target": false,
+    "method": "ropa",
+    "clothes_margin": 0.44
+   },
+   {
+    "t0": 846.3,
+    "t1": 852.7,
+    "near_is_target": true,
+    "method": "ropa y cambios de lado",
+    "clothes_margin": 0.7
+   },
+   {
+    "t0": 1267.3,
+    "t1": 1274.6,
+    "near_is_target": false,
+    "method": "ropa y cambios de lado",
+    "clothes_margin": 0.6
+   },
+   {
+    "t0": 1517.3,
+    "t1": 1525.5,
+    "near_is_target": true,
+    "method": "ropa y cambios de lado",
+    "clothes_margin": 0.7
+   },
+   {
+    "t0": 1803.3,
+    "t1": 1816.7,
+    "near_is_target": false,
+    "method": "ropa",
+    "clothes_margin": 0.6
+   },
+   {
+    "t0": 2031.5,
+    "t1": 2046.3,
+    "near_is_target": true,
+    "method": "ropa y cambios de lado",
+    "clothes_margin": 0.77
+   },
+   {
+    "t0": 2067.9,
+    "t1": 2074.8,
+    "near_is_target": true,
+    "method": "ropa y cambios de lado",
+    "clothes_margin": 0.7
+   }
+  ],
+  "probes": [
+   {
+    "t": 4628.0,
+    "shot": null,
+    "strokes_within_15s": []
+   },
+   {
+    "t": 11586.0,
+    "shot": null,
+    "strokes_within_15s": []
+   },
+   {
+    "t": 12203.0,
+    "shot": null,
+    "strokes_within_15s": []
+   },
+   {
+    "t": 12217.0,
+    "shot": null,
+    "strokes_within_15s": []
+   }
+  ],
+  "names": [
+   "Rybakina",
+   "Osaka"
+  ],
+  "clothes": {
+   "runs_with_code": 140,
+   "own_distance_clear_runs": {
+    "p50": 0.129,
+    "p90": 0.243,
+    "p95": 0.306,
+    "p99": 0.365
+   },
+   "farthest": [
+    {
+     "t0": 353.5,
+     "t1": 355.5,
+     "d_min": 0.49,
+     "d0": 0.49,
+     "d1": 0.719,
+     "cluster": 0,
+     "margin": 0.19,
+     "near_is_target": true,
+     "method": "ropa"
+    },
+    {
+     "t0": 3453.2,
+     "t1": 3456.9,
+     "d_min": 0.47,
+     "d0": 0.809,
+     "d1": 0.47,
+     "cluster": 1,
+     "margin": 0.26,
+     "near_is_target": false,
+     "method": "ropa y cambios de lado"
+    },
+    {
+     "t0": 1831.4,
+     "t1": 1836.0,
+     "d_min": 0.373,
+     "d0": 0.864,
+     "d1": 0.373,
+     "cluster": 1,
+     "margin": 0.35,
+     "near_is_target": false,
+     "method": "ropa y cambios de lado"
+    },
+    {
+     "t0": 714.5,
+     "t1": 717.7,
+     "d_min": 0.366,
+     "d0": 0.861,
+     "d1": 0.366,
+     "cluster": 1,
+     "margin": 0.36,
+     "near_is_target": false,
+     "method": "ropa (corrige el marcador)"
+    },
+    {
+     "t0": 466.3,
+     "t1": 467.4,
+     "d_min": 0.364,
+     "d0": 0.935,
+     "d1": 0.364,
+     "cluster": 1,
+     "margin": 0.35,
+     "near_is_target": false,
+     "method": "ropa"
+    },
+    {
+     "t0": 1145.1,
+     "t1": 1151.3,
+     "d_min": 0.361,
+     "d0": 0.884,
+     "d1": 0.361,
+     "cluster": 1,
+     "margin": 0.38,
+     "near_is_target": false,
+     "method": "ropa y cambios de lado"
+    },
+    {
+     "t0": 1291.3,
+     "t1": 1292.9,
+     "d_min": 0.345,
+     "d0": 0.868,
+     "d1": 0.345,
+     "cluster": 1,
+     "margin": 0.39,
+     "near_is_target": false,
+     "method": "ropa y cambios de lado"
+    },
+    {
+     "t0": 2737.7,
+     "t1": 2743.3,
+     "d_min": 0.324,
+     "d0": 0.784,
+     "d1": 0.324,
+     "cluster": 1,
+     "margin": 0.39,
+     "near_is_target": false,
+     "method": "ropa y cambios de lado"
+    },
+    {
+     "t0": 2817.5,
+     "t1": 2829.3,
+     "d_min": 0.318,
+     "d0": 0.781,
+     "d1": 0.318,
+     "cluster": 1,
+     "margin": 0.39,
+     "near_is_target": false,
+     "method": "ropa y cambios de lado"
+    },
+    {
+     "t0": 499.0,
+     "t1": 511.9,
+     "d_min": 0.304,
+     "d0": 0.813,
+     "d1": 0.304,
+     "cluster": 1,
+     "margin": 0.43,
+     "near_is_target": false,
+     "method": "ropa"
+    },
+    {
+     "t0": 474.7,
+     "t1": 476.5,
+     "d_min": 0.29,
+     "d0": 0.837,
+     "d1": 0.29,
+     "cluster": 1,
+     "margin": 0.44,
+     "near_is_target": false,
+     "method": "ropa"
+    },
+    {
+     "t0": 548.7,
+     "t1": 556.0,
+     "d_min": 0.287,
+     "d0": 0.837,
+     "d1": 0.287,
+     "cluster": 1,
+     "margin": 0.44,
+     "near_is_target": false,
+     "method": "ropa"
+    },
+    {
+     "t0": 1233.8,
+     "t1": 1238.0,
+     "d_min": 0.262,
+     "d0": 0.835,
+     "d1": 0.262,
+     "cluster": 1,
+     "margin": 0.46,
+     "near_is_target": false,
+     "method": "ropa y cambios de lado"
+    },
+    {
+     "t0": 563.9,
+     "t1": 569.5,
+     "d_min": 0.257,
+     "d0": 0.822,
+     "d1": 0.257,
+     "cluster": 1,
+     "margin": 0.46,
+     "near_is_target": false,
+     "method": "ropa y cambios de lado"
+    },
+    {
+     "t0": 1012.8,
+     "t1": 1017.6,
+     "d_min": 0.254,
+     "d0": 0.799,
+     "d1": 0.254,
+     "cluster": 1,
+     "margin": 0.47,
+     "near_is_target": false,
+     "method": "ropa y cambios de lado"
+    }
+   ]
+  }
+ },
+ "zheng-qinwen-elena-rybakina": {
+  "unread_shots": 8,
+  "unread_min": 1.6,
+  "strokes": 286,
+  "strokes_in_unread": [],
+  "runs_in_unread": [
+   {
+    "t0": 133.3,
+    "t1": 141.9,
+    "near_is_target": true,
+    "method": "ropa",
+    "clothes_margin": 0.63
+   },
+   {
+    "t0": 181.6,
+    "t1": 198.1,
+    "near_is_target": true,
+    "method": "ropa",
+    "clothes_margin": 0.67
+   },
+   {
+    "t0": 231.2,
+    "t1": 249.6,
+    "near_is_target": true,
+    "method": "ropa",
+    "clothes_margin": 0.72
+   },
+   {
+    "t0": 316.7,
+    "t1": 325.3,
+    "near_is_target": false,
+    "method": "ropa",
+    "clothes_margin": 0.33
+   },
+   {
+    "t0": 338.1,
+    "t1": 345.1,
+    "near_is_target": false,
+    "method": "ropa",
+    "clothes_margin": 0.46
+   },
+   {
+    "t0": 360.5,
+    "t1": 366.3,
+    "near_is_target": false,
+    "method": "ropa",
+    "clothes_margin": 0.36
+   },
+   {
+    "t0": 379.1,
+    "t1": 385.5,
+    "near_is_target": false,
+    "method": "ropa",
+    "clothes_margin": 0.4
+   },
+   {
+    "t0": 4619.6,
+    "t1": 4624.9,
+    "near_is_target": false,
+    "method": "cambios de lado",
+    "clothes_margin": -0.04
+   },
+   {
+    "t0": 4627.7,
+    "t1": 4638.1,
+    "near_is_target": null,
+    "method": "dudoso",
+    "clothes_margin": 0.08
+   }
+  ],
+  "probes": [
+   {
+    "t": 4628.0,
+    "shot": {
+     "start": 4619.6,
+     "end": 4638.1,
+     "tried": 3,
+     "read": 0
+    },
+    "strokes_within_15s": []
+   },
+   {
+    "t": 11586.0,
+    "shot": null,
+    "strokes_within_15s": []
+   },
+   {
+    "t": 12203.0,
+    "shot": null,
+    "strokes_within_15s": []
+   },
+   {
+    "t": 12217.0,
+    "shot": null,
+    "strokes_within_15s": []
+   }
+  ],
+  "names": [
+   "Rybakina",
+   "Chn"
+  ],
+  "clothes": {
+   "runs_with_code": 276,
+   "own_distance_clear_runs": {
+    "p50": 0.149,
+    "p90": 0.32,
+    "p95": 0.354,
+    "p99": 0.401
+   },
+   "farthest": [
+    {
+     "t0": 3868.0,
+     "t1": 3871.2,
+     "d_min": 0.974,
+     "d0": 0.974,
+     "d1": 0.974,
+     "cluster": 0,
+     "margin": 0.0,
+     "near_is_target": false,
+     "method": "cambios de lado"
+    },
+    {
+     "t0": 6131.1,
+     "t1": 6138.3,
+     "d_min": 0.84,
+     "d0": 0.848,
+     "d1": 0.84,
+     "cluster": 1,
+     "margin": 0.0,
+     "near_is_target": false,
+     "method": "cambios de lado"
+    },
+    {
+     "t0": 3847.5,
+     "t1": 3853.5,
+     "d_min": 0.8,
+     "d0": 0.8,
+     "d1": 0.802,
+     "cluster": 1,
+     "margin": -0.01,
+     "near_is_target": false,
+     "method": "cambios de lado"
+    },
+    {
+     "t0": 6777.5,
+     "t1": 6778.7,
+     "d_min": 0.773,
+     "d0": 0.851,
+     "d1": 0.773,
+     "cluster": 1,
+     "margin": 0.04,
+     "near_is_target": false,
+     "method": "cambios de lado"
+    },
+    {
+     "t0": 1105.6,
+     "t1": 1110.0,
+     "d_min": 0.765,
+     "d0": 0.978,
+     "d1": 0.765,
+     "cluster": 1,
+     "margin": 0.08,
+     "near_is_target": false,
+     "method": "cambios de lado"
+    },
+    {
+     "t0": 6193.9,
+     "t1": 6208.4,
+     "d_min": 0.753,
+     "d0": 0.916,
+     "d1": 0.753,
+     "cluster": 1,
+     "margin": 0.08,
+     "near_is_target": false,
+     "method": "ropa y cambios de lado"
+    },
+    {
+     "t0": 3766.2,
+     "t1": 3772.9,
+     "d_min": 0.751,
+     "d0": 0.751,
+     "d1": 0.822,
+     "cluster": 0,
+     "margin": 0.06,
+     "near_is_target": false,
+     "method": "cambios de lado"
+    },
+    {
+     "t0": 3805.2,
+     "t1": 3811.2,
+     "d_min": 0.696,
+     "d0": 0.842,
+     "d1": 0.696,
+     "cluster": 1,
+     "margin": 0.07,
+     "near_is_target": false,
+     "method": "cambios de lado"
+    },
+    {
+     "t0": 1409.4,
+     "t1": 1414.4,
+     "d_min": 0.674,
+     "d0": 0.824,
+     "d1": 0.674,
+     "cluster": 1,
+     "margin": 0.08,
+     "near_is_target": false,
+     "method": "ropa y cambios de lado"
+    },
+    {
+     "t0": 2805.9,
+     "t1": 2808.0,
+     "d_min": 0.643,
+     "d0": 0.643,
+     "d1": 0.722,
+     "cluster": 0,
+     "margin": 0.06,
+     "near_is_target": false,
+     "method": "cambios de lado"
+    },
+    {
+     "t0": 6284.7,
+     "t1": 6290.8,
+     "d_min": 0.634,
+     "d0": 0.783,
+     "d1": 0.634,
+     "cluster": 1,
+     "margin": 0.08,
+     "near_is_target": false,
+     "method": "cambios de lado"
+    },
+    {
+     "t0": 2706.5,
+     "t1": 2710.8,
+     "d_min": 0.623,
+     "d0": 0.623,
+     "d1": 0.913,
+     "cluster": 0,
+     "margin": 0.18,
+     "near_is_target": null,
+     "method": "dudoso"
+    },
+    {
+     "t0": 6296.8,
+     "t1": 6303.2,
+     "d_min": 0.618,
+     "d0": 0.83,
+     "d1": 0.618,
+     "cluster": 1,
+     "margin": 0.11,
+     "near_is_target": false,
+     "method": "ropa y cambios de lado"
+    },
+    {
+     "t0": 4627.7,
+     "t1": 4638.1,
+     "d_min": 0.572,
+     "d0": 0.572,
+     "d1": 0.641,
+     "cluster": 0,
+     "margin": 0.08,
+     "near_is_target": null,
+     "method": "dudoso"
+    },
+    {
+     "t0": 4619.6,
+     "t1": 4624.9,
+     "d_min": 0.557,
+     "d0": 0.568,
+     "d1": 0.557,
+     "cluster": 1,
+     "margin": -0.04,
+     "near_is_target": false,
+     "method": "cambios de lado"
+    }
+   ]
+  }
+ },
+ "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5": {
+  "unread_shots": 42,
+  "unread_min": 6.8,
+  "strokes": 271,
+  "strokes_in_unread": [],
+  "runs_in_unread": [
+   {
+    "t0": 765.5,
+    "t1": 766.7,
+    "near_is_target": null,
+    "method": null,
+    "clothes_margin": 0.03
+   },
+   {
+    "t0": 775.5,
+    "t1": 787.9,
+    "near_is_target": false,
+    "method": "ropa",
+    "clothes_margin": 0.55
+   },
+   {
+    "t0": 796.1,
+    "t1": 808.3,
+    "near_is_target": false,
+    "method": "ropa",
+    "clothes_margin": 0.53
+   },
+   {
+    "t0": 825.1,
+    "t1": 833.1,
+    "near_is_target": false,
+    "method": "ropa",
+    "clothes_margin": 0.41
+   },
+   {
+    "t0": 862.8,
+    "t1": 870.4,
+    "near_is_target": false,
+    "method": "ropa",
+    "clothes_margin": 0.42
+   },
+   {
+    "t0": 889.3,
+    "t1": 895.7,
+    "near_is_target": false,
+    "method": "ropa",
+    "clothes_margin": 0.58
+   },
+   {
+    "t0": 906.4,
+    "t1": 916.5,
+    "near_is_target": false,
+    "method": "ropa",
+    "clothes_margin": 0.48
+   },
+   {
+    "t0": 996.9,
+    "t1": 1015.2,
+    "near_is_target": true,
+    "method": "ropa",
+    "clothes_margin": 0.6
+   },
+   {
+    "t0": 1032.2,
+    "t1": 1043.1,
+    "near_is_target": true,
+    "method": "ropa",
+    "clothes_margin": 0.45
+   },
+   {
+    "t0": 1081.4,
+    "t1": 1087.4,
+    "near_is_target": true,
+    "method": "ropa",
+    "clothes_margin": 0.56
+   },
+   {
+    "t0": 1095.4,
+    "t1": 1106.3,
+    "near_is_target": true,
+    "method": "ropa",
+    "clothes_margin": 0.45
+   },
+   {
+    "t0": 1141.1,
+    "t1": 1149.6,
+    "near_is_target": true,
+    "method": "ropa",
+    "clothes_margin": 0.55
+   },
+   {
+    "t0": 1184.9,
+    "t1": 1193.1,
+    "near_is_target": true,
+    "method": "ropa",
+    "clothes_margin": 0.57
+   },
+   {
+    "t0": 1214.0,
+    "t1": 1219.9,
+    "near_is_target": true,
+    "method": "ropa",
+    "clothes_margin": 0.48
+   },
+   {
+    "t0": 1235.2,
+    "t1": 1254.5,
+    "near_is_target": true,
+    "method": "ropa",
+    "clothes_margin": 0.6
+   },
+   {
+    "t0": 1301.6,
+    "t1": 1307.8,
+    "near_is_target": true,
+    "method": "ropa",
+    "clothes_margin": 0.59
+   },
+   {
+    "t0": 1336.3,
+    "t1": 1345.5,
+    "near_is_target": true,
+    "method": "ropa",
+    "clothes_margin": 0.58
+   },
+   {
+    "t0": 1373.9,
+    "t1": 1379.5,
+    "near_is_target": true,
+    "method": "ropa",
+    "clothes_margin": 0.52
+   },
+   {
+    "t0": 1385.8,
+    "t1": 1394.0,
+    "near_is_target": true,
+    "method": "ropa",
+    "clothes_margin": 0.55
+   },
+   {
+    "t0": 1412.9,
+    "t1": 1419.1,
+    "near_is_target": true,
+    "method": "ropa",
+    "clothes_margin": 0.58
+   },
+   {
+    "t0": 1424.8,
+    "t1": 1435.8,
+    "near_is_target": true,
+    "method": "ropa",
+    "clothes_margin": 0.58
+   },
+   {
+    "t0": 1533.5,
+    "t1": 1538.6,
+    "near_is_target": false,
+    "method": "ropa",
+    "clothes_margin": 0.62
+   },
+   {
+    "t0": 1544.2,
+    "t1": 1551.8,
+    "near_is_target": false,
+    "method": "ropa",
+    "clothes_margin": 0.33
+   },
+   {
+    "t0": 1577.5,
+    "t1": 1581.4,
+    "near_is_target": false,
+    "method": "ropa",
+    "clothes_margin": 0.55
+   },
+   {
+    "t0": 1581.8,
+    "t1": 1588.4,
+    "near_is_target": false,
+    "method": "ropa",
+    "clothes_margin": 0.49
+   },
+   {
+    "t0": 1624.3,
+    "t1": 1629.2,
+    "near_is_target": true,
+    "method": "ropa",
+    "clothes_margin": 0.13
+   },
+   {
+    "t0": 1629.7,
+    "t1": 1633.7,
+    "near_is_target": false,
+    "method": "ropa",
+    "clothes_margin": 0.64
+   },
+   {
+    "t0": 1645.3,
+    "t1": 1651.1,
+    "near_is_target": false,
+    "method": "ropa",
+    "clothes_margin": 0.58
+   },
+   {
+    "t0": 1706.5,
+    "t1": 1714.7,
+    "near_is_target": false,
+    "method": "ropa",
+    "clothes_margin": 0.45
+   },
+   {
+    "t0": 1732.2,
+    "t1": 1738.1,
+    "near_is_target": false,
+    "method": "ropa",
+    "clothes_margin": 0.33
+   },
+   {
+    "t0": 1755.3,
+    "t1": 1762.6,
+    "near_is_target": false,
+    "method": "ropa",
+    "clothes_margin": 0.44
+   },
+   {
+    "t0": 1777.5,
+    "t1": 1783.3,
+    "near_is_target": false,
+    "method": "ropa",
+    "clothes_margin": 0.43
+   },
+   {
+    "t0": 1787.9,
+    "t1": 1802.5,
+    "near_is_target": false,
+    "method": "ropa",
+    "clothes_margin": 0.55
+   },
+   {
+    "t0": 1820.5,
+    "t1": 1826.7,
+    "near_is_target": false,
+    "method": "ropa",
+    "clothes_margin": 0.36
+   },
+   {
+    "t0": 1834.1,
+    "t1": 1840.0,
+    "near_is_target": false,
+    "method": "ropa",
+    "clothes_margin": 0.38
+   },
+   {
+    "t0": 1865.4,
+    "t1": 1886.5,
+    "near_is_target": false,
+    "method": "ropa",
+    "clothes_margin": 0.59
+   },
+   {
+    "t0": 1910.5,
+    "t1": 1919.1,
+    "near_is_target": false,
+    "method": "ropa",
+    "clothes_margin": 0.26
+   },
+   {
+    "t0": 1948.7,
+    "t1": 1955.7,
+    "near_is_target": false,
+    "method": "ropa",
+    "clothes_margin": 0.46
+   },
+   {
+    "t0": 1972.2,
+    "t1": 1978.2,
+    "near_is_target": false,
+    "method": "ropa",
+    "clothes_margin": 0.55
+   },
+   {
+    "t0": 1990.5,
+    "t1": 1996.4,
+    "near_is_target": false,
+    "method": "ropa",
+    "clothes_margin": 0.56
+   },
+   {
+    "t0": 2310.1,
+    "t1": 2323.0,
+    "near_is_target": true,
+    "method": "ropa y cambios de lado",
+    "clothes_margin": 0.45
+   },
+   {
+    "t0": 3037.9,
+    "t1": 3047.4,
+    "near_is_target": true,
+    "method": "ropa",
+    "clothes_margin": 0.42
+   },
+   {
+    "t0": 7918.2,
+    "t1": 7927.9,
+    "near_is_target": true,
+    "method": "ropa",
+    "clothes_margin": 0.23
+   },
+   {
+    "t0": 7930.9,
+    "t1": 7942.3,
+    "near_is_target": null,
+    "method": null,
+    "clothes_margin": 0.0
+   },
+   {
+    "t0": 7988.0,
+    "t1": 7996.4,
+    "near_is_target": false,
+    "method": "cambios de lado",
+    "clothes_margin": 0.0
+   }
+  ],
+  "probes": [
+   {
+    "t": 4628.0,
+    "shot": {
+     "start": 4627.9,
+     "end": 4641.3,
+     "tried": 3,
+     "read": 3
+    },
+    "strokes_within_15s": []
+   },
+   {
+    "t": 11586.0,
+    "shot": null,
+    "strokes_within_15s": []
+   },
+   {
+    "t": 12203.0,
+    "shot": null,
+    "strokes_within_15s": []
+   },
+   {
+    "t": 12217.0,
+    "shot": null,
+    "strokes_within_15s": []
+   }
+  ],
+  "names": [
+   "Rybakina",
+   "Usa"
+  ],
+  "clothes": {
+   "runs_with_code": 285,
+   "own_distance_clear_runs": {
+    "p50": 0.094,
+    "p90": 0.166,
+    "p95": 0.182,
+    "p99": 0.231
+   },
+   "farthest": [
+    {
+     "t0": 3721.2,
+     "t1": 3722.9,
+     "d_min": 0.956,
+     "d0": 0.956,
+     "d1": 0.999,
+     "cluster": 0,
+     "margin": 0.0,
+     "near_is_target": false,
+     "method": "cambios de lado"
+    },
+    {
+     "t0": 146.1,
+     "t1": 150.3,
+     "d_min": 0.948,
+     "d0": 0.948,
+     "d1": 0.992,
+     "cluster": 0,
+     "margin": 0.0,
+     "near_is_target": null,
+     "method": null
+    },
+    {
+     "t0": 4085.4,
+     "t1": 4086.4,
+     "d_min": 0.94,
+     "d0": 0.94,
+     "d1": 0.975,
+     "cluster": 0,
+     "margin": 0.0,
+     "near_is_target": true,
+     "method": "cambios de lado"
+    },
+    {
+     "t0": 170.7,
+     "t1": 175.7,
+     "d_min": 0.927,
+     "d0": 0.927,
+     "d1": 0.982,
+     "cluster": 0,
+     "margin": 0.0,
+     "near_is_target": null,
+     "method": null
+    },
+    {
+     "t0": 3723.8,
+     "t1": 3724.8,
+     "d_min": 0.884,
+     "d0": 0.884,
+     "d1": 0.964,
+     "cluster": 0,
+     "margin": 0.0,
+     "near_is_target": false,
+     "method": "cambios de lado"
+    },
+    {
+     "t0": 7200.7,
+     "t1": 7207.4,
+     "d_min": 0.881,
+     "d0": 0.881,
+     "d1": 0.971,
+     "cluster": 0,
+     "margin": 0.0,
+     "near_is_target": false,
+     "method": "cambios de lado"
+    },
+    {
+     "t0": 7988.0,
+     "t1": 7996.4,
+     "d_min": 0.878,
+     "d0": 0.878,
+     "d1": 0.938,
+     "cluster": 0,
+     "margin": 0.0,
+     "near_is_target": false,
+     "method": "cambios de lado"
+    },
+    {
+     "t0": 2548.6,
+     "t1": 2550.3,
+     "d_min": 0.876,
+     "d0": 0.876,
+     "d1": 0.946,
+     "cluster": 0,
+     "margin": 0.0,
+     "near_is_target": false,
+     "method": "cambios de lado"
+    },
+    {
+     "t0": 7930.9,
+     "t1": 7942.3,
+     "d_min": 0.859,
+     "d0": 0.859,
+     "d1": 0.924,
+     "cluster": 0,
+     "margin": 0.0,
+     "near_is_target": null,
+     "method": null
+    },
+    {
+     "t0": 4082.9,
+     "t1": 4084.5,
+     "d_min": 0.84,
+     "d0": 0.84,
+     "d1": 0.939,
+     "cluster": 0,
+     "margin": 0.0,
+     "near_is_target": true,
+     "method": "cambios de lado"
+    },
+    {
+     "t0": 7348.4,
+     "t1": 7349.4,
+     "d_min": 0.826,
+     "d0": 0.826,
+     "d1": 0.932,
+     "cluster": 0,
+     "margin": 0.0,
+     "near_is_target": false,
+     "method": "cambios de lado"
+    },
+    {
+     "t0": 4604.3,
+     "t1": 4609.8,
+     "d_min": 0.824,
+     "d0": 0.824,
+     "d1": 0.88,
+     "cluster": 0,
+     "margin": 0.0,
+     "near_is_target": true,
+     "method": "cambios de lado"
+    },
+    {
+     "t0": 3655.1,
+     "t1": 3661.2,
+     "d_min": 0.815,
+     "d0": 0.815,
+     "d1": 0.941,
+     "cluster": 0,
+     "margin": 0.0,
+     "near_is_target": false,
+     "method": "cambios de lado"
+    },
+    {
+     "t0": 6349.5,
+     "t1": 6351.1,
+     "d_min": 0.774,
+     "d0": 0.774,
+     "d1": 0.957,
+     "cluster": 0,
+     "margin": 0.02,
+     "near_is_target": true,
+     "method": "cambios de lado"
+    },
+    {
+     "t0": 765.5,
+     "t1": 766.7,
+     "d_min": 0.753,
+     "d0": 0.753,
+     "d1": 0.976,
+     "cluster": 0,
+     "margin": 0.03,
+     "near_is_target": null,
+     "method": null
+    }
+   ]
+  }
+ },
+ "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5": {
+  "unread_shots": 32,
+  "unread_min": 6.0,
+  "strokes": 295,
+  "strokes_in_unread": [],
+  "runs_in_unread": [
+   {
+    "t0": 450.4,
+    "t1": 458.1,
+    "near_is_target": null,
+    "method": null,
+    "clothes_margin": 0.03
+   },
+   {
+    "t0": 476.7,
+    "t1": 483.7,
+    "near_is_target": null,
+    "method": null,
+    "clothes_margin": 0.05
+   },
+   {
+    "t0": 525.5,
+    "t1": 532.1,
+    "near_is_target": true,
+    "method": "ropa",
+    "clothes_margin": 0.13
+   },
+   {
+    "t0": 697.9,
+    "t1": 704.7,
+    "near_is_target": null,
+    "method": null,
+    "clothes_margin": 0.0
+   },
+   {
+    "t0": 1182.2,
+    "t1": 1184.6,
+    "near_is_target": true,
+    "method": "cambios de lado",
+    "clothes_margin": 0.0
+   },
+   {
+    "t0": 2491.5,
+    "t1": 2492.8,
+    "near_is_target": true,
+    "method": "ropa",
+    "clothes_margin": 0.11
+   },
+   {
+    "t0": 2503.8,
+    "t1": 2511.5,
+    "near_is_target": true,
+    "method": "ropa",
+    "clothes_margin": 0.62
+   },
+   {
+    "t0": 2523.4,
+    "t1": 2533.2,
+    "near_is_target": true,
+    "method": "ropa",
+    "clothes_margin": 0.64
+   },
+   {
+    "t0": 2538.1,
+    "t1": 2547.7,
+    "near_is_target": true,
+    "method": "ropa",
+    "clothes_margin": 0.58
+   },
+   {
+    "t0": 2565.8,
+    "t1": 2572.6,
+    "near_is_target": true,
+    "method": "ropa",
+    "clothes_margin": 0.66
+   },
+   {
+    "t0": 2589.8,
+    "t1": 2596.5,
+    "near_is_target": true,
+    "method": "ropa",
+    "clothes_margin": 0.69
+   },
+   {
+    "t0": 2602.9,
+    "t1": 2611.9,
+    "near_is_target": true,
+    "method": "ropa",
+    "clothes_margin": 0.53
+   },
+   {
+    "t0": 2736.7,
+    "t1": 2744.5,
+    "near_is_target": false,
+    "method": "ropa (corrige el marcador)",
+    "clothes_margin": 0.87
+   },
+   {
+    "t0": 2748.1,
+    "t1": 2756.3,
+    "near_is_target": false,
+    "method": "ropa (corrige el marcador)",
+    "clothes_margin": 0.89
+   },
+   {
+    "t0": 2959.7,
+    "t1": 2967.1,
+    "near_is_target": false,
+    "method": "ropa y cambios de lado",
+    "clothes_margin": 0.88
+   },
+   {
+    "t0": 2983.3,
+    "t1": 2993.7,
+    "near_is_target": false,
+    "method": "ropa y cambios de lado",
+    "clothes_margin": 0.75
+   },
+   {
+    "t0": 2996.9,
+    "t1": 3006.6,
+    "near_is_target": false,
+    "method": "ropa y cambios de lado",
+    "clothes_margin": 0.89
+   },
+   {
+    "t0": 3725.4,
+    "t1": 3734.3,
+    "near_is_target": false,
+    "method": "ropa (corrige el marcador)",
+    "clothes_margin": 0.85
+   },
+   {
+    "t0": 4191.2,
+    "t1": 4196.9,
+    "near_is_target": true,
+    "method": "ropa (corrige el marcador)",
+    "clothes_margin": 0.69
+   },
+   {
+    "t0": 5181.6,
+    "t1": 5182.8,
+    "near_is_target": null,
+    "method": null,
+    "clothes_margin": -0.01
+   },
+   {
+    "t0": 5191.4,
+    "t1": 5210.4,
+    "near_is_target": false,
+    "method": "ropa",
+    "clothes_margin": 0.87
+   },
+   {
+    "t0": 9579.4,
+    "t1": 9584.7,
+    "near_is_target": false,
+    "method": "cambios de lado",
+    "clothes_margin": 0.0
+   },
+   {
+    "t0": 10632.1,
+    "t1": 10639.8,
+    "near_is_target": null,
+    "method": null,
+    "clothes_margin": 0.0
+   },
+   {
+    "t0": 10823.5,
+    "t1": 10839.9,
+    "near_is_target": null,
+    "method": null,
+    "clothes_margin": 0.02
+   },
+   {
+    "t0": 10852.7,
+    "t1": 10865.2,
+    "near_is_target": null,
+    "method": null,
+    "clothes_margin": 0.0
+   },
+   {
+    "t0": 10902.8,
+    "t1": 10908.5,
+    "near_is_target": true,
+    "method": "ropa",
+    "clothes_margin": 0.09
+   },
+   {
+    "t0": 10918.8,
+    "t1": 10929.0,
+    "near_is_target": true,
+    "method": "ropa",
+    "clothes_margin": 0.08
+   },
+   {
+    "t0": 11603.9,
+    "t1": 11612.6,
+    "near_is_target": false,
+    "method": "ropa y cambios de lado",
+    "clothes_margin": 0.85
+   },
+   {
+    "t0": 11616.7,
+    "t1": 11623.8,
+    "near_is_target": false,
+    "method": "ropa y cambios de lado",
+    "clothes_margin": 0.87
+   },
+   {
+    "t0": 12149.1,
+    "t1": 12156.6,
+    "near_is_target": false,
+    "method": "cambios de lado",
+    "clothes_margin": -0.0
+   },
+   {
+    "t0": 12158.6,
+    "t1": 12165.8,
+    "near_is_target": false,
+    "method": "cambios de lado",
+    "clothes_margin": 0.06
+   },
+   {
+    "t0": 12203.2,
+    "t1": 12215.5,
+    "near_is_target": null,
+    "method": "dudoso",
+    "clothes_margin": 0.13
+   },
+   {
+    "t0": 12216.9,
+    "t1": 12223.0,
+    "near_is_target": null,
+    "method": "dudoso",
+    "clothes_margin": 0.13
+   },
+   {
+    "t0": 12336.3,
+    "t1": 12350.1,
+    "near_is_target": null,
+    "method": null,
+    "clothes_margin": 0.06
+   }
+  ],
+  "probes": [
+   {
+    "t": 4628.0,
+    "shot": {
+     "start": 4627.4,
+     "end": 4635.1,
+     "tried": 2,
+     "read": 2
+    },
+    "strokes_within_15s": []
+   },
+   {
+    "t": 11586.0,
+    "shot": {
+     "start": 11579.3,
+     "end": 11591.1,
+     "tried": 1,
+     "read": 1
+    },
+    "strokes_within_15s": []
+   },
+   {
+    "t": 12203.0,
+    "shot": null,
+    "strokes_within_15s": []
+   },
+   {
+    "t": 12217.0,
+    "shot": {
+     "start": 12216.9,
+     "end": 12223.0,
+     "tried": 2,
+     "read": 0
+    },
+    "strokes_within_15s": []
+   }
+  ],
+  "names": [
+   "Rybakina",
+   "Sabalenka"
+  ],
+  "clothes": {
+   "runs_with_code": 342,
+   "own_distance_clear_runs": {
+    "p50": 0.073,
+    "p90": 0.158,
+    "p95": 0.191,
+    "p99": 0.3
+   },
+   "farthest": [
+    {
+     "t0": 9579.4,
+     "t1": 9584.7,
+     "d_min": 0.981,
+     "d0": 1.0,
+     "d1": 0.981,
+     "cluster": 0,
+     "margin": 0.0,
+     "near_is_target": false,
+     "method": "cambios de lado"
+    },
+    {
+     "t0": 10632.1,
+     "t1": 10639.8,
+     "d_min": 0.976,
+     "d0": 1.0,
+     "d1": 0.976,
+     "cluster": 0,
+     "margin": 0.0,
+     "near_is_target": null,
+     "method": null
+    },
+    {
+     "t0": 10852.7,
+     "t1": 10865.2,
+     "d_min": 0.964,
+     "d0": 1.0,
+     "d1": 0.964,
+     "cluster": 0,
+     "margin": 0.0,
+     "near_is_target": null,
+     "method": null
+    },
+    {
+     "t0": 1052.2,
+     "t1": 1060.9,
+     "d_min": 0.945,
+     "d0": 0.953,
+     "d1": 0.945,
+     "cluster": 1,
+     "margin": 0.0,
+     "near_is_target": true,
+     "method": "cambios de lado"
+    },
+    {
+     "t0": 682.0,
+     "t1": 686.0,
+     "d_min": 0.939,
+     "d0": 0.952,
+     "d1": 0.939,
+     "cluster": 1,
+     "margin": 0.0,
+     "near_is_target": null,
+     "method": null
+    },
+    {
+     "t0": 697.9,
+     "t1": 704.7,
+     "d_min": 0.939,
+     "d0": 0.961,
+     "d1": 0.939,
+     "cluster": 1,
+     "margin": 0.0,
+     "near_is_target": null,
+     "method": null
+    },
+    {
+     "t0": 1182.2,
+     "t1": 1184.6,
+     "d_min": 0.937,
+     "d0": 0.999,
+     "d1": 0.937,
+     "cluster": 1,
+     "margin": 0.0,
+     "near_is_target": true,
+     "method": "cambios de lado"
+    },
+    {
+     "t0": 511.5,
+     "t1": 516.6,
+     "d_min": 0.923,
+     "d0": 0.958,
+     "d1": 0.923,
+     "cluster": 1,
+     "margin": 0.01,
+     "near_is_target": null,
+     "method": null
+    },
+    {
+     "t0": 11558.0,
+     "t1": 11568.9,
+     "d_min": 0.914,
+     "d0": 0.914,
+     "d1": 0.948,
+     "cluster": 0,
+     "margin": 0.01,
+     "near_is_target": false,
+     "method": "cambios de lado"
+    },
+    {
+     "t0": 10823.5,
+     "t1": 10839.9,
+     "d_min": 0.912,
+     "d0": 1.0,
+     "d1": 0.912,
+     "cluster": 1,
+     "margin": 0.02,
+     "near_is_target": null,
+     "method": null
+    },
+    {
+     "t0": 12196.4,
+     "t1": 12201.7,
+     "d_min": 0.895,
+     "d0": 0.968,
+     "d1": 0.895,
+     "cluster": 1,
+     "margin": 0.03,
+     "near_is_target": false,
+     "method": "cambios de lado"
+    },
+    {
+     "t0": 3762.3,
+     "t1": 3767.8,
+     "d_min": 0.884,
+     "d0": 0.93,
+     "d1": 0.884,
+     "cluster": 1,
+     "margin": 0.03,
+     "near_is_target": false,
+     "method": "cambios de lado"
+    },
+    {
+     "t0": 450.4,
+     "t1": 458.1,
+     "d_min": 0.88,
+     "d0": 0.988,
+     "d1": 0.88,
+     "cluster": 1,
+     "margin": 0.03,
+     "near_is_target": null,
+     "method": null
+    },
+    {
+     "t0": 4793.5,
+     "t1": 4797.4,
+     "d_min": 0.858,
+     "d0": 0.858,
+     "d1": 0.978,
+     "cluster": 0,
+     "margin": 0.04,
+     "near_is_target": false,
+     "method": "cambios de lado"
+    },
+    {
+     "t0": 3591.9,
+     "t1": 3599.0,
+     "d_min": 0.842,
+     "d0": 1.0,
+     "d1": 0.842,
+     "cluster": 1,
+     "margin": 0.06,
+     "near_is_target": true,
+     "method": "cambios de lado"
+    }
+   ]
+  }
+ },
+ "elena-rybakina-jessica-pegula-miami-2026-quarter-final": {
+  "unread_shots": 6,
+  "unread_min": 1.6,
+  "strokes": 424,
+  "strokes_in_unread": [],
+  "runs_in_unread": [
+   {
+    "t0": 566.8,
+    "t1": 576.4,
+    "near_is_target": true,
+    "method": "cambios de lado",
+    "clothes_margin": 0.29
+   },
+   {
+    "t0": 2154.1,
+    "t1": 2160.8,
+    "near_is_target": false,
+    "method": "cambios de lado",
+    "clothes_margin": 0.0
+   },
+   {
+    "t0": 2162.4,
+    "t1": 2169.2,
+    "near_is_target": false,
+    "method": "cambios de lado",
+    "clothes_margin": 0.38
+   },
+   {
+    "t0": 4382.1,
+    "t1": 4387.8,
+    "near_is_target": true,
+    "method": "cambios de lado",
+    "clothes_margin": 0.0
+   }
+  ],
+  "probes": [
+   {
+    "t": 4628.0,
+    "shot": {
+     "start": 4615.9,
+     "end": 4633.1,
+     "tried": 4,
+     "read": 4
+    },
+    "strokes_within_15s": []
+   },
+   {
+    "t": 11586.0,
+    "shot": null,
+    "strokes_within_15s": []
+   },
+   {
+    "t": 12203.0,
+    "shot": null,
+    "strokes_within_15s": []
+   },
+   {
+    "t": 12217.0,
+    "shot": null,
+    "strokes_within_15s": []
+   }
+  ],
+  "names": [
+   "Rybakina",
+   "Pegula"
+  ],
+  "clothes": {
+   "runs_with_code": 296,
+   "own_distance_clear_runs": {
+    "p50": 0.18,
+    "p90": 0.245,
+    "p95": 0.261,
+    "p99": 0.277
+   },
+   "farthest": [
+    {
+     "t0": 1574.9,
+     "t1": 1581.1,
+     "d_min": 1.0,
+     "d0": 1.0,
+     "d1": 1.0,
+     "cluster": 0,
+     "margin": 0.0,
+     "near_is_target": true,
+     "method": "cambios de lado"
+    },
+    {
+     "t0": 3556.2,
+     "t1": 3561.9,
+     "d_min": 0.916,
+     "d0": 0.98,
+     "d1": 0.916,
+     "cluster": 0,
+     "margin": 0.0,
+     "near_is_target": false,
+     "method": "cambios de lado"
+    },
+    {
+     "t0": 4382.1,
+     "t1": 4387.8,
+     "d_min": 0.91,
+     "d0": 0.91,
+     "d1": 0.989,
+     "cluster": 0,
+     "margin": 0.0,
+     "near_is_target": true,
+     "method": "cambios de lado"
+    },
+    {
+     "t0": 2154.1,
+     "t1": 2160.8,
+     "d_min": 0.822,
+     "d0": 0.875,
+     "d1": 0.822,
+     "cluster": 0,
+     "margin": 0.0,
+     "near_is_target": false,
+     "method": "cambios de lado"
+    },
+    {
+     "t0": 146.2,
+     "t1": 152.3,
+     "d_min": 0.815,
+     "d0": 0.916,
+     "d1": 0.815,
+     "cluster": 0,
+     "margin": 0.0,
+     "near_is_target": false,
+     "method": "cambios de lado"
+    },
+    {
+     "t0": 5037.7,
+     "t1": 5042.7,
+     "d_min": 0.814,
+     "d0": 0.814,
+     "d1": 0.822,
+     "cluster": 0,
+     "margin": 0.0,
+     "near_is_target": true,
+     "method": "cambios de lado"
+    },
+    {
+     "t0": 354.2,
+     "t1": 362.7,
+     "d_min": 0.811,
+     "d0": 0.846,
+     "d1": 0.811,
+     "cluster": 0,
+     "margin": 0.0,
+     "near_is_target": false,
+     "method": "cambios de lado"
+    },
+    {
+     "t0": 211.7,
+     "t1": 215.1,
+     "d_min": 0.8,
+     "d0": 0.867,
+     "d1": 0.8,
+     "cluster": 0,
+     "margin": 0.0,
+     "near_is_target": false,
+     "method": "cambios de lado"
+    },
+    {
+     "t0": 3729.2,
+     "t1": 3732.8,
+     "d_min": 0.793,
+     "d0": 0.881,
+     "d1": 0.793,
+     "cluster": 1,
+     "margin": 0.0,
+     "near_is_target": false,
+     "method": "cambios de lado"
+    },
+    {
+     "t0": 1286.9,
+     "t1": 1292.0,
+     "d_min": 0.61,
+     "d0": 0.61,
+     "d1": 0.722,
+     "cluster": 0,
+     "margin": 0.08,
+     "near_is_target": false,
+     "method": "cambios de lado"
+    },
+    {
+     "t0": 4279.3,
+     "t1": 4283.9,
+     "d_min": 0.516,
+     "d0": 0.516,
+     "d1": 0.792,
+     "cluster": 0,
+     "margin": 0.15,
+     "near_is_target": true,
+     "method": "cambios de lado"
+    },
+    {
+     "t0": 6564.7,
+     "t1": 6569.0,
+     "d_min": 0.485,
+     "d0": 0.575,
+     "d1": 0.485,
+     "cluster": 1,
+     "margin": 0.08,
+     "near_is_target": false,
+     "method": "cambios de lado"
+    },
+    {
+     "t0": 3909.3,
+     "t1": 3916.8,
+     "d_min": 0.475,
+     "d0": 0.497,
+     "d1": 0.475,
+     "cluster": 1,
+     "margin": 0.0,
+     "near_is_target": false,
+     "method": "cambios de lado"
+    },
+    {
+     "t0": 5677.5,
+     "t1": 5681.2,
+     "d_min": 0.47,
+     "d0": 0.589,
+     "d1": 0.47,
+     "cluster": 1,
+     "margin": 0.09,
+     "near_is_target": false,
+     "method": "cambios de lado"
+    },
+    {
+     "t0": 435.7,
+     "t1": 440.1,
+     "d_min": 0.44,
+     "d0": 0.831,
+     "d1": 0.44,
+     "cluster": 1,
+     "margin": 0.2,
+     "near_is_target": true,
+     "method": "cambios de lado"
+    }
+   ]
+  }
+ }
+}
