@@ -1,4 +1,1 @@
-arranque: 2026-11-13T04:20:02 (pid 11340)
-2026-11-13T04:20:16 1 ordenes de la cola con codigo nuevo en espera
-2026-11-13T04:20:20 otro analisis en marcha (2132,11960)
-2026-11-13T04:26:12 GitHub Actions: libre tras 177 min de espera
+arranque: 2026-11-13T04:30:02 (pid 5404)
