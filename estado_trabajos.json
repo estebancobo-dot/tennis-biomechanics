@@ -1,10 +1,10 @@
 {
- "at": "2026-11-13 05:14:46",
- "firma": "b9dfad8aa4aa",
+ "at": "2026-11-13 05:15:09",
+ "firma": "6e756e20f8ab",
  "ejecutor": {
   "vivo": true,
   "pid": 17768,
-  "at": 1794543286.5589552
+  "at": 1794543306.563523
  },
  "pausa": false,
  "en_curso": [],
@@ -20,6 +20,24 @@
  },
  "pendientes": [],
  "recientes": [
+  {
+   "id": 113,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script diag_identidad_f3set --match azaren --a salidas_v15 --b salidas_v16",
+   "state": "hecho",
+   "message": "",
+   "created": "2026-11-13 05:15:06",
+   "started": "2026-11-13 05:15:06",
+   "finished": "2026-11-13 05:15:07",
+   "args": "[\"script\", \"diag_identidad_f3set\", \"--match\", \"azaren\", \"--a\", \"salidas_v15\", \"--b\", \"salidas_v16\"]",
+   "source": "claude 273",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_113.log",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 112,
    "kind": "comando",
@@ -271,27 +289,30 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_99.log",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 98,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script diag_saques --match f43dd2 --max 14",
-   "state": "hecho",
-   "message": "",
-   "created": "2026-11-12 14:54:22",
-   "started": "2026-11-12 14:54:29",
-   "finished": "2026-11-12 14:54:33",
-   "args": "[\"script\", \"diag_saques\", \"--match\", \"f43dd2\", \"--max\", \"14\"]",
-   "source": "claude 257",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_98.log",
-   "paso": 0,
-   "pasos": 0
   }
  ],
  "eventos": [
+  {
+   "id": 622,
+   "job": 113,
+   "at": "2026-11-13 05:15:08",
+   "kind": "hecho",
+   "text": "código 0"
+  },
+  {
+   "id": 621,
+   "job": 113,
+   "at": "2026-11-13 05:15:06",
+   "kind": "empieza",
+   "text": "script diag_identidad_f3set --match azaren --a salidas_v15 --b salidas_v16"
+  },
+  {
+   "id": 620,
+   "job": 113,
+   "at": "2026-11-13 05:15:06",
+   "kind": "enviado",
+   "text": "tennisbio script diag_identidad_f3set --match azaren --a salidas_v15 --b salidas_v16 (claude 273)"
+  },
   {
    "id": 619,
    "job": null,
@@ -480,27 +501,6 @@
    "at": "2026-11-13 04:30:14",
    "kind": "enviado",
    "text": "tennisbio script validate_recall --spotter --tag v15 --skip-run --report-suffix _e (claude 268)"
-  },
-  {
-   "id": 592,
-   "job": null,
-   "at": "2026-11-13 04:26:34",
-   "kind": "ejecutor",
-   "text": "arranca (pid 5016)"
-  },
-  {
-   "id": 591,
-   "job": null,
-   "at": "2026-11-13 04:26:33",
-   "kind": "ejecutor",
-   "text": "arranca el siguiente con el código nuevo (pid 9724)"
-  },
-  {
-   "id": 590,
-   "job": null,
-   "at": "2026-11-13 04:26:33",
-   "kind": "ejecutor",
-   "text": "termina"
   }
  ]
 }
