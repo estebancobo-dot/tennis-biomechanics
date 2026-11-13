@@ -1335,3 +1335,12 @@ argumentos: --match osaka pegula zheng gauff sobolenko --conflictos --n 24
 # 286 (13-11): con el clic, la ropa sola decide cada plano con ropa clara; en Osaka 8 planos en que la ropa y los
 # cambios de lado del marcador no dicen lo mismo (125 de 133 de acuerdo) y "misma ropa dentro de un juego" 93 %. Los
 # fotogramas enteros de esos planos (las dos jugadoras y el marcador) con lo que dice cada senal, para ver quien acierta
+---
+id: 287
+accion: medir
+script: diag_play_mask
+argumentos: --tags v15 v17 --match osaka pegula --window azaren:1090:1115
+# 287 (13-11, R22): F3Set v17 sale igual que v16 golpe a golpe (465 de 517, precision 0,936; v15 467 y 0,945): el
+# arreglo del principio del plano no cambio nada. Cada hueco de pista que rellena play_mask con lo que lo rodea (la
+# pista en los primeros fotogramas del plano, durante el fundido?) y la tira fotograma a fotograma del punto de
+# Azarenka; Osaka y Pegula para ver que huecos de R16 hay que conservar. Solo lee
