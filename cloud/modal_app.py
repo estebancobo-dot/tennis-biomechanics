@@ -124,6 +124,87 @@ def comprobar() -> dict:
     return out
 
 
+@app.function(image=image, cpu=4.0, memory=8 * 1024, volumes={str(DATA): vol}, timeout=2 * 3600)
+def diag_ts(match_id: str) -> dict:
+    """13-11: the cloud's ffmpeg (Debian's 7.1) could not clean Osaka's whole .ts with either of the probe stage's
+    tries; the PC's (Gyan's build) could since 18-10. CPU only, cents: each ffmpeg (the system's and the static builds
+    of the newest versions) with the probe's tries and a few variants on the whole .ts; which ones work, how long, and
+    the clean file's duration. Decides which ffmpeg the image takes; nothing changes in the analysis."""
+    import json
+    import re
+    import subprocess
+    import time
+    import urllib.request
+
+    import nube
+    _prepare()
+    matches = {m["id"]: m for m in _catalog()}
+    run = DATA / "runs" / "diag_ts"
+    res: dict = {"partido": match_id, "inicio": time.strftime("%Y-%m-%d %H:%M:%S"), "pruebas": []}
+    if match_id not in matches:
+        res["nota"] = "no está en la lista"
+        _save(run, res)
+        vol.commit()
+        return res
+    video = DATA / "videos" / matches[match_id]["video"]
+    res["video_gb"] = round(video.stat().st_size / 1e9, 2)
+    bins = {"sistema": "ffmpeg"}
+    try:                                          # the newest static builds (BtbN), kept on the volume
+        rel = json.loads(urllib.request.urlopen("https://api.github.com/repos/BtbN/FFmpeg-Builds/releases/latest",
+                                                timeout=60).read())
+        names = {a["name"]: a["browser_download_url"] for a in rel.get("assets", [])}
+        vers = sorted({m.group(1) for n in names if (m := re.fullmatch(r"ffmpeg-n(\d+\.\d+)-latest-linux64-gpl-\1\.tar\.xz", n))},
+                      key=lambda v: tuple(int(x) for x in v.split(".")))[-2:]
+        for v in vers:
+            dest = DATA / "home" / "ffmpeg" / v
+            exe = next(dest.rglob("bin/ffmpeg"), None) if dest.exists() else None
+            if exe is None:
+                dest.mkdir(parents=True, exist_ok=True)
+                tar = dest / "f.tar.xz"
+                urllib.request.urlretrieve(names[f"ffmpeg-n{v}-latest-linux64-gpl-{v}.tar.xz"], tar)
+                import tarfile                    # Python's own xz (the slim image may have no xz tool)
+                with tarfile.open(tar, "r:xz") as tf:
+                    tf.extractall(dest, filter="data")
+                tar.unlink()
+                exe = next(dest.rglob("bin/ffmpeg"))
+                exe.chmod(0o755)
+            bins[f"estatico {v}"] = str(exe)
+        vol.commit()
+    except Exception as e:  # noqa: BLE001 — the system's ffmpeg is still tried
+        res["aviso_estaticos"] = f"{type(e).__name__}: {e}"
+    variants = {"probe 1 (tal cual)": ([], []),
+                "probe 2 (genpts+igndts)": (nube.CLEAN_TRIES[1][:2], nube.CLEAN_TRIES[1][2:]),
+                "genpts": (["-fflags", "+genpts"], ["-avoid_negative_ts", "make_zero"]),
+                "genpts+discardcorrupt": (["-fflags", "+genpts+discardcorrupt"], ["-avoid_negative_ts", "make_zero"])}
+    for bname, exe in bins.items():
+        ver = subprocess.run([exe, "-version"], capture_output=True, text=True, timeout=60).stdout.splitlines()[:1]
+        for vname, (fin, fout) in variants.items():
+            out = Path("/tmp") / "limpio.mkv"
+            out.unlink(missing_ok=True)
+            t0 = time.time()
+            r = subprocess.run([exe, "-v", "error", "-y", *fin, "-i", str(video), *fout, "-map", "0:v:0", "-map", "0:a?",
+                                "-dn", "-sn", "-c", "copy", str(out)], capture_output=True, text=True,
+                               encoding="utf-8", errors="replace", timeout=3600)
+            ok = r.returncode == 0 and out.exists() and out.stat().st_size > 0
+            dur = None
+            if ok:
+                pr = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0",
+                                     str(out)], capture_output=True, text=True, timeout=300)
+                dur = pr.stdout.strip()
+            res["pruebas"].append({"ffmpeg": bname, "version": ver[0] if ver else "", "variante": vname, "bien": ok,
+                                   "segundos": round(time.time() - t0), "gb": round(out.stat().st_size / 1e9, 2)
+                                   if out.exists() else 0, "duracion_s": dur,
+                                   "error": "" if ok else (r.stderr or "").strip()[-300:]})
+            print(json.dumps(res["pruebas"][-1], ensure_ascii=False), flush=True)
+            _save(run, res)
+            vol.commit()
+    (Path("/tmp") / "limpio.mkv").unlink(missing_ok=True)
+    res["fin"] = time.strftime("%Y-%m-%d %H:%M:%S")
+    _save(run, res)
+    vol.commit()
+    return res
+
+
 @app.function(**SPEC, timeout=24 * 3600, retries=modal.Retries(max_retries=1))
 def f3set(tag: str = "nube", max_points: int = 0, matches: str = "", pc_tag: str = "v17") -> dict:
     """The F3Set validation (scripts/validate_recall.py --spotter) from scratch on the volume, then the comparison with

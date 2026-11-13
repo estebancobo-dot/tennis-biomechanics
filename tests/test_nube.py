@@ -189,7 +189,8 @@ def test_the_workflow_only_runs_by_hand_with_the_users_key():
     wf = yaml.safe_load((ROOT / ".github" / "workflows" / "nube.yml").read_text(encoding="utf-8"))
     on = wf.get("on") or wf.get(True)
     assert list(on) == ["workflow_dispatch"]                       # never by a push
-    assert set(on["workflow_dispatch"]["inputs"]["accion"]["options"]) == {"comprobar", "f3set", "prueba", "partidos", "recoger"}
+    assert set(on["workflow_dispatch"]["inputs"]["accion"]["options"]) == {"comprobar", "f3set", "prueba", "partidos",
+                                                                      "diagnostico", "recoger"}
     job = wf["jobs"]["nube"]
     assert job["if"] == "github.repository_owner == 'estebancobo-dot'"
     assert job["env"]["CLAVE_MODAL_1"] == "${{ secrets.MODAL_TOKEN_ID }}"
