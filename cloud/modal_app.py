@@ -60,21 +60,24 @@ def _save(run: Path, est: dict) -> None:
     (run / "estado.json").write_text(json.dumps(est, ensure_ascii=False, indent=1), encoding="utf-8")
 
 
-@app.function(**SPEC, timeout=1800)
+@app.function(**SPEC, timeout=600)
 def comprobar() -> dict:
     """Before spending GPU hours: the GPU, ONNX Runtime with CUDA (also in a new process, as the fine pass's workers),
     a session of a real model on CUDA, the models and the data uploaded from the PC, and the configuration in use."""
     import subprocess
     import sys
 
+    print("comprobar: preparar", flush=True)
     _prepare()
     out: dict = {}
+    print("comprobar: GPU", flush=True)
     smi = subprocess.run(["nvidia-smi", "--query-gpu=name,memory.total,driver_version", "--format=csv,noheader"],
-                         capture_output=True, text=True)
+                         capture_output=True, text=True, timeout=60)
     out["gpu"] = (smi.stdout or smi.stderr).strip()
     code = ("import onnxruntime as o; from tennisbio.pose import estimator as e; "
             "print(o.__version__); print(o.get_available_providers()); print(e.ORT_PROVIDERS['dml'])")
-    r = subprocess.run([sys.executable, "-c", code], capture_output=True, text=True, cwd="/repo")
+    print("comprobar: ONNX Runtime en un proceso nuevo", flush=True)
+    r = subprocess.run([sys.executable, "-c", code], capture_output=True, text=True, cwd="/repo", timeout=300)
     out["proceso_nuevo"] = (r.stdout + r.stderr).strip().splitlines()[-3:]
     models = Path("/repo/models")
     out["modelos"] = sorted(p.name for p in models.glob("*") if p.is_file())
@@ -90,7 +93,7 @@ def comprobar() -> dict:
     cfg = load_config()
     out["config"] = {"device": cfg.get("device"), "fp16": cfg.get("fp16"), "paths": cfg.get("paths"),
                      "local_del_pc": (DATA / "pc" / "local.yaml").exists()}
-    ff = subprocess.run(["ffmpeg", "-version"], capture_output=True, text=True)
+    ff = subprocess.run(["ffmpeg", "-version"], capture_output=True, text=True, timeout=60)
     out["ffmpeg"] = ff.stdout.splitlines()[0] if ff.stdout else ff.stderr.strip()[:200]
     _save(DATA / "runs" / "comprobar", out)
     vol.commit()
