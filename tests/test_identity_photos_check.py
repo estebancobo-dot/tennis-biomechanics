@@ -276,3 +276,14 @@ def test_the_serve_votes_settle_clothes_against_a_wrong_scoreboard():
     # few serves seen: the scoreboard decides as before
     ck = groups_check(None, lab, np.full(20, .5), parity, votes=votes[:3])
     assert ck["distinguishable"] is False
+
+
+def test_few_end_changes_and_no_serve_seen_do_not_crash():
+    """13-11 (the cloud's 10-minute Osaka test): distinct clothes, end changes on too few runs (< MIN_CHECK_RUNS) that
+    disagree, and no serve seen: groups_check computed a reason with the votes' share (None) and the stage crashed."""
+    rng = np.random.default_rng(3)
+    lab = np.array([0, 1, 0, 1, 0, 1])
+    codes = np.array([_code("B" if l else "A", 1.0, rng) for l in lab])
+    ck = groups_check(codes, lab, np.full(6, .5), [0, 0, 0, 1, 1, 0], votes=())
+    assert ck["vote_agree"] is None and ck["parity_runs"] == 6 and ck["parity_agree"] < 0.7
+    assert ck["distinguishable"] is True and "sin comprobar" in ck["why"] and "saques" not in ck["why"]

@@ -404,11 +404,20 @@ def groups_check(codes, labels, margins, parities: list | None = None, far_pairs
             why.append(f"la jugadora del fondo cae en el mismo grupo que la cercana ({round(100 * (1 - far_opposite))} %)")
     if checked:
         out["distinguishable"] = not why
-        out["why"] = "; ".join(why) or (
-            f"dos personas: la ropa explica los saques vistos ({round(100 * out['vote_agree'])} % de {out['vote_runs']}) "
-            f"aunque no los cambios de lado del marcador ({round(100 * out['parity_agree'])} %)"
-            if out["parity_agree"] is not None and out["parity_agree"] < MIN_PARITY_SHARE
-            else "dos personas (ropa distinta y de acuerdo con los cambios de lado)")
+        # 13-11 (the cloud's 10-minute Osaka test): too few end changes to check (< MIN_CHECK_RUNS) and no serve seen
+        # crashed here (vote_agree None); the reason now names only the cues there were
+        low = out["parity_agree"] is not None and out["parity_agree"] < MIN_PARITY_SHARE
+        if why:
+            out["why"] = "; ".join(why)
+        elif low and votes_back:
+            out["why"] = (f"dos personas: la ropa explica los saques vistos ({round(100 * out['vote_agree'])} % de "
+                          f"{out['vote_runs']}) aunque no los cambios de lado del marcador "
+                          f"({round(100 * out['parity_agree'])} %)")
+        elif low:
+            out["why"] = (f"dos personas (ropa distinta; cambios de lado sin comprobar: {out['parity_runs']} planos, "
+                          f"{round(100 * out['parity_agree'])} % de acuerdo)")
+        else:
+            out["why"] = "dos personas (ropa distinta y de acuerdo con los cambios de lado)"
     return out
 
 
