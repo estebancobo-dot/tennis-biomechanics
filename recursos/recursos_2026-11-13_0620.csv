@@ -1,0 +1,2 @@
+hora,partido,etapa,cpu_total,cpu_python,cpu_ffmpeg,ram_usada_gb,ram_total_gb,ram_python_gb,gpu_3d,gpu_compute,gpu_decode,disco,progreso_hora,progreso_pct
+2026-11-13T06:20:09,us-open-2026-r4-naomi-osaka-elena-rybakina,players,48.0,27.8,0.0,8.7,19.8,6.7,79.0,0.0,0.0,0.0,2026-11-13 06:20:04,3.4
