@@ -57,39 +57,41 @@
   "rewrote": {}
  },
  "score": {
-  "fingerprint": "9626b77417208e4f",
-  "version": "12",
-  "seconds": 496.2,
-  "finished": "2026-11-12 16:57:21",
+  "fingerprint": "107efe93251350d8",
+  "version": "13",
+  "seconds": 492.2,
+  "finished": "2026-11-13 13:31:57",
   "summary": {
-   "readings": 519,
-   "pressure": 177,
-   "samples": 543,
-   "ocr_calls": 397,
-   "server_read": 519,
+   "readings": 516,
+   "pressure": 176,
+   "samples": 539,
+   "ocr_calls": 393,
+   "server_read": 516,
    "server_source": "marker + alternancia"
   },
-  "out_hash": "8fa690b8ae03d85886c8",
+  "out_hash": "8bef2faa6eae41224561",
   "scheme": 2,
-  "rewrote": {}
+  "rewrote": {},
+  "faults": {}
  },
  "players": {
-  "fingerprint": "d3610bd76937d3e3",
-  "version": "5",
-  "seconds": 1511.9,
-  "finished": "2026-11-12 17:14:17",
+  "fingerprint": "765f35ade5a6ae38",
+  "version": "6",
+  "seconds": 1511.4,
+  "finished": "2026-11-13 13:48:56",
   "summary": {
-   "frames": 21715,
+   "frames": 21607,
    "wall_min": 25.2,
-   "model_min": 21.1,
+   "model_min": 21.0,
    "read_min": 25.1,
    "wait_min": 4.1,
    "appearance_min": 0.3
   },
-  "out_hash": "368999239421f15b59e3",
+  "out_hash": "86180df6e2d508586aaf",
   "scheme": 2,
   "rewrote": {},
-  "overlap_s": 496.2
+  "overlap_s": 492.2,
+  "faults": {}
  },
  "audio": {
   "fingerprint": "11db176574e0c7ac",
