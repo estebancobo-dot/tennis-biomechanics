@@ -356,7 +356,8 @@ def partido(match_id: str) -> dict:
                coste_usd=nube.cost(secs, gpu, CORES, GIB), fin=time.strftime("%Y-%m-%d %H:%M:%S"),
                etapas={k: v.get("seconds") for k, v in man.items() if isinstance(v, dict) and "seconds" in v},
                fallos={k: v.get("faults") for k, v in man.items() if isinstance(v, dict) and v.get("faults")},
-               recursos=nube.summarize_resources(samples))
+               recursos=nube.summarize_resources(samples),
+               modelos_en_cpu=nube.gpu_fallbacks((run / "log.txt").read_text(encoding="utf-8", errors="replace")))
     _save(run, est)
     stop.set()
     vol.commit()
@@ -392,13 +393,13 @@ def prueba(match_id: str, inicio_s: int = 600, duracion_s: int = 600) -> dict:
         # whole .ts is cleaned first with the probe's own command (the step the whole match takes), then cut
         full = Path("/tmp") / f"{pid}_limpio.mkv"
         err = nube.clean_copy(video, full)
-        limpieza = f"FALLA: {err}" if err else "bien (el .ts entero, como en el partido)"
-        if err:
-            _save(run, {"partido": pid, "estado": "error", "limpieza": limpieza})
-            vol.commit()
-            return {"estado": "error", "limpieza": limpieza}
-        video = full
-    clip = DATA / "videos" / f"{pid}.mkv"
+        # 13-11: Osaka's .ts cannot be cleaned by any ffmpeg (7.1, 9.0; diag_ts) and neither could the PC's
+        # (probe «cleaned: false» since 18-10): the match is analysed from the .ts as it is, as on the PC
+        limpieza = (f"no se puede (como en el PC desde el 18-10): se usa el .ts tal cual ({err[-120:]})" if err
+                    else "bien (el .ts entero, como en el partido)")
+        if not err:
+            video = full
+    clip = DATA / "videos" / f"{pid}{video.suffix.lower()}"     # a .ts stays a .ts (the probe then tries, as on the PC)
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", str(inicio_s), "-i", str(video), "-t", str(duracion_s),
                     "-map", "0:v:0", "-map", "0:a?", "-c", "copy", str(clip)], check=True, timeout=1800)
     vol.commit()

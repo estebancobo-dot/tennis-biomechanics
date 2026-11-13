@@ -124,6 +124,15 @@ def sample_resources() -> dict:
     return s
 
 
+GPU_FALLBACK = "falló al cargar"          # tennisbio.pose.estimator._new_session: a model the GPU could not take
+
+
+def gpu_fallbacks(log: str) -> int:
+    """How many model sessions went to the CPU because the GPU could not load them (13-11: silent until Pegula's
+    test; the same points, many times slower and dearer)."""
+    return sum(1 for ln in log.splitlines() if GPU_FALLBACK in ln)
+
+
 def summarize_resources(rows: list[dict]) -> dict:
     """Mean and peak of each measure over a run's samples."""
     out: dict = {"muestras": len(rows)}

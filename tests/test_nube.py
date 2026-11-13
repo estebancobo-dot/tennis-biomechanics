@@ -351,3 +351,34 @@ def test_a_match_run_samples_what_the_container_uses():
     src = (ROOT / "cloud" / "modal_app.py").read_text(encoding="utf-8")
     body = src[src.index("def partido("):src.index("def prueba(")]
     assert "nube.sample_resources()" in body and "recursos=nube.summarize_resources(samples)" in body
+
+
+def test_cuda_sessions_take_only_what_they_ask_for_and_fallbacks_are_counted():
+    """13-11: Pegula's test filled the T4 (two fine workers, several sessions each, ONNX Runtime's defaults) and models
+    went silently to the CPU. CUDA sessions get a growing-as-asked arena and a small cuDNN workspace; each run counts
+    the models that still went to the CPU."""
+    sys.path.insert(0, str(ROOT / "cloud" / "arranque"))
+    import nube_gpu
+    opts = nube_gpu.provider_options(["CUDAExecutionProvider", "CPUExecutionProvider"])
+    assert opts == [nube_gpu.CUDA_OPTIONS, {}]
+    assert nube_gpu.CUDA_OPTIONS["arena_extend_strategy"] == "kSameAsRequested"
+    assert nube_gpu.CUDA_OPTIONS["cudnn_conv_use_max_workspace"] == "0"
+    assert nube_gpu.provider_options(["CPUExecutionProvider"]) is None
+    assert nube_gpu.provider_options([("CUDAExecutionProvider", {"device_id": 0})]) is None   # its own options stay
+    log = "x\nAVISO: la iGPU falló al cargar /repo/models/a.onnx (CUBLAS); se usa la CPU\ny\n"
+    assert nube.gpu_fallbacks(log) == 1 and nube.gpu_fallbacks("nada") == 0
+    from tennisbio.pose import estimator
+    assert nube.GPU_FALLBACK in Path(estimator.__file__).read_text(encoding="utf-8")        # the PC's own words
+
+
+def test_in_the_cloud_sessions_are_made_with_the_cuda_options(tmp_path):
+    site_dir = tmp_path / "site"
+    site_dir.mkdir()
+    (site_dir / "nube.pth").write_text(f"{ROOT / 'src'}\n{ROOT / 'cloud' / 'arranque'}\nimport nube_gpu\n")
+    code = (f"import site; site.addsitedir({str(site_dir)!r}); "
+            "from tennisbio.pose import estimator as e; import onnxruntime as o; "
+            "print(getattr(o.InferenceSession, '_nube', False), o.InferenceSession is e.ort.InferenceSession)")
+    env = {**os.environ, "TENNISBIO_DML_IS_CUDA": "1"}
+    r = subprocess.run([sys.executable, "-c", code], env=env, capture_output=True, text=True, timeout=120)
+    assert r.returncode == 0, r.stderr[-800:]
+    assert r.stdout.strip().splitlines()[-1] == "True True"
