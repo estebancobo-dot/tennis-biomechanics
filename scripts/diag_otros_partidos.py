@@ -2,8 +2,8 @@
 the final: a doubles match, the Williams against Chan and Joint; a studio with the match in a small window), and the
 identity decided runs there as if they were her match (diagnosis 286). How much of each match that is, and whether any of
 her strokes come from it: the main-camera shots in play where the scoreboard was tried and never read with the two
-players' names (score.json), the identity runs and her strokes (strokes.json) inside them, and, around the given seconds,
-what each stage left. Writes <output>/capturas_diag/diag_otros_partidos.json. Reads only.
+players' names (score.json), the identity runs and her strokes (strokes.json) inside them, around the given seconds
+what each stage left, and the runs whose clothes are far from both players' (another match's people). Writes <output>/capturas_diag/diag_otros_partidos.json. Reads only.
 
     uv run python scripts/diag_otros_partidos.py --match osaka pegula zheng gauff sobolenko --t 4628 11586 12203 12217
 """
@@ -42,6 +42,36 @@ def inside(t: float, shots: list[dict]) -> dict | None:
     return next((s for s in shots if s["start"] <= t < s["end"]), None)
 
 
+def clothes_outliers(ident: dict | None, top: int = 15) -> dict:
+    """How far each run's clothes are from the two players' typical clothes (clothes.group_centroids of the identity's
+    own groups): a person of another match is far from both. The distances of the clear runs (margin ≥ 0.3) to their
+    own group give the usual spread; the farthest runs are listed with their time, group, margin and decision."""
+    import numpy as np
+
+    from tennisbio.clothes import CLOTHES_DIM, clothes_distances, group_centroids
+    runs = [r for r in (ident or {}).get("runs") or [] if r.get("clothes_code") is not None]
+    if len(runs) < 4:
+        return {"runs_with_code": len(runs)}
+    fps = float(ident.get("fps") or 1.0)
+    X = np.array([[np.nan if v is None else v for v in r["clothes_code"]] for r in runs], np.float32).reshape(-1, CLOTHES_DIM)
+    lab = np.array([r.get("cluster", -1) if r.get("cluster") is not None else -1 for r in runs])
+    mar = np.array([float(r.get("clothes_margin") or 0) for r in runs])
+    cents = group_centroids(X, lab, mar)
+    if any(c is None for c in cents):
+        return {"runs_with_code": len(runs), "note": "un grupo sin código"}
+    D = clothes_distances(X, np.stack(cents))                # (runs, 2)
+    dmin = np.nanmin(D, axis=1)
+    own = np.array([D[i, lab[i]] if lab[i] in (0, 1) else np.nan for i in range(len(runs))])
+    clear = own[(mar >= 0.3) & np.isfinite(own)]
+    q = {f"p{k}": round(float(np.quantile(clear, k / 100)), 3) for k in (50, 90, 95, 99)} if len(clear) else {}
+    order = np.argsort(-np.nan_to_num(dmin, nan=-1))[:top]
+    far = [{"t0": round(float(runs[i].get("start", 0)) / fps, 1), "t1": round(float(runs[i].get("end", 0)) / fps, 1),
+            "d_min": round(float(dmin[i]), 3), "d0": round(float(D[i, 0]), 3), "d1": round(float(D[i, 1]), 3),
+            "cluster": int(lab[i]), "margin": round(float(mar[i]), 2), "near_is_target": runs[i].get("near_is_target"),
+            "method": runs[i].get("method")} for i in order if np.isfinite(dmin[i])]
+    return {"runs_with_code": len(runs), "own_distance_clear_runs": q, "farthest": far}
+
+
 def report(d: Path, probes: list[float]) -> dict:
     score, ident = _read(d, "score.json"), _read(d, "identity.json")
     if score is None:
@@ -67,7 +97,7 @@ def report(d: Path, probes: list[float]) -> dict:
                                                               for s in near]})
     return {"unread_shots": len(un), "unread_min": round(sum(s["end"] - s["start"] for s in un) / 60, 1),
             "strokes": len(strokes), "strokes_in_unread": in_un, "runs_in_unread": runs, "probes": pr,
-            "names": score.get("names")}
+            "names": score.get("names"), "clothes": clothes_outliers(ident)}
 
 
 def main() -> None:

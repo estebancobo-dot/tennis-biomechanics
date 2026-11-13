@@ -30,3 +30,27 @@ def test_strokes_and_runs_in_shots_without_her_scoreboard_are_listed(tmp_path):
 
 def test_without_score_json_it_says_so(tmp_path):
     assert "error" in D.report(tmp_path, [])
+
+
+def test_a_person_unlike_both_players_is_the_farthest_run():
+    import numpy as np
+
+    from tennisbio.clothes import CLOTHES_DIM, REGION_DIM
+    rng = np.random.default_rng(0)
+
+    def code(colour):
+        c = np.full(CLOTHES_DIM, 0.01, np.float32)
+        for r in range(2):
+            c[r * REGION_DIM + colour] = 1.0
+            c[r * REGION_DIM:(r + 1) * REGION_DIM] /= c[r * REGION_DIM:(r + 1) * REGION_DIM].sum()
+        return c
+    runs = []
+    for k in range(10):                                           # her (colour 0) and the opponent (colour 1)
+        g = k % 2
+        c = code(g) + rng.uniform(0, 0.002, CLOTHES_DIM).astype(np.float32)
+        runs.append({"start": k * 100, "end": k * 100 + 50, "cluster": g, "clothes_margin": 0.6,
+                     "clothes_code": [float(v) for v in c], "near_is_target": g == 0})
+    runs.append({"start": 46200, "end": 46400, "cluster": 0, "clothes_margin": 0.08,          # another match
+                 "clothes_code": [float(v) for v in code(5)], "near_is_target": True})
+    r = D.clothes_outliers({"fps": 10.0, "runs": runs})
+    assert r["farthest"][0]["t0"] == 4620.0 and r["farthest"][0]["d_min"] > 3 * r["own_distance_clear_runs"]["p99"]
