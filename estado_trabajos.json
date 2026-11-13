@@ -1,10 +1,10 @@
 {
- "at": "2026-11-13 19:50:38",
- "firma": "89453bd8902f",
+ "at": "2026-11-13 19:50:42",
+ "firma": "d93f58bda824",
  "ejecutor": {
   "vivo": true,
   "pid": 7588,
-  "at": 1794595816.0491252
+  "at": 1794595840.0576932
  },
  "pausa": false,
  "en_curso": [],
@@ -18,7 +18,8 @@
   "quedan_s": 0,
   "hora": "2026-11-13 18:25:58"
  },
- "pendientes": [
+ "pendientes": [],
+ "recientes": [
   {
    "id": 129,
    "kind": "comando",
@@ -26,19 +27,17 @@
    "player": null,
    "stroke": null,
    "reason": "script diag_play_mask --tags v15 v17 --match osaka pegula --window azaren,1090,1115",
-   "state": "pendiente",
-   "message": "",
+   "state": "error",
+   "message": "código 1",
    "created": "2026-11-13 19:50:36",
-   "started": null,
-   "finished": null,
+   "started": "2026-11-13 19:50:40",
+   "finished": "2026-11-13 19:50:40",
    "args": "[\"script\", \"diag_play_mask\", \"--tags\", \"v15\", \"v17\", \"--match\", \"osaka\", \"pegula\", \"--window\", \"azaren,1090,1115\"]",
    "source": "claude 289",
-   "log": "",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_129.log",
    "paso": 0,
    "pasos": 0
-  }
- ],
- "recientes": [
+  },
   {
    "id": 128,
    "kind": "flujo",
@@ -290,27 +289,23 @@
    "log": "",
    "paso": 0,
    "pasos": 6
-  },
-  {
-   "id": 114,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "run --match us-open-2026-r4-naomi-osaka-elena-rybakina",
-   "state": "cancelado",
-   "message": "cancelado (claude 279)",
-   "created": "2026-11-13 05:15:23",
-   "started": "2026-11-13 05:15:28",
-   "finished": null,
-   "args": "[\"run\", \"--match\", \"us-open-2026-r4-naomi-osaka-elena-rybakina\"]",
-   "source": "claude 274",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_114.log",
-   "paso": 0,
-   "pasos": 0
   }
  ],
  "eventos": [
+  {
+   "id": 710,
+   "job": 129,
+   "at": "2026-11-13 19:50:42",
+   "kind": "error",
+   "text": "código 1"
+  },
+  {
+   "id": 709,
+   "job": 129,
+   "at": "2026-11-13 19:50:40",
+   "kind": "empieza",
+   "text": "script diag_play_mask --tags v15 v17 --match osaka pegula --window azaren,1090,1115"
+  },
   {
    "id": 708,
    "job": 129,
@@ -506,20 +501,6 @@
    "at": "2026-11-13 18:36:15",
    "kind": "ejecutor",
    "text": "se reinicia con el código nuevo"
-  },
-  {
-   "id": 680,
-   "job": null,
-   "at": "2026-11-13 18:36:10",
-   "kind": "reiniciar",
-   "text": "ciclo"
-  },
-  {
-   "id": 679,
-   "job": 124,
-   "at": "2026-11-13 18:35:35",
-   "kind": "hecho",
-   "text": "código 0"
   }
  ]
 }
