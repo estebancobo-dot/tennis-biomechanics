@@ -1,13 +1,32 @@
 {
- "at": "2026-11-13 04:30:26",
- "firma": "2acd08d59f80",
+ "at": "2026-11-13 04:30:46",
+ "firma": "fdc20c88cf2b",
  "ejecutor": {
   "vivo": true,
   "pid": 5016,
-  "at": 1794540614.7545745
+  "at": 1794540636.8298373
  },
  "pausa": false,
- "en_curso": [],
+ "en_curso": [
+  {
+   "id": 110,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script validate_recall --spotter --tag v16 --skip-run --report-suffix _e",
+   "state": "en curso",
+   "message": "",
+   "created": "2026-11-13 04:30:40",
+   "started": "2026-11-13 04:30:46",
+   "finished": null,
+   "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"v16\", \"--skip-run\", \"--report-suffix\", \"_e\"]",
+   "source": "claude 269",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_110.log",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "court",
@@ -293,6 +312,20 @@
  ],
  "eventos": [
   {
+   "id": 597,
+   "job": 110,
+   "at": "2026-11-13 04:30:46",
+   "kind": "empieza",
+   "text": "script validate_recall --spotter --tag v16 --skip-run --report-suffix _e"
+  },
+  {
+   "id": 596,
+   "job": 110,
+   "at": "2026-11-13 04:30:40",
+   "kind": "enviado",
+   "text": "tennisbio script validate_recall --spotter --tag v16 --skip-run --report-suffix _e (claude 269)"
+  },
+  {
    "id": 595,
    "job": 109,
    "at": "2026-11-13 04:30:26",
@@ -487,20 +520,6 @@
    "at": "2026-11-13 00:39:34",
    "kind": "ejecutor",
    "text": "se reinicia con el código nuevo"
-  },
-  {
-   "id": 567,
-   "job": null,
-   "at": "2026-11-13 00:39:24",
-   "kind": "reiniciar",
-   "text": "ciclo"
-  },
-  {
-   "id": 566,
-   "job": 105,
-   "at": "2026-11-13 00:39:04",
-   "kind": "hecho",
-   "text": "código 0"
   }
  ]
 }
