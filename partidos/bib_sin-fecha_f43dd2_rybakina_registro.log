@@ -11616,3 +11616,6 @@
 2026-11-13 04:03:14 [us-open-2026-r4-naomi-osaka-elena-rybakina] fine_doubtful terminada a las 04:03:14 en 7.9 min
 2026-11-13 05:15:29 [us-open-2026-r4-naomi-osaka-elena-rybakina] fine… (2026-11-13 05:15:29, etapa 11 de 16)
 2026-11-13 05:15:46   ventana w000500086_8927 (far, 3 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-13 05:16:06   ventana w000500086_8927: pose yolo en 409 de 409 fotogramas (17 s; modelo 17 s) · bola 14 s · raqueta 0 s (3 de 6 impactos) · 6 golpes posibles · altura 89 px (court)
+2026-11-13 05:16:07   fine:   1 % (3/232 golpes candidatos · 3 confirmados · 0 ventanas descartadas sin pose) · 0 s · quedan ≈ 0 s
+2026-11-13 05:16:17   ventana w000528509_5117 (far, 2 candidatos): pasa · golpe del detector (sin golpe de bola visto)

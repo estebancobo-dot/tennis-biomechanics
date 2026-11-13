@@ -1,10 +1,10 @@
 {
- "at": "2026-11-13 05:16:00",
- "firma": "5f1f60517ef4",
+ "at": "2026-11-13 05:16:16",
+ "firma": "3e883d0b5596",
  "ejecutor": {
   "vivo": true,
   "pid": 17768,
-  "at": 1794543360.614648
+  "at": 1794543376.6256428
  },
  "pausa": false,
  "en_curso": [
@@ -28,16 +28,34 @@
   }
  ],
  "progreso": {
-  "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
-  "etapa": "court",
-  "hecho": 1355,
-  "total": 1355,
-  "porcentaje": 100.0,
-  "segundos": 195,
+  "partido": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+  "etapa": "fine",
+  "hecho": 3,
+  "total": 232,
+  "porcentaje": 1.3,
+  "segundos": 0,
   "quedan_s": 0,
-  "hora": "2026-11-13 04:06:50"
+  "hora": "2026-11-13 05:16:07"
  },
  "pendientes": [
+  {
+   "id": 116,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script validate_recall --spotter --tag v17 --from v16",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-13 05:16:11",
+   "started": null,
+   "finished": null,
+   "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"v17\", \"--from\", \"v16\"]",
+   "source": "claude 276",
+   "log": "",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 115,
    "kind": "flujo",
@@ -331,6 +349,13 @@
  ],
  "eventos": [
   {
+   "id": 626,
+   "job": 116,
+   "at": "2026-11-13 05:16:11",
+   "kind": "enviado",
+   "text": "tennisbio script validate_recall --spotter --tag v17 --from v16 (claude 276)"
+  },
+  {
    "id": 625,
    "job": 115,
    "at": "2026-11-13 05:15:46",
@@ -532,13 +557,6 @@
    "at": "2026-11-13 04:30:46",
    "kind": "empieza",
    "text": "script validate_recall --spotter --tag v16 --skip-run --report-suffix _e"
-  },
-  {
-   "id": 596,
-   "job": 110,
-   "at": "2026-11-13 04:30:40",
-   "kind": "enviado",
-   "text": "tennisbio script validate_recall --spotter --tag v16 --skip-run --report-suffix _e (claude 269)"
   }
  ]
 }
