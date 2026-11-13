@@ -1,4 +1,4 @@
-fecha: 2026-11-13T19:46:09
+fecha: 2026-11-13T19:46:44
      265.6 MB  \output\analisis
        4.2 MB  \output\auditoria
        5.7 MB  \output\benchmark
@@ -45,7 +45,7 @@ fecha: 2026-11-13T19:46:09
     1383.8 MB  \output\_poc76_35
        168 MB  \output\_poc76_4
     2920.2 MB  \output\_smoke
-         4 MB  \output\_smoke\auditoria
+       4.1 MB  \output\_smoke\auditoria
        2.6 MB  \output\_smoke\diag
      286.5 MB  \output\_smoke\exportar
       20.2 MB  \output\_smoke\informe
