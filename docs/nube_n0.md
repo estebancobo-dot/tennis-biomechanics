@@ -12,9 +12,11 @@ mismo y cuánto más rápida es (k, por etapa). **Coste: 0 €** (el tope de la 
 2. Regístrate. Si te ofrece **GitHub**, usa tu cuenta de GitHub, que es lo más rápido; si no, Google o correo.
    Modal crea tu espacio de trabajo («workspace») con tu nombre de usuario. Queda en el **plan Starter: 0 $ al mes y
    30 $ de crédito gratis cada mes**.
-3. Si al registrarte o al entrar en la facturación te pide una **tarjeta**, ponla. Las fuentes no se ponen de acuerdo
-   en si hace falta para el crédito gratis (alguna habla de un cargo de verificación de 0,50 $). Con el tope del paso 4
-   nunca se cobra nada más.
+3. **Visto por el usuario el 13-11 al registrarse:** el formulario de bienvenida dice «$1 free to use now. Add a
+   payment method any time in settings». **Sin tarjeta solo hay 1 $.** Basta para «comprobar» (céntimos), pero no para
+   F3Set (~2-11 $). **Los 30 $ al mes se activan al añadir la tarjeta** («Add payment method», ahí o después en
+   Settings). Respuestas del formulario: Personal; cualquier origen; «Batch processing». Con tarjeta, **lo primero es el
+   tope del paso 2**. Una fuente no oficial habla de un cargo de verificación de 0,50 $; no está confirmado.
 
 ### 2. Tope de gasto: 0 € (2 min) — imprescindible
 1. Ve a **modal.com/settings/usage** (menú **Settings → Usage & Billing**).
