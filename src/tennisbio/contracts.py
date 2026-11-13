@@ -17,8 +17,9 @@ from typing import Callable
 from .faults import fault
 
 CONTRACTS: dict[str, Callable] = {}
-FLOORS = {"main_camera": 0.10, "court": 0.50, "onsets_per_min": 5.0, "server_read": 0.50, "near_seen": 0.25,
-          "far_seen": 0.25}
+FLOORS = {"main_camera": 0.10, "court": 0.50, "onsets_per_min": 5.0, "server_read": 0.50, "near_seen": 0.25}
+# no floor for the far player (R27, 13-11): the cheap pass sees her in ~0.1 % of the play in the matches and in F3Set,
+# where the detector was trained; it never had her
 MIN_PLAY_MIN = 1.0           # below a minute of play (a test clip) the shares say nothing
 MIN_CANDIDATES = 20          # candidates of the fine pass from which none confirmed is no result
 
@@ -110,12 +111,12 @@ def _spotting(ctx, s: dict):
     inp = s.get("inputs") or {}
     if not s.get("enabled", True) or not inp or float(inp.get("play_min") or 0) < MIN_PLAY_MIN:
         return
-    for k, who in (("near_seen", "la jugadora cercana"), ("far_seen", "la jugadora lejana")):
-        v = float(inp.get(k) or 0)
-        if v <= 0:
-            fault("entrada.vacia", f"detector: {who} no se ve en ningún momento del juego")
-        elif v < FLOORS[k]:
-            fault("entrada.cobertura_baja", f"detector: {who} vista en el {v:.0%} del juego (mínimo {FLOORS[k]:.0%})")
+    v = float(inp.get("near_seen") or 0)
+    if v <= 0:
+        fault("entrada.vacia", "detector: la jugadora cercana no se ve en ningún momento del juego")
+    elif v < FLOORS["near_seen"]:
+        fault("entrada.cobertura_baja", f"detector: la jugadora cercana vista en el {v:.0%} del juego "
+                                        f"(mínimo {FLOORS['near_seen']:.0%})")
 
 
 @contract("fine")

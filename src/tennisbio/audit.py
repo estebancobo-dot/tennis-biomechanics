@@ -1930,8 +1930,11 @@ def ball_for_spotter_item(match: str, ball: dict | None) -> dict:
 INPUTS_ITEM = "Entradas de los modelos"
 # 12-11 (#264, R19): the floor of each input of a real match; below it the input is missing, not weak (R17: the ball was
 # empty in every library match for three weeks and nothing said it). Thresholds for a broken input, not for quality.
-INPUT_FLOORS = {"main_camera": 0.10, "court": 0.50, "onsets_per_min": 5.0, "server_read": 0.50, "near_seen": 0.25,
-                "far_seen": 0.25}
+# 13-11 (R27, diag_entradas 272): the far player is in the cheap pass's features in ~0.1 % of the play in all six
+# matches AND in the four F3Set compilations the detector was trained and validated on (one detection per frame: the
+# near player); the detector never had her and finds her strokes by the ball and the sound. Her share is said, never
+# held to a floor (it was 25 % on 12-11: every match would have failed for an input the model never had).
+INPUT_FLOORS = {"main_camera": 0.10, "court": 0.50, "onsets_per_min": 5.0, "server_read": 0.50, "near_seen": 0.25}
 
 
 def inputs_item(match: str, man: dict) -> dict | None:
@@ -1966,10 +1969,13 @@ def inputs_item(match: str, man: dict) -> dict | None:
         check(n > 0 and share >= INPUT_FLOORS["server_read"], f"marcador {n} lecturas, saque en el {100 * share:.0f} %",
               f"marcador: {n} lecturas, quién saca en el {100 * share:.0f} %")
     inp = sp.get("inputs") or {}
-    for k, label in (("near_seen", "jugadora cercana"), ("far_seen", "jugadora lejana")):
-        if k in inp:
-            check(float(inp[k]) >= INPUT_FLOORS[k], f"{label} vista en el {100 * float(inp[k]):.0f} % del juego",
-                  f"{label} vista solo en el {100 * float(inp[k]):.0f} % del juego")
+    if "near_seen" in inp:
+        check(float(inp["near_seen"]) >= INPUT_FLOORS["near_seen"], f"jugadora cercana vista en el "
+              f"{100 * float(inp['near_seen']):.0f} % del juego",
+              f"jugadora cercana vista solo en el {100 * float(inp['near_seen']):.0f} % del juego")
+    if "far_seen" in inp:          # said, not checked (R27): the cheap pass does not see her, in F3Set neither
+        ok.append(f"jugadora lejana en la pasada barata el {100 * float(inp['far_seen']):.1f} % del juego (como en F3Set, "
+                  "donde se entrenó el detector: sus golpes, por la bola y el sonido)")
     if sp.get("enabled") and not inp:
         bad.append("el detector no dice qué vio de cada jugadora (análisis anterior al 12-11)")
     return _item(12, "Modelos", f"{INPUTS_ITEM}: {match}", "aviso" if bad else "ok",

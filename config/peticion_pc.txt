@@ -1257,3 +1257,31 @@ accion: medir
 script: diag_identidad_f3set
 argumentos: --match azaren --a salidas_v15 --b salidas_v16
 # 273 (13-11, R22): 270 salio vacio: las carpetas de F3Set llevan el nombre cortado a 60 letras ("..._victoria_azaren")
+---
+id: 274
+accion: trabajo
+comando: run --match us-open-2026-r4-naomi-osaka-elena-rybakina
+# 274 (13-11, R26): validacion final de todo junto con el codigo de #265 (fallos por niveles y contratos) y R27: Osaka.
+# Rehace sus ventanas (cambia io/video.py, parte de su clave). Debe acabar sin C0 ni C1 en "Fallos por niveles"
+---
+id: 275
+accion: trabajo
+comando: flujo informe
+# 275 (13-11, R26): auditoria de Osaka con el codigo final (antes de lo largo)
+---
+id: 276
+accion: medir
+script: validate_recall
+argumentos: --spotter --tag v17 --from v16
+# 276 (13-11, R26): F3Set con el codigo final: no debe perder golpes ni precision frente a v15 (467 de 517, 0,945)
+---
+id: 277
+accion: trabajo
+comando: run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final
+# 277 (13-11, R26): Pegula con el codigo final (la de R17 se cancelo, 271)
+---
+id: 278
+accion: trabajo
+comando: flujo informe
+# 278 (13-11, R26): auditoria final: Osaka y Pegula (saques >= 85 %, bola >= 90 % del juego, pose en el contacto,
+# identidad, Fallos por niveles sin C0 ni C1) y F3Set v17

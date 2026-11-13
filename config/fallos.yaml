@@ -87,7 +87,7 @@ fallos:
   entrada.vacia:
     nivel: C0
     donde: contracts (probe, escenas, pista, sonido, detector)
-    efecto: "una entrada de los modelos vacía: sin duración, sin cámara principal, sin pista, sin golpes en el sonido, una jugadora nunca vista"
+    efecto: "una entrada de los modelos vacía: sin duración, sin cámara principal, sin pista, sin golpes en el sonido, la jugadora cercana nunca vista"
     deteccion: "contrato de la etapa al terminar"
     reaccion: "para el partido"
     prueba: tests/test_faults.py::test_every_contract_stops_an_empty_input_and_marks_a_poor_one
@@ -221,7 +221,7 @@ fallos:
   entrada.cobertura_baja:
     nivel: C1
     donde: contracts (escenas, pista, sonido, marcador, detector)
-    efecto: "una entrada por debajo de su mínimo (los de «Entradas de los modelos»: cámara 10 %, pista 50 %, sonido 5/min, saque leído 50 %, jugadoras 25 %)"
+    efecto: "una entrada por debajo de su mínimo (los de «Entradas de los modelos»: cámara 10 %, pista 50 %, sonido 5/min, saque leído 50 %, jugadora cercana 25 %; la lejana no, R27)"
     deteccion: "contrato de la etapa al terminar"
     reaccion: "sigue, marcado"
     prueba: tests/test_faults.py::test_every_contract_stops_an_empty_input_and_marks_a_poor_one

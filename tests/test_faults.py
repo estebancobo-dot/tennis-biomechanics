@@ -285,7 +285,7 @@ def test_an_audit_check_without_its_data_is_not_met(tmp_path):
     ("score", None, {"readings": 0, "note": "sin OCR instalado"}, "entrada.cobertura_baja"),
     ("score", None, {"readings": 100, "server_read": 30}, "entrada.cobertura_baja"),
     ("spotting", None, {"enabled": True, "inputs": {"near_seen": 0.0, "far_seen": 0.6, "play_min": 30}}, "entrada.vacia"),
-    ("spotting", None, {"enabled": True, "inputs": {"near_seen": 0.8, "far_seen": 0.1, "play_min": 30}}, "entrada.cobertura_baja"),
+    ("spotting", None, {"enabled": True, "inputs": {"near_seen": 0.1, "far_seen": 0.001, "play_min": 30}}, "entrada.cobertura_baja"),
     ("fine", None, {"candidates": 300, "confirmed": 0}, "golpes.ninguno"),
 ])
 def test_every_contract_stops_an_empty_input_and_marks_a_poor_one(tmp_path, stage, probe_s, summary, code):
@@ -314,7 +314,7 @@ def test_a_stage_within_its_contract_raises_nothing(tmp_path):
     good = {"probe": {"duration_min": 100}, "scenes": {"main_camera_shots": 300, "main_camera_min": 60},
             "court": {"main_camera_min": 60, "with_court": 280, "court_share": 0.9}, "audio": {"tracks": 2, "onsets": 2000},
             "score": {"readings": 900, "server_read": 800},
-            "spotting": {"enabled": True, "inputs": {"near_seen": 0.9, "far_seen": 0.8, "play_min": 50}},
+            "spotting": {"enabled": True, "inputs": {"near_seen": 0.9, "far_seen": 0.001, "play_min": 50}},   # R27
             "fine": {"candidates": 400, "confirmed": 350}}
     with F.collecting() as col:
         for st, sm in good.items():

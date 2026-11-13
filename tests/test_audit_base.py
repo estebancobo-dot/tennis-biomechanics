@@ -285,7 +285,10 @@ def test_inputs_of_the_models_per_match():
     assert bad(court={"summary": {"court_share": 0.9, "detector": "tcd14"}})["status"] == "ok"
     assert bad(audio={"summary": {"onsets": 10}})["status"] == "aviso"
     assert bad(score={"summary": {"readings": 0}})["status"] == "aviso"
-    no_far = bad(spotting={"summary": {"enabled": True, "inputs": {"near_seen": 0.9, "far_seen": 0.0}}})
-    assert no_far["status"] == "aviso" and "jugadora lejana vista solo en el 0 %" in no_far["detail"]
+    # R27 (13-11): the far player is said, never held to a floor (the cheap pass does not see her, in F3Set neither)
+    no_far = bad(spotting={"summary": {"enabled": True, "inputs": {"near_seen": 0.9, "far_seen": 0.001}}})
+    assert no_far["status"] == "ok" and "jugadora lejana en la pasada barata el 0.1 %" in no_far["detail"]
+    no_near = bad(spotting={"summary": {"enabled": True, "inputs": {"near_seen": 0.1, "far_seen": 0.001}}})
+    assert no_near["status"] == "aviso" and "jugadora cercana vista solo en el 10 %" in no_near["detail"]
     assert "anterior al 12-11" in bad(spotting={"summary": {"enabled": True}})["detail"]
     assert A.inputs_item("m", {"probe": {"summary": {"duration_min": 10}}}) is None      # no cheap pass yet
