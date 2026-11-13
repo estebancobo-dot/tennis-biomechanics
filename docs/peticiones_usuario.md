@@ -53,12 +53,12 @@ la auditoría las marcará «sin comprobación automática asignada».
 
 | Estado | Nº |
 |---|---|
-| HECHO | 116 |
-| PARCIAL | 119 |
+| HECHO | 117 |
+| PARCIAL | 120 |
 | FALTA | 21 |
 | NO MEDIBLE | 3 |
 | NO APLICA | 8 |
-| **Total** | **267** |
+| **Total** | **269** |
 
 **27-10:** filas 220-245 nuevas: todo lo pedido en el chat del 19-10 al 27-10 (releídos los mensajes) y lo que
 salió en la prueba de valor; ninguna fila borrada.
@@ -355,6 +355,8 @@ lateral (entreno)» · ≥12 = solo se muestra con 12 golpes o más (`model.MIN_
 | 265 | Gestión de errores y tolerancia a fallos definida por niveles de criticidad, como en las aplicaciones profesionales: cada escenario y cada función se maneja según lo crítica que sea; nunca «comerse» un error sin que pase nada (Chat, 12-11: «es esperpéntico que en algo tan importante te comas el error y no pase nada») | PARCIAL | propuesta en el chat (12-11): catálogo de modos de fallo, niveles C0-C4, `faults.py` con su política, contratos de datos por etapa, prueba que impide un `except` sin clasificar, puerta de aceptación | — | — | **Aprobada por el usuario el 13-11 («adelante con la gestión de errores por niveles»)**: se hace antes de los 6 partidos y se valida en el PC (Osaka, Pegula, F3Set) (plan enseñado, CLAUDE.md: «antes de escribir mucho código, enseñar el plan y esperar»). Estado al 12-11: 323 `except` en el código, 26 relanzan, ~36 avisan, ~261 siguen sin decir nada; sin política escrita: la regla implícita era «el análisis nunca se para». |
 | 266 | Estado actual y hacer en paralelo todo lo que se pueda para acabar pronto, antes del análisis de los 6 partidos (Chat, 13-11: «¿cuál es el estado actual? ¿se puede hacer todo en paralelo y acabar pronto antes del análisis de los 6 partidos?») | PARCIAL | tabla de tareas de `docs/estado_proyecto.md` (orden y qué va en paralelo: nube = código, PC = validación por la cola) | — | — | Se cierra al enviar el plan de los 6 partidos con todo validado (tarea 11). |
 | 267 | Explicar cómo se ha llegado a una situación tan mala en la aplicación (Chat, 13-11) | HECHO | respuesta en el chat y escrita en `docs/estado_proyecto.md`, «Por qué se llegó aquí (13-11)» | — | — | Las causas tienen su remedio en #264 y #265. |
+| 268 | Analizar qué haría falta para que toda la aplicación corra en la nube y el usuario solo tenga que subir los partidos: de arriba abajo, con el estado del arte actual, en nube pública (gratuita) y de pago, aprovechando lo que ya hay y con los mismos requisitos; para saber si se puede mejorar todo. Solo el análisis, sin implementar nada (Chat, 13-11) | PARCIAL | `docs/analisis_nube.md` (13-11, escrito en paralelo mientras el PC valida): se puede; recomienda no mover los partidos antes de cerrar la Base y, si el usuario lo aprueba, medir ya una GPU L4 (N0) y validar F3Set en la nube (N4); 4 preguntas para el usuario | — | — | Se cierra con el documento entregado y la decisión del usuario (reabre #145, «nada en la nube ni de pago», 17-10). Implementarlo cambiaría el orden del plan (requisito 10: móvil y nube al final), así que solo se hace si el usuario lo decide. |
+| 269 | Estado y progreso: cuánto falta para lanzar los 6 partidos, qué hay en marcha y pendiente en la nube y en el PC (en serie o en paralelo), qué queda para cerrar la Base, por qué seguimos así y qué falló por la noche (Chat, 13-11) | HECHO | respuesta en el chat; `docs/estado_proyecto.md`, «Resumen de la noche (12-11 → 13-11)» y la tabla de tareas | — | — | Como #266, el estado vive en la tabla de tareas. |
 
 ## Lo más grave que falta (por impacto en «copiar su derecha»)
 
