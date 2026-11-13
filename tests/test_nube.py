@@ -70,6 +70,27 @@ def test_the_volumes_models_replace_the_repositorys(tmp_path):
     assert nube.use_volume_models(repo, data)                      # again: nothing to do
 
 
+@pytest.mark.skipif(sys.platform == "win32", reason="only in the cloud's Linux container (Windows symlinks need rights)")
+def test_the_models_are_found_when_modal_nested_the_folder(tmp_path):
+    """13-11: «modal volume put … models /models/» left the PC's models in /models/models/: the 10-minute test found
+    none (no TransNet, no court model, no YOLO ONNX). They are found one level down, also by a warm container whose
+    link points at the folder above."""
+    repo, data = tmp_path / "repo", tmp_path / "data"
+    (repo / "models").mkdir(parents=True)
+    (data / "models" / "models").mkdir(parents=True)
+    (data / "models" / "models" / "transnetv2.onnx").write_text("pc")
+    (repo / "models").rename(repo / "old")
+    (repo / "models").symlink_to(data / "models", target_is_directory=True)     # the link of the first version
+    assert nube.use_volume_models(repo, data)
+    assert (repo / "models" / "transnetv2.onnx").read_text() == "pc"
+    flat = tmp_path / "flat" / "models"
+    flat.mkdir(parents=True)
+    (flat / "a.onnx").write_text("x")
+    (flat / "models").mkdir()                                     # a file beside it: the folder is the flat one
+    assert nube.unnested(flat) == flat
+    assert nube.unnested(data / "models") == data / "models" / "models"
+
+
 def test_write_local_yaml_reads_the_pcs_file(tmp_path):
     repo, data = tmp_path / "repo", tmp_path / "data"
     (repo / "config").mkdir(parents=True)
@@ -140,7 +161,7 @@ def test_the_upload_plan_takes_only_what_the_cloud_needs_never_a_match_video(tmp
     (ds / "f3set" / "recall" / "salidas_v17" / "recall_x" / "manifest.json").write_text("{}")
     (tmp_path / "videos" / "Osaka - Rybakina.ts").write_text("match")
     plan = {r for _, r in subir_nube.upload_plan(repo, ds, "v17")}
-    assert plan == {"/models/", "/datasets/f3set/recall/videos/A.mp4", "/datasets/f3set/recall/videos/A.json",
+    assert plan == {"/models", "/datasets/f3set/recall/videos/A.mp4", "/datasets/f3set/recall/videos/A.json",
                     "/datasets/f3set/train.json", "/datasets/f3set/videos.csv",
                     "/pc/reports/recall_validation_detector_v17.json", "/pc/salidas_v17/recall_x/manifest.json",
                     "/pc/local.yaml"}
@@ -233,7 +254,7 @@ def test_the_matches_upload_takes_each_video_and_its_record_never_the_results(tm
                     "/biblioteca/partidos/sin-fecha/sin-fecha_580c6f_rybakina/partido.json",
                     "/biblioteca/partidos/sin-fecha/sin-fecha_580c6f_rybakina/etapas/identidad_clic.json",
                     "/biblioteca/partidos/sin-fecha/sin-fecha_580c6f_rybakina/etapas/source.json",
-                    "/biblioteca/jugadoras/"}
+                    "/biblioteca/jugadoras"}
     without = {r for _, r in subir_nube.partidos_plan(reg, lib, videos=False)}
     assert without == plan - {"/videos/tennis-yusipopen-polufinal-gauff-rybakina.mkv"}
     from tennisbio.fresh import KEEP_LIBRARY                  # the same files «desde cero» keeps (but the video)
@@ -284,3 +305,33 @@ def test_a_10_minute_test_clip_is_a_match_of_its_own(tmp_path):
     assert nube.test_entries(ms, tmp_path) == [{"id": "_prueba_m1", "video": "_prueba_m1.ts", "player": "rybakina",
                                                "opponent": "Naomi Osaka"}]
     assert nube.test_entries(ms, tmp_path / "no") == []
+
+
+def test_the_cloud_cleans_a_ts_with_the_probes_own_command(tmp_path):
+    """13-11: the 10-minute test cleans the whole .ts as the probe stage does (the step the whole match takes) and only
+    then cuts its clip; the tries are the probe's, word for word."""
+    import inspect
+    import shutil
+    import subprocess
+
+    from tennisbio import stages
+    src = inspect.getsource(stages.st_probe)
+    assert '"-fflags", "+genpts+igndts", "-avoid_negative_ts", "make_zero"' in src
+    assert nube.CLEAN_TRIES[0] == [] and nube.CLEAN_TRIES[1] == ["-fflags", "+genpts+igndts", "-avoid_negative_ts",
+                                                                 "make_zero"]
+    assert '"-map", "0:v:0", "-map", "0:a?", "-dn", "-sn", "-c", "copy"' in src
+    assert nube.needs_clean_copy(Path("a.TS")) and not nube.needs_clean_copy(Path("a.mkv"))
+    if shutil.which("ffmpeg") is None:
+        pytest.skip("ffmpeg not installed")
+    ts = tmp_path / "a.ts"
+    subprocess.run(["ffmpeg", "-v", "error", "-f", "lavfi", "-i", "testsrc=size=64x48:rate=25:duration=1",
+                    "-f", "lavfi", "-i", "sine=duration=1", "-c:v", "mpeg2video", "-c:a", "mp2", str(ts)], check=True)
+    assert nube.clean_copy(ts, tmp_path / "a.mkv") == "" and (tmp_path / "a.mkv").stat().st_size > 0
+    assert nube.clean_copy(tmp_path / "no.ts", tmp_path / "b.mkv") != ""
+
+
+def test_the_10_minute_test_archives_its_earlier_run_and_reports_the_cleaning():
+    src = (ROOT / "cloud" / "modal_app.py").read_text(encoding="utf-8")
+    body = src[src.index("def prueba("):]
+    assert '"archivo"' in body and "shutil.move" in body and "rmtree" not in body      # never deleted
+    assert "nube.clean_copy(" in body and '"limpieza"' in body

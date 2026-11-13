@@ -275,7 +275,9 @@ def prueba(match_id: str, inicio_s: int = 600, duracion_s: int = 600) -> dict:
     """13-11 (the user: «¿un smoke test antes que un partido entero?»): `duracion_s` of a match from `inicio_s`, cut
     without re-encoding, analysed as a match of its own (`_prueba_<id>`, no identity click: the click is for the whole
     match) with the same code: the whole chain in the cloud in minutes and cents before a match takes GPU hours."""
+    import shutil
     import subprocess
+    import time
 
     _prepare()
     matches = {m["id"]: m for m in _catalog()}
@@ -283,10 +285,32 @@ def prueba(match_id: str, inicio_s: int = 600, duracion_s: int = 600) -> dict:
         return {"estado": "error", "nota": f"{match_id} no está en la lista de partidos del PC"}
     src = matches[match_id]
     pid = f"_prueba_{match_id}"
-    ext = Path(src["video"]).suffix
-    clip = DATA / "videos" / f"{pid}{ext}"
-    if not clip.exists():
-        subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", str(inicio_s), "-i", str(DATA / "videos" / src["video"]),
-                        "-t", str(duracion_s), "-c", "copy", str(clip)], check=True, timeout=1800)
+    run = DATA / "runs" / f"partido_{pid}"
+    # 13-11: a test always from scratch: the earlier clip and outputs go to the archive (never deleted)
+    arch = DATA / "archivo" / time.strftime("%Y%m%d_%H%M%S")
+    for old in [*(DATA / "videos").glob(f"{pid}.*"), DATA / "output" / pid, run]:
+        if old.exists():
+            arch.mkdir(parents=True, exist_ok=True)
+            shutil.move(str(old), str(arch / old.name))
+    video = DATA / "videos" / src["video"]
+    limpieza = "no hace falta"
+    if nube.needs_clean_copy(video):
+        # 13-11: the clip cut straight from the .ts had packets without a time and the probe could not clean it; the
+        # whole .ts is cleaned first with the probe's own command (the step the whole match takes), then cut
+        full = Path("/tmp") / f"{pid}_limpio.mkv"
+        err = nube.clean_copy(video, full)
+        limpieza = f"FALLA: {err}" if err else "bien (el .ts entero, como en el partido)"
+        if err:
+            _save(run, {"partido": pid, "estado": "error", "limpieza": limpieza})
+            vol.commit()
+            return {"estado": "error", "limpieza": limpieza}
+        video = full
+    clip = DATA / "videos" / f"{pid}.mkv"
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", str(inicio_s), "-i", str(video), "-t", str(duracion_s),
+                    "-map", "0:v:0", "-map", "0:a?", "-c", "copy", str(clip)], check=True, timeout=1800)
     vol.commit()
-    return partido.local(pid)                 # its catalogue entry comes from the clip (nube.test_entries)
+    est = partido.local(pid)                  # its catalogue entry comes from the clip (nube.test_entries)
+    est["limpieza"] = limpieza
+    _save(run, est)
+    vol.commit()
+    return est

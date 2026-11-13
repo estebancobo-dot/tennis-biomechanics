@@ -17,6 +17,7 @@ On the Modal volume (/data):
 from __future__ import annotations
 
 import json
+import os
 import statistics
 from pathlib import Path
 
@@ -86,6 +87,29 @@ def test_entries(matches: list[dict], videos: Path) -> list[dict]:
     return out
 
 
+TS_SUFFIXES = (".ts", ".m2ts", ".mts", ".trp")
+# the probe stage's two tries (tennisbio.stages.st_probe; tests/test_nube.py keeps them equal)
+CLEAN_TRIES = ([], ["-fflags", "+genpts+igndts", "-avoid_negative_ts", "make_zero"])
+
+
+def needs_clean_copy(video: Path) -> bool:
+    return video.suffix.lower() in TS_SUFFIXES
+
+
+def clean_copy(src: Path, dst: Path, timeout: int = 3600) -> str:
+    """The probe stage's clean copy of a .ts broadcast (no re-encoding): '' when it worked, else ffmpeg's last words."""
+    import subprocess
+    err = ""
+    for flags in CLEAN_TRIES:
+        r = subprocess.run(["ffmpeg", "-v", "error", "-y", *flags[:2], "-i", str(src), *flags[2:], "-map", "0:v:0",
+                            "-map", "0:a?", "-dn", "-sn", "-c", "copy", str(dst)],
+                           capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=timeout)
+        if r.returncode == 0 and dst.exists() and dst.stat().st_size > 0:
+            return ""
+        err = (r.stderr or f"código {r.returncode}").strip()[-300:]
+    return err or "sin salida"
+
+
 def place_clicks(registry: list[dict], library: Path, out_root: Path) -> list[str]:
     """The user's identity click of each match (etapas/identidad_clic.json in the library) in its flat output folder,
     where the identity stage reads it; never over one already there. Returns the matches that have it."""
@@ -111,14 +135,26 @@ def write_local_yaml(repo: Path, data: Path) -> dict:
     return cfg
 
 
+def unnested(d: Path) -> Path:
+    """The folder that holds a directory uploaded as «put <dir> /<name>/»: Modal puts it one level down
+    (/models/models/…; 13-11, the 10-minute test found no model at all), so its files are in d/<name> when d holds
+    nothing else."""
+    inner = d / d.name
+    if inner.is_dir() and not any(p.is_file() for p in d.iterdir()):
+        return inner
+    return d
+
+
 def use_volume_models(repo: Path, data: Path) -> bool:
     """The repository's models/ replaced by the PC's (on the volume): the same model files on both machines."""
-    src, dst = data / "models", repo / "models"
+    src, dst = unnested(data / "models") if (data / "models").is_dir() else data / "models", repo / "models"
     if not src.is_dir():
         return False
     if dst.is_symlink():
-        return True
-    if dst.exists():
+        if Path(os.readlink(dst)) == src:
+            return True
+        dst.unlink()                              # a warm container's link to the folder above the models
+    elif dst.exists():
         dst.rename(repo / "models_repo")
     dst.symlink_to(src, target_is_directory=True)
     return True

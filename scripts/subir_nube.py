@@ -42,7 +42,8 @@ def read_key(path: Path) -> dict:
 def upload_plan(repo: Path, datasets: Path, pc_tag: str) -> list[tuple[Path, str]]:
     """(local path, path in the volume) of everything the cloud needs; only what exists."""
     rec = datasets / "f3set" / "recall"
-    plan: list[tuple[Path, str]] = [(repo / "models", "/models/")]
+    # a folder goes to its own name without a final "/": with it, Modal nested it (/models/models/…, 13-11)
+    plan: list[tuple[Path, str]] = [(repo / "models", "/models")]
     for f in sorted((rec / "videos").glob("*")):
         if f.suffix in (".mp4", ".json"):
             plan.append((f, f"/datasets/f3set/recall/videos/{f.name}"))
@@ -83,7 +84,7 @@ def partidos_plan(registry: list[dict], library: Path, videos: bool = True) -> l
             if (d / f).exists():
                 plan.append((d / f, f"/biblioteca/{rel}/{f}"))
     if (library / "jugadoras").is_dir():
-        plan.append((library / "jugadoras", "/biblioteca/jugadoras/"))
+        plan.append((library / "jugadoras", "/biblioteca/jugadoras"))
     return plan
 
 
