@@ -1,32 +1,13 @@
 {
- "at": "2026-11-13 04:31:08",
- "firma": "df2f7fd03ff0",
+ "at": "2026-11-13 04:31:10",
+ "firma": "fdf8a3da322d",
  "ejecutor": {
   "vivo": true,
   "pid": 5016,
   "at": 1794540668.8604207
  },
  "pausa": false,
- "en_curso": [
-  {
-   "id": 111,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script diag_identidad_f3set --match azarenka --a salidas_v15 --b salidas_v16",
-   "state": "en curso",
-   "message": "",
-   "created": "2026-11-13 04:31:04",
-   "started": "2026-11-13 04:31:08",
-   "finished": null,
-   "args": "[\"script\", \"diag_identidad_f3set\", \"--match\", \"azarenka\", \"--a\", \"salidas_v15\", \"--b\", \"salidas_v16\"]",
-   "source": "claude 270",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_111.log",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "en_curso": [],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "court",
@@ -39,6 +20,24 @@
  },
  "pendientes": [],
  "recientes": [
+  {
+   "id": 111,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script diag_identidad_f3set --match azarenka --a salidas_v15 --b salidas_v16",
+   "state": "hecho",
+   "message": "",
+   "created": "2026-11-13 04:31:04",
+   "started": "2026-11-13 04:31:08",
+   "finished": "2026-11-13 04:31:10",
+   "args": "[\"script\", \"diag_identidad_f3set\", \"--match\", \"azarenka\", \"--a\", \"salidas_v15\", \"--b\", \"salidas_v16\"]",
+   "source": "claude 270",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_111.log",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 110,
    "kind": "comando",
@@ -290,27 +289,16 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_97.log",
    "paso": 2,
    "pasos": 2
-  },
-  {
-   "id": 96,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "desde-cero",
-   "state": "hecho",
-   "message": "",
-   "created": "2026-11-12 14:53:49",
-   "started": "2026-11-12 14:53:49",
-   "finished": "2026-11-12 14:53:51",
-   "args": "[\"desde-cero\"]",
-   "source": "claude 255",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_96.log",
-   "paso": 0,
-   "pasos": 0
   }
  ],
  "eventos": [
+  {
+   "id": 601,
+   "job": 111,
+   "at": "2026-11-13 04:31:10",
+   "kind": "hecho",
+   "text": "código 0"
+  },
   {
    "id": 600,
    "job": 111,
@@ -513,13 +501,6 @@
    "at": "2026-11-13 00:40:11",
    "kind": "enviado",
    "text": "tennisbio run --match us-open-2026-r4-naomi-osaka-elena-rybakina (claude 265)"
-  },
-  {
-   "id": 571,
-   "job": null,
-   "at": "2026-11-13 00:39:35",
-   "kind": "ejecutor",
-   "text": "arranca (pid 9640)"
   }
  ]
 }
