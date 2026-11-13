@@ -1,10 +1,10 @@
 {
- "at": "2026-11-13 19:54:11",
- "firma": "d6f0a1b75c30",
+ "at": "2026-11-13 19:57:55",
+ "firma": "c88812697965",
  "ejecutor": {
   "vivo": true,
   "pid": 13884,
-  "at": 1794596042.9391794
+  "at": 1794596267.060538
  },
  "pausa": false,
  "en_curso": [],
@@ -18,7 +18,8 @@
   "quedan_s": 0,
   "hora": "2026-11-13 18:25:58"
  },
- "pendientes": [
+ "pendientes": [],
+ "recientes": [
   {
    "id": 132,
    "kind": "flujo",
@@ -26,19 +27,17 @@
    "player": null,
    "stroke": null,
    "reason": "flujo «informe_prueba»: Informe y auditoria de la prueba (_smoke) desde sus golpes guardados y la revision automatica",
-   "state": "pendiente",
-   "message": "",
+   "state": "hecho",
+   "message": "3 pasos",
    "created": "2026-11-13 19:54:11",
-   "started": null,
-   "finished": null,
+   "started": "2026-11-13 19:54:12",
+   "finished": "2026-11-13 19:57:44",
    "args": "[\"informe_prueba\"]",
    "source": "ciclo",
-   "log": "",
-   "paso": 0,
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_132.log",
+   "paso": 3,
    "pasos": 3
-  }
- ],
- "recientes": [
+  },
   {
    "id": 131,
    "kind": "comando",
@@ -290,27 +289,44 @@
    "log": "",
    "paso": 0,
    "pasos": 6
-  },
-  {
-   "id": 117,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final",
-   "state": "cancelado",
-   "message": "cancelado (claude 279)",
-   "created": "2026-11-13 05:16:36",
-   "started": null,
-   "finished": null,
-   "args": "[\"run\", \"--match\", \"elena-rybakina-jessica-pegula-miami-2026-quarter-final\"]",
-   "source": "claude 277",
-   "log": "",
-   "paso": 0,
-   "pasos": 0
   }
  ],
  "eventos": [
+  {
+   "id": 727,
+   "job": 132,
+   "at": "2026-11-13 19:57:47",
+   "kind": "hecho",
+   "text": "código 0"
+  },
+  {
+   "id": 726,
+   "job": 132,
+   "at": "2026-11-13 19:57:44",
+   "kind": "paso",
+   "text": "3/3 Revision automatica"
+  },
+  {
+   "id": 725,
+   "job": 132,
+   "at": "2026-11-13 19:54:13",
+   "kind": "paso",
+   "text": "2/3 Informe de la prueba"
+  },
+  {
+   "id": 724,
+   "job": 132,
+   "at": "2026-11-13 19:54:13",
+   "kind": "paso",
+   "text": "1/3 Auditoria anterior apartada"
+  },
+  {
+   "id": 723,
+   "job": 132,
+   "at": "2026-11-13 19:54:12",
+   "kind": "empieza",
+   "text": "flujo «informe_prueba»: Informe y auditoria de la prueba (_smoke) desde sus golpes guardados y la revision automatica"
+  },
   {
    "id": 722,
    "job": 132,
@@ -485,41 +501,6 @@
    "at": "2026-11-13 19:46:31",
    "kind": "ejecutor",
    "text": "se reinicia con el código nuevo"
-  },
-  {
-   "id": 697,
-   "job": null,
-   "at": "2026-11-13 19:46:22",
-   "kind": "reiniciar",
-   "text": "ciclo"
-  },
-  {
-   "id": 696,
-   "job": 127,
-   "at": "2026-11-13 19:46:01",
-   "kind": "hecho",
-   "text": "código 0"
-  },
-  {
-   "id": 695,
-   "job": 127,
-   "at": "2026-11-13 18:43:08",
-   "kind": "empieza",
-   "text": "script validate_recall --spotter --tag v18 --from v17"
-  },
-  {
-   "id": 694,
-   "job": 127,
-   "at": "2026-11-13 18:42:58",
-   "kind": "enviado",
-   "text": "tennisbio script validate_recall --spotter --tag v18 --from v17 (claude 288)"
-  },
-  {
-   "id": 693,
-   "job": 126,
-   "at": "2026-11-13 18:42:38",
-   "kind": "hecho",
-   "text": "código 0"
   }
  ]
 }
