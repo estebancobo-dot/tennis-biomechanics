@@ -59088,9 +59088,8 @@
    "time_loaded_to_impact_s": 0.22,
    "time_acceleration_to_impact_s": 0.18,
    "time_impact_to_finish_s": 0.68,
-   "ball_seen_pre_share": 0.658,
+   "ball_seen_pre_share": 0.671,
    "ball_gap_pre_s": 0.38,
-   "bounce_to_impact_s": 0.36,
    "time_available_s": 0.8,
    "opponent_hit_source": "audio",
    "trunk3d_unobservable": true,
@@ -59670,13 +59669,7 @@
     null
    ]
   ],
-  "ball": {
-   "bounce_px": [
-    975.0,
-    603.8
-   ],
-   "bounce_frame": 92
-  },
+  "ball": {},
   "chain": {
    "peaks_s": {
     "pelvis": 0.02,
@@ -59754,10 +59747,6 @@
    -0.36
   ],
   "camera_pitch_deg": 18.2,
-  "bounce_court_m": [
-   0.22,
-   6.87
-  ],
   "outcome": "rally",
   "face": {
    "ready": {
@@ -59827,17 +59816,6 @@
   },
   "point_won": true,
   "is_return": true,
-  "ball_flight": {
-   "fit_rms_m": 0.02,
-   "rise_speed_mps": 5.18,
-   "apex_frame": 118,
-   "apex_height_m": 1.37,
-   "bounce_to_apex_s": 0.528,
-   "contact_height_m": 1.21,
-   "contact_phase": "subiendo",
-   "net_frame": 87,
-   "incoming_speed_kmh": 184
-  },
   "technique": {
    "phases": {
     "ready": {
@@ -60100,78 +60078,6 @@
      "hip_turn": 53.7,
      "face_points_to": "red",
      "face_observed": false
-    },
-    "ball_net": {
-     "body_height": 76.7,
-     "hip_height": 30.4,
-     "head_over_base": -11.7,
-     "head_vs_hips": -11.7,
-     "trunk_tilt": -14.0,
-     "shoulder_tilt": -7.6,
-     "hip_tilt": -1.4,
-     "com_over_feet": 0.6,
-     "knee_non": 97.4,
-     "base_width": 58.3,
-     "shoulder_abd_dom": 13.8,
-     "shoulder_abd_non": 14.8,
-     "wrist_dom_height": 47.6,
-     "wrist_dom_vs_hip": 17.2,
-     "wrist_dom_lateral": -6.4,
-     "wrist_dom_vs_shoulder": -11.8,
-     "elbow_dom_vs_shoulder": -12.3,
-     "elbow_dom_lateral": 0.0,
-     "wrist_non_height": 44.8,
-     "wrist_non_lateral": -18.2,
-     "hands_apart": 12.1,
-     "arm_extension": 69.8,
-     "shoulder_turn": 26.3,
-     "racket_head_vs_wrist": 14.3,
-     "racket_angle": 44.5,
-     "racket_forearm": 40.8,
-     "racket_tip_height": 68.9,
-     "racket_tip_vs_head": -2.2,
-     "racket_head_lateral": -37.1,
-     "face_tilt": 3.5,
-     "face_yaw": 27.8,
-     "face_points_to": "red",
-     "face_observed": true,
-     "t_to_contact": 0.46
-    },
-    "ball_bounce": {
-     "body_height": 73.7,
-     "hip_height": 30.6,
-     "head_over_base": -25.2,
-     "head_vs_hips": -18.0,
-     "trunk_tilt": -23.0,
-     "hip_tilt": -13.9,
-     "com_over_feet": 0.76,
-     "knee_dom": 163.4,
-     "knee_non": 83.6,
-     "base_width": 57.1,
-     "elbow_non": 78.2,
-     "shoulder_abd_non": 31.7,
-     "wrist_dom_height": 49.1,
-     "wrist_dom_vs_hip": 18.5,
-     "wrist_dom_lateral": -14.5,
-     "wrist_dom_vs_shoulder": -10.3,
-     "elbow_dom_vs_shoulder": -10.0,
-     "elbow_dom_lateral": 0.9,
-     "wrist_non_height": 44.3,
-     "wrist_non_lateral": -29.6,
-     "hands_apart": 15.8,
-     "arm_extension": 69.1,
-     "shoulder_turn": 57.2,
-     "racket_head_vs_wrist": 15.0,
-     "racket_angle": 69.2,
-     "racket_forearm": 71.5,
-     "racket_tip_height": 72.2,
-     "racket_tip_vs_head": 3.9,
-     "racket_head_lateral": -28.8,
-     "face_tilt": -18.2,
-     "face_yaw": -6.5,
-     "face_points_to": "red",
-     "face_observed": false,
-     "t_to_contact": 0.36
     }
    },
    "stroke": {
@@ -60193,13 +60099,6 @@
     "head_motion_cm": 8.1,
     "head_still_after_cm": 6.1,
     "takeback_after_opp": 0.3,
-    "takeback_vs_bounce": -0.14,
-    "takeback_vs_net": -0.04,
-    "contact_vs_top": -0.16,
-    "loaded_vs_top": -0.38,
-    "contact_height_m": 1.21,
-    "apex_height_m": 1.37,
-    "bounce_to_apex_s": 0.528,
     "takeback_path": 39.5,
     "takeback_peak_vs_shoulder": -6.4,
     "swing_low_to_high": -24.4,
@@ -60207,9 +60106,7 @@
     "wrist_drop": -2.2,
     "t_max_shoulder_turn": 0.0,
     "t_max_hip_turn": 0.04,
-    "loaded_vs_bounce": 0.14,
     "shoulders_open_first": -0.04,
-    "acceleration_vs_bounce": 0.18,
     "shoulder_brake": 66.0,
     "hip_rise": 4.6,
     "weight_shift": -1.44,
@@ -60221,7 +60118,6 @@
    "classes": {
     "finish_trunk": "girado hasta mirar a la valla del lado de su revés",
     "finish": "corta (delante)",
-    "ball_phase": "bola subiendo",
     "swing": "cortado (de arriba abajo)",
     "arm": "brazo recto",
     "takeback": "amplia",
@@ -60242,11 +60138,8 @@
     "width": "centrada",
     "intent": "defensa",
     "play": "resto",
-    "contact_type": "tras el bote",
     "stance_role": "cerrado de ataque",
-    "serve_number": "segundo saque",
-    "serve_dir": "a la T",
-    "return_side": "iguales"
+    "serve_number": "segundo saque"
    },
    "footwork": {
     "steps_to_impact": 0,
@@ -60598,13 +60491,6 @@
     "stroke.tempo_ratio": 0.16,
     "stroke.head_motion_cm": 0.0,
     "stroke.takeback_after_opp": 0.03,
-    "stroke.takeback_vs_bounce": 0.03,
-    "stroke.takeback_vs_net": 0.03,
-    "stroke.contact_vs_top": 0.0,
-    "stroke.loaded_vs_top": 0.03,
-    "stroke.contact_height_m": 0.0,
-    "stroke.apex_height_m": 0.0,
-    "stroke.bounce_to_apex_s": 0.0,
     "stroke.takeback_path": 1.35,
     "stroke.takeback_peak_vs_shoulder": 1.05,
     "stroke.swing_low_to_high": 0.0,
@@ -60612,9 +60498,7 @@
     "stroke.wrist_drop": 1.05,
     "stroke.t_max_shoulder_turn": 0.0,
     "stroke.t_max_hip_turn": 0.0,
-    "stroke.loaded_vs_bounce": 0.03,
     "stroke.shoulders_open_first": 0.0,
-    "stroke.acceleration_vs_bounce": 0.03,
     "stroke.shoulder_brake": 0.0,
     "stroke.hip_rise": 0.5,
     "stroke.weight_shift": 0.105,
@@ -60664,7 +60548,6 @@
     "footwork.steps_reliable": 0.0,
     "class.finish_trunk": 0.0,
     "class.finish": 0.0,
-    "class.ball_phase": 0.0,
     "class.swing": 0.0,
     "class.arm": 0.0,
     "class.takeback": 0.0,
@@ -60685,7 +60568,6 @@
     "class.width": 0.0,
     "class.intent": 0.0,
     "class.play": 0.0,
-    "class.contact_type": 0.0,
     "class.stance_role": 0.25
    },
    "pose": {
@@ -61249,10 +61131,6 @@
       -0.409
      ]
     ]
-   },
-   "ball_phase_of_stroke": {
-    "ball_net": "takeback",
-    "ball_bounce": "takeback"
    },
    "curves": {
     "head": [
