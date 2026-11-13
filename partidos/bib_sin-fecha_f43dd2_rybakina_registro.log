@@ -11278,3 +11278,14 @@
 2026-11-13 01:28:30   fine:  17 % (40/232 golpes candidatos · 38 confirmados · 0 ventanas descartadas sin pose) · 12 min · quedan ≈ 56 min
 2026-11-13 01:28:40   ventana w001843001_5949 (far, 2 candidatos): pasa · golpe del detector (sin golpe de bola visto)
 2026-11-13 01:28:51   ventana w001843001_5949: pose yolo en 260 de 260 fotogramas (11 s; modelo 10 s) · bola 7 s · raqueta 0 s (2 de 4 impactos) · 4 golpes posibles · altura 99 px (court)
+2026-11-13 01:28:57   ventana w001849181_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-13 01:29:04   ventana w001849181_3600: pose yolo en 151 de 151 fotogramas (6 s; modelo 6 s) · bola 4 s · raqueta 0 s (1 de 2 impactos) · 2 golpes posibles · altura 103 px (court)
+2026-11-13 01:29:04   fine:  19 % (43/232 golpes candidatos · 41 confirmados · 0 ventanas descartadas sin pose) · 12 min · quedan ≈ 54 min
+2026-11-13 01:29:17   ventana w001904709_8808 (far, 3 candidatos): pasa · golpe de bola en su lado a 2.42 s
+2026-11-13 01:29:33   ventana w001904709_8808: pose yolo en 388 de 388 fotogramas (15 s; modelo 14 s) · bola 11 s · raqueta 0 s (3 de 6 impactos) · 6 golpes posibles · altura 97 px (court)
+2026-11-13 01:29:34   fine:  20 % (46/232 golpes candidatos · 44 confirmados · 0 ventanas descartadas sin pose) · 13 min · quedan ≈ 52 min
+2026-11-13 01:29:45   ventana w002436995_5798 (far, 2 candidatos): pasa · golpe de bola en su lado a 4.52 s
+2026-11-13 01:29:58   ventana w002436995_5798: pose yolo en 260 de 260 fotogramas (13 s; modelo 13 s, 82 a 960 px por perderla) · bola 7 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura 99 px (court)
+2026-11-13 01:30:04   ventana w002462797_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-13 01:30:10   ventana w002462797_3600: pose yolo en 140 de 140 fotogramas (5 s; modelo 5 s) · bola 4 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 95 px (court)
+2026-11-13 01:30:10   fine:  21 % (49/232 golpes candidatos · 47 confirmados · 0 ventanas descartadas sin pose) · 13 min · quedan ≈ 50 min
