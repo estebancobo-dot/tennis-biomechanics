@@ -550,12 +550,6 @@
  ],
  "views:unidad": [
   {
-   "s": 0.1122,
-   "units": 964,
-   "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
-   "date": "2026-11-07 05:15"
-  },
-  {
    "s": 0.1094,
    "units": 1654,
    "match": "zheng-qinwen-elena-rybakina",
@@ -729,15 +723,16 @@
    "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
    "date": "2026-11-13 01:15",
    "v": "6"
+  },
+  {
+   "s": 0.1385,
+   "units": 964,
+   "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "date": "2026-11-13 06:55",
+   "v": "6"
   }
  ],
  "views:minuto": [
-  {
-   "s": 1.61,
-   "video_min": 71.4,
-   "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
-   "date": "2026-11-07 05:15"
-  },
   {
    "s": 1.619,
    "video_min": 116.7,
@@ -911,6 +906,13 @@
    "video_min": 71.4,
    "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
    "date": "2026-11-13 01:15",
+   "v": "6"
+  },
+  {
+   "s": 1.931,
+   "video_min": 71.4,
+   "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "date": "2026-11-13 06:55",
    "v": "6"
   }
  ],
@@ -1881,6 +1883,13 @@
    "video_min": 71.4,
    "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
    "date": "2026-11-13 01:11",
+   "v": "2"
+  },
+  {
+   "s": 17.212,
+   "video_min": 71.4,
+   "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "date": "2026-11-13 06:53",
    "v": "2"
   }
  ]

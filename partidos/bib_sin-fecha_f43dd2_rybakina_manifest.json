@@ -152,24 +152,25 @@
   "faults": {}
  },
  "candidates": {
-  "fingerprint": "37c55e18c686a2df",
+  "fingerprint": "f30334b55548eb0d",
   "version": "16",
-  "seconds": 3.6,
-  "finished": "2026-11-13 01:11:52",
+  "seconds": 3.1,
+  "finished": "2026-11-13 06:53:21",
   "summary": {
-   "candidates": 454,
-   "far": 216,
-   "with_audio": 388,
+   "candidates": 459,
+   "far": 218,
+   "with_audio": 391,
    "source": "spotter",
-   "opponent_strokes": 201,
+   "opponent_strokes": 204,
    "identity_unknown": 21,
-   "replay_strokes_skipped": 10,
-   "replay_runs": 3,
+   "replay_strokes_skipped": 6,
+   "replay_runs": 2,
    "audio_track": 3
   },
-  "out_hash": "c6a828f58a9f93591afb",
+  "out_hash": "3fa21f5c18d7bb080862",
   "scheme": 2,
-  "rewrote": {}
+  "rewrote": {},
+  "faults": {}
  },
  "fine": {
   "fingerprint": "17e81332a491d0e7",
@@ -242,47 +243,48 @@
   "rewrote": {}
  },
  "spotting": {
-  "fingerprint": "ef3fc7cb72a4b95c",
+  "fingerprint": "78150eda3dfd941e",
   "version": "2",
-  "seconds": 1696.8,
-  "finished": "2026-11-13 01:11:49",
+  "seconds": 1228.4,
+  "finished": "2026-11-13 06:53:18",
   "summary": {
    "enabled": true,
-   "strokes": 454,
-   "near": 238,
+   "strokes": 455,
+   "near": 239,
    "far": 216,
-   "out_of_play": 2282,
+   "out_of_play": 2285,
    "threshold": 0.1,
    "fps": 10.0,
    "model_fps": 10.0,
    "feature_dim": 122,
    "audio_track": 3,
    "seconds": {
-    "jugadores_y_audio": 1.9,
-    "rasgos": 21.7,
-    "bola": 1671.6,
-    "modelo": 0.2
+    "jugadores_y_audio": 1.6,
+    "rasgos": 15.8,
+    "bola": 1209.4,
+    "modelo": 0.4
    },
    "inputs": {
-    "near_seen": 0.963,
+    "near_seen": 0.966,
     "far_seen": 0.001,
     "play_min": 17.0
    },
    "ball": {
     "min": 17.0,
-    "seen": 0.762,
+    "seen": 0.765,
     "play_min": 17.0
    }
   },
-  "out_hash": "11c8366d7fa82f5d2581",
+  "out_hash": "f0a5f8e19b590002fa02",
   "scheme": 2,
-  "rewrote": {}
+  "rewrote": {},
+  "faults": {}
  },
  "views": {
-  "fingerprint": "9896f5696833be1e",
+  "fingerprint": "75c1c86c984a4d08",
   "version": "6",
-  "seconds": 223.3,
-  "finished": "2026-11-13 01:15:36",
+  "seconds": 137.8,
+  "finished": "2026-11-13 06:55:39",
   "summary": {
    "views": 494,
    "repeticion_principal": 38,
@@ -290,13 +292,14 @@
    "frontal": 6,
    "primer_plano": 408,
    "otra": 17,
-   "links": 1004,
+   "links": 1002,
    "linked_views": 399,
    "slowmo_links": 16
   },
-  "out_hash": "b04876c2615a5be727c1",
+  "out_hash": "f5afe5d9b50b4d8f8e31",
   "scheme": 2,
-  "rewrote": {}
+  "rewrote": {},
+  "faults": {}
  },
  "views_link": {
   "fingerprint": "d6bcebbbc3b7acc8",
