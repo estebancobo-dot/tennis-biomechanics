@@ -1,32 +1,13 @@
 {
- "at": "2026-11-13 20:23:05",
- "firma": "58724e1d33c2",
+ "at": "2026-11-13 20:30:06",
+ "firma": "40a363223305",
  "ejecutor": {
   "vivo": true,
   "pid": 10984,
-  "at": 1794597785.1687243
+  "at": 1794598195.2848136
  },
  "pausa": false,
- "en_curso": [
-  {
-   "id": 136,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script subir_nube --que partidos --sin-videos",
-   "state": "en curso",
-   "message": "",
-   "created": "2026-11-13 20:22:55",
-   "started": "2026-11-13 20:23:05",
-   "finished": null,
-   "args": "[\"script\", \"subir_nube\", \"--que\", \"partidos\", \"--sin-videos\"]",
-   "source": "claude 294",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_136.log",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "en_curso": [],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "fine_doubtful",
@@ -39,6 +20,24 @@
  },
  "pendientes": [],
  "recientes": [
+  {
+   "id": 136,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script subir_nube --que partidos --sin-videos",
+   "state": "hecho",
+   "message": "",
+   "created": "2026-11-13 20:22:55",
+   "started": "2026-11-13 20:23:05",
+   "finished": "2026-11-13 20:23:44",
+   "args": "[\"script\", \"subir_nube\", \"--que\", \"partidos\", \"--sin-videos\"]",
+   "source": "claude 294",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_136.log",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 135,
    "kind": "flujo",
@@ -290,27 +289,16 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_122.log",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 121,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script validate_recall --spotter --tag v17 --from v16",
-   "state": "hecho",
-   "message": "",
-   "created": "2026-11-13 06:11:12",
-   "started": "2026-11-13 08:21:34",
-   "finished": "2026-11-13 13:23:43",
-   "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"v17\", \"--from\", \"v16\"]",
-   "source": "claude 282",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_121.log",
-   "paso": 0,
-   "pasos": 0
   }
  ],
  "eventos": [
+  {
+   "id": 755,
+   "job": 136,
+   "at": "2026-11-13 20:23:45",
+   "kind": "hecho",
+   "text": "código 0"
+  },
   {
    "id": 754,
    "job": 136,
@@ -513,13 +501,6 @@
    "at": "2026-11-13 19:57:44",
    "kind": "paso",
    "text": "3/3 Revision automatica"
-  },
-  {
-   "id": 725,
-   "job": 132,
-   "at": "2026-11-13 19:54:13",
-   "kind": "paso",
-   "text": "2/3 Informe de la prueba"
   }
  ]
 }
