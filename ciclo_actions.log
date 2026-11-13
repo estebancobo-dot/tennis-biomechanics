@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261113061838
+Start time: 20261113061920
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
-Host Application: powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 1608
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
+Process ID: 5628
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -15,48 +15,4 @@ CLRVersion: 4.0.30319.42000
 WSManStackVersion: 3.0
 PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
-**********************
-
-==> [2026-11-13 06:18:38] Codigo nuevo (446465f -> 1bae578): 7 ficheros
-    config/flujos.yaml
-    config/peticion_pc.txt
-    docs/estado_proyecto.md
-    scripts/auto_cycle.py
-    scripts/windows/ciclo_automatico.ps1
-    src/tennisbio/cli.py
-    tests/test_auto_cycle.py
-Updating 446465f..1bae578
-Fast-forward
- config/flujos.yaml                   | 16 ++++++++++++++++
- config/peticion_pc.txt               |  5 +++++
- docs/estado_proyecto.md              |  1 +
- scripts/auto_cycle.py                | 30 +++++++++++++++++++++++++++++-
- scripts/windows/ciclo_automatico.ps1 | 13 ++++++++-----
- src/tennisbio/cli.py                 |  6 ++++--
- tests/test_auto_cycle.py             | 27 +++++++++++++++++++++++++++
- 7 files changed, 90 insertions(+), 8 deletions(-)
-Resolved 126 packages in 0.65ms
-Checked 91 packages in 2ms
-balltrack.onnx     OK 45 MB
-racketpose.onnx    OK 53 MB
-transnetv2.onnx    OK 31 MB
-rtmw3d-x.onnx      OK 369 MB
-rtmw-x_384x288.onnx OK 229 MB
-court_tcd.onnx     OK 42 MB
-motionagformer_xs.onnx OK 9 MB
-yolo11m-pose_640.onnx OK 84 MB
-yolo11m-pose_960.onnx OK 84 MB
-yolo11m-pose_1280.onnx OK 85 MB
-yolo11m-pose_1920.onnx OK 86 MB
-Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (ya estaba)
-el ejecutor se reinicia al acabar el trabajo en curso
-    (paso terminado en 24 s)
-
-==> [2026-11-13 06:19:02] Que hace falta: nada
-Ciclo automatico terminado (nada).
-    (paso terminado en 0 s)
-Empezado 2026-11-13 06:18:33 - terminado 2026-11-13 06:19:02 - duracion total 29 s
-**********************
-Windows PowerShell transcript end
-End time: 20261113061902
 **********************

@@ -1,12 +1,12 @@
 {
- "at": "2026-11-13 06:19:13",
- "firma": "e1f56f0f8600",
+ "at": "2026-11-13 06:19:24",
+ "firma": "defac5683eab",
  "ejecutor": {
   "vivo": true,
   "pid": 18632,
   "at": 1794547150.7267013
  },
- "pausa": true,
+ "pausa": false,
  "en_curso": [],
  "progreso": {
   "partido": "us-open-2026-r4-naomi-osaka-elena-rybakina",
@@ -402,6 +402,13 @@
  ],
  "eventos": [
   {
+   "id": 652,
+   "job": null,
+   "at": "2026-11-13 06:19:21",
+   "kind": "reanudar",
+   "text": "claude 285"
+  },
+  {
    "id": 651,
    "job": 124,
    "at": "2026-11-13 06:19:02",
@@ -603,13 +610,6 @@
    "at": "2026-11-13 05:15:23",
    "kind": "enviado",
    "text": "tennisbio run --match us-open-2026-r4-naomi-osaka-elena-rybakina (claude 274)"
-  },
-  {
-   "id": 622,
-   "job": 113,
-   "at": "2026-11-13 05:15:08",
-   "kind": "hecho",
-   "text": "código 0"
   }
  ]
 }
