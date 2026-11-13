@@ -1,13 +1,32 @@
 {
- "at": "2026-11-13 19:50:55",
- "firma": "d349c7e8e718",
+ "at": "2026-11-13 19:51:02",
+ "firma": "8345cab64eb2",
  "ejecutor": {
   "vivo": true,
   "pid": 7588,
-  "at": 1794595840.0576932
+  "at": 1794595862.0741363
  },
  "pausa": false,
- "en_curso": [],
+ "en_curso": [
+  {
+   "id": 130,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script diag_otros_partidos --match osaka pegula zheng gauff sobolenko --t 4628 11586 12203 12217",
+   "state": "en curso",
+   "message": "",
+   "created": "2026-11-13 19:50:52",
+   "started": "2026-11-13 19:51:02",
+   "finished": null,
+   "args": "[\"script\", \"diag_otros_partidos\", \"--match\", \"osaka\", \"pegula\", \"zheng\", \"gauff\", \"sobolenko\", \"--t\", \"4628\", \"11586\", \"12203\", \"12217\"]",
+   "source": "claude 290",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_130.log",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "fine_doubtful",
@@ -18,26 +37,7 @@
   "quedan_s": 0,
   "hora": "2026-11-13 18:25:58"
  },
- "pendientes": [
-  {
-   "id": 130,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script diag_otros_partidos --match osaka pegula zheng gauff sobolenko --t 4628 11586 12203 12217",
-   "state": "pendiente",
-   "message": "",
-   "created": "2026-11-13 19:50:52",
-   "started": null,
-   "finished": null,
-   "args": "[\"script\", \"diag_otros_partidos\", \"--match\", \"osaka\", \"pegula\", \"zheng\", \"gauff\", \"sobolenko\", \"--t\", \"4628\", \"11586\", \"12203\", \"12217\"]",
-   "source": "claude 290",
-   "log": "",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "pendientes": [],
  "recientes": [
   {
    "id": 129,
@@ -312,6 +312,13 @@
  ],
  "eventos": [
   {
+   "id": 712,
+   "job": 130,
+   "at": "2026-11-13 19:51:02",
+   "kind": "empieza",
+   "text": "script diag_otros_partidos --match osaka pegula zheng gauff sobolenko --t 4628 11586 12203 12217"
+  },
+  {
    "id": 711,
    "job": 130,
    "at": "2026-11-13 19:50:52",
@@ -513,13 +520,6 @@
    "at": "2026-11-13 18:36:15",
    "kind": "ejecutor",
    "text": "arranca el siguiente con el código nuevo (pid 18712)"
-  },
-  {
-   "id": 682,
-   "job": null,
-   "at": "2026-11-13 18:36:15",
-   "kind": "ejecutor",
-   "text": "termina"
   }
  ]
 }
