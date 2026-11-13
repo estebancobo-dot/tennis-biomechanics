@@ -11625,3 +11625,4 @@
 2026-11-13 05:16:55   ventana w000549650_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
 2026-11-13 05:17:02   ventana w000549650_3600: pose yolo en 170 de 170 fotogramas (7 s; modelo 7 s) · bola 5 s · raqueta 0 s (1 de 3 impactos) · 3 golpes posibles · altura 92 px (court)
 2026-11-13 05:17:07   ventana w000581447_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-13 05:17:17   ventana w000581447_3600: pose yolo en 160 de 160 fotogramas (9 s; modelo 9 s, 61 a 960 px por perderla) · bola 5 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 100 px (court)
