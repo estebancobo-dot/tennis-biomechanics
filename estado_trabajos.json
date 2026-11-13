@@ -1,10 +1,10 @@
 {
- "at": "2026-11-13 05:16:48",
- "firma": "8a00c38e8de1",
+ "at": "2026-11-13 05:17:06",
+ "firma": "4152de2ac54e",
  "ejecutor": {
   "vivo": true,
   "pid": 17768,
-  "at": 1794543408.6583076
+  "at": 1794543424.6677847
  },
  "pausa": false,
  "en_curso": [
@@ -30,14 +30,32 @@
  "progreso": {
   "partido": "us-open-2026-r4-naomi-osaka-elena-rybakina",
   "etapa": "fine",
-  "hecho": 3,
+  "hecho": 5,
   "total": 232,
-  "porcentaje": 1.3,
-  "segundos": 0,
-  "quedan_s": 0,
-  "hora": "2026-11-13 05:16:07"
+  "porcentaje": 2.2,
+  "segundos": 42,
+  "quedan_s": 1919,
+  "hora": "2026-11-13 05:16:49"
  },
  "pendientes": [
+  {
+   "id": 118,
+   "kind": "flujo",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-13 05:17:01",
+   "started": null,
+   "finished": null,
+   "args": "[\"informe\"]",
+   "source": "claude 278",
+   "log": "",
+   "paso": 0,
+   "pasos": 6
+  },
   {
    "id": 117,
    "kind": "comando",
@@ -367,6 +385,13 @@
  ],
  "eventos": [
   {
+   "id": 628,
+   "job": 118,
+   "at": "2026-11-13 05:17:01",
+   "kind": "enviado",
+   "text": "flujo informe (claude 278)"
+  },
+  {
    "id": 627,
    "job": 117,
    "at": "2026-11-13 05:16:36",
@@ -568,13 +593,6 @@
    "at": "2026-11-13 04:31:04",
    "kind": "enviado",
    "text": "tennisbio script diag_identidad_f3set --match azarenka --a salidas_v15 --b salidas_v16 (claude 270)"
-  },
-  {
-   "id": 598,
-   "job": 110,
-   "at": "2026-11-13 04:30:58",
-   "kind": "hecho",
-   "text": "código 0"
   }
  ]
 }
