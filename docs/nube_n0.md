@@ -19,6 +19,20 @@ mismo y cuánto más rápida es (k, por etapa). **Coste: 0 €** (el tope de la 
    tope del paso 2**. Una fuente no oficial habla de un cargo de verificación de 0,50 $; no está confirmado.
 
 ### 2. Tope de gasto: 0 € (2 min) — imprescindible
+**Hecho por el usuario el 13-11 a las 16:51.** Tras añadir la tarjeta, Modal ponía un límite de uso de 42,50 $ («Set by
+Modal»), con este aviso: «Next payment at $10 in charges — your limit auto-raises after». El usuario lo bajó a **30 $**
+con **Lower usage limit**, y ahora pone «Set by you». El **Spend limit** ya estaba en **0 $** por defecto («Default $0»;
+el botón Save sale gris porque no hay nada que cambiar).
+
+Según la propia página, al pasar ese límite con el crédito agotado se paran todos los trabajos, pero **el
+almacenamiento de los volúmenes se sigue cobrando** («Volume storage charges will still accrue»). La página de precios
+da **1 TiB gratis al mes**. La prueba ocupa unos pocos GB (sin vídeos de partidos), así que sigue en 0 €.
+
+El token se crea en **API tokens** → **+ New token**; «Member API tokens» es otra cosa. Modal enseña el comando
+`modal token set --token-id … --token-secret …`, que no hace falta ejecutar. Los secretos de GitHub van en
+**Repository secrets** (no en «Environment secrets»).
+
+Los pasos de abajo, tal como estaban escritos antes de hacerlos:
 1. Ve a **modal.com/settings/usage** (menú **Settings → Usage & Billing**).
 2. Pon el **Workspace budget** (también llamado «usage limit») en **30**. Es el límite de uso del mes **antes** de
    descontar el crédito gratis, que son también 30 $.
