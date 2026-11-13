@@ -1,6 +1,6 @@
 {
- "at": "2026-11-13 06:10:29",
- "firma": "30e9e75647f1",
+ "at": "2026-11-13 06:10:42",
+ "firma": "b63fddc957af",
  "ejecutor": {
   "vivo": true,
   "pid": 3148,
@@ -18,7 +18,26 @@
   "quedan_s": 2350,
   "hora": "2026-11-13 06:08:44"
  },
- "pendientes": [],
+ "pendientes": [
+  {
+   "id": 119,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "run --match us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-13 06:10:37",
+   "started": null,
+   "finished": null,
+   "args": "[\"run\", \"--match\", \"us-open-2026-r4-naomi-osaka-elena-rybakina\"]",
+   "source": "claude 280",
+   "log": "",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "recientes": [
   {
    "id": 118,
@@ -293,6 +312,13 @@
  ],
  "eventos": [
   {
+   "id": 641,
+   "job": 119,
+   "at": "2026-11-13 06:10:37",
+   "kind": "enviado",
+   "text": "tennisbio run --match us-open-2026-r4-naomi-osaka-elena-rybakina (claude 280)"
+  },
+  {
    "id": 640,
    "job": null,
    "at": "2026-11-13 06:10:29",
@@ -494,13 +520,6 @@
    "at": "2026-11-13 05:03:33",
    "kind": "ejecutor",
    "text": "termina"
-  },
-  {
-   "id": 611,
-   "job": null,
-   "at": "2026-11-13 05:03:33",
-   "kind": "ejecutor",
-   "text": "se reinicia con el código nuevo"
   }
  ]
 }
