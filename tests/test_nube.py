@@ -222,7 +222,7 @@ def test_the_matches_upload_takes_each_video_and_its_record_never_the_results(tm
     vids.mkdir()
     v = vids / "Теннис.ЮСИПОПЕН.Полуфинал.Гауфф—Рыбакина.mkv"
     v.write_text("video")
-    for f in ("partido.json", "video.json", "identidad_clic.json"):
+    for f in ("partido.json", "etapas/identidad_clic.json", "etapas/source.json"):
         (d / f).write_text("{}")
     (d / "etapas" / "players.npz").write_text("result")                 # a result: never uploaded
     reg = [{"id": "tennis-yusipopen-polufinal-gauff-rybakina", "video": str(v), "carpeta": str(d)},
@@ -230,6 +230,10 @@ def test_the_matches_upload_takes_each_video_and_its_record_never_the_results(tm
     plan = {r for _, r in subir_nube.partidos_plan(reg, lib)}
     assert plan == {"/videos/tennis-yusipopen-polufinal-gauff-rybakina.mkv",
                     "/biblioteca/partidos/sin-fecha/sin-fecha_580c6f_rybakina/partido.json",
-                    "/biblioteca/partidos/sin-fecha/sin-fecha_580c6f_rybakina/video.json",
-                    "/biblioteca/partidos/sin-fecha/sin-fecha_580c6f_rybakina/identidad_clic.json",
+                    "/biblioteca/partidos/sin-fecha/sin-fecha_580c6f_rybakina/etapas/identidad_clic.json",
+                    "/biblioteca/partidos/sin-fecha/sin-fecha_580c6f_rybakina/etapas/source.json",
                     "/biblioteca/jugadoras/"}
+    without = {r for _, r in subir_nube.partidos_plan(reg, lib, videos=False)}
+    assert without == plan - {"/videos/tennis-yusipopen-polufinal-gauff-rybakina.mkv"}
+    from tennisbio.fresh import KEEP_LIBRARY                  # the same files «desde cero» keeps (but the video)
+    assert set(subir_nube.MATCH_FILES) == {k for k in KEEP_LIBRARY if not k.endswith(".mkv")}

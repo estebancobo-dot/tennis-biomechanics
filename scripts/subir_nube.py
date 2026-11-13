@@ -58,10 +58,13 @@ def upload_plan(repo: Path, datasets: Path, pc_tag: str) -> list[tuple[Path, str
     return [(p, r) for p, r in plan if p.exists()]
 
 
-MATCH_FILES = ("partido.json", "video.json", "identidad_clic.json")     # what «desde cero» keeps of a match (#263)
+# what «desde cero» keeps of a match in the library (#263, tennisbio.fresh.KEEP_LIBRARY: the record, the user's click in
+# etapas/, the video's own record) without the video itself, which goes to /videos (13-11: the first upload looked for
+# the click at the folder's root and left it out)
+MATCH_FILES = ("partido.json", "etapas/identidad_clic.json", "etapas/source.json")
 
 
-def partidos_plan(registry: list[dict], library: Path) -> list[tuple[Path, str]]:
+def partidos_plan(registry: list[dict], library: Path, videos: bool = True) -> list[tuple[Path, str]]:
     """13-11 (decision del usuario: todo en Modal): what the cloud needs to analyse the matches from scratch: each
     video (named by the match's ASCII id: the Russian names stay on the PC), its library folder's own files (the
     match's record, its video's fingerprint, the user's identity click) at the same place under /biblioteca, the
@@ -69,7 +72,7 @@ def partidos_plan(registry: list[dict], library: Path) -> list[tuple[Path, str]]
     plan: list[tuple[Path, str]] = []
     for m in registry:
         v = Path(str(m.get("video") or ""))
-        if v.name and v.exists():
+        if videos and v.name and v.exists():
             plan.append((v, f"/videos/{m['id']}{v.suffix.lower()}"))
         d = Path(str(m.get("carpeta") or ""))
         try:
@@ -99,6 +102,7 @@ def main() -> int:
     ap.add_argument("--pc-tag", default="v17", help="la ejecución de F3Set del PC con la que se compara la nube")
     ap.add_argument("--que", choices=("f3set", "partidos"), default="f3set",
                     help="f3set: modelos y compilaciones (prueba N0); partidos: los vídeos y sus fichas (todo en Modal)")
+    ap.add_argument("--sin-videos", action="store_true", help="partidos: solo sus fichas (los vídeos ya están subidos)")
     ap.add_argument("--solo-plan", action="store_true", help="solo dice qué subiría")
     a = ap.parse_args()
     from tennisbio.config import load_config
@@ -109,7 +113,8 @@ def main() -> int:
         from tennisbio.library import library_root
         reg = out / "registro_partidos.json"
         registry = json.loads(reg.read_text(encoding="utf-8")) if reg.exists() else []
-        plan = partidos_plan(registry, library_root(cfg)) + ([(reg, "/pc/registro_partidos.json")] if reg.exists() else [])
+        plan = (partidos_plan(registry, library_root(cfg), videos=not a.sin_videos)
+                + ([(reg, "/pc/registro_partidos.json")] if reg.exists() else []))
     else:
         plan = upload_plan(ROOT, datasets, a.pc_tag)
     total = sum(_size(p) for p, _ in plan)

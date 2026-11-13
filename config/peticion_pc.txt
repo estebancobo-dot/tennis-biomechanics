@@ -1390,3 +1390,10 @@ argumentos: --que partidos
 # 293 (13-11, decision del usuario: todo en Modal con gasto 0): sube UNA VEZ los videos de los 6 partidos (con su id
 # ASCII) y lo que "desde cero" conserva de cada uno (partido.json, video.json, identidad_clic.json), las fichas de las
 # jugadoras y la lista de partidos; nada de resultados (se recalculan en la nube). 291 ahora compara con v17 (v18 cancelada)
+---
+id: 294
+accion: medir
+script: subir_nube
+argumentos: --que partidos --sin-videos
+# 294 (13-11): la 293 subio los 6 videos (23 GB, 5 min) pero no el clic de identidad: en la biblioteca esta en
+# etapas/identidad_clic.json y se buscaba en la raiz. Solo las fichas (KB), sin repetir los videos
