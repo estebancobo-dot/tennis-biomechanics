@@ -1,13 +1,32 @@
 {
- "at": "2026-11-13 04:47:32",
- "firma": "fdf8a3da322d",
+ "at": "2026-11-13 04:48:31",
+ "firma": "7abaf1112ce7",
  "ejecutor": {
   "vivo": true,
   "pid": 16736,
-  "at": 1794541652.6452703
+  "at": 1794541708.689123
  },
  "pausa": false,
- "en_curso": [],
+ "en_curso": [
+  {
+   "id": 112,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script diag_entradas --tag v16",
+   "state": "en curso",
+   "message": "",
+   "created": "2026-11-13 04:48:21",
+   "started": "2026-11-13 04:48:22",
+   "finished": null,
+   "args": "[\"script\", \"diag_entradas\", \"--tag\", \"v16\"]",
+   "source": "claude 272",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_112.log",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "court",
@@ -293,6 +312,20 @@
  ],
  "eventos": [
   {
+   "id": 608,
+   "job": 112,
+   "at": "2026-11-13 04:48:22",
+   "kind": "empieza",
+   "text": "script diag_entradas --tag v16"
+  },
+  {
+   "id": 607,
+   "job": 112,
+   "at": "2026-11-13 04:48:21",
+   "kind": "enviado",
+   "text": "tennisbio script diag_entradas --tag v16 (claude 272)"
+  },
+  {
    "id": 606,
    "job": null,
    "at": "2026-11-13 04:40:52",
@@ -487,20 +520,6 @@
    "at": "2026-11-13 04:20:07",
    "kind": "cancelado",
    "text": ""
-  },
-  {
-   "id": 578,
-   "job": 107,
-   "at": "2026-11-13 04:20:07",
-   "kind": "cancelar",
-   "text": "claude 271"
-  },
-  {
-   "id": 577,
-   "job": 107,
-   "at": "2026-11-13 04:03:17",
-   "kind": "empieza",
-   "text": "run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final"
   }
  ]
 }

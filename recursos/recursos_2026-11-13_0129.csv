@@ -701,3 +701,6 @@ hora,partido,etapa,cpu_total,cpu_python,cpu_ffmpeg,ram_usada_gb,ram_total_gb,ram
 2026-11-13T04:46:59,elena-rybakina-jessica-pegula-miami-2026-quarter-final,court,97.0,86.8,0.0,18.7,19.8,4.3,0.0,0.0,0.0,0.0,2026-11-13 04:06:50,100.0
 2026-11-13T04:47:16,elena-rybakina-jessica-pegula-miami-2026-quarter-final,court,100.0,86.9,0.0,18.8,19.8,4.3,0.0,0.0,0.0,0.0,2026-11-13 04:06:50,100.0
 2026-11-13T04:47:33,elena-rybakina-jessica-pegula-miami-2026-quarter-final,court,95.0,75.7,4.9,17.9,19.8,4.8,0.0,0.0,0.0,0.0,2026-11-13 04:06:50,100.0
+2026-11-13T04:47:49,elena-rybakina-jessica-pegula-miami-2026-quarter-final,court,83.0,58.5,0.7,17.8,19.8,4.5,0.0,0.0,0.0,0.0,2026-11-13 04:06:50,100.0
+2026-11-13T04:48:06,elena-rybakina-jessica-pegula-miami-2026-quarter-final,court,82.0,61.6,1.4,18.1,19.8,4.8,83.0,0.0,0.0,16.0,2026-11-13 04:06:50,100.0
+2026-11-13T04:48:23,elena-rybakina-jessica-pegula-miami-2026-quarter-final,court,93.0,75.4,1.1,18.2,19.8,4.8,66.0,0.0,0.0,0.0,2026-11-13 04:06:50,100.0

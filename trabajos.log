@@ -80,3 +80,4 @@
 2026-11-13T04:30:14 peticion 268: trabajo 109 en la cola: tennisbio script validate_recall --spotter --tag v15 --skip-run --report-suffix _e
 2026-11-13T04:30:40 peticion 269: trabajo 110 en la cola: tennisbio script validate_recall --spotter --tag v16 --skip-run --report-suffix _e
 2026-11-13T04:31:04 peticion 270: trabajo 111 en la cola: tennisbio script diag_identidad_f3set --match azarenka --a salidas_v15 --b salidas_v16
+2026-11-13T04:48:22 peticion 272: trabajo 112 en la cola: tennisbio script diag_entradas --tag v16
