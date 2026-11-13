@@ -98,3 +98,4 @@
 2026-11-13T18:42:41 peticion 287: script o argumentos no validos
 2026-11-13T18:42:58 peticion 288: trabajo 127 en la cola: tennisbio script validate_recall --spotter --tag v18 --from v17
 2026-11-13T19:50:36 peticion 289: trabajo 129 en la cola: tennisbio script diag_play_mask --tags v15 v17 --match osaka pegula --window azaren,1090,1115
+2026-11-13T19:50:53 peticion 290: trabajo 130 en la cola: tennisbio script diag_otros_partidos --match osaka pegula zheng gauff sobolenko --t 4628 11586 12203 12217

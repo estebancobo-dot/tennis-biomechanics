@@ -1,6 +1,6 @@
 {
- "at": "2026-11-13 19:50:42",
- "firma": "d93f58bda824",
+ "at": "2026-11-13 19:50:55",
+ "firma": "d349c7e8e718",
  "ejecutor": {
   "vivo": true,
   "pid": 7588,
@@ -18,7 +18,26 @@
   "quedan_s": 0,
   "hora": "2026-11-13 18:25:58"
  },
- "pendientes": [],
+ "pendientes": [
+  {
+   "id": 130,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script diag_otros_partidos --match osaka pegula zheng gauff sobolenko --t 4628 11586 12203 12217",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-13 19:50:52",
+   "started": null,
+   "finished": null,
+   "args": "[\"script\", \"diag_otros_partidos\", \"--match\", \"osaka\", \"pegula\", \"zheng\", \"gauff\", \"sobolenko\", \"--t\", \"4628\", \"11586\", \"12203\", \"12217\"]",
+   "source": "claude 290",
+   "log": "",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "recientes": [
   {
    "id": 129,
@@ -293,6 +312,13 @@
  ],
  "eventos": [
   {
+   "id": 711,
+   "job": 130,
+   "at": "2026-11-13 19:50:52",
+   "kind": "enviado",
+   "text": "tennisbio script diag_otros_partidos --match osaka pegula zheng gauff sobolenko --t 4628 11586 12203 12217 (claude 290)"
+  },
+  {
    "id": 710,
    "job": 129,
    "at": "2026-11-13 19:50:42",
@@ -494,13 +520,6 @@
    "at": "2026-11-13 18:36:15",
    "kind": "ejecutor",
    "text": "termina"
-  },
-  {
-   "id": 681,
-   "job": null,
-   "at": "2026-11-13 18:36:15",
-   "kind": "ejecutor",
-   "text": "se reinicia con el código nuevo"
   }
  ]
 }
