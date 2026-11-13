@@ -20,20 +20,32 @@ import nube  # noqa: E402
 import subir_nube  # noqa: E402
 
 
-def _providers_in_new_process(env_extra: dict) -> str:
-    env = {k: v for k, v in os.environ.items() if k != "TENNISBIO_DML_IS_CUDA"}
-    env.update({"PYTHONPATH": os.pathsep.join([str(ROOT / "src"), str(ROOT / "cloud" / "arranque")]), **env_extra})
-    code = "from tennisbio.pose import estimator as e; print(e.ORT_PROVIDERS['dml'])"
+def _providers_in_new_process(env_extra: dict, tmp_path: Path) -> str:
+    """A new Python process that reads the cloud's .pth file (its paths pointing to this repository), as every process of
+    the container does at start-up, then loads the pose module."""
+    site_dir = tmp_path / "site"
+    site_dir.mkdir(exist_ok=True)
+    (site_dir / "tennisbio_nube.pth").write_text(nube.pth_text(ROOT.as_posix()), encoding="utf-8")
+    env = {k: v for k, v in os.environ.items() if k not in ("TENNISBIO_DML_IS_CUDA", "PYTHONPATH")}
+    env.update(env_extra)
+    code = (f"import site; site.addsitedir({str(site_dir)!r}); "
+            "from tennisbio.pose import estimator as e; print(e.ORT_PROVIDERS['dml'])")
     r = subprocess.run([sys.executable, "-c", code], env=env, capture_output=True, text=True, timeout=120)
+    assert r.returncode == 0, r.stderr[-800:]
     return r.stdout.strip().splitlines()[-1]
 
 
-def test_in_the_cloud_the_pcs_device_puts_its_sessions_on_cuda_also_in_a_new_process():
-    assert _providers_in_new_process({"TENNISBIO_DML_IS_CUDA": "1"}) == "['CUDAExecutionProvider', 'CPUExecutionProvider']"
+def test_in_the_cloud_the_pcs_device_puts_its_sessions_on_cuda_also_in_a_new_process(tmp_path):
+    out = _providers_in_new_process({"TENNISBIO_DML_IS_CUDA": "1"}, tmp_path)
+    assert out == "['CUDAExecutionProvider', 'CPUExecutionProvider']"
 
 
-def test_without_the_variable_nothing_changes_as_on_the_pc():
-    assert _providers_in_new_process({}) == "['DmlExecutionProvider', 'CPUExecutionProvider']"
+def test_without_the_variable_nothing_changes_as_on_the_pc(tmp_path):
+    assert _providers_in_new_process({}, tmp_path) == "['DmlExecutionProvider', 'CPUExecutionProvider']"
+
+
+def test_the_pth_file_puts_the_folders_and_the_hook():
+    assert nube.pth_text("/repo").splitlines() == ["/repo/src", "/repo/cloud", "/repo/cloud/arranque", "import nube_gpu"]
 
 
 def test_the_cloud_runs_the_pcs_settings_with_its_own_paths():

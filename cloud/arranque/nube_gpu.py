@@ -1,10 +1,11 @@
-"""N0 (13-11, #273): imported by Python at start-up in the cloud's container (cloud/arranque is on the path there, by a .pth file), also in
-the fine pass's worker processes (spawn). With TENNISBIO_DML_IS_CUDA=1 the device the configuration calls «dml» puts its
-ONNX sessions on CUDA: every code path stays the PC's (cloud/nube.py). Without the variable it does nothing.
+"""N0 (13-11, #273): loaded by Python at start-up in the cloud's container through an «import nube_gpu» line of the
+tennisbio_nube.pth file (cloud/nube.py pth_text), so also in the fine pass's worker processes (spawn). With
+TENNISBIO_DML_IS_CUDA=1 the device the configuration calls «dml» puts its ONNX sessions on CUDA: every code path stays
+the PC's (cloud/nube.py). Without the variable it does nothing.
 
-13-11: it no longer imports anything at start-up (the container's own Python processes, Modal's included, start as
-before): a hook on the import system patches tennisbio.pose.estimator right after it is loaded, in the processes that
-load it."""
+13-11: first a sitecustomize.py, which the container's Python never loaded (the image has its own: «comprobar» saw the
+DirectML providers in a new process); a .pth import line runs in every case. It imports nothing at start-up: a hook on
+the import system patches tennisbio.pose.estimator right after it is loaded, in the processes that load it."""
 import importlib.machinery
 import os
 import sys

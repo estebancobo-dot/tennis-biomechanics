@@ -2,7 +2,7 @@
 
 The cloud runs the PC's own code unchanged: the same stages and the same configuration, with the device still named
 «dml», so that every code path is the PC's (GPU sessions, the half-precision pose model, two fine-pass workers, fixed
-ball batches). Only where an ONNX session is placed changes: on CUDA instead of DirectML (cloud/arranque/sitecustomize.py).
+ball batches). Only where an ONNX session is placed changes: on CUDA instead of DirectML (cloud/arranque/nube_gpu.py).
 It answers two questions before the cloud analyses a match (N1): does it give the same strokes as the PC, and how much
 faster is it (k, per stage).
 
@@ -21,6 +21,12 @@ import statistics
 from pathlib import Path
 
 import yaml
+
+def pth_text(repo: str = "/repo") -> str:
+    """The .pth file of the cloud's image: our folders on the path and the line that loads the GPU hook (nube_gpu) in
+    every Python process. Never PYTHONPATH (it replaced Modal's own) nor sitecustomize (the image has its own)."""
+    return f"{repo}/src\n{repo}/cloud\n{repo}/cloud/arranque\nimport nube_gpu\n"
+
 
 # keys of the PC's local.yaml that only make sense on Windows (paths) or with its hardware decoder
 PC_ONLY = ("paths", "hwaccel")
