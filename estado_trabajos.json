@@ -1,10 +1,10 @@
 {
- "at": "2026-11-13 06:16:09",
- "firma": "16cecd2cc2dc",
+ "at": "2026-11-13 06:19:02",
+ "firma": "e1f56f0f8600",
  "ejecutor": {
   "vivo": true,
-  "pid": 3148,
-  "at": 1794546969.88941
+  "pid": 18632,
+  "at": 1794547130.722215
  },
  "pausa": true,
  "en_curso": [],
@@ -19,6 +19,24 @@
   "hora": "2026-11-13 06:08:44"
  },
  "pendientes": [
+  {
+   "id": 124,
+   "kind": "flujo",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "flujo «informe_prueba»: Informe y auditoria de la prueba (_smoke) desde sus golpes guardados y la revision automatica",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-13 06:19:02",
+   "started": null,
+   "finished": null,
+   "args": "[\"informe_prueba\"]",
+   "source": "ciclo",
+   "log": "",
+   "paso": 0,
+   "pasos": 3
+  },
   {
    "id": 123,
    "kind": "flujo",
@@ -384,6 +402,48 @@
  ],
  "eventos": [
   {
+   "id": 651,
+   "job": 124,
+   "at": "2026-11-13 06:19:02",
+   "kind": "enviado",
+   "text": "flujo informe_prueba (ciclo)"
+  },
+  {
+   "id": 650,
+   "job": null,
+   "at": "2026-11-13 06:18:50",
+   "kind": "ejecutor",
+   "text": "arranca (pid 18632)"
+  },
+  {
+   "id": 649,
+   "job": null,
+   "at": "2026-11-13 06:18:49",
+   "kind": "ejecutor",
+   "text": "arranca el siguiente con el código nuevo (pid 9056)"
+  },
+  {
+   "id": 648,
+   "job": null,
+   "at": "2026-11-13 06:18:49",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 647,
+   "job": null,
+   "at": "2026-11-13 06:18:49",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 646,
+   "job": null,
+   "at": "2026-11-13 06:18:43",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
    "id": 645,
    "job": 123,
    "at": "2026-11-13 06:11:50",
@@ -550,48 +610,6 @@
    "at": "2026-11-13 05:15:08",
    "kind": "hecho",
    "text": "código 0"
-  },
-  {
-   "id": 621,
-   "job": 113,
-   "at": "2026-11-13 05:15:06",
-   "kind": "empieza",
-   "text": "script diag_identidad_f3set --match azaren --a salidas_v15 --b salidas_v16"
-  },
-  {
-   "id": 620,
-   "job": 113,
-   "at": "2026-11-13 05:15:06",
-   "kind": "enviado",
-   "text": "tennisbio script diag_identidad_f3set --match azaren --a salidas_v15 --b salidas_v16 (claude 273)"
-  },
-  {
-   "id": 619,
-   "job": null,
-   "at": "2026-11-13 05:11:06",
-   "kind": "ejecutor",
-   "text": "arranca (pid 17768)"
-  },
-  {
-   "id": 618,
-   "job": null,
-   "at": "2026-11-13 05:11:05",
-   "kind": "ejecutor",
-   "text": "arranca el siguiente con el código nuevo (pid 408)"
-  },
-  {
-   "id": 617,
-   "job": null,
-   "at": "2026-11-13 05:11:05",
-   "kind": "ejecutor",
-   "text": "termina"
-  },
-  {
-   "id": 616,
-   "job": null,
-   "at": "2026-11-13 05:11:05",
-   "kind": "ejecutor",
-   "text": "se reinicia con el código nuevo"
   }
  ]
 }
