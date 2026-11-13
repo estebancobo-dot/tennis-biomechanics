@@ -37,7 +37,10 @@ Después: revés, saque, volea y otros jugadores.
     **móvil/nube al final**, cuando todo funcione en el PC. El PC no puede ser servidor.
     **Cambio (13-11, #271/#272):** toda la aplicación pasa a la nube **después de los 6 partidos** (cierre de la
     Base) y **antes de P0** (paquete N, `docs/analisis_nube.md`); el usuario solo sube los vídeos (se borran al
-    terminar), hace el clic y aprueba. **Tope de gasto: 0 € al mes.** Hasta entonces, todo sigue en el PC. El móvil, al final.
+    terminar), hace el clic y aprueba. **Tope de gasto: 0 € al mes.** El móvil, al final.
+    **Cambio (13-11 tarde, #275-#277):** el PC se para (`config/pausa_pc.txt`) y **los 6 partidos se analizan ya en
+    Modal** (`cloud/`, flujo «Nube» de GitHub Actions), por lotes, cada uno tras una prueba corta de 10 min; R22 va
+    como diferencia conocida y escrita. El PC solo vuelve si el usuario lo pide.
 
 **Referencia de completitud:** `docs/matriz_cobertura.md` (taxonomía de la derecha con fuentes:
 ITF/Elliott-Reid-Crespo, Landlinger, Knudson, Tennis Australia, estudios de pies, sistemas

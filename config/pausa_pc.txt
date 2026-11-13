@@ -1,4 +1,7 @@
 # Pausa total del PC pedida por el usuario (29-10, "no hagas nada mas en local hasta que yo te avise").
 # "pausa: si": el ciclo corta todo lo de este proyecto que este en marcha, apaga la tarea de Windows de cada 10 min y
 # el bucle de inicio de sesion no sigue. Solo Claude la quita ("pausa: no"), y solo cuando el usuario lo diga.
-pausa: no
+# 13-11 (decision del usuario: "para todo el pc en local y replantea todo en modal con un gasto 0"): el PC ya subio a
+# Modal todo lo que solo el tenia (291: F3Set; 293: los 6 videos; 294: los clics de identidad). Desde aqui, nada en
+# local: el analisis va entero en la nube.
+pausa: si

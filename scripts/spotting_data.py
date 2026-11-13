@@ -74,7 +74,7 @@ def local_compilation(root: Path, name: str, src: Path | None, fps: float, segs:
 
     base = root / "f3set" / "spotting"
     out, plan_f = base / "videos" / f"{name}.mp4", base / "videos" / f"{name}.json"
-    key = [(s["src_t0"], s["src_t1"]) for s in segs]
+    key = [[s["src_t0"], s["src_t1"]] for s in segs]      # 13-11: lists, as JSON reads them back
     if out.exists() and plan_f.exists() and json.loads(plan_f.read_text(encoding="utf-8")).get("key") == key:
         return out, json.loads(plan_f.read_text(encoding="utf-8"))["segments"]
     if src is None:                          # only the cached compilation was asked for

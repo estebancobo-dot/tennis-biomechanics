@@ -70,7 +70,9 @@ def build_compilation(root: Path, name: str, yt_id: str, fps: float, segs: list[
     base = root / "f3set" / "recall"
     out = base / "videos" / f"{name}.mp4"
     plan_f = base / "videos" / f"{name}.json"
-    key = [(s["src_t0"], s["src_t1"]) for s in segs]
+    # 13-11: lists, as JSON reads them back (tuples never equalled the saved key: the compilation was joined again on
+    # every run, and in the cloud, without the pieces, each one was asked of YouTube, which refuses data centres)
+    key = [[s["src_t0"], s["src_t1"]] for s in segs]
     if out.exists() and plan_f.exists():
         plan = json.loads(plan_f.read_text(encoding="utf-8"))
         if plan.get("key") == key:

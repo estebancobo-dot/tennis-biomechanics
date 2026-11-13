@@ -24,6 +24,20 @@ Conceptos (glosario en `CLAUDE.md`): **Plan** (corto / medio / largo) → **Paqu
 usuario pertenece a un paquete; un paquete está **aceptado** cuando su prueba principal pasa en las salidas reales
 (tabla «¿Cerrado?» de `estado_real_partidos.md`, calculada, no a mano).
 
+**DÓNDE ESTAMOS Y CÓMO SEGUIR: todo en Modal (13-11 tarde, #275-#277; sustituye a lo de abajo sobre el PC)**
+El PC está en pausa total (`config/pausa_pc.txt`: «pausa: si»); ya subió a Modal lo que solo él tenía. Claude lanza y lee
+todo por el flujo «Nube» de GitHub Actions (`.github/workflows/nube.yml`); el tope de la cuenta de Modal en su crédito
+mensual (30 $) deja el gasto en 0 €. R22 va como diferencia conocida y escrita (#276).
+
+| Paso | Qué | Estado |
+|---|---|---|
+| 1 | Subir a Modal: modelos y compilaciones de F3Set (291), los 6 vídeos (293, 23 GB), clics de identidad (294) | hecho (13-11 20:23) |
+| 2 | F3Set en la nube frente a la v18 del PC | 1.ª vuelta (20:02) sin medir nada: la compilación guardada no se reconocía (clave en tuplas frente a listas de JSON) y pidió cada tramo a YouTube; 21,9 min, 0,45 $. Arreglado (`tests/test_compilation_key.py`); se repite tras la prueba corta |
+| 3 | Prueba corta: 10 min de Osaka en la nube (`accion: prueba`) | en marcha |
+| 4 | Lote 1: Osaka entero (`accion: partidos`); resultados, tiempo y coste al usuario | pendiente (tras 3) |
+| 5 | Lote 2: Pegula y Zheng · Lote 3: Gauff y la final · Lote 4: Zverev-Sinner, uno tras otro, con su informe | pendiente |
+| 6 | Auditoría de la Base en la nube (saques, pose en el contacto, bola, fallos) y criterios de la Base sin el PC (B1 tiempo, B7/B8 aplicación y orquestador) reescritos para la nube | pendiente |
+
 **Por qué se llegó aquí (13-11, #267; respuesta al usuario, sin excusas: es trabajo de Claude).**
 1. *Funciones antes que base*: 267 peticiones, muchas medidas y pantallas encima de una base sin cerrar (B1-B8 abiertos;
    la revisión automática del 13-11: 137 de 263 peticiones sin terminar, 28 comprobaciones no cumplidas).

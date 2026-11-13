@@ -46,10 +46,12 @@ paquetes:
     prueba: ["^Orquestador: "]
   N:
     # 13-11 (usuario): toda la aplicación en la nube, después de los 6 partidos (cierre de la Base) y antes de P0;
-    # tope de gasto 0 € al mes (#271, #272; sustituye a #145 «nada en la nube ni de pago»)
+    # tope de gasto 0 € al mes (#271, #272; sustituye a #145 «nada en la nube ni de pago»).
+    # 13-11 tarde (#275): el PC se para y los 6 partidos se analizan ya en Modal, por lotes y tras una prueba corta
+    # (#276, #277)
     nombre: "Nube · toda la aplicación en la nube (el usuario solo sube los partidos), 0 € al mes"
     cierre: "La nube da lo mismo que el PC en F3Set y en los 6 partidos (N0-N1); un partido nuevo de principio a fin desde la web (subir, clic, aprobar); gasto del mes 0 € con el tope de la cuenta"
-    peticiones: [268, 271, 272, 273]
+    peticiones: [268, 271, 272, 273, 275, 276, 277]
   P0:
     # 11-11 (usuario): justo después de la Base y antes de las medidas
     nombre: "Producto · rediseño completo de la aplicación (comparativa profesional, UX, aprendizaje, gestión, gráficos)"
