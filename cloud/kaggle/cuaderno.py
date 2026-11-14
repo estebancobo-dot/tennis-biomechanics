@@ -1,0 +1,151 @@
+"""Paso 8b (14-11, #283, #285): Kaggle from GitHub Actions. Writes the «tennisbio-cola» notebook for one job (a cell
+that takes the Modal key from the notebook's secrets, fetches this repository at the given commit and runs
+cloud/kaggle/correr.py), pushes it with Kaggle's API (a new version of the user's notebook, so it keeps its secrets and
+its internet), and reads its status and its output.
+
+    python cloud/kaggle/cuaderno.py lanzar --accion comprobar --commit <sha>
+    python cloud/kaggle/cuaderno.py esperar [--minutos 50]
+    python cloud/kaggle/cuaderno.py salida --dir kaggle-out
+
+Needs KAGGLE_API_TOKEN and KAGGLE_USERNAME (GitHub secrets). The notebook is private and always the same one.
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import re
+import subprocess
+import sys
+import time
+from pathlib import Path
+
+SLUG = "tennisbio-cola"
+REPO_URL = "https://github.com/estebancobo-dot/tennis-biomechanics.git"
+STATES = ("queued", "running", "complete", "error", "cancelrequested", "cancelacknowledged")
+
+CELL = '''# tennisbio: one job of the cloud queue (written by cloud/kaggle/cuaderno.py; do not edit here)
+import json, os, re, subprocess, sys
+JOB = json.loads({job!r})
+
+
+def secret(name):
+    try:
+        from kaggle_secrets import UserSecretsClient
+        return UserSecretsClient().get_secret(name) or ""
+    except Exception as e:
+        print(f"secreto {{name}}: {{type(e).__name__}}")
+        return ""
+
+
+both = secret("MODAL_TOKEN_ID") + " " + secret("MODAL_TOKEN_SECRET")
+ids = re.findall(r"ak-[A-Za-z0-9]+", both)[:1] + re.findall(r"as-[A-Za-z0-9]+", both)[:1]
+env = dict(os.environ)
+if len(ids) == 2:
+    env.update(MODAL_TOKEN_ID=ids[0], MODAL_TOKEN_SECRET=ids[1])
+print("clave de Modal:", "sí" if len(ids) == 2 else "NO (Add-ons > Secrets: MODAL_TOKEN_ID y MODAL_TOKEN_SECRET)")
+repo = "/tmp/repo"
+for cmd in (["git", "init", "-q", repo], ["git", "-C", repo, "remote", "add", "origin", {url!r}],
+            ["git", "-C", repo, "fetch", "-q", "--depth", "1", "origin", JOB["commit"]],
+            ["git", "-C", repo, "checkout", "-q", "FETCH_HEAD"],
+            [sys.executable, "-m", "pip", "install", "-q", "modal>=1.0,<2", "pyyaml"]):
+    subprocess.run(cmd, check=True)
+rc = subprocess.run([sys.executable, repo + "/cloud/kaggle/correr.py", json.dumps(JOB)], env=env).returncode
+if rc:
+    raise SystemExit(rc)
+'''
+
+
+def notebook(job: dict) -> dict:
+    """The notebook (one code cell) for a job; the job carries the commit of the code to run."""
+    src = CELL.format(job=json.dumps(job, ensure_ascii=False), url=REPO_URL)
+    return {"cells": [{"cell_type": "code", "execution_count": None, "metadata": {}, "outputs": [],
+                       "source": src.splitlines(keepends=True)}],
+            "metadata": {"kernelspec": {"display_name": "Python 3", "language": "python", "name": "python3"},
+                         "language_info": {"name": "python"}},
+            "nbformat": 4, "nbformat_minor": 5}
+
+
+def metadata(user: str) -> dict:
+    """kernel-metadata.json: the user's private notebook, on two T4s, with internet (the Kaggle API's documented fields)."""
+    return {"id": f"{user}/{SLUG}", "title": SLUG, "code_file": f"{SLUG}.ipynb", "language": "python",
+            "kernel_type": "notebook", "is_private": True, "enable_gpu": True, "enable_internet": True,
+            "machine_shape": "NvidiaTeslaT4", "dataset_sources": [], "competition_sources": [], "kernel_sources": []}
+
+
+def write(folder: Path, user: str, job: dict) -> Path:
+    folder.mkdir(parents=True, exist_ok=True)
+    (folder / f"{SLUG}.ipynb").write_text(json.dumps(notebook(job), ensure_ascii=False, indent=1), encoding="utf-8")
+    (folder / "kernel-metadata.json").write_text(json.dumps(metadata(user), indent=1), encoding="utf-8")
+    return folder
+
+
+def status_of(text: str) -> str:
+    """The kernel's state from `kaggle kernels status` («... has status "KernelWorkerStatus.COMPLETE"»)."""
+    t = text.lower().replace("_", "")
+    for s in STATES:
+        if re.search(rf"\b{s}\b", t) or f".{s}" in t or f'"{s}"' in t:
+            return s
+    return "desconocido"
+
+
+def _user() -> str:
+    u = os.environ.get("KAGGLE_USERNAME", "").strip()
+    if not u:
+        raise SystemExit("falta el secreto KAGGLE_USERNAME")
+    return u
+
+
+def _kaggle(*args) -> subprocess.CompletedProcess:
+    return subprocess.run(["kaggle", *args], capture_output=True, text=True)
+
+
+def main(argv: list[str] | None = None) -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("orden", choices=("lanzar", "estado", "esperar", "salida"))
+    ap.add_argument("--accion", default="comprobar")
+    ap.add_argument("--partido", default="")
+    ap.add_argument("--salida-remota", default="", help="la carpeta de la ejecución en Modal (/runs/<tag>)")
+    ap.add_argument("--output-remoto", default="", help="dónde van sus resultados en Modal (por defecto /output)")
+    ap.add_argument("--commit", default="")
+    ap.add_argument("--minutos", type=float, default=50)
+    ap.add_argument("--dir", type=Path, default=Path("kaggle-out"))
+    a = ap.parse_args(argv)
+    kid = f"{_user()}/{SLUG}"
+    if a.orden == "lanzar":
+        job = {"accion": a.accion, "commit": a.commit}
+        if a.partido:
+            job["partido"] = a.partido
+        if a.salida_remota:
+            job["salida"] = a.salida_remota
+        if a.output_remoto:
+            job["output_remoto"] = a.output_remoto
+        folder = write(Path("kaggle-push"), _user(), job)
+        r = _kaggle("kernels", "push", "-p", str(folder))
+        print(r.stdout, r.stderr)
+        return r.returncode
+    if a.orden == "estado":
+        r = _kaggle("kernels", "status", kid)
+        print(status_of(r.stdout + r.stderr), "|", (r.stdout + r.stderr).strip())
+        return 0
+    if a.orden == "esperar":
+        end = time.time() + a.minutos * 60
+        while True:
+            r = _kaggle("kernels", "status", kid)
+            st = status_of(r.stdout + r.stderr)
+            print(time.strftime("%H:%M:%S"), st, flush=True)
+            if st in ("complete", "error", "cancelacknowledged") or time.time() > end:
+                return 0 if st == "complete" else 1
+            time.sleep(30)
+    a.dir.mkdir(parents=True, exist_ok=True)
+    r = _kaggle("kernels", "output", kid, "-p", str(a.dir), "-o")
+    print(r.stdout, r.stderr)
+    for f in sorted(a.dir.glob("*")):
+        print(f"===== {f.name}")
+        txt = f.read_text(encoding="utf-8", errors="replace") if f.stat().st_size < 2_000_000 else "(grande)"
+        print(txt[-12000:])
+    return r.returncode
+
+
+if __name__ == "__main__":
+    sys.exit(main())

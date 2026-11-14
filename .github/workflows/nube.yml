@@ -10,14 +10,18 @@
 #   diagnostico: que ffmpeg limpia el .ts de cada partido dado (solo CPU, centimos; recoger con tag diag_ts)
 #   recoger:   trae el estado, el registro y la comparacion con el PC de una ejecucion (runs/<tag>; un partido:
 #              runs/partido_<id>)
+#   kaggle_comprobar: (14-11, paso 8b) una sesion de Kaggle que mira GPU, nucleos, disco, la clave de Modal y monta el
+#              entorno; espera a que acabe y trae su salida
+#   kaggle_prueba: 10 min del partido dado en Kaggle, con sus resultados aparte en Modal (/kaggle_comparar) para
+#              compararlos con la prueba de Modal; espera a que acabe y trae su salida
 name: Nube
 on:
   workflow_dispatch:
     inputs:
       accion:
-        description: "comprobar | f3set | prueba | partidos | diagnostico | informe | parar | recoger"
+        description: "comprobar | f3set | prueba | partidos | diagnostico | informe | parar | recoger | kaggle_comprobar | kaggle_prueba"
         type: choice
-        options: [comprobar, f3set, prueba, partidos, diagnostico, informe, parar, recoger]
+        options: [comprobar, f3set, prueba, partidos, diagnostico, informe, parar, recoger, kaggle_comprobar, kaggle_prueba]
         default: comprobar
       tag:
         description: "nombre de la ejecucion (runs/<tag>)"
@@ -48,8 +52,11 @@ jobs:
   nube:
     if: github.repository_owner == 'estebancobo-dot'
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    # 14-11: a Kaggle run is waited for here (a 10-minute test takes about 1-2 h there)
+    timeout-minutes: ${{ startsWith(inputs.accion, 'kaggle') && 240 || 60 }}
     env:
+      KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+      KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
       # tal como el usuario los pego (13-11: con espacios, "Token ID is malformed"); el paso "Clave de Modal" saca de
       # ellos las dos claves, ak-... y as-..., aunque se pegara el comando entero que ensena Modal o al reves
       CLAVE_MODAL_1: ${{ secrets.MODAL_TOKEN_ID }}
@@ -78,7 +85,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install "modal>=1.0,<2" pyyaml
       - name: Desplegar
-        if: inputs.accion != 'recoger' && inputs.accion != 'parar'
+        if: inputs.accion != 'recoger' && inputs.accion != 'parar' && !startsWith(inputs.accion, 'kaggle')
         run: modal deploy cloud/modal_app.py
       - name: Comprobar
         if: inputs.accion == 'comprobar'
@@ -112,6 +119,26 @@ jobs:
         env:
           LLAMADAS: ${{ inputs.llamadas }}
         run: python cloud/lanzar.py parar --llamadas "$LLAMADAS"
+      - name: Kaggle
+        if: startsWith(inputs.accion, 'kaggle')
+        env:
+          ACCION: ${{ inputs.accion }}
+          PARTIDO: ${{ inputs.partidos }}
+          TAG: ${{ inputs.tag }}
+        run: |
+          pip install -q "kaggle>=1.8"
+          if [ "$ACCION" = "kaggle_comprobar" ]; then
+            python cloud/kaggle/cuaderno.py lanzar --accion comprobar --commit "$GITHUB_SHA"
+            minutos=50
+          else
+            python cloud/kaggle/cuaderno.py lanzar --accion prueba --partido "$PARTIDO" --commit "$GITHUB_SHA" \
+              --salida-remota "/runs/$TAG" --output-remoto /kaggle_comparar/output
+            minutos=220
+          fi
+          sleep 60
+          rc=0; python cloud/kaggle/cuaderno.py esperar --minutos "$minutos" || rc=$?
+          python cloud/kaggle/cuaderno.py salida --dir nube-out/kaggle || true
+          exit $rc
       - name: Recoger
         if: inputs.accion == 'recoger'
         run: |
@@ -134,7 +161,7 @@ jobs:
         env:
           TAG: ${{ inputs.tag }}
       - name: Guardar lo recogido
-        if: inputs.accion == 'recoger'
+        if: always() && (inputs.accion == 'recoger' || startsWith(inputs.accion, 'kaggle'))
         uses: actions/upload-artifact@v4
         with:
           name: nube-${{ inputs.tag }}

@@ -1,6 +1,6 @@
 # Kaggle: la segunda nube gratuita (paso 8b, #283, #285)
 
-Estado: **guía lista; espera a que el usuario cree la cuenta** (14-11). Nada de esto está medido todavía en Kaggle: lo
+Estado: **cuenta creada por el usuario (14-11: cuaderno `tennisbio-cola` con los secretos e internet); paso 8b en curso**: `cloud/kaggle/correr.py` (lo que corre en Kaggle), `cloud/kaggle/cuaderno.py` (lo lanza y lo lee desde GitHub), acciones `kaggle_comprobar` y `kaggle_prueba` del flujo «Nube», `tests/test_kaggle.py`. Nada de esto está medido todavía en Kaggle: lo
 que dice «por medir» se mide con la prueba de 10 minutos antes de mandar ningún partido entero.
 
 ## 1. Qué hace el usuario (una sola vez, ~10 minutos)
