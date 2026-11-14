@@ -587,21 +587,25 @@ QUEUE_FILES = ("estado.json", "gasto.json", "vuelta.json", "estado.md")
 
 def copy_poc_results(vol, state: dict, logs: Path) -> list[str]:
     """14-11: every finished proof of concept's measurement («poc» of its estado.json on the volume) also in nube-logs
-    (cola/pruebas/<id>.json), where Claude reads it without Modal's keys; once per job, the finished ones too."""
+    (cola/pruebas/<id>.json), and every finished test's and match's time and resources by stage
+    (cola/ejecuciones/<id>.json), where Claude reads them without Modal's keys; once per job, the finished ones too."""
     out = []
     for jid, st in state.items():
-        if not isinstance(st, dict) or st.get("accion") != "medir" or st.get("estado") not in FINAL or not st.get("ruta"):
+        if not isinstance(st, dict) or st.get("accion") not in ("medir", "prueba", "partido") \
+                or st.get("estado") not in (*FINAL, "revisar") or not st.get("ruta"):
             continue
-        f = logs / "pruebas" / f"{jid}.json"
+        f = logs / ("pruebas" if st["accion"] == "medir" else "ejecuciones") / f"{jid}.json"
         if f.exists():
             continue
         res = _read_json(vol, st["ruta"])
         if res is None:
             continue
         f.parent.mkdir(parents=True, exist_ok=True)
-        f.write_text(json.dumps({"estado": res.get("estado"), "poc": res.get("poc"), "kaggle": res.get("kaggle"),
-                                 "horas_kaggle": res.get("horas_kaggle"), "nota": res.get("nota")},
-                                ensure_ascii=False, indent=1), encoding="utf-8")
+        keep = (("estado", "poc", "kaggle", "horas_kaggle", "nota") if st["accion"] == "medir" else
+                # phase A (#287): where each second and each resource went, for every test and match
+                ("estado", "segundos", "horas_kaggle", "coste_usd", "gpu", "etapas", "recursos", "recursos_por_etapa",
+                 "modelos_en_cpu", "fallos", "sin_subir", "config", "kaggle", "nota"))
+        f.write_text(json.dumps({k: res.get(k) for k in keep}, ensure_ascii=False, indent=1), encoding="utf-8")
         out.append(jid)
     return out
 SAME = ("idéntica", "equivalente")

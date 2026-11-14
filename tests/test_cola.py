@@ -394,7 +394,10 @@ def test_relaunch_gets_a_new_notebook_and_poc_results_reach_the_logs(tmp_path):
     state = {"medir_video_nvdec": {"accion": "medir", "estado": "hecho", "ruta": "/runs/kaggle_medir_video_nvdec/estado.json"},
              "medir_x": {"accion": "medir", "estado": "en_marcha", "ruta": "/runs/x/estado.json"},
              "p": {"accion": "prueba", "estado": "hecho", "ruta": "/runs/p/estado.json"}}
-    assert cola.copy_poc_results(Vol(), state, tmp_path) == ["medir_video_nvdec"]
+    files["runs/p/estado.json"] = json.dumps({"estado": "hecho", "etapas": {"fine": 1800}, "secreto": "x"}).encode()
+    assert cola.copy_poc_results(Vol(), state, tmp_path) == ["medir_video_nvdec", "p"]
+    run = json.loads((tmp_path / "ejecuciones" / "p.json").read_text(encoding="utf-8"))
+    assert run["etapas"] == {"fine": 1800} and "secreto" not in run
     got = json.loads((tmp_path / "pruebas" / "medir_video_nvdec.json").read_text(encoding="utf-8"))
     assert got["poc"]["opciones"]["cpu"]["ms_por_fotograma"] == 9.0
     assert cola.copy_poc_results(Vol(), state, tmp_path) == []                         # once

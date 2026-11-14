@@ -77,6 +77,11 @@ completa antes de decidir esa capa. Nada se adopta sin su prueba de concepto med
   [PyNvVideoCodec 2.0](https://developer.nvidia.com/blog/whats-new-in-pynvvideocodec-2-0-for-python-gpu-accelerated-video-processing),
   [rendimiento de PyNvVideoCodec](https://docs.nvidia.com/video-technologies/pynvvideocodec/pynvc-api-prog-guide/latest/application-note.html).
   **Sigue faltando:** los .ts dañados (Osaka) con NVDEC.
+- **Resultado medido (T7, 14-11 20:20, Kaggle T4, 4 núcleos, Gauff 1080p50, 800 fotogramas):** CPU 12,9 ms por
+  fotograma (30,7 ms de CPU), NVDEC 20,5 (34,7), todo en la GPU 43,7 (55,2); ninguno da los mismos píxeles que la CPU
+  (media 1,0-1,2 niveles, máximo 34-48). **Se queda la CPU.** Con ventanas cortas, cada ffmpeg que arranca la GPU y
+  baja cada fotograma cuesta más de lo que ahorra; además decodificar es solo ~1,3 s de los ~60 s de cada ventana de la
+  pasada fina en Kaggle.
 
 ## 4. Ejecución de modelos
 
