@@ -146,13 +146,14 @@ def test_a_stuck_or_cut_kaggle_session_is_launched_again_then_given_up():
     st = {"lanzado_ts": NOV, "intentos": 1}
     assert cola.kaggle_step(st, "running", None, NOV + 5000) == ("nada", "")
     assert cola.kaggle_step(st, "queued", None, NOV + 300) == ("nada", "")
-    act, why = cola.kaggle_step(st, "queued", None, NOV + 601)
-    assert act == "relanzar" and "en cola de Kaggle más de 10 min" in why
+    assert cola.kaggle_step(st, "queued", None, NOV + 1800) == ("nada", "")      # 14-11: its GPUs busy: it waits
+    act, why = cola.kaggle_step(st, "queued", None, NOV + 2701)
+    assert act == "relanzar" and "en cola de Kaggle más de 45 min" in why
     assert cola.kaggle_step(st, "error", None, NOV + 60)[0] == "relanzar"
     assert cola.kaggle_step(st, "complete", {"estado": "en curso"}, NOV + 43000)[0] == "relanzar"
     assert cola.kaggle_step(st, "complete", {"estado": "hecho"}, NOV + 43000) == ("recoger", "")
     assert cola.kaggle_step(st, "error", {"estado": "error"}, NOV + 60) == ("recoger", "")
-    act, why = cola.kaggle_step({"lanzado_ts": NOV, "intentos": cola.KAGGLE_TRIES}, "queued", None, NOV + 601)
+    act, why = cola.kaggle_step({"lanzado_ts": NOV, "intentos": cola.KAGGLE_TRIES}, "queued", None, NOV + 2701)
     assert act == "error" and f"({cola.KAGGLE_TRIES} intentos)" in why
 
 

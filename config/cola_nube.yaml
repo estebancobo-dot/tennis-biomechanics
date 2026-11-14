@@ -23,8 +23,11 @@ trabajos:
   # partido tras su prueba corta de 10 minutos (#277); el informe y la auditoría de la Base al final
   - {id: prueba_gauff, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5}
   # 14-11 (R40): la prueba de Modal leyó 0 marcadores («Usa»); otra prueba con el marcador v16, en Kaggle, antes del partido
+  # 14-11 14:32: prueba_gauff_v16 se dio por fallida tras 4 relanzamientos en 45 min con Kaggle sin arrancarla (sus GPU
+  # ocupadas; relanzar la mandaba al final de su cola): otra vez, ya esperando sin relanzar
   - {id: prueba_gauff_v16, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle}
-  - {id: gauff, accion: partido, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, tras: prueba_gauff_v16, aprobado: true, minutos_video: 133}
+  - {id: prueba_gauff_v16b, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle}
+  - {id: gauff, accion: partido, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, tras: prueba_gauff_v16b, aprobado: true, minutos_video: 133}
   - {id: prueba_final, accion: prueba, partido: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5}
   - {id: final, accion: partido, partido: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5, tras: prueba_final, aprobado: true}
   - {id: prueba_sinner, accion: prueba, partido: zverev-alexander-sinner-jannik-indian-wells-2026-semi-final, tras: final}

@@ -135,6 +135,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--max-cola", type=float, default=10, help="minutos en cola de Kaggle que se aceptan antes de fallar")
     ap.add_argument("--dir", type=Path, default=Path("kaggle-out"))
     ap.add_argument("--sin-clave", action="store_true", help="sin el conjunto de datos de la clave (diagnóstico)")
+    ap.add_argument("--forzar", action="store_true", help="clave: una versión nueva aunque ya exista (clave cambiada)")
     a = ap.parse_args(argv)
     kid = f"{_user()}/{SLUG}"
     if a.orden == "clave":                    # the key dataset, created once and then a new version each time
@@ -142,6 +143,11 @@ def main(argv: list[str] | None = None) -> int:
                              os.environ.get("MODAL_TOKEN_SECRET", ""))
         try:
             exists = _kaggle("datasets", "status", f"{_user()}/{KEY_SLUG}").returncode == 0
+            if exists and not a.forzar:
+                # 14-11: not a new version at every launch (the key does not change; a dataset version still being
+                # processed may keep the notebook queued)
+                print("conjunto de datos de la clave: ya está")
+                return 0
             r = (_kaggle("datasets", "version", "-p", str(folder), "-m", "clave") if exists
                  else _kaggle("datasets", "create", "-p", str(folder)))
             print(r.stdout, r.stderr)

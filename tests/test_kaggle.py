@@ -89,6 +89,7 @@ def test_key_dataset_is_written_and_checked(tmp_path):
     src = (ROOT / "cloud" / "kaggle" / "cuaderno.py").read_text(encoding="utf-8")
     assert '"--public"' not in src and "-u" not in src.split("def key_dataset")[1].split("def status_of")[0]
     assert '(folder / "modal.json").unlink(missing_ok=True)' in src
+    assert "if exists and not a.forzar:" in src                     # 14-11: no new version at every launch
 
 
 def test_status_text():

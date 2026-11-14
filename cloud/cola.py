@@ -39,9 +39,10 @@ ACTIONS = ("prueba", "partido", "informe")
 KAGGLE_CAP_H = 28.0
 KAGGLE_H = {"prueba": 1.0}
 KAGGLE_H_PER_VIDEO_MIN = 3.0 / 60
-# 14-11: a session stayed queued for an hour with nothing wrong to see: after 10 minutes queued (or a session that ends
-# without its job done) it is launched again, up to KAGGLE_TRIES times; then the job is an error with the reason
-KAGGLE_QUEUE_MAX_S = 600
+# 14-11: a session that ends without its job done is launched again, up to KAGGLE_TRIES times; then the job is an error
+# with the reason. Queued in Kaggle (its free GPUs busy) it waits: relaunching every 10 minutes (13:48-14:32) sent it to
+# the back of Kaggle's queue each time and gave the job up after 4 tries; only after 45 minutes queued is it relaunched
+KAGGLE_QUEUE_MAX_S = 2700
 KAGGLE_TRIES = 4
 SOURCES = ("kaggle", "modal", "pc")
 FINAL = ("hecho", "error")
@@ -259,6 +260,8 @@ def summary(jobs: list[dict], state: dict, spend: dict, decisions: list, now: fl
     for j in jobs:
         st = state.get(j["id"], {})
         note = waits.get(j["id"]) or (st.get("resultado") or {}).get("nota") or ""
+        if st.get("estado") == "en_marcha" and st.get("kaggle"):
+            note = f"Kaggle: {st['kaggle']}, intento {st.get('intentos', 1)}" + (f"; {st['nota']}" if st.get("nota") else "")
         rows.append(f"| {j['id']} | {j['accion']} | {j.get('partido', '')} | {st.get('estado', 'pendiente')} | "
                     f"{st.get('donde', '')} | {note} |")
     return "\n".join(rows) + "\n"
@@ -379,7 +382,11 @@ def main(argv: list[str] | None = None) -> int:
                 print(f"{jid}: el estado que hay es de antes de este lanzamiento")
                 res = None
             if st["donde"] == "kaggle" and jid in by_id:
-                act, why = kaggle_step(st, kaggle_status(), res, now)
+                kst = kaggle_status()
+                st["kaggle"] = f"{kst} ({time.strftime('%H:%M', time.gmtime(now))})"
+                print(f"{jid}: Kaggle dice «{kst}»; lanzado hace {(now - float(st.get('lanzado_ts', now))) / 60:.0f} min, "
+                      f"intento {st.get('intentos', 1)}")
+                act, why = kaggle_step(st, kst, res, now)
                 if act == "relanzar":
                     print(f"{jid}: {why}: se lanza otra vez")
                     if kaggle_launch(by_id[jid]):
