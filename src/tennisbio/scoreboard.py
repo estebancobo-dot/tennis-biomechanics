@@ -61,7 +61,9 @@ def _norm(s: str) -> str:
 
 def _is_name(text: str, surname: str, min_ratio=0.75) -> bool:
     """The OCR text is this player's name: full surname, a close misreading, or the 3-letter
-    abbreviation some broadcasters use (RYB, SAB)."""
+    abbreviation some broadcasters use (RYB, SAB). «A|B»: any of these names (14-11, stages._opponent_on_scoreboard)."""
+    if "|" in surname:
+        return any(_is_name(text, s, min_ratio) for s in surname.split("|") if s)
     t, n = _norm(text), _norm(surname)
     if not t or not n:
         return False

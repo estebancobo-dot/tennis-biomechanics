@@ -1445,7 +1445,19 @@ def _surname(name: str) -> str:
     return name.strip().split()[-1] if name and name.strip() else ""
 
 
-@stage("score", "14",  # 14 (13-11): play_mask fills a gap only after 0.5 s of court (dissolves); 13 (13-11): play_mask never fills the start of a shot; 9 (11-11): games stacked in one OCR box split between the rows; 10 (12-11): server by alternation; 11: voted by games; 12: play_mask
+def _opponent_on_scoreboard(catalogue: str, read: str | None) -> str:
+    """The opponent's name as the scoreboard reader looks for it (14-11: Zheng's match in the cloud read 0 scoreboards:
+    the catalogue says «Zheng Qinwen», its last word «Qinwen», and the broadcast writes ZHENG; «Zverev Alexander» and
+    «Sobolenko» for SABALENKA alike). What the scoreboard itself showed next to her name, when read (as the PC did
+    while its catalogue had no opponent); else every word of the catalogue's name, the last one first («A|B»: any of
+    them is her opponent's row, scoreboard._is_name)."""
+    if read:
+        return read
+    words = [w for w in (catalogue or "").split() if len(w) >= 3] or (catalogue or "").split()
+    return "|".join(words[-1:] + words[:-1])
+
+
+@stage("score", "15",  # 15 (14-11): the opponent as the scoreboard writes it (Zheng read 0 in the cloud); 14 (13-11): play_mask fills a gap only after 0.5 s of court (dissolves); 13 (13-11): play_mask never fills the start of a shot; 9 (11-11): games stacked in one OCR box split between the rows; 10 (12-11): server by alternation; 11: voted by games; 12: play_mask
        deps=("scenes", "court"), settings=lambda c: {"every_s": (c.get("score") or {}).get("every_s", 5.0)},
        outputs=("score.json",), match_fields=lambda m: {"player": m.player.name, "opponent": m.opponent}, resource="cpu")
 def st_score(ctx: Context):
@@ -1463,11 +1475,13 @@ def st_score(ctx: Context):
     # the opponent's name is looked for during match play (court found): before the match a
     # broadcast shows the anthem, other matches' scoreboards and recaps
     play = [o for o in court.get("shots", []) if o["H"] is not None] or mains
-    opponent = _surname(ctx.match.opponent)
-    if not opponent and play:        # not in matches.yaml: read it from the scoreboard
+    read = None
+    if play:                         # 14-11: always read it from the scoreboard first (its own spelling)
         times = [((s["start"] + s["end"]) / 2) / fps for s in play[:: max(1, len(play) // 60)]]
-        opponent = discover_opponent((f for f in (grab_frame(ctx.video, t) for t in times) if f is not None),
-                                     _surname(ctx.match.player.name)) or ""
+        read = discover_opponent((f for f in (grab_frame(ctx.video, t) for t in times) if f is not None),
+                                 _surname(ctx.match.player.name))
+    opponent = _opponent_on_scoreboard(ctx.match.opponent, read)
+    ctx.log(f"  rival en el marcador: «{read or '—'}» (en el catálogo: «{ctx.match.opponent or '—'}»; se busca «{opponent}»)")
     names = (_surname(ctx.match.player.name), opponent)
     if not all(names):
         _write(ctx.path("score.json"), {"readings": [], "note": "no se encontró el nombre del rival en el marcador"})

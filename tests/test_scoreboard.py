@@ -168,6 +168,9 @@ def test_score_stage_samples_the_same_times_with_one_sequential_read(tmp_path, m
             return [(box(10, 10, 80), "PLAYER", .9), (box(200, 10), "3", 1.), (box(10, 40, 80), "RIVAL", .9),
                     (box(200, 40), "2", 1.)], None
     monkeypatch.setitem(sys.modules, "rapidocr_onnxruntime", types.SimpleNamespace(RapidOCR=OCR))
+    import tennisbio.scoreboard as sb
+    asked = []                                   # 14-11: the opponent is read from the scoreboard first
+    monkeypatch.setattr(sb, "discover_opponent", lambda frames, me: asked.append(me) or "Rival")
     ctx = pipeline.Context(Match("m", video, Player("p", "Ana Player"), opponent="Rival"),
                            {"score": {"every_s": 5.0}}, tmp_path / "out", log=lambda *_: None)
     ctx.dir.mkdir()
@@ -188,7 +191,7 @@ def test_score_stage_samples_the_same_times_with_one_sequential_read(tmp_path, m
     assert [(x["tried"], x["read"]) for x in res["shots"]] == [(2, 2), (0, 0), (3, 3)]
     assert set(res["readings"][0]) == {"t", "games", "points", "banner", "server", "server_marker", "set", "sets_won", "tiebreak",
                                        "pressure", "flags"}
-    assert res["readings"][0]["games"] == [[3, 2]] and res["names"] == ["Player", "Rival"]
+    assert res["readings"][0]["games"] == [[3, 2]] and res["names"] == ["Player", "Rival"] and asked == ["Player"]
     # the first OCR (full-frame search) saw exactly the frame a seek to 0.5 s gives
     assert np.array_equal(seen[0], stages.grab_frame(video, 0.5))
 
@@ -204,3 +207,20 @@ def test_games_stacked_in_one_box_are_split_between_the_rows():
              (box(48, 66, 150), "PEGULA", 0.99), (box(313, 64), "40", 0.99)]
     st = parse(items, ("RYBAKINA", "PEGULA"))
     assert st is not None and st.games == [[0, 2]] and list(st.points) == ["15", "40"]
+
+
+def test_the_opponent_is_looked_for_as_the_scoreboard_writes_it():
+    """14-11: Zheng's match read 0 scoreboards in the cloud: the catalogue says «Zheng Qinwen» (its last word «Qinwen»)
+    and the broadcast writes ZHENG; «Zverev Alexander» and «Sobolenko» (SABALENKA) alike. The name read on the scoreboard
+    wins; without it, any word of the catalogue's name finds her opponent's row."""
+    from tennisbio.scoreboard import _is_name
+    from tennisbio.stages import _opponent_on_scoreboard
+    assert _opponent_on_scoreboard("Zheng Qinwen", "Zheng") == "Zheng"
+    assert _opponent_on_scoreboard("Sobolenko", "Sabalenka") == "Sabalenka"
+    assert _opponent_on_scoreboard("Zheng Qinwen", None) == "Qinwen|Zheng"
+    assert _opponent_on_scoreboard("Zverev Alexander", None) == "Alexander|Zverev"
+    assert _opponent_on_scoreboard("Jessica Pegula", None) == "Pegula|Jessica"
+    assert _opponent_on_scoreboard("", None) == ""
+    assert _is_name("ZHENG", "Qinwen|Zheng") and _is_name("Q. ZHENG", "Qinwen|Zheng")
+    assert _is_name("ZVEREV", "Alexander|Zverev") and not _is_name("SINNER", "Alexander|Zverev")
+    assert not _is_name("ZHENG", "Qinwen")                       # the single last word missed it
