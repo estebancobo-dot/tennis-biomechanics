@@ -147,7 +147,7 @@
   "partido": ""
  },
  "prueba_gauff_v18": {
-  "estado": "en_marcha",
+  "estado": "error",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 2,
@@ -162,7 +162,10 @@
   "progreso": "fine:   4 % (1/28 golpes candidatos · 1 confirmados · 0 ventanas descartadas sin pose) · 0 s · quedan ≈ 0 s (21:13:58; GPU 73 %·98 %, CPU 93 %, 6.6 GB)",
   "kaggle": "running (21:16)",
   "arranco": "2026-11-14 21:16",
-  "espera_min": 17
+  "espera_min": 17,
+  "resultado": {
+   "nota": "cancelado: la v19 comprueba lo mismo (el dispositivo y la subida) y además las 2 T4: 0,9 h de cuota ahorradas y una plaza libre; si la v19 sale distinta, se repite para aislar la causa"
+  }
  },
  "prueba_gauff_v19": {
   "estado": "en_marcha",
@@ -176,6 +179,13 @@
   "ruta": "/runs/kaggle_prueba_gauff_v19/estado.json",
   "salida": "/kaggle_pruebas/prueba_gauff_v19/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cuaderno": "tennisbio-prueba-gauff-v19",
-  "kaggle": "queued (21:16)"
+  "kaggle": "queued (21:17)"
+ },
+ "comparar_gauff_v16b_v18": {
+  "estado": "error",
+  "resultado": {
+   "nota": "cancelado: sin la v18 (ver arriba)"
+  },
+  "partido": ""
  }
 }
