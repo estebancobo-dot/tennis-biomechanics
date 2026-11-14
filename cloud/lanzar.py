@@ -14,7 +14,7 @@ APP = "tennisbio"
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("accion", choices=("ping", "comprobar", "f3set", "partidos", "prueba", "diagnostico", "parar"))
+    ap.add_argument("accion", choices=("ping", "comprobar", "f3set", "partidos", "prueba", "diagnostico", "parar", "informe"))
     ap.add_argument("--partidos", default="", help="partidos: sus id separados por comas (un contenedor cada uno)")
     ap.add_argument("--llamadas", default="", help="parar: los fc-... que dio cada lanzamiento, separados por comas")
     ap.add_argument("--tag", default="nube")
@@ -27,6 +27,10 @@ def main() -> int:
         with modal.enable_output():
             res = modal.Function.from_name(APP, a.accion).remote()
         print(json.dumps(res, ensure_ascii=False, indent=1))
+        return 0
+    if a.accion == "informe":                    # 14-11: report and Base audit of the analysed matches (CPU only)
+        call = modal.Function.from_name(APP, "informe").spawn(tag=a.tag)
+        print(f"informe y auditoria lanzados en la nube (tag {a.tag}): {call.object_id}")
         return 0
     if a.accion == "parar":                      # 13-11: cut one run that goes wrong, leaving the others running
         ids = [x.strip() for x in a.llamadas.split(",") if x.strip()]

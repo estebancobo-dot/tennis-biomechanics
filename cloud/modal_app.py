@@ -50,11 +50,15 @@ image = (
         f"python -c \"import site, pathlib; pathlib.Path(site.getsitepackages()[0], 'tennisbio_nube.pth')"
         f".write_text({PTH!r})\"",
     )
+    # 14-11: the browser for the audit's screenshots of the report (tennisbio.screens), in a fixed folder (HOME moves to
+    # the volume at run time); a layer of its own, after the dependencies, so they stay cached
+    .run_commands("PLAYWRIGHT_BROWSERS_PATH=/opt/pw-browsers python -m playwright install --with-deps chromium")
     # 13-11: no HOME on the volume (it does not exist yet while Modal starts the container: «Failed (runtime
     # initialization)» in a loop); _prepare sets it for the analysis's own processes
     # 13-11: PYTHONFAULTHANDLER: a native crash (Osaka's fine pass ended with -11) prints the Python stack of every
     # thread, also in the fine pass's spawned workers
-    .env({"TENNISBIO_DML_IS_CUDA": "1", "PYTHONUNBUFFERED": "1", "PYTHONUTF8": "1", "PYTHONFAULTHANDLER": "1"})
+    .env({"TENNISBIO_DML_IS_CUDA": "1", "PYTHONUNBUFFERED": "1", "PYTHONUTF8": "1", "PYTHONFAULTHANDLER": "1",
+          "PLAYWRIGHT_BROWSERS_PATH": "/opt/pw-browsers"})
     .add_local_dir(REPO, "/repo", ignore=IGNORE)
 )
 
@@ -368,6 +372,57 @@ def partido(match_id: str) -> dict:
                modelos_en_cpu=nube.gpu_fallbacks((run / "log.txt").read_text(encoding="utf-8", errors="replace")))
     _save(run, est)
     stop.set()
+    vol.commit()
+    return est
+
+
+@app.function(image=image, cpu=4.0, memory=16 * 1024, volumes={str(DATA): vol}, timeout=4 * 3600)
+def informe(tag: str = "informe") -> dict:
+    """14-11 (#278: the application goes on with the matches already analysed, no GPU): the report of the player's
+    forehand and the Base audit over the matches whose analysis reached the fine pass (never a 10-minute test or a
+    match not yet analysed), CPU only. Its state, log and the audit (md and json) in /data/runs/<tag>/."""
+    import json
+    import shutil
+    import subprocess
+    import sys
+    import time
+
+    import yaml
+
+    import nube
+    _prepare()
+    run = DATA / "runs" / tag
+    reg_f = DATA / "pc" / "registro_partidos.json"
+    registry = json.loads(reg_f.read_text(encoding="utf-8")) if reg_f.exists() else []
+    cat = nube.cloud_catalog(registry, DATA / "biblioteca")
+    done = nube.analysed_matches(cat["matches"], DATA / "output")
+    Path("/repo/config/matches.yaml").write_text(yaml.safe_dump({"matches": done}, allow_unicode=True, sort_keys=False),
+                                                 encoding="utf-8")
+    root = Path("/tmp/partidos")                   # only these matches' folders, for the audit
+    shutil.rmtree(root, ignore_errors=True)
+    root.mkdir(parents=True)
+    for m in done:
+        (root / m["id"]).symlink_to(DATA / "output" / m["id"], target_is_directory=True)
+    est = {"tag": tag, "estado": "en curso", "inicio": time.strftime("%Y-%m-%d %H:%M:%S"),
+           "partidos": [m["id"] for m in done]}
+    _save(run, est)
+    vol.commit()
+    t0 = time.time()
+    rc = {}
+    with open(run / "log.txt", "a", encoding="utf-8") as lg:
+        for name, args in (("informe", ["report"]),
+                           ("auditoria", ["audit", "--root", str(root), "--out", str(DATA / "output" / "auditoria")])):
+            p = subprocess.run([sys.executable, "-m", "tennisbio.cli", *args], cwd="/repo", capture_output=True,
+                               text=True, encoding="utf-8", errors="replace")
+            lg.write(f"===== {name} (código {p.returncode})\n{p.stdout}\n{p.stderr[-4000:]}\n")
+            rc[name] = p.returncode
+    aud = DATA / "output" / "auditoria"
+    for f in ("auditoria.md", "auditoria.json"):
+        if (aud / f).exists():
+            shutil.copy(aud / f, run / f)
+    est.update(estado="hecho" if not any(rc.values()) else "error", codigos=rc, segundos=round(time.time() - t0),
+               coste_usd=nube.cost(time.time() - t0, "", 4.0, 16), fin=time.strftime("%Y-%m-%d %H:%M:%S"))
+    _save(run, est)
     vol.commit()
     return est
 

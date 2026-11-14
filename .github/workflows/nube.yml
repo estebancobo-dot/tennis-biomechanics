@@ -5,6 +5,7 @@
 #   f3set:     despliega y lanza la validacion F3Set en la nube; vuelve al momento (la ejecucion sigue alli)
 #   prueba:    10 minutos de cada partido dado, analizados como un partido (minutos y centimos)
 #   partidos:  despliega y lanza los partidos dados (cada uno en su contenedor, a la vez); vuelve al momento
+#   informe:   el informe y la auditoria de la Base de los partidos ya analizados (solo CPU; recoger con su tag)
 #   parar:     cancela en la nube los trabajos dados por su identificador (fc-..., el que imprime cada lanzamiento)
 #   diagnostico: que ffmpeg limpia el .ts de cada partido dado (solo CPU, centimos; recoger con tag diag_ts)
 #   recoger:   trae el estado, el registro y la comparacion con el PC de una ejecucion (runs/<tag>; un partido:
@@ -14,9 +15,9 @@ on:
   workflow_dispatch:
     inputs:
       accion:
-        description: "comprobar | f3set | prueba | partidos | diagnostico | parar | recoger"
+        description: "comprobar | f3set | prueba | partidos | diagnostico | informe | parar | recoger"
         type: choice
-        options: [comprobar, f3set, prueba, partidos, diagnostico, parar, recoger]
+        options: [comprobar, f3set, prueba, partidos, diagnostico, informe, parar, recoger]
         default: comprobar
       tag:
         description: "nombre de la ejecucion (runs/<tag>)"
@@ -101,6 +102,11 @@ jobs:
       - name: Lanzar diagnostico del .ts
         if: inputs.accion == 'diagnostico'
         run: python cloud/lanzar.py diagnostico --partidos "${{ inputs.partidos }}"
+      - name: Lanzar informe y auditoria
+        if: inputs.accion == 'informe'
+        env:
+          TAG: ${{ inputs.tag }}
+        run: python cloud/lanzar.py informe --tag "$TAG"
       - name: Parar trabajos
         if: inputs.accion == 'parar'
         env:

@@ -190,7 +190,7 @@ def test_the_workflow_only_runs_by_hand_with_the_users_key():
     on = wf.get("on") or wf.get(True)
     assert list(on) == ["workflow_dispatch"]                       # never by a push
     assert set(on["workflow_dispatch"]["inputs"]["accion"]["options"]) == {"comprobar", "f3set", "prueba", "partidos",
-                                                                      "diagnostico", "parar", "recoger"}
+                                                                      "diagnostico", "informe", "parar", "recoger"}
     job = wf["jobs"]["nube"]
     assert job["if"] == "github.repository_owner == 'estebancobo-dot'"
     assert job["env"]["CLAVE_MODAL_1"] == "${{ secrets.MODAL_TOKEN_ID }}"
@@ -440,3 +440,18 @@ def test_a_lost_container_is_retried_several_times():
     """14-11: two containers lost in one night; one retry left a second loss to fail a whole match."""
     src = (ROOT / "cloud" / "modal_app.py").read_text(encoding="utf-8")
     assert "RETRIES = 3" in src and src.count("retries=modal.Retries(max_retries=RETRIES)") == 2
+
+
+
+def test_the_report_and_audit_read_only_analysed_matches(tmp_path):
+    """14-11 (#278): the report and the Base audit in the cloud never count a 10-minute test or a match not yet analysed."""
+    out = tmp_path / "output"
+    for mid, man in (("osaka", {"fine": {}}), ("gauff", {"probe": {}}), ("_prueba_osaka", {"fine": {}})):
+        (out / mid).mkdir(parents=True)
+        (out / mid / "manifest.json").write_text(json.dumps(man), encoding="utf-8")
+    ms = [{"id": "osaka"}, {"id": "gauff"}, {"id": "_prueba_osaka"}, {"id": "final"}]
+    assert nube.analysed_matches(ms, out) == [{"id": "osaka"}]
+    src = (ROOT / "cloud" / "modal_app.py").read_text(encoding="utf-8")
+    body = src[src.index("def informe("):src.index("def prueba(")]
+    assert "nube.analysed_matches(" in body and '"--root", str(root)' in body and "gpu" not in body.split("\n")[0]
+    assert 'PLAYWRIGHT_BROWSERS_PATH=/opt/pw-browsers python -m playwright install --with-deps chromium' in src

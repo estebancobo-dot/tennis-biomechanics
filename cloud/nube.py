@@ -166,6 +166,23 @@ def clean_copy(src: Path, dst: Path, timeout: int = 3600) -> str:
     return err or "sin salida"
 
 
+def analysed_matches(matches: list[dict], out_root: Path) -> list[dict]:
+    """14-11: the catalogue entries whose analysis reached the fine pass (manifest with «fine»), without the 10-minute
+    tests: what the report and the Base audit read in the cloud (a test or a match not yet analysed would be counted)."""
+    out = []
+    for m in matches:
+        if str(m.get("id", "")).startswith(TEST_PREFIX):
+            continue
+        man = out_root / str(m["id"]) / "manifest.json"
+        try:
+            ok = man.exists() and "fine" in json.loads(man.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            ok = False
+        if ok:
+            out.append(m)
+    return out
+
+
 def place_clicks(registry: list[dict], library: Path, out_root: Path) -> list[str]:
     """The user's identity click of each match (etapas/identidad_clic.json in the library) in its flat output folder,
     where the identity stage reads it; never over one already there. Returns the matches that have it."""
