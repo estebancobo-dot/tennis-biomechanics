@@ -45,11 +45,11 @@
   "estado": "en_marcha",
   "donde": "kaggle",
   "llamada": "kaggle",
-  "intentos": 1,
-  "lanzado_ts": 1794668746.5153103,
+  "intentos": 2,
+  "lanzado_ts": 1794672680.8063502,
   "accion": "prueba",
-  "inicio": "2026-11-14 15:05",
+  "inicio": "2026-11-14 16:11",
   "ruta": "/runs/kaggle_prueba_gauff_v16b/estado.json",
-  "kaggle": "desconocido (16:05)"
+  "nota": "Kaggle no tiene ninguna sesión de este trabajo"
  }
 }
