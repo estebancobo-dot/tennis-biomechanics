@@ -14,4 +14,13 @@
 # cuando el usuario la da): 14-11 07:20 UTC, 28,05 $ + el informe de las 07:31 (0,03 $)
 gasto_modal_base:
   "2026-11": 28.08
-trabajos: []
+trabajos:
+  # lotes 3 y 4 (aprobados por el usuario el 13-11: Osaka; Pegula y Zheng; Gauff y la final; Zverev-Sinner), cada
+  # partido tras su prueba corta de 10 minutos (#277); el informe y la auditoría de la Base al final
+  - {id: prueba_gauff, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5}
+  - {id: gauff, accion: partido, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, tras: prueba_gauff, aprobado: true}
+  - {id: prueba_final, accion: prueba, partido: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5}
+  - {id: final, accion: partido, partido: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5, tras: prueba_final, aprobado: true}
+  - {id: prueba_sinner, accion: prueba, partido: zverev-alexander-sinner-jannik-indian-wells-2026-semi-final, tras: final}
+  - {id: sinner, accion: partido, partido: zverev-alexander-sinner-jannik-indian-wells-2026-semi-final, tras: prueba_sinner, aprobado: true}
+  - {id: informe_6, accion: informe, tras: sinner}
