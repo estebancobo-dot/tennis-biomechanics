@@ -68,14 +68,14 @@
   "estado": "en_marcha",
   "donde": "kaggle",
   "llamada": "kaggle",
-  "intentos": 3,
-  "lanzado_ts": 1794684713.195119,
+  "intentos": 4,
+  "lanzado_ts": 1794687502.7345102,
   "accion": "medir",
   "partido": "",
-  "inicio": "2026-11-14 19:31",
+  "inicio": "2026-11-14 20:18",
   "ruta": "/runs/kaggle_medir_raqueta_trt/estado.json",
-  "nota": "en cola de Kaggle más de 45 min sin arrancar",
-  "kaggle": "queued (20:13)"
+  "cuaderno": "tennisbio-medir-raqueta-trt-4",
+  "nota": "en cola de Kaggle más de 45 min sin arrancar"
  },
  "prueba_gauff_v17": {
   "estado": "hecho",
@@ -152,6 +152,6 @@
   "ruta": "/runs/kaggle_prueba_gauff_v18/estado.json",
   "salida": "/kaggle_pruebas/prueba_gauff_v18/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cuaderno": "tennisbio-prueba-gauff-v18",
-  "kaggle": "queued (20:13)"
+  "kaggle": "queued (20:18)"
  }
 }
