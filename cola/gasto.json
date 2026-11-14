@@ -25,6 +25,9 @@
     "prueba_gauff_v16b": {
      "estimado_h": 1.0,
      "horas": 0.9
+    },
+    "medir_raqueta_trt": {
+     "estimado_h": 0.5
     }
    }
   }

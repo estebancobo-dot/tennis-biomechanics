@@ -59,5 +59,15 @@
    "segundos": 3129,
    "horas_kaggle": 0.9
   }
+ },
+ "medir_raqueta_trt": {
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1794679037.5117555,
+  "accion": "medir",
+  "inicio": "2026-11-14 17:57",
+  "ruta": "/runs/kaggle_medir_raqueta_trt/estado.json"
  }
 }
