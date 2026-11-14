@@ -29,10 +29,11 @@
   "estado": "en_marcha",
   "donde": "kaggle",
   "llamada": "kaggle",
-  "intentos": 1,
-  "lanzado_ts": 1794664138.8442621,
+  "intentos": 2,
+  "lanzado_ts": 1794664800.8448055,
   "accion": "prueba",
-  "inicio": "2026-11-14 13:48",
-  "ruta": "/runs/kaggle_prueba_gauff_v16/estado.json"
+  "inicio": "2026-11-14 14:00",
+  "ruta": "/runs/kaggle_prueba_gauff_v16/estado.json",
+  "nota": "en cola de Kaggle más de 10 min sin arrancar"
  }
 }
