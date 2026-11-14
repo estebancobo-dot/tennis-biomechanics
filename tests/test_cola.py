@@ -191,3 +191,14 @@ def test_a_test_with_a_serious_fault_is_not_passed_and_keeps_its_match_waiting()
     cola.record_result(state, spend, "t", {"estado": "hecho", "fallos": {"court": {"x": {"nivel": "C2"}}}}, DEC)
     assert state["t"]["estado"] == "hecho"                                  # a C2 within budget does not stop it
     assert cola.run_path(t) == "/runs/partido__prueba_g/estado.json"
+
+
+def test_an_older_runs_state_is_not_taken_for_this_launch():
+    """Bringing a match up to date writes in the folder of its first analysis, whose estado.json says «hecho»: only a
+    state started after this launch counts."""
+    launched = {"lanzado_ts": DEC}
+    old = {"estado": "hecho", "inicio": time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(NOV))}
+    new = {"estado": "en curso", "inicio": time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(DEC + 60))}
+    assert not cola.fresh(old, launched) and cola.fresh(new, launched)
+    assert cola.fresh({"estado": "hecho"}, launched) and not cola.fresh(None, launched)
+    assert cola.fresh(old, {})                                        # launched before this check: as before

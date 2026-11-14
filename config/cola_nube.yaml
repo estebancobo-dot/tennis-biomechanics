@@ -22,9 +22,14 @@ trabajos:
   - {id: prueba_gauff, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5}
   # 14-11 (R40): la prueba de Modal leyó 0 marcadores («Usa»); otra prueba con el marcador v16, en Kaggle, antes del partido
   - {id: prueba_gauff_v16, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle}
-  - {id: gauff, accion: partido, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, tras: prueba_gauff_v16, aprobado: true}
+  - {id: gauff, accion: partido, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, tras: prueba_gauff_v16, aprobado: true, minutos_video: 133}
   - {id: prueba_final, accion: prueba, partido: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5}
   - {id: final, accion: partido, partido: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5, tras: prueba_final, aprobado: true}
   - {id: prueba_sinner, accion: prueba, partido: zverev-alexander-sinner-jannik-indian-wells-2026-semi-final, tras: final}
   - {id: sinner, accion: partido, partido: zverev-alexander-sinner-jannik-indian-wells-2026-semi-final, tras: prueba_sinner, aprobado: true}
-  - {id: informe_6, accion: informe, tras: sinner}
+  # paso 10: Osaka, Pegula y Zheng al día con el código final (marcador v16, R36, R37): solo lo que cambió, desde lo
+  # guardado en Modal (las ventanas no se repiten); aprobado en el plan (paso 10 de docs/estado_proyecto.md)
+  - {id: actualizar_osaka, accion: partido, partido: us-open-2026-r4-naomi-osaka-elena-rybakina, tras: sinner, aprobado: true, minutos_video: 70}
+  - {id: actualizar_pegula, accion: partido, partido: elena-rybakina-jessica-pegula-miami-2026-quarter-final, tras: actualizar_osaka, aprobado: true, minutos_video: 112}
+  - {id: actualizar_zheng, accion: partido, partido: zheng-qinwen-elena-rybakina, tras: actualizar_pegula, aprobado: true, minutos_video: 117}
+  - {id: informe_6, accion: informe, tras: actualizar_zheng}

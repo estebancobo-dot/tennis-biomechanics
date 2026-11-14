@@ -14,6 +14,7 @@ anything. The pure part (what to do) is tested without Modal (tests/test_cola.py
 from __future__ import annotations
 
 import argparse
+import calendar
 import json
 import os
 import re
@@ -76,6 +77,18 @@ def kaggle_room(spend: dict, now: float) -> float:
     w = spend.get("kaggle", {}).get(week(now), {})
     used = sum(float(r.get("horas", r.get("estimado_h", 0.0))) for r in w.get("trabajos", {}).values())
     return round(KAGGLE_CAP_H - used, 2)
+
+
+def fresh(result: dict | None, st: dict) -> bool:
+    """The estado.json read belongs to this launch (14-11: a match brought up to date has an old «hecho» from its first
+    analysis in the same folder; read before the new session writes its own, the job would look finished)."""
+    if not result:
+        return False
+    try:
+        started = calendar.timegm(time.strptime(str(result.get("inicio")), "%Y-%m-%d %H:%M:%S"))
+    except (TypeError, ValueError):
+        return True
+    return started >= float(st.get("lanzado_ts", 0.0)) - 300
 
 
 def kaggle_step(st: dict, kstatus: str, result: dict | None, now: float) -> tuple[str, str]:
@@ -361,6 +374,9 @@ def main(argv: list[str] | None = None) -> int:
                 res = json.loads(b"".join(vol.read_file(st["ruta"].lstrip("/"))).decode("utf-8"))
             except Exception as e:                       # not written yet: still starting
                 print(f"{jid}: sin estado todavía ({type(e).__name__})")
+                res = None
+            if res is not None and not fresh(res, st):      # an older run's estado.json in the same folder
+                print(f"{jid}: el estado que hay es de antes de este lanzamiento")
                 res = None
             if st["donde"] == "kaggle" and jid in by_id:
                 act, why = kaggle_step(st, kaggle_status(), res, now)
