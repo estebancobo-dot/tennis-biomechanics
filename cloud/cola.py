@@ -587,6 +587,8 @@ def upload_state(vol, d: Path) -> bool:
             for f in QUEUE_FILES:
                 if (d / f).exists():
                     b.put_file(str(d / f), f"/cola/{f}")
+            for f in sorted((d / "comparaciones").glob("*.json")):     # T3: «Equivalencia entre infraestructuras»
+                b.put_file(str(f), f"/cola/comparaciones/{f.name}")
         return True
     except Exception as e:  # noqa: BLE001 — the next pass uploads it again; nube-logs has it meanwhile
         print(f"cola: estado al volumen ({type(e).__name__}: {e})")

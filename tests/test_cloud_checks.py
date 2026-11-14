@@ -65,7 +65,8 @@ def test_cloud_items_need_the_cloud_root(tmp_path):
     assert cloud_root({"paths": {"cloud": str(tmp_path)}}) == tmp_path
     assert cloud_root({"paths": {"output": "x"}}) is None
     items = cloud_items([tmp_path / "m"], {"paths": {"cloud": str(tmp_path)}})
-    assert [i["name"] for i in items] == ["Uso de la nube por etapa (CPU, GPU y memoria)", "Cola de la nube"]
+    assert [i["name"] for i in items] == ["Uso de la nube por etapa (CPU, GPU y memoria)", "Cola de la nube",
+                                          "Equivalencia entre infraestructuras", "Prueba de concepto medida"]
     # the names the packages' main tests look for (config/plan_peticiones.yaml: B1, B7, B8)
     import re
 
@@ -81,3 +82,26 @@ def test_progress_seen_in_the_cloud_queue(tmp_path):
     _w(tmp_path / "cola" / "estado.json", {"g": {"estado": "hecho", "progreso": "fine: 93 % (51/55) (18:42:10)"}})
     it = progress_item([tmp_path / "output", tmp_path])
     assert it["status"] == "ok" and "fine: 93 %" in it["detail"]
+
+
+def test_equivalence_and_proof_of_concept_items(tmp_path):
+    from tennisbio.audit import equivalence_item, poc_item
+    assert equivalence_item(None)["status"] == "aviso" and poc_item(None)["status"] == "aviso"
+    assert equivalence_item(tmp_path)["status"] == "aviso" and poc_item(tmp_path)["status"] == "aviso"
+    _w(tmp_path / "cola" / "comparaciones" / "c1.json", {"veredicto": "idéntica"})
+    assert equivalence_item(tmp_path)["status"] == "ok"
+    _w(tmp_path / "cola" / "comparaciones" / "c2.json", {"veredicto": "distinta"})
+    it = equivalence_item(tmp_path)
+    assert it["status"] == "falta" and "1 distintas" in it["detail"]
+    _w(tmp_path / "runs" / "kaggle_medir_raqueta" / "estado.json", {"estado": "error"})
+    assert "con error: raqueta" in poc_item(tmp_path)["detail"]
+    _w(tmp_path / "runs" / "kaggle_medir_raqueta" / "estado.json",
+       {"estado": "hecho", "poc": {"opciones": {"cuda_fp32": {"lote_1": {"ms_por_imagen": 2.0}}}}})
+    assert poc_item(tmp_path)["status"] == "ok"
+    names = [i["name"] for i in cloud_items([], {"paths": {"cloud": str(tmp_path)}})]
+    import re
+
+    import yaml
+    plan = yaml.safe_load((ROOT / "config" / "plan_peticiones.yaml").read_text(encoding="utf-8"))
+    for p in plan["paquetes"]["NN"]["prueba"]:                     # the package's main test finds both
+        assert any(re.match(p, n) for n in names), p

@@ -2528,12 +2528,56 @@ def base_items(match_dirs: list[Path], out_root: Path, cfg: dict | None = None) 
                                f"no se pudo calcular ({type(e).__name__}: {e})"))
     return items
 
+EQUIV_ITEM = "Equivalencia entre infraestructuras"
+POC_ITEM = "Prueba de concepto medida"
+
+
+def equivalence_item(root: Path | None) -> dict:
+    """NN (#289): the same clip gives the same results on each infrastructure and with each change of where or how a
+    model runs: the queue's comparisons (cola/comparaciones/*.json, tennisbio.infra.equivalence). ok with at least
+    one and none «distinta»; a distinct one is a fault to find, not a result."""
+    if root is None:
+        return _item(9, "Nube", EQUIV_ITEM, "aviso", "no es la nube (sin paths.cloud en config/local.yaml)")
+    rows = []
+    for f in sorted((root / "cola" / "comparaciones").glob("*.json")):
+        try:
+            rows.append((f.stem, json.loads(f.read_text(encoding="utf-8")).get("veredicto")))
+        except (OSError, ValueError):  # esperado: a damaged comparison counts as not made
+            continue
+    if not rows:
+        return _item(9, "Nube", EQUIV_ITEM, "aviso", "ninguna comparación todavía (acción «comparar» de la cola)")
+    bad = [r for r in rows if r[1] not in ("idéntica", "equivalente")]
+    det = "; ".join(f"{k}: {v}" for k, v in rows[-6:])
+    return _item(9, "Nube", EQUIV_ITEM, "falta" if bad else "ok",
+                 f"{len(rows)} comparaciones, {len(bad)} distintas ({det})")
+
+
+def poc_item(root: Path | None) -> dict:
+    """#288: every technical choice by a measured proof of concept: runs/kaggle_medir_*/estado.json with its
+    measurement («poc»: each option's time and its outputs against the reference). ok with at least one measured."""
+    if root is None:
+        return _item(9, "Nube", POC_ITEM, "aviso", "no es la nube (sin paths.cloud en config/local.yaml)")
+    done, failed = [], []
+    for f in sorted((root / "runs").glob("kaggle_medir_*/estado.json")):
+        try:
+            d = json.loads(f.read_text(encoding="utf-8"))
+        except (OSError, ValueError):  # esperado: a state being written; counted as not measured
+            continue
+        name = f.parent.name.replace("kaggle_medir_", "")
+        (done if d.get("estado") == "hecho" and isinstance(d.get("poc"), dict) and d["poc"].get("opciones")
+         else failed).append(name)
+    if not done:
+        return _item(9, "Nube", POC_ITEM, "aviso",
+                     "ninguna prueba de concepto medida todavía" + (f" (con error: {', '.join(failed)})" if failed else ""))
+    return _item(9, "Nube", POC_ITEM, "ok", f"medidas: {', '.join(done)}" + (f"; con error: {', '.join(failed)}" if failed else ""))
+
+
 def cloud_items(match_dirs: list[Path], cfg: dict | None = None) -> list[dict]:
     """The cloud's checks of B1, B7 and B8 (rewritten for the cloud, #286): what each stage uses, the queue alive and
     the only way in, and the progress of every job visible while it runs."""
     root = cloud_root(cfg)
     ids = [d.name for d in match_dirs]
-    return [cloud_use_item(root, ids), cloud_queue_item(root, ids)]
+    return [cloud_use_item(root, ids), cloud_queue_item(root, ids), equivalence_item(root), poc_item(root)]
 
 
 def _scratch_time(out_root: Path, cfg: dict | None) -> dict:
