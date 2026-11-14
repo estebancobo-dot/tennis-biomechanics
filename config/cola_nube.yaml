@@ -12,6 +12,8 @@
 #   aprobado:      true solo si el usuario aprobó ese análisis completo (#262); un «partido» sin él no se lanza
 # Lo usado en Modal en cada mes antes de los trabajos de esta cola (la cifra de su página Usage; Claude la pone al día
 # cuando el usuario la da): 14-11 07:20 UTC, 28,05 $ + el informe de las 07:31 (0,03 $)
+# Kaggle como fuente de la cola (paso 8b): se activa cuando su prueba de 10 min da lo mismo que la de Modal
+kaggle_activo: false
 gasto_modal_base:
   "2026-11": 28.08
 trabajos:

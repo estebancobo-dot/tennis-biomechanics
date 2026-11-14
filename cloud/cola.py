@@ -15,7 +15,10 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
+import subprocess
+import sys
 import time
 from pathlib import Path
 
@@ -30,6 +33,15 @@ USD_PER_VIDEO_MIN = 0.065
 USD = {"prueba": 0.8, "informe": 0.15}
 DEFAULT_VIDEO_MIN = 210                     # the longest of the six, when a job does not say its length
 ACTIONS = ("prueba", "partido", "informe")
+# Kaggle (paso 8b): ~30 GPU hours a week (the figure floats; the account shows it); the queue keeps 2 h of margin. One
+# notebook, so one Kaggle job at a time. Hours per job until measured: a test 1 h, a match 3 × its video.
+KAGGLE_CAP_H = 28.0
+KAGGLE_H = {"prueba": 1.0}
+KAGGLE_H_PER_VIDEO_MIN = 3.0 / 60
+# 14-11: a session stayed queued for an hour with nothing wrong to see: after 10 minutes queued (or a session that ends
+# without its job done) it is launched again, up to KAGGLE_TRIES times; then the job is an error with the reason
+KAGGLE_QUEUE_MAX_S = 600
+KAGGLE_TRIES = 4
 SOURCES = ("kaggle", "modal", "pc")
 FINAL = ("hecho", "error")
 
@@ -43,6 +55,42 @@ def estimate_usd(job: dict) -> float:
     if job["accion"] == "partido":
         return round(USD_PER_VIDEO_MIN * float(job.get("minutos_video") or DEFAULT_VIDEO_MIN), 2)
     return USD[job["accion"]]
+
+
+def week(now: float) -> str:
+    return time.strftime("%G-W%V", time.gmtime(now))
+
+
+def estimate_h(job: dict) -> float:
+    """Kaggle GPU hours a job may take (an upper estimate until measured)."""
+    if job["accion"] == "partido":
+        return round(KAGGLE_H_PER_VIDEO_MIN * float(job.get("minutos_video") or DEFAULT_VIDEO_MIN), 2)
+    return KAGGLE_H.get(job["accion"], 1.0)
+
+
+def kaggle_room(spend: dict, now: float) -> float:
+    """Kaggle GPU hours left this week (real hours of the finished jobs, estimates of the running ones)."""
+    w = spend.get("kaggle", {}).get(week(now), {})
+    used = sum(float(r.get("horas", r.get("estimado_h", 0.0))) for r in w.get("trabajos", {}).values())
+    return round(KAGGLE_CAP_H - used, 2)
+
+
+def kaggle_step(st: dict, kstatus: str, result: dict | None, now: float) -> tuple[str, str]:
+    """What to do with a running Kaggle job: («recoger» | «relanzar» | «error» | «nada», reason). Its estado.json on
+    Modal decides when it is final; else Kaggle's own status: queued too long, ended with an error, or ended (12 h at
+    most) without the job done → launched again (it goes on from what it saved), up to KAGGLE_TRIES."""
+    if result and result.get("estado") in FINAL:
+        return "recoger", ""
+    if kstatus == "queued" and now - float(st.get("lanzado_ts", now)) > KAGGLE_QUEUE_MAX_S:
+        why = f"en cola de Kaggle más de {KAGGLE_QUEUE_MAX_S // 60} min sin arrancar"
+    elif kstatus in ("error", "cancelacknowledged"):
+        why = f"la sesión de Kaggle acabó con «{kstatus}» sin escribir su estado"
+    elif kstatus == "complete":
+        why = "la sesión de Kaggle acabó sin terminar el trabajo (dura 12 h como mucho): sigue desde lo guardado"
+    else:
+        return "nada", ""
+    tries = int(st.get("intentos", 1))
+    return ("relanzar", why) if tries < KAGGLE_TRIES else ("error", f"{why} ({tries} intentos)")
 
 
 def run_path(job: dict) -> str:
@@ -98,7 +146,8 @@ def plan(jobs: list[dict], state: dict, spend: dict, sources: dict, now: float) 
     say whether they can take work; Modal's room comes from the spend). Pending jobs in queue order; one whose «tras»
     is not done yet waits; a whole match needs `aprobado`; a launched job reserves its estimate at once, so two jobs
     never count the same dollars."""
-    out, room = [], modal_room(spend, now)
+    out, room, kroom = [], modal_room(spend, now), kaggle_room(spend, now)
+    kaggle = dict(sources.get("kaggle", {}))
     for j in jobs:
         st = state.get(j["id"], {})
         if st.get("estado") in ("en_marcha", *FINAL):
@@ -123,6 +172,19 @@ def plan(jobs: list[dict], state: dict, spend: dict, sources: dict, now: float) 
                     out.append((j["id"], "modal", f"estimado {need:.2f} $, quedan {room:.2f} $ este mes"))
                     break
                 why.append(f"Modal: quedan {room:.2f} $ este mes y necesita {need:.2f} $")
+            elif src == "kaggle":
+                need = estimate_h(j)
+                if j["accion"] == "informe":
+                    why.append("kaggle: el informe va en Modal")
+                elif not kaggle.get("ok"):
+                    why.append(f"kaggle: {kaggle.get('motivo', 'no disponible')}")
+                elif need > kroom:
+                    why.append(f"kaggle: quedan {kroom:.1f} h esta semana y necesita {need:.1f} h")
+                else:
+                    kroom -= need
+                    kaggle = {"ok": False, "motivo": f"ocupado con {j['id']}"}      # one notebook: one job at a time
+                    out.append((j["id"], "kaggle", f"previstas {need:.1f} h, quedan {kroom:.1f} h esta semana"))
+                    break
             else:
                 s = sources.get(src, {})
                 if s.get("ok"):
@@ -135,8 +197,12 @@ def plan(jobs: list[dict], state: dict, spend: dict, sources: dict, now: float) 
 
 
 def record_launch(state: dict, spend: dict, job: dict, source: str, call: str, now: float):
-    state[job["id"]] = {"estado": "en_marcha", "donde": source, "llamada": call,
+    tries = int(state.get(job["id"], {}).get("intentos", 0)) + 1 if state.get(job["id"], {}).get("estado") == "en_marcha" else 1
+    state[job["id"]] = {"estado": "en_marcha", "donde": source, "llamada": call, "intentos": tries, "lanzado_ts": now,
                         "inicio": time.strftime("%Y-%m-%d %H:%M", time.gmtime(now)), "ruta": run_path(job)}
+    if source == "kaggle":
+        w = spend.setdefault("kaggle", {}).setdefault(week(now), {"trabajos": {}})
+        w.setdefault("trabajos", {}).setdefault(job["id"], {"estimado_h": estimate_h(job)})
     if source == "modal":
         m = spend.setdefault("modal", {}).setdefault(month(now), {"base_usd": 0.0, "trabajos": {}})
         m.setdefault("trabajos", {})[job["id"]] = {"estimado_usd": estimate_usd(job), "llamada": call}
@@ -147,17 +213,23 @@ def record_result(state: dict, spend: dict, job_id: str, result: dict, now: floa
     st = state[job_id]
     st["estado"] = "hecho" if result.get("estado") == "hecho" else "error"
     st["fin"] = time.strftime("%Y-%m-%d %H:%M", time.gmtime(now))
-    st["resultado"] = {k: result.get(k) for k in ("estado", "nota", "coste_usd", "segundos", "codigos") if k in result}
+    st["resultado"] = {k: result.get(k) for k in ("estado", "nota", "coste_usd", "segundos", "codigos", "horas_kaggle")
+                       if k in result}
     for m in spend.get("modal", {}).values():
         r = m.get("trabajos", {}).get(job_id)
-        if r is not None and result.get("coste_usd") is not None:
+        if r is not None and result.get("coste_usd") is not None and st.get("donde") != "kaggle":
             r["coste_usd"] = float(result["coste_usd"])
+    for w in spend.get("kaggle", {}).values():
+        r = w.get("trabajos", {}).get(job_id)
+        if r is not None and result.get("horas_kaggle") is not None:
+            r["horas"] = float(result["horas_kaggle"])
 
 
 def summary(jobs: list[dict], state: dict, spend: dict, decisions: list, now: float) -> str:
     waits = {i: why for i, src, why in decisions if not src}
     rows = ["# Cola de la nube", "", f"Última vuelta: {time.strftime('%Y-%m-%d %H:%M UTC', time.gmtime(now))} · "
-            f"Modal: quedan {modal_room(spend, now):.2f} $ de {CREDIT_USD:.0f} $ este mes (tope de la cola {CAP_USD} $)", "",
+            f"Modal: quedan {modal_room(spend, now):.2f} $ de {CREDIT_USD:.0f} $ este mes (tope de la cola {CAP_USD} $) · "
+            f"Kaggle: quedan {kaggle_room(spend, now):.1f} h de GPU esta semana (tope {KAGGLE_CAP_H:.0f} h)", "",
             "| Trabajo | Acción | Partido | Estado | Dónde | Nota |", "|---|---|---|---|---|---|"]
     for j in jobs:
         st = state.get(j["id"], {})
@@ -196,10 +268,44 @@ def _load(path: Path, default):
         return default
 
 
-def _sources(repo: Path) -> dict:
-    """Kaggle and the PC: whether each can take work now (Kaggle: not connected yet; the PC: never, #284)."""
-    return {"kaggle": {"ok": False, "motivo": "sin cuenta conectada todavía"},
-            "pc": {"ok": False, "motivo": "no se usa (decisión del usuario, 14-11, #284)"}}
+def _sources(repo: Path, queue: dict | None = None, state: dict | None = None) -> dict:
+    """Kaggle and the PC: whether each can take work now. Kaggle: its keys in the environment, switched on in the queue
+    (`kaggle_activo`, after its 10-minute test gave the same as Modal's) and no Kaggle job running (one notebook);
+    the PC: never (#284)."""
+    queue, state = queue or {}, state or {}
+    busy = [i for i, st in state.items() if st.get("estado") == "en_marcha" and st.get("donde") == "kaggle"]
+    if not (os.environ.get("KAGGLE_API_TOKEN") and os.environ.get("KAGGLE_USERNAME")):
+        k = {"ok": False, "motivo": "sin sus claves en GitHub"}
+    elif not queue.get("kaggle_activo"):
+        k = {"ok": False, "motivo": "aún no activado en la cola (antes, su prueba de 10 min frente a la de Modal)"}
+    elif busy:
+        k = {"ok": False, "motivo": f"ocupado con {busy[0]}"}
+    else:
+        k = {"ok": True, "motivo": ""}
+    return {"kaggle": k, "pc": {"ok": False, "motivo": "no se usa (decisión del usuario, 14-11, #284)"}}
+
+
+def _kaggle(args: list[str]) -> subprocess.CompletedProcess:
+    return subprocess.run([sys.executable, "cloud/kaggle/cuaderno.py", *args], capture_output=True, text=True)
+
+
+def kaggle_launch(job: dict) -> bool:
+    """The Modal key into the private dataset, then the notebook with this job (cloud/kaggle/cuaderno.py)."""
+    for args in (["clave"], ["lanzar", "--accion", job["accion"], "--partido", job["partido"],
+                             "--commit", os.environ.get("GITHUB_SHA", "")]):
+        r = _kaggle(args)
+        print(r.stdout[-1500:], r.stderr[-1500:])
+        if r.returncode:
+            return False
+    return True
+
+
+def kaggle_status() -> str:
+    sys.path.insert(0, str(Path(__file__).resolve().parent / "kaggle"))
+    import cuaderno
+
+    r = _kaggle(["estado"])
+    return cuaderno.status_of(r.stdout + r.stderr)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -233,25 +339,40 @@ def main(argv: list[str] | None = None) -> int:
         for j in jobs:                                   # a match the cloud does not know is never launched
             if j.get("partido") and known and j["partido"] not in known and state.get(j["id"], {}).get("estado") is None:
                 state[j["id"]] = {"estado": "error", "resultado": {"nota": f"{j['partido']} no está en los partidos de la nube"}}
-        for jid, st in state.items():                    # 1. running jobs: finished?
-            if st.get("estado") != "en_marcha" or st.get("donde") != "modal":
+        for jid, st in list(state.items()):              # 1. running jobs: finished, stuck, or going on?
+            if st.get("estado") != "en_marcha" or st.get("donde") not in ("modal", "kaggle"):
                 continue
             try:
                 res = json.loads(b"".join(vol.read_file(st["ruta"].lstrip("/"))).decode("utf-8"))
             except Exception as e:                       # not written yet: still starting
                 print(f"{jid}: sin estado todavía ({type(e).__name__})")
-                continue
-            if res.get("estado") in FINAL:
+                res = None
+            if st["donde"] == "kaggle" and jid in by_id:
+                act, why = kaggle_step(st, kaggle_status(), res, now)
+                if act == "relanzar":
+                    print(f"{jid}: {why}: se lanza otra vez")
+                    if kaggle_launch(by_id[jid]):
+                        record_launch(state, spend, by_id[jid], "kaggle", "kaggle", now)
+                        state[jid]["nota"] = why
+                    continue
+                if act == "error":
+                    record_result(state, spend, jid, {"estado": "error", "nota": why}, now)
+                    continue
+            if res and res.get("estado") in FINAL:
                 record_result(state, spend, jid, res, now)
-                print(f"{jid}: {res.get('estado')} ({res.get('coste_usd')} $)")
-    decisions = plan(jobs, state, spend, _sources(Path.cwd()), now)
+                print(f"{jid}: {res.get('estado')} ({res.get('coste_usd')} $, {res.get('horas_kaggle')} h de Kaggle)")
+    decisions = plan(jobs, state, spend, _sources(Path.cwd(), queue, state), now)
     launched = 0
     for jid, src, why in decisions:
         print(f"{jid}: {'→ ' + src if src else 'espera'} · {why}")
         if not src or a.en_seco:
             continue
         j = by_id[jid]
-        if src != "modal":                               # Kaggle and the PC take work once connected (paso 8b/8c)
+        if src == "kaggle":
+            if kaggle_launch(j):
+                record_launch(state, spend, j, "kaggle", "kaggle", now)
+            continue
+        if src != "modal":
             continue
         import modal
 

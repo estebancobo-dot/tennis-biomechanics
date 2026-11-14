@@ -32,6 +32,8 @@ jobs:
       CLAVE_MODAL_2: ${{ secrets.MODAL_TOKEN_SECRET }}
       PYTHONUTF8: "1"
       GH_TOKEN: ${{ github.token }}
+      KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+      KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
     steps:
       - name: Clave de Modal
         run: |
@@ -59,7 +61,8 @@ jobs:
         with:
           python-version: "3.11"
       - name: Cliente de Modal
-        run: pip install "modal>=1.0,<2" pyyaml
+        # the kaggle package imports «six» without declaring it
+        run: pip install "modal>=1.0,<2" pyyaml "kaggle>=1.8" six
       - name: Una vuelta de la cola
         run: python cloud/cola.py --cola config/cola_nube.yaml --logs logs
       - name: Subir el estado a nube-logs
@@ -74,9 +77,11 @@ jobs:
       - name: Siguiente vuelta
         if: always()
         run: |
-          left=$(python -c "import json,yaml; q=yaml.safe_load(open('config/cola_nube.yaml',encoding='utf-8')) or {}; st=json.load(open('logs/cola/estado.json',encoding='utf-8')) if __import__('os').path.exists('logs/cola/estado.json') else {}; print(sum(1 for j in q.get('trabajos') or [] if st.get(j.get('id'),{}).get('estado') not in ('hecho','error')))")
-          echo "trabajos sin terminar: $left"
+          read left running < <(python -c "import json,os,yaml; q=yaml.safe_load(open('config/cola_nube.yaml',encoding='utf-8')) or {}; st=json.load(open('logs/cola/estado.json',encoding='utf-8')) if os.path.exists('logs/cola/estado.json') else {}; ids=[j.get('id') for j in q.get('trabajos') or []]; print(sum(1 for i in ids if st.get(i,{}).get('estado') not in ('hecho','error')), sum(1 for i in ids if st.get(i,{}).get('estado')=='en_marcha'))")
+          echo "trabajos sin terminar: $left; en marcha: $running"
           if [ "$left" -gt 0 ]; then
-            sleep 1500
+            # 14-11 (the user: be reactive): every 5 minutes while something runs (a failure is seen in minutes, a
+            # session stuck in Kaggle's queue is relaunched after 10), every 25 while jobs only wait for room
+            if [ "$running" -gt 0 ]; then sleep 300; else sleep 1500; fi
             gh workflow run cola.yml --repo "$GITHUB_REPOSITORY" --ref "${GITHUB_REF_NAME:-claude/tennis-biomech-setup-jggqb0}"
           fi

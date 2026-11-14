@@ -132,6 +132,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--output-remoto", default="", help="dónde van sus resultados en Modal (por defecto /output)")
     ap.add_argument("--commit", default="")
     ap.add_argument("--minutos", type=float, default=50)
+    ap.add_argument("--max-cola", type=float, default=10, help="minutos en cola de Kaggle que se aceptan antes de fallar")
     ap.add_argument("--dir", type=Path, default=Path("kaggle-out"))
     ap.add_argument("--sin-clave", action="store_true", help="sin el conjunto de datos de la clave (diagnóstico)")
     a = ap.parse_args(argv)
@@ -170,13 +171,18 @@ def main(argv: list[str] | None = None) -> int:
         print(status_of(r.stdout + r.stderr), "|", (r.stdout + r.stderr).strip())
         return 0
     if a.orden == "esperar":
-        end = time.time() + a.minutos * 60
+        end, queued_since = time.time() + a.minutos * 60, None
         while True:
             r = _kaggle("kernels", "status", kid)
             st = status_of(r.stdout + r.stderr)
             print(time.strftime("%H:%M:%S"), st, "|", (r.stdout + r.stderr).strip()[-200:], flush=True)
             if st in ("complete", "error", "cancelacknowledged") or time.time() > end:
                 return 0 if st == "complete" else 1
+            # 14-11 (the user: react in seconds, not in an hour): queued longer than --max-cola is a failure
+            queued_since = (queued_since or time.time()) if st == "queued" else None
+            if queued_since and time.time() - queued_since > a.max_cola * 60:
+                print(f"FALLO: en cola de Kaggle más de {a.max_cola:g} min sin arrancar", flush=True)
+                return 3
             time.sleep(30)
     a.dir.mkdir(parents=True, exist_ok=True)
     r = _kaggle("kernels", "output", kid, "-p", str(a.dir), "-o")

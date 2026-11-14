@@ -115,3 +115,59 @@ def test_dry_pass_writes_the_state_without_modal(tmp_path, monkeypatch):
     assert cola._sources(tmp_path)["pc"]["ok"] is False                                 # #284: the PC is never used
     assert json.loads((d / "estado.json").read_text(encoding="utf-8")) == {}       # dry: nothing launched
     assert json.loads((d / "gasto.json").read_text(encoding="utf-8"))["modal"]["2026-11"]["base_usd"] == 28.08
+
+
+def test_kaggle_takes_one_job_at_a_time_within_its_weekly_hours(monkeypatch):
+    spend = {}
+    cola.set_base(spend, {"2026-11": 28.08})
+    on = {"kaggle": {"ok": True, "motivo": ""}, "pc": {"ok": False, "motivo": "no se usa"}}
+    jobs = [{"id": "a", "accion": "partido", "partido": "a", "aprobado": True, "minutos_video": 150},
+            {"id": "b", "accion": "prueba", "partido": "b"},
+            {"id": "inf", "accion": "informe"}]
+    d = {i: (src, why) for i, src, why in cola.plan(jobs, {}, spend, on, NOV)}
+    assert d["a"][0] == "kaggle" and "previstas 7.5 h" in d["a"][1]
+    assert d["b"][0] == "modal"                               # Kaggle is busy with «a»: the test goes to Modal
+    assert d["inf"][0] == "modal"                             # the report never goes to Kaggle
+    cola.record_launch(st := {}, spend, jobs[0], "kaggle", "kaggle", NOV)
+    assert st["a"]["intentos"] == 1 and cola.kaggle_room(spend, NOV) == cola.KAGGLE_CAP_H - 7.5
+    cola.record_launch(st, spend, jobs[0], "kaggle", "kaggle", NOV + 700)        # launched again
+    assert st["a"]["intentos"] == 2 and cola.kaggle_room(spend, NOV) == cola.KAGGLE_CAP_H - 7.5
+    cola.record_result(st, spend, "a", {"estado": "hecho", "horas_kaggle": 4.2, "coste_usd": 0.0}, NOV + 9000)
+    assert cola.kaggle_room(spend, NOV) == round(cola.KAGGLE_CAP_H - 4.2, 2)
+    assert cola.modal_room(spend, NOV) == round(29.5 - 28.08, 2)          # a Kaggle job never counts as Modal spend
+    full = {"kaggle": {"trabajos": {"x": {"horas": 27.0}}}}
+    spend2 = {"kaggle": {cola.week(NOV): full["kaggle"]}}
+    cola.set_base(spend2, {"2026-11": 28.08})
+    d = {i: (src, why) for i, src, why in cola.plan(jobs[:1], {}, spend2, on, NOV)}
+    assert d["a"][0] == "" and "kaggle: quedan 1.0 h esta semana" in d["a"][1]
+
+
+def test_a_stuck_or_cut_kaggle_session_is_launched_again_then_given_up():
+    st = {"lanzado_ts": NOV, "intentos": 1}
+    assert cola.kaggle_step(st, "running", None, NOV + 5000) == ("nada", "")
+    assert cola.kaggle_step(st, "queued", None, NOV + 300) == ("nada", "")
+    act, why = cola.kaggle_step(st, "queued", None, NOV + 601)
+    assert act == "relanzar" and "en cola de Kaggle más de 10 min" in why
+    assert cola.kaggle_step(st, "error", None, NOV + 60)[0] == "relanzar"
+    assert cola.kaggle_step(st, "complete", {"estado": "en curso"}, NOV + 43000)[0] == "relanzar"
+    assert cola.kaggle_step(st, "complete", {"estado": "hecho"}, NOV + 43000) == ("recoger", "")
+    assert cola.kaggle_step(st, "error", {"estado": "error"}, NOV + 60) == ("recoger", "")
+    act, why = cola.kaggle_step({"lanzado_ts": NOV, "intentos": cola.KAGGLE_TRIES}, "queued", None, NOV + 601)
+    assert act == "error" and f"({cola.KAGGLE_TRIES} intentos)" in why
+
+
+def test_kaggle_source_needs_its_keys_its_switch_and_a_free_notebook(monkeypatch):
+    monkeypatch.delenv("KAGGLE_API_TOKEN", raising=False)
+    assert "sin sus claves" in cola._sources(ROOT)["kaggle"]["motivo"]
+    monkeypatch.setenv("KAGGLE_API_TOKEN", "x")
+    monkeypatch.setenv("KAGGLE_USERNAME", "u")
+    assert "aún no activado" in cola._sources(ROOT, {"kaggle_activo": False})["kaggle"]["motivo"]
+    assert cola._sources(ROOT, {"kaggle_activo": True})["kaggle"]["ok"] is True
+    busy = {"g": {"estado": "en_marcha", "donde": "kaggle"}}
+    assert cola._sources(ROOT, {"kaggle_activo": True}, busy)["kaggle"] == {"ok": False, "motivo": "ocupado con g"}
+    wf = yaml.safe_load((ROOT / ".github" / "workflows" / "cola.yml").read_text(encoding="utf-8"))
+    job = wf["jobs"]["cola"]
+    assert job["env"]["KAGGLE_API_TOKEN"] == "${{ secrets.KAGGLE_API_TOKEN }}"
+    assert "sleep 300" in job["steps"][-1]["run"]                                     # every 5 min while running
+    q = yaml.safe_load((ROOT / "config" / "cola_nube.yaml").read_text(encoding="utf-8"))
+    assert "kaggle_activo" in q

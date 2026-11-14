@@ -112,3 +112,15 @@ def test_workflow_runs_kaggle_without_deploying_modal():
     env = wf["jobs"]["nube"]["env"]
     assert env["KAGGLE_API_TOKEN"] == "${{ secrets.KAGGLE_API_TOKEN }}" and "KAGGLE_USERNAME" in env
     assert re.search(r"startsWith\(inputs.accion, 'kaggle'\)", steps["Guardar lo recogido"]["if"])
+
+
+def test_waiting_fails_fast_when_kaggle_leaves_it_queued(monkeypatch):
+    """14-11: a session stayed queued for an hour and was waited for: now more than --max-cola minutes queued fails."""
+    clock = {"t": 1000.0}
+    monkeypatch.setenv("KAGGLE_USERNAME", "u")
+    monkeypatch.setattr(klanzar.time, "time", lambda: clock["t"])
+    monkeypatch.setattr(klanzar.time, "sleep", lambda s: clock.__setitem__("t", clock["t"] + s))
+    monkeypatch.setattr(klanzar, "_kaggle", lambda *a: type("R", (), {"stdout": 'has status "KernelWorkerStatus.QUEUED"',
+                                                                      "stderr": "", "returncode": 0})())
+    assert klanzar.main(["esperar", "--minutos", "60", "--max-cola", "10"]) == 3
+    assert clock["t"] - 1000.0 <= 11 * 60
