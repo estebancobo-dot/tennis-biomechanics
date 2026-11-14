@@ -54,11 +54,11 @@ la auditoría las marcará «sin comprobación automática asignada».
 | Estado | Nº |
 |---|---|
 | HECHO | 119 |
-| PARCIAL | 126 |
+| PARCIAL | 129 |
 | FALTA | 21 |
 | NO MEDIBLE | 3 |
 | NO APLICA | 8 |
-| **Total** | **277** |
+| **Total** | **280** |
 
 **27-10:** filas 220-245 nuevas: todo lo pedido en el chat del 19-10 al 27-10 (releídos los mensajes) y lo que
 salió en la prueba de valor; ninguna fila borrada.
@@ -364,6 +364,9 @@ lateral (entreno)» · ≥12 = solo se muestra con 12 golpes o más (`model.MIN_
 | 275 | **Parar todo el PC y rehacer el plan entero en Modal, con gasto 0** («para todo el pc en local y replantea todo en modal con un gasto 0, no veo nunca el fin de esto»; Chat, 13-11). Sustituye a #271 (a la nube después de los 6 partidos): los 6 partidos se analizan ya en la nube | PARCIAL | PC: subió una vez lo que solo él tenía (291 F3Set, 293 los 6 vídeos, 294 los clics de identidad) y queda en pausa total (`config/pausa_pc.txt`, 13-11). Nube: `cloud/modal_app.py` (`partido`, `prueba`, `f3set`), flujo «Nube» (`partidos`, `prueba`, `recoger`) | — | `tests/test_nube.py`, `tests/test_compilation_key.py` | Tope de la cuenta de Modal en su crédito mensual (30 $): 0 €. Se cierra con los 6 partidos analizados en la nube y sus comprobaciones en ✔ (lotes de #276). |
 | 276 | R22 (F3Set pierde 2 golpes y da 3 identidades al revés frente a v15): el usuario no sabe decidirlo y acepta la recomendación de Claude: lanzar los 6 partidos con esa diferencia escrita en el informe, por lotes (Osaka primero; resultados tras cada lote) y con 0 € («ok, haz tu recomendacion entonces»; Chat, 13-11) | PARCIAL | lotes: 1 Osaka; 2 Pegula y Zheng; 3 Gauff y la final; 4 Zverev-Sinner (`cloud/lanzar.py partidos`) | — | — | R22 queda como diferencia conocida y escrita (F3Set v18: 465 de 517, precisión 0,936, 8 identidades al revés; v15: 467, 0,945, 5). Se cierra con los 4 lotes hechos y enseñados al usuario. |
 | 277 | Una prueba corta antes de un partido entero en la nube («¿tiene sentido hacer un smoke test previo y no un partido entero?»; Chat, 13-11) | PARCIAL | `modal_app.prueba`: 10 minutos del partido (desde el minuto 10) analizados como un partido, con el clic y el catálogo de la nube | — | `tests/test_nube.py` | Se cierra cuando la prueba de Osaka termina sin fallos en la nube y el lote 1 se lanza tras ella. |
+| 278 | La aplicación completa no puede quedarse parada esperando al crédito del mes: «no puedo estar parado 2 semanas sin hacer nada; eso es peor que usar el PC». Los lotes de partidos pueden ir a diciembre, pero la aplicación tiene que avanzar y terminarse (Chat, 14-11) | PARCIAL | Plan: todo lo que no es analizar vídeo con GPU sigue ya (código y pruebas en la sesión de Claude; informe, auditoría y agregados en Modal solo con CPU, céntimos) con los partidos ya analizados en la nube (Osaka, Pegula, Zheng) | — | — | Se cierra con la Base cerrada y la aplicación (P0) avanzando sin esperar a nuevos partidos. |
+| 279 | Uno o dos partidos nuevos al mes no es una solución válida para la aplicación (Chat, 14-11) | PARCIAL | Plan: (a) abaratar cada partido en Modal sin perder calidad (la CPU es más de la mitad del coste: decodificar el vídeo en la GPU como hacía el PC, la bola de la pasada fina 6 veces más lenta que en el PC); (b) Kaggle como segunda nube gratuita (~30 h de GPU por semana, sin tarjeta); medido con pruebas cortas antes de usarlo | — | — | Se cierra con la capacidad medida (partidos por mes a 0 €) y ≥ 10 partidos al mes. |
+| 280 | El coste tiene que seguir siendo 0 € (Chat, 14-11; confirma #272) | PARCIAL | Tope de la cuenta de Modal en su crédito mensual (30 $); Kaggle gratuito; nada de pago | — | — | Se comprueba cada mes en la página de uso de Modal. |
 | 269 | Estado y progreso: cuánto falta para lanzar los 6 partidos, qué hay en marcha y pendiente en la nube y en el PC (en serie o en paralelo), qué queda para cerrar la Base, por qué seguimos así y qué falló por la noche (Chat, 13-11) | HECHO | respuesta en el chat; `docs/estado_proyecto.md`, «Resumen de la noche (12-11 → 13-11)» y la tabla de tareas | — | — | Como #266, el estado vive en la tabla de tareas. |
 
 ## Lo más grave que falta (por impacto en «copiar su derecha»)
