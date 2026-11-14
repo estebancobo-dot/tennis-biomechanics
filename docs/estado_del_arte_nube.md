@@ -28,7 +28,12 @@ completa antes de decidir esa capa. Nada se adopta sin su prueba de concepto med
 - **Para este proyecto:** un puerto «Cálculo» propio con adaptadores (PC, Modal, Kaggle, nube de Claude solo CPU) y,
   más adelante, uno de SkyPilot para el resto de nubes.
 - **Prueba de concepto:** la misma prueba de 10 min en cada adaptador da los mismos golpes (contrato y equivalencia).
-- **Falta:** las condiciones exactas de Lightning AI por API (¿se puede lanzar sin interfaz?) y de SageMaker Studio Lab.
+- **Segunda vuelta (14-11 19:40):** con API y sin pagar siguen siendo Kaggle (≈30 h de GPU a la semana, sesiones de
+  12 h, versiones por API sin abrir el cuaderno) y Modal (crédito mensual). SageMaker Studio Lab aparece como retirado
+  en una fuente y con sesiones de 4 h en otra, sin API de trabajos: no sirve. Lightning AI: horas gratis sin
+  confirmación oficial; no se usa mientras no se confirme. Colab gratis prohíbe el uso por SSH o desde otra interfaz.
+  NRP (Kubernetes con GPU) solo para centros de EE. UU. Fuentes: [gpuperhour](https://gpuperhour.com/blog/free-cloud-gpus-and-credits),
+  [aimultiple](https://aimultiple.com/free-cloud-gpu), [Kaggle, consejos de GPU](https://www.kaggle.com/page/GPU-tips-and-tricks).
 
 ## 2. Orquestación de trabajos
 
@@ -57,7 +62,21 @@ completa antes de decidir esa capa. Nada se adopta sin su prueba de concepto med
   d3d11va (PC).
 - **Prueba de concepto:** recortar las ventanas de la prueba de 10 min con cada uno: mismos fotogramas (diferencia de
   píxel mínima) y tiempo.
-- **Falta:** el desentrelazado en la GPU (yadif_cuda o bwdif) y los .ts dañados (Osaka) con NVDEC.
+- **Segunda vuelta (14-11 19:40):** con pocos núcleos (Kaggle: 4) lo que más ahorra es no bajar cada fotograma a la
+  CPU: decodificar (NVDEC), desentrelazar (`yadif_cuda`, el mismo algoritmo que el `yadif` de hoy, o `bwdif_cuda`) y
+  convertir en la GPU, y copiar una sola vez. Una medida publicada (1080p25 a una tubería): ≈112 % de CPU todo en la CPU
+  frente a 16-20 % con la conversión en la GPU. `scale_cuda` de serie no da BGR24: se baja en YUV 4:4:4 y se convierte
+  al final. `yadif_cuda` necesita un filtro de escala detrás para poder bajar los fotogramas. Por eso la prueba T7 mide
+  3 opciones: CPU, `-hwaccel cuda` (decodifica en la GPU y desentrelaza en la CPU) y todo en la GPU. Antes hay que
+  saber si el ffmpeg de Kaggle trae los filtros CUDA (si no, una compilación estática que los traiga). PyNvVideoCodec
+  2.0 (salida RGB24, acceso aleatorio, varias GPU) y TorchCodec, después, si la entrega de fotogramas a los modelos sin
+  pasar por la CPU compensa. Fuentes: [filtros CUDA de FFmpeg 8.0](https://ayosec.github.io/ffmpeg-filters-docs/8.0/Filters/CUDA-Video),
+  [bwdif_cuda](https://lists.mplayerhq.hu/pipermail/ffmpeg-cvslog/2023-June/137803.html),
+  [yadif_cuda](https://ffmpeg.org/pipermail/ffmpeg-devel/2018-November/235908.html),
+  [foro de NVIDIA (yadif frente a yadif_cuda)](https://forums.developer.nvidia.com/t/nvdec-in-ffmpeg-cuvid-drops-frames-when-using-deinterlacing-deint-2/65837),
+  [PyNvVideoCodec 2.0](https://developer.nvidia.com/blog/whats-new-in-pynvvideocodec-2-0-for-python-gpu-accelerated-video-processing),
+  [rendimiento de PyNvVideoCodec](https://docs.nvidia.com/video-technologies/pynvvideocodec/pynvc-api-prog-guide/latest/application-note.html).
+  **Sigue faltando:** los .ts dañados (Osaka) con NVDEC.
 
 ## 4. Ejecución de modelos
 
@@ -69,7 +88,13 @@ completa antes de decidir esa capa. Nada se adopta sin su prueba de concepto med
   sirvieran modelos.
 - **Prueba de concepto:** la raqueta (el 40 % del tiempo) con cada uno, en lotes de 1, 8, 32 y 64; igualdad de salidas
   (tolerancia de FP16) y fotogramas por segundo en la T4.
-- **Falta:** el coste de construir motores en cada sesión de Kaggle, que no guarda nada (¿guardarlos en Modal?).
+- **Segunda vuelta (14-11 19:40):** los motores de TensorRT no son portables entre máquinas sin probarlo (dependen
+  de la versión de TensorRT, del controlador y de la GPU); la **caché de tiempos** sí (pocos MB, independiente del
+  modelo) y acorta su construcción. Plan si TensorRT gana en T6: guardar en Modal la caché de tiempos
+  (`trt_timing_cache_enable`, `trt_timing_cache_path`) y también los motores con su prefijo
+  (`trt_engine_cache_prefix`), reutilizarlos solo si coinciden las versiones de TensorRT y del controlador, y si no,
+  reconstruirlos (la prueba T6 mide cuánto tarda la primera ejecución). Fuentes: [ORT TensorRT EP](https://onnxruntime.ai/docs/execution-providers/TensorRT-ExecutionProvider.html),
+  [NVIDIA, despliegue con TensorRT](https://developer.nvidia.com/blog/end-to-end-ai-for-nvidia-based-pcs-nvidia-tensorrt-deployment).
 
 ## 5. Modelos por tarea
 

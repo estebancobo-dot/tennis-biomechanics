@@ -116,3 +116,15 @@ def test_video_proof_of_concept_pieces(tmp_path):
     b[0, 0, 0] = 9
     mean, mx, share = pv.frame_diff(a, b)
     assert mx == 9 and round(mean, 3) == 0.75 and round(share, 3) == round(1 / 12, 3)
+
+
+def test_video_all_on_the_gpu_command():
+    """T7: the third option keeps the frames on the GPU (decode, deinterlace, convert) and copies them once."""
+    from types import SimpleNamespace
+
+    from tennisbio.infra import poc_video as pv
+    cmd = pv.gpu_command(SimpleNamespace(path="v.ts", interlaced=True), 12.0, 2.0)
+    vf = cmd[cmd.index("-vf") + 1]
+    assert vf.startswith("yadif_cuda=1,") and "hwdownload" in vf and cmd[cmd.index("-hwaccel_output_format") + 1] == "cuda"
+    assert "yadif_cuda" not in pv.gpu_command(SimpleNamespace(path="v.mp4", interlaced=False), 0, 2)[-9]
+    assert cmd[-1] == "pipe:1" and "bgr24" in cmd and set(pv.OPTIONS) == {"cpu", "nvdec", "gpu_entera"}

@@ -18,7 +18,29 @@ from pathlib import Path
 
 import numpy as np
 
-OPTIONS = {"cpu": None, "nvdec": "cuda"}
+OPTIONS = {"cpu": None, "nvdec": "cuda", "gpu_entera": "gpu"}
+# 14-11 (state of the art, docs/estado_del_arte_nube.md §3): on a 4-core machine the gain is keeping the frames on the
+# GPU: decode (NVDEC), deinterlace (yadif_cuda, the same algorithm as the CPU's yadif) and convert there, and copy them
+# to memory once; «-hwaccel cuda» alone copies every frame back and deinterlaces and converts on the CPU
+CUDA_FILTERS = ("yadif_cuda", "bwdif_cuda", "scale_cuda")
+
+
+def gpu_command(info, start: float, dur: float) -> list[str]:
+    """ffmpeg with the frames on the GPU until the end (the same output as read_frames at full resolution: one frame
+    per field when interlaced, BGR24)."""
+    chain = (["yadif_cuda=1"] if info.interlaced else []) + ["scale_cuda=format=yuv444p", "hwdownload", "format=yuv444p"]
+    return ["ffmpeg", "-v", "error", "-nostdin", "-hwaccel", "cuda", "-hwaccel_output_format", "cuda",
+            "-ss", str(start), "-i", str(info.path), "-t", str(dur), "-vf", ",".join(chain),
+            "-an", "-f", "rawvideo", "-pix_fmt", "bgr24", "pipe:1"]
+
+
+def read_gpu(info, start: float, dur: float) -> list[np.ndarray]:
+    r = subprocess.run(gpu_command(info, start, dur), capture_output=True, timeout=600)
+    n = info.width * info.height * 3
+    if r.returncode != 0 and not r.stdout:
+        raise RuntimeError(r.stderr.decode(errors="replace")[-300:])
+    return [np.frombuffer(r.stdout[i:i + n], np.uint8).reshape(info.height, info.width, 3)
+            for i in range(0, len(r.stdout) - n + 1, n)]
 
 
 def _child_cpu_s() -> float:
@@ -49,17 +71,20 @@ def run(video: str, n: int = 8, dur: float = 2.0) -> dict:
 
     info = probe(video)
     hw = subprocess.run(["ffmpeg", "-hide_banner", "-hwaccels"], capture_output=True, text=True, timeout=60).stdout.split()
+    filt = subprocess.run(["ffmpeg", "-hide_banner", "-filters"], capture_output=True, text=True, timeout=60).stdout
     out = {"video": Path(video).name, "ancho": info.width, "alto": info.height, "fps": info.fps,
            "entrelazado": bool(info.interlaced), "aceleradores_ffmpeg": [h for h in hw if h.islower()],
+           "filtros_cuda": [f for f in CUDA_FILTERS if f" {f} " in filt],
            "nucleos": os.cpu_count(), "ventanas": [], "opciones": {k: {"s": 0.0, "cpu_s": 0.0, "fotogramas": 0}
                                                                  for k in OPTIONS}}
-    diffs: list[tuple[float, int, float]] = []
+    diffs: dict[str, list] = {k: [] for k in OPTIONS if k != "cpu"}
     for t in window_times(float(info.duration or 0.0), n, dur):
         got = {}
         for name, hwaccel in OPTIONS.items():
             c0, t0 = _child_cpu_s(), time.perf_counter()
             try:
-                frames = list(read_frames(info, start=t, duration=dur, hwaccel=hwaccel))
+                frames = (read_gpu(info, t, dur) if hwaccel == "gpu" else
+                          list(read_frames(info, start=t, duration=dur, hwaccel=hwaccel)))
             except Exception as e:  # esperado: an option this machine cannot run is reported, the others go on  # noqa: BLE001
                 out["opciones"][name]["error"] = f"{type(e).__name__}: {str(e)[:300]}"
                 frames = []
@@ -68,20 +93,23 @@ def run(video: str, n: int = 8, dur: float = 2.0) -> dict:
             o["cpu_s"] += _child_cpu_s() - c0
             o["fotogramas"] += len(frames)
             got[name] = frames
-        k = min(len(got["cpu"]), len(got["nvdec"]))
-        w = [frame_diff(got["cpu"][i], got["nvdec"][i]) for i in range(k)]
-        diffs += w
-        out["ventanas"].append({"t": t, "cpu": len(got["cpu"]), "nvdec": len(got["nvdec"]),
-                                "dif_media": round(float(np.mean([x[0] for x in w])), 3) if w else None})
+        row = {"t": t, **{k: len(v) for k, v in got.items()}}
+        for name in diffs:
+            k = min(len(got["cpu"]), len(got[name]))
+            w = [frame_diff(got["cpu"][i], got[name][i]) for i in range(k)]
+            diffs[name] += w
+            row[f"dif_media_{name}"] = round(float(np.mean([x[0] for x in w])), 3) if w else None
+        out["ventanas"].append(row)
+        got.clear()
     for o in out["opciones"].values():
         o["ms_por_fotograma"] = round(1000 * o["s"] / o["fotogramas"], 2) if o["fotogramas"] else None
         o["cpu_ms_por_fotograma"] = round(1000 * o["cpu_s"] / o["fotogramas"], 2) if o["fotogramas"] else None
         o["s"], o["cpu_s"] = round(o["s"], 2), round(o["cpu_s"], 2)
-    if diffs:
-        out["diferencia"] = {"media": round(float(np.mean([d[0] for d in diffs])), 3),
-                             "max": int(max(d[1] for d in diffs)),
-                             "pixeles_mas_de_2": round(float(np.mean([d[2] for d in diffs])), 5),
-                             "fotogramas_comparados": len(diffs)}
+    out["diferencia_con_cpu"] = {name: {"media": round(float(np.mean([d[0] for d in ds])), 3),
+                                        "max": int(max(d[1] for d in ds)),
+                                        "pixeles_mas_de_2": round(float(np.mean([d[2] for d in ds])), 5),
+                                        "fotogramas_comparados": len(ds)}
+                                 for name, ds in diffs.items() if ds}
     return out
 
 
