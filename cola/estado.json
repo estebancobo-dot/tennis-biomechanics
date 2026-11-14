@@ -266,8 +266,8 @@
   "ruta": "/runs/partido_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5/estado.json",
   "salida": "/output/tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cuaderno": "tennisbio-gauff",
-  "progreso": "identity terminada a las 23:43:37 en 8.0 min (23:48:49; GPU 40 %·0 %, CPU 39 %, 4.6 GB)",
-  "kaggle": "running (23:48)",
+  "progreso": "identity terminada a las 23:43:37 en 8.0 min (23:52:33; GPU 54 %·0 %, CPU 39 %, 4.8 GB)",
+  "kaggle": "running (23:54)",
   "arranco": "2026-11-14 22:39",
   "espera_min": 11
  },
@@ -283,9 +283,9 @@
   "ruta": "/runs/kaggle_prueba_gauff_v20/estado.json",
   "salida": "/kaggle_pruebas/prueba_gauff_v20/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cuaderno": "tennisbio-prueba-gauff-v20",
-  "kaggle": "running (23:48)",
+  "kaggle": "running (23:54)",
   "arranco": "2026-11-14 23:38",
   "espera_min": 2,
-  "progreso": "players:  82 % (1169/1430 fotogramas con jugadoras) · 61 s · quedan ≈ 14 s (23:43:41; GPU 44 %·0 %, CPU 96 %, 3.4 GB)"
+  "progreso": "fine:  25 % (7/28 golpes candidatos · 7 confirmados · 0 ventanas descartadas sin pose) · 2 min · quedan ≈ 5 min (23:54:08; GPU 14 %·8 %, CPU 85 %, 10.6 GB)"
  }
 }
