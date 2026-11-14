@@ -12,6 +12,7 @@
 #              runs/partido_<id>)
 #   kaggle_comprobar: (14-11, paso 8b) una sesion de Kaggle que mira GPU, nucleos, disco, la clave de Modal y monta el
 #              entorno; espera a que acabe y trae su salida
+#   kaggle_estado: el estado de la ultima sesion de Kaggle y, si acabo, su salida (no lanza nada)
 #   kaggle_prueba: 10 min del partido dado en Kaggle, con sus resultados aparte en Modal (/kaggle_comparar) para
 #              compararlos con la prueba de Modal; espera a que acabe y trae su salida
 name: Nube
@@ -19,9 +20,9 @@ on:
   workflow_dispatch:
     inputs:
       accion:
-        description: "comprobar | f3set | prueba | partidos | diagnostico | informe | parar | recoger | kaggle_comprobar | kaggle_prueba"
+        description: "comprobar | f3set | prueba | partidos | diagnostico | informe | parar | recoger | kaggle_comprobar | kaggle_prueba | kaggle_estado"
         type: choice
-        options: [comprobar, f3set, prueba, partidos, diagnostico, informe, parar, recoger, kaggle_comprobar, kaggle_prueba]
+        options: [comprobar, f3set, prueba, partidos, diagnostico, informe, parar, recoger, kaggle_comprobar, kaggle_prueba, kaggle_estado]
         default: comprobar
       tag:
         description: "nombre de la ejecucion (runs/<tag>)"
@@ -128,6 +129,11 @@ jobs:
         run: |
           # 14-11: the kaggle package does not declare «six», which it imports («No module named 'six'»)
           pip install -q "kaggle>=1.8" six
+          if [ "$ACCION" = "kaggle_estado" ]; then
+            python cloud/kaggle/cuaderno.py estado
+            python cloud/kaggle/cuaderno.py salida --dir nube-out/kaggle || true
+            exit 0
+          fi
           # 14-11: the notebook's secrets do not reach a run started by the API: the Modal key goes in a private dataset
           python cloud/kaggle/cuaderno.py clave
           if [ "$ACCION" = "kaggle_comprobar" ]; then

@@ -172,7 +172,7 @@ def main(argv: list[str] | None = None) -> int:
         while True:
             r = _kaggle("kernels", "status", kid)
             st = status_of(r.stdout + r.stderr)
-            print(time.strftime("%H:%M:%S"), st, flush=True)
+            print(time.strftime("%H:%M:%S"), st, "|", (r.stdout + r.stderr).strip()[-200:], flush=True)
             if st in ("complete", "error", "cancelacknowledged") or time.time() > end:
                 return 0 if st == "complete" else 1
             time.sleep(30)
