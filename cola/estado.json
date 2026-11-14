@@ -13,10 +13,16 @@
   }
  },
  "prueba_final": {
-  "estado": "en_marcha",
+  "estado": "hecho",
   "donde": "modal",
   "llamada": "fc-01M7CR8EB6R4WATHCD2BNGKR20",
   "inicio": "2026-11-14 10:04",
-  "ruta": "/runs/partido__prueba_tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5/estado.json"
+  "ruta": "/runs/partido__prueba_tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5/estado.json",
+  "fin": "2026-11-14 10:50",
+  "resultado": {
+   "estado": "hecho",
+   "coste_usd": 0.27,
+   "segundos": 667
+  }
  }
 }

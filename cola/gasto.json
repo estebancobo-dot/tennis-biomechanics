@@ -9,7 +9,8 @@
     },
     "prueba_final": {
      "estimado_usd": 0.8,
-     "llamada": "fc-01M7CR8EB6R4WATHCD2BNGKR20"
+     "llamada": "fc-01M7CR8EB6R4WATHCD2BNGKR20",
+     "coste_usd": 0.27
     }
    },
    "base_usd": 28.08
