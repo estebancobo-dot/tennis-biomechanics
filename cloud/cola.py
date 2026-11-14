@@ -647,11 +647,15 @@ READ_ERRORS: dict = {}
 
 
 def _read_json(vol, path: str):
-    try:
-        return json.loads(b"".join(vol.read_file(path.lstrip("/"))).decode("utf-8"))
-    except Exception as e:  # noqa: BLE001 — not there (or not JSON): said by the caller, with why (READ_ERRORS)
-        READ_ERRORS[path] = f"{type(e).__name__}: {str(e)[:200]}"
-        return None
+    """A JSON file of the volume (the storage port's Modal adapter, cloud/almacen.py); None, with why in READ_ERRORS,
+    when it is not there or is not JSON."""
+    import almacen
+
+    st = almacen.ModalStorage(vol, VOLUME)
+    data = st.read_json(path)
+    if data is None:
+        READ_ERRORS[path] = getattr(st, "last_error", "no es JSON")
+    return data
 
 
 def compare_job(vol, job: dict, state: dict, logs: Path, now: float) -> dict:
@@ -689,13 +693,12 @@ def compare_job(vol, job: dict, state: dict, logs: Path, now: float) -> dict:
 
 def upload_state(vol, d: Path) -> bool:
     """T3: the queue's state also on the volume (/cola/), where the cloud's audit reads it («Cola de la nube», B7/B8)."""
+    import almacen
+
+    files = [d / f for f in QUEUE_FILES if (d / f).exists()]
+    files += sorted((d / "comparaciones").glob("*.json"))              # T3: «Equivalencia entre infraestructuras»
     try:
-        with vol.batch_upload(force=True) as b:
-            for f in QUEUE_FILES:
-                if (d / f).exists():
-                    b.put_file(str(d / f), f"/cola/{f}")
-            for f in sorted((d / "comparaciones").glob("*.json")):     # T3: «Equivalencia entre infraestructuras»
-                b.put_file(str(f), f"/cola/comparaciones/{f.name}")
+        almacen.ModalStorage(vol, VOLUME).put_files(files, d, "/cola")
         return True
     except Exception as e:  # noqa: BLE001 — the next pass uploads it again; nube-logs has it meanwhile
         print(f"cola: estado al volumen ({type(e).__name__}: {e})")

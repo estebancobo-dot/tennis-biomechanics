@@ -25,6 +25,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve()
 REPO = HERE.parents[2]
 sys.path.insert(0, str(REPO / "cloud"))
+import almacen  # noqa: E402
 import nube  # noqa: E402
 
 VOLUME = "tennisbio-datos"
@@ -116,17 +117,12 @@ def _run(cmd, **kw):
 
 
 def modal_get(remote: str, local_dir: Path):
-    """A file or a folder of the volume into local_dir (the CLI keeps the last name: /models → local_dir/models)."""
-    local_dir.mkdir(parents=True, exist_ok=True)
-    _run(["modal", "volume", "get", "--force", VOLUME, remote, str(local_dir) + "/"])
+    """A file or a folder of the volume into local_dir (the storage port's Modal adapter, cloud/almacen.py)."""
+    almacen.ModalStorage(None, VOLUME).get(remote, local_dir)
 
 
 def modal_put(vol, files: list[Path], local_root: Path, remote_root: str):
-    if not files:
-        return
-    with vol.batch_upload(force=True) as b:
-        for f in files:
-            b.put_file(str(f), f"{remote_root.rstrip('/')}/{f.relative_to(local_root).as_posix()}")
+    almacen.ModalStorage(vol, VOLUME).put_files(files, local_root, remote_root)
 
 
 def setup_env(repo: Path, venv: Path) -> Path:
