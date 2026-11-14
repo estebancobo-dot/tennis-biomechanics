@@ -197,8 +197,11 @@ def main(argv: list[str]) -> int:
             prepare(REPO, data, registry)
             probe = subprocess.run([str(py), "-c", "import onnxruntime as o, nube_gpu; print(o.get_available_providers())"],
                                    capture_output=True, text=True, env=env_for(data), cwd=REPO)
+            disc = subprocess.run([str(py), "-m", "tennisbio.infra.discovery"], capture_output=True, text=True,
+                                  env=env_for(data), cwd=REPO)
             est.update(estado="hecho", proveedores=probe.stdout.strip() or probe.stderr[-500:],
-                       modelos=sum(1 for _ in models.rglob("*") if _.is_file()))
+                       modelos=sum(1 for _ in models.rglob("*") if _.is_file()),
+                       descubrimiento=disc.stdout.strip()[-3000:] or disc.stderr[-500:])   # #289: what Kaggle has
             return 0
         matches = {m["id"]: m for m in prepare(REPO, data, registry)}
         src = matches.get(job["partido"])
