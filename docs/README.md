@@ -32,6 +32,7 @@ Cada documento tiene **un solo papel**. Si dos dicen cosas distintas, manda el *
 | `analisis_nube.md` (13-11, #268, #271-#273) | Toda la aplicación en la nube: análisis, costes, proveedores; decisión del usuario: paquete N tras los 6 partidos, 0 €/mes |
 | `nube_n0.md` (13-11, #273) | Prueba de la nube (N0): pasos de una vez del usuario (Modal, GitHub, PC) y cómo se hace sin tocar el PC |
 | `capacidad_nube.md` (14-11, R35, #278-#280) | Capacidad de la nube a 0 €: coste medido por partido, por qué la pasada fina va más lenta que en el PC, cómo se mide cada arreglo y Kaggle como segunda nube |
+| `kaggle.md` (14-11, paso 8b, #283, #285) | Kaggle como segunda nube gratuita: guía para el usuario (una vez), qué requisitos cumple y cuáles faltan por medir, y cómo usa los datos de Modal sin repetir nada |
 | `maqueta-informe.html`, `maqueta_leccion_armado.html`, `maqueta_aplicacion.html` | Maquetas de diseño (datos inventados) |
 | `matriz_en_la_web.md` | Generado por `scripts/matrix_in_web.py`: qué punto de la matriz se ve en la web |
 | `como_ejecutar.md` | Instrucciones de instalación en el PC |

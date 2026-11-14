@@ -197,11 +197,9 @@ def _load(path: Path, default):
 
 
 def _sources(repo: Path) -> dict:
-    """Kaggle and the PC: whether each can take work now (Kaggle: not connected yet; the PC: its pause file)."""
-    pause = (repo / "config" / "pausa_pc.txt")
-    paused = not pause.exists() or re.search(r"^pausa:\s*si\b", pause.read_text(encoding="utf-8"), re.M) is not None
+    """Kaggle and the PC: whether each can take work now (Kaggle: not connected yet; the PC: never, #284)."""
     return {"kaggle": {"ok": False, "motivo": "sin cuenta conectada todavía"},
-            "pc": {"ok": False, "motivo": "en pausa (config/pausa_pc.txt)" if paused else "su cola aún no está unida a esta"}}
+            "pc": {"ok": False, "motivo": "no se usa (decisión del usuario, 14-11, #284)"}}
 
 
 def main(argv: list[str] | None = None) -> int:

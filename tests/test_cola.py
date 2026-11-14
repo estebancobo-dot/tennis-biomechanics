@@ -98,10 +98,11 @@ def test_dry_pass_writes_the_state_without_modal(tmp_path, monkeypatch):
     q = tmp_path / "cola.yaml"
     q.write_text(yaml.safe_dump({"gasto_modal_base": {"2026-11": 28.08}, "trabajos": _jobs() + [{"id": "mal", "accion": "x"}]}),
                  encoding="utf-8")
-    monkeypatch.chdir(tmp_path)                                      # no config/pausa_pc.txt here: the PC counts as paused
+    monkeypatch.chdir(tmp_path)
     assert cola.main(["--cola", str(q), "--logs", str(tmp_path / "logs"), "--en-seco"]) == 0
     d = tmp_path / "logs" / "cola"
     md = (d / "estado.md").read_text(encoding="utf-8")
     assert "| gauff | partido | gauff | pendiente |" in md and "espera a prueba_gauff" in md and "mal" not in md
+    assert cola._sources(tmp_path)["pc"]["ok"] is False                                 # #284: the PC is never used
     assert json.loads((d / "estado.json").read_text(encoding="utf-8")) == {}       # dry: nothing launched
     assert json.loads((d / "gasto.json").read_text(encoding="utf-8"))["modal"]["2026-11"]["base_usd"] == 28.08
