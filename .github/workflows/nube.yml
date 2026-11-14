@@ -126,7 +126,8 @@ jobs:
           PARTIDO: ${{ inputs.partidos }}
           TAG: ${{ inputs.tag }}
         run: |
-          pip install -q "kaggle>=1.8"
+          # 14-11: the kaggle package does not declare «six», which it imports («No module named 'six'»)
+          pip install -q "kaggle>=1.8" six
           if [ "$ACCION" = "kaggle_comprobar" ]; then
             python cloud/kaggle/cuaderno.py lanzar --accion comprobar --commit "$GITHUB_SHA"
             minutos=50
