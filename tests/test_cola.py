@@ -134,13 +134,14 @@ def test_kaggle_takes_one_job_at_a_time_within_its_weekly_hours(monkeypatch):
             {"id": "b", "accion": "prueba", "partido": "b"},
             {"id": "inf", "accion": "informe"}]
     d = {i: (src, why) for i, src, why in cola.plan(jobs, {}, spend, on, NOV)}
-    assert d["a"][0] == "kaggle" and "previstas 7.5 h" in d["a"][1]
+    need = round(cola.KAGGLE_H_PER_VIDEO_MIN * 150, 2)                 # 12.75 h with the measured rate (v19)
+    assert d["a"][0] == "kaggle" and f"previstas {need:.1f} h" in d["a"][1]
     assert d["b"][0] == "modal"                               # Kaggle is busy with «a»: the test goes to Modal
     assert d["inf"][0] == "modal"                             # the report never goes to Kaggle
     cola.record_launch(st := {}, spend, jobs[0], "kaggle", "kaggle", NOV)
-    assert st["a"]["intentos"] == 1 and cola.kaggle_room(spend, NOV) == cola.KAGGLE_CAP_H - 7.5
+    assert st["a"]["intentos"] == 1 and cola.kaggle_room(spend, NOV) == round(cola.KAGGLE_CAP_H - need, 2)
     cola.record_launch(st, spend, jobs[0], "kaggle", "kaggle", NOV + 700)        # launched again
-    assert st["a"]["intentos"] == 2 and cola.kaggle_room(spend, NOV) == cola.KAGGLE_CAP_H - 7.5
+    assert st["a"]["intentos"] == 2 and cola.kaggle_room(spend, NOV) == round(cola.KAGGLE_CAP_H - need, 2)
     cola.record_result(st, spend, "a", {"estado": "hecho", "horas_kaggle": 4.2, "coste_usd": 0.0}, NOV + 9000)
     assert cola.kaggle_room(spend, NOV) == round(cola.KAGGLE_CAP_H - 4.2, 2)
     assert cola.modal_room(spend, NOV) == round(29.5 - 28.08, 2)          # a Kaggle job never counts as Modal spend

@@ -1,7 +1,7 @@
 {
  "probe": {
   "version": "2",
-  "hash": "61761f587851faad",
+  "hash": "0ab5538c17aada6e",
   "modules": [
    "io.video",
    "pipeline"
@@ -9,7 +9,7 @@
  },
  "scenes": {
   "version": "3",
-  "hash": "9d7a814508fd932d",
+  "hash": "db2e3928a5b0c575",
   "modules": [
    "config",
    "faults",
@@ -20,7 +20,7 @@
  },
  "audio": {
   "version": "2",
-  "hash": "8ff36194d3fad41a",
+  "hash": "f58a61534c36dd2f",
   "modules": [
    "impacts",
    "io.video",
@@ -29,7 +29,7 @@
  },
  "players": {
   "version": "7",
-  "hash": "281d80f7f78fe746",
+  "hash": "456439e125222b72",
   "modules": [
    "infra.devices",
    "io.video",
@@ -40,7 +40,7 @@
  },
  "identity": {
   "version": "13",
-  "hash": "475a4e0076f1d913",
+  "hash": "45f62086eac49510",
   "modules": [
    "clothes",
    "court_metrics",
@@ -55,7 +55,7 @@
  },
  "spotting": {
   "version": "2",
-  "hash": "279c60e3af497047",
+  "hash": "842288b999b60bf8",
   "modules": [
    "ball",
    "ball_features",
@@ -73,7 +73,7 @@
  },
  "candidates": {
   "version": "16",
-  "hash": "0e61a7c3498e9d3e",
+  "hash": "1a6a6218ea2b9754",
   "modules": [
    "court_metrics",
    "identity",
@@ -88,7 +88,7 @@
  },
  "views": {
   "version": "6",
-  "hash": "a06d6857e6275e47",
+  "hash": "feadbc39b2c23efc",
   "modules": [
    "court",
    "court_metrics",
@@ -105,7 +105,7 @@
  },
  "views_link": {
   "version": "1",
-  "hash": "87999ab42ca755b1",
+  "hash": "b5c66a52fafb2e91",
   "modules": [
    "pipeline",
    "views"
@@ -113,7 +113,7 @@
  },
  "court": {
   "version": "6",
-  "hash": "4499b169aa8a5f02",
+  "hash": "40f14e5372a17cb3",
   "modules": [
    "court",
    "faults",
@@ -122,7 +122,7 @@
  },
  "score": {
   "version": "16",
-  "hash": "b0fd8f1ffde01c48",
+  "hash": "9d6f97f990ba8ae7",
   "modules": [
    "faults",
    "io.video",

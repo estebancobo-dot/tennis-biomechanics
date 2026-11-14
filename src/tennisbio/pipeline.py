@@ -698,13 +698,39 @@ def run_stage(n: str, c: Context) -> tuple[dict, dict]:
     from . import contracts
     with faults.collecting(c.log) as col:
         try:
-            summary = STAGES[n].run(c) or {}
+            summary = _profiled(n, c) if n in (c.cfg.get("perfil") or []) else (STAGES[n].run(c) or {})
             contracts.check(n, c, summary)
             faults.check_stage_budgets(col, summary)
         except faults.CriticalFault as e:
             record_critical(c, n, e, col.summary())
             raise
         return summary, col.summary()
+
+
+PROFILE_TOP = 60
+
+
+def _profiled(n: str, c: Context) -> dict:
+    """14-11 (phase A of the cloud: on Kaggle the fine pass is CPU-bound, 95 % of 4 cores, the GPUs at 3-6 %): a stage
+    run under cProfile when the configuration names it (`perfil: [fine]`, a test job's «config»), its top functions
+    by own and by cumulative time in <match>/perfil_<stage>.txt. It changes nothing of what the stage computes;
+    only this process is seen (run it with fine_speed.workers: 1)."""
+    import cProfile
+    import io
+    import pstats
+
+    prof = cProfile.Profile()
+    prof.enable()
+    try:
+        return STAGES[n].run(c) or {}
+    finally:
+        prof.disable()
+        out = io.StringIO()
+        st = pstats.Stats(prof, stream=out).strip_dirs()
+        st.sort_stats("tottime").print_stats(PROFILE_TOP)
+        st.sort_stats("cumulative").print_stats(PROFILE_TOP)
+        (c.path("manifest.json").parent / f"perfil_{n}.txt").write_text(out.getvalue(), encoding="utf-8")
+        c.log(f"[{c.match.id}] {n}: perfil de CPU en perfil_{n}.txt")
 
 
 def record_critical(c: Context, n: str, e: "faults.CriticalFault", fl: dict):

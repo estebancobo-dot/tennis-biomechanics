@@ -10,10 +10,11 @@
   },
   "b34e27f8e234836e": {
    "igual_a": "7ff143093bfd9f45",
-   "comprobado": false,
+   "comprobado": true,
    "motivo": "T4 + T8 (#289, 14-11): el dispositivo por descubrimiento y la pasada fina en 2 procesos, cada uno en su GPU (los núcleos por proceso medidos en Kaggle: 2); cada ventana se calcula igual, solo cambia dónde",
    "prueba": "comparar_gauff_v16b_v19",
-   "fecha": "2026-11-14"
+   "fecha": "2026-11-14",
+   "resultado": "idéntica (14-11 22:18): las 16 etapas con el mismo contenido; strokes.json 28 de 28 golpes emparejados, strokes_doubtful 1 de 1 (nube-logs/cola/comparaciones/comparar_gauff_v16b_v19.json)"
   }
  },
  "fine_opponent": {
@@ -26,10 +27,11 @@
   },
   "fb1348358c46f27d": {
    "igual_a": "046a937fe80dcced",
-   "comprobado": false,
+   "comprobado": true,
    "motivo": "T4 + T8 (#289, 14-11): el dispositivo por descubrimiento y la pasada fina en 2 procesos, cada uno en su GPU (los núcleos por proceso medidos en Kaggle: 2); cada ventana se calcula igual, solo cambia dónde",
    "prueba": "comparar_gauff_v16b_v19",
-   "fecha": "2026-11-14"
+   "fecha": "2026-11-14",
+   "resultado": "idéntica (14-11 22:18): las 16 etapas con el mismo contenido; strokes.json 28 de 28 golpes emparejados, strokes_doubtful 1 de 1 (nube-logs/cola/comparaciones/comparar_gauff_v16b_v19.json)"
   }
  },
  "fine_doubtful": {
@@ -42,10 +44,11 @@
   },
   "6acdae694b7d99ee": {
    "igual_a": "855818ee3fe992aa",
-   "comprobado": false,
+   "comprobado": true,
    "motivo": "T4 + T8 (#289, 14-11): el dispositivo por descubrimiento y la pasada fina en 2 procesos, cada uno en su GPU (los núcleos por proceso medidos en Kaggle: 2); cada ventana se calcula igual, solo cambia dónde",
    "prueba": "comparar_gauff_v16b_v19",
-   "fecha": "2026-11-14"
+   "fecha": "2026-11-14",
+   "resultado": "idéntica (14-11 22:18): las 16 etapas con el mismo contenido; strokes.json 28 de 28 golpes emparejados, strokes_doubtful 1 de 1 (nube-logs/cola/comparaciones/comparar_gauff_v16b_v19.json)"
   }
  }
 }

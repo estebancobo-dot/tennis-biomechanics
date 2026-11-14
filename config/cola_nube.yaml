@@ -19,7 +19,10 @@
 kaggle_activo: true
 # 14-11 (#287): los partidos enteros esperan a la fase B de la nube nativa (docs/nube_nativa.md: decodificar en la GPU,
 # TensorRT, las 2 T4; los mismos resultados en menos tiempo); Kaggle queda para las pruebas y las medidas. Vacío = sin espera
-partidos_en_espera: "después de la fase B de la nube nativa (#287, docs/nube_nativa.md)"
+# 14-11 22:20: liberados. La fase B dio lo que da en Kaggle sin cambiar resultados (v19 idéntica a la v16b: el
+# dispositivo por descubrimiento, la subida sin pérdidas y las 2 T4, −8,5 % de tiempo; la CPU de 4 núcleos es el
+# límite). Lo que se acelere después (CPU de la pasada fina, T19) se comprueba con su prueba y vale para lo que falte
+partidos_en_espera: ""
 # trabajos que empiezan de nuevo, una vez cada «id#n»: la final se lanzó en Kaggle a las 14:32 y Kaggle no la arrancó
 reiniciar: ["final#1"]
 # trabajos cancelados (su sesión de Kaggle se libera; acaban en «error» con el motivo). 14-11 21:10: la fase A midió la
@@ -57,6 +60,9 @@ trabajos:
   # CPU al 53 %, la 2.ª T4 al 0 %); la misma prueba y su comparación con la v16b (incluye el dispositivo y la subida)
   - {id: prueba_gauff_v19, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle}
   - {id: comparar_gauff_v16b_v19, accion: comparar, a: "/kaggle_pruebas/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5", b: prueba_gauff_v19}
+  # 14-11 22:30 (fase A): con las 2 T4 la pasada fina llena los 4 núcleos (95 %) y las GPU van al 3-6 %: dónde gasta
+  # la CPU, con el perfilador (un solo proceso, para verlo todo); en la sesión que deja libre el partido de Gauff
+  - {id: perfil_gauff_fina, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, config: {perfil: [fine], fine_speed: {workers: 1}}}
   # lotes 3 y 4 (aprobados por el usuario el 13-11: Osaka; Pegula y Zheng; Gauff y la final; Zverev-Sinner), cada
   # partido tras su prueba corta de 10 minutos (#277); el informe y la auditoría de la Base al final
   - {id: prueba_gauff, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5}
@@ -65,7 +71,7 @@ trabajos:
   # ocupadas; relanzar la mandaba al final de su cola): otra vez, ya esperando sin relanzar
   - {id: prueba_gauff_v16, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle}
   - {id: prueba_gauff_v16b, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle}
-  - {id: gauff, accion: partido, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, tras: prueba_gauff_v16b, aprobado: true, minutos_video: 133}
+  - {id: gauff, accion: partido, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, tras: prueba_gauff_v19, aprobado: true, minutos_video: 133}
   - {id: prueba_final, accion: prueba, partido: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5}
   - {id: final, accion: partido, partido: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5, tras: prueba_final, aprobado: true}
   - {id: prueba_sinner, accion: prueba, partido: zverev-alexander-sinner-jannik-indian-wells-2026-semi-final, tras: final}

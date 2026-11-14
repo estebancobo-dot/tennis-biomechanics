@@ -72,3 +72,18 @@ def test_a_file_read_on_one_side_is_never_same():
     assert eq.stroke_time({"match_time_s": 3.5, "t": 1.0}) == 3.5 and eq.stroke_time({"t": 1.0}) == 1.0
     g = eq.compare_strokes([_s(10.0), _s(20.0)], [_s(20.01), _s(10.0)])
     assert g["pares"] == 2 and not g["solo_a"]
+
+
+def test_a_stage_can_be_profiled_without_changing_it(tmp_path, monkeypatch):
+    """14-11: `perfil: [stage]` runs that stage under cProfile and writes its top functions beside the manifest;
+    the stage's summary is the same."""
+    from types import SimpleNamespace
+
+    from tennisbio import pipeline
+    lines = []
+    c = SimpleNamespace(cfg={"perfil": ["x"]}, log=lines.append, match=SimpleNamespace(id="m"),
+                        path=lambda name: tmp_path / name)
+    monkeypatch.setitem(pipeline.STAGES, "x", SimpleNamespace(run=lambda ctx: {"n": sum(range(1000))}))
+    assert pipeline._profiled("x", c) == {"n": 499500}
+    txt = (tmp_path / "perfil_x.txt").read_text(encoding="utf-8")
+    assert "tottime" in txt and "cumulative" in txt and lines

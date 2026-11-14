@@ -39,7 +39,9 @@ KAGGLE_SESSIONS = 2            # T20 (14-11): Kaggle runs 2 batch GPU sessions a
 # notebook, so one Kaggle job at a time. Hours per job until measured: a test 1 h, a match 3 × its video.
 KAGGLE_CAP_H = 28.0
 KAGGLE_H = {"prueba": 1.0, "medir": 0.5}
-KAGGLE_H_PER_VIDEO_MIN = 3.0 / 60
+# 14-11 22:20: measured (prueba v19, Kaggle with both T4s: 2899 s for 10 min of video = 0.081 h per minute; it was
+# 0.05, a guess that would have let two matches start into a week without their hours)
+KAGGLE_H_PER_VIDEO_MIN = 0.085
 # 14-11: a session that ends without its job done is launched again, up to KAGGLE_TRIES times; then the job is an error
 # with the reason. Queued in Kaggle (its free GPUs busy) it waits: relaunching every 10 minutes (13:48-14:32) sent it to
 # the back of Kaggle's queue each time and gave the job up after 4 tries; only after 45 minutes queued is it relaunched.
@@ -642,8 +644,13 @@ def copy_poc_results(vol, state: dict, logs: Path) -> list[str]:
             import almacen
             import nube
 
-            log = almacen.ModalStorage(vol, VOLUME).read_bytes(st["ruta"].rsplit("/", 1)[0] + "/log.txt")
+            store = almacen.ModalStorage(vol, VOLUME)
+            log = store.read_bytes(st["ruta"].rsplit("/", 1)[0] + "/log.txt")
             row["modelos_en_cpu_registro"] = nube.gpu_fallbacks(log.decode("utf-8", "replace")) if log else None
+            for stage in ((res.get("config") or {}).get("perfil") or []):     # a CPU profile it was asked for
+                prof = store.read_bytes(f"{st.get('salida', '')}/perfil_{stage}.txt") if st.get("salida") else None
+                if prof:
+                    (f.parent / f"{jid}_perfil_{stage}.txt").write_bytes(prof)
         f.write_text(json.dumps(row, ensure_ascii=False, indent=1), encoding="utf-8")
         out.append(jid)
     return out
