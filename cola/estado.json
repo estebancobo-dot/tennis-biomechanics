@@ -68,6 +68,7 @@
   "lanzado_ts": 1794679037.5117555,
   "accion": "medir",
   "inicio": "2026-11-14 17:57",
-  "ruta": "/runs/kaggle_medir_raqueta_trt/estado.json"
+  "ruta": "/runs/kaggle_medir_raqueta_trt/estado.json",
+  "kaggle": "queued (18:02)"
  }
 }
