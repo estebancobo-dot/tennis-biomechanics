@@ -19,6 +19,7 @@ REPO = Path(__file__).resolve().parents[1]
 APP, VOLUME = "tennisbio", "tennisbio-datos"
 GPU, CORES, GIB = "L4", 8.0, 32           # like the PC: 8 cores; memory above its 20 GB (the fine pass used 18)
 GPUS = ["L4", "T4"]                       # 13-11: «waiting to be scheduled on a GPU_L4 worker»: a T4 when no L4 is free
+RETRIES = 3                               # 14-11: a lost container is retried (partido, f3set)
 ORT_GPU = "1.24.4"                        # = onnxruntime-directml in uv.lock (the PC's): same version, other device
 MODAL_CLIENT = "modal>=1.0,<2"
 DATA = Path("/data")
@@ -207,7 +208,9 @@ def diag_ts(match_id: str) -> dict:
     return res
 
 
-@app.function(**SPEC, timeout=24 * 3600, retries=modal.Retries(max_retries=1))
+# 14-11: Modal lost two containers in one night (Pegula 03:19, Zheng 05:10); each retry goes on from the stages and windows
+# already saved, so a few cost little, and one alone left a second loss to fail the whole match
+@app.function(**SPEC, timeout=24 * 3600, retries=modal.Retries(max_retries=RETRIES))
 def f3set(tag: str = "nube", max_points: int = 0, matches: str = "", pc_tag: str = "v17") -> dict:
     """The F3Set validation (scripts/validate_recall.py --spotter) from scratch on the volume, then the comparison with
     the PC's report of the same code (pc_tag). A retry after a lost GPU goes on from the cached stages."""
@@ -293,7 +296,9 @@ def _catalog() -> list[dict]:
     return cat["matches"]
 
 
-@app.function(**SPEC, timeout=24 * 3600, retries=modal.Retries(max_retries=1))
+# 14-11: Modal lost two containers in one night (Pegula 03:19, Zheng 05:10); each retry goes on from the stages and windows
+# already saved, so a few cost little, and one alone left a second loss to fail the whole match
+@app.function(**SPEC, timeout=24 * 3600, retries=modal.Retries(max_retries=RETRIES))
 def partido(match_id: str) -> dict:
     """13-11 (night, the user's decision: everything in Modal): one match from scratch with the PC's code
     (`tennisbio run --match`), in its own container, so the matches of a batch run side by side. Its state, log and

@@ -434,3 +434,9 @@ def test_recoger_shows_each_stage_summary_of_a_match(tmp_path):
     f = tmp_path / "m.json"
     f.write_text(json.dumps({"probe": {"seconds": 1, "summary": {}}}), encoding="utf-8")
     assert resumen.main(str(f)) == 0 and resumen.main(str(tmp_path / "no.json")) == 1
+
+
+def test_a_lost_container_is_retried_several_times():
+    """14-11: two containers lost in one night; one retry left a second loss to fail a whole match."""
+    src = (ROOT / "cloud" / "modal_app.py").read_text(encoding="utf-8")
+    assert "RETRIES = 3" in src and src.count("retries=modal.Retries(max_retries=RETRIES)") == 2
