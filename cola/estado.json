@@ -68,12 +68,12 @@
   "estado": "en_marcha",
   "donde": "kaggle",
   "llamada": "kaggle",
-  "intentos": 1,
-  "lanzado_ts": 1794679037.5117555,
+  "intentos": 2,
+  "lanzado_ts": 1794681951.9829452,
   "accion": "medir",
-  "inicio": "2026-11-14 17:57",
+  "partido": "",
+  "inicio": "2026-11-14 18:45",
   "ruta": "/runs/kaggle_medir_raqueta_trt/estado.json",
-  "kaggle": "queued (18:40)",
-  "partido": ""
+  "nota": "en cola de Kaggle más de 45 min sin arrancar"
  }
 }
