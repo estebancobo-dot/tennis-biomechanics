@@ -1,6 +1,6 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-14 11:16 UTC · Modal: quedan 0.53 $ de 30 $ este mes (tope de la cola 29.5 $)
+Última vuelta: 2026-11-14 11:41 UTC · Modal: quedan 0.53 $ de 30 $ este mes (tope de la cola 29.5 $)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
