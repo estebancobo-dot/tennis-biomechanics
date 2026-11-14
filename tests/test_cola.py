@@ -150,6 +150,8 @@ def test_a_stuck_or_cut_kaggle_session_is_launched_again_then_given_up():
     act, why = cola.kaggle_step(st, "queued", None, NOV + 2701)
     assert act == "relanzar" and "en cola de Kaggle más de 45 min" in why
     assert cola.kaggle_step(st, "error", None, NOV + 60)[0] == "relanzar"
+    assert cola.kaggle_step(st, "desconocido", None, NOV + 300) == ("nada", "")
+    assert cola.kaggle_step(st, "desconocido", None, NOV + 601)[0] == "relanzar"      # refused launch, nothing behind
     assert cola.kaggle_step(st, "complete", {"estado": "en curso"}, NOV + 43000)[0] == "relanzar"
     assert cola.kaggle_step(st, "complete", {"estado": "hecho"}, NOV + 43000) == ("recoger", "")
     assert cola.kaggle_step(st, "error", {"estado": "error"}, NOV + 60) == ("recoger", "")

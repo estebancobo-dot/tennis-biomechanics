@@ -144,3 +144,19 @@ def test_one_notebook_per_job():
     assert m["id"] == "u/tennisbio-x" and m["title"] == "tennisbio-x" and m["code_file"] == "tennisbio-x.ipynb"
     src = (ROOT / "cloud" / "cola.py").read_text(encoding="utf-8")
     assert '"--slug", notebook_slug(job["id"])' in src and 'kaggle_status(jid)' in src
+
+
+def test_only_a_jobs_own_stuck_notebook_is_deleted(monkeypatch):
+    """#290 (14-11): the user authorised deleting a job's notebook stuck in Kaggle; never the shared one."""
+    monkeypatch.setenv("KAGGLE_USERNAME", "u")
+    calls = []
+    monkeypatch.setattr(klanzar, "_kaggle", lambda *a: calls.append(a) or type("R", (), {"stdout": "", "stderr": "",
+                                                                                      "returncode": 0})())
+    assert klanzar.main(["borrar", "--slug", "tennisbio-prueba-gauff-v16b"]) == 0
+    assert calls == [("kernels", "delete", "-y", "u/tennisbio-prueba-gauff-v16b")]
+    with pytest.raises(SystemExit):
+        klanzar.main(["borrar", "--slug", "tennisbio-cola"])
+    with pytest.raises(SystemExit):
+        klanzar.main(["borrar", "--slug", "otro-cuaderno"])
+    src = (ROOT / "cloud" / "cola.py").read_text(encoding="utf-8")
+    assert 'if kst == "queued":' in src and '_kaggle(["borrar", "--slug", notebook_slug(jid)])' in src

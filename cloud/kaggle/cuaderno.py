@@ -130,7 +130,7 @@ def _kaggle(*args) -> subprocess.CompletedProcess:
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("orden", choices=("clave", "lanzar", "estado", "esperar", "salida", "sonda"))
+    ap.add_argument("orden", choices=("clave", "lanzar", "estado", "esperar", "salida", "sonda", "borrar"))
     ap.add_argument("--accion", default="comprobar")
     ap.add_argument("--partido", default="")
     ap.add_argument("--salida-remota", default="", help="la carpeta de la ejecución en Modal (/runs/<tag>)")
@@ -163,6 +163,12 @@ def main(argv: list[str] | None = None) -> int:
                 return 0
             time.sleep(20)
         return 3
+    if a.orden == "borrar":                   # 14-11 (#290, authorised by the user): a job's notebook stuck in Kaggle
+        if not a.slug.startswith("tennisbio-") or a.slug == SLUG:
+            raise SystemExit(f"solo se borran cuadernos de trabajo (tennisbio-<trabajo>), no {a.slug}")
+        r = _kaggle("kernels", "delete", "-y", kid)
+        print(r.stdout, r.stderr)
+        return r.returncode
     if a.orden == "clave":                    # the key dataset, created once and then a new version each time
         folder = key_dataset(Path("kaggle-clave"), _user(), os.environ.get("MODAL_TOKEN_ID", ""),
                              os.environ.get("MODAL_TOKEN_SECRET", ""))

@@ -100,6 +100,9 @@ def kaggle_step(st: dict, kstatus: str, result: dict | None, now: float) -> tupl
         return "recoger", ""
     if kstatus == "queued" and now - float(st.get("lanzado_ts", now)) > KAGGLE_QUEUE_MAX_S:
         why = f"en cola de Kaggle más de {KAGGLE_QUEUE_MAX_S // 60} min sin arrancar"
+    elif kstatus == "desconocido" and now - float(st.get("lanzado_ts", now)) > 600:
+        # 14-11: a launch Kaggle refused (or a notebook it does not know) left the job «running» with nothing behind it
+        why = "Kaggle no tiene ninguna sesión de este trabajo"
     elif kstatus in ("error", "cancelacknowledged"):
         why = f"la sesión de Kaggle acabó con «{kstatus}» sin escribir su estado"
     elif kstatus == "complete":
@@ -436,6 +439,9 @@ def main(argv: list[str] | None = None) -> int:
                 act, why = kaggle_step(st, kst, res, now)
                 if act == "relanzar":
                     print(f"{jid}: {why}: se lanza otra vez")
+                    if kst == "queued":                  # #290: its stuck notebook is deleted first (frees its session)
+                        r = _kaggle(["borrar", "--slug", notebook_slug(jid)])
+                        print(f"{jid}: cuaderno atascado borrado ({r.returncode}) {r.stdout[-300:]} {r.stderr[-300:]}")
                     if kaggle_launch(by_id[jid]):
                         record_launch(state, spend, by_id[jid], "kaggle", "kaggle", now)
                         state[jid]["nota"] = why
