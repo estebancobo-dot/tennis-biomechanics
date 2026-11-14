@@ -20,7 +20,9 @@ trabajos:
   # lotes 3 y 4 (aprobados por el usuario el 13-11: Osaka; Pegula y Zheng; Gauff y la final; Zverev-Sinner), cada
   # partido tras su prueba corta de 10 minutos (#277); el informe y la auditoría de la Base al final
   - {id: prueba_gauff, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5}
-  - {id: gauff, accion: partido, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, tras: prueba_gauff, aprobado: true}
+  # 14-11 (R40): la prueba de Modal leyó 0 marcadores («Usa»); otra prueba con el marcador v16, en Kaggle, antes del partido
+  - {id: prueba_gauff_v16, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle}
+  - {id: gauff, accion: partido, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, tras: prueba_gauff_v16, aprobado: true}
   - {id: prueba_final, accion: prueba, partido: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5}
   - {id: final, accion: partido, partido: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5, tras: prueba_final, aprobado: true}
   - {id: prueba_sinner, accion: prueba, partido: zverev-alexander-sinner-jannik-indian-wells-2026-semi-final, tras: final}

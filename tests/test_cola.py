@@ -171,3 +171,23 @@ def test_kaggle_source_needs_its_keys_its_switch_and_a_free_notebook(monkeypatch
     assert "sleep 300" in job["steps"][-1]["run"]                                     # every 5 min while running
     q = yaml.safe_load((ROOT / "config" / "cola_nube.yaml").read_text(encoding="utf-8"))
     assert "kaggle_activo" in q
+
+
+def test_a_test_with_a_serious_fault_is_not_passed_and_keeps_its_match_waiting():
+    """R40 (14-11): Gauff's 10-minute test ended «hecho» with 0 scoreboard readings (C1): the match after it would have
+    started with a known fault (#247). Now such a test is «revisar» and its match waits."""
+    spend, state = {}, {}
+    cola.set_base(spend, {"2026-12": 0.0})
+    t = {"id": "t", "accion": "prueba", "partido": "g"}
+    m = {"id": "m", "accion": "partido", "partido": "g", "tras": "t", "aprobado": True}
+    cola.record_launch(state, spend, t, "kaggle", "kaggle", DEC)
+    assert state["t"]["ruta"] == "/runs/kaggle_t/estado.json"            # its own folder, never over Modal's test
+    cola.record_result(state, spend, "t", {"estado": "hecho", "fallos": {"score": {"entrada.cobertura_baja": {
+        "nivel": "C1", "n": 1}}}}, DEC)
+    assert state["t"]["estado"] == "revisar" and "score: entrada.cobertura_baja (C1)" in state["t"]["resultado"]["nota"]
+    d = {i: (src, why) for i, src, why in cola.plan([t, m], state, spend, OFF, DEC)}
+    assert "t" not in d and d["m"] == ("", "espera a t (revisar)")
+    cola.record_launch(state, spend, t, "modal", "fc", DEC)
+    cola.record_result(state, spend, "t", {"estado": "hecho", "fallos": {"court": {"x": {"nivel": "C2"}}}}, DEC)
+    assert state["t"]["estado"] == "hecho"                                  # a C2 within budget does not stop it
+    assert cola.run_path(t) == "/runs/partido__prueba_g/estado.json"

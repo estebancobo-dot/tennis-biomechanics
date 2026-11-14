@@ -44,6 +44,9 @@ KAGGLE_QUEUE_MAX_S = 600
 KAGGLE_TRIES = 4
 SOURCES = ("kaggle", "modal", "pc")
 FINAL = ("hecho", "error")
+# 14-11 (R40: Gauff's test ran «well» with 0 scoreboard readings): a test with a C0 or C1 fault is not passed: «revisar»,
+# and the match after it does not start until it is looked at
+SERIOUS = ("C0", "C1")
 
 
 def month(now: float) -> str:
@@ -93,9 +96,12 @@ def kaggle_step(st: dict, kstatus: str, result: dict | None, now: float) -> tupl
     return ("relanzar", why) if tries < KAGGLE_TRIES else ("error", f"{why} ({tries} intentos)")
 
 
-def run_path(job: dict) -> str:
-    """Where the cloud function writes the job's estado.json on the volume (cloud/modal_app.py)."""
+def run_path(job: dict, source: str = "modal") -> str:
+    """Where the job's estado.json goes on the volume (cloud/modal_app.py; a Kaggle test keeps its own folder, so it
+    never writes over a test made by Modal: cloud/kaggle/correr.py with --salida-remota)."""
     a = job["accion"]
+    if source == "kaggle" and a == "prueba":
+        return f"/runs/kaggle_{job['id']}/estado.json"
     if a == "partido":
         return f"/runs/partido_{job['partido']}/estado.json"
     if a == "prueba":
@@ -150,7 +156,7 @@ def plan(jobs: list[dict], state: dict, spend: dict, sources: dict, now: float) 
     kaggle = dict(sources.get("kaggle", {}))
     for j in jobs:
         st = state.get(j["id"], {})
-        if st.get("estado") in ("en_marcha", *FINAL):
+        if st.get("estado") in ("en_marcha", "revisar", *FINAL):
             continue
         if j.get("tras"):
             dep = state.get(j["tras"], {})
@@ -199,7 +205,8 @@ def plan(jobs: list[dict], state: dict, spend: dict, sources: dict, now: float) 
 def record_launch(state: dict, spend: dict, job: dict, source: str, call: str, now: float):
     tries = int(state.get(job["id"], {}).get("intentos", 0)) + 1 if state.get(job["id"], {}).get("estado") == "en_marcha" else 1
     state[job["id"]] = {"estado": "en_marcha", "donde": source, "llamada": call, "intentos": tries, "lanzado_ts": now,
-                        "inicio": time.strftime("%Y-%m-%d %H:%M", time.gmtime(now)), "ruta": run_path(job)}
+                        "accion": job["accion"], "inicio": time.strftime("%Y-%m-%d %H:%M", time.gmtime(now)),
+                        "ruta": run_path(job, source)}
     if source == "kaggle":
         w = spend.setdefault("kaggle", {}).setdefault(week(now), {"trabajos": {}})
         w.setdefault("trabajos", {}).setdefault(job["id"], {"estimado_h": estimate_h(job)})
@@ -212,6 +219,11 @@ def record_result(state: dict, spend: dict, job_id: str, result: dict, now: floa
     """A finished run (its estado.json): done or failed, and its real cost in the month it was launched."""
     st = state[job_id]
     st["estado"] = "hecho" if result.get("estado") == "hecho" else "error"
+    serious = [f"{stage}: {code} ({(v or {}).get('nivel')})" for stage, fs in (result.get("fallos") or {}).items()
+               for code, v in (fs or {}).items() if (v or {}).get("nivel") in SERIOUS]
+    if st["estado"] == "hecho" and st.get("accion") == "prueba" and serious:
+        st["estado"] = "revisar"
+        result = {**result, "nota": "prueba con fallos graves: " + "; ".join(serious)}
     st["fin"] = time.strftime("%Y-%m-%d %H:%M", time.gmtime(now))
     st["resultado"] = {k: result.get(k) for k in ("estado", "nota", "coste_usd", "segundos", "codigos", "horas_kaggle")
                        if k in result}
@@ -290,9 +302,12 @@ def _kaggle(args: list[str]) -> subprocess.CompletedProcess:
 
 
 def kaggle_launch(job: dict) -> bool:
-    """The Modal key into the private dataset, then the notebook with this job (cloud/kaggle/cuaderno.py)."""
+    """The Modal key into the private dataset, then the notebook with this job (cloud/kaggle/cuaderno.py). A test keeps
+    its results apart (/kaggle_pruebas), never over a test made by Modal."""
+    extra = (["--salida-remota", run_path(job, "kaggle").rsplit("/", 1)[0], "--output-remoto", "/kaggle_pruebas/output"]
+             if job["accion"] == "prueba" else [])
     for args in (["clave"], ["lanzar", "--accion", job["accion"], "--partido", job["partido"],
-                             "--commit", os.environ.get("GITHUB_SHA", "")]):
+                             "--commit", os.environ.get("GITHUB_SHA", ""), *extra]):
         r = _kaggle(args)
         print(r.stdout[-1500:], r.stderr[-1500:])
         if r.returncode:
