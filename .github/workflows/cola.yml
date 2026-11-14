@@ -2,13 +2,23 @@
 # Lee config/cola_nube.yaml, mira lo que está en marcha, lanza lo pendiente donde haya sitio gratis (cloud/cola.py) y
 # deja el estado en la rama nube-logs (cola/estado.md, estado.json, gasto.json, partidos.json). Repositorio público:
 # los minutos de GitHub Actions no cuestan nada.
+# 14-11 10:45: in its first two hours GitHub never ran the schedule (only the runs started by hand), so the queue does
+# not depend on it: while any job is unfinished, each run starts the next one 25 minutes later («Siguiente vuelta»);
+# a change to the queue and the end of a «Nube» run also start one. The schedule stays as a further backup.
 name: Cola
 on:
   schedule:
     - cron: "*/30 * * * *"
   workflow_dispatch:
+  push:
+    branches: [claude/tennis-biomech-setup-jggqb0]
+    paths: [config/cola_nube.yaml]
+  workflow_run:
+    workflows: [Nube]
+    types: [completed]
 permissions:
   contents: write
+  actions: write
 concurrency:
   group: cola
   cancel-in-progress: false
@@ -16,7 +26,7 @@ jobs:
   cola:
     if: github.repository_owner == 'estebancobo-dot'
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 45
     env:
       CLAVE_MODAL_1: ${{ secrets.MODAL_TOKEN_ID }}
       CLAVE_MODAL_2: ${{ secrets.MODAL_TOKEN_SECRET }}
@@ -61,3 +71,12 @@ jobs:
           git add -A
           git commit -qm "cola: $(date -u '+%Y-%m-%d %H:%M')" || exit 0
           git push -q origin HEAD:nube-logs
+      - name: Siguiente vuelta
+        if: always()
+        run: |
+          left=$(python -c "import json,yaml; q=yaml.safe_load(open('config/cola_nube.yaml',encoding='utf-8')) or {}; st=json.load(open('logs/cola/estado.json',encoding='utf-8')) if __import__('os').path.exists('logs/cola/estado.json') else {}; print(sum(1 for j in q.get('trabajos') or [] if st.get(j.get('id'),{}).get('estado') not in ('hecho','error')))")
+          echo "trabajos sin terminar: $left"
+          if [ "$left" -gt 0 ]; then
+            sleep 1500
+            gh workflow run cola.yml --repo "$GITHUB_REPOSITORY" --ref "${GITHUB_REF_NAME:-claude/tennis-biomech-setup-jggqb0}"
+          fi

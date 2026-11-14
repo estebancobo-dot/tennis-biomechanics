@@ -30,6 +30,15 @@ def test_queue_file_and_workflow():
     wf = (ROOT / ".github" / "workflows" / "cola.yml").read_text(encoding="utf-8")
     assert "cron:" in wf and "python cloud/cola.py --cola config/cola_nube.yaml --logs logs" in wf
     assert "contents: write" in wf and "group: cola" in wf and "nube-logs" in wf
+    # 14-11: GitHub did not run the schedule for hours: while any job is unfinished, each run starts the next one
+    y = yaml.safe_load(wf)
+    on = y.get("on") or y.get(True)
+    assert {"schedule", "workflow_dispatch", "push", "workflow_run"} <= set(on) and on["workflow_run"]["workflows"] == ["Nube"]
+    assert y["permissions"]["actions"] == "write"
+    last = y["jobs"]["cola"]["steps"][-1]
+    assert last["name"] == "Siguiente vuelta" and last["if"] == "always()"
+    assert "sleep 1500" in last["run"] and "gh workflow run cola.yml" in last["run"]
+    assert y["jobs"]["cola"]["timeout-minutes"] > 25 + 5
 
 
 def test_bad_jobs_are_named():
