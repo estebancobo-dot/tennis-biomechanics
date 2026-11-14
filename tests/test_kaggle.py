@@ -108,6 +108,7 @@ def test_workflow_runs_kaggle_without_deploying_modal():
     assert "/kaggle_comparar/output" in steps["Kaggle"]["run"]                   # never over Modal's own test
     assert '"kaggle>=1.8" six' in steps["Kaggle"]["run"]                        # the CLI imports six without declaring it
     assert steps["Kaggle"]["run"].index("cuaderno.py clave") < steps["Kaggle"]["run"].index("cuaderno.py lanzar")
+    assert "kaggle_prueba_*)" in steps["Recoger"]["run"] and "/kaggle_comparar/output/$d/manifest.json" in steps["Recoger"]["run"]
     env = wf["jobs"]["nube"]["env"]
     assert env["KAGGLE_API_TOKEN"] == "${{ secrets.KAGGLE_API_TOKEN }}" and "KAGGLE_USERNAME" in env
     assert re.search(r"startsWith\(inputs.accion, 'kaggle'\)", steps["Guardar lo recogido"]["if"])

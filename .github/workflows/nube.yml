@@ -171,6 +171,13 @@ jobs:
               modal volume get --force tennisbio-datos "/output/${TAG#partido_}/manifest.json" nube-out/manifest.json || true
               python cloud/resumen.py nube-out/manifest.json || true
               ;;
+            kaggle_prueba_*)
+              # 14-11: a Kaggle test keeps its results apart (/kaggle_comparar), to compare them with Modal's own test
+              for d in $(modal volume ls tennisbio-datos /kaggle_comparar/output | grep -o '_prueba_[A-Za-z0-9._-]*' | sort -u); do
+                modal volume get --force tennisbio-datos "/kaggle_comparar/output/$d/manifest.json" "nube-out/manifest_kaggle_$d.json" || true
+                python cloud/resumen.py "nube-out/manifest_kaggle_$d.json" || true
+              done
+              ;;
           esac
         env:
           TAG: ${{ inputs.tag }}

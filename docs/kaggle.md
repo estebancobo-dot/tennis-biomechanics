@@ -31,6 +31,14 @@ que dice «por medir» se mide con la prueba de 10 minutos antes de mandar ning�
   GitHub escribe desde sus propios secretos antes de cada lanzamiento (`cuaderno.py clave`); el cuaderno lo lee solo si
   los secretos faltan. Los secretos del cuaderno se pueden dejar o quitar: ya no hacen falta.
 
+**Segunda y tercera sesión (14-11):** con la clave en el conjunto de datos privado, la sesión de las 10:18 se quedó
+**en cola 1 h sin arrancar** (la API no dice por qué); la misma sin el conjunto de datos arrancó al momento (11:29); la
+de las 11:34, ya con el conjunto de datos creado hacía más de una hora, arrancó al momento y salió bien: **clave de
+Modal sí, bajar de Modal la configuración, los clics y los 44 ficheros de modelos 23 s, el entorno (Python 3.11 y las
+mismas versiones que Modal) 45 s, la GPU con CUDA** (`['TensorrtExecutionProvider', 'CUDAExecutionProvider',
+'CPUExecutionProvider']`), 0,02 h de la cuota. Pendiente (8b, al unir Kaggle a la cola): una sesión que se quede en
+cola más de un tiempo se relanza.
+
 ## 2. ¿Cumple los requisitos? (lo que se sabe y lo que falta medir)
 
 | Requisito | Kaggle | Cómo se sabe |
