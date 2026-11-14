@@ -1,0 +1,65 @@
+{
+ "estado": "hecho",
+ "poc": {
+  "proveedores": [
+   "TensorrtExecutionProvider",
+   "CUDAExecutionProvider",
+   "CPUExecutionProvider"
+  ],
+  "opciones": {
+   "cuda_fp32": {
+    "proveedor_usado": "CUDAExecutionProvider",
+    "primera_s": 2.0,
+    "lote_1": {
+     "ms_por_imagen": 10.506
+    },
+    "lote_8": {
+     "ms_por_imagen": 2.901
+    },
+    "lote_16": {
+     "ms_por_imagen": 2.331
+    },
+    "lote_32": {
+     "ms_por_imagen": 1.965
+    },
+    "lote_64": {
+     "ms_por_imagen": 1.904
+    }
+   },
+   "tensorrt_fp32": {
+    "proveedor_usado": "CUDAExecutionProvider",
+    "error": "RuntimeError: ONNX Runtime puso la sesión en CUDAExecutionProvider, no en TensorrtExecutionProvider"
+   },
+   "tensorrt_fp16": {
+    "proveedor_usado": "CUDAExecutionProvider",
+    "error": "RuntimeError: ONNX Runtime puso la sesión en CUDAExecutionProvider, no en TensorrtExecutionProvider"
+   }
+  },
+  "entrada": {
+   "nombre": "input",
+   "forma": [
+    "N",
+    3,
+    256,
+    256
+   ]
+  }
+ },
+ "kaggle": {
+  "python": "3.13.16",
+  "nucleos": 4,
+  "memoria_gib": {
+   "MemTotal": 31.3,
+   "MemAvailable": 30.0
+  },
+  "disco_libre_gib": {
+   "/tmp": 966.8,
+   "/kaggle/working": 19.5
+  },
+  "gpu": "Tesla T4, 15360 MiB\nTesla T4, 15360 MiB",
+  "ffmpeg": "/usr/bin/ffmpeg",
+  "clave_modal": true
+ },
+ "horas_kaggle": 0.06,
+ "nota": null
+}
