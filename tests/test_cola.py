@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "cloud"))
 
 import cola  # noqa: E402
+import nube  # noqa: E402
 
 NOV = time.mktime((2026, 11, 14, 12, 0, 0, 0, 0, 0))
 DEC = time.mktime((2026, 12, 1, 12, 0, 0, 0, 0, 0))
@@ -175,7 +176,9 @@ def test_kaggle_source_needs_its_keys_its_switch_and_a_free_notebook(monkeypatch
     assert "aún no activado" in cola._sources(ROOT, {"kaggle_activo": False})["kaggle"]["motivo"]
     assert cola._sources(ROOT, {"kaggle_activo": True})["kaggle"]["ok"] is True
     busy = {"g": {"estado": "en_marcha", "donde": "kaggle"}}
-    assert cola._sources(ROOT, {"kaggle_activo": True}, busy)["kaggle"] == {"ok": False, "motivo": "ocupado con g"}
+    assert cola._sources(ROOT, {"kaggle_activo": True}, busy)["kaggle"] == {"ok": True, "motivo": "", "libres": 1}  # T20
+    busy["h"] = {"estado": "en_marcha", "donde": "kaggle"}
+    assert cola._sources(ROOT, {"kaggle_activo": True}, busy)["kaggle"] == {"ok": False, "motivo": "ocupado con g, h"}
     wf = yaml.safe_load((ROOT / ".github" / "workflows" / "cola.yml").read_text(encoding="utf-8"))
     job = wf["jobs"]["cola"]
     assert job["env"]["KAGGLE_API_TOKEN"] == "${{ secrets.KAGGLE_API_TOKEN }}"
@@ -286,3 +289,50 @@ def test_the_queue_state_goes_to_the_volume_for_the_audit(tmp_path):
     state = {}
     cola.record_launch(state, {}, {"id": "g", "accion": "partido", "partido": "m"}, "kaggle", "kaggle", 0.0)
     assert state["g"]["partido"] == "m"
+
+
+def test_two_kaggle_sessions_at_once():
+    """T20 (14-11): Kaggle's two GPU sessions used at once (one notebook per job); a third job waits."""
+    jobs = [{"id": f"m{i}", "accion": "medir", "prueba": "raqueta", "donde": "kaggle"} for i in range(3)]
+    src = {"kaggle": {"ok": True, "motivo": "", "libres": 2}}
+    got = cola.plan(jobs, {}, {}, src, 0.0)
+    assert [g[1] for g in got] == ["kaggle", "kaggle", ""] and "sesiones ocupadas" in got[2][2]
+    got = cola.plan(jobs, {}, {}, {"kaggle": {"ok": True, "motivo": "", "libres": 1}}, 0.0)
+    assert [g[1] for g in got] == ["kaggle", "", ""]
+
+
+def test_compare_jobs_wait_and_run_here(tmp_path):
+    """T9: «comparar» waits for both runs, then the queue itself compares them (no GPU) and records the verdict."""
+    assert cola.TEST_PREFIX == nube.TEST_PREFIX
+    j = {"id": "c", "accion": "comparar", "a": "/kaggle_pruebas/output/_prueba_m", "b": "p2"}
+    assert not cola.check_queue([j, {"id": "p2", "accion": "prueba", "partido": "m"}])
+    assert "comparar necesita" in cola.check_queue([{"id": "c", "accion": "comparar", "a": "x"}])[0]
+    assert cola.plan([j], {}, {}, {}, 0.0) == [("c", "", "espera a p2")]
+    state = {"p2": {"estado": "hecho"}}
+    assert cola.plan([j], state, {}, {}, 0.0)[0][1] == "github"
+    # where a Kaggle test leaves its outputs (each its own folder), recorded at its launch
+    p2 = {"id": "p2", "accion": "prueba", "partido": "m"}
+    assert cola.output_of(p2, "kaggle") == "/kaggle_pruebas/p2/output/_prueba_m"
+    assert cola.output_of({"id": "g", "accion": "partido", "partido": "m"}, "kaggle") == "/output/m"
+    st = {}
+    cola.record_launch(st, {}, p2, "kaggle", "kaggle", 0.0)
+    assert st["p2"]["salida"] == "/kaggle_pruebas/p2/output/_prueba_m"
+    state["p2"]["salida"] = st["p2"]["salida"]
+    man = json.dumps({"fine": {"out_hash": "h"}}).encode()
+    strokes = json.dumps([{"t": 1.0, "stroke": "forehand", "m": {"x": 1.0}}]).encode()
+    files = {"kaggle_pruebas/output/_prueba_m/manifest.json": man, "kaggle_pruebas/p2/output/_prueba_m/manifest.json": man,
+             "kaggle_pruebas/output/_prueba_m/strokes.json": strokes,
+             "kaggle_pruebas/p2/output/_prueba_m/strokes.json": strokes}
+
+    class Vol:
+        def read_file(self, path):
+            if path not in files:
+                raise FileNotFoundError(path)
+            return [files[path]]
+    r = cola.compare_job(Vol(), j, state, tmp_path, 0.0)
+    assert r["estado"] == "hecho" and r["resultado"]["veredicto"] == "idéntica"
+    assert json.loads((tmp_path / "comparaciones" / "c.json").read_text(encoding="utf-8"))["veredicto"] == "idéntica"
+    files["kaggle_pruebas/p2/output/_prueba_m/strokes.json"] = json.dumps([]).encode()
+    files["kaggle_pruebas/p2/output/_prueba_m/manifest.json"] = json.dumps({"fine": {"out_hash": "z"}}).encode()
+    assert cola.compare_job(Vol(), j, state, tmp_path, 0.0)["estado"] == "revisar"     # Claude looks, nothing goes on
+    assert cola.compare_job(Vol(), {**j, "b": "nadie"}, state, tmp_path, 0.0)["estado"] == "error"

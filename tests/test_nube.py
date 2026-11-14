@@ -56,7 +56,8 @@ def test_the_cloud_runs_the_pcs_settings_with_its_own_paths():
                             "cloud": "/data"}
     assert cfg["registry"]["source"] == "yaml"                     # the cloud's own catalogue
     assert "hwaccel" not in cfg                                     # the Windows decoder
-    assert cfg["device"] == "dml" and cfg["fine_pass"] == {"workers": 2}
+    # T4 (14-11): the device by discovery in the cloud (CUDA there), the rest of the PC's settings as they are
+    assert cfg["device"] == "auto" and cfg["fine_pass"] == {"workers": 2}
 
 
 @pytest.mark.skipif(sys.platform == "win32", reason="only in the cloud's Linux container (Windows symlinks need rights)")

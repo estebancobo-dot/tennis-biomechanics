@@ -57,7 +57,8 @@ image = (
     # initialization)» in a loop); _prepare sets it for the analysis's own processes
     # 13-11: PYTHONFAULTHANDLER: a native crash (Osaka's fine pass ended with -11) prints the Python stack of every
     # thread, also in the fine pass's spawned workers
-    .env({"TENNISBIO_DML_IS_CUDA": "1", "PYTHONUNBUFFERED": "1", "PYTHONUTF8": "1", "PYTHONFAULTHANDLER": "1",
+    # T4 (14-11): no TENNISBIO_DML_IS_CUDA: the configuration says «device: auto» (nube.local_yaml)
+    .env({"PYTHONUNBUFFERED": "1", "PYTHONUTF8": "1", "PYTHONFAULTHANDLER": "1",
           "PLAYWRIGHT_BROWSERS_PATH": "/opt/pw-browsers"})
     .add_local_dir(REPO, "/repo", ignore=IGNORE)
 )
@@ -115,8 +116,9 @@ def comprobar() -> dict:
     out["modelos"] = sorted(p.name for p in models.glob("*") if p.is_file())
     probe = models / "balltrack.onnx"
     if probe.exists():
+        from tennisbio.infra.devices import resolve
         from tennisbio.pose.estimator import _new_session
-        out["sesion_balltrack"] = _new_session(str(probe), "dml").get_providers()
+        out["sesion_balltrack"] = _new_session(str(probe), resolve("auto")).get_providers()
     rec = DATA / "datasets" / "f3set" / "recall"
     out["compilaciones"] = sorted(p.name for p in (rec / "videos").glob("*.mp4"))
     out["anotaciones"] = sorted(p.name for p in (DATA / "datasets" / "f3set").glob("*.json"))

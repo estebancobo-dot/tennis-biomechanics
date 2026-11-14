@@ -9,6 +9,7 @@ from pathlib import Path
 
 import numpy as np
 from ..faults import fault
+from ..infra.devices import is_gpu
 
 from .yolo_onnx import MODELS_DIR
 
@@ -32,7 +33,7 @@ class PoseModel:
             except Exception as e:  # noqa: BLE001 — PyTorch instead: the same model, slower
                 fault("modelo.yolo_onnx", f"{self.name}: no se pudo exportar", exc=e)
                 path = None
-        if path is not None and path.exists() and fp16 and device == "dml":
+        if path is not None and path.exists() and fp16 and is_gpu(device):
             try:
                 from .variants import to_fp16
                 path, self.fp16 = to_fp16(path), True
@@ -83,7 +84,7 @@ def set_device(device: str | None, fp16: bool = False):
 
 def uses_fp16(cfg: dict) -> bool:
     """Whether the config asks for the half-precision pose model where it applies (the iGPU)."""
-    return bool(cfg.get("fp16", False)) and cfg.get("device", "cpu") == "dml"
+    return bool(cfg.get("fp16", False)) and is_gpu(cfg.get("device", "cpu"))
 
 
 @lru_cache(maxsize=8)
@@ -94,4 +95,4 @@ def _cached(name: str, imgsz: int, device: str, fp16: bool = False) -> PoseModel
 def pose_model(name: str = "yolo11m-pose", imgsz: int = 960, device: str | None = None) -> PoseModel:
     """Loaded once per (model, size, device, precision) and reused (loading takes seconds)."""
     device = device or DEFAULT_DEVICE
-    return _cached(Path(str(name)).stem, int(imgsz), device, DEFAULT_FP16 and device == "dml")
+    return _cached(Path(str(name)).stem, int(imgsz), device, DEFAULT_FP16 and is_gpu(device))

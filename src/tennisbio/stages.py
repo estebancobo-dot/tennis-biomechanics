@@ -17,6 +17,7 @@ from pathlib import Path
 import numpy as np
 
 from .impacts import audio_onsets, swing_peaks
+from .infra.devices import is_gpu
 from .io.video import frames_at, keyframe_times, keyframes_at, probe, read_ahead, read_frames
 from .kinematics import body_height, clean, speed, to_body_frame
 from .config import model_state, resolve_path
@@ -288,7 +289,7 @@ def _fp16_setting(c) -> dict:
 
 @stage("players", "7", deps=("scenes", "court"),   # 5 (12-11): short court gaps inside a main-camera shot are play; 6 (13-11): never its start; 7 (13-11): only after 0.5 s of court (dissolves)
        settings=lambda c: {"fps": c["cheap_pass"]["fps"], "imgsz": c["cheap_pass"].get("imgsz", 960), **_fp16_setting(c)},
-       outputs=("players.npz",), resource=lambda c: "gpu" if c.get("device", "cpu") == "dml" else "cpu")
+       outputs=("players.npz",), resource=lambda c: "gpu" if is_gpu(c.get("device", "cpu")) else "cpu")
 def st_players(ctx: Context):
     """Cheap pose on match-play frames only (main camera with the court found; cheap fps, full
     width for small players)."""
@@ -763,7 +764,7 @@ def _ball_tracker(ctx: Context):
         fault("modelo.bola_falta", "models/balltrack.onnx, que necesita el detector entrenado con la bola; "
                                    "ejecuta 1_instalar.bat")
     return BallTracker(str(bpath), ctx.cfg.get("device", "cpu"), bcfg.get("threshold", 0.5),
-                       static_batch=bool(bcfg.get("static_batch", True)) and ctx.cfg.get("device", "cpu") == "dml",
+                       static_batch=bool(bcfg.get("static_batch", True)) and is_gpu(ctx.cfg.get("device", "cpu")),
                        fp16=bool(bcfg.get("fp16", True)))
 
 
@@ -1840,7 +1841,7 @@ def _fine_workers(cfg: dict, n_groups: int, free_gb: float | None = None) -> int
     fs = cfg.get("fine_speed") or {}
     w = fs.get("workers")
     if w is None:
-        w = 2 if cfg.get("device", "cpu") == "dml" else 1
+        w = 2 if is_gpu(cfg.get("device", "cpu")) else 1
     w = min(int(w), n_groups, max(1, (os.cpu_count() or 2) // 4))
     free_gb = available_ram_gb() if free_gb is None else free_gb
     if free_gb is not None:
@@ -1972,7 +1973,7 @@ def _fine_models(ctx: Context):
         bcfg = ctx.cfg.get("ball") or {}
         # on the iGPU the ball model runs with a fixed batch (ball.static_batch): DirectML compiles it once
         ball = BallTracker(str(bpath), ctx.cfg.get("device", "cpu"), bcfg.get("threshold", 0.5),
-                           static_batch=bool(bcfg.get("static_batch", True)) and ctx.cfg.get("device", "cpu") == "dml",
+                           static_batch=bool(bcfg.get("static_batch", True)) and is_gpu(ctx.cfg.get("device", "cpu")),
                            fp16=bool(bcfg.get("fp16", True)))
     half = bool(fcfg.get("fp16", True))
     if rp is not None:

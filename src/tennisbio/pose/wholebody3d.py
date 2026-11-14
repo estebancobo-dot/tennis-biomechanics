@@ -15,6 +15,7 @@ of WholeBody3D gets depth in metres as the model was trained.
 import numpy as np
 
 from .estimator import _ort_session
+from ..infra.devices import is_gpu
 
 RTMW3D_URL = ("https://huggingface.co/Soykaf/RTMW3D-x/resolve/main/onnx/"
               "rtmw3d-x_8xb64_cocktail14-384x288-b0a0eab7_20240626.onnx")
@@ -56,7 +57,7 @@ class WholeBody3D:
 
         backend = "openvino" if device == "openvino" else "onnxruntime"
         self.model = RTMPose3d(model, model_input_size=(288, 384), backend=backend, device="cpu")
-        if device == "dml":
+        if is_gpu(device):
             path = self.model.onnx_model
             if fp16:
                 from .variants import to_fp16

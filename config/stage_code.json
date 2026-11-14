@@ -1,7 +1,7 @@
 {
  "probe": {
   "version": "2",
-  "hash": "5fb8e401e3241db4",
+  "hash": "61761f587851faad",
   "modules": [
    "io.video",
    "pipeline"
@@ -9,7 +9,7 @@
  },
  "scenes": {
   "version": "3",
-  "hash": "9a3bd80e77a2bfdd",
+  "hash": "9d7a814508fd932d",
   "modules": [
    "config",
    "faults",
@@ -20,7 +20,7 @@
  },
  "audio": {
   "version": "2",
-  "hash": "ea97558e875cad70",
+  "hash": "8ff36194d3fad41a",
   "modules": [
    "impacts",
    "io.video",
@@ -29,8 +29,9 @@
  },
  "players": {
   "version": "7",
-  "hash": "b69b410e7be87357",
+  "hash": "f64584ce5bde68f0",
   "modules": [
+   "infra.devices",
    "io.video",
    "pipeline",
    "pose.backend",
@@ -39,7 +40,7 @@
  },
  "identity": {
   "version": "13",
-  "hash": "eb2e8386549f92f1",
+  "hash": "475a4e0076f1d913",
   "modules": [
    "clothes",
    "court_metrics",
@@ -54,7 +55,7 @@
  },
  "spotting": {
   "version": "2",
-  "hash": "8cbc55464bae8d05",
+  "hash": "ec4ae8d276b57480",
   "modules": [
    "ball",
    "ball_features",
@@ -62,6 +63,7 @@
    "court_metrics",
    "faults",
    "impacts",
+   "infra.devices",
    "kinematics",
    "pipeline",
    "skeleton",
@@ -71,7 +73,7 @@
  },
  "candidates": {
   "version": "16",
-  "hash": "785296433d471901",
+  "hash": "0e61a7c3498e9d3e",
   "modules": [
    "court_metrics",
    "identity",
@@ -86,7 +88,7 @@
  },
  "views": {
   "version": "6",
-  "hash": "619fdffc9545ad89",
+  "hash": "a06d6857e6275e47",
   "modules": [
    "court",
    "court_metrics",
@@ -103,7 +105,7 @@
  },
  "views_link": {
   "version": "1",
-  "hash": "47fb58917c398d91",
+  "hash": "87999ab42ca755b1",
   "modules": [
    "pipeline",
    "views"
@@ -111,7 +113,7 @@
  },
  "court": {
   "version": "6",
-  "hash": "e83158ac1e7400b5",
+  "hash": "4499b169aa8a5f02",
   "modules": [
    "court",
    "faults",
@@ -120,7 +122,7 @@
  },
  "score": {
   "version": "16",
-  "hash": "a55e34c667bf4e2c",
+  "hash": "b0fd8f1ffde01c48",
   "modules": [
    "faults",
    "io.video",

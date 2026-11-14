@@ -52,3 +52,52 @@ def test_racket_proof_of_concept_compares_and_times(tmp_path):
     b[0][0, 0, 3] = 1.0
     c = poc.compare(a, b)
     assert c["puntos_movidos"] == 1 and c["puntos"] == 10 and c["max_diff"] == 1.0
+
+
+def test_device_auto_and_gpu_paths(monkeypatch):
+    """T4 (14-11, #289): «device: auto» is resolved by discovery; every «is it the iGPU?» is now «is it a GPU?», so the
+    cloud's CUDA takes the same code paths the PC's DirectML takes (static batches, 2 workers, fp16 pose)."""
+    from tennisbio.infra import devices
+    assert devices.is_gpu("dml") and devices.is_gpu("cuda") and devices.is_gpu("tensorrt")
+    assert not devices.is_gpu("cpu") and not devices.is_gpu(None) and not devices.is_gpu("openvino")
+    assert devices.resolve("dml") == "dml" and devices.resolve(None) == "cpu"
+    devices._auto.cache_clear()
+    kaggle = Capabilities(platform="kaggle", gpus=T4, ort_providers=["CUDAExecutionProvider", "CPUExecutionProvider"])
+    monkeypatch.setattr(devices, "discover", lambda: kaggle)
+    assert devices.resolve("auto") == "cuda"
+    devices._auto.cache_clear()
+    monkeypatch.setattr(devices, "discover", lambda: Capabilities(ort_providers=["CPUExecutionProvider"]))
+    assert devices.resolve("auto") == "cpu"
+    devices._auto.cache_clear()
+    assert devices.provider_options(["CUDAExecutionProvider", "CPUExecutionProvider"]) == [devices.CUDA_OPTIONS, {}]
+    assert devices.provider_options(["DmlExecutionProvider", "CPUExecutionProvider"]) is None
+    assert devices.providers_for("cuda") == ["CUDAExecutionProvider", "CPUExecutionProvider"]
+    assert devices.providers_for("openvino") == ["CPUExecutionProvider"] == devices.providers_for("nada")
+
+
+def test_the_cloud_patch_and_the_estimator_use_the_same_cuda_options():
+    """The equivalence of T4: the CUDA options and the memory given back are those of cloud/arranque/nube_gpu.py."""
+    import sys
+    from pathlib import Path
+
+    from tennisbio.infra import devices
+    from tennisbio.pose import estimator
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "cloud" / "arranque"))
+    import nube_gpu
+    assert devices.CUDA_OPTIONS == nube_gpu.CUDA_OPTIONS
+    assert estimator.ORT_PROVIDERS["cuda"] == ["CUDAExecutionProvider", "CPUExecutionProvider"]
+    assert estimator.ORT_PROVIDERS["dml"] == ["DmlExecutionProvider", "CPUExecutionProvider"]
+
+    class Fake:
+        def get_providers(self):
+            return ["CPUExecutionProvider"]
+    assert estimator._shrink_options(Fake()) is None
+
+
+def test_config_resolves_auto(tmp_path, monkeypatch):
+    from tennisbio import config
+    from tennisbio.infra import devices
+    (tmp_path / "default.yaml").write_text("device: auto\n", encoding="utf-8")
+    monkeypatch.setattr(devices, "resolve", lambda d, prefer=None: "cuda")
+    cfg = config.load_config(tmp_path)
+    assert cfg["device"] == "cuda" and cfg["device_configurado"] == "auto"

@@ -375,12 +375,37 @@ def _dep_key(manifest: dict, d: str):
     return e.get("out_hash") or e.get("fingerprint")
 
 
+EQUIVALENT_CODE = Path(__file__).resolve().parents[2] / "config" / "codigo_equivalente.json"
+_equiv_cache: dict = {}
+
+
+def equivalent_code(stage: str, fp: str, path: Path | None = None) -> str:
+    """The code fingerprint a stage's results are known by (14-11, #287-#289): a change to the code of a stage with
+    `code=` (the fine passes) re-runs it in every analysed match (hours of GPU), even when it only changes where or
+    how fast it runs. config/codigo_equivalente.json declares, per stage, a new code fingerprint «igual_a» an older
+    one once a measured equivalence test (the same clip with both codes: the same strokes and measures,
+    tennisbio.infra.equivalence) said so («comprobado»: true, with the test that showed it); until then the new
+    code counts as new. Chains are followed (new → old → older)."""
+    f = path or EQUIVALENT_CODE
+    if f not in _equiv_cache:
+        try:
+            _equiv_cache[f] = json.loads(f.read_text(encoding="utf-8")) if f.exists() else {}
+        except (OSError, ValueError):  # esperado: a damaged file declares nothing: every code counts as new
+            _equiv_cache[f] = {}
+    reg, seen = (_equiv_cache[f].get(stage) or {}), set()
+    while fp in reg and fp not in seen and (reg[fp] or {}).get("comprobado") is True and reg[fp].get("igual_a"):
+        seen.add(fp)
+        fp = reg[fp]["igual_a"]
+    return fp
+
+
 def fingerprint(name: str, ctx: Context, manifest: dict, by_content: bool = True) -> str:
     """by_content (scheme 2, 04-11): a dependency counts by the content of its outputs (out_hash); False: by its
     fingerprint, the former scheme (only to recognise manifests written before, see _migrate)."""
     st = STAGES[name]
     key = {"stage": name, "version": st.version, "video": video_fingerprint(ctx.match.video, ctx.dir),
-           "settings": st.settings(ctx.cfg), "code": code_fingerprint(st.code, st.run.__name__) if st.code else None,
+           "settings": st.settings(ctx.cfg),
+           "code": equivalent_code(name, code_fingerprint(st.code, st.run.__name__)) if st.code else None,
            "match": st.match_fields(ctx.match) if st.match_fields else None,
            "deps": {d: (_dep_key(manifest, d) if by_content else manifest.get(d, {}).get("fingerprint"))
                     for d in st.all_deps(ctx.cfg)}}

@@ -67,4 +67,8 @@ def load_config(config_dir: Path = CONFIG_DIR) -> dict:
     sb = os.environ.get("TENNISBIO_SANDBOX")
     if sb and Path(sb).is_file():
         cfg = _merge(cfg, yaml.safe_load(Path(sb).read_text(encoding="utf-8-sig")) or {})
+    if cfg.get("device") == "auto":          # T4 (#289): what this machine can run (tennisbio.infra.devices)
+        from .infra.devices import resolve
+        cfg["device_configurado"] = "auto"
+        cfg["device"] = resolve("auto", cfg.get("inference_preference"))
     return cfg

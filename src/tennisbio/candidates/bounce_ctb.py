@@ -19,6 +19,8 @@ from pathlib import Path
 
 import numpy as np
 
+from ..infra.devices import is_gpu
+
 THRESHOLD = 0.45
 LAGS = (1, 2)
 EPS = 1e-15
@@ -102,7 +104,7 @@ class CatBoostBounce:
         # tree ensembles run on the CPU in every onnxruntime package (DirectML has no kernel for them)
         from ..pose.estimator import _ort_session
 
-        self.sess = _ort_session(str(onnx_path), "cpu" if device == "dml" else device)
+        self.sess = _ort_session(str(onnx_path), "cpu" if is_gpu(device) else device)
         self.threshold = threshold
 
     def scores(self, track: np.ndarray, step: int = 1, smooth_track: bool = True) -> tuple[np.ndarray, np.ndarray]:

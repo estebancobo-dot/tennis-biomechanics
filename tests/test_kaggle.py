@@ -52,8 +52,10 @@ def test_same_environment_as_modal():
     assert f'ORT_GPU = "{correr.ORT_GPU}"' in app
     src = (ROOT / "cloud" / "kaggle" / "correr.py").read_text(encoding="utf-8")
     for part in ('"--no-emit-project", "--extra", "ocr", "--extra", "validation"', '"--python", "3.11"',
-                 "onnxruntime-gpu[cuda,cudnn]", "nube.pth_text(", '"TENNISBIO_DML_IS_CUDA": "1"', '"tennisbio.cli", "run", "--match"'):
+                 "onnxruntime-gpu[cuda,cudnn]", "nube.pth_text(", '"tennisbio.cli", "run", "--match"'):
         assert part in src, part
+    # T4 (14-11): the device by discovery (nube.local_yaml: «device: auto»), no longer «dml» put on CUDA by the hook
+    assert '"TENNISBIO_DML_IS_CUDA": "1"' not in src and '"TENNISBIO_DML_IS_CUDA": "1"' not in app
     assert "python_version=\"3.11\"" in app and "--extra ocr --extra validation" in app
 
 

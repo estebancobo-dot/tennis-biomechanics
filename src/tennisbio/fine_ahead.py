@@ -19,6 +19,8 @@ import threading
 import time
 from typing import Callable
 
+from .infra.devices import is_gpu
+
 
 class BallAhead:
     """Background worker over the windows 0..n-1. job(i) cuts window i and caches its ball.
@@ -111,5 +113,5 @@ def ahead_enabled(cfg: dict, n_windows: int, has_ball: bool) -> bool:
     import os
 
     cores_ok = (os.cpu_count() or 1) >= int(fs.get("ball_ahead_min_cores", 8))
-    return bool(fs.get("ball_ahead", True)) and cfg.get("device", "cpu") == "dml" and has_ball and n_windows >= 2 \
+    return bool(fs.get("ball_ahead", True)) and is_gpu(cfg.get("device", "cpu")) and has_ball and n_windows >= 2 \
         and cores_ok

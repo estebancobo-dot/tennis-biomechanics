@@ -33,7 +33,8 @@ CAP_USD = 29.5
 USD_PER_VIDEO_MIN = 0.065
 USD = {"prueba": 0.8, "informe": 0.15, "medir": 0.5}
 DEFAULT_VIDEO_MIN = 210                     # the longest of the six, when a job does not say its length
-ACTIONS = ("prueba", "partido", "informe", "medir")
+ACTIONS = ("prueba", "partido", "informe", "medir", "comparar")
+KAGGLE_SESSIONS = 2            # T20 (14-11): Kaggle runs 2 batch GPU sessions at once; one notebook per job
 # Kaggle (paso 8b): ~30 GPU hours a week (the figure floats; the account shows it); the queue keeps 2 h of margin. One
 # notebook, so one Kaggle job at a time. Hours per job until measured: a test 1 h, a match 3 × its video.
 KAGGLE_CAP_H = 28.0
@@ -126,6 +127,24 @@ def run_path(job: dict, source: str = "modal") -> str:
     return f"/runs/{job.get('tag') or job['id']}/estado.json"
 
 
+TEST_PREFIX = "_prueba_"           # cloud/nube.py TEST_PREFIX (tests/test_cola.py keeps them equal)
+
+
+def output_root(job: dict, source: str) -> str:
+    """The volume folder that holds the job's match folder. 14-11 (T9): every Kaggle test its own
+    (/kaggle_pruebas/<id>/output), so a test with new code never writes over the one it is compared with; before,
+    all of them shared /kaggle_pruebas/output."""
+    if job["accion"] == "prueba" and source == "kaggle":
+        return f"/kaggle_pruebas/{job['id']}/output"
+    return "/output"
+
+
+def output_of(job: dict, source: str) -> str:
+    """The job's match folder on the volume (its manifest.json and strokes files)."""
+    mid = (TEST_PREFIX if job["accion"] == "prueba" else "") + str(job.get("partido", ""))
+    return f"{output_root(job, source)}/{mid}"
+
+
 def check_queue(jobs: list[dict]) -> list[str]:
     """What is wrong in the queue file (a wrong job is never launched; the others go on)."""
     bad, ids = [], set()
@@ -143,6 +162,8 @@ def check_queue(jobs: list[dict]) -> list[str]:
             bad.append(f"{jid}: falta el partido")
         if j.get("accion") == "medir" and not j.get("prueba"):
             bad.append(f"{jid}: falta la prueba de concepto («prueba»)")
+        if j.get("accion") == "comparar" and not (j.get("a") and j.get("b")):
+            bad.append(f"{jid}: comparar necesita «a» y «b» (dos trabajos de la cola o dos carpetas del volumen)")
         if j.get("donde", "cualquiera") not in ("cualquiera", *SOURCES):
             bad.append(f"{jid}: donde {j.get('donde')!r}")
     for j in jobs:
@@ -198,6 +219,11 @@ def plan(jobs: list[dict], state: dict, spend: dict, sources: dict, now: float,
             if dep.get("estado") != "hecho":
                 out.append((j["id"], "", f"espera a {j['tras']} ({dep.get('estado', 'pendiente')})"))
                 continue
+        if j["accion"] == "comparar":                  # T9: no GPU, run by the queue itself in this pass
+            waits = [x for x in (j.get("a"), j.get("b")) if not str(x).startswith("/")
+                     and state.get(str(x), {}).get("estado") != "hecho"]
+            out.append((j["id"], "", f"espera a {', '.join(waits)}") if waits else (j["id"], "github", "se compara en esta vuelta"))
+            continue
         if j["accion"] == "partido" and not j.get("aprobado"):
             out.append((j["id"], "", "falta la aprobación del usuario (#262)"))
             continue
@@ -229,7 +255,9 @@ def plan(jobs: list[dict], state: dict, spend: dict, sources: dict, now: float,
                     why.append(f"kaggle: quedan {kroom:.1f} h esta semana y necesita {need:.1f} h")
                 else:
                     kroom -= need
-                    kaggle = {"ok": False, "motivo": f"ocupado con {j['id']}"}      # one notebook: one job at a time
+                    free = int(kaggle.get("libres", 1)) - 1                       # T20: its 2 sessions at once
+                    kaggle = {**kaggle, "libres": free} if free > 0 else \
+                        {"ok": False, "motivo": f"sus {KAGGLE_SESSIONS} sesiones ocupadas (la última, {j['id']})"}
                     out.append((j["id"], "kaggle", f"previstas {need:.1f} h, quedan {kroom:.1f} h esta semana"))
                     break
             else:
@@ -249,6 +277,8 @@ def record_launch(state: dict, spend: dict, job: dict, source: str, call: str, n
                         "accion": job["accion"], "partido": job.get("partido", ""),
                         "inicio": time.strftime("%Y-%m-%d %H:%M", time.gmtime(now)),
                         "ruta": run_path(job, source)}
+    if job.get("partido"):                        # T9: where its outputs are, for «comparar»
+        state[job["id"]]["salida"] = output_of(job, source)
     if source == "kaggle":
         w = spend.setdefault("kaggle", {}).setdefault(week(now), {"trabajos": {}})
         w.setdefault("trabajos", {}).setdefault(job["id"], {"estimado_h": estimate_h(job)})
@@ -330,7 +360,7 @@ def _load(path: Path, default):
 
 def _sources(repo: Path, queue: dict | None = None, state: dict | None = None) -> dict:
     """Kaggle and the PC: whether each can take work now. Kaggle: its keys in the environment, switched on in the queue
-    (`kaggle_activo`, after its 10-minute test gave the same as Modal's) and no Kaggle job running (one notebook);
+    (`kaggle_activo`, after its 10-minute test gave the same as Modal's) and a free session of its KAGGLE_SESSIONS;
     the PC: never (#284)."""
     queue, state = queue or {}, state or {}
     busy = [i for i, st in state.items() if st.get("estado") == "en_marcha" and st.get("donde") == "kaggle"]
@@ -338,10 +368,10 @@ def _sources(repo: Path, queue: dict | None = None, state: dict | None = None) -
         k = {"ok": False, "motivo": "sin sus claves en GitHub"}
     elif not queue.get("kaggle_activo"):
         k = {"ok": False, "motivo": "aún no activado en la cola (antes, su prueba de 10 min frente a la de Modal)"}
-    elif busy:
-        k = {"ok": False, "motivo": f"ocupado con {busy[0]}"}
+    elif len(busy) >= KAGGLE_SESSIONS:
+        k = {"ok": False, "motivo": f"ocupado con {', '.join(busy)}"}
     else:
-        k = {"ok": True, "motivo": ""}
+        k = {"ok": True, "motivo": "", "libres": KAGGLE_SESSIONS - len(busy)}
     return {"kaggle": k, "pc": {"ok": False, "motivo": "no se usa (decisión del usuario, 14-11, #284)"}}
 
 
@@ -355,7 +385,7 @@ LAST_REFUSAL = {"text": ""}
 def kaggle_launch(job: dict) -> bool:
     """The Modal key into the private dataset, then the notebook with this job (cloud/kaggle/cuaderno.py). A test keeps
     its results apart (/kaggle_pruebas), never over a test made by Modal."""
-    extra = (["--salida-remota", run_path(job, "kaggle").rsplit("/", 1)[0], "--output-remoto", "/kaggle_pruebas/output"]
+    extra = (["--salida-remota", run_path(job, "kaggle").rsplit("/", 1)[0], "--output-remoto", output_root(job, "kaggle")]
              if job["accion"] == "prueba" else
              ["--salida-remota", run_path(job, "kaggle").rsplit("/", 1)[0], "--prueba", job.get("prueba", "")]
              if job["accion"] == "medir" else [])
@@ -472,6 +502,9 @@ def main(argv: list[str] | None = None) -> int:
         if not src or a.en_seco:
             continue
         j = by_id[jid]
+        if src == "github":                              # T9: a comparison, here and now (no GPU)
+            compare_job(vol, j, state, d, now)
+            continue
         if src == "kaggle":
             if kaggle_launch(j):
                 record_launch(state, spend, j, "kaggle", "kaggle", now)
@@ -505,6 +538,46 @@ def main(argv: list[str] | None = None) -> int:
 
 
 QUEUE_FILES = ("estado.json", "gasto.json", "vuelta.json", "estado.md")
+SAME = ("idéntica", "equivalente")
+
+
+def _read_json(vol, path: str):
+    try:
+        return json.loads(b"".join(vol.read_file(path.lstrip("/"))).decode("utf-8"))
+    except Exception:  # noqa: BLE001 — not there (or not JSON): said by the caller
+        return None
+
+
+def compare_job(vol, job: dict, state: dict, logs: Path, now: float) -> dict:
+    """T9 (#288, #289): job «comparar» — two runs of the same clip (`a`, `b`: queue jobs, by the folder recorded at
+    their launch, or volume folders) compared with tennisbio.infra.equivalence; «hecho» when identical or equivalent,
+    «revisar» otherwise (Claude looks at what differs: nothing that depends on it goes on). The whole comparison
+    goes to nube-logs (cola/comparaciones/<id>.json)."""
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+    from tennisbio.infra.equivalence import STROKE_FILES, compare, summary as eq_summary
+
+    def folder(x):
+        return str(x) if str(x).startswith("/") else (state.get(str(x)) or {}).get("salida")
+    fa, fb = folder(job["a"]), folder(job["b"])
+    st = {"estado": "error", "accion": "comparar", "donde": "github", "fin": time.strftime("%Y-%m-%d %H:%M", time.gmtime(now))}
+    if not fa or not fb:
+        st["resultado"] = {"nota": f"no se sabe dónde están las salidas de {job['a'] if not fa else job['b']}"}
+    else:
+        ma, mb = _read_json(vol, f"{fa}/manifest.json"), _read_json(vol, f"{fb}/manifest.json")
+        if ma is None or mb is None:
+            st["resultado"] = {"nota": f"sin manifest.json en {fa if ma is None else fb}"}
+        else:
+            sa = {f: v for f in STROKE_FILES if (v := _read_json(vol, f"{fa}/{f}")) is not None}
+            sb = {f: v for f in STROKE_FILES if (v := _read_json(vol, f"{fb}/{f}")) is not None}
+            res = compare(ma, mb, sa, sb)
+            (logs / "comparaciones").mkdir(parents=True, exist_ok=True)
+            (logs / "comparaciones" / f"{job['id']}.json").write_text(
+                json.dumps({"a": fa, "b": fb, **res}, ensure_ascii=False, indent=1), encoding="utf-8")
+            st["estado"] = "hecho" if res["veredicto"] in SAME else "revisar"
+            st["resultado"] = {"estado": st["estado"], "veredicto": res["veredicto"], "nota": eq_summary(res)[:600]}
+    state[job["id"]] = st
+    print(f"{job['id']}: {st['estado']} · {st['resultado'].get('nota', '')}")
+    return st
 
 
 def upload_state(vol, d: Path) -> bool:

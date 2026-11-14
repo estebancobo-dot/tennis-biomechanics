@@ -127,7 +127,8 @@ def setup_env(repo: Path, venv: Path) -> Path:
 
 
 def env_for(data: Path) -> dict:
-    return {**os.environ, "TENNISBIO_DML_IS_CUDA": "1", "PYTHONUNBUFFERED": "1", "PYTHONUTF8": "1",
+    # T4 (14-11): no TENNISBIO_DML_IS_CUDA: the configuration says «device: auto» (nube.local_yaml)
+    return {**os.environ, "PYTHONUNBUFFERED": "1", "PYTHONUTF8": "1",
             "PYTHONFAULTHANDLER": "1", "HOME": str(data / "home")}
 
 

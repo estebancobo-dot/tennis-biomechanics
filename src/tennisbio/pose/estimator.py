@@ -4,11 +4,11 @@ from ..faults import fault
 import onnxruntime as ort
 from rtmlib import YOLOX, RTMPose
 
+from ..infra.devices import NVIDIA_DEVICES, is_gpu, preload_cuda, provider_options, providers_for
+
 # Our device names -> ONNX Runtime providers. "openvino" uses rtmlib's OpenVINO backend instead.
-ORT_PROVIDERS = {
-    "cpu": ["CPUExecutionProvider"],
-    "dml": ["DmlExecutionProvider", "CPUExecutionProvider"],
-}
+# 14-11 (T4, #289): the NVIDIA GPU of the cloud by its own name («cuda», «tensorrt»), no longer «dml» put on CUDA
+ORT_PROVIDERS = {d: providers_for(d) for d in ("cpu", "dml", "cuda", "tensorrt")}
 
 
 _warned: set = set()
@@ -36,12 +36,15 @@ class RecoveringSession:
         self._make, self._device = make, device
         self._sess = make(device)
         self.recoveries = 0
+        self._shrink = _shrink_options(self._sess)
 
     def __getattr__(self, name):
         return getattr(self._sess, name)
 
     def run(self, *args, **kwargs):
         global _dml_lost
+        if self._shrink is not None and len(args) < 3 and kwargs.get("run_options") is None:
+            kwargs["run_options"] = self._shrink
         try:
             return self._sess.run(*args, **kwargs)
         except Exception as e:                    # noqa: BLE001 — only a lost device is handled
@@ -62,6 +65,20 @@ class RecoveringSession:
         return self._sess.run(*args, **kwargs)
 
 
+def _shrink_options(sess):
+    """13-11 (Osaka's 4th test in the cloud: 14.6 of 15 GB, 14 of 58 windows failed «Failed to allocate memory»): on
+    CUDA the GPU memory a run no longer needs is given back after every run, so idle sessions keep only their weights
+    and the fine pass's workers have the rest. None elsewhere (DirectML, the CPU)."""
+    try:
+        if "CUDAExecutionProvider" not in sess.get_providers():
+            return None
+        ro = ort.RunOptions()
+        ro.add_run_config_entry("memory.enable_memory_arena_shrinkage", "gpu:0")
+        return ro
+    except Exception:  # esperado: a session without providers (a test double) or an older runtime  # noqa: BLE001
+        return None
+
+
 def _ort_session(model_path: str, device: str, free_dims: dict | None = None,
                  threads: int | None = None) -> RecoveringSession:
     """See _new_session; the session recovers by itself if the iGPU is lost while running."""
@@ -78,6 +95,8 @@ def _new_session(model_path: str, device: str, free_dims: dict | None = None,
     compile the whole graph for that shape (ONNX Runtime's free dimension overrides).
     threads: CPU threads of the session (ONNX Runtime's intra-op threads; None: its default, all cores),
     so that a CPU model running next to the iGPU leaves cores for the rest of the work."""
+    if device in NVIDIA_DEVICES:
+        preload_cuda()
     available = set(ort.get_available_providers())
     providers = [p for p in ORT_PROVIDERS.get(device, ORT_PROVIDERS["cpu"]) if p in available] or ["CPUExecutionProvider"]
     if device not in ORT_PROVIDERS or providers == ["CPUExecutionProvider"] and device != "cpu":
@@ -94,7 +113,10 @@ def _new_session(model_path: str, device: str, free_dims: dict | None = None,
         opts.enable_mem_pattern = False
         opts.execution_mode = ort.ExecutionMode.ORT_SEQUENTIAL
     try:
-        return ort.InferenceSession(model_path, sess_options=opts, providers=providers)
+        po = provider_options(providers)          # CUDA's options; on the PC (DirectML, CPU) the same call as before
+        if po is None:
+            return ort.InferenceSession(model_path, sess_options=opts, providers=providers)
+        return ort.InferenceSession(model_path, sess_options=opts, providers=providers, provider_options=po)
     except Exception as e:                    # driver problem on the iGPU: CPU instead
         if providers == ["CPUExecutionProvider"]:
             raise
@@ -110,7 +132,7 @@ def _new_session(model_path: str, device: str, free_dims: dict | None = None,
 def _build(cls, model: str, input_size, device: str, **kwargs):
     backend = "openvino" if device == "openvino" else "onnxruntime"
     tool = cls(model, model_input_size=tuple(input_size), backend=backend, device="cpu", **kwargs)
-    if device == "dml":
+    if is_gpu(device):
         tool.session = _ort_session(tool.onnx_model, device)
     return tool
 

@@ -37,6 +37,8 @@ SEGUIR»: la primera tarea no hecha cuyas dependencias estén hechas. **Después
 | La cola no corre (sin vueltas en `nube-logs`) | — | Lanzar «Cola» a mano; ver por qué se cortó la cadena de vueltas |
 | Un fallo nuevo del código | — | Apuntarlo como R<n> en `estado_proyecto.md`; prueba que lo reproduce; arreglo; todas las pruebas; subida |
 | Petición nueva del usuario | — | `peticiones_usuario.md` + un paquete de `plan_peticiones.yaml` + tarea en el PLAN ÚNICO |
+| «comparar» hecho (idéntica o equivalente) | Lo apunta y sigue lo que esperaba por él | Si comprobaba un cambio de código de la pasada fina: poner `comprobado: true` en su entrada de `config/codigo_equivalente.json` (con la comparación de `nube-logs/cola/comparaciones/`) y subirlo; así los partidos ya analizados no repiten la pasada fina |
+| «comparar» en «revisar» (distinta) | No sigue nada de lo que espera por él | Leer `nube-logs/cola/comparaciones/<id>.json` (qué etapas y qué medidas cambian); encontrar la causa; arreglar o, si el cambio es de verdad distinto, dejar la entrada sin comprobar: lo ya analizado se rehará con el código nuevo |
 
 ## 3. Cómo se valida y se acepta (el modelo de calidad del proyecto)
 

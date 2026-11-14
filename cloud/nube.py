@@ -42,6 +42,9 @@ def local_yaml(data: Path, pc_local: dict | None = None) -> dict:
                     "library": (data / "biblioteca").as_posix(),
                     "cloud": data.as_posix()}          # T3: the volume's root (runs/, cola/) for the cloud's audit checks
     cfg["registry"] = {**(cfg.get("registry") or {}), "source": "yaml"}      # the cloud's catalogue (cloud_catalog)
+    # T4 (14-11, #289): the device by discovery (CUDA on Kaggle and Modal), no longer the PC's «dml» put on CUDA by
+    # cloud/arranque/nube_gpu.py (TENNISBIO_DML_IS_CUDA, no longer set)
+    cfg["device"] = "auto"
     return cfg
 
 
