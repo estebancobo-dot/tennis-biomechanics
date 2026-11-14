@@ -1,0 +1,78 @@
+{
+ "a": "/kaggle_pruebas/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+ "b": "/kaggle_pruebas/prueba_gauff_v17/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+ "veredicto": "idéntica",
+ "etapas_iguales": [
+  "audio",
+  "candidates",
+  "court",
+  "fine",
+  "fine_doubtful",
+  "fine_opponent",
+  "identity",
+  "players",
+  "probe",
+  "scenes",
+  "score",
+  "slowmo_fine",
+  "spotting",
+  "view_clips",
+  "views",
+  "views_link"
+ ],
+ "etapas_distintas": [],
+ "etapas_sin_comparar": [],
+ "golpes": {
+  "strokes.json": {
+   "a": 28,
+   "b": 0,
+   "pares": 0,
+   "solo_a": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "solo_b": [],
+   "tipo_distinto": [],
+   "medidas_distintas": {},
+   "mayor_diferencia": {}
+  },
+  "strokes_opponent.json": {
+   "a": 0,
+   "b": 0,
+   "pares": 0,
+   "solo_a": [],
+   "solo_b": [],
+   "tipo_distinto": [],
+   "medidas_distintas": {},
+   "mayor_diferencia": {}
+  },
+  "strokes_doubtful.json": {
+   "a": 1,
+   "b": 1,
+   "pares": 1,
+   "solo_a": [],
+   "solo_b": [],
+   "tipo_distinto": [],
+   "medidas_distintas": {},
+   "mayor_diferencia": {}
+  }
+ }
+}

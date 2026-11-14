@@ -30,7 +30,11 @@
      "estimado_h": 0.5
     },
     "prueba_gauff_v17": {
-     "estimado_h": 1.0
+     "estimado_h": 1.0,
+     "horas": 0.91
+    },
+    "medir_video_nvdec": {
+     "estimado_h": 0.5
     }
    }
   }

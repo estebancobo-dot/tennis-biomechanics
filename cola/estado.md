@@ -1,13 +1,13 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-14 19:42 UTC · Modal: quedan 0.53 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 24.6 h de GPU esta semana (tope 28 h)
+Última vuelta: 2026-11-14 19:47 UTC · Modal: quedan 0.53 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 24.2 h de GPU esta semana (tope 28 h)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
-| medir_raqueta_trt | medir |  | en_marcha | kaggle | Kaggle: queued (19:42), intento 3; en cola de Kaggle más de 45 min sin arrancar |
-| medir_video_nvdec | medir | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | pendiente |  | sin capacidad: kaggle: ocupado con medir_raqueta_trt, prueba_gauff_v17 |
-| prueba_gauff_v17 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: running (19:42), intento 1 · view_clips:  89 % (40/45 recortes de repeticiones y otras cámaras) · 3 min · quedan ≈ 20 s (19:42:08; GPU 0 %·0 %, CPU 87 %, 6.1 GB) |
-| comparar_gauff_v16b_v17 | comparar |  | pendiente |  | espera a prueba_gauff_v17 |
+| medir_raqueta_trt | medir |  | en_marcha | kaggle | Kaggle: queued (19:47), intento 3; en cola de Kaggle más de 45 min sin arrancar |
+| medir_video_nvdec | medir | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle |  |
+| prueba_gauff_v17 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
+| comparar_gauff_v16b_v17 | comparar |  | hecho | github | idéntica; 16 etapas iguales; strokes.json: 0 de 28/0 golpes emparejados, 20 distintos; strokes_opponent.json: 0 de 0/0 golpes emparejados; strokes_doubtful.json: 1 de 1/1 golpes emparejados |
 | prueba_gauff | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | modal |  |
 | prueba_gauff_v16 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | error | kaggle | en cola de Kaggle más de 10 min sin arrancar (4 intentos) |
 | prueba_gauff_v16b | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
