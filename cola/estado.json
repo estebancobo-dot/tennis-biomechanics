@@ -179,7 +179,7 @@
   "ruta": "/runs/kaggle_prueba_gauff_v19/estado.json",
   "salida": "/kaggle_pruebas/prueba_gauff_v19/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cuaderno": "tennisbio-prueba-gauff-v19",
-  "kaggle": "queued (21:17)"
+  "kaggle": "queued (21:19)"
  },
  "comparar_gauff_v16b_v18": {
   "estado": "error",
