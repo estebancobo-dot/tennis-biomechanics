@@ -119,8 +119,8 @@
   ]
  },
  "score": {
-  "version": "15",
-  "hash": "44757e2e0614a8dc",
+  "version": "16",
+  "hash": "a55e34c667bf4e2c",
   "modules": [
    "faults",
    "io.video",

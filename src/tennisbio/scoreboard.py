@@ -557,10 +557,15 @@ def opponent_from_items(items: list, player_surname: str) -> str | None:
         letters = re.sub(r"[^A-Za-zÀ-ÿ]", "", word)
         if len(letters) < 4 or _norm(word) in BANNED or _is_name(text, player_surname):
             continue
+        # 14-11 (Gauff's 10-minute test in the cloud read «Usa»: the box held «C. GAUFF USA»): the surname is the last
+        # word with 4 letters or more, never the country code or an initial after it
+        tokens = [w for w in word.split() if len(re.sub(r"[^A-Za-zÀ-ÿ]", "", w)) >= 4 and _norm(w) not in BANNED]
+        if not tokens:
+            continue
         dy = abs(b[:, 1].mean() - y0)
         if 0.6 * h0 <= dy <= 2.6 * h0 and abs(b[:, 0].min() - x0) <= 2.5 * h0:
             if best is None or dy < best[0]:
-                best = (dy, word.split()[-1])
+                best = (dy, tokens[-1])
     return best[1].capitalize() if best else None
 
 

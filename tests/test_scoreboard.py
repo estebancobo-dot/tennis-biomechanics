@@ -34,6 +34,12 @@ def test_opponent_from_items():
              (box(60, 115, 140), "RYBAKINA", .99), (box(230, 115), "KAZ", .99), (box(400, 115), "654", 1.0)]
     assert opponent_from_items(items, "Rybakina") == "Sabalenka"
     assert opponent_from_items(items[3:], "Rybakina") is None
+    # 14-11: the name and the country in one box («C. GAUFF USA»): the surname, not the country (the cloud read «Usa»)
+    both = [(box(60, 70, 260), "C. GAUFF USA", .98), (box(400, 70), "3", 1.0),
+            (box(60, 115, 260), "E. RYBAKINA KAZ", .99), (box(400, 115), "5", 1.0)]
+    assert opponent_from_items(both, "Rybakina") == "Gauff"
+    assert opponent_from_items([(box(60, 70, 260), "Q. ZHENG CHN", .98), (box(60, 115, 260), "RYBAKINA", .99)],
+                               "Rybakina") == "Zheng"
 
 
 def board_frame(rows, server=0, seed=0, size=(720, 1280), banner=""):
@@ -215,8 +221,11 @@ def test_the_opponent_is_looked_for_as_the_scoreboard_writes_it():
     wins; without it, any word of the catalogue's name finds her opponent's row."""
     from tennisbio.scoreboard import _is_name
     from tennisbio.stages import _opponent_on_scoreboard
-    assert _opponent_on_scoreboard("Zheng Qinwen", "Zheng") == "Zheng"
-    assert _opponent_on_scoreboard("Sobolenko", "Sabalenka") == "Sabalenka"
+    assert _opponent_on_scoreboard("Zheng Qinwen", "Zheng") == "Zheng|Qinwen"
+    assert _opponent_on_scoreboard("Sobolenko", "Sabalenka") == "Sabalenka|Sobolenko"
+    # 14-11 (v16): a wrong reading never stands alone: the catalogue's names still find her row
+    assert _opponent_on_scoreboard("Gauff", "Usa") == "Usa|Gauff" and _is_name("C. GAUFF", "Usa|Gauff")
+    assert _opponent_on_scoreboard("Naomi Osaka", "Osaka") == "Osaka|Naomi"
     assert _opponent_on_scoreboard("Zheng Qinwen", None) == "Qinwen|Zheng"
     assert _opponent_on_scoreboard("Zverev Alexander", None) == "Alexander|Zverev"
     assert _opponent_on_scoreboard("Jessica Pegula", None) == "Pegula|Jessica"

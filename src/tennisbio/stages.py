@@ -1450,14 +1450,13 @@ def _opponent_on_scoreboard(catalogue: str, read: str | None) -> str:
     the catalogue says «Zheng Qinwen», its last word «Qinwen», and the broadcast writes ZHENG; «Zverev Alexander» and
     «Sobolenko» for SABALENKA alike). What the scoreboard itself showed next to her name, when read (as the PC did
     while its catalogue had no opponent); else every word of the catalogue's name, the last one first («A|B»: any of
-    them is her opponent's row, scoreboard._is_name)."""
-    if read:
-        return read
+    them is her opponent's row, scoreboard._is_name). 14-11 (v16): the read name first and the catalogue's words after
+    it, always: a wrong reading («Usa», the country next to GAUFF) alone found no row at all."""
     words = [w for w in (catalogue or "").split() if len(w) >= 3] or (catalogue or "").split()
-    return "|".join(words[-1:] + words[:-1])
+    return "|".join(dict.fromkeys(w for w in ([read] if read else []) + words[-1:] + words[:-1] if w))
 
 
-@stage("score", "15",  # 15 (14-11): the opponent as the scoreboard writes it (Zheng read 0 in the cloud); 14 (13-11): play_mask fills a gap only after 0.5 s of court (dissolves); 13 (13-11): play_mask never fills the start of a shot; 9 (11-11): games stacked in one OCR box split between the rows; 10 (12-11): server by alternation; 11: voted by games; 12: play_mask
+@stage("score", "16",  # 16 (14-11): the surname read is never the country code after it, and the catalogue's names always count too (Gauff's test read «Usa» and 0 scoreboards); 15 (14-11): the opponent as the scoreboard writes it (Zheng read 0 in the cloud); 14 (13-11): play_mask fills a gap only after 0.5 s of court (dissolves); 13 (13-11): play_mask never fills the start of a shot; 9 (11-11): games stacked in one OCR box split between the rows; 10 (12-11): server by alternation; 11: voted by games; 12: play_mask
        deps=("scenes", "court"), settings=lambda c: {"every_s": (c.get("score") or {}).get("every_s", 5.0)},
        outputs=("score.json",), match_fields=lambda m: {"player": m.player.name, "opponent": m.opponent}, resource="cpu")
 def st_score(ctx: Context):
