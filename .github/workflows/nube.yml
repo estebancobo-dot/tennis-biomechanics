@@ -132,6 +132,8 @@ jobs:
           # 14-11: the kaggle package does not declare «six», which it imports («No module named 'six'»)
           pip install -q "kaggle>=1.8" six
           if [ "$ACCION" = "kaggle_estado" ]; then
+            # 14-11: the real GPU quota and every recent version's status (why Kaggle starts nothing)
+            python cloud/kaggle/diagnostico.py || true
             python cloud/kaggle/cuaderno.py estado
             python cloud/kaggle/cuaderno.py salida --dir nube-out/kaggle || true
             exit 0

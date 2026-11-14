@@ -125,3 +125,12 @@ def test_waiting_fails_fast_when_kaggle_leaves_it_queued(monkeypatch):
                                                                       "stderr": "", "returncode": 0})())
     assert klanzar.main(["esperar", "--minutos", "60", "--max-cola", "10"]) == 3
     assert clock["t"] - 1000.0 <= 11 * 60
+
+
+def test_diagnosis_reads_quota_and_versions_and_launches_nothing():
+    src = (ROOT / "cloud" / "kaggle" / "diagnostico.py").read_text(encoding="utf-8")
+    assert "quota_view()" in src and "get_kernel_session_status" in src and "version_label" in src
+    code = src.split('"""', 2)[2]
+    assert "push" not in code and "cancel" not in code                            # read only
+    wf = (ROOT / ".github" / "workflows" / "nube.yml").read_text(encoding="utf-8")
+    assert "python cloud/kaggle/diagnostico.py" in wf
