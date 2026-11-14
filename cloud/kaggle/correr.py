@@ -201,7 +201,8 @@ def main(argv: list[str]) -> int:
     t0 = time.time()
 
     def save(final=False):
-        (run / "estado.json").write_text(json.dumps(est, ensure_ascii=False, indent=1), encoding="utf-8")
+        # a copy: the sampler and the uploader threads change est while the job's own loop saves it
+        (run / "estado.json").write_text(json.dumps(est.copy(), ensure_ascii=False, indent=1), encoding="utf-8")
         shutil.copy(run / "estado.json", WORK / "estado.json")
         try:
             modal_put(vol, [run / "estado.json"], run, job["salida"])
@@ -263,8 +264,20 @@ def main(argv: list[str]) -> int:
                     save()
                 except Exception as e:  # noqa: BLE001 — the next round sends it
                     print(f"AVISO: subida a Modal ({e})", flush=True)
+        samples: list[dict] = []
+
+        def sampler():                            # T2 (14-11): what Kaggle's machine uses, every minute, as on Modal
+            while not stop.wait(60):
+                try:
+                    samples.append(nube.sample_resources())
+                    with open(run / "recursos.jsonl", "a", encoding="utf-8") as f:
+                        f.write(json.dumps(samples[-1]) + "\n")
+                    est["recursos_ahora"] = nube.resources_now(samples[-1])
+                except Exception as e:  # noqa: BLE001 — a missed sample, never the match
+                    print(f"AVISO: muestra de recursos ({e})", flush=True)
         threading.Thread(target=syncer, daemon=True).start()
-        t1 = time.time()
+        threading.Thread(target=sampler, daemon=True).start()
+        t1, last_save = time.time(), time.time()
         with open(run / "log.txt", "a", encoding="utf-8") as lg:
             p = subprocess.Popen([str(py), "-m", "tennisbio.cli", "run", "--match", job["run_id"]], cwd=REPO,
                                  env=env_for(data), stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
@@ -272,6 +285,13 @@ def main(argv: list[str]) -> int:
                 lg.write(line)
                 lg.flush()
                 print(line, end="", flush=True)
+                prog = nube.progress_of(line)
+                if prog:
+                    est["progreso"] = prog
+                if time.time() - last_save > nube.PROGRESS_S:     # 14-11: progress while it runs, for the queue's summary
+                    est["actualizado"] = time.strftime("%H:%M:%S")
+                    save()
+                    last_save = time.time()
             rc = p.wait()
         stop.set()
         modal_put(vol, changed(out_dir, seen), out_dir, f"{job['output_remoto'].rstrip('/')}/{job['run_id']}")
@@ -280,8 +300,10 @@ def main(argv: list[str]) -> int:
         est.update(estado="hecho" if rc == 0 else "error", codigo=rc, segundos=round(time.time() - t1), coste_usd=0.0,
                    etapas={k: v.get("seconds") for k, v in man.items() if isinstance(v, dict) and "seconds" in v},
                    fallos={k: v.get("faults") for k, v in man.items() if isinstance(v, dict) and v.get("faults")},
-                   modelos_en_cpu=nube.gpu_fallbacks((run / "log.txt").read_text(encoding="utf-8", errors="replace")))
-        modal_put(vol, [run / "log.txt"], run, job["salida"])
+                   modelos_en_cpu=nube.gpu_fallbacks((run / "log.txt").read_text(encoding="utf-8", errors="replace")),
+                   recursos=nube.summarize_resources(samples))
+        est.pop("recursos_ahora", None)
+        modal_put(vol, [f for f in (run / "log.txt", run / "recursos.jsonl") if f.exists()], run, job["salida"])
         return rc
     except Exception as e:  # noqa: BLE001 — written down, never silent
         est.update(estado="error", nota=f"{type(e).__name__}: {e}"[-600:])

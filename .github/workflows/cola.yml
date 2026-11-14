@@ -5,6 +5,9 @@
 # 14-11 10:45: in its first two hours GitHub never ran the schedule (only the runs started by hand), so the queue does
 # not depend on it: while any job is unfinished, each run starts the next one 25 minutes later («Siguiente vuelta»);
 # a change to the queue and the end of a «Nube» run also start one. The schedule stays as a further backup.
+# 14-11 18:00: the heartbeat's sleep sat inside the queue's single slot, so a push waited up to 25 minutes behind it.
+# Now the pass («cola», one at a time, never cancelled) and the heartbeat («latido», only the newest kept) are two jobs:
+# a push or a «Nube» run that ends starts a pass at once, and its heartbeat replaces the sleeping one.
 name: Cola
 on:
   schedule:
@@ -19,14 +22,17 @@ on:
 permissions:
   contents: write
   actions: write
-concurrency:
-  group: cola
-  cancel-in-progress: false
 jobs:
   cola:
     if: github.repository_owner == 'estebancobo-dot'
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    concurrency:
+      group: cola
+      cancel-in-progress: false
+    outputs:
+      sin_terminar: ${{ steps.cuenta.outputs.sin_terminar }}
+      en_marcha: ${{ steps.cuenta.outputs.en_marcha }}
     env:
       CLAVE_MODAL_1: ${{ secrets.MODAL_TOKEN_ID }}
       CLAVE_MODAL_2: ${{ secrets.MODAL_TOKEN_SECRET }}
@@ -74,14 +80,38 @@ jobs:
           git add -A
           git commit -qm "cola: $(date -u '+%Y-%m-%d %H:%M')" || exit 0
           git push -q origin HEAD:nube-logs
-      - name: Siguiente vuelta
+      - name: Cuenta
+        id: cuenta
         if: always()
         run: |
           read left running < <(python -c "import json,os,yaml; q=yaml.safe_load(open('config/cola_nube.yaml',encoding='utf-8')) or {}; st=json.load(open('logs/cola/estado.json',encoding='utf-8')) if os.path.exists('logs/cola/estado.json') else {}; ids=[j.get('id') for j in q.get('trabajos') or []]; print(sum(1 for i in ids if st.get(i,{}).get('estado') not in ('hecho','error')), sum(1 for i in ids if st.get(i,{}).get('estado')=='en_marcha'))")
           echo "trabajos sin terminar: $left; en marcha: $running"
+          echo "sin_terminar=$left" >> "$GITHUB_OUTPUT"
+          echo "en_marcha=$running" >> "$GITHUB_OUTPUT"
+          # #291: the summary (with the progress of what runs) on the run's own page in GitHub Actions
+          if [ -f logs/cola/estado.md ]; then cat logs/cola/estado.md >> "$GITHUB_STEP_SUMMARY"; fi
+  latido:
+    needs: cola
+    if: always() && github.repository_owner == 'estebancobo-dot'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    concurrency:
+      group: cola-latido
+      cancel-in-progress: true
+    env:
+      GH_TOKEN: ${{ github.token }}
+      SIN_TERMINAR: ${{ needs.cola.outputs.sin_terminar }}
+      EN_MARCHA: ${{ needs.cola.outputs.en_marcha }}
+    steps:
+      - name: Siguiente vuelta
+        if: always()
+        run: |
+          # a pass that failed before counting (no outputs) still gets its next pass, 25 minutes later
+          left="${SIN_TERMINAR:-1}"; running="${EN_MARCHA:-0}"
+          echo "trabajos sin terminar: $left; en marcha: $running"
           if [ "$left" -gt 0 ]; then
             # 14-11 (the user: be reactive): every 5 minutes while something runs (a failure is seen in minutes, a
-            # session stuck in Kaggle's queue is relaunched after 10), every 25 while jobs only wait for room
+            # session stuck in Kaggle's queue is relaunched after 45), every 25 while jobs only wait for room
             if [ "$running" -gt 0 ]; then sleep 300; else sleep 1500; fi
             gh workflow run cola.yml --repo "$GITHUB_REPOSITORY" --ref "${GITHUB_REF_NAME:-claude/tennis-biomech-setup-jggqb0}"
           fi

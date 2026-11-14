@@ -35,10 +35,18 @@ def test_queue_file_and_workflow():
     on = y.get("on") or y.get(True)
     assert {"schedule", "workflow_dispatch", "push", "workflow_run"} <= set(on) and on["workflow_run"]["workflows"] == ["Nube"]
     assert y["permissions"]["actions"] == "write"
-    last = y["jobs"]["cola"]["steps"][-1]
+    beat = y["jobs"]["latido"]
+    last = beat["steps"][-1]
     assert last["name"] == "Siguiente vuelta" and last["if"] == "always()"
     assert "sleep 1500" in last["run"] and "gh workflow run cola.yml" in last["run"]
-    assert y["jobs"]["cola"]["timeout-minutes"] > 25 + 5
+    assert beat["timeout-minutes"] > 25 + 2
+    # 14-11 18:00: a push waited 25 min behind the sleeping heartbeat; now the pass has its own slot (never cancelled)
+    # and only the newest heartbeat is kept
+    assert "concurrency" not in y
+    assert y["jobs"]["cola"]["concurrency"] == {"group": "cola", "cancel-in-progress": False}
+    assert beat["concurrency"] == {"group": "cola-latido", "cancel-in-progress": True}
+    assert beat["needs"] == "cola" and beat["if"].startswith("always()")
+    assert y["jobs"]["cola"]["steps"][-1]["id"] == "cuenta" and "GITHUB_OUTPUT" in y["jobs"]["cola"]["steps"][-1]["run"]
 
 
 def test_bad_jobs_are_named():
@@ -171,7 +179,7 @@ def test_kaggle_source_needs_its_keys_its_switch_and_a_free_notebook(monkeypatch
     wf = yaml.safe_load((ROOT / ".github" / "workflows" / "cola.yml").read_text(encoding="utf-8"))
     job = wf["jobs"]["cola"]
     assert job["env"]["KAGGLE_API_TOKEN"] == "${{ secrets.KAGGLE_API_TOKEN }}"
-    assert "sleep 300" in job["steps"][-1]["run"]                                     # every 5 min while running
+    assert "sleep 300" in wf["jobs"]["latido"]["steps"][-1]["run"]                   # every 5 min while running
     q = yaml.safe_load((ROOT / "config" / "cola_nube.yaml").read_text(encoding="utf-8"))
     assert "kaggle_activo" in q
 

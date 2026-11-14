@@ -37,7 +37,7 @@ usuario pertenece a un paquete; un paquete está **aceptado** cuando su prueba p
 | # | Tarea | Bloque | Dónde | Depende de | Estado |
 |---|---|---|---|---|---|
 | T1 | Prueba de 10 min de Gauff (marcador v16, sin la bola en la CPU): marcador leído y tiempo | Base B6 | Kaggle (cola) | — | **hecho (17:06)**: sin fallos C0 ni C1 (el marcador ya se lee: sin él habría quedado «revisar»); 52 min de análisis y 0,9 h de Kaggle (antes 1,64 h, con la bola en la CPU; Modal 26 min) |
-| T2 | Recursos minuto a minuto en Kaggle (CPU, cada GPU, memoria), como en Modal | NN-A | Claude | — | pendiente |
+| T2 | Recursos minuto a minuto en Kaggle (CPU, cada GPU, memoria), como en Modal | NN-A | Claude | — | **hecho en el código (14-11 18:15)**: `recursos.jsonl` y su resumen en `estado.json` (cada GPU por separado: `gpu_pct`, `gpu1_pct`), y lo de ahora en la cola en vivo («GPU 85 %·0 %, CPU 60 %, 9,1 GB»); se acepta con el primer análisis en Kaggle |
 | T3 | Comprobaciones de auditoría nuevas: «Uso de la nube por etapa», «Cola de la nube», «Equivalencia entre infraestructuras», «Prueba de concepto medida» | Base B1, B7, B8; NN | Claude | — | pendiente |
 | T4 | Esqueleto híbrido: puertos (cálculo, almacenamiento, vídeo, inferencia, modelos) y descubrimiento de capacidades; el dispositivo por descubrimiento (fuera el parche `dml`→CUDA), con los mismos resultados | NN-B | Claude | — | **en curso**: 1.º el descubrimiento de capacidades (`tennisbio.infra.discovery`: plataforma, núcleos, memoria, GPU, proveedores de ONNX Runtime, aceleradores de ffmpeg; elige vídeo e inferencia por preferencia de la configuración), hecho 14-11 con sus pruebas; después los puertos y los adaptadores |
 | T5 | Banco de pruebas de concepto: acción «medir» en la cola (variante × clip de referencia × infraestructura → calidad, tiempo, coste) | NN-B | Claude | T4 | pendiente |
@@ -52,11 +52,11 @@ usuario pertenece a un paquete; un paquete está **aceptado** cuando su prueba p
 | T14 | Estado del arte, segunda vuelta (lo que falta en `docs/estado_del_arte_nube.md`) | NN-C | Claude | — | pendiente |
 | T15 | Datos anotados en Modal (RacketVision) y pruebas de modelos, por orden de tiempo: raqueta, pose, bola, detector de golpes, 3D, cortes, marcador | NN-C, Base B3 | Kaggle | T5, T14 | pendiente |
 | T16 | Si un modelo gana: rehacer los 6 partidos con él (referencia nueva) | NN-C | Kaggle | T15 | si procede |
-
 | T17 | **Trazabilidad**: cada requisito de `CLAUDE.md`, cada petición de nube (#268-#290) y cada documento interno (`analisis_nube.md` §2, §6-§9, `arquitectura_producto.md` §9.1, `orquestador.md`, `plan_maestro.md`, `matriz_cobertura.md`, `validacion.md`) frente a este plan. Lo que falte se convierte en tarea. Incluye los riesgos abiertos: derechos, privacidad y licencias | NN, Base | Claude | — | **en curso** (14-11: `analisis_nube.md` ya traía análisis que no se reutilizó; integrado en `nube_nativa.md`) |
 | T18 | **Prueba de referencia con GPU** antes de cada versión (`analisis_nube.md` §7; `docs/operacion_nube.md` §3) como trabajo de la cola | NN | Claude + Kaggle | T5 | pendiente |
 | T19 | **Repartir** la pasada fina por ventanas entre las 2 sesiones de Kaggle (y sus 2 T4) y el detector por planos, con prueba de determinismo (fase N2 de `analisis_nube.md` §8) | NN-B | Claude + Kaggle | T9 | pendiente |
 | T20 | **Usar los recursos en paralelo** (detalle en `docs/operacion_nube.md`): las 2 sesiones de Kaggle a la vez (un partido o prueba y una prueba de concepto), Modal desde el 1-12, y en la nube de Claude pruebas en paralelo y sesiones hermanas para tareas independientes (si el usuario lo quiere: gastan su plan) | NN | Claude | T5 | pendiente |
+| T21 | **Progreso en vivo y Claude sin parar (#291):** cada trabajo escribe su etapa y su % cada 2 min (Kaggle y Modal) y la cola lo muestra en `nube-logs/cola/estado.md` y en la página de cada vuelta; la vuelta y el latido de la cola separados (un cambio se atiende al momento); Claude retoma solo cada hora (tarea programada, minuto 48) | N | Claude | — | **hecho en el código (14-11 18:10)**; se acepta cuando el primer análisis en marcha salga con su % en `cola/estado.md` |
 
 **Después:** P0 (rediseño de la aplicación), N (la aplicación en la web, el usuario solo sube), M1-M7, P1-P6.
 

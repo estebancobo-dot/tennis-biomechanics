@@ -54,7 +54,7 @@ paquetes:
     # (#276, #277)
     nombre: "Nube · toda la aplicación en la nube (el usuario solo sube los partidos), 0 € al mes"
     cierre: "La nube da lo mismo que el PC en F3Set y en los 6 partidos (N0-N1); un partido nuevo de principio a fin desde la web (subir, clic, aprobar); gasto del mes 0 € con el tope de la cuenta"
-    peticiones: [268, 271, 272, 273, 275, 276, 277, 278, 279, 280, 281, 282, 283, 284, 285, 286, 290]
+    peticiones: [268, 271, 272, 273, 275, 276, 277, 278, 279, 280, 281, 282, 283, 284, 285, 286, 290, 291]
   NN:
     # 14-11 (#287-#289): el código de la nube seguía decidido para el PC. Una sola aplicación sobre N infraestructuras
     # (puertos y adaptadores, descubrimiento) y cada pieza decidida con pruebas de concepto medidas. Va dentro del cierre

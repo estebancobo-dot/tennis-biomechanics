@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import statistics
 from pathlib import Path
 
@@ -117,11 +118,36 @@ def sample_resources() -> dict:
     try:
         r = subprocess.run(["nvidia-smi", "--query-gpu=utilization.gpu,memory.used", "--format=csv,noheader,nounits"],
                            capture_output=True, text=True, timeout=30)
-        gpu, mem = (float(x) for x in r.stdout.strip().splitlines()[0].split(","))
-        s.update(gpu_pct=gpu, gpu_mem_gb=round(mem / 1024, 2))
+        s.update(gpu_fields(r.stdout))
     except Exception:  # noqa: BLE001 — no GPU (a CPU-only function) or nvidia-smi busy: the CPU sample stays
         pass
     return s
+
+
+def gpu_fields(text: str) -> dict:
+    """`nvidia-smi --query-gpu=utilization.gpu,memory.used` → gpu_pct/gpu_mem_gb of the first GPU and gpu1_pct/
+    gpu1_mem_gb, … of the others (14-11, T2: Kaggle gives two T4s; whether the second one works is measured)."""
+    out: dict = {}
+    for i, line in enumerate(ln for ln in text.strip().splitlines() if ln.strip()):
+        try:
+            pct, mem = (float(x) for x in line.split(",")[:2])
+        except ValueError:  # esperado: «[N/A]» or a line nvidia-smi could not fill
+            continue
+        p = "gpu" if i == 0 else f"gpu{i}"
+        out.update({f"{p}_pct": pct, f"{p}_mem_gb": round(mem / 1024, 2)})
+    return out
+
+
+def resources_now(s: dict) -> str:
+    """One sample in a few words for the queue's summary: «GPU 85 %·0 %, CPU 60 %, 9.1 GB»."""
+    others = sorted((int(k[3:-4]), k) for k in s if re.fullmatch(r"gpu\d+_pct", k))
+    gpus = [s[k] for k in ["gpu_pct", *(k for _, k in others)] if s.get(k) is not None]
+    parts = ["GPU " + "·".join(f"{g:.0f} %" for g in gpus)] if gpus else []
+    if s.get("cpu_pct") is not None:
+        parts.append(f"CPU {s['cpu_pct']:.0f} %")
+    if s.get("ram_gb") is not None:
+        parts.append(f"{s['ram_gb']:.1f} GB")
+    return ", ".join(parts)
 
 
 GPU_FALLBACK = "falló al cargar"          # tennisbio.pose.estimator._new_session: a model the GPU could not take
@@ -137,7 +163,9 @@ def gpu_fallbacks(log: str) -> int:
 def summarize_resources(rows: list[dict]) -> dict:
     """Mean and peak of each measure over a run's samples."""
     out: dict = {"muestras": len(rows)}
-    for k in ("gpu_pct", "gpu_mem_gb", "cpu_pct", "ram_gb"):
+    keys = ["gpu_pct", "gpu_mem_gb", "cpu_pct", "ram_gb"]
+    keys += sorted({k for r in rows for k in r if k.startswith("gpu") and k[3:4].isdigit()})   # the other GPUs
+    for k in keys:
         v = [float(r[k]) for r in rows if r.get(k) is not None]
         if v:
             out[k] = {"media": round(statistics.fmean(v), 1), "max": round(max(v), 1)}
@@ -345,3 +373,15 @@ def used(rows: list[dict], cores: float, gib: float) -> tuple[float, float]:
     m = [float(r["ram_gb"]) * 1e9 / 2 ** 30 for r in rows if r.get("ram_gb") is not None]
     return (round(max(cores, statistics.fmean(c)), 1) if c else cores,
             round(max(gib, statistics.fmean(m)), 1) if m else gib)
+
+
+PROGRESS_S = 120          # 14-11 (the user: progress in real time): a running job's state every 2 minutes
+
+
+def progress_of(line: str) -> str:
+    """A stage's progress line of the analysis («[id] fine: 93 % (51/55 …) · 19 min · quedan ≈ 89 s», or «… terminada
+    a las …»), shortened; '' for any other line."""
+    t = line.strip()
+    if re.search(r"\b\d{1,3} % \(", t) or " terminada a las " in t or t.startswith("====="):
+        return re.sub(r"^\[[^\]]+\]\s*", "", t)[:160]
+    return ""

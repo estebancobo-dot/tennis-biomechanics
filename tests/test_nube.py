@@ -460,3 +460,15 @@ def test_the_report_and_audit_read_only_analysed_matches(tmp_path):
     # 14-11: the report's page goes with the run, to look at the real lesson from the repository (no videos, bounded)
     assert 'run / "informe.html"' in body and "nube.PAGE_MAX_BYTES" in body
     assert 10 * 1024 * 1024 <= nube.PAGE_MAX_BYTES <= 200 * 1024 * 1024
+
+
+def test_every_gpu_is_sampled_and_summarized():
+    """T2 (14-11): Kaggle gives two T4s; each one's use is measured minute by minute (and shown live in the queue)."""
+    f = nube.gpu_fields("85, 3072\n0, 250\n")
+    assert f == {"gpu_pct": 85.0, "gpu_mem_gb": 3.0, "gpu1_pct": 0.0, "gpu1_mem_gb": 0.24}
+    assert nube.gpu_fields("") == {} and nube.gpu_fields("[N/A], [N/A]\n") == {}
+    rows = [{**f, "cpu_pct": 60.0, "ram_gb": 9.1}, {"gpu_pct": 75.0, "gpu1_pct": 10.0, "cpu_pct": 40.0}]
+    s = nube.summarize_resources(rows)
+    assert s["gpu_pct"] == {"media": 80.0, "max": 85.0} and s["gpu1_pct"] == {"media": 5.0, "max": 10.0}
+    assert nube.resources_now(rows[0]) == "GPU 85 %·0 %, CPU 60 %, 9.1 GB"
+    assert nube.resources_now({}) == ""

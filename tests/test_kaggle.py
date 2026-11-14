@@ -170,3 +170,13 @@ def test_a_proof_of_concept_job():
         correr.parse_job('{"accion": "medir", "prueba": "nada"}')
     src = (ROOT / "cloud" / "kaggle" / "correr.py").read_text(encoding="utf-8")
     assert '"tensorrt-cu12"' in src and "LD_LIBRARY_PATH" in src and 'models / "racketpose.onnx"' in src
+
+
+def test_progress_lines_are_picked_up():
+    """14-11 (the user: progress and state in real time): a running job reports its stage and % every 2 min."""
+    progress_of = correr.nube.progress_of            # the same for Kaggle and Modal (cloud/nube.py)
+    assert progress_of("  [g] fine_doubtful:  93 % (51/55 golpes candidatos) · 19 min · quedan ≈ 89 s\n") \
+        .startswith("fine_doubtful:  93 % (51/55")
+    assert progress_of("[g] spotting terminada a las 13:01:02 en 3.2 min") == "spotting terminada a las 13:01:02 en 3.2 min"
+    assert progress_of("/repo/src/tennisbio/technique.py:168: RuntimeWarning: All-NaN axis") == ""
+    assert correr.nube.PROGRESS_S <= 120

@@ -12,6 +12,14 @@ SEGUIR»: la primera tarea no hecha cuyas dependencias estén hechas. **Después
 | Kaggle | Acción `kaggle_estado`: cuota real, versiones y estado de la sesión; `kaggle_sonda` (¿arranca una GPU?) |
 | Modal | `docs/capacidad_nube.md` (gasto); la página Usage, que solo ve el usuario (pedirle la cifra a fin de mes) |
 | Lo que cuesta cada parte | `estado.json` (`etapas`, `recursos`) y `docs/nube_nativa.md` |
+| **Progreso en vivo** (#291) | `cola/estado.md`, columna «Nota» de lo que está en marcha: la etapa y su % («fine: 63 % (35/55 …) · quedan ≈ 9 min (18:42:10)»). El trabajo (Kaggle o Modal) lo escribe en su `estado.json` cada 2 min; la cola lo lee en cada vuelta (cada 5 min mientras algo corre). También en la página de GitHub Actions de cada vuelta («Cola» → resumen) |
+
+**Cómo sigue todo sin el chat (#281, #291):**
+- **La cola** (flujo «Cola» de GitHub Actions) tiene dos trabajos: la vuelta (`cola`, de una en una, nunca se cancela)
+  y el latido (`latido`, solo el último: duerme 5 min si algo corre o 25 si solo hay espera, y lanza la vuelta
+  siguiente). Un cambio en `config/cola_nube.yaml` o el final de un flujo «Nube» lanzan una vuelta al momento.
+- **Claude** retoma solo cada hora (tarea programada de la sesión, minuto 48): lee este documento y el PLAN ÚNICO,
+  mira `cola/estado.md` y sigue por la primera tarea no hecha. Entre tanto, cada trabajo que acaba lo recoge la cola.
 
 ## 2. Qué hacer en cada caso
 

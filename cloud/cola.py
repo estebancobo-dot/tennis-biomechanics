@@ -291,6 +291,8 @@ def summary(jobs: list[dict], state: dict, spend: dict, decisions: list, now: fl
             note = f"{st['aviso']} ({note})" if note else st["aviso"]
         if st.get("estado") == "en_marcha" and st.get("kaggle"):
             note = f"Kaggle: {st['kaggle']}, intento {st.get('intentos', 1)}" + (f"; {st['nota']}" if st.get("nota") else "")
+        if st.get("estado") == "en_marcha" and st.get("progreso"):
+            note = f"{note} · {st['progreso']}" if note else st["progreso"]
         rows.append(f"| {j['id']} | {j['accion']} | {j.get('partido', '')} | {st.get('estado', 'pendiente')} | "
                     f"{st.get('donde', '')} | {note} |")
     return "\n".join(rows) + "\n"
@@ -438,6 +440,9 @@ def main(argv: list[str] | None = None) -> int:
             if res is not None and not fresh(res, st):      # an older run's estado.json in the same folder
                 print(f"{jid}: el estado que hay es de antes de este lanzamiento")
                 res = None
+            if res and res.get("progreso"):                 # 14-11: where it is now (stage and %), for the summary
+                now_used = f"; {res['recursos_ahora']}" if res.get("recursos_ahora") else ""
+                st["progreso"] = f"{res['progreso']} ({res.get('actualizado', '')}{now_used})"
             if st["donde"] == "kaggle" and jid in by_id:
                 kst = kaggle_status(jid)
                 st["kaggle"] = f"{kst} ({time.strftime('%H:%M', time.gmtime(now))})"

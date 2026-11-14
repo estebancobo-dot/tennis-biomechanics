@@ -78,7 +78,8 @@ def _prepare() -> dict:
 def _save(run: Path, est: dict) -> None:
     import json
     run.mkdir(parents=True, exist_ok=True)
-    (run / "estado.json").write_text(json.dumps(est, ensure_ascii=False, indent=1), encoding="utf-8")
+    # a copy: the sampler thread changes est while the match's loop saves it
+    (run / "estado.json").write_text(json.dumps(est.copy(), ensure_ascii=False, indent=1), encoding="utf-8")
 
 
 @app.function(image=image, cpu=0.25, memory=512, volumes={str(DATA): vol}, timeout=120)
@@ -347,11 +348,12 @@ def partido(match_id: str) -> dict:
                 samples.append(nube.sample_resources())
                 with open(run / "recursos.jsonl", "a", encoding="utf-8") as f:
                     f.write(json.dumps(samples[-1]) + "\n")
+                est["recursos_ahora"] = nube.resources_now(samples[-1])
             except Exception as e:  # noqa: BLE001 — a missed sample, never the match
                 print(f"AVISO nube: muestra de recursos ({e})")
     threading.Thread(target=committer, daemon=True).start()
     threading.Thread(target=sampler, daemon=True).start()
-    t0 = time.time()
+    t0 = last_save = time.time()
     with open(run / "log.txt", "a", encoding="utf-8") as lg:
         p = subprocess.Popen([sys.executable, "-m", "tennisbio.cli", "run", "--match", match_id], cwd="/repo",
                              stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
@@ -359,6 +361,11 @@ def partido(match_id: str) -> dict:
             lg.write(line)
             lg.flush()
             print(line, end="")
+            est["progreso"] = nube.progress_of(line) or est.get("progreso", "")
+            if time.time() - last_save > nube.PROGRESS_S:   # 14-11: stage and % for the queue (committed every 2 min)
+                est["actualizado"] = time.strftime("%H:%M:%S")
+                _save(run, est)
+                last_save = time.time()
         rc = p.wait()
     secs = time.time() - t0
     man_f = DATA / "output" / match_id / "manifest.json"
@@ -370,6 +377,7 @@ def partido(match_id: str) -> dict:
                fallos={k: v.get("faults") for k, v in man.items() if isinstance(v, dict) and v.get("faults")},
                recursos=nube.summarize_resources(samples),
                modelos_en_cpu=nube.gpu_fallbacks((run / "log.txt").read_text(encoding="utf-8", errors="replace")))
+    est.pop("recursos_ahora", None)
     _save(run, est)
     stop.set()
     vol.commit()
