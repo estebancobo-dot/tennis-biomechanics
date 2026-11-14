@@ -33,6 +33,11 @@ Después: revés, saque, volea y otros jugadores.
 8. **Cobertura de casos:** nominales, límite, esquina y error en fuentes, algoritmos, modelos IA,
    procesado, rendimiento/velocidad e informe.
 9. **Rendimiento:** viable en el Beelink (iGPU, sin CUDA); un partido en horas, no días.
+   **Cambio (14-11, #287-#289):** el código es **híbrido**: una sola aplicación sobre N infraestructuras (PC, nube de
+   Claude, Modal, Kaggle, otras) por configuración y descubrimiento de capacidades, con puertos y adaptadores; nada
+   del código puede depender de una máquina. Cada pieza (vídeo, ejecución de modelos, modelos, recursos) se decide con
+   **pruebas de concepto medidas** (calidad igual o mejor con datos anotados y menos tiempo o coste), no con la
+   aprobación del usuario. Plan: `docs/nube_nativa.md`; estado del arte por capas: `docs/estado_del_arte_nube.md`.
 10. **Orden:** primero la base completa de la derecha (no otros golpes); exportación hecha;
     **móvil/nube al final**, cuando todo funcione en el PC. El PC no puede ser servidor.
     **Cambio (13-11, #271/#272):** toda la aplicación pasa a la nube **después de los 6 partidos** (cierre de la
@@ -46,7 +51,11 @@ Después: revés, saque, volea y otros jugadores.
 ITF/Elliott-Reid-Crespo, Landlinger, Knudson, Tennis Australia, estudios de pies, sistemas
 profesionales). Toda medida nueva sale de ella y se marca allí; los huecos medibles se cierran.
 
-**Estado y contexto para continuar:** `docs/estado_proyecto.md` (leerlo al empezar cualquier sesión). **Índice de documentos y su papel (vigente / referencia / histórico):** `docs/README.md`.
+**Estado y contexto para continuar:** `docs/estado_proyecto.md` (leerlo al empezar cualquier sesión), sección «PLAN ÚNICO A
+SEGUIR» (14-11). **Operación en la nube** (qué hacer en cada caso, cola, Kaggle, Modal, validación y aceptación):
+`docs/operacion_nube.md`. La cola de la nube (`config/cola_nube.yaml`, `cloud/cola.py`, estado en la rama `nube-logs`)
+lanza sola los trabajos en Kaggle o Modal; el PC no se usa (#284). Claude puede borrar un cuaderno de trabajo de Kaggle
+atascado (#290). **Índice de documentos y su papel (vigente / referencia / histórico):** `docs/README.md`.
 **Registros del PC:** los scripts de Windows los suben solos a la rama `pc-logs`
 (`git fetch origin pc-logs && git show origin/pc-logs:instalacion.log`). Nunca pedir al usuario
 que copie registros. **Ciclo automático** (bucle `ciclo_bucle.ps1` que arranca con la sesión + tarea de Windows de respaldo; cada 10 min `ciclo_automatico.ps1`): trae

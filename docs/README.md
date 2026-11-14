@@ -35,6 +35,7 @@ Cada documento tiene **un solo papel**. Si dos dicen cosas distintas, manda el *
 | `kaggle.md` (14-11, paso 8b, #283, #285) | Kaggle como segunda nube gratuita: guía para el usuario (una vez), qué requisitos cumple y cuáles faltan por medir, y cómo usa los datos de Modal sin repetir nada |
 | `nube_nativa.md` (14-11, #287) | Rehacer para la nube lo que se decidió para el PC: dónde va el tiempo, infraestructura nativa de GPU (decodificar en la GPU, TensorRT, lotes, 2 T4) y cada modelo frente al estado del arte, medido con datos anotados |
 | `estado_del_arte_nube.md` (14-11, #287, #289) | Revisión del estado del arte por capas (infraestructura, orquestación, vídeo en GPU, ejecución de modelos, modelos por tarea, datos, configuración, observabilidad, pruebas), con fuentes, candidatos y la prueba de concepto que decide cada uno; primera vuelta, con lo que falta |
+| `operacion_nube.md` (14-11) | Para retomar en cualquier caso: dónde mirar, qué hace la cola sola y qué hace Claude ante cada fallo (Kaggle, Modal, pruebas en «revisar»), el modelo de validación y aceptación, y los riesgos abiertos |
 | `maqueta-informe.html`, `maqueta_leccion_armado.html`, `maqueta_aplicacion.html` | Maquetas de diseño (datos inventados) |
 | `matriz_en_la_web.md` | Generado por `scripts/matrix_in_web.py`: qué punto de la matriz se ve en la web |
 | `como_ejecutar.md` | Instrucciones de instalación en el PC |

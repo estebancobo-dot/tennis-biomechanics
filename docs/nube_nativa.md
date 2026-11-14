@@ -16,6 +16,18 @@ para el PC: un único Beelink con una iGPU AMD sin CUDA, 16 hilos y Windows. Eje
 **Regla (la del proyecto):** calidad antes que velocidad (#248). Un cambio entra solo si da lo mismo o mejor con datos
 anotados y, además, es más rápido o más barato; si no, no entra. Todo medido, en la nube, a 0 €.
 
+**Ya analizado el 13-11 (`docs/analisis_nube.md`) e integrado aquí el 14-11 (T17).** No se había reutilizado hoy:
+- **§2:** requisitos en la nube; el 9 pasa a «viable en el PC **y** en la nube».
+- **§6:** modelos con GPU de verdad: Sapiens2 (ICLR 2026), CIGPose (CVPR 2026), SAM 3D Body y SAM-Body4D, GVHMR,
+  PromptHMR-Vid, SAMURAI y SAM 3, TrackNetV4, TOTNet, F3ED, T-DEED y UMEG-Net; el conjunto multivista CalTennis para
+  validar 3D y pies; reentrenar el detector con la jugadora lejana (R27).
+- **§7:** qué cambia en el código.
+- **§8:** fases N0-N6 con su aceptación calculada; N2 = repartir la pasada fina por ventanas.
+- **§9:** riesgos: derechos, privacidad, licencias, equivalencia de decimales.
+
+El orden de §6 por lo que pesa en la Base sigue valiendo: detector con la lejana, seguimiento por máscara, 3D, bola,
+pose grande.
+
 ## Cómo se decide (#288) y arquitectura híbrida (#289)
 
 **Decidir con pruebas de concepto, no con aprobaciones.** Cada opción se prueba en la nube con los mismos clips de

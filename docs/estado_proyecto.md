@@ -53,7 +53,14 @@ usuario pertenece a un paquete; un paquete está **aceptado** cuando su prueba p
 | T15 | Datos anotados en Modal (RacketVision) y pruebas de modelos, por orden de tiempo: raqueta, pose, bola, detector de golpes, 3D, cortes, marcador | NN-C, Base B3 | Kaggle | T5, T14 | pendiente |
 | T16 | Si un modelo gana: rehacer los 6 partidos con él (referencia nueva) | NN-C | Kaggle | T15 | si procede |
 
+| T17 | **Trazabilidad**: cada requisito de `CLAUDE.md`, cada petición de nube (#268-#290) y cada documento interno (`analisis_nube.md` §2, §6-§9, `arquitectura_producto.md` §9.1, `orquestador.md`, `plan_maestro.md`, `matriz_cobertura.md`, `validacion.md`) frente a este plan. Lo que falte se convierte en tarea. Incluye los riesgos abiertos: derechos, privacidad y licencias | NN, Base | Claude | — | **en curso** (14-11: `analisis_nube.md` ya traía análisis que no se reutilizó; integrado en `nube_nativa.md`) |
+| T18 | **Prueba de referencia con GPU** antes de cada versión (`analisis_nube.md` §7; `docs/operacion_nube.md` §3) como trabajo de la cola | NN | Claude + Kaggle | T5 | pendiente |
+| T19 | **Repartir** la pasada fina por ventanas entre las 2 sesiones de Kaggle (y sus 2 T4) y el detector por planos, con prueba de determinismo (fase N2 de `analisis_nube.md` §8) | NN-B | Claude + Kaggle | T9 | pendiente |
+| T20 | **Usar los recursos en paralelo** (detalle en `docs/operacion_nube.md`): las 2 sesiones de Kaggle a la vez (un partido o prueba y una prueba de concepto), Modal desde el 1-12, y en la nube de Claude pruebas en paralelo y sesiones hermanas para tareas independientes (si el usuario lo quiere: gastan su plan) | NN | Claude | T5 | pendiente |
+
 **Después:** P0 (rediseño de la aplicación), N (la aplicación en la web, el usuario solo sube), M1-M7, P1-P6.
+
+**Para continuar en cualquier caso** (fallos, Kaggle, Modal, pruebas en «revisar») y el **modelo de validación y aceptación**: `docs/operacion_nube.md`.
 
 **Capacidad a 0 €:**
 - **Kaggle:** 30 h de GPU por semana, 2 sesiones a la vez, 12 h cada una; se renueva el sábado 00:00 UTC.

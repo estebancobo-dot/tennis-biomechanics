@@ -4,6 +4,13 @@ Estado: **primera vuelta (14-11 16:00), 11 búsquedas.** Cada capa da lo hallado
 prueba de concepto que decide y lo que falta por buscar. **No es exhaustiva:** cada «falta» es trabajo pendiente y se
 completa antes de decidir esa capa. Nada se adopta sin su prueba de concepto medida (#288).
 
+**Leer junto con `docs/analisis_nube.md` §6 (13-11).** Trae lo que esta vuelta no encontró:
+- **Sapiens2** (Meta, ICLR 2026, 0,4-5 mil millones de parámetros). Esta vuelta dijo «no confirmado»: sí existe.
+- **CIGPose** (CVPR 2026, 67,0 AP en COCO-WholeBody).
+- **SAM 3D Body** (Meta, 19-11-2025) y **SAM-Body4D** (diciembre de 2025).
+- **TOTNet** (bola con oclusión).
+- **CalTennis**, multivista, para validar 3D y pies.
+
 ## 1. Dónde se calcula (infraestructura)
 
 - **Gratis hoy:**
