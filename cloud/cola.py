@@ -637,7 +637,14 @@ def copy_poc_results(vol, state: dict, logs: Path) -> list[str]:
                 # phase A (#287): where each second and each resource went, for every test and match
                 ("estado", "segundos", "horas_kaggle", "coste_usd", "gpu", "etapas", "recursos", "recursos_por_etapa",
                  "modelos_en_cpu", "fallos", "sin_subir", "config", "kaggle", "nota"))
-        f.write_text(json.dumps({k: res.get(k) for k in keep}, ensure_ascii=False, indent=1), encoding="utf-8")
+        row = {k: res.get(k) for k in keep}
+        if st["accion"] != "medir":                       # R47: models on the CPU without an error, from its log
+            import almacen
+            import nube
+
+            log = almacen.ModalStorage(vol, VOLUME).read_bytes(st["ruta"].rsplit("/", 1)[0] + "/log.txt")
+            row["modelos_en_cpu_registro"] = nube.gpu_fallbacks(log.decode("utf-8", "replace")) if log else None
+        f.write_text(json.dumps(row, ensure_ascii=False, indent=1), encoding="utf-8")
         out.append(jid)
     return out
 SAME = ("idéntica", "equivalente")

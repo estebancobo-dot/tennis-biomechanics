@@ -158,10 +158,16 @@ GPU_FALLBACK = "falló al cargar"          # tennisbio.pose.estimator._new_sessi
 PAGE_MAX_BYTES = 80 * 1024 * 1024       # the report page copied to runs/<tag> (informe): its data inside, no videos
 
 
+# R47 (14-11): ONNX Runtime's own words when it cannot start CUDA and quietly puts the session on the CPU (the racket's
+# proof of concept ran every option on the CPU with no error): counted as well
+ORT_FALLBACK = ("Failed to create CUDAExecutionProvider", "Failed to load library libonnxruntime_providers_cuda",
+                "Falling back to ['CPUExecutionProvider']", "Failed to create TensorrtExecutionProvider")
+
+
 def gpu_fallbacks(log: str) -> int:
     """How many model sessions went to the CPU because the GPU could not load them (13-11: silent until Pegula's
-    test; the same points, many times slower and dearer)."""
-    return sum(1 for ln in log.splitlines() if GPU_FALLBACK in ln)
+    test; the same points, many times slower and dearer), also when ONNX Runtime did it without an error (R47)."""
+    return sum(1 for ln in log.splitlines() if GPU_FALLBACK in ln or any(k in ln for k in ORT_FALLBACK))
 
 
 def summarize_resources(rows: list[dict]) -> dict:

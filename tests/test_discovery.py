@@ -128,3 +128,31 @@ def test_video_all_on_the_gpu_command():
     assert vf.startswith("yadif_cuda=1,") and "hwdownload" in vf and cmd[cmd.index("-hwaccel_output_format") + 1] == "cuda"
     assert "yadif_cuda" not in pv.gpu_command(SimpleNamespace(path="v.mp4", interlaced=False), 0, 2)[-9]
     assert cmd[-1] == "pipe:1" and "bgr24" in cmd and set(pv.OPTIONS) == {"cpu", "nvdec", "gpu_entera"}
+
+
+def test_racket_poc_refuses_a_time_measured_on_the_cpu(tmp_path, monkeypatch):
+    """R47: an option whose session ONNX Runtime put on the CPU is reported as an error, never with its times."""
+    import numpy as np
+
+    from tennisbio.infra import poc_raqueta as poc
+
+    class Inp:
+        name, shape = "input", ["N", 3, 4, 4]
+
+    class Sess:
+        def __init__(self, *a, **k):
+            pass
+
+        def get_inputs(self):
+            return [Inp()]
+
+        def get_providers(self):
+            return ["CPUExecutionProvider"]
+
+        def run(self, names, feed):
+            return [np.zeros((feed["input"].shape[0], 5, 8), np.float32)]
+    import onnxruntime as ort
+    monkeypatch.setattr(ort, "InferenceSession", Sess)
+    monkeypatch.setattr("tennisbio.infra.devices.preload_cuda", lambda: None)
+    out = poc.run("m.onnx", tmp_path, repeats=1)
+    assert all("CPUExecutionProvider" in o["error"] for o in out["opciones"].values())

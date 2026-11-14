@@ -43,9 +43,15 @@ def compare(ref: list[np.ndarray], out: list[np.ndarray]) -> dict:
     return {"max_diff": round(diff, 5), "puntos_movidos": moved, "puntos": total}
 
 
+EXPECTED = {"cuda_fp32": "CUDAExecutionProvider", "tensorrt_fp32": "TensorrtExecutionProvider",
+            "tensorrt_fp16": "TensorrtExecutionProvider"}
+
+
 def run(model: str, work: Path, repeats: int = 20) -> dict:
     import onnxruntime as ort
 
+    from .devices import preload_cuda
+    preload_cuda()             # R47 (14-11): without it the pip wheels' CUDA was not found and every option ran on the CPU
     out = {"proveedores": ort.get_available_providers(), "opciones": {}}
     rng = np.random.default_rng(0)
     probe = ort.InferenceSession(model, providers=["CPUExecutionProvider"])
@@ -60,6 +66,8 @@ def run(model: str, work: Path, repeats: int = 20) -> dict:
         try:
             sess = _session(model, provs, opts, work / f"trt_{name}")
             res["proveedor_usado"] = sess.get_providers()[0]
+            if res["proveedor_usado"] != EXPECTED[name]:      # R47: a time measured on the CPU is not this option's
+                raise RuntimeError(f"ONNX Runtime puso la sesión en {res['proveedor_usado']}, no en {EXPECTED[name]}")
             t0 = time.time()
             sess.run(None, {inp.name: data[batches[0]]})        # build (TensorRT engines) and warm up
             res["primera_s"] = round(time.time() - t0, 1)

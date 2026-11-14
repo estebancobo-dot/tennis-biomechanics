@@ -486,3 +486,13 @@ def test_a_test_jobs_settings_go_on_top(tmp_path):
     (data / "pc" / "local.yaml").write_text("device: dml\nfine_speed: {workers: 2}\n", encoding="utf-8")
     cfg = nube.write_local_yaml(repo, data, {"hwaccel": "cuda", "fine_speed": {"batch": 16}})
     assert cfg["hwaccel"] == "cuda" and cfg["fine_speed"] == {"workers": 2, "batch": 16} and cfg["device"] == "auto"
+
+
+def test_quiet_cpu_fallbacks_are_counted():
+    """R47 (14-11): ONNX Runtime can put a session on the CPU without an error when CUDA does not start; its own
+    messages count as models on the CPU, like ours."""
+    log = "\n".join(["[W:onnxruntime:Default] Failed to create CUDAExecutionProvider. Require cuDNN 9.*",
+                     "AVISO: la iGPU falló al cargar m.onnx (x); se usa la CPU",
+                     "EP Error x when using ['CUDAExecutionProvider']", "Falling back to ['CPUExecutionProvider'] and retrying.",
+                     "fine: 50 %"])
+    assert nube.gpu_fallbacks(log) == 3 and nube.gpu_fallbacks("todo bien") == 0
