@@ -42,8 +42,11 @@ KAGGLE_H = {"prueba": 1.0, "medir": 0.5}
 KAGGLE_H_PER_VIDEO_MIN = 3.0 / 60
 # 14-11: a session that ends without its job done is launched again, up to KAGGLE_TRIES times; then the job is an error
 # with the reason. Queued in Kaggle (its free GPUs busy) it waits: relaunching every 10 minutes (13:48-14:32) sent it to
-# the back of Kaggle's queue each time and gave the job up after 4 tries; only after 45 minutes queued is it relaunched
-KAGGLE_QUEUE_MAX_S = 2700
+# the back of Kaggle's queue each time and gave the job up after 4 tries; only after 45 minutes queued is it relaunched.
+# 14-11 20:55 (R46): the probe was refused with «Maximum batch GPU session count of 2 reached» while both our jobs
+# were «queued»: Kaggle had accepted them (they hold our 2 sessions) and was waiting for free T4s. Relaunching after
+# 45 minutes only put them at the back again: now 3 h (a session never started by then is taken as lost)
+KAGGLE_QUEUE_MAX_S = 3 * 3600
 KAGGLE_TRIES = 4
 SOURCES = ("kaggle", "modal", "pc")
 FINAL = ("hecho", "error")

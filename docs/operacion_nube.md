@@ -31,7 +31,7 @@ SEGUIR»: la primera tarea no hecha cuyas dependencias estén hechas. **Después
 | Trabajo terminado («hecho») | Lo recoge y lanza el siguiente | Leer su resultado; si es una prueba de 10 min, comparar con la referencia |
 | Prueba con un fallo C0 o C1 → «revisar» | No lanza su partido | Encontrar la causa (registro del trabajo); arreglar con prueba; repetir la prueba (job nuevo o `reiniciar`) |
 | Kaggle rechaza el lanzamiento («push error») | No lo cuenta; lo dice en el resumen y reintenta en la vuelta siguiente | Si es «Maximum batch GPU session count», mirar `kaggle_estado`: sesiones atascadas |
-| Sesión en cola de Kaggle más de 45 min | Borra el cuaderno de ese trabajo y lo relanza (#290) | Nada, salvo que se repita: avisar al usuario |
+| Sesión en cola de Kaggle («queued») | Espera: Kaggle la aceptó y busca una GPU libre (R46: relanzarla antes la manda al final). A las 3 h la da por perdida: borra su cuaderno y la relanza en uno nuevo (#290, R45) | Nada, salvo que se repita: avisar al usuario. Para saber si Kaggle tiene GPU libres: acción `kaggle_sonda` («Maximum batch GPU session count of 2» = nuestras 2 plazas ocupadas por sesiones en espera) |
 | Kaggle no conoce la sesión (lanzamiento perdido) | Relanza a los 10 min | — |
 | Sesión cortada a las 12 h | Relanza: sigue desde lo guardado en Modal | — |
 | 4 intentos fallidos | Error con el motivo | Diagnosticar; corregir; `reiniciar: ["<id>#n"]` |

@@ -156,15 +156,16 @@ def test_a_stuck_or_cut_kaggle_session_is_launched_again_then_given_up():
     assert cola.kaggle_step(st, "running", None, NOV + 5000) == ("nada", "")
     assert cola.kaggle_step(st, "queued", None, NOV + 300) == ("nada", "")
     assert cola.kaggle_step(st, "queued", None, NOV + 1800) == ("nada", "")      # 14-11: its GPUs busy: it waits
-    act, why = cola.kaggle_step(st, "queued", None, NOV + 2701)
-    assert act == "relanzar" and "en cola de Kaggle más de 45 min" in why
+    act, why = cola.kaggle_step(st, "queued", None, NOV + cola.KAGGLE_QUEUE_MAX_S + 1)
+    assert act == "relanzar" and f"en cola de Kaggle más de {cola.KAGGLE_QUEUE_MAX_S // 60} min" in why
     assert cola.kaggle_step(st, "error", None, NOV + 60)[0] == "relanzar"
     assert cola.kaggle_step(st, "desconocido", None, NOV + 300) == ("nada", "")
     assert cola.kaggle_step(st, "desconocido", None, NOV + 601)[0] == "relanzar"      # refused launch, nothing behind
     assert cola.kaggle_step(st, "complete", {"estado": "en curso"}, NOV + 43000)[0] == "relanzar"
     assert cola.kaggle_step(st, "complete", {"estado": "hecho"}, NOV + 43000) == ("recoger", "")
     assert cola.kaggle_step(st, "error", {"estado": "error"}, NOV + 60) == ("recoger", "")
-    act, why = cola.kaggle_step({"lanzado_ts": NOV, "intentos": cola.KAGGLE_TRIES}, "queued", None, NOV + 2701)
+    act, why = cola.kaggle_step({"lanzado_ts": NOV, "intentos": cola.KAGGLE_TRIES}, "queued", None,
+                                NOV + cola.KAGGLE_QUEUE_MAX_S + 1)
     assert act == "error" and f"({cola.KAGGLE_TRIES} intentos)" in why
 
 
@@ -401,3 +402,10 @@ def test_relaunch_gets_a_new_notebook_and_poc_results_reach_the_logs(tmp_path):
     got = json.loads((tmp_path / "pruebas" / "medir_video_nvdec.json").read_text(encoding="utf-8"))
     assert got["poc"]["opciones"]["cpu"]["ms_por_fotograma"] == 9.0
     assert cola.copy_poc_results(Vol(), state, tmp_path) == []                         # once
+
+
+def test_a_queued_session_keeps_its_place_for_hours():
+    """R46 (14-11): «queued» means Kaggle accepted the session and waits for a free GPU; relaunching it early only
+    sends it to the back of Kaggle's queue."""
+    assert cola.KAGGLE_QUEUE_MAX_S >= 3 * 3600
+    assert cola.kaggle_step({"lanzado_ts": NOV, "intentos": 1}, "queued", None, NOV + 2 * 3600) == ("nada", "")
