@@ -24,5 +24,15 @@
    "coste_usd": 0.27,
    "segundos": 667
   }
+ },
+ "prueba_gauff_v16": {
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1794664138.8442621,
+  "accion": "prueba",
+  "inicio": "2026-11-14 13:48",
+  "ruta": "/runs/kaggle_prueba_gauff_v16/estado.json"
  }
 }

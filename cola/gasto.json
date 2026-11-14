@@ -15,5 +15,14 @@
    },
    "base_usd": 28.08
   }
+ },
+ "kaggle": {
+  "2026-W46": {
+   "trabajos": {
+    "prueba_gauff_v16": {
+     "estimado_h": 1.0
+    }
+   }
+  }
  }
 }
