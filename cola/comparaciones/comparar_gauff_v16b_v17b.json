@@ -1,0 +1,84 @@
+{
+ "a": "/kaggle_pruebas/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+ "b": "/kaggle_pruebas/prueba_gauff_v17/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+ "veredicto": "incompleta",
+ "etapas_iguales": [
+  "audio",
+  "candidates",
+  "court",
+  "fine",
+  "fine_doubtful",
+  "fine_opponent",
+  "identity",
+  "players",
+  "probe",
+  "scenes",
+  "score",
+  "slowmo_fine",
+  "spotting",
+  "view_clips",
+  "views",
+  "views_link"
+ ],
+ "etapas_distintas": [],
+ "etapas_sin_comparar": [],
+ "golpes": {
+  "strokes.json": {
+   "a": 28,
+   "b": 0,
+   "pares": 0,
+   "solo_a": [
+    182.75,
+    199.43,
+    230.73,
+    308.88,
+    311.38,
+    340.01,
+    400.16,
+    402.2,
+    404.52,
+    406.88,
+    409.56,
+    411.9,
+    433.61,
+    435.57,
+    438.33,
+    439.79,
+    462.47,
+    484.06,
+    496.84,
+    498.76
+   ],
+   "solo_b": [],
+   "tipo_distinto": [],
+   "medidas_distintas": {},
+   "mayor_diferencia": {}
+  },
+  "strokes_opponent.json": {
+   "a": 0,
+   "b": 0,
+   "pares": 0,
+   "solo_a": [],
+   "solo_b": [],
+   "tipo_distinto": [],
+   "medidas_distintas": {},
+   "mayor_diferencia": {}
+  },
+  "strokes_doubtful.json": {
+   "a": 1,
+   "b": 1,
+   "pares": 1,
+   "solo_a": [],
+   "solo_b": [],
+   "tipo_distinto": [],
+   "medidas_distintas": {},
+   "mayor_diferencia": {}
+  }
+ },
+ "ficheros_de_un_solo_lado": [
+  "strokes.json"
+ ],
+ "no_leidos": {
+  "/kaggle_pruebas/prueba_gauff_v17/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5/strokes.json": "FileNotFoundError: path \"/kaggle_pruebas/prueba_gauff_v17/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5/strokes.json\" does not exist"
+ }
+}
