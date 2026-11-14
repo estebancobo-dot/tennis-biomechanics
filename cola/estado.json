@@ -179,10 +179,10 @@
   "ruta": "/runs/kaggle_prueba_gauff_v19/estado.json",
   "salida": "/kaggle_pruebas/prueba_gauff_v19/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cuaderno": "tennisbio-prueba-gauff-v19",
-  "kaggle": "running (22:07)",
+  "kaggle": "running (22:12)",
   "arranco": "2026-11-14 21:24",
   "espera_min": 10,
-  "progreso": "fine:  68 % (19/28 golpes candidatos · 19 confirmados · 0 ventanas descartadas sin pose) · 19 min · quedan ≈ 9 min (22:05:27; GPU 0 %·0 %, CPU 99 %, 11.7 GB)"
+  "progreso": "view_clips:  69 % (31/45 recortes de repeticiones y otras cámaras) · 2 min · quedan ≈ 60 s (22:12:53; GPU 0 %·0 %, CPU 89 %, 3.5 GB)"
  },
  "comparar_gauff_v16b_v18": {
   "estado": "error",
