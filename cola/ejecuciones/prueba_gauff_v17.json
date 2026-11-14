@@ -1,0 +1,402 @@
+{
+ "estado": "hecho",
+ "segundos": 3168,
+ "horas_kaggle": 0.91,
+ "coste_usd": 0.0,
+ "gpu": null,
+ "etapas": {
+  "probe": 1.1,
+  "scenes": 120.8,
+  "court": 61.2,
+  "players": 78.4,
+  "score": 107.1,
+  "audio": 28.5,
+  "identity": 40.0,
+  "spotting": 212.3,
+  "candidates": 1.2,
+  "views": 71.2,
+  "fine": 2221.2,
+  "views_link": 0.1,
+  "view_clips": 181.7,
+  "slowmo_fine": 6.2,
+  "fine_opponent": 0.0,
+  "fine_doubtful": 107.8
+ },
+ "recursos": {
+  "muestras": 52,
+  "gpu_pct": {
+   "media": 10.5,
+   "max": 80.0
+  },
+  "gpu_mem_gb": {
+   "media": 0.8,
+   "max": 2.7
+  },
+  "cpu_pct": {
+   "media": 57.6,
+   "max": 96.1
+  },
+  "ram_gb": {
+   "media": 5.2,
+   "max": 6.4
+  },
+  "gpu1_mem_gb": {
+   "media": 0.0,
+   "max": 0.0
+  },
+  "gpu1_pct": {
+   "media": 0.0,
+   "max": 0.0
+  }
+ },
+ "recursos_por_etapa": {
+  "probe": {
+   "s": 1,
+   "muestras": 0
+  },
+  "scenes": {
+   "s": 121,
+   "muestras": 2,
+   "gpu_pct": {
+    "media": 0.0,
+    "max": 0.0
+   },
+   "gpu_mem_gb": {
+    "media": 0.2,
+    "max": 0.2
+   },
+   "cpu_pct": {
+    "media": 87.0,
+    "max": 87.0
+   },
+   "ram_gb": {
+    "media": 2.3,
+    "max": 2.3
+   },
+   "gpu1_mem_gb": {
+    "media": 0.0,
+    "max": 0.0
+   },
+   "gpu1_pct": {
+    "media": 0.0,
+    "max": 0.0
+   }
+  },
+  "court": {
+   "s": 61,
+   "muestras": 1,
+   "gpu_pct": {
+    "media": 0.0,
+    "max": 0.0
+   },
+   "gpu_mem_gb": {
+    "media": 0.2,
+    "max": 0.2
+   },
+   "cpu_pct": {
+    "media": 88.7,
+    "max": 88.7
+   },
+   "ram_gb": {
+    "media": 2.9,
+    "max": 2.9
+   },
+   "gpu1_mem_gb": {
+    "media": 0.0,
+    "max": 0.0
+   },
+   "gpu1_pct": {
+    "media": 0.0,
+    "max": 0.0
+   }
+  },
+  "players": {
+   "s": 78,
+   "muestras": 1,
+   "gpu_pct": {
+    "media": 59.0,
+    "max": 59.0
+   },
+   "gpu_mem_gb": {
+    "media": 0.4,
+    "max": 0.4
+   },
+   "cpu_pct": {
+    "media": 96.1,
+    "max": 96.1
+   },
+   "ram_gb": {
+    "media": 3.4,
+    "max": 3.4
+   },
+   "gpu1_mem_gb": {
+    "media": 0.0,
+    "max": 0.0
+   },
+   "gpu1_pct": {
+    "media": 0.0,
+    "max": 0.0
+   }
+  },
+  "score": {
+   "s": 107,
+   "muestras": 1,
+   "gpu_pct": {
+    "media": 59.0,
+    "max": 59.0
+   },
+   "gpu_mem_gb": {
+    "media": 0.4,
+    "max": 0.4
+   },
+   "cpu_pct": {
+    "media": 96.1,
+    "max": 96.1
+   },
+   "ram_gb": {
+    "media": 3.4,
+    "max": 3.4
+   },
+   "gpu1_mem_gb": {
+    "media": 0.0,
+    "max": 0.0
+   },
+   "gpu1_pct": {
+    "media": 0.0,
+    "max": 0.0
+   }
+  },
+  "audio": {
+   "s": 28,
+   "muestras": 1,
+   "gpu_pct": {
+    "media": 0.0,
+    "max": 0.0
+   },
+   "gpu_mem_gb": {
+    "media": 0.2,
+    "max": 0.2
+   },
+   "cpu_pct": {
+    "media": 77.0,
+    "max": 77.0
+   },
+   "ram_gb": {
+    "media": 3.3,
+    "max": 3.3
+   },
+   "gpu1_mem_gb": {
+    "media": 0.0,
+    "max": 0.0
+   },
+   "gpu1_pct": {
+    "media": 0.0,
+    "max": 0.0
+   }
+  },
+  "identity": {
+   "s": 40,
+   "muestras": 1,
+   "gpu_pct": {
+    "media": 0.0,
+    "max": 0.0
+   },
+   "gpu_mem_gb": {
+    "media": 0.2,
+    "max": 0.2
+   },
+   "cpu_pct": {
+    "media": 72.9,
+    "max": 72.9
+   },
+   "ram_gb": {
+    "media": 3.6,
+    "max": 3.6
+   },
+   "gpu1_mem_gb": {
+    "media": 0.0,
+    "max": 0.0
+   },
+   "gpu1_pct": {
+    "media": 0.0,
+    "max": 0.0
+   }
+  },
+  "spotting": {
+   "s": 212,
+   "muestras": 3,
+   "gpu_pct": {
+    "media": 53.3,
+    "max": 63.0
+   },
+   "gpu_mem_gb": {
+    "media": 1.1,
+    "max": 2.7
+   },
+   "cpu_pct": {
+    "media": 38.9,
+    "max": 39.7
+   },
+   "ram_gb": {
+    "media": 3.6,
+    "max": 3.7
+   },
+   "gpu1_mem_gb": {
+    "media": 0.0,
+    "max": 0.0
+   },
+   "gpu1_pct": {
+    "media": 0.0,
+    "max": 0.0
+   }
+  },
+  "candidates": {
+   "s": 1,
+   "muestras": 0
+  },
+  "views": {
+   "s": 71,
+   "muestras": 1,
+   "gpu_pct": {
+    "media": 0.0,
+    "max": 0.0
+   },
+   "gpu_mem_gb": {
+    "media": 0.2,
+    "max": 0.2
+   },
+   "cpu_pct": {
+    "media": 61.8,
+    "max": 61.8
+   },
+   "ram_gb": {
+    "media": 3.9,
+    "max": 3.9
+   },
+   "gpu1_mem_gb": {
+    "media": 0.0,
+    "max": 0.0
+   },
+   "gpu1_pct": {
+    "media": 0.0,
+    "max": 0.0
+   }
+  },
+  "fine": {
+   "s": 2221,
+   "muestras": 37,
+   "gpu_pct": {
+    "media": 8.8,
+    "max": 80.0
+   },
+   "gpu_mem_gb": {
+    "media": 0.9,
+    "max": 1.1
+   },
+   "cpu_pct": {
+    "media": 53.2,
+    "max": 86.4
+   },
+   "ram_gb": {
+    "media": 5.6,
+    "max": 6.0
+   },
+   "gpu1_mem_gb": {
+    "media": 0.0,
+    "max": 0.0
+   },
+   "gpu1_pct": {
+    "media": 0.0,
+    "max": 0.0
+   }
+  },
+  "views_link": {
+   "s": 0,
+   "muestras": 0
+  },
+  "view_clips": {
+   "s": 182,
+   "muestras": 3,
+   "gpu_pct": {
+    "media": 0.0,
+    "max": 0.0
+   },
+   "gpu_mem_gb": {
+    "media": 0.7,
+    "max": 0.7
+   },
+   "cpu_pct": {
+    "media": 78.1,
+    "max": 87.5
+   },
+   "ram_gb": {
+    "media": 6.1,
+    "max": 6.1
+   },
+   "gpu1_mem_gb": {
+    "media": 0.0,
+    "max": 0.0
+   },
+   "gpu1_pct": {
+    "media": 0.0,
+    "max": 0.0
+   }
+  },
+  "slowmo_fine": {
+   "s": 6,
+   "muestras": 0
+  },
+  "fine_opponent": {
+   "s": 0,
+   "muestras": 0
+  },
+  "fine_doubtful": {
+   "s": 108,
+   "muestras": 2,
+   "gpu_pct": {
+    "media": 0.0,
+    "max": 0.0
+   },
+   "gpu_mem_gb": {
+    "media": 0.9,
+    "max": 0.9
+   },
+   "cpu_pct": {
+    "media": 66.4,
+    "max": 81.1
+   },
+   "ram_gb": {
+    "media": 6.2,
+    "max": 6.4
+   },
+   "gpu1_mem_gb": {
+    "media": 0.0,
+    "max": 0.0
+   },
+   "gpu1_pct": {
+    "media": 0.0,
+    "max": 0.0
+   }
+  }
+ },
+ "modelos_en_cpu": 0,
+ "fallos": {},
+ "sin_subir": null,
+ "config": null,
+ "kaggle": {
+  "python": "3.13.16",
+  "nucleos": 4,
+  "memoria_gib": {
+   "MemTotal": 31.3,
+   "MemAvailable": 30.0
+  },
+  "disco_libre_gib": {
+   "/tmp": 966.8,
+   "/kaggle/working": 19.5
+  },
+  "gpu": "Tesla T4, 15360 MiB\nTesla T4, 15360 MiB",
+  "ffmpeg": "/usr/bin/ffmpeg",
+  "clave_modal": true
+ },
+ "nota": null
+}

@@ -1,13 +1,13 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-14 20:18 UTC · Modal: quedan 0.53 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 23.6 h de GPU esta semana (tope 28 h)
+Última vuelta: 2026-11-14 20:23 UTC · Modal: quedan 0.53 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 23.6 h de GPU esta semana (tope 28 h)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
-| medir_raqueta_trt | medir |  | en_marcha | kaggle |  |
+| medir_raqueta_trt | medir |  | en_marcha | kaggle | Kaggle: queued (20:23), intento 4; en cola de Kaggle más de 45 min sin arrancar |
 | medir_video_nvdec | medir | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
 | prueba_gauff_v17 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
-| prueba_gauff_v18 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: queued (20:18), intento 1 |
+| prueba_gauff_v18 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: queued (20:23), intento 1 |
 | comparar_gauff_v16b_v18 | comparar |  | pendiente |  | espera a prueba_gauff_v18 |
 | prueba_gauff | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | modal |  |
 | prueba_gauff_v16 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | error | kaggle | en cola de Kaggle más de 10 min sin arrancar (4 intentos) |

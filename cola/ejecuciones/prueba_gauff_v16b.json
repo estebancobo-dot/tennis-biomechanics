@@ -1,0 +1,47 @@
+{
+ "estado": "hecho",
+ "segundos": 3129,
+ "horas_kaggle": 0.9,
+ "coste_usd": 0.0,
+ "gpu": null,
+ "etapas": {
+  "probe": 1.0,
+  "scenes": 118.5,
+  "court": 60.4,
+  "players": 80.6,
+  "score": 105.5,
+  "audio": 28.8,
+  "identity": 39.1,
+  "spotting": 221.4,
+  "candidates": 1.1,
+  "views": 69.1,
+  "fine": 2184.1,
+  "views_link": 0.1,
+  "view_clips": 178.6,
+  "slowmo_fine": 6.6,
+  "fine_opponent": 0.0,
+  "fine_doubtful": 103.5
+ },
+ "recursos": null,
+ "recursos_por_etapa": null,
+ "modelos_en_cpu": 0,
+ "fallos": {},
+ "sin_subir": null,
+ "config": null,
+ "kaggle": {
+  "python": "3.13.16",
+  "nucleos": 4,
+  "memoria_gib": {
+   "MemTotal": 31.3,
+   "MemAvailable": 29.9
+  },
+  "disco_libre_gib": {
+   "/tmp": 966.8,
+   "/kaggle/working": 19.5
+  },
+  "gpu": "Tesla T4, 15360 MiB\nTesla T4, 15360 MiB",
+  "ffmpeg": "/usr/bin/ffmpeg",
+  "clave_modal": true
+ },
+ "nota": null
+}
