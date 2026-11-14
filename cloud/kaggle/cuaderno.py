@@ -125,7 +125,7 @@ def _kaggle(*args) -> subprocess.CompletedProcess:
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("orden", choices=("clave", "lanzar", "estado", "esperar", "salida"))
+    ap.add_argument("orden", choices=("clave", "lanzar", "estado", "esperar", "salida", "sonda"))
     ap.add_argument("--accion", default="comprobar")
     ap.add_argument("--partido", default="")
     ap.add_argument("--salida-remota", default="", help="la carpeta de la ejecución en Modal (/runs/<tag>)")
@@ -138,6 +138,25 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--forzar", action="store_true", help="clave: una versión nueva aunque ya exista (clave cambiada)")
     a = ap.parse_args(argv)
     kid = f"{_user()}/{SLUG}"
+    if a.orden == "sonda":                    # 14-11: does Kaggle start any GPU session at all? (a new, tiny notebook)
+        folder = Path("kaggle-sonda")
+        folder.mkdir(parents=True, exist_ok=True)
+        nb = notebook({"accion": "sonda"})
+        nb["cells"][0]["source"] = ["import subprocess\n", "print(subprocess.run(['nvidia-smi'], capture_output=True, text=True).stdout)\n"]
+        (folder / "tennisbio-sonda.ipynb").write_text(json.dumps(nb), encoding="utf-8")
+        meta = {**metadata(_user(), key=False), "id": f"{_user()}/tennisbio-sonda", "title": "tennisbio-sonda",
+                "code_file": "tennisbio-sonda.ipynb", "enable_internet": False}
+        (folder / "kernel-metadata.json").write_text(json.dumps(meta), encoding="utf-8")
+        r = _kaggle("kernels", "push", "-p", str(folder))
+        print(r.stdout, r.stderr)
+        end = time.time() + a.minutos * 60
+        while time.time() < end:
+            st = _kaggle("kernels", "status", f"{_user()}/tennisbio-sonda")
+            print(time.strftime("%H:%M:%S"), status_of(st.stdout + st.stderr), flush=True)
+            if status_of(st.stdout + st.stderr) in ("running", "complete", "error"):
+                return 0
+            time.sleep(20)
+        return 3
     if a.orden == "clave":                    # the key dataset, created once and then a new version each time
         folder = key_dataset(Path("kaggle-clave"), _user(), os.environ.get("MODAL_TOKEN_ID", ""),
                              os.environ.get("MODAL_TOKEN_SECRET", ""))

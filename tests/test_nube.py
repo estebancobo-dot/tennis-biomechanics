@@ -192,7 +192,7 @@ def test_the_workflow_only_runs_by_hand_with_the_users_key():
     assert set(on["workflow_dispatch"]["inputs"]["accion"]["options"]) == {"comprobar", "f3set", "prueba", "partidos",
                                                                       "diagnostico", "informe", "parar", "recoger",
                                                                       "kaggle_comprobar", "kaggle_prueba", "kaggle_estado",
-                                                                      "kaggle_sin_clave"}
+                                                                      "kaggle_sin_clave", "kaggle_sonda"}
     job = wf["jobs"]["nube"]
     assert job["if"] == "github.repository_owner == 'estebancobo-dot'"
     assert job["env"]["CLAVE_MODAL_1"] == "${{ secrets.MODAL_TOKEN_ID }}"

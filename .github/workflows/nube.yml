@@ -24,7 +24,7 @@ on:
       accion:
         description: "comprobar | f3set | prueba | partidos | diagnostico | informe | parar | recoger | kaggle_comprobar | kaggle_prueba | kaggle_estado | kaggle_sin_clave"
         type: choice
-        options: [comprobar, f3set, prueba, partidos, diagnostico, informe, parar, recoger, kaggle_comprobar, kaggle_prueba, kaggle_estado, kaggle_sin_clave]
+        options: [comprobar, f3set, prueba, partidos, diagnostico, informe, parar, recoger, kaggle_comprobar, kaggle_prueba, kaggle_estado, kaggle_sin_clave, kaggle_sonda]
         default: comprobar
       tag:
         description: "nombre de la ejecucion (runs/<tag>)"
@@ -131,6 +131,10 @@ jobs:
         run: |
           # 14-11: the kaggle package does not declare «six», which it imports («No module named 'six'»)
           pip install -q "kaggle>=1.8" six
+          if [ "$ACCION" = "kaggle_sonda" ]; then
+            # 14-11: a tiny new notebook that only looks at the GPU: does Kaggle start anything at all?
+            python cloud/kaggle/cuaderno.py sonda --minutos 15; exit $?
+          fi
           if [ "$ACCION" = "kaggle_estado" ]; then
             # 14-11: the real GPU quota and every recent version's status (why Kaggle starts nothing)
             python cloud/kaggle/diagnostico.py || true
