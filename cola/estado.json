@@ -255,7 +255,7 @@
   }
  },
  "gauff": {
-  "estado": "en_marcha",
+  "estado": "error",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 1,
@@ -269,7 +269,10 @@
   "progreso": "identity terminada a las 23:43:37 en 8.0 min (23:52:33; GPU 54 %·0 %, CPU 39 %, 4.8 GB)",
   "kaggle": "running (23:54)",
   "arranco": "2026-11-14 22:39",
-  "espera_min": 11
+  "espera_min": 11,
+  "resultado": {
+   "nota": "cancelado: R48: con la raqueta en la CPU su pasada fina gastaría ~6 h de más; se relanza como gauff_b con el arreglo cuando la v20 lo compruebe (su pasada barata, ya en Modal, se reutiliza)"
+  }
  },
  "prueba_gauff_v20": {
   "estado": "en_marcha",
@@ -283,9 +286,22 @@
   "ruta": "/runs/kaggle_prueba_gauff_v20/estado.json",
   "salida": "/kaggle_pruebas/prueba_gauff_v20/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cuaderno": "tennisbio-prueba-gauff-v20",
-  "kaggle": "running (23:54)",
+  "kaggle": "running (23:57)",
   "arranco": "2026-11-14 23:38",
   "espera_min": 2,
-  "progreso": "fine:  25 % (7/28 golpes candidatos · 7 confirmados · 0 ventanas descartadas sin pose) · 2 min · quedan ≈ 5 min (23:54:08; GPU 14 %·8 %, CPU 85 %, 10.6 GB)"
+  "progreso": "fine:  68 % (19/28 golpes candidatos · 19 confirmados · 0 ventanas descartadas sin pose) · 5 min · quedan ≈ 2 min (23:56:51; GPU 79 %·44 %, CPU 85 %, 11.3 GB)"
+ },
+ "final": {
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1794700626.1920333,
+  "accion": "partido",
+  "partido": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
+  "inicio": "2026-11-14 23:57",
+  "ruta": "/runs/partido_tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5/estado.json",
+  "salida": "/output/tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
+  "cuaderno": "tennisbio-final"
  }
 }
