@@ -44,6 +44,10 @@ trabajos:
   # comparación con la v16b (compara a la vez el cambio de dispositivo y que la subida ya no pierde nada)
   - {id: prueba_gauff_v18, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle}
   - {id: comparar_gauff_v16b_v18, accion: comparar, a: "/kaggle_pruebas/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5", b: prueba_gauff_v18}
+  # T8 (14-11 20:30): la pasada fina en 2 procesos, cada uno en su T4 (la v17 midió 1 proceso con la GPU al 9 % y la
+  # CPU al 53 %, la 2.ª T4 al 0 %); la misma prueba y su comparación con la v16b (incluye el dispositivo y la subida)
+  - {id: prueba_gauff_v19, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle}
+  - {id: comparar_gauff_v16b_v19, accion: comparar, a: "/kaggle_pruebas/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5", b: prueba_gauff_v19}
   # lotes 3 y 4 (aprobados por el usuario el 13-11: Osaka; Pegula y Zheng; Gauff y la final; Zverev-Sinner), cada
   # partido tras su prueba corta de 10 minutos (#277); el informe y la auditoría de la Base al final
   - {id: prueba_gauff, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5}

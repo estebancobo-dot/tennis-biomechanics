@@ -7,6 +7,13 @@
    "motivo": "T4 (#289, 14-11): el dispositivo por descubrimiento (device: auto → cuda en la nube; is_gpu en lugar de «dml»); las mismas sesiones de CUDA con las mismas opciones y la misma memoria devuelta que el parche cloud/arranque/nube_gpu.py",
    "prueba": "comparar_gauff_v16b_v18",
    "fecha": "2026-11-14"
+  },
+  "b34e27f8e234836e": {
+   "igual_a": "7ff143093bfd9f45",
+   "comprobado": false,
+   "motivo": "T4 + T8 (#289, 14-11): el dispositivo por descubrimiento y la pasada fina en 2 procesos, cada uno en su GPU (los núcleos por proceso medidos en Kaggle: 2); cada ventana se calcula igual, solo cambia dónde",
+   "prueba": "comparar_gauff_v16b_v19",
+   "fecha": "2026-11-14"
   }
  },
  "fine_opponent": {
@@ -16,6 +23,13 @@
    "motivo": "T4 (#289, 14-11): el dispositivo por descubrimiento (device: auto → cuda en la nube; is_gpu en lugar de «dml»); las mismas sesiones de CUDA con las mismas opciones y la misma memoria devuelta que el parche cloud/arranque/nube_gpu.py",
    "prueba": "comparar_gauff_v16b_v18",
    "fecha": "2026-11-14"
+  },
+  "fb1348358c46f27d": {
+   "igual_a": "046a937fe80dcced",
+   "comprobado": false,
+   "motivo": "T4 + T8 (#289, 14-11): el dispositivo por descubrimiento y la pasada fina en 2 procesos, cada uno en su GPU (los núcleos por proceso medidos en Kaggle: 2); cada ventana se calcula igual, solo cambia dónde",
+   "prueba": "comparar_gauff_v16b_v19",
+   "fecha": "2026-11-14"
   }
  },
  "fine_doubtful": {
@@ -24,6 +38,13 @@
    "comprobado": false,
    "motivo": "T4 (#289, 14-11): el dispositivo por descubrimiento (device: auto → cuda en la nube; is_gpu en lugar de «dml»); las mismas sesiones de CUDA con las mismas opciones y la misma memoria devuelta que el parche cloud/arranque/nube_gpu.py",
    "prueba": "comparar_gauff_v16b_v18",
+   "fecha": "2026-11-14"
+  },
+  "6acdae694b7d99ee": {
+   "igual_a": "855818ee3fe992aa",
+   "comprobado": false,
+   "motivo": "T4 + T8 (#289, 14-11): el dispositivo por descubrimiento y la pasada fina en 2 procesos, cada uno en su GPU (los núcleos por proceso medidos en Kaggle: 2); cada ventana se calcula igual, solo cambia dónde",
+   "prueba": "comparar_gauff_v16b_v19",
    "fecha": "2026-11-14"
   }
  }

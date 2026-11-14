@@ -17,7 +17,7 @@ from pathlib import Path
 import numpy as np
 
 from .impacts import audio_onsets, swing_peaks
-from .infra.devices import is_gpu
+from .infra.devices import gpu_slots, is_gpu
 from .io.video import frames_at, keyframe_times, keyframes_at, probe, read_ahead, read_frames
 from .kinematics import body_height, clean, speed, to_body_frame
 from .config import model_state, resolve_path
@@ -1842,7 +1842,10 @@ def _fine_workers(cfg: dict, n_groups: int, free_gb: float | None = None) -> int
     w = fs.get("workers")
     if w is None:
         w = 2 if is_gpu(cfg.get("device", "cpu")) else 1
-    w = min(int(w), n_groups, max(1, (os.cpu_count() or 2) // 4))
+    # T8 (14-11): by the cores one worker needs, measured (Kaggle, prueba v17: one worker of the fine pass ≈ 2.1 of 4
+    # cores, CPU 53 %, GPU 9 %); it was «cores // 4», made for the PC (16 threads → 4), which left Kaggle's 4 cores
+    # with a single worker and its second T4 idle. The PC keeps 2 (the default above)
+    w = min(int(w), n_groups, max(1, (os.cpu_count() or 2) // int(fs.get("cores_per_worker", 2))))
     free_gb = available_ram_gb() if free_gb is None else free_gb
     if free_gb is not None:
         w = min(w, int(free_gb // float(fs.get("worker_ram_gb", 6.0))))
@@ -1852,7 +1855,12 @@ def _fine_workers(cfg: dict, n_groups: int, free_gb: float | None = None) -> int
 _FW: dict = {}          # one process of the fine pass: its context, inputs and models (_fine_worker_init)
 
 
-def _fine_worker_init(match, cfg: dict, d: str, player):
+def _fine_worker_init(match, cfg: dict, d: str, player, gpus=None):
+    if gpus is not None:                  # T8: this worker's own GPU, before any of its CUDA sessions exists
+        try:
+            os.environ["CUDA_VISIBLE_DEVICES"] = str(gpus.get(timeout=5))
+        except Exception:  # esperado: more workers than slots (a restarted process): the default GPU  # noqa: BLE001
+            pass
     lines: list = []
     ctx = Context(match, cfg, Path(d), log=lines.append)
     scenes = _read(ctx.path("scenes.json")) if ctx.path("scenes.json").exists() else {"fps": 1, "shots": []}
@@ -1917,8 +1925,16 @@ def _fine_parallel(ctx: Context, p, groups: list, workers: int, args: tuple, too
 
     left = set(range(len(groups)))
     try:
-        with ProcessPoolExecutor(workers, mp_context=mp.get_context("spawn"), initializer=_fine_worker_init,
-                                 initargs=(ctx.match, ctx.cfg, str(ctx.dir), p)) as ex:
+        mpc = mp.get_context("spawn")
+        slots = gpu_slots(ctx.cfg.get("device", "cpu"), workers)
+        gpus = None
+        if slots:                                     # T8: one GPU per worker (Kaggle's two T4s)
+            gpus = mpc.Queue()
+            for g in slots:
+                gpus.put(g)
+            ctx.log(f"  pasada fina: {workers} procesos en las GPU {slots}")
+        with ProcessPoolExecutor(workers, mp_context=mpc, initializer=_fine_worker_init,
+                                 initargs=(ctx.match, ctx.cfg, str(ctx.dir), p, gpus)) as ex:
             futs = [ex.submit(_fine_worker, (i, g, args)) for i, g in enumerate(groups)]
             for f in as_completed(futs):
                 r = f.result()

@@ -54,6 +54,19 @@ def provider_options(providers: list[str]) -> list[dict] | None:
     return [dict(CUDA_OPTIONS) if p == "CUDAExecutionProvider" else {} for p in providers]
 
 
+@lru_cache(maxsize=1)
+def nvidia_gpus() -> int:
+    """How many NVIDIA GPUs this machine has (discovered once per process; 0 without nvidia-smi)."""
+    return len([g for g in discover().gpus if g.get("vendor") == "nvidia"])
+
+
+def gpu_slots(device: str, workers: int) -> list[int]:
+    """T8 (14-11, Kaggle's two T4s, the second one idle): the GPU each worker of the fine pass uses, one after the
+    other (worker i → GPU i mod n); [] when there is nothing to spread (not NVIDIA, one GPU or one worker)."""
+    n = nvidia_gpus() if device in NVIDIA_DEVICES else 0
+    return [i % n for i in range(workers)] if n > 1 and workers > 1 else []
+
+
 _preloaded = False
 
 

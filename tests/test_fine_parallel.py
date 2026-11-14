@@ -18,7 +18,36 @@ def test_workers_default_by_device(monkeypatch):
     assert stages._fine_workers({"device": "dml", "fine_speed": {"workers": 3}}, 50) == 3
     assert stages._fine_workers({"device": "dml"}, 1) == 1                       # one window: one process
     monkeypatch.setattr("os.cpu_count", lambda: 4)
-    assert stages._fine_workers({"device": "dml", "fine_speed": {"workers": 3}}, 50) == 1
+    # T8 (14-11): 2 cores per worker, measured on Kaggle (it was 4: one worker for Kaggle's 4 cores, its 2nd T4 idle)
+    assert stages._fine_workers({"device": "dml", "fine_speed": {"workers": 3}}, 50) == 2
+    assert stages._fine_workers({"device": "cuda"}, 50) == 2
+    assert stages._fine_workers({"device": "cuda", "fine_speed": {"cores_per_worker": 4}}, 50) == 1
+    monkeypatch.setattr("os.cpu_count", lambda: 2)
+    assert stages._fine_workers({"device": "cuda"}, 50) == 1
+
+
+def test_each_worker_gets_its_own_gpu(monkeypatch):
+    """T8: on two NVIDIA GPUs the fine pass's workers take one each (worker i → GPU i mod n), before any session."""
+    import queue
+
+    from tennisbio.infra import devices
+    monkeypatch.setattr(devices, "nvidia_gpus", lambda: 2)
+    assert devices.gpu_slots("cuda", 2) == [0, 1] and devices.gpu_slots("cuda", 3) == [0, 1, 0]
+    assert devices.gpu_slots("dml", 2) == [] and devices.gpu_slots("cuda", 1) == []
+    monkeypatch.setattr(devices, "nvidia_gpus", lambda: 1)
+    assert devices.gpu_slots("cuda", 2) == []
+    q = queue.Queue()
+    q.put(1)
+    monkeypatch.delenv("CUDA_VISIBLE_DEVICES", raising=False)
+    monkeypatch.setattr(stages, "Context", lambda *a, **k: (_ for _ in ()).throw(RuntimeError("stop")))
+    with pytest.raises(RuntimeError):
+        stages._fine_worker_init(None, {}, ".", None, q)
+    import os
+    assert os.environ["CUDA_VISIBLE_DEVICES"] == "1"
+    monkeypatch.delenv("CUDA_VISIBLE_DEVICES", raising=False)
+    with pytest.raises(RuntimeError):
+        stages._fine_worker_init(None, {}, ".", None, queue.Queue())          # no slot left: the default GPU
+    assert "CUDA_VISIBLE_DEVICES" not in os.environ
 
 
 def test_workers_fit_in_the_free_memory(monkeypatch):
