@@ -98,7 +98,9 @@ def test_close_finishes_the_window_being_done():
     assert seen == [4] and ahead.state[4] == "done" and ahead.state[3] == "todo"
 
 
-def test_enabled_only_on_the_igpu_with_the_ball_and_two_windows():
+def test_enabled_only_on_the_igpu_with_the_ball_and_two_windows(monkeypatch):
+    import os
+    monkeypatch.setattr(os, "cpu_count", lambda: 16)                     # the PC
     on = {"device": "dml"}
     assert ahead_enabled(on, 2, True)
     assert not ahead_enabled({"device": "cpu"}, 5, True)                  # pose on the CPU: same cores
@@ -106,6 +108,10 @@ def test_enabled_only_on_the_igpu_with_the_ball_and_two_windows():
     assert not ahead_enabled(on, 5, False)                               # no ball model
     assert not ahead_enabled(on, 1, True) and not ahead_enabled(on, 0, True)
     assert not ahead_enabled({**on, "fine_speed": {"ball_ahead": False}}, 5, True)
+    # 14-11: Kaggle's 4 cores: the ball on the CPU starved the rest (the racket 4 × slower than on Modal)
+    monkeypatch.setattr(os, "cpu_count", lambda: 4)
+    assert not ahead_enabled(on, 5, True)
+    assert ahead_enabled({**on, "fine_speed": {"ball_ahead_min_cores": 4}}, 5, True)
 
 
 # ---- windows that overlap -------------------------------------------------------------------------
@@ -171,6 +177,8 @@ def _patch(monkeypatch, tiny_video):
     """Cut = a copy of a tiny video; the main thread's window = the gate's ball read (computing it on its
     own model when missing, as stages._gate_passes does)."""
     import shutil
+
+    monkeypatch.setattr("os.cpu_count", lambda: 16)       # the PC's cores (14-11: with fewer than 8 it is off)
 
     from tennisbio import ball as ball_mod
     from tennisbio import clip_pipeline, stages

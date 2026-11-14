@@ -39,6 +39,16 @@ mismas versiones que Modal) 45 s, la GPU con CUDA** (`['TensorrtExecutionProvide
 'CPUExecutionProvider']`), 0,02 h de la cuota. Pendiente (8b, al unir Kaggle a la cola): una sesión que se quede en
 cola más de un tiempo se relanza.
 
+**Prueba de 10 min de Gauff en Kaggle frente a Modal (14-11 11:42-13:20, mismo código):** las mismas tomas (92, 20 de
+la cámara principal), la misma pista, el mismo marcador (0 lecturas: el fallo R40, en los dos), la misma identidad
+(18 planos sin decidir: una prueba no lleva el clic), **los mismos 55 golpes (34 cerca, 21 lejos)**, los mismos enlaces
+de repeticiones, 0 modelos en la CPU; **18 derechas frente a 19**. Tiempo: 1,64 h de Kaggle frente a 26 min en Modal:
+la pose fue más rápida en Kaggle (454 s frente a 745), pero la raqueta 3986 s frente a 920, porque «la bola en paralelo
+en la CPU» (pensada para los 16 hilos del PC) gastó 2808 s de sus 4 núcleos; con menos de 8 núcleos ya no se usa
+(`fine_ahead.ahead_enabled`), y es la causa probable de la derecha de diferencia (la bola en la CPU cambia los
+decimales). **Kaggle activado en la cola** (`kaggle_activo: true`); la nueva prueba de Gauff con el marcador v16 dirá
+su velocidad sin esa carga.
+
 ## 2. ¿Cumple los requisitos? (lo que se sabe y lo que falta medir)
 
 | Requisito | Kaggle | Cómo se sabe |

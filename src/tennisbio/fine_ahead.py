@@ -106,4 +106,10 @@ def ahead_enabled(cfg: dict, n_windows: int, has_ball: bool) -> bool:
     present and at least two windows. With the pose on the CPU both models would share the same
     cores (as pipeline.py pairs stages only when they use different resources)."""
     fs = cfg.get("fine_speed") or {}
-    return bool(fs.get("ball_ahead", True)) and cfg.get("device", "cpu") == "dml" and has_ball and n_windows >= 2
+    # 14-11 (Kaggle, 4 cores): the ball on the CPU took 2808 s of the cores the rest needed (the racket went from 920 s on
+    # Modal to 3986 s): only with cores to spare (the PC has 16 threads; Modal 24)
+    import os
+
+    cores_ok = (os.cpu_count() or 1) >= int(fs.get("ball_ahead_min_cores", 8))
+    return bool(fs.get("ball_ahead", True)) and cfg.get("device", "cpu") == "dml" and has_ball and n_windows >= 2 \
+        and cores_ok
