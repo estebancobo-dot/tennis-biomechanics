@@ -75,7 +75,7 @@
   "inicio": "2026-11-14 19:31",
   "ruta": "/runs/kaggle_medir_raqueta_trt/estado.json",
   "nota": "en cola de Kaggle más de 45 min sin arrancar",
-  "kaggle": "queued (19:37)"
+  "kaggle": "queued (19:42)"
  },
  "prueba_gauff_v17": {
   "estado": "en_marcha",
@@ -88,7 +88,7 @@
   "inicio": "2026-11-14 18:49",
   "ruta": "/runs/kaggle_prueba_gauff_v17/estado.json",
   "salida": "/kaggle_pruebas/prueba_gauff_v17/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
-  "kaggle": "running (19:37)",
-  "progreso": "fine:  79 % (22/28 golpes candidatos · 22 confirmados · 0 ventanas descartadas sin pose) · 27 min · quedan ≈ 7 min (19:34:50; GPU 0 %·0 %, CPU 53 %, 5.9 GB)"
+  "kaggle": "running (19:42)",
+  "progreso": "view_clips:  89 % (40/45 recortes de repeticiones y otras cámaras) · 3 min · quedan ≈ 20 s (19:42:08; GPU 0 %·0 %, CPU 87 %, 6.1 GB)"
  }
 }
