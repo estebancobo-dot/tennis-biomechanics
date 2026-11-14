@@ -421,3 +421,16 @@ def test_a_native_crash_in_the_cloud_prints_the_python_stack():
     image (the fine pass's spawned workers too) prints its stack on such a crash."""
     src = (ROOT / "cloud" / "modal_app.py").read_text(encoding="utf-8")
     assert '"PYTHONFAULTHANDLER": "1"' in src
+
+
+def test_recoger_shows_each_stage_summary_of_a_match(tmp_path):
+    """14-11: for a match, «recoger» also prints its manifest's summaries (strokes, forehands, faults)."""
+    wf = (ROOT / ".github" / "workflows" / "nube.yml").read_text(encoding="utf-8")
+    assert "python cloud/resumen.py nube-out/manifest.json" in wf and 'TAG: ${{ inputs.tag }}' in wf
+    sys.path.insert(0, str(ROOT / "cloud"))
+    import resumen
+    out = resumen.lines({"fine": {"seconds": 12.5, "summary": {"strokes": 3}, "faults": {"x": 1}}, "v": 2})
+    assert out[0].startswith("fine (12.5 s): ") and '"strokes": 3' in out[0] and "fallos" in out[1]
+    f = tmp_path / "m.json"
+    f.write_text(json.dumps({"probe": {"seconds": 1, "summary": {}}}), encoding="utf-8")
+    assert resumen.main(str(f)) == 0 and resumen.main(str(tmp_path / "no.json")) == 1

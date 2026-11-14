@@ -118,6 +118,15 @@ jobs:
           find nube-out -type f | head -50
           for f in $(find nube-out -name estado.json -o -name comparacion.md); do echo "===== $f"; cat "$f"; done
           for f in $(find nube-out -name log.txt); do echo "===== $f (ultimas 120 lineas)"; tail -n 120 "$f"; done
+          # 14-11: for a match, also each stage's summary from its manifest (strokes, forehands, faults)
+          case "$TAG" in
+            partido_*)
+              modal volume get --force tennisbio-datos "/output/${TAG#partido_}/manifest.json" nube-out/manifest.json || true
+              python cloud/resumen.py nube-out/manifest.json || true
+              ;;
+          esac
+        env:
+          TAG: ${{ inputs.tag }}
       - name: Guardar lo recogido
         if: inputs.accion == 'recoger'
         uses: actions/upload-artifact@v4
