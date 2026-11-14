@@ -34,7 +34,8 @@ SCRATCH = ("/kaggle/temp", "/kaggle/tmp", "/tmp")
 SYNC_S = 600                             # results to Modal every 10 minutes
 TEST_PREFIX = nube.TEST_PREFIX
 # proofs of concept (#288, docs/nube_nativa.md): name → the module that measures it (in the analysis's own Python)
-POCS = {"raqueta": "tennisbio.infra.poc_raqueta"}
+POCS = {"raqueta": "tennisbio.infra.poc_raqueta", "video": "tennisbio.infra.poc_video"}
+NEEDS_MATCH = ("video",)                 # proofs of concept measured on a match's broadcast (its video from Modal)
 
 
 def parse_job(arg: str) -> dict:
@@ -47,6 +48,8 @@ def parse_job(arg: str) -> dict:
         raise ValueError("falta el partido")
     if a == "medir" and job.get("prueba") not in POCS:
         raise ValueError(f"prueba de concepto {job.get('prueba')!r} (vale {', '.join(POCS)})")
+    if a == "medir" and job.get("prueba") in NEEDS_MATCH and not job.get("partido"):
+        raise ValueError(f"la prueba de concepto {job['prueba']} necesita un partido")
     mid = job.get("partido", "")
     run_id = (TEST_PREFIX + mid) if a == "prueba" else mid
     job.setdefault("salida", {"comprobar": "/runs/kaggle_comprobar", "medir": f"/runs/kaggle_medir_{job.get('prueba')}"}
@@ -146,17 +149,25 @@ def prepare(repo: Path, data: Path, registry: list[dict]) -> list[dict]:
     return cat["matches"]
 
 
-def measure(job: dict, py: Path, models: Path, data: Path, run: Path, vol, est: dict) -> int:
-    """A proof of concept (#288): TensorRT for ONNX Runtime from its pip wheels, then the measuring module, whose
-    result goes into the job's state on Modal."""
-    _run(["uv", "pip", "install", "-q", "--python", str(py), "tensorrt-cu12"])
-    libs = subprocess.run([str(py), "-c", "import tensorrt_libs, os; print(os.path.dirname(tensorrt_libs.__file__))"],
-                          capture_output=True, text=True).stdout.strip()
+def poc_args(job: dict, models: Path, video: Path | None) -> list[str]:
+    """The measuring module's arguments: the model it times, or the broadcast it decodes."""
+    if job["prueba"] == "raqueta":
+        return ["--modelo", str(models / "racketpose.onnx")]
+    return ["--video", str(video)]
+
+
+def measure(job: dict, py: Path, models: Path, data: Path, run: Path, vol, est: dict, video: Path | None = None) -> int:
+    """A proof of concept (#288): the measuring module (TensorRT for ONNX Runtime from its pip wheels when it times a
+    model), whose result goes into the job's state on Modal."""
     env = env_for(data)
-    env["LD_LIBRARY_PATH"] = ":".join(x for x in (libs, env.get("LD_LIBRARY_PATH", "")) if x)
+    if job["prueba"] == "raqueta":
+        _run(["uv", "pip", "install", "-q", "--python", str(py), "tensorrt-cu12"])
+        libs = subprocess.run([str(py), "-c", "import tensorrt_libs, os; print(os.path.dirname(tensorrt_libs.__file__))"],
+                              capture_output=True, text=True).stdout.strip()
+        env["LD_LIBRARY_PATH"] = ":".join(x for x in (libs, env.get("LD_LIBRARY_PATH", "")) if x)
     out = run / "poc.json"
-    p = subprocess.run([str(py), "-m", POCS[job["prueba"]], "--modelo", str(models / "racketpose.onnx"),
-                        "--salida", str(out)], cwd=REPO, env=env, capture_output=True, text=True)
+    p = subprocess.run([str(py), "-m", POCS[job["prueba"]], *poc_args(job, models, video), "--salida", str(out)],
+                       cwd=REPO, env=env, capture_output=True, text=True)
     print(p.stdout[-6000:], p.stderr[-3000:], flush=True)
     est["poc"] = json.loads(out.read_text(encoding="utf-8")) if out.exists() else {"error": p.stderr[-800:]}
     est["estado"] = "hecho" if p.returncode == 0 and out.exists() else "error"
@@ -218,9 +229,17 @@ def main(argv: list[str]) -> int:
         est["descarga_s"] = round(time.time() - t0)
         py = setup_env(REPO, scratch / "venv")
         est["entorno_s"] = round(time.time() - t0) - est["descarga_s"]
-        if job["accion"] == "medir":               # a proof of concept: the GPU and the models, no match
-            return measure(job, py, models, data, run, vol, est)
         registry = json.loads((data / "pc" / "registro_partidos.json").read_text(encoding="utf-8"))
+        if job["accion"] == "medir":               # a proof of concept: the GPU and the models (and a broadcast)
+            video = None
+            if job["prueba"] in NEEDS_MATCH:
+                src = {m["id"]: m for m in prepare(REPO, data, registry)}.get(job["partido"])
+                if src is None:
+                    est.update(estado="error", nota=f"{job['partido']} no está en la lista de partidos del PC")
+                    return 1
+                modal_get(f"/videos/{src['video']}", data / "videos")
+                video = data / "videos" / src["video"]
+            return measure(job, py, models, data, run, vol, est, video)
         if job["accion"] == "comprobar":
             prepare(REPO, data, registry)
             probe = subprocess.run([str(py), "-c", "import onnxruntime as o, nube_gpu; print(o.get_available_providers())"],

@@ -101,3 +101,18 @@ def test_config_resolves_auto(tmp_path, monkeypatch):
     monkeypatch.setattr(devices, "resolve", lambda d, prefer=None: "cuda")
     cfg = config.load_config(tmp_path)
     assert cfg["device"] == "cuda" and cfg["device_configurado"] == "auto"
+
+
+def test_video_proof_of_concept_pieces(tmp_path):
+    """T7: the windows spread over the broadcast, and how far two decodings' pictures are."""
+    import numpy as np
+
+    from tennisbio.infra import poc_video as pv
+    ts = pv.window_times(3600.0, 4, 2.0)
+    assert len(ts) == 4 and ts[0] >= 60 and ts[-1] <= 3600 - 60 and ts == sorted(ts)
+    assert pv.window_times(1.0, 4, 2.0) == [0.0]
+    a = np.zeros((2, 2, 3), np.uint8)
+    b = a.copy()
+    b[0, 0, 0] = 9
+    mean, mx, share = pv.frame_diff(a, b)
+    assert mx == 9 and round(mean, 3) == 0.75 and round(share, 3) == round(1 / 12, 3)

@@ -182,3 +182,14 @@ def test_progress_lines_are_picked_up():
     assert progress_of("[g] spotting terminada a las 13:01:02 en 3.2 min") == "spotting terminada a las 13:01:02 en 3.2 min"
     assert progress_of("/repo/src/tennisbio/technique.py:168: RuntimeWarning: All-NaN axis") == ""
     assert correr.nube.PROGRESS_S <= 120
+
+
+def test_video_proof_of_concept_needs_a_match(tmp_path):
+    """T7: the decoding test runs on a match's broadcast (its video from Modal); the racket's on its model."""
+    import pytest as _pt
+    with _pt.raises(ValueError, match="necesita un partido"):
+        correr.parse_job('{"accion": "medir", "prueba": "video"}')
+    j = correr.parse_job('{"accion": "medir", "prueba": "video", "partido": "m"}')
+    assert correr.poc_args(j, tmp_path, tmp_path / "v.mp4") == ["--video", str(tmp_path / "v.mp4")]
+    r = correr.parse_job('{"accion": "medir", "prueba": "raqueta"}')
+    assert correr.poc_args(r, tmp_path, None) == ["--modelo", str(tmp_path / "racketpose.onnx")]

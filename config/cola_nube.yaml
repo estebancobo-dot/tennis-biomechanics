@@ -27,6 +27,8 @@ gasto_modal_base:
 trabajos:
   # pruebas de concepto de la nube nativa (#287, #288; docs/nube_nativa.md T6): no esperan a nada
   - {id: medir_raqueta_trt, accion: medir, prueba: raqueta, donde: kaggle}
+  # T7 (14-11): decodificar las ventanas en la CPU frente a NVDEC, sobre la retransmisión de Gauff
+  - {id: medir_video_nvdec, accion: medir, prueba: video, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle}
   # T4/T9 (14-11, #289): la misma prueba de 10 min de Gauff con el dispositivo por descubrimiento («device: auto», sin
   # el parche dml→CUDA) y su comparación con la v16b (la última con el parche); si es idéntica o equivalente, el cambio
   # conserva la huella de la pasada fina (config/codigo_equivalente.json) y nada de lo ya analizado se repite
