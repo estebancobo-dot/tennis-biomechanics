@@ -40,3 +40,15 @@ def test_discover_never_raises_here():
     caps = discover()
     assert caps.cores >= 1 and isinstance(caps.gpus, list) and "CPUExecutionProvider" in caps.ort_providers
     assert choose_inference(caps) in ("cuda", "dml", "openvino", "cpu")
+
+
+def test_racket_proof_of_concept_compares_and_times(tmp_path):
+    """T6: the comparison of an option's outputs with CUDA FP32's (largest difference, keypoints moved)."""
+    import numpy as np
+
+    from tennisbio.infra import poc_raqueta as poc
+    a = [np.zeros((2, 5, 10), np.float32)]
+    b = [np.zeros((2, 5, 10), np.float32)]
+    b[0][0, 0, 3] = 1.0
+    c = poc.compare(a, b)
+    assert c["puntos_movidos"] == 1 and c["puntos"] == 10 and c["max_diff"] == 1.0

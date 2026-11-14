@@ -231,3 +231,14 @@ def test_a_refused_kaggle_push_is_not_a_launch():
     assert cola.push_refused("Kernel push error: Maximum batch GPU session count of 2 reached.\n") \
         == "Kernel push error: Maximum batch GPU session count of 2 reached."
     assert cola.push_refused("Kernel version 9 successfully pushed.  Please check progress at ...") == ""
+
+
+def test_a_proof_of_concept_goes_to_kaggle_only():
+    jobs = [{"id": "medir_raqueta_trt", "accion": "medir", "prueba": "raqueta", "donde": "kaggle"}]
+    assert cola.check_queue(jobs) == [] and cola.check_queue([{"id": "m", "accion": "medir"}]) != []
+    on = {"kaggle": {"ok": True, "motivo": ""}, "pc": {"ok": False}}
+    assert cola.plan(jobs, {}, {}, on, DEC)[0][1] == "kaggle"
+    assert cola.run_path(jobs[0], "kaggle") == "/runs/kaggle_medir_raqueta_trt/estado.json"
+    any_src = [{"id": "m2", "accion": "medir", "prueba": "raqueta"}]
+    d = cola.plan(any_src, {}, {}, OFF, DEC)[0]
+    assert d[1] == "" and "Modal: las pruebas de concepto van en Kaggle" in d[2]

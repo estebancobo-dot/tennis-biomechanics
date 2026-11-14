@@ -133,6 +133,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("orden", choices=("clave", "lanzar", "estado", "esperar", "salida", "sonda", "borrar"))
     ap.add_argument("--accion", default="comprobar")
     ap.add_argument("--partido", default="")
+    ap.add_argument("--prueba", default="", help="medir: la prueba de concepto (cloud/kaggle/correr.py POCS)")
     ap.add_argument("--salida-remota", default="", help="la carpeta de la ejecución en Modal (/runs/<tag>)")
     ap.add_argument("--output-remoto", default="", help="dónde van sus resultados en Modal (por defecto /output)")
     ap.add_argument("--commit", default="")
@@ -195,6 +196,8 @@ def main(argv: list[str] | None = None) -> int:
         job = {"accion": a.accion, "commit": a.commit}
         if a.partido:
             job["partido"] = a.partido
+        if a.prueba:
+            job["prueba"] = a.prueba
         if a.salida_remota:
             job["salida"] = a.salida_remota
         if a.output_remoto:

@@ -160,3 +160,13 @@ def test_only_a_jobs_own_stuck_notebook_is_deleted(monkeypatch):
         klanzar.main(["borrar", "--slug", "otro-cuaderno"])
     src = (ROOT / "cloud" / "cola.py").read_text(encoding="utf-8")
     assert 'if kst == "queued":' in src and '_kaggle(["borrar", "--slug", notebook_slug(jid)])' in src
+
+
+def test_a_proof_of_concept_job():
+    """T6 (#288): «medir» runs a proof of concept on Kaggle (TensorRT installed from pip), no match needed."""
+    j = correr.parse_job('{"accion": "medir", "prueba": "raqueta"}')
+    assert j["salida"] == "/runs/kaggle_medir_raqueta"
+    with pytest.raises(ValueError):
+        correr.parse_job('{"accion": "medir", "prueba": "nada"}')
+    src = (ROOT / "cloud" / "kaggle" / "correr.py").read_text(encoding="utf-8")
+    assert '"tensorrt-cu12"' in src and "LD_LIBRARY_PATH" in src and 'models / "racketpose.onnx"' in src

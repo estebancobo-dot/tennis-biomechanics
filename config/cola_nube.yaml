@@ -5,6 +5,7 @@
 # motivo escrito y la cola sigue con los demás.
 #   id:            nombre del trabajo (letras, números, _ . -)
 #   accion:        prueba (10 min de un partido) | partido (el partido entero) | informe (informe y auditoría de la Base)
+#                  | medir (una prueba de concepto, con «prueba: <nombre>», en Kaggle)
 #   partido:       el id del partido en la nube (los válidos, en nube-logs:cola/partidos.json)
 #   minutos_video: la duración del vídeo (para prever el gasto; si falta, 210)
 #   tras:          otro trabajo que tiene que haber acabado bien antes
@@ -24,6 +25,8 @@ reiniciar: ["final#1"]
 gasto_modal_base:
   "2026-11": 28.08
 trabajos:
+  # pruebas de concepto de la nube nativa (#287, #288; docs/nube_nativa.md T6): no esperan a nada
+  - {id: medir_raqueta_trt, accion: medir, prueba: raqueta, donde: kaggle}
   # lotes 3 y 4 (aprobados por el usuario el 13-11: Osaka; Pegula y Zheng; Gauff y la final; Zverev-Sinner), cada
   # partido tras su prueba corta de 10 minutos (#277); el informe y la auditoría de la Base al final
   - {id: prueba_gauff, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5}

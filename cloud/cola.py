@@ -31,13 +31,13 @@ CAP_USD = 29.5
 # cost estimates (14-11, measured: Osaka 3.8 $ for ~70 min of video, Pegula 7.3 $ / 112 min, Zheng 6.9 $ / 117 min;
 # a 10-minute test 0.40-0.60 $; the report 0.03-0.08 $), with margin; the real Usage page was 4 % above our sums
 USD_PER_VIDEO_MIN = 0.065
-USD = {"prueba": 0.8, "informe": 0.15}
+USD = {"prueba": 0.8, "informe": 0.15, "medir": 0.5}
 DEFAULT_VIDEO_MIN = 210                     # the longest of the six, when a job does not say its length
-ACTIONS = ("prueba", "partido", "informe")
+ACTIONS = ("prueba", "partido", "informe", "medir")
 # Kaggle (paso 8b): ~30 GPU hours a week (the figure floats; the account shows it); the queue keeps 2 h of margin. One
 # notebook, so one Kaggle job at a time. Hours per job until measured: a test 1 h, a match 3 × its video.
 KAGGLE_CAP_H = 28.0
-KAGGLE_H = {"prueba": 1.0}
+KAGGLE_H = {"prueba": 1.0, "medir": 0.5}
 KAGGLE_H_PER_VIDEO_MIN = 3.0 / 60
 # 14-11: a session that ends without its job done is launched again, up to KAGGLE_TRIES times; then the job is an error
 # with the reason. Queued in Kaggle (its free GPUs busy) it waits: relaunching every 10 minutes (13:48-14:32) sent it to
@@ -117,7 +117,7 @@ def run_path(job: dict, source: str = "modal") -> str:
     """Where the job's estado.json goes on the volume (cloud/modal_app.py; a Kaggle test keeps its own folder, so it
     never writes over a test made by Modal: cloud/kaggle/correr.py with --salida-remota)."""
     a = job["accion"]
-    if source == "kaggle" and a == "prueba":
+    if (source == "kaggle" and a == "prueba") or a == "medir":
         return f"/runs/kaggle_{job['id']}/estado.json"
     if a == "partido":
         return f"/runs/partido_{job['partido']}/estado.json"
@@ -141,6 +141,8 @@ def check_queue(jobs: list[dict]) -> list[str]:
             bad.append(f"{jid}: acción {j.get('accion')!r} (vale {', '.join(ACTIONS)})")
         if j.get("accion") in ("prueba", "partido") and not j.get("partido"):
             bad.append(f"{jid}: falta el partido")
+        if j.get("accion") == "medir" and not j.get("prueba"):
+            bad.append(f"{jid}: falta la prueba de concepto («prueba»)")
         if j.get("donde", "cualquiera") not in ("cualquiera", *SOURCES):
             bad.append(f"{jid}: donde {j.get('donde')!r}")
     for j in jobs:
@@ -206,6 +208,9 @@ def plan(jobs: list[dict], state: dict, spend: dict, sources: dict, now: float,
         why = []
         for src in SOURCES:
             if where not in ("cualquiera", src):
+                continue
+            if src == "modal" and j["accion"] == "medir":
+                why.append("Modal: las pruebas de concepto van en Kaggle por ahora")
                 continue
             if src == "modal":
                 need = estimate_usd(j)
@@ -348,8 +353,10 @@ def kaggle_launch(job: dict) -> bool:
     """The Modal key into the private dataset, then the notebook with this job (cloud/kaggle/cuaderno.py). A test keeps
     its results apart (/kaggle_pruebas), never over a test made by Modal."""
     extra = (["--salida-remota", run_path(job, "kaggle").rsplit("/", 1)[0], "--output-remoto", "/kaggle_pruebas/output"]
-             if job["accion"] == "prueba" else [])
-    for args in (["clave"], ["lanzar", "--accion", job["accion"], "--partido", job["partido"],
+             if job["accion"] == "prueba" else
+             ["--salida-remota", run_path(job, "kaggle").rsplit("/", 1)[0], "--prueba", job.get("prueba", "")]
+             if job["accion"] == "medir" else [])
+    for args in (["clave"], ["lanzar", "--accion", job["accion"], "--partido", job.get("partido", ""),
                              "--commit", os.environ.get("GITHUB_SHA", ""), "--slug", notebook_slug(job["id"]), *extra]):
         r = _kaggle(args)
         print(r.stdout[-1500:], r.stderr[-1500:])

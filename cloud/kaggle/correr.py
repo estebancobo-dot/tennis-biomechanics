@@ -33,19 +33,24 @@ WORK = Path("/kaggle/working")           # what Kaggle keeps after the session: 
 SCRATCH = ("/kaggle/temp", "/kaggle/tmp", "/tmp")
 SYNC_S = 600                             # results to Modal every 10 minutes
 TEST_PREFIX = nube.TEST_PREFIX
+# proofs of concept (#288, docs/nube_nativa.md): name → the module that measures it (in the analysis's own Python)
+POCS = {"raqueta": "tennisbio.infra.poc_raqueta"}
 
 
 def parse_job(arg: str) -> dict:
     """The job as the notebook passes it; defaults: the run folder and the outputs where Modal's would go."""
     job = json.loads(arg)
     a = job.get("accion")
-    if a not in ("comprobar", "prueba", "partido"):
+    if a not in ("comprobar", "prueba", "partido", "medir"):
         raise ValueError(f"acción {a!r}")
-    if a != "comprobar" and not job.get("partido"):
+    if a in ("prueba", "partido") and not job.get("partido"):
         raise ValueError("falta el partido")
+    if a == "medir" and job.get("prueba") not in POCS:
+        raise ValueError(f"prueba de concepto {job.get('prueba')!r} (vale {', '.join(POCS)})")
     mid = job.get("partido", "")
     run_id = (TEST_PREFIX + mid) if a == "prueba" else mid
-    job.setdefault("salida", f"/runs/partido_{run_id}" if a != "comprobar" else "/runs/kaggle_comprobar")
+    job.setdefault("salida", {"comprobar": "/runs/kaggle_comprobar", "medir": f"/runs/kaggle_medir_{job.get('prueba')}"}
+                   .get(a, f"/runs/partido_{run_id}"))
     job.setdefault("output_remoto", "/output")
     job["run_id"] = run_id
     return job
@@ -140,6 +145,25 @@ def prepare(repo: Path, data: Path, registry: list[dict]) -> list[dict]:
     return cat["matches"]
 
 
+def measure(job: dict, py: Path, models: Path, data: Path, run: Path, vol, est: dict) -> int:
+    """A proof of concept (#288): TensorRT for ONNX Runtime from its pip wheels, then the measuring module, whose
+    result goes into the job's state on Modal."""
+    _run(["uv", "pip", "install", "-q", "--python", str(py), "tensorrt-cu12"])
+    libs = subprocess.run([str(py), "-c", "import tensorrt_libs, os; print(os.path.dirname(tensorrt_libs.__file__))"],
+                          capture_output=True, text=True).stdout.strip()
+    env = env_for(data)
+    env["LD_LIBRARY_PATH"] = ":".join(x for x in (libs, env.get("LD_LIBRARY_PATH", "")) if x)
+    out = run / "poc.json"
+    p = subprocess.run([str(py), "-m", POCS[job["prueba"]], "--modelo", str(models / "racketpose.onnx"),
+                        "--salida", str(out)], cwd=REPO, env=env, capture_output=True, text=True)
+    print(p.stdout[-6000:], p.stderr[-3000:], flush=True)
+    est["poc"] = json.loads(out.read_text(encoding="utf-8")) if out.exists() else {"error": p.stderr[-800:]}
+    est["estado"] = "hecho" if p.returncode == 0 and out.exists() else "error"
+    if out.exists():
+        modal_put(vol, [out], run, job["salida"])
+    return p.returncode
+
+
 def info() -> dict:
     """What the session has: CPU, memory, disks, GPU, ffmpeg, the Modal key."""
     mem = {}
@@ -192,6 +216,8 @@ def main(argv: list[str]) -> int:
         est["descarga_s"] = round(time.time() - t0)
         py = setup_env(REPO, scratch / "venv")
         est["entorno_s"] = round(time.time() - t0) - est["descarga_s"]
+        if job["accion"] == "medir":               # a proof of concept: the GPU and the models, no match
+            return measure(job, py, models, data, run, vol, est)
         registry = json.loads((data / "pc" / "registro_partidos.json").read_text(encoding="utf-8"))
         if job["accion"] == "comprobar":
             prepare(REPO, data, registry)
