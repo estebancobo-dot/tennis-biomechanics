@@ -384,7 +384,7 @@ def _kaggle(args: list[str]) -> subprocess.CompletedProcess:
 LAST_REFUSAL = {"text": ""}
 
 
-def kaggle_launch(job: dict) -> bool:
+def kaggle_launch(job: dict, slug: str | None = None) -> bool:
     """The Modal key into the private dataset, then the notebook with this job (cloud/kaggle/cuaderno.py). A test keeps
     its results apart (/kaggle_pruebas), never over a test made by Modal."""
     extra = (["--salida-remota", run_path(job, "kaggle").rsplit("/", 1)[0], "--output-remoto", output_root(job, "kaggle")]
@@ -394,7 +394,7 @@ def kaggle_launch(job: dict) -> bool:
     if job.get("config"):                            # T5: a test of other settings (proof of concept on the whole clip)
         extra += ["--config", json.dumps(job["config"], ensure_ascii=False)]
     for args in (["clave"], ["lanzar", "--accion", job["accion"], "--partido", job.get("partido", ""),
-                             "--commit", os.environ.get("GITHUB_SHA", ""), "--slug", notebook_slug(job["id"]), *extra]):
+                             "--commit", os.environ.get("GITHUB_SHA", ""), "--slug", slug or notebook_slug(job["id"]), *extra]):
         r = _kaggle(args)
         print(r.stdout[-1500:], r.stderr[-1500:])
         refused = push_refused(r.stdout + r.stderr)
@@ -411,19 +411,21 @@ def push_refused(text: str) -> str:
     return m.group(1).strip() if m else ""
 
 
-def notebook_slug(job_id: str) -> str:
-    """The job's own Kaggle notebook (cloud/kaggle/cuaderno.slug_for)."""
+def notebook_slug(job_id: str, attempt: int = 1) -> str:
+    """The job's own Kaggle notebook (cloud/kaggle/cuaderno.slug_for). R45 (14-11): a relaunch after a stuck queue
+    gets a new notebook (`-2`, `-3`, …): the racket's proof of concept stayed «queued» for 3 relaunches under the same
+    name while other jobs started at once (behind the deleted notebook's session, most likely)."""
     sys.path.insert(0, str(Path(__file__).resolve().parent / "kaggle"))
     import cuaderno
 
-    return cuaderno.slug_for(job_id)
+    return cuaderno.slug_for(job_id if attempt <= 1 else f"{job_id}-{attempt}")
 
 
-def kaggle_status(job_id: str) -> str:
+def kaggle_status(job_id: str, slug: str | None = None) -> str:
     sys.path.insert(0, str(Path(__file__).resolve().parent / "kaggle"))
     import cuaderno
 
-    r = _kaggle(["estado", "--slug", notebook_slug(job_id)])
+    r = _kaggle(["estado", "--slug", slug or notebook_slug(job_id)])
     return cuaderno.status_of(r.stdout + r.stderr)
 
 
@@ -481,7 +483,7 @@ def main(argv: list[str] | None = None) -> int:
                 now_used = f"; {res['recursos_ahora']}" if res.get("recursos_ahora") else ""
                 st["progreso"] = f"{res['progreso']} ({res.get('actualizado', '')}{now_used})"
             if st["donde"] == "kaggle" and jid in by_id:
-                kst = kaggle_status(jid)
+                kst = kaggle_status(jid, st.get("cuaderno"))
                 st["kaggle"] = f"{kst} ({time.strftime('%H:%M', time.gmtime(now))})"
                 print(f"{jid}: Kaggle dice «{kst}»; lanzado hace {(now - float(st.get('lanzado_ts', now))) / 60:.0f} min, "
                       f"intento {st.get('intentos', 1)}")
@@ -489,10 +491,12 @@ def main(argv: list[str] | None = None) -> int:
                 if act == "relanzar":
                     print(f"{jid}: {why}: se lanza otra vez")
                     if kst == "queued":                  # #290: its stuck notebook is deleted first (frees its session)
-                        r = _kaggle(["borrar", "--slug", notebook_slug(jid)])
+                        r = _kaggle(["borrar", "--slug", st.get("cuaderno") or notebook_slug(jid)])
                         print(f"{jid}: cuaderno atascado borrado ({r.returncode}) {r.stdout[-300:]} {r.stderr[-300:]}")
-                    if kaggle_launch(by_id[jid]):
+                    new_slug = notebook_slug(jid, int(st.get("intentos", 1)) + 1)       # R45: a new notebook
+                    if kaggle_launch(by_id[jid], new_slug):
                         record_launch(state, spend, by_id[jid], "kaggle", "kaggle", now)
+                        state[jid]["cuaderno"] = new_slug
                         state[jid]["nota"] = why
                     continue
                 if act == "error":
@@ -501,6 +505,8 @@ def main(argv: list[str] | None = None) -> int:
             if res and res.get("estado") in FINAL:
                 record_result(state, spend, jid, res, now)
                 print(f"{jid}: {res.get('estado')} ({res.get('coste_usd')} $, {res.get('horas_kaggle')} h de Kaggle)")
+    if not a.en_seco:
+        copy_poc_results(vol, state, d)
     decisions = plan(jobs, state, spend, _sources(Path.cwd(), queue, state), now, str(queue.get("partidos_en_espera") or ""))
     launched = 0
     for jid, src, why in decisions:
@@ -514,6 +520,7 @@ def main(argv: list[str] | None = None) -> int:
         if src == "kaggle":
             if kaggle_launch(j):
                 record_launch(state, spend, j, "kaggle", "kaggle", now)
+                state[jid]["cuaderno"] = notebook_slug(jid)
             else:                                        # said in the summary, launched again next pass
                 state.setdefault(jid, {})["aviso"] = f"Kaggle no lo aceptó: {LAST_REFUSAL['text']}"
             continue
@@ -576,6 +583,27 @@ def wake_message(lines: list[str], now: float) -> str:
 
 
 QUEUE_FILES = ("estado.json", "gasto.json", "vuelta.json", "estado.md")
+
+
+def copy_poc_results(vol, state: dict, logs: Path) -> list[str]:
+    """14-11: every finished proof of concept's measurement («poc» of its estado.json on the volume) also in nube-logs
+    (cola/pruebas/<id>.json), where Claude reads it without Modal's keys; once per job, the finished ones too."""
+    out = []
+    for jid, st in state.items():
+        if not isinstance(st, dict) or st.get("accion") != "medir" or st.get("estado") not in FINAL or not st.get("ruta"):
+            continue
+        f = logs / "pruebas" / f"{jid}.json"
+        if f.exists():
+            continue
+        res = _read_json(vol, st["ruta"])
+        if res is None:
+            continue
+        f.parent.mkdir(parents=True, exist_ok=True)
+        f.write_text(json.dumps({"estado": res.get("estado"), "poc": res.get("poc"), "kaggle": res.get("kaggle"),
+                                 "horas_kaggle": res.get("horas_kaggle"), "nota": res.get("nota")},
+                                ensure_ascii=False, indent=1), encoding="utf-8")
+        out.append(jid)
+    return out
 SAME = ("idéntica", "equivalente")
 
 

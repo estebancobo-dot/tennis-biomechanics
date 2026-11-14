@@ -376,3 +376,25 @@ def test_what_wakes_claude(tmp_path):
     q.write_text("trabajos: []\n", encoding="utf-8")
     assert cola.main(["--cola", str(q), "--logs", str(tmp_path / "logs"), "--en-seco", "--avisos", str(tmp_path / "a.md")]) == 0
     assert (tmp_path / "a.md").read_text(encoding="utf-8") == ""
+
+
+def test_relaunch_gets_a_new_notebook_and_poc_results_reach_the_logs(tmp_path):
+    """R45 (14-11): a relaunch after a stuck queue gets a new notebook name; every finished proof of concept's result
+    is copied to nube-logs (cola/pruebas/<id>.json), the finished ones too, once."""
+    assert cola.notebook_slug("medir_raqueta_trt") == "tennisbio-medir-raqueta-trt"
+    assert cola.notebook_slug("medir_raqueta_trt", 4) == "tennisbio-medir-raqueta-trt-4"
+    files = {"runs/kaggle_medir_video_nvdec/estado.json": json.dumps(
+        {"estado": "hecho", "poc": {"opciones": {"cpu": {"ms_por_fotograma": 9.0}}}}).encode()}
+
+    class Vol:
+        def read_file(self, path):
+            if path not in files:
+                raise FileNotFoundError(path)
+            return [files[path]]
+    state = {"medir_video_nvdec": {"accion": "medir", "estado": "hecho", "ruta": "/runs/kaggle_medir_video_nvdec/estado.json"},
+             "medir_x": {"accion": "medir", "estado": "en_marcha", "ruta": "/runs/x/estado.json"},
+             "p": {"accion": "prueba", "estado": "hecho", "ruta": "/runs/p/estado.json"}}
+    assert cola.copy_poc_results(Vol(), state, tmp_path) == ["medir_video_nvdec"]
+    got = json.loads((tmp_path / "pruebas" / "medir_video_nvdec.json").read_text(encoding="utf-8"))
+    assert got["poc"]["opciones"]["cpu"]["ms_por_fotograma"] == 9.0
+    assert cola.copy_poc_results(Vol(), state, tmp_path) == []                         # once

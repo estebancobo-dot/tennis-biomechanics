@@ -145,7 +145,7 @@ def test_one_notebook_per_job():
     m = klanzar.metadata("u", slug="tennisbio-x")
     assert m["id"] == "u/tennisbio-x" and m["title"] == "tennisbio-x" and m["code_file"] == "tennisbio-x.ipynb"
     src = (ROOT / "cloud" / "cola.py").read_text(encoding="utf-8")
-    assert '"--slug", notebook_slug(job["id"])' in src and 'kaggle_status(jid)' in src
+    assert '"--slug", slug or notebook_slug(job["id"])' in src and 'kaggle_status(jid, st.get("cuaderno"))' in src
 
 
 def test_only_a_jobs_own_stuck_notebook_is_deleted(monkeypatch):
@@ -161,7 +161,7 @@ def test_only_a_jobs_own_stuck_notebook_is_deleted(monkeypatch):
     with pytest.raises(SystemExit):
         klanzar.main(["borrar", "--slug", "otro-cuaderno"])
     src = (ROOT / "cloud" / "cola.py").read_text(encoding="utf-8")
-    assert 'if kst == "queued":' in src and '_kaggle(["borrar", "--slug", notebook_slug(jid)])' in src
+    assert 'if kst == "queued":' in src and '_kaggle(["borrar", "--slug", st.get("cuaderno") or notebook_slug(jid)])' in src
 
 
 def test_a_proof_of_concept_job():
@@ -193,3 +193,44 @@ def test_video_proof_of_concept_needs_a_match(tmp_path):
     assert correr.poc_args(j, tmp_path, tmp_path / "v.mp4") == ["--video", str(tmp_path / "v.mp4")]
     r = correr.parse_job('{"accion": "medir", "prueba": "raqueta"}')
     assert correr.poc_args(r, tmp_path, None) == ["--modelo", str(tmp_path / "racketpose.onnx")]
+
+
+def test_a_file_is_marked_sent_only_after_its_upload(tmp_path):
+    """R44 (14-11): v17's strokes.json never reached Modal (marked as sent, then its upload failed or was cut when the
+    process ended). Files are marked only after a successful upload, under a lock, and the last upload waits for the
+    periodic one."""
+    import threading
+    (tmp_path / "strokes.json").write_text("[]", encoding="utf-8")
+    seen = {}
+    assert correr.changed(tmp_path, seen, mark=False) and not seen
+
+    class Broken:
+        def batch_upload(self, force=False):
+            raise RuntimeError("red cortada")
+
+    lock = threading.Lock()
+    try:
+        correr.sync(Broken(), tmp_path, seen, "/r", lock)
+    except RuntimeError:
+        pass
+    assert not seen and correr.changed(tmp_path, seen, mark=False)                     # still to send
+
+    class Batch:
+        put = []
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *a):
+            return False
+
+        def put_file(self, src, dst):
+            self.put.append(dst)
+
+    class Vol:
+        def batch_upload(self, force=False):
+            return Batch()
+    assert correr.sync(Vol(), tmp_path, seen, "/r", lock) and Batch.put == ["/r/strokes.json"]
+    assert correr.changed(tmp_path, seen, mark=False) == []
+    src = (ROOT / "cloud" / "kaggle" / "correr.py").read_text(encoding="utf-8")
+    assert "uploader.join(" in src and "sync(vol, out_dir, seen, remote, lock)" in src

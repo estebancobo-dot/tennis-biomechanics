@@ -74,8 +74,10 @@ def pick_scratch(candidates=SCRATCH) -> Path:
     return best or Path("/tmp")
 
 
-def changed(root: Path, seen: dict) -> list[Path]:
-    """Files under root new or changed since the last upload (size and modification time); `seen` is updated."""
+def changed(root: Path, seen: dict, mark: bool = True) -> list[Path]:
+    """Files under root new or changed since the last upload (size and modification time). `mark`: `seen` is updated
+    at once (only for what must never be sent, e.g. what came from Modal); otherwise call mark_sent after the upload
+    succeeds (R44, 14-11: marked before an upload that then failed or was cut, a file was never sent again)."""
     out = []
     if not root.exists():
         return out
@@ -83,9 +85,29 @@ def changed(root: Path, seen: dict) -> list[Path]:
         st = f.stat()
         key = (st.st_size, int(st.st_mtime))
         if seen.get(str(f)) != key:
-            seen[str(f)] = key
+            if mark:
+                seen[str(f)] = key
             out.append(f)
     return out
+
+
+def mark_sent(files: list[Path], seen: dict) -> None:
+    for f in files:
+        try:
+            st = f.stat()
+            seen[str(f)] = (st.st_size, int(st.st_mtime))
+        except OSError:  # noqa: BLE001 — gone meanwhile: it is looked at again in the next round
+            pass
+
+
+def sync(vol, out_dir: Path, seen: dict, remote: str, lock: threading.Lock) -> list[Path]:
+    """R44 (14-11, v17's strokes.json never reached Modal): what changed, uploaded under a lock (the periodic upload
+    and the final one never overlap) and marked as sent only once the upload has succeeded."""
+    with lock:
+        files = changed(out_dir, seen, mark=False)
+        modal_put(vol, files, out_dir, remote)
+        mark_sent(files, seen)
+        return files
 
 
 def _run(cmd, **kw):
@@ -273,17 +295,18 @@ def main(argv: list[str]) -> int:
                 modal_get(f"{job['output_remoto'].rstrip('/')}/{job['run_id']}", data / "output")
             except subprocess.CalledProcessError:
                 print("sin resultados anteriores: desde cero", flush=True)
-        out_dir, seen, stop = data / "output" / job["run_id"], {}, threading.Event()
+        out_dir, seen, stop, lock = data / "output" / job["run_id"], {}, threading.Event(), threading.Lock()
+        remote = f"{job['output_remoto'].rstrip('/')}/{job['run_id']}"
         if job["accion"] == "partido":
             changed(out_dir, seen)                        # what came from Modal is not sent back
 
         def syncer():
             while not stop.wait(SYNC_S):
                 try:
-                    modal_put(vol, changed(out_dir, seen), out_dir, f"{job['output_remoto'].rstrip('/')}/{job['run_id']}")
+                    sync(vol, out_dir, seen, remote, lock)
                     est["subido"] = time.strftime("%H:%M:%S")
                     save()
-                except Exception as e:  # noqa: BLE001 — the next round sends it
+                except Exception as e:  # noqa: BLE001 — not marked as sent: the next round sends it
                     print(f"AVISO: subida a Modal ({e})", flush=True)
         samples: list[dict] = []
 
@@ -296,7 +319,8 @@ def main(argv: list[str]) -> int:
                     est["recursos_ahora"] = nube.resources_now(samples[-1])
                 except Exception as e:  # noqa: BLE001 — a missed sample, never the match
                     print(f"AVISO: muestra de recursos ({e})", flush=True)
-        threading.Thread(target=syncer, daemon=True).start()
+        uploader = threading.Thread(target=syncer, daemon=True)
+        uploader.start()
         threading.Thread(target=sampler, daemon=True).start()
         t1, last_save = time.time(), time.time()
         with open(run / "log.txt", "a", encoding="utf-8") as lg:
@@ -315,7 +339,17 @@ def main(argv: list[str]) -> int:
                     last_save = time.time()
             rc = p.wait()
         stop.set()
-        modal_put(vol, changed(out_dir, seen), out_dir, f"{job['output_remoto'].rstrip('/')}/{job['run_id']}")
+        uploader.join(timeout=SYNC_S)                    # R44: a periodic upload in flight ends before the last one
+        for attempt in range(3):                         # the last upload: everything not yet sent, retried
+            try:
+                sync(vol, out_dir, seen, remote, lock)
+                break
+            except Exception as e:  # noqa: BLE001 — retried; the third failure is raised (the job ends in error)
+                print(f"AVISO: subida final a Modal, intento {attempt + 1} ({e})", flush=True)
+                if attempt == 2:
+                    raise
+                time.sleep(30)
+        est["sin_subir"] = [f.relative_to(out_dir).as_posix() for f in changed(out_dir, seen, mark=False)][:20]
         man_f = out_dir / "manifest.json"
         man = json.loads(man_f.read_text(encoding="utf-8")) if man_f.exists() else {}
         est.update(estado="hecho" if rc == 0 else "error", codigo=rc, segundos=round(time.time() - t1), coste_usd=0.0,

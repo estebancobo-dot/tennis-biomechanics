@@ -39,7 +39,11 @@ trabajos:
   # 14-11 19:47: la primera comparación dijo «idéntica» (16 etapas con el mismo contenido) sin haber leído el
   # strokes.json de la v17 y emparejando por una clave de tiempo que no existe: no vale; se repite con la herramienta
   # corregida (empareja por match_time_s; un fichero leído en un solo lado es «incompleta»)
-  - {id: comparar_gauff_v16b_v17b, accion: comparar, a: "/kaggle_pruebas/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5", b: prueba_gauff_v17}
+  # 20:02 (R44): «incompleta»: el strokes.json de la v17 nunca llegó a Modal (la subida final no esperaba a la
+  # periódica y un fichero se marcaba como subido antes de subirlo); arreglado: otra prueba con el arreglo (v18) y su
+  # comparación con la v16b (compara a la vez el cambio de dispositivo y que la subida ya no pierde nada)
+  - {id: prueba_gauff_v18, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle}
+  - {id: comparar_gauff_v16b_v18, accion: comparar, a: "/kaggle_pruebas/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5", b: prueba_gauff_v18}
   # lotes 3 y 4 (aprobados por el usuario el 13-11: Osaka; Pegula y Zheng; Gauff y la final; Zverev-Sinner), cada
   # partido tras su prueba corta de 10 minutos (#277); el informe y la auditoría de la Base al final
   - {id: prueba_gauff, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5}
