@@ -10,7 +10,8 @@
    "estado": "hecho",
    "coste_usd": 0.62,
    "segundos": 1571
-  }
+  },
+  "partido": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5"
  },
  "prueba_final": {
   "estado": "hecho",
@@ -23,7 +24,8 @@
    "estado": "hecho",
    "coste_usd": 0.27,
    "segundos": 667
-  }
+  },
+  "partido": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5"
  },
  "prueba_gauff_v16": {
   "estado": "error",
@@ -39,7 +41,8 @@
   "resultado": {
    "estado": "error",
    "nota": "en cola de Kaggle más de 10 min sin arrancar (4 intentos)"
-  }
+  },
+  "partido": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5"
  },
  "prueba_gauff_v16b": {
   "estado": "hecho",
@@ -58,7 +61,8 @@
    "coste_usd": 0.0,
    "segundos": 3129,
    "horas_kaggle": 0.9
-  }
+  },
+  "partido": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5"
  },
  "medir_raqueta_trt": {
   "estado": "en_marcha",
@@ -69,6 +73,7 @@
   "accion": "medir",
   "inicio": "2026-11-14 17:57",
   "ruta": "/runs/kaggle_medir_raqueta_trt/estado.json",
-  "kaggle": "queued (18:19)"
+  "kaggle": "queued (18:24)",
+  "partido": ""
  }
 }
