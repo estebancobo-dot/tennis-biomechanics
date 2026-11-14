@@ -53,12 +53,12 @@ la auditoría las marcará «sin comprobación automática asignada».
 
 | Estado | Nº |
 |---|---|
-| HECHO | 120 |
-| PARCIAL | 133 |
+| HECHO | 121 |
+| PARCIAL | 134 |
 | FALTA | 21 |
 | NO MEDIBLE | 3 |
 | NO APLICA | 8 |
-| **Total** | **285** |
+| **Total** | **287** |
 
 **27-10:** filas 220-245 nuevas: todo lo pedido en el chat del 19-10 al 27-10 (releídos los mensajes) y lo que
 salió en la prueba de valor; ninguna fila borrada.
@@ -372,6 +372,8 @@ lateral (entreno)» · ≥12 = solo se muestra con 12 golpes o más (`model.MIN_
 | 283 | La arquitectura y la infraestructura de la nube tienen que cumplir los requisitos (0 €, sin parar, un partido en horas): «no vale Modal si un partido consume tanto»; «hemos cambiado a la nube para estar bloqueados» (Chat, 14-11) | PARCIAL | Modal solo no los cumple; la cola del paso 8 reparte cada trabajo entre varias fuentes gratuitas (Kaggle, crédito de Modal, PC encendido), y cuando una se acaba sigue la siguiente | — | — | Lo cierra: los 6 partidos analizados sin esperar al crédito del mes siguiente y a 0 €. |
 | 284 | «El PC no se usa» (Chat, 14-11): ni para cerrar la Base; todo va en la nube gratuita | HECHO (14-11) | La cola (`cloud/cola.py`) ya no ofrece el PC como fuente; el PC sigue en pausa (`config/pausa_pc.txt`) | — | `tests/test_cola.py` | Sustituye a la propuesta de Claude del 14-11 de usar el PC para los 3 partidos que faltan. |
 | 285 | Guía detallada para configurar la otra nube (Kaggle), si de verdad cumple todos los requisitos y cómo se usan los datos que ya están en Modal sin repetir nada (Chat, 14-11) | PARCIAL | Guía en el chat y en `docs/kaggle.md`; Modal sigue siendo el único almacén: Kaggle baja lo que necesita para cada partido y sube su resultado a la misma carpeta | — | — | Lo cierra: la prueba de 10 min de un partido en Kaggle da lo mismo que en Modal y su tiempo y coste (0 €) quedan medidos. |
+| 286 | «Sí, reescribe los criterios»: B1, B7 y B8 de la Base, para la nube (Chat, 14-11) | HECHO (14-11) | `config/plan_peticiones.yaml`: B1 = un partido de 3,5 h en ≤ 8 h en la nube a 0 € sin perder calidad, con CPU/GPU/memoria por etapa; B7 = un partido nuevo de principio a fin sin el chat ni el PC; B8 = la cola de la nube como única entrada | — | `tests/test_plan_peticiones.py` | Las comprobaciones nuevas de la auditoría («Uso de la nube por etapa», «Cola de la nube») son tareas del plan de nube nativa (`docs/nube_nativa.md`). |
+| 287 | **Fallo crítico: el código de la nube sigue basado en el PC.** «Si estamos usando infra cloud el código no se puede basar en mi PC»: revisarlo todo para la nube y ver qué es mejor: aprovechamiento de recursos, modelos de IA, frameworks, librerías y todo el estado del arte de hoy (Chat, 14-11; ya lo pidió al pasar a la nube) | PARCIAL | Plan en `docs/nube_nativa.md`: (A) medir dónde va cada segundo en la nube; (B) infraestructura nativa de GPU sin cambiar resultados (decodificar en la GPU, TensorRT en media precisión, por lotes, las 2 T4 de Kaggle, fuera lo del PC); (C) cada modelo frente a los candidatos del estado del arte, medidos con datos anotados; se cambia solo si es igual o mejor en calidad y más rápido | — | — | Claude se equivocó: al pasar a la nube solo cambió dónde corren los modelos y mantuvo las decisiones tomadas para el PC (DirectML, decodificar en la CPU, la bola en la CPU, una sola tarjeta). |
 | 269 | Estado y progreso: cuánto falta para lanzar los 6 partidos, qué hay en marcha y pendiente en la nube y en el PC (en serie o en paralelo), qué queda para cerrar la Base, por qué seguimos así y qué falló por la noche (Chat, 13-11) | HECHO | respuesta en el chat; `docs/estado_proyecto.md`, «Resumen de la noche (12-11 → 13-11)» y la tabla de tareas | — | — | Como #266, el estado vive en la tabla de tareas. |
 
 ## Lo más grave que falta (por impacto en «copiar su derecha»)

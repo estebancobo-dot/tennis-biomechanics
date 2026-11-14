@@ -4,10 +4,11 @@
 # Producto); dentro de un paquete, la prueba que lo cierra va en «cierre».
 paquetes:
   B1:
-    nombre: "Base · velocidad y uso del PC"
-    cierre: "Un partido de 3,5 h desde cero en una noche (≤ 8 h) sin perder calidad (10-11, con el usuario); CPU/iGPU por etapa medidas en cada ejecución"
+    # 14-11 (#286, el usuario: «sí, reescribe los criterios»): para la nube; antes «una noche en el PC» y su uso por etapa
+    nombre: "Base · velocidad y uso de la nube"
+    cierre: "Un partido de 3,5 h desde cero en ≤ 8 h en la nube, a 0 € (dentro de las cuotas gratuitas), sin perder calidad (los mismos golpes que la referencia); CPU, GPU y memoria por etapa medidas en cada ejecución"
     peticiones: [10, 14, 29, 75, 77, 125, 137, 230, 231, 237]
-    prueba: ["^Tiempo desde cero", "^Uso del PC por etapa", "^Peticiones por GitHub Actions", "^Tomas de cámara"]
+    prueba: ["^Tiempo desde cero", "^Uso de la nube por etapa", "^Tomas de cámara"]
   B2:
     nombre: "Base · robustez (nada se cuelga, todo se recupera)"
     cierre: "Prueba por cada caso de error y cuelgue; 0 etapas con error en la referencia"
@@ -34,16 +35,18 @@ paquetes:
     peticiones: [1, 134, 233, 234]
     prueba: ["^Partido .*: salida de cada etapa", "?^Etapas con errores", "^Golpes que fallaron al procesarse", "^Golpes con su pose en el contacto: "]
   B7:
-    nombre: "Base · aplicación autónoma e infraestructura"
-    cierre: "Un partido nuevo de principio a fin sin el ciclo ni el chat; capturas de cada pantalla sin fallos"
+    # 14-11 (#286): para la nube; antes la ventana de la aplicación y las pruebas en el PC
+    nombre: "Base · aplicación autónoma en la nube"
+    cierre: "Un partido nuevo de principio a fin sin el chat ni el PC (subir el vídeo, el clic de identidad y aprobar; la cola de la nube hace el resto); capturas de cada pantalla sin fallos"
     peticiones: [18, 19, 20, 21, 22, 31, 32, 37, 40, 43, 45, 49, 50, 51, 52, 66, 80, 81, 82, 83, 119, 136, 139,
                  144, 145, 146, 152, 160, 161, 220, 222, 226, 227, 229, 241, 242]
-    prueba: ["^Aplicación: ventana real", "^Aplicación: análisis en su índice", "^Aplicación: un partido nuevo de principio a fin", "^Pruebas del código en este PC", "^Pruebas en este PC", "^Progreso visible", "^Nada pide revisión manual"]
+    prueba: ["^Cola de la nube", "^Progreso visible", "^Nada pide revisión manual", "^Primera pantalla"]
   B8:
-    nombre: "Base · orquestador único (aplicación y chat con el mismo código y los mismos datos)"
-    cierre: "Fases A-F de docs/orquestador.md; un trabajo enviado desde el chat, pausado en la aplicación y reanudado desde el chat en el PC"
+    # 14-11 (#286): la cola de la nube (paso 8) es el orquestador único; antes, la cola del PC (docs/orquestador.md)
+    nombre: "Base · orquestador único: la cola de la nube"
+    cierre: "La cola de la nube como única entrada: el chat y la web envían, paran y reanudan trabajos con el mismo código; estado y gasto a la vista (nube-logs)"
     peticiones: [246, 247, 248, 249, 250, 251, 259, 260, 261, 262, 263, 264, 266, 269, 270]
-    prueba: ["^Orquestador: "]
+    prueba: ["^Cola de la nube"]
   N:
     # 13-11 (usuario): toda la aplicación en la nube, después de los 6 partidos (cierre de la Base) y antes de P0;
     # tope de gasto 0 € al mes (#271, #272; sustituye a #145 «nada en la nube ni de pago»).
@@ -51,7 +54,7 @@ paquetes:
     # (#276, #277)
     nombre: "Nube · toda la aplicación en la nube (el usuario solo sube los partidos), 0 € al mes"
     cierre: "La nube da lo mismo que el PC en F3Set y en los 6 partidos (N0-N1); un partido nuevo de principio a fin desde la web (subir, clic, aprobar); gasto del mes 0 € con el tope de la cuenta"
-    peticiones: [268, 271, 272, 273, 275, 276, 277, 278, 279, 280, 281, 282, 283, 284, 285]
+    peticiones: [268, 271, 272, 273, 275, 276, 277, 278, 279, 280, 281, 282, 283, 284, 285, 286, 287]
   P0:
     # 11-11 (usuario): justo después de la Base y antes de las medidas
     nombre: "Producto · rediseño completo de la aplicación (comparativa profesional, UX, aprendizaje, gestión, gráficos)"
