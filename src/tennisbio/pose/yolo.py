@@ -130,18 +130,27 @@ def extract(video: str | Path, out: str | Path, pose_model="yolo11m-pose.pt", im
     return out
 
 
+def seg_failure_flag(models_dir: Path, device: str) -> Path:
+    """The file that says the GPU failed to segment, for THIS device only (14-11, R48: the PC's iGPU crash wrote
+    models/seg_gpu_falla.txt, the models folder went to the cloud, and Kaggle and Modal segmented every racket on the
+    CPU: 1.6 s a frame, 68 % of the fine pass). The PC's old file still counts for DirectML."""
+    flag = models_dir / f"seg_gpu_falla_{device}.txt"
+    legacy = models_dir / "seg_gpu_falla.txt"
+    return legacy if device == "dml" and legacy.exists() and not flag.exists() else flag
+
+
 def extract_rackets(video: str | Path, frames, out: str | Path, seg_model="yolo11m-seg.pt", imgsz=960) -> Path:
     """Racket outlines (segmentation) only for the given frame indices, saved to .npz.
 
     On the iGPU (DirectML, ~5x faster than the CPU) it runs in a separate process: a driver crash
     there (it happened on the user's PC: access violation, which no Python code can catch) only
     loses that attempt; it is then done on the CPU here, and the iGPU is not tried again
-    (models/seg_gpu_falla.txt). That process stays open between windows (SegWorker), so the model
+    (models/seg_gpu_falla_<device>.txt). That process stays open between windows (SegWorker), so the model
     is loaded on the iGPU once per run, not once per window."""
     from .backend import DEFAULT_DEVICE
     from .yolo_onnx import MODELS_DIR
 
-    flag = MODELS_DIR / "seg_gpu_falla.txt"
+    flag = seg_failure_flag(MODELS_DIR, DEFAULT_DEVICE)
     if DEFAULT_DEVICE != "cpu" and not flag.exists():
         w = seg_worker(seg_model, imgsz, DEFAULT_DEVICE)
         ok, code, err = w.run(video, frames, out)

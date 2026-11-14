@@ -63,6 +63,11 @@ trabajos:
   # 14-11 22:30 (fase A): con las 2 T4 la pasada fina llena los 4 núcleos (95 %) y las GPU van al 3-6 %: dónde gasta
   # la CPU, con el perfilador (un solo proceso, para verlo todo); en la sesión que deja libre el partido de Gauff
   - {id: perfil_gauff_fina, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, config: {perfil: [fine], fine_speed: {workers: 1}}}
+  # 23:30 (R48, del perfil): el 68 % de la pasada fina era la segmentación de la raqueta en la CPU (el aviso de fallo
+  # de la iGPU del PC llegó a la nube con los modelos); otra vez en la GPU: la misma prueba y su comparación con la
+  # v19 (igual en todo salvo esto)
+  - {id: prueba_gauff_v20, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle}
+  - {id: comparar_gauff_v19_v20, accion: comparar, a: prueba_gauff_v19, b: prueba_gauff_v20}
   # lotes 3 y 4 (aprobados por el usuario el 13-11: Osaka; Pegula y Zheng; Gauff y la final; Zverev-Sinner), cada
   # partido tras su prueba corta de 10 minutos (#277); el informe y la auditoría de la Base al final
   - {id: prueba_gauff, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5}

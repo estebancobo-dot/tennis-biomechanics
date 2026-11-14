@@ -15,6 +15,13 @@
    "prueba": "comparar_gauff_v16b_v19",
    "fecha": "2026-11-14",
    "resultado": "idéntica (14-11 22:18): las 16 etapas con el mismo contenido; strokes.json 28 de 28 golpes emparejados, strokes_doubtful 1 de 1 (nube-logs/cola/comparaciones/comparar_gauff_v16b_v19.json)"
+  },
+  "0baf08c76c290b34": {
+   "igual_a": "b34e27f8e234836e",
+   "comprobado": false,
+   "motivo": "R48 (14-11): la segmentación de la raqueta en la GPU de la nube (el aviso de fallo de la iGPU del PC la mandaba a la CPU: 1,6 s por fotograma); el mismo modelo, en FP32",
+   "prueba": "comparar_gauff_v19_v20",
+   "fecha": "2026-11-14"
   }
  },
  "fine_opponent": {
@@ -32,6 +39,13 @@
    "prueba": "comparar_gauff_v16b_v19",
    "fecha": "2026-11-14",
    "resultado": "idéntica (14-11 22:18): las 16 etapas con el mismo contenido; strokes.json 28 de 28 golpes emparejados, strokes_doubtful 1 de 1 (nube-logs/cola/comparaciones/comparar_gauff_v16b_v19.json)"
+  },
+  "9075daec14eac62a": {
+   "igual_a": "fb1348358c46f27d",
+   "comprobado": false,
+   "motivo": "R48 (14-11): la segmentación de la raqueta en la GPU de la nube (el aviso de fallo de la iGPU del PC la mandaba a la CPU: 1,6 s por fotograma); el mismo modelo, en FP32",
+   "prueba": "comparar_gauff_v19_v20",
+   "fecha": "2026-11-14"
   }
  },
  "fine_doubtful": {
@@ -49,6 +63,13 @@
    "prueba": "comparar_gauff_v16b_v19",
    "fecha": "2026-11-14",
    "resultado": "idéntica (14-11 22:18): las 16 etapas con el mismo contenido; strokes.json 28 de 28 golpes emparejados, strokes_doubtful 1 de 1 (nube-logs/cola/comparaciones/comparar_gauff_v16b_v19.json)"
+  },
+  "33c81386bc793743": {
+   "igual_a": "6acdae694b7d99ee",
+   "comprobado": false,
+   "motivo": "R48 (14-11): la segmentación de la raqueta en la GPU de la nube (el aviso de fallo de la iGPU del PC la mandaba a la CPU: 1,6 s por fotograma); el mismo modelo, en FP32",
+   "prueba": "comparar_gauff_v19_v20",
+   "fecha": "2026-11-14"
   }
  }
 }

@@ -95,7 +95,7 @@ def test_extract_rackets_falls_back_to_cpu_when_worker_dies(tmp_path, monkeypatc
     monkeypatch.setattr(yolo, "_extract_rackets", lambda v, fr, out, m, sz, dev: cpu_calls.append(dev) or Path(out))
     out = yolo.extract_rackets("x.mp4", [-2], tmp_path / "r.npz")
     assert out == tmp_path / "r.npz" and cpu_calls == ["cpu"]
-    flag = tmp_path / "seg_gpu_falla.txt"
+    flag = yolo.seg_failure_flag(tmp_path, yolo_backend_device())
     assert flag.exists() and flag.read_text(encoding="utf-8").startswith("codigo 3")
     assert "w" not in yolo._WORKER and not started[0].alive()
     yolo.extract_rackets("x.mp4", [1], tmp_path / "r2.npz")             # flag set: CPU, no worker
@@ -386,3 +386,18 @@ def test_racket_and_3d_fp16_on_the_igpu_and_in_the_memo_tag(monkeypatch, tmp_pat
     assert tag(cfg).endswith("|fp16")
     assert not tag({**cfg, "racket_face": {**cfg["racket_face"], "fp16": False}}).endswith("|fp16")
     assert not tag({**cfg, "device": "cpu"}).endswith("|fp16")
+
+
+def yolo_backend_device():
+    from tennisbio.pose.backend import DEFAULT_DEVICE
+    return DEFAULT_DEVICE
+
+
+def test_a_gpu_failure_flag_is_for_its_own_device(tmp_path):
+    """R48 (14-11): the PC's iGPU crash (models/seg_gpu_falla.txt, shared with the cloud through the models folder) put
+    the cloud's racket segmentation on the CPU (68 % of the fine pass); now a flag is per device."""
+    from tennisbio.pose import yolo
+    (tmp_path / "seg_gpu_falla.txt").write_text("codigo 3221225477", encoding="utf-8")       # the PC's
+    assert yolo.seg_failure_flag(tmp_path, "dml").name == "seg_gpu_falla.txt"            # still the PC's iGPU
+    assert yolo.seg_failure_flag(tmp_path, "cuda").name == "seg_gpu_falla_cuda.txt"
+    assert not yolo.seg_failure_flag(tmp_path, "cuda").exists()                           # the cloud's GPU is tried
