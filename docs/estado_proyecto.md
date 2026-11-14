@@ -36,7 +36,7 @@ usuario pertenece a un paquete; un paquete está **aceptado** cuando su prueba p
 
 | # | Tarea | Bloque | Dónde | Depende de | Estado |
 |---|---|---|---|---|---|
-| T1 | Prueba de 10 min de Gauff (marcador v16, sin la bola en la CPU): marcador leído y tiempo | Base B6 | Kaggle (cola) | — | en marcha (relanzada 16:11) |
+| T1 | Prueba de 10 min de Gauff (marcador v16, sin la bola en la CPU): marcador leído y tiempo | Base B6 | Kaggle (cola) | — | **hecho (17:06)**: sin fallos C0 ni C1 (el marcador ya se lee: sin él habría quedado «revisar»); 52 min de análisis y 0,9 h de Kaggle (antes 1,64 h, con la bola en la CPU; Modal 26 min) |
 | T2 | Recursos minuto a minuto en Kaggle (CPU, cada GPU, memoria), como en Modal | NN-A | Claude | — | pendiente |
 | T3 | Comprobaciones de auditoría nuevas: «Uso de la nube por etapa», «Cola de la nube», «Equivalencia entre infraestructuras», «Prueba de concepto medida» | Base B1, B7, B8; NN | Claude | — | pendiente |
 | T4 | Esqueleto híbrido: puertos (cálculo, almacenamiento, vídeo, inferencia, modelos) y descubrimiento de capacidades; el dispositivo por descubrimiento (fuera el parche `dml`→CUDA), con los mismos resultados | NN-B | Claude | — | **en curso**: 1.º el descubrimiento de capacidades (`tennisbio.infra.discovery`: plataforma, núcleos, memoria, GPU, proveedores de ONNX Runtime, aceleradores de ffmpeg; elige vídeo e inferencia por preferencia de la configuración), hecho 14-11 con sus pruebas; después los puertos y los adaptadores |
