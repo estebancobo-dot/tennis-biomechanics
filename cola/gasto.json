@@ -34,7 +34,8 @@
      "horas": 0.91
     },
     "medir_video_nvdec": {
-     "estimado_h": 0.5
+     "estimado_h": 0.5,
+     "horas": 0.06
     }
    }
   }
