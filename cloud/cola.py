@@ -192,6 +192,29 @@ def set_base(spend: dict, base: dict):
         spend.setdefault("modal", {}).setdefault(str(m), {"trabajos": {}})["base_usd"] = float(usd)
 
 
+def note_start(st: dict, kstatus: str, now: float) -> None:
+    """R46 (14-11, the user: «¿cuándo hay máquinas?»): when Kaggle first runs the session, and how long it waited in
+    Kaggle's queue, to learn its free hours from data (cola/estado.json: «arranco», «espera_min»)."""
+    if kstatus == "running" and not st.get("arranco"):
+        st["arranco"] = time.strftime("%Y-%m-%d %H:%M", time.gmtime(now))
+        st["espera_min"] = round((now - float(st.get("lanzado_ts", now))) / 60)
+
+
+def cancel(state: dict, tokens: list[str], reasons: dict, delete) -> list[str]:
+    """Jobs cancelled by the configuration (`cancelar: {id: motivo}`): a running Kaggle job's notebook is deleted (its
+    session frees one of our 2), and the job ends as «error» with the reason; a job never launched just ends."""
+    done = []
+    for jid in tokens:
+        st = state.get(jid) or {}
+        if st.get("estado") in ("hecho", "error"):
+            continue
+        if st.get("estado") == "en_marcha" and st.get("donde") == "kaggle":
+            delete(st.get("cuaderno") or notebook_slug(jid))
+        state[jid] = {**st, "estado": "error", "resultado": {"nota": f"cancelado: {reasons.get(jid, '')}"}}
+        done.append(jid)
+    return done
+
+
 def restart(state: dict, spend: dict, tokens: list[str], done: list[str]) -> list[str]:
     """Jobs to start again (config `reiniciar: ["<id>#<n>", ...]`), once per token: its state (not a finished «hecho») and its
     reservation of Kaggle hours are dropped, so the queue plans it again. Returns the tokens applied now."""
@@ -451,6 +474,11 @@ def main(argv: list[str] | None = None) -> int:
     set_base(spend, queue.get("gasto_modal_base") or {})
     done_f = d / "reinicios.json"
     done = _load(done_f, [])
+    cancels = queue.get("cancelar") or {}
+    for jid in cancel(state, list(cancels), cancels,
+                      (lambda slug: print("cola: borrar", slug, _kaggle(["borrar", "--slug", slug]).returncode))
+                      if not a.en_seco else (lambda slug: None)):
+        print(f"cola: {jid} cancelado ({cancels[jid]})")
     for tok in restart(state, spend, queue.get("reiniciar") or [], done):
         print(f"cola: {tok.split('#')[0]} empieza de nuevo ({tok})")
         done.append(tok)
@@ -488,6 +516,7 @@ def main(argv: list[str] | None = None) -> int:
             if st["donde"] == "kaggle" and jid in by_id:
                 kst = kaggle_status(jid, st.get("cuaderno"))
                 st["kaggle"] = f"{kst} ({time.strftime('%H:%M', time.gmtime(now))})"
+                note_start(st, kst, now)
                 print(f"{jid}: Kaggle dice «{kst}»; lanzado hace {(now - float(st.get('lanzado_ts', now))) / 60:.0f} min, "
                       f"intento {st.get('intentos', 1)}")
                 act, why = kaggle_step(st, kst, res, now)

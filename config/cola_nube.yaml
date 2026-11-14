@@ -22,6 +22,10 @@ kaggle_activo: true
 partidos_en_espera: "después de la fase B de la nube nativa (#287, docs/nube_nativa.md)"
 # trabajos que empiezan de nuevo, una vez cada «id#n»: la final se lanzó en Kaggle a las 14:32 y Kaggle no la arrancó
 reiniciar: ["final#1"]
+# trabajos cancelados (su sesión de Kaggle se libera; acaban en «error» con el motivo). 14-11 21:10: la fase A midió la
+# GPU ocupada el 9 % de la pasada fina, así que TensorRT apenas ahorraría hoy; su plaza, para la v19 (las 2 T4)
+cancelar:
+  medir_raqueta_trt: "la GPU está ocupada solo el 9 % de la pasada fina (fase A, v17): TensorRT casi no ahorra hoy; su plaza de Kaggle, para la v19 (las 2 T4). Se repite si la GPU pasa a ser el cuello de botella"
 # #291 (14-11): el PR buzón (nunca se fusiona): la cola comenta en él solo cuando algo necesita a Claude, y su
 # actividad despierta la sesión al momento (sin sondeos ni tokens mientras no pasa nada)
 avisos_pr: 1

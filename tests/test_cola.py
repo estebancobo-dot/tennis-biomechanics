@@ -409,3 +409,22 @@ def test_a_queued_session_keeps_its_place_for_hours():
     sends it to the back of Kaggle's queue."""
     assert cola.KAGGLE_QUEUE_MAX_S >= 3 * 3600
     assert cola.kaggle_step({"lanzado_ts": NOV, "intentos": 1}, "queued", None, NOV + 2 * 3600) == ("nada", "")
+
+
+def test_cancel_frees_a_kaggle_session_and_start_is_noted():
+    """R46 (14-11): a job cancelled by the configuration frees its Kaggle session (its notebook deleted) and ends with
+    the reason; when Kaggle first runs a session, the wait in its queue is noted."""
+    deleted = []
+    state = {"r": {"estado": "en_marcha", "donde": "kaggle", "cuaderno": "tennisbio-r-4"},
+             "p": {}, "h": {"estado": "hecho"}}
+    got = cola.cancel(state, ["r", "p", "h"], {"r": "GPU al 9 %", "p": "x", "h": "y"}, deleted.append)
+    assert got == ["r", "p"] and deleted == ["tennisbio-r-4"]
+    assert state["r"]["estado"] == "error" and state["r"]["resultado"]["nota"] == "cancelado: GPU al 9 %"
+    assert state["h"]["estado"] == "hecho"
+    st = {"lanzado_ts": NOV}
+    cola.note_start(st, "queued", NOV + 600)
+    assert "arranco" not in st
+    cola.note_start(st, "running", NOV + 2400)
+    assert st["espera_min"] == 40 and st["arranco"]
+    cola.note_start(st, "running", NOV + 9000)
+    assert st["espera_min"] == 40                                                      # the first time only
