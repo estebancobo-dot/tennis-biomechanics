@@ -75,6 +75,7 @@ def test_notebook_carries_the_job_and_reads_the_keys_from_its_secrets(tmp_path):
     # 14-11: the notebook's secrets did not reach a run pushed by the API (ConnectionError): the key comes in the
     # user's private dataset, and is read only if the secrets are missing
     assert meta["dataset_sources"] == ["usuaria/tennisbio-clave"]
+    assert klanzar.metadata("usuaria", key=False)["dataset_sources"] == []
     assert 'glob.glob("/kaggle/input/**/modal.json", recursive=True)' in code and "print(k" not in code
 
 

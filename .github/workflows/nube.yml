@@ -12,6 +12,8 @@
 #              runs/partido_<id>)
 #   kaggle_comprobar: (14-11, paso 8b) una sesion de Kaggle que mira GPU, nucleos, disco, la clave de Modal y monta el
 #              entorno; espera a que acabe y trae su salida
+#   kaggle_sin_clave: (diagnostico, 14-11) la comprobacion sin el conjunto de datos de la clave (una sesion que se quedo
+#              en cola: ¿es por el?); falla al bajar de Modal, pero dice si arranca
 #   kaggle_estado: el estado de la ultima sesion de Kaggle y, si acabo, su salida (no lanza nada)
 #   kaggle_prueba: 10 min del partido dado en Kaggle, con sus resultados aparte en Modal (/kaggle_comparar) para
 #              compararlos con la prueba de Modal; espera a que acabe y trae su salida
@@ -20,9 +22,9 @@ on:
   workflow_dispatch:
     inputs:
       accion:
-        description: "comprobar | f3set | prueba | partidos | diagnostico | informe | parar | recoger | kaggle_comprobar | kaggle_prueba | kaggle_estado"
+        description: "comprobar | f3set | prueba | partidos | diagnostico | informe | parar | recoger | kaggle_comprobar | kaggle_prueba | kaggle_estado | kaggle_sin_clave"
         type: choice
-        options: [comprobar, f3set, prueba, partidos, diagnostico, informe, parar, recoger, kaggle_comprobar, kaggle_prueba, kaggle_estado]
+        options: [comprobar, f3set, prueba, partidos, diagnostico, informe, parar, recoger, kaggle_comprobar, kaggle_prueba, kaggle_estado, kaggle_sin_clave]
         default: comprobar
       tag:
         description: "nombre de la ejecucion (runs/<tag>)"
@@ -135,8 +137,11 @@ jobs:
             exit 0
           fi
           # 14-11: the notebook's secrets do not reach a run started by the API: the Modal key goes in a private dataset
-          python cloud/kaggle/cuaderno.py clave
-          if [ "$ACCION" = "kaggle_comprobar" ]; then
+          if [ "$ACCION" != "kaggle_sin_clave" ]; then python cloud/kaggle/cuaderno.py clave; fi
+          if [ "$ACCION" = "kaggle_sin_clave" ]; then
+            python cloud/kaggle/cuaderno.py lanzar --accion comprobar --commit "$GITHUB_SHA" --sin-clave
+            minutos=15
+          elif [ "$ACCION" = "kaggle_comprobar" ]; then
             python cloud/kaggle/cuaderno.py lanzar --accion comprobar --commit "$GITHUB_SHA"
             minutos=50
           else
