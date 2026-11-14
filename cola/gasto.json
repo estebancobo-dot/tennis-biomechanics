@@ -42,7 +42,8 @@
      "estimado_h": 1.0
     },
     "prueba_gauff_v19": {
-     "estimado_h": 1.0
+     "estimado_h": 1.0,
+     "horas": 0.86
     },
     "medir_raqueta_trt_b": {
      "estimado_h": 0.5,
