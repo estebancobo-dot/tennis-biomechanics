@@ -117,6 +117,20 @@ def _rot(a, n):
     return Rotation.from_matrix(np.c_[a, np.cross(n, a), n])
 
 
+def _between(a0, n0, a1, n1, w):
+    """Axis and face normal a fraction w of the way from (a0, n0) to (a1, n1): each vector interpolated on its own and
+    normalised, as before. 14-11 (R36, Zheng in the cloud): two observed frames with opposite normals (or axes) made a
+    zero vector halfway, and «Non-positive determinant» stopped the window; then (or whenever the result is not a
+    racket: axis along the normal) the whole orientation is interpolated as a rotation (slerp), which never degenerates."""
+    a, n = (1 - w) * a0 + w * a1, (1 - w) * n0 + w * n1
+    if np.linalg.norm(a) > 1e-6 and np.linalg.norm(n) > 1e-6 and np.linalg.norm(np.cross(_unit(n), _unit(a))) > 1e-3:
+        return _unit(a), _unit(n)
+    from scipy.spatial.transform import Rotation, Slerp
+
+    m = Slerp([0.0, 1.0], Rotation.concatenate([_rot(a0, n0), _rot(a1, n1)]))([w]).as_matrix()[0]
+    return m[:, 0], m[:, 2]
+
+
 @dataclass
 class HandPrior:
     """Per-frame evidence from the 3D hand/forearm (world frame, unit vectors or None)."""
@@ -214,9 +228,7 @@ def solve_sequence(obs: list[Observation | None], cam: Camera, impact: int | Non
             lo = max([q for q in known if q < t], default=None)
             hi = min([q for q in known if q > t], default=None)
             if lo is not None and hi is not None:
-                w = (t - lo) / (hi - lo)
-                axes[t] = _unit((1 - w) * axes[lo] + w * axes[hi])
-                normals[t] = _unit((1 - w) * normals[lo] + w * normals[hi])
+                axes[t], normals[t] = _between(axes[lo], normals[lo], axes[hi], normals[hi], (t - lo) / (hi - lo))
             else:
                 q = lo if lo is not None else hi
                 axes[t], normals[t] = axes[q], normals[q]

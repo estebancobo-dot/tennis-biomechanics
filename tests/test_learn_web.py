@@ -13,8 +13,12 @@ from tennisbio.report import build
 CHROMIUM = Path("/opt/pw-browsers/chromium")
 
 
-def synthetic(n=400, seed=3):
+def synthetic(n=400, seed=3, timing=False):
+    """timing: also her stroke's moments, the opponent's hit and the kinetic chain, as every real stroke has them
+    (14-11: without them «Su ritmo y su cadena cinética» never showed in the tests, and on the real report it pushed
+    the lesson video below the first screen)."""
     rnd = random.Random(seed)
+    rnd_t = random.Random(seed + 2000)
     # the conditions draw from their own generator: adding a condition (20-10: golpe angulado, bola corta
     # cerca de la red) must not reshuffle the measures of every stroke
     rnd_c = random.Random(seed + 1000)
@@ -44,6 +48,16 @@ def synthetic(n=400, seed=3):
         out.append({"stroke": "forehand", "match_time_s": 10.0 + i, "impact_source": "audio+ball+swing", "review": [],
                     "metrics": {"contact_height_pct": 55.0}, "phases": {"impact": {"t_rel": 0.0}, "ready": {"t_rel": -0.6}},
                     "technique": tech, "court_pos_m": [1.0, -1.0], "stance": tech["classes"]["stance_impact"]})
+        if timing:
+            j = lambda: rnd_t.uniform(-0.05, 0.05)
+            out[-1]["metrics"]["time_available_s"] = round(1.3 + j(), 3)
+            out[-1]["phases"] = {"ready": {"t_rel": round(-0.9 + j(), 3), "method": "split_step_landing"},
+                                 "takeback": {"t_rel": round(-0.7 + j(), 3)}, "loaded": {"t_rel": round(-0.3 + j(), 3)},
+                                 "acceleration": {"t_rel": round(-0.12 + j() / 5, 3)}, "impact": {"t_rel": 0.0},
+                                 "finish": {"t_rel": round(0.3 + j(), 3)}, "recovery": {"t_rel": round(0.6 + j(), 3)}}
+            out[-1]["chain"] = {"version": 2, "proximal_to_distal": True,
+                                "peaks_s": {"pelvis": round(-0.1 + j() / 5, 3), "trunk": round(-0.06 + j() / 5, 3),
+                                            "arm": round(-0.02 + j() / 5, 3)}}
     return out
 
 
@@ -210,7 +224,7 @@ def test_lesson_meets_the_requirements(tmp_path):
 
     d = tmp_path / "m1"
     d.mkdir()
-    (d / "strokes.json").write_text(json.dumps(synthetic(200)), encoding="utf-8")
+    (d / "strokes.json").write_text(json.dumps(synthetic(200, timing=True)), encoding="utf-8")
     (d / "probe.json").write_text(json.dumps({"duration": 3600}))
     html = build([Match("m1", None, Player("p", "P"))], tmp_path)
     with sync_playwright() as p:
@@ -244,7 +258,7 @@ def test_entry_and_every_screen_meet_the_design(tmp_path, w, h):
 
     d = tmp_path / "m1"
     d.mkdir()
-    (d / "strokes.json").write_text(json.dumps(synthetic(120)), encoding="utf-8")
+    (d / "strokes.json").write_text(json.dumps(synthetic(120, timing=True)), encoding="utf-8")
     (d / "probe.json").write_text(json.dumps({"duration": 3600}))
     html = build([Match("m1", None, Player("p", "P"))], tmp_path)
     with sync_playwright() as p:

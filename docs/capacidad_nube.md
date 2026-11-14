@@ -10,6 +10,12 @@ memoria 32 GiB × 0,008 $ = 0,26 $ → **≈ 1,6 $/h**. La CPU es casi la mitad;
 **Osaka: ≈ 3,8 $** (pasada barata 28 min + resto 1 h 53 min). Unos **0,054 $ por minuto de vídeo**. A ese precio el crédito
 mensual (30 $) da para ~550 min de vídeo (unos 4-5 partidos), y menos si hay pruebas o F3Set.
 
+**Gasto real de noviembre (página Usage de Modal, 14-11 08:20, captura del usuario):** usado **28,05 $** de los 30 $ de
+crédito; gasto **0,00 $** (todo cubierto por el crédito). Quedan **≈ 1,95 $ hasta el 1-12**. La suma de nuestras
+estimaciones era ≈ 27 $: el cálculo de `nube.cost` se queda ~4 % corto (se corrige con este dato). Con ese saldo, en
+noviembre solo van ejecuciones baratas de CPU (informe y auditoría ≈ 0,08 $; medidas desde la caché). Las pruebas A/B/C
+de §3 (≈ 0,5 $ cada una) pasan al crédito de diciembre o a Kaggle.
+
 **Pasada fina, nube frente al PC (Osaka, segundos sumados de las ventanas):**
 
 | Parte | Nube (T4) | PC (iGPU 780M) | Nube / PC |

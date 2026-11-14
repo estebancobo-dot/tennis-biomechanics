@@ -125,6 +125,7 @@ def sample_resources() -> dict:
 
 
 GPU_FALLBACK = "falló al cargar"          # tennisbio.pose.estimator._new_session: a model the GPU could not take
+PAGE_MAX_BYTES = 80 * 1024 * 1024       # the report page copied to runs/<tag> (informe): its data inside, no videos
 
 
 def gpu_fallbacks(log: str) -> int:

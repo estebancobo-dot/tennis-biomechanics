@@ -139,6 +139,8 @@ _JS_LESSON = """async () => {
       drilled: keys.filter(k => k.textContent.includes('Ejercicio')).length,
       // words to read in the keys (the bars of «cambia con la bola» are a picture, not text to read)
       words: words({ innerText: [...document.querySelectorAll('#a-l-keys .lkey')].map(k => { const c = k.cloneNode(true); c.querySelectorAll('.lbars, details').forEach(x => x.remove()); return c.innerText || c.textContent; }).join(' ') }),
+      // 14-11: the words of each key (which one is long, so the fix goes straight to it)
+      key_words: keys.map(k => { const c = k.cloneNode(true); c.querySelectorAll('.lbars, details').forEach(x => x.remove()); return [k.dataset.key, words({ innerText: c.innerText || c.textContent })]; }),
       focus_words: words({ innerText: focus.replace(/^Foco:/, '') }), focus_body: /\\d\\s*(%|°|cm)/.test(focus),
       practice: /\\d+ de \\d+/.test(prac), strings: /Cuerdas/.test(document.getElementById('a-l-strings').innerText || ''),
       repeats: keys.filter(k => { const m = k.querySelector('.mine'); const v = k.querySelector('.lh b'); return m && v && m.innerText.includes(v.innerText.split(' (')[0]); }).length,
@@ -174,7 +176,8 @@ def check_lesson(pg) -> dict:
         if r["height"] > 1400:
             why.append(f"la lección mide {r['height']} px (más de pantalla y media)")
         if r["words"] > 120:
-            why.append(f"{r['words']} palabras en las claves (máximo 120)")
+            why.append(f"{r['words']} palabras en las claves (máximo 120: "
+                       + ", ".join(f"{k} {n}" for k, n in r.get("key_words") or []) + ")")
         if r["focus_words"] > 25 or r["focus_body"]:
             why.append("el foco es largo o lleva cifras del cuerpo")
         if r["keys"] and not r["practice"]:

@@ -52,12 +52,12 @@ KEY_MOMENTS = {"ready": "espera / split step", "takeback": "inicio de preparaci√
 # physical limits of what is shown (a value outside them is a measurement error that got through)
 from . import match_files as _mf
 from .faults import fault
-from .limits import BALL_INCOMING_KMH, METRIC_LIMITS
+from .limits import BALL_APEX_M, BALL_INCOMING_KMH, METRIC_LIMITS
 from .pipeline import total_seconds
 
 LIMITS = {
     **{f"metrics.{k}": v for k, v in METRIC_LIMITS.items()},
-    "ball_flight.incoming_speed_kmh": BALL_INCOMING_KMH, "ball_flight.apex_height_m": (0.2, 4.0),
+    "ball_flight.incoming_speed_kmh": BALL_INCOMING_KMH, "ball_flight.apex_height_m": BALL_APEX_M,
     "ball_flight.contact_height_m": (0.05, 3.0), "footwork.peak_speed_mps": (0, 9.5), "footwork.path_m": (0, 20),
     "footwork.approach_speed_mps": (0, 9.5), "displacement_m": (0, 20), "stance_width_m": (0.1, 2.5),
 }

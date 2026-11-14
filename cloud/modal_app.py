@@ -420,6 +420,10 @@ def informe(tag: str = "informe") -> dict:
     for f in ("auditoria.md", "auditoria.json"):
         if (aud / f).exists():
             shutil.copy(aud / f, run / f)
+    # 14-11: the report's page (its data inside, without the videos and series), to look at it from the repository
+    page = DATA / "output" / "informe_derecha" / "index.html"
+    if page.exists() and page.stat().st_size < nube.PAGE_MAX_BYTES:
+        shutil.copy(page, run / "informe.html")
     est.update(estado="hecho" if not any(rc.values()) else "error", codigos=rc, segundos=round(time.time() - t0),
                coste_usd=nube.cost(time.time() - t0, "", 4.0, 16), fin=time.strftime("%Y-%m-%d %H:%M:%S"))
     _save(run, est)

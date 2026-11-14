@@ -436,8 +436,6 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
 <section class="screen" id="tab-aprende" hidden>
 <div class="lctx"><span><b>Su derecha</b> · <span id="a-ctx"></span></span><span class="lquick" id="a-quick"></span><button class="btn" id="a-cond-toggle" aria-expanded="false">Cambiar ▾</button><label class="uh">Tu altura <input type="number" id="a-uh" min="1.2" max="2.2" step="0.01" placeholder="1,75"> m</label></div>
 <div class="panel" id="a-cond-p" hidden style="margin-bottom:12px"><header><h2>¿Qué golpe quieres aprender?</h2><button class="btn" id="a-clear">Quitar todo</button></header><div class="body" id="a-cond" style="padding:12px 16px"></div></div>
-<div class="panel" style="margin-top:16px" id="a-ritmo" hidden><header><h2>Su ritmo y su cadena cinética</h2><span class="note" id="a-rh-n"></span></header>
-<div class="body" style="padding:12px 16px"><div id="a-rh"></div><p class="say1" id="a-rh-say" style="margin-top:8px"></p><p class="note" id="a-rh-note"></p></div></div>
 <div class="panel lesson" style="margin-top:16px" id="a-lesson"><header><h2>La lección: su derecha, fase a fase</h2><span class="note" id="a-l-src"></span></header>
 <div class="body" style="padding:12px 16px"><div class="lsteps" id="a-l-steps"></div>
 <div class="lgrid"><div><div class="lvid"><canvas id="a-l-cv" width="960" height="600"></canvas><div class="lnovid" id="a-l-nov" hidden></div></div>
@@ -460,6 +458,10 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
 <div class="panel" style="margin-top:16px"><header><h2>2 · Sus golpes de ese tipo</h2></header><div class="body" id="a-res" style="padding:12px 16px"></div></div>
 <div class="panel" style="margin-top:16px"><header><h2>Su firma: lo que repite en casi todos estos golpes</h2><span class="note">medido; solo rasgos fiables</span></header><div class="body" id="a-sig" style="padding:12px 16px"></div></div>
 <div class="panel" style="margin-top:16px"><header><h2>Su ritmo, distancia y peso</h2><span class="note">medido; cada línea lleva a su fase</span></header><div class="body" id="a-rhythm" style="padding:12px 16px"></div></div>
+<!-- 14-11: folded with the extras, as the design says (docs/diseno_definitivo.md §1.9); above the lesson it pushed the
+     lesson video below the first screen on the real report -->
+<div class="panel" style="margin-top:16px" id="a-ritmo" hidden><header><h2>Su ritmo y su cadena cinética</h2><span class="note" id="a-rh-n"></span></header>
+<div class="body" style="padding:12px 16px"><div id="a-rh"></div><p class="say1" id="a-rh-say" style="margin-top:8px"></p><p class="note" id="a-rh-note"></p></div></div>
 <div class="panel" style="margin-top:16px"><header><h2>Cómo usa su derecha</h2><span class="note">medido en estos golpes: dirección, profundidad, cambios de dirección y bajo presión</span></header><div class="body" id="a-tac" style="padding:12px 16px"></div></div>
 <div class="panel" style="margin-top:16px" id="a-sitp"><header><h2>3 · Qué cambia en este golpe</h2><span class="note" id="a-src1"></span></header><ul class="say" id="a-sit"></ul></div>
 <details class="extra secx" id="a-phases-d" style="margin-top:22px"><summary><b>4 · Todas las medidas, fase a fase</b> · la lista completa (lo de la lección y todo lo demás)</summary>

@@ -103,3 +103,31 @@ def test_backhand_hitting_face_is_back_of_hand():
     fh = hand_prior(k3, sc, cam, "right", 0.0)
     bh = hand_prior(k3, sc, cam, "right", 0.0, hitting_face="back")
     assert np.allclose(fh.face, -bh.face)
+
+
+def test_gap_between_opposite_normals_is_a_valid_rotation():
+    """R36 (14-11, Zheng in the cloud): two observed frames with opposite face normals left a zero normal halfway and
+    «Non-positive determinant» stopped the window; the gap is now a proper rotation and the refinement runs."""
+    from tennisbio.racket3d import _between, _rot, refine
+
+    a = np.array([1.0, 0.0, 0.0])
+    n = np.array([0.0, 0.0, 1.0])
+    for w in (0.25, 0.5, 0.75):
+        a2, n2 = _between(a, n, a, -n, w)
+        assert abs(np.linalg.norm(a2) - 1) < 1e-6 and abs(np.linalg.norm(n2) - 1) < 1e-6
+        assert abs(a2 @ n2) < 1e-6
+        assert np.linalg.det(_rot(a2, n2).as_matrix()) > 0.99
+    # opposite axes too
+    a3, n3 = _between(a, n, -a, n, 0.5)
+    assert abs(np.linalg.norm(a3) - 1) < 1e-6 and abs(a3 @ n3) < 1e-6
+    # the usual case is interpolated exactly as before (each vector on its own, normalised)
+    b = np.array([0.0, 1.0, 0.0])
+    a4, n4 = _between(a, n, b, n, 0.5)
+    assert np.allclose(a4, (a + b) / np.linalg.norm(a + b)) and np.allclose(n4, n)
+
+    cam = Camera(pitch_deg=25.0)
+    mid = _between(a, n, a, -n, 0.5)
+    axes, normals = [a, mid[0], a], [n, mid[1], -n]
+    obs = [synthetic_observation(a, n, cam), None, synthetic_observation(a, -n, cam)]
+    ax, nm = refine(axes, normals, obs, cam, None)
+    assert len(ax) == 3 and all(np.isfinite(v).all() for v in ax + nm)

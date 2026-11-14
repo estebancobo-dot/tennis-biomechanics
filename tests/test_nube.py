@@ -455,3 +455,6 @@ def test_the_report_and_audit_read_only_analysed_matches(tmp_path):
     body = src[src.index("def informe("):src.index("def prueba(")]
     assert "nube.analysed_matches(" in body and '"--root", str(root)' in body and "gpu" not in body.split("\n")[0]
     assert 'PLAYWRIGHT_BROWSERS_PATH=/opt/pw-browsers python -m playwright install --with-deps chromium' in src
+    # 14-11: the report's page goes with the run, to look at the real lesson from the repository (no videos, bounded)
+    assert 'run / "informe.html"' in body and "nube.PAGE_MAX_BYTES" in body
+    assert 10 * 1024 * 1024 <= nube.PAGE_MAX_BYTES <= 200 * 1024 * 1024

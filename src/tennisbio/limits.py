@@ -20,6 +20,9 @@ METRIC_LIMITS = {
 # the incoming ball, average speed over the court from the opponent's contact to the bounce (km/h):
 # the fastest groundstrokes and serves stay under 240; under 15 it would not reach her
 BALL_INCOMING_KMH = (15, 240)
+# 14-11: the highest point of the ball after its bounce (m): the same limits the audit checks (before, the fit took
+# rise speeds of 0.5-12 m/s, apexes of 0.01-7.3 m, and the audit found 1 of 63 outside these)
+BALL_APEX_M = (0.2, 4.0)
 
 
 def sanitize(metrics: dict) -> list[str]:

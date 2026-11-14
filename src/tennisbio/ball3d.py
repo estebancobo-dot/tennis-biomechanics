@@ -116,7 +116,7 @@ def flights(track: np.ndarray, fps: float, H_img: np.ndarray, frame_shape, bounc
     B = _at_z(P, b_uv, 0.0)
     if B is None:
         return out
-    from .limits import BALL_INCOMING_KMH
+    from .limits import BALL_APEX_M, BALL_INCOMING_KMH
     v_max = BALL_INCOMING_KMH[1] / 3.6
     # a bounce the ball cannot cover to her in the time left is a wrong bounce frame (the bounce of
     # her own shot or a misdetection): nothing measured from it (2.5 m: her reach to the contact)
@@ -145,7 +145,7 @@ def flights(track: np.ndarray, fps: float, H_img: np.ndarray, frame_shape, bounc
                 if len(ts) >= 4:
                     vz = float(np.sum(ts * (zs + 0.5 * G * ts ** 2)) / np.sum(ts ** 2))   # z = vz t - g t²/2
                     rms = float(np.sqrt(np.mean((zs - (vz * ts - 0.5 * G * ts ** 2)) ** 2)))
-                    if rms <= max_rms_m and 0.5 <= vz <= 12.0:
+                    if rms <= max_rms_m and vz > 0 and BALL_APEX_M[0] <= vz ** 2 / (2 * G) <= BALL_APEX_M[1]:
                         t_apex = vz / G
                         tc = (impact_frame - bounce_frame) / fps
                         margin = max(0.05, 0.15 * t_apex)

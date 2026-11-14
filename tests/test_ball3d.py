@@ -95,3 +95,18 @@ def test_a_bounce_too_far_for_the_time_left_measures_nothing():
     track[57, :2] = project(P, np.array([[-2.5, 8.7, 0.0]]))[0]
     assert flights(track, fps, H, (1080, 1920), 57, 60, 5, zc, player_y_m=0.7) == {}
     assert flights(track, fps, H, (1080, 1920), 40, 60, 5, zc, player_y_m=0.7)     # the true bounce still measures
+
+
+def test_bounce_higher_than_the_limit_is_not_measured():
+    """14-11 (Base audit in the cloud: 1 apex of 63 outside 0.2-4.0 m): the fit uses the same limits as the audit
+    (limits.BALL_APEX_M): 3.7 m is measured, 4.6 m is not (before, anything up to 7.3 m passed)."""
+    from tennisbio.limits import BALL_APEX_M
+
+    fps = 50.0
+    for vz, shown in ((8.5, True), (9.5, False)):
+        v_out = np.array([0.4, -9.0, vz])
+        _, H, track, zc, _ = _rally(v_out, 40, 55, noise=0.0)
+        out = flights(track, fps, H, (1080, 1920), 40, 55, 5, zc)
+        assert ("apex_height_m" in out) is shown, (vz, out)
+        if shown:
+            assert BALL_APEX_M[0] <= out["apex_height_m"] <= BALL_APEX_M[1]
