@@ -42,7 +42,7 @@
   }
  },
  "prueba_gauff_v16b": {
-  "estado": "en_marcha",
+  "estado": "hecho",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 2,
@@ -51,6 +51,13 @@
   "inicio": "2026-11-14 16:11",
   "ruta": "/runs/kaggle_prueba_gauff_v16b/estado.json",
   "nota": "Kaggle no tiene ninguna sesión de este trabajo",
-  "kaggle": "running (17:00)"
+  "kaggle": "complete (17:06)",
+  "fin": "2026-11-14 17:06",
+  "resultado": {
+   "estado": "hecho",
+   "coste_usd": 0.0,
+   "segundos": 3129,
+   "horas_kaggle": 0.9
+  }
  }
 }
