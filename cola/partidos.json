@@ -1,0 +1,32 @@
+[
+ {
+  "id": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+  "rival": "Naomi Osaka",
+  "analizado": true
+ },
+ {
+  "id": "zheng-qinwen-elena-rybakina",
+  "rival": "Zheng Qinwen",
+  "analizado": true
+ },
+ {
+  "id": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+  "rival": "Gauff",
+  "analizado": false
+ },
+ {
+  "id": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
+  "rival": "Sobolenko",
+  "analizado": false
+ },
+ {
+  "id": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
+  "rival": "Jessica Pegula",
+  "analizado": true
+ },
+ {
+  "id": "zverev-alexander-sinner-jannik-indian-wells-2026-semi-final",
+  "rival": "Zverev Alexander",
+  "analizado": false
+ }
+]
