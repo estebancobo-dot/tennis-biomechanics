@@ -203,3 +203,21 @@ def test_an_older_runs_state_is_not_taken_for_this_launch():
     assert not cola.fresh(old, launched) and cola.fresh(new, launched)
     assert cola.fresh({"estado": "hecho"}, launched) and not cola.fresh(None, launched)
     assert cola.fresh(old, {})                                        # launched before this check: as before
+
+
+def test_whole_matches_can_wait_and_a_job_can_start_again():
+    """14-11 (#287): whole matches wait for the cloud-native phase B (`partidos_en_espera`); the final launched on Kaggle
+    (left queued) starts again once (`reiniciar: ["final#1"]`), never a job already done."""
+    spend, state = {}, {}
+    cola.set_base(spend, {"2026-12": 0.0})
+    on = {"kaggle": {"ok": True, "motivo": ""}, "pc": {"ok": False}}
+    jobs = [{"id": "final", "accion": "partido", "partido": "f", "aprobado": True},
+            {"id": "t", "accion": "prueba", "partido": "g", "donde": "kaggle"}]
+    cola.record_launch(state, spend, jobs[0], "kaggle", "kaggle", DEC)
+    state["hecho"] = {"estado": "hecho"}
+    done = []
+    assert cola.restart(state, spend, ["final#1", "hecho#1"], done) == ["final#1"]
+    assert "final" not in state and "final" not in spend["kaggle"][cola.week(DEC)]["trabajos"] and "hecho" in state
+    assert cola.restart(state, spend, ["final#1"], ["final#1"]) == []            # once per token
+    d = {i: (src, why) for i, src, why in cola.plan(jobs, state, spend, on, DEC, "después de la fase B")}
+    assert d["final"] == ("", "después de la fase B") and d["t"][0] == "kaggle"

@@ -161,7 +161,23 @@ def set_base(spend: dict, base: dict):
         spend.setdefault("modal", {}).setdefault(str(m), {"trabajos": {}})["base_usd"] = float(usd)
 
 
-def plan(jobs: list[dict], state: dict, spend: dict, sources: dict, now: float) -> list[tuple[str, str, str]]:
+def restart(state: dict, spend: dict, tokens: list[str], done: list[str]) -> list[str]:
+    """Jobs to start again (config `reiniciar: ["<id>#<n>", ...]`), once per token: its state (not a finished «hecho») and its
+    reservation of Kaggle hours are dropped, so the queue plans it again. Returns the tokens applied now."""
+    applied = []
+    for tok in tokens or []:
+        jid = str(tok).split("#")[0]
+        if tok in done or state.get(jid, {}).get("estado") == "hecho":
+            continue
+        state.pop(jid, None)
+        for w in spend.get("kaggle", {}).values():
+            w.get("trabajos", {}).pop(jid, None)
+        applied.append(tok)
+    return applied
+
+
+def plan(jobs: list[dict], state: dict, spend: dict, sources: dict, now: float,
+         hold_matches: str = "") -> list[tuple[str, str, str]]:
     """The jobs to launch now: [(id, source, reason)]. `sources`: {name: {"ok": bool, "motivo": str}} (Kaggle and the PC
     say whether they can take work; Modal's room comes from the spend). Pending jobs in queue order; one whose «tras»
     is not done yet waits; a whole match needs `aprobado`; a launched job reserves its estimate at once, so two jobs
@@ -179,6 +195,9 @@ def plan(jobs: list[dict], state: dict, spend: dict, sources: dict, now: float) 
                 continue
         if j["accion"] == "partido" and not j.get("aprobado"):
             out.append((j["id"], "", "falta la aprobación del usuario (#262)"))
+            continue
+        if j["accion"] == "partido" and hold_matches:
+            out.append((j["id"], "", hold_matches))
             continue
         where = j.get("donde", "cualquiera")
         why = []
@@ -354,6 +373,12 @@ def main(argv: list[str] | None = None) -> int:
     d.mkdir(parents=True, exist_ok=True)
     state, spend = _load(d / "estado.json", {}), _load(d / "gasto.json", {})
     set_base(spend, queue.get("gasto_modal_base") or {})
+    done_f = d / "reinicios.json"
+    done = _load(done_f, [])
+    for tok in restart(state, spend, queue.get("reiniciar") or [], done):
+        print(f"cola: {tok.split('#')[0]} empieza de nuevo ({tok})")
+        done.append(tok)
+    done_f.write_text(json.dumps(done, ensure_ascii=False), encoding="utf-8")
     bad = check_queue(jobs)
     for b in bad:
         print("cola:", b)
@@ -399,7 +424,7 @@ def main(argv: list[str] | None = None) -> int:
             if res and res.get("estado") in FINAL:
                 record_result(state, spend, jid, res, now)
                 print(f"{jid}: {res.get('estado')} ({res.get('coste_usd')} $, {res.get('horas_kaggle')} h de Kaggle)")
-    decisions = plan(jobs, state, spend, _sources(Path.cwd(), queue, state), now)
+    decisions = plan(jobs, state, spend, _sources(Path.cwd(), queue, state), now, str(queue.get("partidos_en_espera") or ""))
     launched = 0
     for jid, src, why in decisions:
         print(f"{jid}: {'→ ' + src if src else 'espera'} · {why}")

@@ -16,6 +16,11 @@
 # 14-11 13:20: Gauff, 10 min: las mismas tomas, pista, 55 golpes (34 cerca, 21 lejos), enlaces y fallos que Modal; 18
 # derechas frente a 19 (la bola calculada en la CPU, que ya no se usa con menos de 8 núcleos): activado
 kaggle_activo: true
+# 14-11 (#287): los partidos enteros esperan a la fase B de la nube nativa (docs/nube_nativa.md: decodificar en la GPU,
+# TensorRT, las 2 T4; los mismos resultados en menos tiempo); Kaggle queda para las pruebas y las medidas. Vacío = sin espera
+partidos_en_espera: "después de la fase B de la nube nativa (#287, docs/nube_nativa.md)"
+# trabajos que empiezan de nuevo, una vez cada «id#n»: la final se lanzó en Kaggle a las 14:32 y Kaggle no la arrancó
+reiniciar: ["final#1"]
 gasto_modal_base:
   "2026-11": 28.08
 trabajos:
