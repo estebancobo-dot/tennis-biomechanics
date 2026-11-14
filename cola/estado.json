@@ -75,7 +75,7 @@
   "inicio": "2026-11-14 19:31",
   "ruta": "/runs/kaggle_medir_raqueta_trt/estado.json",
   "nota": "en cola de Kaggle más de 45 min sin arrancar",
-  "kaggle": "queued (20:07)"
+  "kaggle": "queued (20:12)"
  },
  "prueba_gauff_v17": {
   "estado": "hecho",
@@ -139,5 +139,18 @@
    "nota": "incompleta; 16 etapas iguales; leídos en un solo lado: strokes.json; strokes.json: 0 de 28/0 golpes emparejados, 20 distintos; strokes_opponent.json: 0 de 0/0 golpes emparejados; strokes_doubtful.json: 1 de 1/1 golpes emparejados"
   },
   "partido": ""
+ },
+ "prueba_gauff_v18": {
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1794687128.366239,
+  "accion": "prueba",
+  "partido": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+  "inicio": "2026-11-14 20:12",
+  "ruta": "/runs/kaggle_prueba_gauff_v18/estado.json",
+  "salida": "/kaggle_pruebas/prueba_gauff_v18/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+  "cuaderno": "tennisbio-prueba-gauff-v18"
  }
 }

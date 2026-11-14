@@ -36,6 +36,9 @@
     "medir_video_nvdec": {
      "estimado_h": 0.5,
      "horas": 0.06
+    },
+    "prueba_gauff_v18": {
+     "estimado_h": 1.0
     }
    }
   }
