@@ -26,6 +26,8 @@ reiniciar: ["final#1"]
 # GPU ocupada el 9 % de la pasada fina, así que TensorRT apenas ahorraría hoy; su plaza, para la v19 (las 2 T4)
 cancelar:
   medir_raqueta_trt: "la GPU está ocupada solo el 9 % de la pasada fina (fase A, v17): TensorRT casi no ahorra hoy; su plaza de Kaggle, para la v19 (las 2 T4). Se repite si la GPU pasa a ser el cuello de botella"
+  prueba_gauff_v18: "la v19 comprueba lo mismo (el dispositivo y la subida) y además las 2 T4: 0,9 h de cuota ahorradas y una plaza libre; si la v19 sale distinta, se repite para aislar la causa"
+  comparar_gauff_v16b_v18: "sin la v18 (ver arriba)"
 # #291 (14-11): el PR buzón (nunca se fusiona): la cola comenta en él solo cuando algo necesita a Claude, y su
 # actividad despierta la sesión al momento (sin sondeos ni tokens mientras no pasa nada)
 avisos_pr: 1
