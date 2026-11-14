@@ -375,7 +375,7 @@ def partido(match_id: str) -> dict:
                cores_y_gib_cobrados=nube.used(samples, CORES, GIB), fin=time.strftime("%Y-%m-%d %H:%M:%S"),
                etapas={k: v.get("seconds") for k, v in man.items() if isinstance(v, dict) and "seconds" in v},
                fallos={k: v.get("faults") for k, v in man.items() if isinstance(v, dict) and v.get("faults")},
-               recursos=nube.summarize_resources(samples),
+               recursos=nube.summarize_resources(samples), recursos_por_etapa=nube.per_stage(samples, man),
                modelos_en_cpu=nube.gpu_fallbacks((run / "log.txt").read_text(encoding="utf-8", errors="replace")))
     est.pop("recursos_ahora", None)
     _save(run, est)

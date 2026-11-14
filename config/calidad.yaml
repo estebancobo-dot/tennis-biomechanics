@@ -28,6 +28,7 @@ caracteristicas:
 capas:
   codigo: "Codigo y pruebas automaticas"
   pc: "PC con datos reales"
+  nube: "Nube con datos reales (Kaggle, Modal; T3, 14-11)"
   pantallas: "Pantallas (capturas del navegador)"
   verdad: "Validacion con verdad anotada"
 
@@ -59,6 +60,8 @@ areas:
   "Tiempo por etapa": [plataforma, rendimiento, pc]
   "Trabajo en paralelo": [plataforma, rendimiento, pc]
   "Uso del PC": [plataforma, rendimiento, pc]
+  "Uso de la nube": [plataforma, rendimiento, nube]   # T3 (14-11): B1 en la nube, CPU/GPU/memoria por etapa
+  "Nube": [plataforma, fiabilidad, nube]              # T3 (14-11): B7/B8 en la nube, «Cola de la nube»
   "Automático": [plataforma, fiabilidad, pc]
   "Infraestructura": [plataforma, fiabilidad, pc]
   "Orquestador": [plataforma, fiabilidad, pc]
@@ -88,6 +91,8 @@ esperadas:
   - [datos, mantenibilidad, codigo]
   - [plataforma, fiabilidad, pc]
   - [plataforma, rendimiento, pc]
+  - [plataforma, fiabilidad, nube]
+  - [plataforma, rendimiento, nube]
   - [plataforma, mantenibilidad, codigo]
   - [plataforma, portabilidad, pc]
   - [modelos, exactitud, verdad]

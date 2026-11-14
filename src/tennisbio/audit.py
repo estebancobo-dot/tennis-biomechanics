@@ -2518,6 +2518,7 @@ def base_items(match_dirs: list[Path], out_root: Path, cfg: dict | None = None) 
                lambda: resources_items(out_root), lambda: [actions_item(out_root)],
                lambda: [f3set_precision_item(out_root)], lambda: f3set_detector_items(out_root),
                lambda: f3set_sides_items(out_root),          # B4 (08-11): identity and far end against F3Set
+               lambda: cloud_items(match_dirs, cfg),         # T3 (14-11): B1, B7 and B8 in the cloud
                # #30: after the model items, which it reads
                lambda: [comparison_doc_item(items, out_root)]):
         try:
@@ -2527,12 +2528,107 @@ def base_items(match_dirs: list[Path], out_root: Path, cfg: dict | None = None) 
                                f"no se pudo calcular ({type(e).__name__}: {e})"))
     return items
 
+def cloud_items(match_dirs: list[Path], cfg: dict | None = None) -> list[dict]:
+    """The cloud's checks of B1, B7 and B8 (rewritten for the cloud, #286): what each stage uses, the queue alive and
+    the only way in, and the progress of every job visible while it runs."""
+    root = cloud_root(cfg)
+    ids = [d.name for d in match_dirs]
+    return [cloud_use_item(root, ids), cloud_queue_item(root, ids)]
+
+
 def _scratch_time(out_root: Path, cfg: dict | None) -> dict:
     from .config import load_config
     from .stage_times import all_tables, roots_of
     c = dict(cfg or load_config())
     c["paths"] = {**(c.get("paths") or {}), "output": str(out_root)}
     return scratch_time_item(all_tables(roots_of(c)))
+
+
+# --- the cloud (T3, #287-#289, #291): read from the volume's own files (paths.cloud in config/local.yaml) ---------------
+CLOUD_USE_ITEM = "Uso de la nube por etapa (CPU, GPU y memoria)"
+CLOUD_QUEUE_ITEM = "Cola de la nube"
+QUEUE_PASS_MAX_S = 2 * 3600        # the queue passes every 5-25 min: older than this, its chain of passes broke
+
+
+def cloud_root(cfg: dict | None = None) -> Path | None:
+    """The cloud volume's root (Modal's /data, Kaggle's copy of it); None on a machine that is not the cloud."""
+    if cfg is None:
+        from .config import load_config
+        cfg = load_config()
+    p = (cfg.get("paths") or {}).get("cloud")
+    return Path(p) if p else None
+
+
+def _run_states(root: Path) -> list[dict]:
+    out = []
+    for f in sorted((root / "runs").glob("*/estado.json")):
+        try:
+            d = json.loads(f.read_text(encoding="utf-8"))
+        except (OSError, ValueError):  # esperado: a state being written or damaged is skipped
+            continue
+        if isinstance(d, dict):
+            out.append({**d, "_carpeta": f.parent.name})
+    return out
+
+
+def cloud_use_item(root: Path | None, match_ids: list[str]) -> dict:
+    """B1 (rewritten for the cloud, #286): CPU, every GPU and memory of each stage of the latest analysis of each match
+    in the cloud (runs/*/estado.json «recursos_por_etapa», written by Kaggle and Modal at the end of a run)."""
+    if root is None:
+        return _item(9, "Uso de la nube", CLOUD_USE_ITEM, "aviso", "no es la nube (sin paths.cloud en config/local.yaml)")
+    runs = [r for r in _run_states(root) if r.get("recursos_por_etapa") and r.get("estado") == "hecho"]
+    if not runs:
+        return _item(9, "Uso de la nube", CLOUD_USE_ITEM, "aviso",
+                     "ningún análisis de la nube con sus recursos por etapa todavía (runs/*/estado.json)")
+    last = max(runs, key=lambda r: str(r.get("fin", "")))
+    stages = sorted(((n, v) for n, v in last["recursos_por_etapa"].items() if v.get("muestras")),
+                    key=lambda nv: -nv[1].get("s", 0))
+    if not stages:
+        return _item(9, "Uso de la nube", CLOUD_USE_ITEM, "aviso", f"{last['_carpeta']}: ninguna etapa con muestras")
+
+    def pct(v, k):
+        m = v.get(k) or {}
+        return f"{m['media']:.0f}/{m['max']:.0f} %" if m else "—"
+
+    det = "; ".join(f"{n} ({v['s'] / 60:.0f} min): GPU {pct(v, 'gpu_pct')}"
+                    + (f", 2.ª GPU {pct(v, 'gpu1_pct')}" if v.get("gpu1_pct") else "")
+                    + f", CPU {pct(v, 'cpu_pct')}, RAM máx {(v.get('ram_gb') or {}).get('max', float('nan')):.1f} GB"
+                    for n, v in stages[:6])
+    covered = sorted({r.get("partido") for r in runs} & set(match_ids))
+    return _item(9, "Uso de la nube", CLOUD_USE_ITEM, "ok",
+                 f"{last['_carpeta']} ({last.get('donde') or last.get('gpu') or ''}, media/máx): {det}; "
+                 f"partidos con la medida: {len(covered)} de {len(match_ids)}")
+
+
+def cloud_queue_item(root: Path | None, match_ids: list[str], now: float | None = None) -> dict:
+    """B7 and B8 (rewritten for the cloud, #286): the queue is the only way in and it is alive: its last pass is recent,
+    every match of the report was analysed by a queue job, and every job in error says why."""
+    if root is None:
+        return _item(5, "Nube", CLOUD_QUEUE_ITEM, "aviso", "no es la nube (sin paths.cloud en config/local.yaml)")
+    d = root / "cola"
+    try:
+        state = json.loads((d / "estado.json").read_text(encoding="utf-8"))
+        last = json.loads((d / "vuelta.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError) as e:  # esperado: the queue has not written to the volume yet
+        return _item(5, "Nube", CLOUD_QUEUE_ITEM, "falta", f"sin el estado de la cola en el volumen ({type(e).__name__})")
+    import time
+    now = time.time() if now is None else now
+    age = now - float(last.get("ts", 0))
+    done = {st.get("partido") for st in state.values()
+            if isinstance(st, dict) and st.get("accion") == "partido" and st.get("estado") == "hecho"}
+    missing = [m for m in match_ids if m not in done]
+    errors = [f"{j}: {(st.get('resultado') or {}).get('nota') or 'sin motivo'}" for j, st in state.items()
+              if isinstance(st, dict) and st.get("estado") == "error"]
+    silent = [e for e in errors if e.endswith("sin motivo")]
+    running = [j for j, st in state.items() if isinstance(st, dict) and st.get("estado") == "en_marcha"]
+    det = (f"última vuelta hace {age / 60:.0f} min; {len(running)} en marcha, {len(errors)} con error; "
+           f"partidos del informe analizados por la cola: {len(match_ids) - len(missing)} de {len(match_ids)}")
+    if missing:
+        det += f" (faltan: {', '.join(m[:40] for m in missing[:6])})"
+    if errors:
+        det += f"; errores: {'; '.join(e[:120] for e in errors[:4])}"
+    status = "ok" if age <= QUEUE_PASS_MAX_S and not missing and not silent else ("falta" if silent else "aviso")
+    return _item(5, "Nube", CLOUD_QUEUE_ITEM, status, det)
 
 
 # --- the PC's infrastructure, read from the files it leaves (package B7, 04-11) ----------------------------------------
@@ -2547,6 +2643,16 @@ def progress_item(bases: list[Path]) -> dict:
     name = "Progreso visible (progreso.json)"
     f = next((b / "progreso.json" for b in bases if (b / "progreso.json").exists()), None)
     if f is None:
+        queue = next((b / "cola" / "estado.json" for b in bases if (b / "cola" / "estado.json").exists()), None)
+        try:                       # #291 (14-11): in the cloud each job's stage and % go to the queue's state
+            seen = {j: st["progreso"] for j, st in json.loads(queue.read_text(encoding="utf-8")).items()
+                    if isinstance(st, dict) and st.get("progreso")} if queue else {}
+        except (OSError, ValueError):  # esperado: a queue state being written; said as not found
+            seen = {}
+        if seen:
+            j = sorted(seen)[-1]
+            return _item(5, "Infraestructura", name, "ok", f"en la cola de la nube: {len(seen)} trabajos con su etapa y "
+                                                          f"su % mientras corrían (p. ej. {j}: {seen[j][:120]})")
         return _item(5, "Infraestructura", name, "aviso", "no se encontró progreso.json (ninguna etapa ha dicho su avance aquí)")
     try:
         p = json.loads(f.read_text(encoding="utf-8"))
@@ -2998,7 +3104,12 @@ def infrastructure_items(out_root: Path) -> list[dict]:
     """The B7 checks read from the PC's own files (progress, logs, sizes, old test folders, the application) and B8's
     (the single worker's queue)."""
     bases = [out_root, out_root.parent, out_root.parent.parent]
-    return ([progress_item(bases), logs_item(bases), sizes_item(bases), old_test_folders_item(bases)] + app_items(bases)
+    try:                                # T3: in the cloud, the volume's output (progreso.json) and the queue's state
+        cloud = cloud_root()
+    except Exception:  # esperado: no configuration here, so not the cloud  # noqa: BLE001
+        cloud = None
+    prog_bases = bases + ([cloud / "output", cloud] if cloud else [])
+    return ([progress_item(prog_bases), logs_item(bases), sizes_item(bases), old_test_folders_item(bases)] + app_items(bases)
             + [new_match_item(bases), match_list_item(bases), app_cost_item(bases), visible_windows_item(bases)]
             + orchestrator_items(bases))
 

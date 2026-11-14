@@ -301,7 +301,7 @@ def main(argv: list[str]) -> int:
                    etapas={k: v.get("seconds") for k, v in man.items() if isinstance(v, dict) and "seconds" in v},
                    fallos={k: v.get("faults") for k, v in man.items() if isinstance(v, dict) and v.get("faults")},
                    modelos_en_cpu=nube.gpu_fallbacks((run / "log.txt").read_text(encoding="utf-8", errors="replace")),
-                   recursos=nube.summarize_resources(samples))
+                   recursos=nube.summarize_resources(samples), recursos_por_etapa=nube.per_stage(samples, man))
         est.pop("recursos_ahora", None)
         modal_put(vol, [f for f in (run / "log.txt", run / "recursos.jsonl") if f.exists()], run, job["salida"])
         return rc

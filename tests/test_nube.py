@@ -52,7 +52,8 @@ def test_the_cloud_runs_the_pcs_settings_with_its_own_paths():
     pc = {"paths": {"output": "C:\\tenis\\output", "videos": "C:\\tenis\\videos"}, "hwaccel": "d3d11va", "device": "dml",
           "fine_pass": {"workers": 2}}
     cfg = nube.local_yaml(Path("/data"), pc)
-    assert cfg["paths"] == {"output": "/data/output", "videos": "/data/videos", "library": "/data/biblioteca"}
+    assert cfg["paths"] == {"output": "/data/output", "videos": "/data/videos", "library": "/data/biblioteca",
+                            "cloud": "/data"}
     assert cfg["registry"]["source"] == "yaml"                     # the cloud's own catalogue
     assert "hwaccel" not in cfg                                     # the Windows decoder
     assert cfg["device"] == "dml" and cfg["fine_pass"] == {"workers": 2}

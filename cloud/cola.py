@@ -246,7 +246,8 @@ def plan(jobs: list[dict], state: dict, spend: dict, sources: dict, now: float,
 def record_launch(state: dict, spend: dict, job: dict, source: str, call: str, now: float):
     tries = int(state.get(job["id"], {}).get("intentos", 0)) + 1 if state.get(job["id"], {}).get("estado") == "en_marcha" else 1
     state[job["id"]] = {"estado": "en_marcha", "donde": source, "llamada": call, "intentos": tries, "lanzado_ts": now,
-                        "accion": job["accion"], "inicio": time.strftime("%Y-%m-%d %H:%M", time.gmtime(now)),
+                        "accion": job["accion"], "partido": job.get("partido", ""),
+                        "inicio": time.strftime("%Y-%m-%d %H:%M", time.gmtime(now)),
                         "ruta": run_path(job, source)}
     if source == "kaggle":
         w = spend.setdefault("kaggle", {}).setdefault(week(now), {"trabajos": {}})
@@ -490,10 +491,33 @@ def main(argv: list[str] | None = None) -> int:
             call = modal.Function.from_name(APP, j["accion"]).spawn(j["partido"])
         record_launch(state, spend, j, "modal", call.object_id, now)
         launched += 1
+    for jid, st in state.items():                         # T3: each job's match, for the audit's «Cola de la nube»
+        if jid in by_id and isinstance(st, dict):
+            st.setdefault("partido", by_id[jid].get("partido", ""))
     (d / "estado.json").write_text(json.dumps(state, ensure_ascii=False, indent=1), encoding="utf-8")
     (d / "gasto.json").write_text(json.dumps(spend, ensure_ascii=False, indent=1), encoding="utf-8")
     (d / "estado.md").write_text(summary(jobs, state, spend, decisions, now), encoding="utf-8")
+    (d / "vuelta.json").write_text(json.dumps({"ts": now, "hora": time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime(now)),
+                                               "trabajos": len(jobs)}, ensure_ascii=False), encoding="utf-8")
+    if not a.en_seco:
+        upload_state(vol, d)
     return 0
+
+
+QUEUE_FILES = ("estado.json", "gasto.json", "vuelta.json", "estado.md")
+
+
+def upload_state(vol, d: Path) -> bool:
+    """T3: the queue's state also on the volume (/cola/), where the cloud's audit reads it («Cola de la nube», B7/B8)."""
+    try:
+        with vol.batch_upload(force=True) as b:
+            for f in QUEUE_FILES:
+                if (d / f).exists():
+                    b.put_file(str(d / f), f"/cola/{f}")
+        return True
+    except Exception as e:  # noqa: BLE001 — the next pass uploads it again; nube-logs has it meanwhile
+        print(f"cola: estado al volumen ({type(e).__name__}: {e})")
+        return False
 
 
 if __name__ == "__main__":

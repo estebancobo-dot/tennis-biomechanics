@@ -250,3 +250,39 @@ def test_a_proof_of_concept_goes_to_kaggle_only():
     any_src = [{"id": "m2", "accion": "medir", "prueba": "raqueta"}]
     d = cola.plan(any_src, {}, {}, OFF, DEC)[0]
     assert d[1] == "" and "Modal: las pruebas de concepto van en Kaggle" in d[2]
+
+
+def test_the_queue_state_goes_to_the_volume_for_the_audit(tmp_path):
+    """T3 (14-11): the cloud's audit («Cola de la nube», B7/B8) reads the queue's state on the volume (/cola/)."""
+    class Batch:
+        def __init__(self):
+            self.put = []
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *a):
+            return False
+
+        def put_file(self, src, dst):
+            self.put.append(dst)
+
+    class Vol:
+        b = Batch()
+
+        def batch_upload(self, force=False):
+            assert force
+            return self.b
+
+    for f in ("estado.json", "vuelta.json"):
+        (tmp_path / f).write_text("{}", encoding="utf-8")
+    v = Vol()
+    assert cola.upload_state(v, tmp_path) and v.b.put == ["/cola/estado.json", "/cola/vuelta.json"]
+
+    class Broken:
+        def batch_upload(self, force=False):
+            raise RuntimeError("sin red")
+    assert cola.upload_state(Broken(), tmp_path) is False           # said, never the pass
+    state = {}
+    cola.record_launch(state, {}, {"id": "g", "accion": "partido", "partido": "m"}, "kaggle", "kaggle", 0.0)
+    assert state["g"]["partido"] == "m"

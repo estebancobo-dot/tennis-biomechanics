@@ -7,7 +7,7 @@ SEGUIR»: la primera tarea no hecha cuyas dependencias estén hechas. **Después
 
 | Qué | Dónde |
 |---|---|
-| Trabajos, gasto y avisos | Rama `nube-logs`: `cola/estado.md` (resumen), `cola/estado.json`, `cola/gasto.json`, `cola/partidos.json` |
+| Trabajos, gasto y avisos | Rama `nube-logs`: `cola/estado.md` (resumen), `cola/estado.json`, `cola/gasto.json`, `cola/partidos.json`; los mismos (y `vuelta.json`) en el volumen, `/cola/`, para la auditoría de la nube («Cola de la nube») |
 | Resultados de cada trabajo | Volumen de Modal `tennisbio-datos`: `/runs/<carpeta>/estado.json` y `log.txt`; `/output/<partido>/manifest.json` (los trae la acción «recoger» del flujo «Nube») |
 | Kaggle | Acción `kaggle_estado`: cuota real, versiones y estado de la sesión; `kaggle_sonda` (¿arranca una GPU?) |
 | Modal | `docs/capacidad_nube.md` (gasto); la página Usage, que solo ve el usuario (pedirle la cifra a fin de mes) |

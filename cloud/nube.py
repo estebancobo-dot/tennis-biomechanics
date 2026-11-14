@@ -39,7 +39,8 @@ def local_yaml(data: Path, pc_local: dict | None = None) -> dict:
     replaced by the volume's and without the Windows hardware decoder."""
     cfg = {k: v for k, v in (pc_local or {}).items() if k not in PC_ONLY}
     cfg["paths"] = {"output": (data / "output").as_posix(), "videos": (data / "videos").as_posix(),
-                    "library": (data / "biblioteca").as_posix()}
+                    "library": (data / "biblioteca").as_posix(),
+                    "cloud": data.as_posix()}          # T3: the volume's root (runs/, cola/) for the cloud's audit checks
     cfg["registry"] = {**(cfg.get("registry") or {}), "source": "yaml"}      # the cloud's catalogue (cloud_catalog)
     return cfg
 
@@ -169,6 +170,24 @@ def summarize_resources(rows: list[dict]) -> dict:
         v = [float(r[k]) for r in rows if r.get(k) is not None]
         if v:
             out[k] = {"media": round(statistics.fmean(v), 1), "max": round(max(v), 1)}
+    return out
+
+
+def per_stage(samples: list[dict], manifest: dict) -> dict:
+    """T3 (B1, «Uso de la nube por etapa»): what each stage of a run used (CPU, every GPU, memory): the samples taken
+    between its start (finished − seconds) and its end. A stage shorter than a sample interval has none."""
+    import time as _t
+    out: dict = {}
+    for name, e in (manifest or {}).items():
+        if not isinstance(e, dict) or not e.get("finished") or e.get("seconds") is None:
+            continue
+        try:
+            end = _t.mktime(_t.strptime(str(e["finished"]), "%Y-%m-%d %H:%M:%S"))
+        except ValueError:  # esperado: a manifest from an older scheme without a parseable end
+            continue
+        start = end - float(e["seconds"])
+        rows = [s for s in samples if s.get("t") is not None and start <= float(s["t"]) <= end]
+        out[name] = {"s": round(float(e["seconds"])), **summarize_resources(rows)}
     return out
 
 
