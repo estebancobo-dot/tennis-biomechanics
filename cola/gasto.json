@@ -48,6 +48,12 @@
     "medir_raqueta_trt_b": {
      "estimado_h": 0.5,
      "horas": 0.06
+    },
+    "perfil_gauff_fina": {
+     "estimado_h": 1.0
+    },
+    "gauff": {
+     "estimado_h": 11.31
     }
    }
   }
