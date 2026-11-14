@@ -24,6 +24,43 @@ Conceptos (glosario en `CLAUDE.md`): **Plan** (corto / medio / largo) → **Paqu
 usuario pertenece a un paquete; un paquete está **aceptado** cuando su prueba principal pasa en las salidas reales
 (tabla «¿Cerrado?» de `estado_real_partidos.md`, calculada, no a mano).
 
+**PLAN ÚNICO A SEGUIR (14-11 16:30; sustituye al orden de la tabla «DÓNDE ESTAMOS» de abajo, que queda como historia)**
+
+**Dos bloques:**
+- **Base (B1-B8):** cerrarla.
+- **Nube nativa e híbrida (NN, #287-#289):** va dentro del cierre de la Base.
+  - **Fase B (infraestructura):** antes de los partidos que faltan. Da los mismos resultados con menos cuota.
+  - **Fase C (modelos):** en paralelo. Es la que cierra B3.
+
+**Reparto:** Claude escribe el código y las pruebas (nube de Claude, sin GPU); Kaggle y Modal ejecutan por la cola.
+
+| # | Tarea | Bloque | Dónde | Depende de | Estado |
+|---|---|---|---|---|---|
+| T1 | Prueba de 10 min de Gauff (marcador v16, sin la bola en la CPU): marcador leído y tiempo | Base B6 | Kaggle (cola) | — | en marcha (relanzada 16:11) |
+| T2 | Recursos minuto a minuto en Kaggle (CPU, cada GPU, memoria), como en Modal | NN-A | Claude | — | pendiente |
+| T3 | Comprobaciones de auditoría nuevas: «Uso de la nube por etapa», «Cola de la nube», «Equivalencia entre infraestructuras», «Prueba de concepto medida» | Base B1, B7, B8; NN | Claude | — | pendiente |
+| T4 | Esqueleto híbrido: puertos (cálculo, almacenamiento, vídeo, inferencia, modelos) y descubrimiento de capacidades; el dispositivo por descubrimiento (fuera el parche `dml`→CUDA), con los mismos resultados | NN-B | Claude | — | pendiente |
+| T5 | Banco de pruebas de concepto: acción «medir» en la cola (variante × clip de referencia × infraestructura → calidad, tiempo, coste) | NN-B | Claude | T4 | pendiente |
+| T6 | Prueba de inferencia: raqueta con ONNX CUDA frente a TensorRT FP16, en lotes de 1, 8, 32 y 64 | NN-B | Kaggle | T5 | pendiente |
+| T7 | Prueba de vídeo: ffmpeg en la CPU frente a NVDEC (TorchCodec, PyNvVideoCodec) al recortar las ventanas | NN-B | Kaggle | T5 | pendiente |
+| T8 | Prueba de las 2 T4: pose en una, raqueta y bola en la otra | NN-B | Kaggle | T6 | pendiente |
+| T9 | Adoptar lo que gane y comprobar la equivalencia en Kaggle y Modal | NN-B | Claude + Kaggle | T6-T8 | pendiente |
+| T10 | Partidos: Gauff, la final, Sinner; poner al día Osaka, Pegula y Zheng | Base B6 | Kaggle (cola) | T1, T9 | en la cola (esperan a T9) |
+| T11 | Informe y auditoría de los 6 → cierre de la Base | Base | Modal (CPU) o Kaggle | T10, T3 | pendiente |
+| T12 | Niveles de error C0-C4 (R23-R26, #265) | Base B2 | Claude | — | en curso |
+| T13 | Exportación de vídeos por golpe en la nube | Base B5 | Claude + Kaggle | T10 | pendiente |
+| T14 | Estado del arte, segunda vuelta (lo que falta en `docs/estado_del_arte_nube.md`) | NN-C | Claude | — | pendiente |
+| T15 | Datos anotados en Modal (RacketVision) y pruebas de modelos, por orden de tiempo: raqueta, pose, bola, detector de golpes, 3D, cortes, marcador | NN-C, Base B3 | Kaggle | T5, T14 | pendiente |
+| T16 | Si un modelo gana: rehacer los 6 partidos con él (referencia nueva) | NN-C | Kaggle | T15 | si procede |
+
+**Después:** P0 (rediseño de la aplicación), N (la aplicación en la web, el usuario solo sube), M1-M7, P1-P6.
+
+**Capacidad a 0 €:**
+- **Kaggle:** 30 h de GPU por semana, 2 sesiones a la vez, 12 h cada una; se renueva el sábado 00:00 UTC.
+- **Modal:** 30 $ al mes, desde el 1-12.
+- **Otra nube gratuita** (Lightning AI, ~22 h de T4 al mes; necesita cuenta del usuario): solo si las medidas de la
+  fase B muestran que no basta.
+
 **DÓNDE ESTAMOS Y CÓMO SEGUIR: todo en Modal (13-11 tarde, #275-#277; sustituye a lo de abajo sobre el PC)**
 El PC está en pausa total (`config/pausa_pc.txt`: «pausa: si»); ya subió a Modal lo que solo él tenía. Claude lanza y lee
 todo por el flujo «Nube» de GitHub Actions (`.github/workflows/nube.yml`); el tope de la cuenta de Modal en su crédito

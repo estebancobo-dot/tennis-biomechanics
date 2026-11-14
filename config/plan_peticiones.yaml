@@ -54,7 +54,16 @@ paquetes:
     # (#276, #277)
     nombre: "Nube · toda la aplicación en la nube (el usuario solo sube los partidos), 0 € al mes"
     cierre: "La nube da lo mismo que el PC en F3Set y en los 6 partidos (N0-N1); un partido nuevo de principio a fin desde la web (subir, clic, aprobar); gasto del mes 0 € con el tope de la cuenta"
-    peticiones: [268, 271, 272, 273, 275, 276, 277, 278, 279, 280, 281, 282, 283, 284, 285, 286, 287, 288, 289, 290]
+    peticiones: [268, 271, 272, 273, 275, 276, 277, 278, 279, 280, 281, 282, 283, 284, 285, 286, 290]
+  NN:
+    # 14-11 (#287-#289): el código de la nube seguía decidido para el PC. Una sola aplicación sobre N infraestructuras
+    # (puertos y adaptadores, descubrimiento) y cada pieza decidida con pruebas de concepto medidas. Va dentro del cierre
+    # de la Base: su fase B (infraestructura, mismos resultados) antes de los partidos que faltan; su fase C (modelos)
+    # en paralelo, y es la que cierra B3 (mejores modelos medidos)
+    nombre: "Nube nativa e híbrida · N infraestructuras por adaptadores y descubrimiento; cada pieza con su prueba de concepto"
+    cierre: "La prueba de 10 min da lo mismo en el PC, Modal, Kaggle y la nube de Claude (CPU) con el mismo código; vídeo, ejecución de modelos y cada modelo decididos con su prueba de concepto medida (docs/nube_nativa.md)"
+    peticiones: [287, 288, 289]
+    prueba: ["^Equivalencia entre infraestructuras", "^Prueba de concepto medida"]
   P0:
     # 11-11 (usuario): justo después de la Base y antes de las medidas
     nombre: "Producto · rediseño completo de la aplicación (comparativa profesional, UX, aprendizaje, gestión, gráficos)"
