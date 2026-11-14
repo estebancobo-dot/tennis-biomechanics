@@ -1,0 +1,63 @@
+# Paso 8 (14-11, #281-#283): la cola de trabajos de la nube, cada 30 minutos y sin ninguna sesión de chat.
+# Lee config/cola_nube.yaml, mira lo que está en marcha, lanza lo pendiente donde haya sitio gratis (cloud/cola.py) y
+# deja el estado en la rama nube-logs (cola/estado.md, estado.json, gasto.json, partidos.json). Repositorio público:
+# los minutos de GitHub Actions no cuestan nada.
+name: Cola
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: cola
+  cancel-in-progress: false
+jobs:
+  cola:
+    if: github.repository_owner == 'estebancobo-dot'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      CLAVE_MODAL_1: ${{ secrets.MODAL_TOKEN_ID }}
+      CLAVE_MODAL_2: ${{ secrets.MODAL_TOKEN_SECRET }}
+      PYTHONUTF8: "1"
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Clave de Modal
+        run: |
+          todo="$CLAVE_MODAL_1 $CLAVE_MODAL_2"
+          id=$(printf '%s' "$todo" | grep -oE 'ak-[A-Za-z0-9]+' | head -n 1 || true)
+          sec=$(printf '%s' "$todo" | grep -oE 'as-[A-Za-z0-9]+' | head -n 1 || true)
+          if [ -z "$id" ] || [ -z "$sec" ]; then
+            echo "Los secretos MODAL_TOKEN_ID y MODAL_TOKEN_SECRET no contienen una clave de Modal (ak-... y as-...)"
+            exit 1
+          fi
+          echo "::add-mask::$id"
+          echo "::add-mask::$sec"
+          echo "MODAL_TOKEN_ID=$id" >> "$GITHUB_ENV"
+          echo "MODAL_TOKEN_SECRET=$sec" >> "$GITHUB_ENV"
+      - uses: actions/checkout@v4
+      - name: Rama nube-logs
+        run: |
+          url="https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          if git ls-remote --exit-code --heads "$url" nube-logs >/dev/null; then
+            git clone -q --depth 1 --branch nube-logs "$url" logs
+          else
+            mkdir logs && git -C logs init -q -b nube-logs && git -C logs remote add origin "$url"
+          fi
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Cliente de Modal
+        run: pip install "modal>=1.0,<2" pyyaml
+      - name: Una vuelta de la cola
+        run: python cloud/cola.py --cola config/cola_nube.yaml --logs logs
+      - name: Subir el estado a nube-logs
+        if: always()
+        run: |
+          cd logs
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -qm "cola: $(date -u '+%Y-%m-%d %H:%M')" || exit 0
+          git push -q origin HEAD:nube-logs

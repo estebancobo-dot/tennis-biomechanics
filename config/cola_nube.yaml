@@ -1,0 +1,17 @@
+# Paso 8 (14-11, #281-#283): la cola de trabajos de la nube. La lee el flujo «Cola» de GitHub Actions cada 30 minutos
+# (cloud/cola.py), sin ninguna sesión de chat; el estado de cada trabajo, el gasto y un resumen van a la rama nube-logs
+# (cola/estado.md). Cada trabajo se lanza en la primera fuente gratuita con sitio: Kaggle (horas de GPU de la semana),
+# Modal (crédito del mes, nunca por encima del tope) o el PC (si está encendido); si ninguna tiene sitio, espera con el
+# motivo escrito y la cola sigue con los demás.
+#   id:            nombre del trabajo (letras, números, _ . -)
+#   accion:        prueba (10 min de un partido) | partido (el partido entero) | informe (informe y auditoría de la Base)
+#   partido:       el id del partido en la nube (los válidos, en nube-logs:cola/partidos.json)
+#   minutos_video: la duración del vídeo (para prever el gasto; si falta, 210)
+#   tras:          otro trabajo que tiene que haber acabado bien antes
+#   donde:         cualquiera (por defecto) | kaggle | modal | pc
+#   aprobado:      true solo si el usuario aprobó ese análisis completo (#262); un «partido» sin él no se lanza
+# Lo usado en Modal en cada mes antes de los trabajos de esta cola (la cifra de su página Usage; Claude la pone al día
+# cuando el usuario la da): 14-11 07:20 UTC, 28,05 $ + el informe de las 07:31 (0,03 $)
+gasto_modal_base:
+  "2026-11": 28.08
+trabajos: []

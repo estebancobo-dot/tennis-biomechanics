@@ -54,11 +54,11 @@ la auditoría las marcará «sin comprobación automática asignada».
 | Estado | Nº |
 |---|---|
 | HECHO | 119 |
-| PARCIAL | 129 |
+| PARCIAL | 132 |
 | FALTA | 21 |
 | NO MEDIBLE | 3 |
 | NO APLICA | 8 |
-| **Total** | **280** |
+| **Total** | **283** |
 
 **27-10:** filas 220-245 nuevas: todo lo pedido en el chat del 19-10 al 27-10 (releídos los mensajes) y lo que
 salió en la prueba de valor; ninguna fila borrada.
@@ -367,6 +367,9 @@ lateral (entreno)» · ≥12 = solo se muestra con 12 golpes o más (`model.MIN_
 | 278 | La aplicación completa no puede quedarse parada esperando al crédito del mes: «no puedo estar parado 2 semanas sin hacer nada; eso es peor que usar el PC». Los lotes de partidos pueden ir a diciembre, pero la aplicación tiene que avanzar y terminarse (Chat, 14-11) | PARCIAL | Plan: todo lo que no es analizar vídeo con GPU sigue ya (código y pruebas en la sesión de Claude; informe, auditoría y agregados en Modal solo con CPU, céntimos) con los partidos ya analizados en la nube (Osaka, Pegula, Zheng) | — | — | Se cierra con la Base cerrada y la aplicación (P0) avanzando sin esperar a nuevos partidos. |
 | 279 | Uno o dos partidos nuevos al mes no es una solución válida para la aplicación (Chat, 14-11) | PARCIAL | Plan: (a) abaratar cada partido en Modal sin perder calidad (la CPU es casi la mitad del coste: decodificar el vídeo en la GPU como hacía el PC, la bola de la pasada fina 6 veces más lenta que en el PC); (b) Kaggle como segunda nube gratuita (~30 h de GPU por semana, sin tarjeta); medido con pruebas cortas antes de usarlo | — | — | Se cierra con la capacidad medida (partidos por mes a 0 €) y ≥ 10 partidos al mes. |
 | 280 | El coste tiene que seguir siendo 0 € (Chat, 14-11; confirma #272) | PARCIAL | Tope de la cuenta de Modal en su crédito mensual (30 $); Kaggle gratuito; nada de pago | — | — | Se comprueba cada mes en la página de uso de Modal. |
+| 281 | «Haz el 1»: el paso 8, encadenar sin depender de una sesión: una cola de trabajos de la nube en el repositorio y un flujo programado de GitHub que lanza lo pendiente donde haya capacidad gratis, con la cuenta del gasto y el estado en la rama `nube-logs` (Chat, 14-11) | PARCIAL | En curso (paso 8 de `docs/estado_proyecto.md`) | — | — | Lo cierra: un trabajo puesto en la cola se lanza solo, sin chat, y su estado aparece en `nube-logs`. |
+| 282 | Nada puede pararse: «no puedo estar parado medio mes»; la Base tiene que poder cerrarse ya, no en diciembre (Chat, 14-11; refuerza #278) | PARCIAL | Propuesta: el PC (gratis, mismo código, mismos resultados) para los 3 partidos que faltan y Kaggle como nube gratuita fija; espera la respuesta del usuario | — | — | Claude se equivocó: pasó los partidos a Modal sin calcular antes cuántos caben en su crédito (4-5 al mes) y el 14-11 aceptó esperar al 1-12, contra #278. |
+| 283 | La arquitectura y la infraestructura de la nube tienen que cumplir los requisitos (0 €, sin parar, un partido en horas): «no vale Modal si un partido consume tanto»; «hemos cambiado a la nube para estar bloqueados» (Chat, 14-11) | PARCIAL | Modal solo no los cumple; la cola del paso 8 reparte cada trabajo entre varias fuentes gratuitas (Kaggle, crédito de Modal, PC encendido), y cuando una se acaba sigue la siguiente | — | — | Lo cierra: los 6 partidos analizados sin esperar al crédito del mes siguiente y a 0 €. |
 | 269 | Estado y progreso: cuánto falta para lanzar los 6 partidos, qué hay en marcha y pendiente en la nube y en el PC (en serie o en paralelo), qué queda para cerrar la Base, por qué seguimos así y qué falló por la noche (Chat, 13-11) | HECHO | respuesta en el chat; `docs/estado_proyecto.md`, «Resumen de la noche (12-11 → 13-11)» y la tabla de tareas | — | — | Como #266, el estado vive en la tabla de tareas. |
 
 ## Lo más grave que falta (por impacto en «copiar su derecha»)
