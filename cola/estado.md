@@ -1,15 +1,16 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-14 21:35 UTC · Modal: quedan 0.53 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 23.0 h de GPU esta semana (tope 28 h)
+Última vuelta: 2026-11-14 21:39 UTC · Modal: quedan 0.53 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 22.5 h de GPU esta semana (tope 28 h)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
 | medir_raqueta_trt | medir |  | hecho | kaggle |  |
+| medir_raqueta_trt_b | medir |  | en_marcha | kaggle |  |
 | medir_video_nvdec | medir | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
 | prueba_gauff_v17 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
 | prueba_gauff_v18 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | error | kaggle | cancelado: la v19 comprueba lo mismo (el dispositivo y la subida) y además las 2 T4: 0,9 h de cuota ahorradas y una plaza libre; si la v19 sale distinta, se repite para aislar la causa |
 | comparar_gauff_v16b_v18 | comparar |  | error |  | cancelado: sin la v18 (ver arriba) |
-| prueba_gauff_v19 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: running (21:35), intento 1 · identity: 100 % (108/108 fotogramas (ropa)) · 38 s · quedan ≈ 0 s (21:34:14; GPU 0 %·0 %, CPU 50 %, 3.6 GB) |
+| prueba_gauff_v19 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: running (21:39), intento 1 · identity terminada a las 21:34:14 en 41 s (21:37:58; GPU 73 %·0 %, CPU 38 %, 3.5 GB) |
 | comparar_gauff_v16b_v19 | comparar |  | pendiente |  | espera a prueba_gauff_v19 |
 | prueba_gauff | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | modal |  |
 | prueba_gauff_v16 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | error | kaggle | en cola de Kaggle más de 10 min sin arrancar (4 intentos) |
