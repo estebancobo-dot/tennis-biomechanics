@@ -68,14 +68,13 @@
   "estado": "en_marcha",
   "donde": "kaggle",
   "llamada": "kaggle",
-  "intentos": 2,
-  "lanzado_ts": 1794681951.9829452,
+  "intentos": 3,
+  "lanzado_ts": 1794684713.195119,
   "accion": "medir",
   "partido": "",
-  "inicio": "2026-11-14 18:45",
+  "inicio": "2026-11-14 19:31",
   "ruta": "/runs/kaggle_medir_raqueta_trt/estado.json",
-  "nota": "en cola de Kaggle más de 45 min sin arrancar",
-  "kaggle": "queued (19:26)"
+  "nota": "en cola de Kaggle más de 45 min sin arrancar"
  },
  "prueba_gauff_v17": {
   "estado": "en_marcha",
@@ -88,7 +87,7 @@
   "inicio": "2026-11-14 18:49",
   "ruta": "/runs/kaggle_prueba_gauff_v17/estado.json",
   "salida": "/kaggle_pruebas/prueba_gauff_v17/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
-  "kaggle": "running (19:26)",
-  "progreso": "fine:  61 % (17/28 golpes candidatos · 17 confirmados · 0 ventanas descartadas sin pose) · 18 min · quedan ≈ 12 min (19:21:01; GPU 0 %·0 %, CPU 52 %, 5.9 GB)"
+  "kaggle": "running (19:31)",
+  "progreso": "fine:  79 % (22/28 golpes candidatos · 22 confirmados · 0 ventanas descartadas sin pose) · 27 min · quedan ≈ 7 min (19:29:59; GPU 0 %·0 %, CPU 54 %, 5.9 GB)"
  }
 }
