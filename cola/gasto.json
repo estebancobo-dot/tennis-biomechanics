@@ -28,6 +28,9 @@
     },
     "medir_raqueta_trt": {
      "estimado_h": 0.5
+    },
+    "prueba_gauff_v17": {
+     "estimado_h": 1.0
     }
    }
   }
