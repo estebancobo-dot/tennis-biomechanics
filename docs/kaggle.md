@@ -21,6 +21,16 @@ que dice «por medir» se mide con la prueba de 10 minutos antes de mandar ning�
 6. Decir a Claude «Kaggle hecho». Claude hace el resto: la cola lanza el cuaderno con la API, mira su estado y recoge
    lo que deja.
 
+## 1b. Lo medido en la primera sesión (14-11 10:04, `kaggle_comprobar`)
+
+- **Máquina:** 2 × Tesla T4 (15 GB cada una), **4 núcleos**, 31 GB de memoria, **966 GB libres en /tmp** (temporal),
+  19,5 GB en /kaggle/working (lo que se guarda), Python 3.13 (el análisis usa su propio 3.11, como Modal), ffmpeg ya
+  instalado, internet bien (bajó el código de GitHub).
+- **Los secretos del cuaderno no llegan a una ejecución lanzada por la API** («ConnectionError» al pedirlos): la clave
+  de Modal va entonces en un **conjunto de datos privado de la cuenta**, `tennisbio-clave` (solo lo ve el usuario), que
+  GitHub escribe desde sus propios secretos antes de cada lanzamiento (`cuaderno.py clave`); el cuaderno lo lee solo si
+  los secretos faltan. Los secretos del cuaderno se pueden dejar o quitar: ya no hacen falta.
+
 ## 2. ¿Cumple los requisitos? (lo que se sabe y lo que falta medir)
 
 | Requisito | Kaggle | Cómo se sabe |
@@ -32,9 +42,8 @@ que dice «por medir» se mide con la prueba de 10 minutos antes de mandar ning�
 | Mismo código y mismos resultados | Mismo código, mismos modelos, misma tarjeta (T4) que Modal | **Por comprobar**: la prueba de 10 min de Gauff en Kaggle tiene que dar los mismos golpes que en Modal |
 | Los datos de Modal sin repetir nada | Sí (ver §3) | — |
 
-Lo que no está documentado y se comprueba en la primera prueba: que los secretos del cuaderno valen cuando la cola lo
-lanza por la API. Si no valieran, el plan B no necesita la clave de Modal en Kaggle: GitHub baja de Modal lo que hace
-falta, se lo da a Kaggle como conjunto de datos privado, y sube a Modal lo que Kaggle deja.
+Comprobado el 14-11: los secretos del cuaderno no valen cuando la cola lo lanza por la API (ver §1b): la clave va en
+el conjunto de datos privado `tennisbio-clave`.
 
 ## 3. Los datos: Modal sigue siendo el único almacén
 

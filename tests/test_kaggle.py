@@ -72,6 +72,22 @@ def test_notebook_carries_the_job_and_reads_the_keys_from_its_secrets(tmp_path):
     assert meta["id"] == "usuaria/tennisbio-cola" and meta["is_private"] is True
     assert meta["enable_gpu"] is True and meta["enable_internet"] is True and meta["kernel_type"] == "notebook"
     assert meta["machine_shape"] == "NvidiaTeslaT4" and meta["code_file"] == "tennisbio-cola.ipynb"
+    # 14-11: the notebook's secrets did not reach a run pushed by the API (ConnectionError): the key comes in the
+    # user's private dataset, and is read only if the secrets are missing
+    assert meta["dataset_sources"] == ["usuaria/tennisbio-clave"]
+    assert 'glob.glob("/kaggle/input/**/modal.json", recursive=True)' in code and "print(k" not in code
+
+
+def test_key_dataset_is_written_and_checked(tmp_path):
+    d = klanzar.key_dataset(tmp_path / "k", "usuaria", "ak-abc", "as-def")
+    assert json.loads((d / "modal.json").read_text()) == {"id": "ak-abc", "secret": "as-def"}
+    meta = json.loads((d / "dataset-metadata.json").read_text())
+    assert meta["id"] == "usuaria/tennisbio-clave" and "isPrivate" not in meta or meta.get("isPrivate") is True
+    with pytest.raises(SystemExit):
+        klanzar.key_dataset(tmp_path / "k2", "usuaria", "", "as-def")
+    src = (ROOT / "cloud" / "kaggle" / "cuaderno.py").read_text(encoding="utf-8")
+    assert '"--public"' not in src and "-u" not in src.split("def key_dataset")[1].split("def status_of")[0]
+    assert '(folder / "modal.json").unlink(missing_ok=True)' in src
 
 
 def test_status_text():
@@ -90,6 +106,7 @@ def test_workflow_runs_kaggle_without_deploying_modal():
     assert "kaggle" in steps["Desplegar"]["if"] and "cloud/kaggle/cuaderno.py esperar" in steps["Kaggle"]["run"]
     assert "/kaggle_comparar/output" in steps["Kaggle"]["run"]                   # never over Modal's own test
     assert '"kaggle>=1.8" six' in steps["Kaggle"]["run"]                        # the CLI imports six without declaring it
+    assert steps["Kaggle"]["run"].index("cuaderno.py clave") < steps["Kaggle"]["run"].index("cuaderno.py lanzar")
     env = wf["jobs"]["nube"]["env"]
     assert env["KAGGLE_API_TOKEN"] == "${{ secrets.KAGGLE_API_TOKEN }}" and "KAGGLE_USERNAME" in env
     assert re.search(r"startsWith\(inputs.accion, 'kaggle'\)", steps["Guardar lo recogido"]["if"])

@@ -128,6 +128,8 @@ jobs:
         run: |
           # 14-11: the kaggle package does not declare «six», which it imports («No module named 'six'»)
           pip install -q "kaggle>=1.8" six
+          # 14-11: the notebook's secrets do not reach a run started by the API: the Modal key goes in a private dataset
+          python cloud/kaggle/cuaderno.py clave
           if [ "$ACCION" = "kaggle_comprobar" ]; then
             python cloud/kaggle/cuaderno.py lanzar --accion comprobar --commit "$GITHUB_SHA"
             minutos=50

@@ -21,6 +21,7 @@ import time
 from pathlib import Path
 
 SLUG = "tennisbio-cola"
+KEY_SLUG = "tennisbio-clave"            # the user's private dataset with the Modal key (only this notebook reads it)
 REPO_URL = "https://github.com/estebancobo-dot/tennis-biomechanics.git"
 STATES = ("queued", "running", "complete", "error", "cancelrequested", "cancelacknowledged")
 
@@ -39,11 +40,19 @@ def secret(name):
 
 
 both = secret("MODAL_TOKEN_ID") + " " + secret("MODAL_TOKEN_SECRET")
+if "as-" not in both:
+    # 14-11: the notebook's secrets do not reach a run pushed by the API (ConnectionError): the key comes in the
+    # user's private dataset «tennisbio-clave» (written by cuaderno.py clave from the GitHub secrets)
+    import glob
+    for f in glob.glob("/kaggle/input/**/modal.json", recursive=True):
+        k = json.load(open(f))
+        both = str(k.get("id", "")) + " " + str(k.get("secret", ""))
+        break
 ids = re.findall(r"ak-[A-Za-z0-9]+", both)[:1] + re.findall(r"as-[A-Za-z0-9]+", both)[:1]
 env = dict(os.environ)
 if len(ids) == 2:
     env.update(MODAL_TOKEN_ID=ids[0], MODAL_TOKEN_SECRET=ids[1])
-print("clave de Modal:", "sí" if len(ids) == 2 else "NO (Add-ons > Secrets: MODAL_TOKEN_ID y MODAL_TOKEN_SECRET)")
+print("clave de Modal:", "sí" if len(ids) == 2 else "NO (ni en los secretos ni en el conjunto de datos tennisbio-clave)")
 repo = "/tmp/repo"
 for cmd in (["git", "init", "-q", repo], ["git", "-C", repo, "remote", "add", "origin", {url!r}],
             ["git", "-C", repo, "fetch", "-q", "--depth", "1", "origin", JOB["commit"]],
@@ -70,13 +79,26 @@ def metadata(user: str) -> dict:
     """kernel-metadata.json: the user's private notebook, on two T4s, with internet (the Kaggle API's documented fields)."""
     return {"id": f"{user}/{SLUG}", "title": SLUG, "code_file": f"{SLUG}.ipynb", "language": "python",
             "kernel_type": "notebook", "is_private": True, "enable_gpu": True, "enable_internet": True,
-            "machine_shape": "NvidiaTeslaT4", "dataset_sources": [], "competition_sources": [], "kernel_sources": []}
+            "machine_shape": "NvidiaTeslaT4", "dataset_sources": [f"{user}/{KEY_SLUG}"], "competition_sources": [],
+            "kernel_sources": []}
 
 
 def write(folder: Path, user: str, job: dict) -> Path:
     folder.mkdir(parents=True, exist_ok=True)
     (folder / f"{SLUG}.ipynb").write_text(json.dumps(notebook(job), ensure_ascii=False, indent=1), encoding="utf-8")
     (folder / "kernel-metadata.json").write_text(json.dumps(metadata(user), indent=1), encoding="utf-8")
+    return folder
+
+
+def key_dataset(folder: Path, user: str, token_id: str, token_secret: str) -> Path:
+    """The private dataset with the Modal key: modal.json and its metadata (`kaggle datasets create` makes it private
+    unless told otherwise; it is never made public here)."""
+    if not (token_id.startswith("ak-") and token_secret.startswith("as-")):
+        raise SystemExit("la clave de Modal no está en el entorno (MODAL_TOKEN_ID y MODAL_TOKEN_SECRET)")
+    folder.mkdir(parents=True, exist_ok=True)
+    (folder / "modal.json").write_text(json.dumps({"id": token_id, "secret": token_secret}), encoding="utf-8")
+    (folder / "dataset-metadata.json").write_text(json.dumps({"title": KEY_SLUG, "id": f"{user}/{KEY_SLUG}",
+                                                              "licenses": [{"name": "other"}]}), encoding="utf-8")
     return folder
 
 
@@ -102,7 +124,7 @@ def _kaggle(*args) -> subprocess.CompletedProcess:
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("orden", choices=("lanzar", "estado", "esperar", "salida"))
+    ap.add_argument("orden", choices=("clave", "lanzar", "estado", "esperar", "salida"))
     ap.add_argument("--accion", default="comprobar")
     ap.add_argument("--partido", default="")
     ap.add_argument("--salida-remota", default="", help="la carpeta de la ejecución en Modal (/runs/<tag>)")
@@ -112,6 +134,23 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--dir", type=Path, default=Path("kaggle-out"))
     a = ap.parse_args(argv)
     kid = f"{_user()}/{SLUG}"
+    if a.orden == "clave":                    # the key dataset, created once and then a new version each time
+        folder = key_dataset(Path("kaggle-clave"), _user(), os.environ.get("MODAL_TOKEN_ID", ""),
+                             os.environ.get("MODAL_TOKEN_SECRET", ""))
+        try:
+            exists = _kaggle("datasets", "status", f"{_user()}/{KEY_SLUG}").returncode == 0
+            r = (_kaggle("datasets", "version", "-p", str(folder), "-m", "clave") if exists
+                 else _kaggle("datasets", "create", "-p", str(folder)))
+            print(r.stdout, r.stderr)
+            for _ in range(30):               # until Kaggle has it ready for the notebook
+                st = _kaggle("datasets", "status", f"{_user()}/{KEY_SLUG}")
+                print("conjunto de datos:", (st.stdout + st.stderr).strip(), flush=True)
+                if "ready" in (st.stdout + st.stderr).lower():
+                    return 0
+                time.sleep(10)
+            return 1
+        finally:
+            (folder / "modal.json").unlink(missing_ok=True)      # never left on the runner's disk
     if a.orden == "lanzar":
         job = {"accion": a.accion, "commit": a.commit}
         if a.partido:
