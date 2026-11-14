@@ -429,3 +429,13 @@ def test_cancel_frees_a_kaggle_session_and_start_is_noted():
     assert st["espera_min"] == 40 and st["arranco"]
     cola.note_start(st, "running", NOV + 9000)
     assert st["espera_min"] == 40                                                      # the first time only
+
+
+def test_a_cancelled_kaggle_job_counts_the_hours_it_ran():
+    """14-11: a cancelled job's week counts the hours it really ran, not its estimate (11 h for Gauff would have held
+    the quota)."""
+    spend = {"kaggle": {cola.week(NOV): {"trabajos": {"g": {"estimado_h": 11.3}}}}}
+    state = {"g": {"estado": "en_marcha", "donde": "kaggle", "lanzado_ts": NOV}}
+    cola.cancel(state, ["g"], {"g": "R48"}, lambda slug: None, spend, NOV + 4680)
+    assert spend["kaggle"][cola.week(NOV)]["trabajos"]["g"]["horas"] == 1.3
+    assert cola.kaggle_room(spend, NOV) == round(cola.KAGGLE_CAP_H - 1.3, 2)

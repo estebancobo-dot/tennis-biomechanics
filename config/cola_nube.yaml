@@ -30,6 +30,7 @@ reiniciar: ["final#1"]
 cancelar:
   medir_raqueta_trt: "la GPU está ocupada solo el 9 % de la pasada fina (fase A, v17): TensorRT casi no ahorra hoy; su plaza de Kaggle, para la v19 (las 2 T4). Se repite si la GPU pasa a ser el cuello de botella"
   prueba_gauff_v18: "la v19 comprueba lo mismo (el dispositivo y la subida) y además las 2 T4: 0,9 h de cuota ahorradas y una plaza libre; si la v19 sale distinta, se repite para aislar la causa"
+  gauff: "R48: con la raqueta en la CPU su pasada fina gastaría ~6 h de más; se relanza como gauff_b con el arreglo cuando la v20 lo compruebe (su pasada barata, ya en Modal, se reutiliza)"
   comparar_gauff_v16b_v18: "sin la v18 (ver arriba)"
 # #291 (14-11): el PR buzón (nunca se fusiona): la cola comenta en él solo cuando algo necesita a Claude, y su
 # actividad despierta la sesión al momento (sin sondeos ni tokens mientras no pasa nada)
@@ -77,6 +78,7 @@ trabajos:
   - {id: prueba_gauff_v16, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle}
   - {id: prueba_gauff_v16b, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle}
   - {id: gauff, accion: partido, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, tras: prueba_gauff_v19, aprobado: true, minutos_video: 133}
+  - {id: gauff_b, accion: partido, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, tras: comparar_gauff_v19_v20, aprobado: true, minutos_video: 133}
   - {id: prueba_final, accion: prueba, partido: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5}
   - {id: final, accion: partido, partido: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5, tras: prueba_final, aprobado: true}
   - {id: prueba_sinner, accion: prueba, partido: zverev-alexander-sinner-jannik-indian-wells-2026-semi-final, tras: final}

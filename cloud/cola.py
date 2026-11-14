@@ -202,9 +202,11 @@ def note_start(st: dict, kstatus: str, now: float) -> None:
         st["espera_min"] = round((now - float(st.get("lanzado_ts", now))) / 60)
 
 
-def cancel(state: dict, tokens: list[str], reasons: dict, delete) -> list[str]:
+def cancel(state: dict, tokens: list[str], reasons: dict, delete, spend: dict | None = None,
+           now: float | None = None) -> list[str]:
     """Jobs cancelled by the configuration (`cancelar: {id: motivo}`): a running Kaggle job's notebook is deleted (its
-    session frees one of our 2), and the job ends as «error» with the reason; a job never launched just ends."""
+    session frees one of our 2), its week counts the hours it really ran (not its estimate, which would hold the
+    quota), and the job ends as «error» with the reason; a job never launched just ends."""
     done = []
     for jid in tokens:
         st = state.get(jid) or {}
@@ -212,6 +214,11 @@ def cancel(state: dict, tokens: list[str], reasons: dict, delete) -> list[str]:
             continue
         if st.get("estado") == "en_marcha" and st.get("donde") == "kaggle":
             delete(st.get("cuaderno") or notebook_slug(jid))
+            if spend is not None and now is not None:
+                for w in spend.get("kaggle", {}).values():
+                    r = w.get("trabajos", {}).get(jid)
+                    if r is not None:
+                        r["horas"] = round((now - float(st.get("lanzado_ts", now))) / 3600, 2)
         state[jid] = {**st, "estado": "error", "resultado": {"nota": f"cancelado: {reasons.get(jid, '')}"}}
         done.append(jid)
     return done
@@ -479,7 +486,7 @@ def main(argv: list[str] | None = None) -> int:
     cancels = queue.get("cancelar") or {}
     for jid in cancel(state, list(cancels), cancels,
                       (lambda slug: print("cola: borrar", slug, _kaggle(["borrar", "--slug", slug]).returncode))
-                      if not a.en_seco else (lambda slug: None)):
+                      if not a.en_seco else (lambda slug: None), spend, now):
         print(f"cola: {jid} cancelado ({cancels[jid]})")
     for tok in restart(state, spend, queue.get("reiniciar") or [], done):
         print(f"cola: {tok.split('#')[0]} empieza de nuevo ({tok})")
@@ -638,7 +645,7 @@ def copy_poc_results(vol, state: dict, logs: Path) -> list[str]:
         keep = (("estado", "poc", "kaggle", "horas_kaggle", "nota") if st["accion"] == "medir" else
                 # phase A (#287): where each second and each resource went, for every test and match
                 ("estado", "segundos", "horas_kaggle", "coste_usd", "gpu", "etapas", "recursos", "recursos_por_etapa",
-                 "modelos_en_cpu", "fallos", "sin_subir", "config", "kaggle", "nota"))
+                 "modelos_en_cpu", "fallos", "sin_subir", "config", "config_local", "kaggle", "nota"))
         row = {k: res.get(k) for k in keep}
         if st["accion"] != "medir":                       # R47: models on the CPU without an error, from its log
             import almacen

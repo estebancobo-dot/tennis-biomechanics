@@ -249,6 +249,14 @@ def main(argv: list[str]) -> int:
         py = setup_env(REPO, scratch / "venv")
         est["entorno_s"] = round(time.time() - t0) - est["descarga_s"]
         registry = json.loads((data / "pc" / "registro_partidos.json").read_text(encoding="utf-8"))
+        prepare(REPO, data, registry, job.get("config"))
+        try:                                      # 14-11 (the user: nothing decided by the PC's old settings): the
+            import yaml                           # settings this run really uses, without paths, in its state
+
+            eff = yaml.safe_load((REPO / "config" / "local.yaml").read_text(encoding="utf-8")) or {}
+            est["config_local"] = {k: v for k, v in eff.items() if k not in ("paths",)}
+        except Exception as e:  # noqa: BLE001 — said in the state; the run goes on
+            est["config_local"] = {"error": str(e)[:200]}
         if job["accion"] == "medir":               # a proof of concept: the GPU and the models (and a broadcast)
             video = None
             if job["prueba"] in NEEDS_MATCH:
