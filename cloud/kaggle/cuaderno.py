@@ -190,7 +190,8 @@ def main(argv: list[str] | None = None) -> int:
         folder = write(Path("kaggle-push"), _user(), job, key=not a.sin_clave)
         r = _kaggle("kernels", "push", "-p", str(folder))
         print(r.stdout, r.stderr)
-        return r.returncode
+        # 14-11: the CLI prints «Kernel push error: …» and still exits 0
+        return r.returncode or (4 if "push error" in (r.stdout + r.stderr).lower() else 0)
     if a.orden == "estado":
         r = _kaggle("kernels", "status", kid)
         print(status_of(r.stdout + r.stderr), "|", (r.stdout + r.stderr).strip())

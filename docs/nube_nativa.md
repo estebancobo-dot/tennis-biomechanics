@@ -16,6 +16,45 @@ para el PC: un único Beelink con una iGPU AMD sin CUDA, 16 hilos y Windows. Eje
 **Regla (la del proyecto):** calidad antes que velocidad (#248). Un cambio entra solo si da lo mismo o mejor con datos
 anotados y, además, es más rápido o más barato; si no, no entra. Todo medido, en la nube, a 0 €.
 
+## Cómo se decide (#288) y arquitectura híbrida (#289)
+
+**Decidir con pruebas de concepto, no con aprobaciones.** Cada opción se prueba en la nube con los mismos clips de
+referencia (las pruebas de 10 min de Gauff y de la final) y con datos anotados (F3Set, RacketVision). Gana la que da
+igual o mejor calidad con menos tiempo o coste. El resultado queda en la tabla de este documento.
+
+**Una sola aplicación, N infraestructuras (puertos y adaptadores).** El código del análisis es común. Cada
+infraestructura (el PC, la nube de Claude, Modal, Kaggle, otras) es un adaptador que se elige por configuración y por
+descubrimiento de sus capacidades:
+
+| Puerto | Qué decide | Adaptadores |
+|---|---|---|
+| Cálculo | Dónde corre un trabajo: lanzar, estado, registros, cancelar; capacidades (GPU y cuántas, núcleos, memoria, decodificador, cuota y coste) | PC (cola local), Modal, Kaggle, la nube de Claude (solo CPU, para pruebas y código), otros (RunPod, Lightning…) |
+| Almacenamiento | Dónde están vídeos, modelos, cachés y resultados | Disco del PC, volumen de Modal, sesión de Kaggle, almacenamiento de objetos (fsspec) |
+| Vídeo | Cómo se decodifica | ffmpeg en la CPU, NVDEC en la GPU (TorchCodec o PyNvVideoCodec), d3d11va en el PC |
+| Inferencia | Con qué se ejecuta cada modelo | ONNX Runtime (DirectML en el PC, CUDA, TensorRT, OpenVINO, CPU), TensorRT directo |
+| Modelos | Qué modelo hace cada tarea | Un registro por tarea (golpes, bola, pose, raqueta, cortes, marcador, 3D) con sus variantes medidas |
+| Cola | Qué se lanza, dónde y cuándo | `cloud/cola.py`, que pasa a elegir por capacidades y no por nombres fijos |
+
+El **descubrimiento** mira al arrancar qué hay: vendedor y número de GPU, CUDA y TensorRT, NVDEC, núcleos, memoria y
+disco. Con eso elige el adaptador de vídeo y de inferencia y los tamaños de lote. Hoy, en cambio, está fijado
+`device: dml` y se parchea. Cada adaptador pasa las mismas **pruebas de contrato**, y una **prueba de equivalencia**
+(el mismo clip en cada infraestructura) garantiza que todas dan lo mismo.
+
+**Revisión del estado del arte, por capas (pendiente: la del 14-11 fue superficial, 5 búsquedas).** Capas:
+
+1. Abstracción de cálculo multinube (SkyPilot, Ray, Dask) y sus límites con las capas gratuitas.
+2. Orquestación de flujos (Prefect, Dagster, Temporal, Flyte).
+3. Vídeo en la GPU (NVDEC, TorchCodec, PyNvVideoCodec, DALI).
+4. Ejecución de modelos (TensorRT, ONNX Runtime, torch.compile, Triton).
+5. Modelos por tarea (detección de golpes, bola, pose 2D, cuerpo y malla 3D desde una cámara, raqueta, cortes,
+   marcador, seguimiento de personas).
+6. Datos y cachés (Arrow/Parquet, claves por contenido, fsspec).
+7. Configuración y extensiones (pydantic-settings, registros de plugins).
+8. Observabilidad (métricas por etapa, OpenTelemetry).
+9. Pruebas (contrato, equivalencia, regresión con clips de referencia).
+
+Cada capa queda con sus candidatos, fuentes y la prueba de concepto que lo decide.
+
 ## Dónde va el tiempo hoy (medido, 10 min de Gauff, la misma T4)
 
 | Parte de la pasada fina | Modal (s) | Kaggle (s) | Nota |

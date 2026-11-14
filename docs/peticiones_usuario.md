@@ -54,11 +54,11 @@ la auditoría las marcará «sin comprobación automática asignada».
 | Estado | Nº |
 |---|---|
 | HECHO | 121 |
-| PARCIAL | 134 |
+| PARCIAL | 136 |
 | FALTA | 21 |
 | NO MEDIBLE | 3 |
 | NO APLICA | 8 |
-| **Total** | **287** |
+| **Total** | **289** |
 
 **27-10:** filas 220-245 nuevas: todo lo pedido en el chat del 19-10 al 27-10 (releídos los mensajes) y lo que
 salió en la prueba de valor; ninguna fila borrada.
@@ -374,6 +374,8 @@ lateral (entreno)» · ≥12 = solo se muestra con 12 golpes o más (`model.MIN_
 | 285 | Guía detallada para configurar la otra nube (Kaggle), si de verdad cumple todos los requisitos y cómo se usan los datos que ya están en Modal sin repetir nada (Chat, 14-11) | PARCIAL | Guía en el chat y en `docs/kaggle.md`; Modal sigue siendo el único almacén: Kaggle baja lo que necesita para cada partido y sube su resultado a la misma carpeta | — | — | Lo cierra: la prueba de 10 min de un partido en Kaggle da lo mismo que en Modal y su tiempo y coste (0 €) quedan medidos. |
 | 286 | «Sí, reescribe los criterios»: B1, B7 y B8 de la Base, para la nube (Chat, 14-11) | HECHO (14-11) | `config/plan_peticiones.yaml`: B1 = un partido de 3,5 h en ≤ 8 h en la nube a 0 € sin perder calidad, con CPU/GPU/memoria por etapa; B7 = un partido nuevo de principio a fin sin el chat ni el PC; B8 = la cola de la nube como única entrada | — | `tests/test_plan_peticiones.py` | Las comprobaciones nuevas de la auditoría («Uso de la nube por etapa», «Cola de la nube») son tareas del plan de nube nativa (`docs/nube_nativa.md`). |
 | 287 | **Fallo crítico: el código de la nube sigue basado en el PC.** «Si estamos usando infra cloud el código no se puede basar en mi PC»: revisarlo todo para la nube y ver qué es mejor: aprovechamiento de recursos, modelos de IA, frameworks, librerías y todo el estado del arte de hoy (Chat, 14-11; ya lo pidió al pasar a la nube) | PARCIAL | Plan en `docs/nube_nativa.md`: (A) medir dónde va cada segundo en la nube; (B) infraestructura nativa de GPU sin cambiar resultados (decodificar en la GPU, TensorRT en media precisión, por lotes, las 2 T4 de Kaggle, fuera lo del PC); (C) cada modelo frente a los candidatos del estado del arte, medidos con datos anotados; se cambia solo si es igual o mejor en calidad y más rápido | — | — | Claude se equivocó: al pasar a la nube solo cambió dónde corren los modelos y mantuvo las decisiones tomadas para el PC (DirectML, decodificar en la CPU, la bola en la CPU, una sola tarjeta). |
+| 288 | «Yo no te puedo dar el visto bueno técnicamente»: las decisiones técnicas se toman con pruebas de concepto medidas y comparadas, como se hace hoy, no con la aprobación del usuario (Chat, 14-11) | PARCIAL | Regla: cada opción se prueba en la nube con los mismos clips y datos anotados; gana la que da igual o mejor calidad con menos tiempo o coste; el resultado queda escrito (`docs/nube_nativa.md`) | — | — | La aprobación del usuario sigue haciendo falta solo para lanzar análisis completos (#262) y lo que solo él puede hacer. |
+| 289 | **Código híbrido: N tipos de infraestructura por configuración y descubrimiento** (PC, nube de Claude, Modal, Kaggle, otras), con arquitectura moderna y extensible: código común y adaptadores; revisar a fondo el estado del arte en todas las capas y patrones de diseño (Chat, 14-11) | PARCIAL | Plan en `docs/nube_nativa.md` §Arquitectura: puertos (cálculo, almacenamiento, vídeo, inferencia, modelos, cola) con un adaptador por infraestructura y descubrimiento de capacidades (GPU, núcleos, decodificador, cuotas, coste) | — | — | Claude reconoce que la revisión del estado del arte del 14-11 fue superficial (5 búsquedas): falta la revisión por capas. |
 | 269 | Estado y progreso: cuánto falta para lanzar los 6 partidos, qué hay en marcha y pendiente en la nube y en el PC (en serie o en paralelo), qué queda para cerrar la Base, por qué seguimos así y qué falló por la noche (Chat, 13-11) | HECHO | respuesta en el chat; `docs/estado_proyecto.md`, «Resumen de la noche (12-11 → 13-11)» y la tabla de tareas | — | — | Como #266, el estado vive en la tabla de tareas. |
 
 ## Lo más grave que falta (por impacto en «copiar su derecha»)

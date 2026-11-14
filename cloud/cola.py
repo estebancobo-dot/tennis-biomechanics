@@ -279,6 +279,8 @@ def summary(jobs: list[dict], state: dict, spend: dict, decisions: list, now: fl
     for j in jobs:
         st = state.get(j["id"], {})
         note = waits.get(j["id"]) or (st.get("resultado") or {}).get("nota") or ""
+        if not st.get("estado") and st.get("aviso"):
+            note = f"{st['aviso']} ({note})" if note else st["aviso"]
         if st.get("estado") == "en_marcha" and st.get("kaggle"):
             note = f"Kaggle: {st['kaggle']}, intento {st.get('intentos', 1)}" + (f"; {st['nota']}" if st.get("nota") else "")
         rows.append(f"| {j['id']} | {j['accion']} | {j.get('partido', '')} | {st.get('estado', 'pendiente')} | "
@@ -336,6 +338,9 @@ def _kaggle(args: list[str]) -> subprocess.CompletedProcess:
     return subprocess.run([sys.executable, "cloud/kaggle/cuaderno.py", *args], capture_output=True, text=True)
 
 
+LAST_REFUSAL = {"text": ""}
+
+
 def kaggle_launch(job: dict) -> bool:
     """The Modal key into the private dataset, then the notebook with this job (cloud/kaggle/cuaderno.py). A test keeps
     its results apart (/kaggle_pruebas), never over a test made by Modal."""
@@ -345,9 +350,18 @@ def kaggle_launch(job: dict) -> bool:
                              "--commit", os.environ.get("GITHUB_SHA", ""), *extra]):
         r = _kaggle(args)
         print(r.stdout[-1500:], r.stderr[-1500:])
-        if r.returncode:
+        refused = push_refused(r.stdout + r.stderr)
+        if r.returncode or refused:
+            LAST_REFUSAL["text"] = refused or f"falló «{args[0]}» (código {r.returncode})"
             return False
     return True
+
+
+def push_refused(text: str) -> str:
+    """Kaggle's refusal of a push, which its CLI prints with exit code 0 (14-11: «Kernel push error: Maximum batch GPU
+    session count of 2 reached.» was taken for a launch for two hours)."""
+    m = re.search(r"(Kernel push error:[^\n]*|push error[^\n]*|Maximum batch GPU session count[^\n]*)", text, re.I)
+    return m.group(1).strip() if m else ""
 
 
 def kaggle_status() -> str:
@@ -434,6 +448,8 @@ def main(argv: list[str] | None = None) -> int:
         if src == "kaggle":
             if kaggle_launch(j):
                 record_launch(state, spend, j, "kaggle", "kaggle", now)
+            else:                                        # said in the summary, launched again next pass
+                state.setdefault(jid, {})["aviso"] = f"Kaggle no lo aceptó: {LAST_REFUSAL['text']}"
             continue
         if src != "modal":
             continue

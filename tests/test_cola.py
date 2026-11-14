@@ -221,3 +221,11 @@ def test_whole_matches_can_wait_and_a_job_can_start_again():
     assert cola.restart(state, spend, ["final#1"], ["final#1"]) == []            # once per token
     d = {i: (src, why) for i, src, why in cola.plan(jobs, state, spend, on, DEC, "después de la fase B")}
     assert d["final"] == ("", "después de la fase B") and d["t"][0] == "kaggle"
+
+
+def test_a_refused_kaggle_push_is_not_a_launch():
+    """14-11: Kaggle refused every push for two hours («Maximum batch GPU session count of 2 reached») with exit code 0,
+    and the queue counted them as launches."""
+    assert cola.push_refused("Kernel push error: Maximum batch GPU session count of 2 reached.\n") \
+        == "Kernel push error: Maximum batch GPU session count of 2 reached."
+    assert cola.push_refused("Kernel version 9 successfully pushed.  Please check progress at ...") == ""
