@@ -22,6 +22,8 @@ on:
 permissions:
   contents: write
   actions: write
+  pull-requests: write          # #291: the mailbox pull request's comments wake Claude
+  issues: write
 jobs:
   cola:
     if: github.repository_owner == 'estebancobo-dot'
@@ -70,7 +72,7 @@ jobs:
         # the kaggle package imports «six» without declaring it
         run: pip install "modal>=1.0,<2" pyyaml "kaggle>=1.8" six
       - name: Una vuelta de la cola
-        run: python cloud/cola.py --cola config/cola_nube.yaml --logs logs
+        run: python cloud/cola.py --cola config/cola_nube.yaml --logs logs --avisos avisos.md
       - name: Subir el estado a nube-logs
         if: always()
         run: |
@@ -80,6 +82,18 @@ jobs:
           git add -A
           git commit -qm "cola: $(date -u '+%Y-%m-%d %H:%M')" || exit 0
           git push -q origin HEAD:nube-logs
+      - name: Avisar a Claude
+        # #291 (14-11, the user: wake at once, no polling, no tokens while nothing happens): only when a job has just
+        # finished, failed or stopped in «revisar» (or Kaggle refused a launch), a comment on the mailbox pull request,
+        # whose activity wakes Claude's session at that moment
+        if: always()
+        run: |
+          pr=$(python -c "import yaml; print((yaml.safe_load(open('config/cola_nube.yaml',encoding='utf-8')) or {}).get('avisos_pr') or '')")
+          if [ -s avisos.md ] && [ -n "$pr" ]; then
+            gh pr comment "$pr" --repo "$GITHUB_REPOSITORY" --body-file avisos.md && echo "avisado en el PR $pr"
+          else
+            echo "nada que avisar"
+          fi
       - name: Cuenta
         id: cuenta
         if: always()

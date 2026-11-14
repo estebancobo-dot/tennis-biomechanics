@@ -434,6 +434,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--cola", type=Path, default=Path("config/cola_nube.yaml"))
     ap.add_argument("--logs", type=Path, required=True, help="la rama nube-logs, ya descargada")
     ap.add_argument("--en-seco", action="store_true", help="decide y escribe el estado sin lanzar ni consultar nada")
+    ap.add_argument("--avisos", type=Path, help="#291: aquí, lo que necesita a Claude (el flujo lo comenta en el PR buzón)")
     a = ap.parse_args(argv)
     now = time.time()
     queue = yaml.safe_load(a.cola.read_text(encoding="utf-8")) or {}
@@ -441,6 +442,7 @@ def main(argv: list[str] | None = None) -> int:
     d = a.logs / "cola"
     d.mkdir(parents=True, exist_ok=True)
     state, spend = _load(d / "estado.json", {}), _load(d / "gasto.json", {})
+    before = json.loads(json.dumps(state))             # #291: what changed in this pass wakes Claude (avisos)
     set_base(spend, queue.get("gasto_modal_base") or {})
     done_f = d / "reinicios.json"
     done = _load(done_f, [])
@@ -538,17 +540,53 @@ def main(argv: list[str] | None = None) -> int:
                                                "trabajos": len(jobs)}, ensure_ascii=False), encoding="utf-8")
     if not a.en_seco:
         upload_state(vol, d)
+    if a.avisos:
+        msg = wake_message(events(before, state), now)
+        a.avisos.write_text(msg, encoding="utf-8")
+        print(f"cola: {'avisos para Claude' if msg else 'nada que avisar'}")
     return 0
+
+
+WAKE_STATES = ("hecho", "error", "revisar")
+
+
+def events(before: dict, after: dict) -> list[str]:
+    """#291 (the user: wake Claude at once, no polling, no tokens while nothing happens): what in this pass needs
+    Claude — a job that has just finished, failed or stopped in «revisar», and a launch Kaggle refused (new reason)."""
+    out = []
+    for jid, st in after.items():
+        if not isinstance(st, dict):
+            continue
+        old = before.get(jid) or {}
+        if st.get("estado") in WAKE_STATES and st.get("estado") != old.get("estado"):
+            note = (st.get("resultado") or {}).get("nota") or ""
+            out.append(f"`{jid}` → **{st['estado']}**" + (f": {note[:300]}" if note else ""))
+        elif st.get("aviso") and st.get("aviso") != old.get("aviso"):
+            out.append(f"`{jid}` → aviso: {st['aviso'][:300]}")
+    return out
+
+
+def wake_message(lines: list[str], now: float) -> str:
+    """The comment on the mailbox pull request ('' when nothing needs Claude: then nothing is posted)."""
+    if not lines:
+        return ""
+    when = time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime(now))
+    return (f"Cola de la nube, {when}: {len(lines)} cambio(s) que necesitan a Claude\n\n" + "\n".join(f"- {x}" for x in lines)
+            + "\n\nEstado completo: rama `nube-logs`, `cola/estado.md`.\n")
 
 
 QUEUE_FILES = ("estado.json", "gasto.json", "vuelta.json", "estado.md")
 SAME = ("idéntica", "equivalente")
 
 
+READ_ERRORS: dict = {}
+
+
 def _read_json(vol, path: str):
     try:
         return json.loads(b"".join(vol.read_file(path.lstrip("/"))).decode("utf-8"))
-    except Exception:  # noqa: BLE001 — not there (or not JSON): said by the caller
+    except Exception as e:  # noqa: BLE001 — not there (or not JSON): said by the caller, with why (READ_ERRORS)
+        READ_ERRORS[path] = f"{type(e).__name__}: {str(e)[:200]}"
         return None
 
 
@@ -575,8 +613,9 @@ def compare_job(vol, job: dict, state: dict, logs: Path, now: float) -> dict:
             sb = {f: v for f in STROKE_FILES if (v := _read_json(vol, f"{fb}/{f}")) is not None}
             res = compare(ma, mb, sa, sb)
             (logs / "comparaciones").mkdir(parents=True, exist_ok=True)
+            unread = {p: e for p, e in READ_ERRORS.items() if p.startswith((fa, fb))}
             (logs / "comparaciones" / f"{job['id']}.json").write_text(
-                json.dumps({"a": fa, "b": fb, **res}, ensure_ascii=False, indent=1), encoding="utf-8")
+                json.dumps({"a": fa, "b": fb, **res, "no_leidos": unread}, ensure_ascii=False, indent=1), encoding="utf-8")
             st["estado"] = "hecho" if res["veredicto"] in SAME else "revisar"
             st["resultado"] = {"estado": st["estado"], "veredicto": res["veredicto"], "nota": eq_summary(res)[:600]}
     state[job["id"]] = st

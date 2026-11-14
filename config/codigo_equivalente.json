@@ -5,7 +5,7 @@
    "igual_a": "7ff143093bfd9f45",
    "comprobado": false,
    "motivo": "T4 (#289, 14-11): el dispositivo por descubrimiento (device: auto → cuda en la nube; is_gpu en lugar de «dml»); las mismas sesiones de CUDA con las mismas opciones y la misma memoria devuelta que el parche cloud/arranque/nube_gpu.py",
-   "prueba": "comparar_gauff_v16b_v17",
+   "prueba": "comparar_gauff_v16b_v17b",
    "fecha": "2026-11-14"
   }
  },
@@ -14,7 +14,7 @@
    "igual_a": "046a937fe80dcced",
    "comprobado": false,
    "motivo": "T4 (#289, 14-11): el dispositivo por descubrimiento (device: auto → cuda en la nube; is_gpu en lugar de «dml»); las mismas sesiones de CUDA con las mismas opciones y la misma memoria devuelta que el parche cloud/arranque/nube_gpu.py",
-   "prueba": "comparar_gauff_v16b_v17",
+   "prueba": "comparar_gauff_v16b_v17b",
    "fecha": "2026-11-14"
   }
  },
@@ -23,7 +23,7 @@
    "igual_a": "855818ee3fe992aa",
    "comprobado": false,
    "motivo": "T4 (#289, 14-11): el dispositivo por descubrimiento (device: auto → cuda en la nube; is_gpu en lugar de «dml»); las mismas sesiones de CUDA con las mismas opciones y la misma memoria devuelta que el parche cloud/arranque/nube_gpu.py",
-   "prueba": "comparar_gauff_v16b_v17",
+   "prueba": "comparar_gauff_v16b_v17b",
    "fecha": "2026-11-14"
   }
  }

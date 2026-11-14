@@ -22,6 +22,9 @@ kaggle_activo: true
 partidos_en_espera: "después de la fase B de la nube nativa (#287, docs/nube_nativa.md)"
 # trabajos que empiezan de nuevo, una vez cada «id#n»: la final se lanzó en Kaggle a las 14:32 y Kaggle no la arrancó
 reiniciar: ["final#1"]
+# #291 (14-11): el PR buzón (nunca se fusiona): la cola comenta en él solo cuando algo necesita a Claude, y su
+# actividad despierta la sesión al momento (sin sondeos ni tokens mientras no pasa nada)
+avisos_pr: 1
 gasto_modal_base:
   "2026-11": 28.08
 trabajos:
@@ -33,7 +36,10 @@ trabajos:
   # el parche dml→CUDA) y su comparación con la v16b (la última con el parche); si es idéntica o equivalente, el cambio
   # conserva la huella de la pasada fina (config/codigo_equivalente.json) y nada de lo ya analizado se repite
   - {id: prueba_gauff_v17, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle}
-  - {id: comparar_gauff_v16b_v17, accion: comparar, a: "/kaggle_pruebas/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5", b: prueba_gauff_v17}
+  # 14-11 19:47: la primera comparación dijo «idéntica» (16 etapas con el mismo contenido) sin haber leído el
+  # strokes.json de la v17 y emparejando por una clave de tiempo que no existe: no vale; se repite con la herramienta
+  # corregida (empareja por match_time_s; un fichero leído en un solo lado es «incompleta»)
+  - {id: comparar_gauff_v16b_v17b, accion: comparar, a: "/kaggle_pruebas/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5", b: prueba_gauff_v17}
   # lotes 3 y 4 (aprobados por el usuario el 13-11: Osaka; Pegula y Zheng; Gauff y la final; Zverev-Sinner), cada
   # partido tras su prueba corta de 10 minutos (#277); el informe y la auditoría de la Base al final
   - {id: prueba_gauff, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5}

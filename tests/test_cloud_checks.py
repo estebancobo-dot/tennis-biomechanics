@@ -88,9 +88,11 @@ def test_equivalence_and_proof_of_concept_items(tmp_path):
     from tennisbio.audit import equivalence_item, poc_item
     assert equivalence_item(None)["status"] == "aviso" and poc_item(None)["status"] == "aviso"
     assert equivalence_item(tmp_path)["status"] == "aviso" and poc_item(tmp_path)["status"] == "aviso"
-    _w(tmp_path / "cola" / "comparaciones" / "c1.json", {"veredicto": "idéntica"})
+    _w(tmp_path / "cola" / "comparaciones" / "c0.json", {"veredicto": "idéntica"})          # the old tool's: void
+    assert equivalence_item(tmp_path)["status"] == "aviso"
+    _w(tmp_path / "cola" / "comparaciones" / "c1.json", {"veredicto": "idéntica", "ficheros_de_un_solo_lado": []})
     assert equivalence_item(tmp_path)["status"] == "ok"
-    _w(tmp_path / "cola" / "comparaciones" / "c2.json", {"veredicto": "distinta"})
+    _w(tmp_path / "cola" / "comparaciones" / "c2.json", {"veredicto": "distinta", "ficheros_de_un_solo_lado": []})
     it = equivalence_item(tmp_path)
     assert it["status"] == "falta" and "1 distintas" in it["detail"]
     _w(tmp_path / "runs" / "kaggle_medir_raqueta" / "estado.json", {"estado": "error"})

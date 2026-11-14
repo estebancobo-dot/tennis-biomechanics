@@ -7,7 +7,7 @@ from tennisbio.pipeline import equivalent_code
 
 
 def _s(t, kind="forehand", elbow=120.0, **kw):
-    return {"t": t, "stroke": kind, "metrics": {"elbow_deg": elbow, "stance": "open"}, "series": "x.json", **kw}
+    return {"match_time_s": t, "stroke": kind, "metrics": {"elbow_deg": elbow, "stance": "open"}, "series": "x.json", **kw}
 
 
 def test_identical_equivalent_and_different():
@@ -60,3 +60,15 @@ def test_the_repository_file_is_valid():
             continue
         for new, e in entries.items():
             assert e["igual_a"] != new and isinstance(e["comprobado"], bool) and e.get("prueba") and e.get("motivo")
+
+
+def test_a_file_read_on_one_side_is_never_same():
+    """14-11, the first comparison in the cloud: identical stage hashes but the new run's strokes.json unread said
+    «idéntica»; now it is «incompleta» and names the file. Strokes are matched by their match time."""
+    man = {"fine": {"out_hash": "h"}}
+    c = eq.compare(man, dict(man), {"strokes.json": [_s(10.0)]}, {})
+    assert c["veredicto"] == "incompleta" and c["ficheros_de_un_solo_lado"] == ["strokes.json"]
+    assert "un solo lado: strokes.json" in eq.summary(c)
+    assert eq.stroke_time({"match_time_s": 3.5, "t": 1.0}) == 3.5 and eq.stroke_time({"t": 1.0}) == 1.0
+    g = eq.compare_strokes([_s(10.0), _s(20.0)], [_s(20.01), _s(10.0)])
+    assert g["pares"] == 2 and not g["solo_a"]

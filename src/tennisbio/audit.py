@@ -2541,9 +2541,12 @@ def equivalence_item(root: Path | None) -> dict:
     rows = []
     for f in sorted((root / "cola" / "comparaciones").glob("*.json")):
         try:
-            rows.append((f.stem, json.loads(f.read_text(encoding="utf-8")).get("veredicto")))
+            d = json.loads(f.read_text(encoding="utf-8"))
         except (OSError, ValueError):  # esperado: a damaged comparison counts as not made
             continue
+        if "ficheros_de_un_solo_lado" not in d:     # made before 14-11 20:15 (stroke time key, unread files): void
+            continue
+        rows.append((f.stem, d.get("veredicto")))
     if not rows:
         return _item(9, "Nube", EQUIV_ITEM, "aviso", "ninguna comparación todavía (acción «comparar» de la cola)")
     bad = [r for r in rows if r[1] not in ("idéntica", "equivalente")]

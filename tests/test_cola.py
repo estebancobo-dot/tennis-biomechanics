@@ -354,3 +354,25 @@ def test_a_test_with_other_settings(monkeypatch):
     assert cola.kaggle_launch(j)
     launch = calls[-1]
     assert launch[launch.index("--config") + 1] == '{"hwaccel": "cuda"}'
+
+
+def test_what_wakes_claude(tmp_path):
+    """#291 (14-11): only what needs Claude wakes him (no polling): a job that has just finished, failed or stopped in
+    «revisar», or a new Kaggle refusal; a pass where nothing changed posts nothing."""
+    before = {"a": {"estado": "en_marcha"}, "b": {"estado": "hecho"}, "c": {}}
+    after = {"a": {"estado": "hecho", "resultado": {"nota": "idéntica"}}, "b": {"estado": "hecho"},
+             "c": {"aviso": "Kaggle no lo aceptó: Maximum batch GPU session count"}, "d": {"estado": "en_marcha"}}
+    ev = cola.events(before, after)
+    assert ev == ["`a` → **hecho**: idéntica", "`c` → aviso: Kaggle no lo aceptó: Maximum batch GPU session count"]
+    assert cola.events(after, after) == [] and cola.wake_message([], NOV) == ""
+    msg = cola.wake_message(ev, NOV)
+    assert "2 cambio(s)" in msg and "- `a` → **hecho**" in msg
+    wf = yaml.safe_load((ROOT / ".github" / "workflows" / "cola.yml").read_text(encoding="utf-8"))
+    steps = {s.get("name"): s for s in wf["jobs"]["cola"]["steps"]}
+    assert "--avisos avisos.md" in steps["Una vuelta de la cola"]["run"]
+    assert "gh pr comment" in steps["Avisar a Claude"]["run"] and wf["permissions"]["pull-requests"] == "write"
+    # the dry run writes the (empty) message too
+    q = tmp_path / "q.yaml"
+    q.write_text("trabajos: []\n", encoding="utf-8")
+    assert cola.main(["--cola", str(q), "--logs", str(tmp_path / "logs"), "--en-seco", "--avisos", str(tmp_path / "a.md")]) == 0
+    assert (tmp_path / "a.md").read_text(encoding="utf-8") == ""

@@ -1,7 +1,7 @@
 """14-11 (T4, #289): replaced by «device: auto» (tennisbio.infra.devices: CUDA by discovery, the same session options and
 the same memory given back after each run in tennisbio.pose.estimator); TENNISBIO_DML_IS_CUDA is no longer set by
 cloud/kaggle/correr.py nor cloud/modal_app.py, so this does nothing. Kept until the equivalence test of the change
-(comparar_gauff_v16b_v17) has passed.
+(comparar_gauff_v16b_v17b) has passed.
 
 N0 (13-11, #273): loaded by Python at start-up in the cloud's container through an «import nube_gpu» line of the
 tennisbio_nube.pth file (cloud/nube.py pth_text), so also in the fine pass's worker processes (spawn). With

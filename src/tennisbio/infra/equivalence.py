@@ -7,7 +7,9 @@ Verdicts:
 - «idéntica»: every stage's output has the same content (`out_hash` of the manifest);
 - «equivalente»: the same strokes (each one within TIME_TOL_S, with the same kind) and every measure within its
   tolerance (a GPU may round differently from run to run);
-- «distinta»: anything else, with what differs.
+- «distinta»: anything else, with what differs;
+- «incompleta»: a strokes file could be read on one side only (14-11: the first comparison said «idéntica» with the
+  new run's strokes.json unread).
 """
 from __future__ import annotations
 
@@ -19,6 +21,14 @@ TIME_TOL_S = 0.05                 # one frame at 25 fps, two at 50
 REL_TOL = 0.01                    # a measure may differ by 1 % of its value …
 ABS_TOL = 0.5                     # … or by half a unit (degrees, cm, px), whichever is larger
 STROKE_FILES = ("strokes.json", "strokes_opponent.json", "strokes_doubtful.json")
+TIME_KEYS = ("match_time_s", "t")         # 14-11: a stroke's time in the match is «match_time_s» (views.stroke_key)
+
+
+def stroke_time(s: dict) -> float:
+    for k in TIME_KEYS:
+        if s.get(k) is not None:
+            return float(s[k])
+    return float("nan")
 
 
 def _leaves(d, prefix=""):
@@ -52,26 +62,26 @@ def _as_list(x) -> list[dict]:
 def compare_strokes(a: list[dict], b: list[dict], skip=("series", "window", "views", "window_impact_s")) -> dict:
     """Strokes matched by time (nearest within TIME_TOL_S); for each pair, the measures outside their tolerance."""
     a, b = _as_list(a), _as_list(b)
-    a = sorted(a, key=lambda s: float(s.get("t", 0)))
-    b = sorted(b, key=lambda s: float(s.get("t", 0)))
+    a = sorted(a, key=lambda s: stroke_time(s))
+    b = sorted(b, key=lambda s: stroke_time(s))
     used, pairs, only_a = set(), [], []
     for s in a:
-        best = min(((abs(float(s.get("t", 0)) - float(x.get("t", 0))), j) for j, x in enumerate(b) if j not in used),
+        best = min(((abs(stroke_time(s) - stroke_time(x)), j) for j, x in enumerate(b) if j not in used),
                    default=None)
         if best is None or best[0] > TIME_TOL_S:
-            only_a.append(round(float(s.get("t", 0)), 2))
+            only_a.append(round(stroke_time(s), 2))
             continue
         used.add(best[1])
         pairs.append((s, b[best[1]]))
-    only_b = [round(float(x.get("t", 0)), 2) for j, x in enumerate(b) if j not in used]
-    kinds = [round(float(s.get("t", 0)), 2) for s, x in pairs if s.get("stroke") != x.get("stroke")]
+    only_b = [round(stroke_time(x), 2) for j, x in enumerate(b) if j not in used]
+    kinds = [round(stroke_time(s), 2) for s, x in pairs if s.get("stroke") != x.get("stroke")]
     diffs: dict[str, int] = {}
     worst: dict[str, float] = {}
     for s, x in pairs:
         la = dict(_leaves({k: v for k, v in s.items() if k not in skip}))
         lb = dict(_leaves({k: v for k, v in x.items() if k not in skip}))
         for k in set(la) | set(lb):
-            if k == "t":
+            if k in TIME_KEYS:
                 continue
             va, vb = la.get(k), lb.get(k)
             if not _close(va, vb):
@@ -97,21 +107,27 @@ def compare(man_a: dict, man_b: dict, strokes_a: dict[str, list], strokes_b: dic
             differ.append(k)
     files = {f: compare_strokes(strokes_a.get(f) or [], strokes_b.get(f) or [])
              for f in STROKE_FILES if f in strokes_a or f in strokes_b}
-    strokes_ok = all(not c["solo_a"] and not c["solo_b"] and not c["tipo_distinto"] and not c["medidas_distintas"]
-                     for c in files.values())
-    if not differ and not missing and same:
+    # 14-11 (the first comparison): a strokes file read on one side only is a comparison not made, never «same»
+    one_side = sorted(f for f in files if (f in strokes_a) != (f in strokes_b))
+    strokes_ok = not one_side and all(not c["solo_a"] and not c["solo_b"] and not c["tipo_distinto"]
+                                      and not c["medidas_distintas"] for c in files.values())
+    if one_side:
+        verdict = "incompleta"
+    elif not differ and not missing and same and strokes_ok:
         verdict = "idéntica"
     elif strokes_ok and files:
         verdict = "equivalente"
     else:
         verdict = "distinta"
     return {"veredicto": verdict, "etapas_iguales": same, "etapas_distintas": differ, "etapas_sin_comparar": missing,
-            "golpes": files}
+            "golpes": files, "ficheros_de_un_solo_lado": one_side}
 
 
 def summary(c: dict) -> str:
     """One line for the queue's summary."""
     parts = [c["veredicto"], f"{len(c['etapas_iguales'])} etapas iguales"]
+    if c.get("ficheros_de_un_solo_lado"):
+        parts.append("leídos en un solo lado: " + ", ".join(c["ficheros_de_un_solo_lado"]))
     if c["etapas_distintas"]:
         parts.append("distintas: " + ", ".join(c["etapas_distintas"][:8]))
     for f, g in c["golpes"].items():

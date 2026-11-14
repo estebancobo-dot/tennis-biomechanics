@@ -18,8 +18,11 @@ SEGUIR»: la primera tarea no hecha cuyas dependencias estén hechas. **Después
 - **La cola** (flujo «Cola» de GitHub Actions) tiene dos trabajos: la vuelta (`cola`, de una en una, nunca se cancela)
   y el latido (`latido`, solo el último: duerme 5 min si algo corre o 25 si solo hay espera, y lanza la vuelta
   siguiente). Un cambio en `config/cola_nube.yaml` o el final de un flujo «Nube» lanzan una vuelta al momento.
-- **Claude** retoma solo cada hora (tarea programada de la sesión, minuto 48): lee este documento y el PLAN ÚNICO,
-  mira `cola/estado.md` y sigue por la primera tarea no hecha. Entre tanto, cada trabajo que acaba lo recoge la cola.
+- **Claude despierta por eventos, no por sondeo** (#291; el aviso de cada hora se quitó el 14-11): cuando una vuelta ve
+  que un trabajo acaba, falla o queda en «revisar», o que Kaggle rechaza un lanzamiento, comenta en el **PR buzón #1**
+  (`avisos_pr` en `config/cola_nube.yaml`; rama `nube-avisos`, nunca se fusiona). La sesión de Claude está suscrita a
+  ese PR y despierta en ese momento; mientras no pasa nada, no gasta nada. Al despertar: leer `cola/estado.md` y
+  seguir este documento y el PLAN ÚNICO. Si la sesión es nueva, volver a suscribirse al PR #1.
 
 ## 2. Qué hacer en cada caso
 
