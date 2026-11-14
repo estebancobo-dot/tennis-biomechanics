@@ -4,7 +4,12 @@
    "trabajos": {
     "prueba_gauff": {
      "estimado_usd": 0.8,
-     "llamada": "fc-01M7CMPYD69W5R88RMRPH74V6Z"
+     "llamada": "fc-01M7CMPYD69W5R88RMRPH74V6Z",
+     "coste_usd": 0.62
+    },
+    "prueba_final": {
+     "estimado_usd": 0.8,
+     "llamada": "fc-01M7CR8EB6R4WATHCD2BNGKR20"
     }
    },
    "base_usd": 28.08
