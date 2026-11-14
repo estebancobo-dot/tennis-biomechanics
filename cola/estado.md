@@ -1,6 +1,6 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-14 14:38 UTC · Modal: quedan 0.53 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 16.5 h de GPU esta semana (tope 28 h)
+Última vuelta: 2026-11-14 14:43 UTC · Modal: quedan 0.53 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 16.5 h de GPU esta semana (tope 28 h)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|

@@ -45,10 +45,11 @@
   "estado": "en_marcha",
   "donde": "kaggle",
   "llamada": "kaggle",
-  "intentos": 1,
-  "lanzado_ts": 1794666767.7726321,
+  "intentos": 2,
+  "lanzado_ts": 1794667435.1890311,
   "accion": "partido",
-  "inicio": "2026-11-14 14:32",
-  "ruta": "/runs/partido_tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5/estado.json"
+  "inicio": "2026-11-14 14:43",
+  "ruta": "/runs/partido_tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5/estado.json",
+  "nota": "en cola de Kaggle más de 10 min sin arrancar"
  }
 }
