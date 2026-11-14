@@ -134,3 +134,13 @@ def test_diagnosis_reads_quota_and_versions_and_launches_nothing():
     assert "push" not in code and "cancel" not in code                            # read only
     wf = (ROOT / ".github" / "workflows" / "nube.yml").read_text(encoding="utf-8")
     assert "python cloud/kaggle/diagnostico.py" in wf
+
+
+def test_one_notebook_per_job():
+    """R42 (14-11): versions of one shared notebook stuck in «Starting…» blocked every later job."""
+    assert klanzar.slug_for("prueba_gauff_v16b") == "tennisbio-prueba-gauff-v16b"
+    assert klanzar.slug_for("Actualizar Osaka!") == "tennisbio-actualizar-osaka"
+    m = klanzar.metadata("u", slug="tennisbio-x")
+    assert m["id"] == "u/tennisbio-x" and m["title"] == "tennisbio-x" and m["code_file"] == "tennisbio-x.ipynb"
+    src = (ROOT / "cloud" / "cola.py").read_text(encoding="utf-8")
+    assert '"--slug", notebook_slug(job["id"])' in src and 'kaggle_status(jid)' in src

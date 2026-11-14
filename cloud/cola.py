@@ -347,7 +347,7 @@ def kaggle_launch(job: dict) -> bool:
     extra = (["--salida-remota", run_path(job, "kaggle").rsplit("/", 1)[0], "--output-remoto", "/kaggle_pruebas/output"]
              if job["accion"] == "prueba" else [])
     for args in (["clave"], ["lanzar", "--accion", job["accion"], "--partido", job["partido"],
-                             "--commit", os.environ.get("GITHUB_SHA", ""), *extra]):
+                             "--commit", os.environ.get("GITHUB_SHA", ""), "--slug", notebook_slug(job["id"]), *extra]):
         r = _kaggle(args)
         print(r.stdout[-1500:], r.stderr[-1500:])
         refused = push_refused(r.stdout + r.stderr)
@@ -364,11 +364,19 @@ def push_refused(text: str) -> str:
     return m.group(1).strip() if m else ""
 
 
-def kaggle_status() -> str:
+def notebook_slug(job_id: str) -> str:
+    """The job's own Kaggle notebook (cloud/kaggle/cuaderno.slug_for)."""
     sys.path.insert(0, str(Path(__file__).resolve().parent / "kaggle"))
     import cuaderno
 
-    r = _kaggle(["estado"])
+    return cuaderno.slug_for(job_id)
+
+
+def kaggle_status(job_id: str) -> str:
+    sys.path.insert(0, str(Path(__file__).resolve().parent / "kaggle"))
+    import cuaderno
+
+    r = _kaggle(["estado", "--slug", notebook_slug(job_id)])
     return cuaderno.status_of(r.stdout + r.stderr)
 
 
@@ -421,7 +429,7 @@ def main(argv: list[str] | None = None) -> int:
                 print(f"{jid}: el estado que hay es de antes de este lanzamiento")
                 res = None
             if st["donde"] == "kaggle" and jid in by_id:
-                kst = kaggle_status()
+                kst = kaggle_status(jid)
                 st["kaggle"] = f"{kst} ({time.strftime('%H:%M', time.gmtime(now))})"
                 print(f"{jid}: Kaggle dice «{kst}»; lanzado hace {(now - float(st.get('lanzado_ts', now))) / 60:.0f} min, "
                       f"intento {st.get('intentos', 1)}")

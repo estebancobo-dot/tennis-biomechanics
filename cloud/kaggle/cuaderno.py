@@ -75,19 +75,24 @@ def notebook(job: dict) -> dict:
             "nbformat": 4, "nbformat_minor": 5}
 
 
-def metadata(user: str, key: bool = True) -> dict:
+def slug_for(job_id: str) -> str:
+    """14-11 (R42): one notebook per job, so a session stuck in Kaggle never blocks the next job's versions."""
+    return "tennisbio-" + (re.sub(r"[^a-z0-9]+", "-", str(job_id).lower()).strip("-") or "trabajo")
+
+
+def metadata(user: str, key: bool = True, slug: str = SLUG) -> dict:
     """kernel-metadata.json: the user's private notebook, on two T4s, with internet (the Kaggle API's documented fields);
     `key`: with the private key dataset (14-11: without it, a diagnosis of a session left queued)."""
-    return {"id": f"{user}/{SLUG}", "title": SLUG, "code_file": f"{SLUG}.ipynb", "language": "python",
+    return {"id": f"{user}/{slug}", "title": slug, "code_file": f"{slug}.ipynb", "language": "python",
             "kernel_type": "notebook", "is_private": True, "enable_gpu": True, "enable_internet": True,
             "machine_shape": "NvidiaTeslaT4", "dataset_sources": [f"{user}/{KEY_SLUG}"] if key else [],
             "competition_sources": [], "kernel_sources": []}
 
 
-def write(folder: Path, user: str, job: dict, key: bool = True) -> Path:
+def write(folder: Path, user: str, job: dict, key: bool = True, slug: str = SLUG) -> Path:
     folder.mkdir(parents=True, exist_ok=True)
-    (folder / f"{SLUG}.ipynb").write_text(json.dumps(notebook(job), ensure_ascii=False, indent=1), encoding="utf-8")
-    (folder / "kernel-metadata.json").write_text(json.dumps(metadata(user, key), indent=1), encoding="utf-8")
+    (folder / f"{slug}.ipynb").write_text(json.dumps(notebook(job), ensure_ascii=False, indent=1), encoding="utf-8")
+    (folder / "kernel-metadata.json").write_text(json.dumps(metadata(user, key, slug), indent=1), encoding="utf-8")
     return folder
 
 
@@ -136,8 +141,9 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--dir", type=Path, default=Path("kaggle-out"))
     ap.add_argument("--sin-clave", action="store_true", help="sin el conjunto de datos de la clave (diagnóstico)")
     ap.add_argument("--forzar", action="store_true", help="clave: una versión nueva aunque ya exista (clave cambiada)")
+    ap.add_argument("--slug", default=SLUG, help="el cuaderno (uno por trabajo: slug_for)")
     a = ap.parse_args(argv)
-    kid = f"{_user()}/{SLUG}"
+    kid = f"{_user()}/{a.slug}"
     if a.orden == "sonda":                    # 14-11: does Kaggle start any GPU session at all? (a new, tiny notebook)
         folder = Path("kaggle-sonda")
         folder.mkdir(parents=True, exist_ok=True)
@@ -187,7 +193,7 @@ def main(argv: list[str] | None = None) -> int:
             job["salida"] = a.salida_remota
         if a.output_remoto:
             job["output_remoto"] = a.output_remoto
-        folder = write(Path("kaggle-push"), _user(), job, key=not a.sin_clave)
+        folder = write(Path("kaggle-push"), _user(), job, key=not a.sin_clave, slug=a.slug)
         r = _kaggle("kernels", "push", "-p", str(folder))
         print(r.stdout, r.stderr)
         # 14-11: the CLI prints «Kernel push error: …» and still exits 0
