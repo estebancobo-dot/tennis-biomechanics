@@ -1,7 +1,12 @@
 {
  "modal": {
   "2026-11": {
-   "trabajos": {},
+   "trabajos": {
+    "prueba_gauff": {
+     "estimado_usd": 0.8,
+     "llamada": "fc-01M7CMPYD69W5R88RMRPH74V6Z"
+    }
+   },
    "base_usd": 28.08
   }
  }

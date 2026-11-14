@@ -1,1 +1,9 @@
-{}
+{
+ "prueba_gauff": {
+  "estado": "en_marcha",
+  "donde": "modal",
+  "llamada": "fc-01M7CMPYD69W5R88RMRPH74V6Z",
+  "inicio": "2026-11-14 09:02",
+  "ruta": "/runs/partido__prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5/estado.json"
+ }
+}
