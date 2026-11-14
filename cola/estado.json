@@ -49,6 +49,7 @@
   "lanzado_ts": 1794668746.5153103,
   "accion": "prueba",
   "inicio": "2026-11-14 15:05",
-  "ruta": "/runs/kaggle_prueba_gauff_v16b/estado.json"
+  "ruta": "/runs/kaggle_prueba_gauff_v16b/estado.json",
+  "kaggle": "queued (15:11)"
  }
 }
