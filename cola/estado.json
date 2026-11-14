@@ -26,7 +26,7 @@
   }
  },
  "prueba_gauff_v16": {
-  "estado": "en_marcha",
+  "estado": "error",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 4,
@@ -34,6 +34,21 @@
   "accion": "prueba",
   "inicio": "2026-11-14 14:21",
   "ruta": "/runs/kaggle_prueba_gauff_v16/estado.json",
-  "nota": "en cola de Kaggle más de 10 min sin arrancar"
+  "nota": "en cola de Kaggle más de 10 min sin arrancar",
+  "fin": "2026-11-14 14:32",
+  "resultado": {
+   "estado": "error",
+   "nota": "en cola de Kaggle más de 10 min sin arrancar (4 intentos)"
+  }
+ },
+ "final": {
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1794666767.7726321,
+  "accion": "partido",
+  "inicio": "2026-11-14 14:32",
+  "ruta": "/runs/partido_tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5/estado.json"
  }
 }

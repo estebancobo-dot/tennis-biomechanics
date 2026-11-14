@@ -21,6 +21,9 @@
    "trabajos": {
     "prueba_gauff_v16": {
      "estimado_h": 1.0
+    },
+    "final": {
+     "estimado_h": 10.5
     }
    }
   }
