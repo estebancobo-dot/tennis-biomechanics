@@ -50,7 +50,8 @@
      "horas": 0.06
     },
     "perfil_gauff_fina": {
-     "estimado_h": 1.0
+     "estimado_h": 1.0,
+     "horas": 0.91
     },
     "gauff": {
      "estimado_h": 11.31
