@@ -135,13 +135,14 @@ def env_for(data: Path) -> dict:
             "PYTHONFAULTHANDLER": "1", "HOME": str(data / "home")}
 
 
-def prepare(repo: Path, data: Path, registry: list[dict]) -> list[dict]:
-    """As modal_app._prepare and _catalog: the volume's models, the PC's settings, the catalogue and the clicks."""
+def prepare(repo: Path, data: Path, registry: list[dict], overrides: dict | None = None) -> list[dict]:
+    """As modal_app._prepare and _catalog: the volume's models, the PC's settings (with a test's `overrides`, T5), the
+    catalogue and the clicks."""
     import yaml
 
     nube.use_volume_models(repo, data)
     (data / "home").mkdir(parents=True, exist_ok=True)
-    nube.write_local_yaml(repo, data)
+    nube.write_local_yaml(repo, data, overrides)
     cat = nube.cloud_catalog(registry, data / "biblioteca")
     cat["matches"] += nube.test_entries(cat["matches"], data / "videos")
     (repo / "config" / "matches.yaml").write_text(yaml.safe_dump(cat, allow_unicode=True, sort_keys=False), encoding="utf-8")
@@ -202,7 +203,7 @@ def main(argv: list[str]) -> int:
     job = parse_job(argv[1])
     WORK.mkdir(parents=True, exist_ok=True)
     est = {"accion": job["accion"], "partido": job.get("partido", ""), "donde": "kaggle", "estado": "en curso",
-           "inicio": time.strftime("%Y-%m-%d %H:%M:%S"), "kaggle": info()}
+           "inicio": time.strftime("%Y-%m-%d %H:%M:%S"), "kaggle": info(), "config": job.get("config") or {}}
     print(json.dumps(est, ensure_ascii=False, indent=1), flush=True)
     import modal
 
@@ -233,7 +234,7 @@ def main(argv: list[str]) -> int:
         if job["accion"] == "medir":               # a proof of concept: the GPU and the models (and a broadcast)
             video = None
             if job["prueba"] in NEEDS_MATCH:
-                src = {m["id"]: m for m in prepare(REPO, data, registry)}.get(job["partido"])
+                src = {m["id"]: m for m in prepare(REPO, data, registry, job.get("config"))}.get(job["partido"])
                 if src is None:
                     est.update(estado="error", nota=f"{job['partido']} no está en la lista de partidos del PC")
                     return 1
@@ -241,7 +242,7 @@ def main(argv: list[str]) -> int:
                 video = data / "videos" / src["video"]
             return measure(job, py, models, data, run, vol, est, video)
         if job["accion"] == "comprobar":
-            prepare(REPO, data, registry)
+            prepare(REPO, data, registry, job.get("config"))
             probe = subprocess.run([str(py), "-c", "import onnxruntime as o, nube_gpu; print(o.get_available_providers())"],
                                    capture_output=True, text=True, env=env_for(data), cwd=REPO)
             disc = subprocess.run([str(py), "-m", "tennisbio.infra.discovery"], capture_output=True, text=True,
@@ -250,7 +251,7 @@ def main(argv: list[str]) -> int:
                        modelos=sum(1 for _ in models.rglob("*") if _.is_file()),
                        descubrimiento=disc.stdout.strip()[-3000:] or disc.stderr[-500:])   # #289: what Kaggle has
             return 0
-        matches = {m["id"]: m for m in prepare(REPO, data, registry)}
+        matches = {m["id"]: m for m in prepare(REPO, data, registry, job.get("config"))}
         src = matches.get(job["partido"])
         if src is None:
             est.update(estado="error", nota=f"{job['partido']} no está en la lista de partidos del PC")
@@ -266,7 +267,7 @@ def main(argv: list[str]) -> int:
             clip = data / "videos" / f"{job['run_id']}{video.suffix.lower()}"
             _run(["ffmpeg", "-v", "error", "-y", "-ss", str(job.get("inicio_s", 600)), "-i", str(video), "-t",
                   str(job.get("duracion_s", 600)), "-map", "0:v:0", "-map", "0:a?", "-c", "copy", str(clip)])
-            prepare(REPO, data, registry)
+            prepare(REPO, data, registry, job.get("config"))
         else:
             try:                                          # what an earlier session (or Modal) already made
                 modal_get(f"{job['output_remoto'].rstrip('/')}/{job['run_id']}", data / "output")

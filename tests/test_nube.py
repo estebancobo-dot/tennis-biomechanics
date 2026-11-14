@@ -474,3 +474,15 @@ def test_every_gpu_is_sampled_and_summarized():
     assert s["gpu_pct"] == {"media": 80.0, "max": 85.0} and s["gpu1_pct"] == {"media": 5.0, "max": 10.0}
     assert nube.resources_now(rows[0]) == "GPU 85 %·0 %, CPU 60 %, 9.1 GB"
     assert nube.resources_now({}) == ""
+
+
+def test_a_test_jobs_settings_go_on_top(tmp_path):
+    """T5 (14-11): a test job's «config» on top of the PC's settings, for that run only, key by key."""
+    assert nube.merged({"a": 1, "b": {"x": 1, "y": 2}}, {"b": {"y": 3}, "c": 4}) == {"a": 1, "b": {"x": 1, "y": 3}, "c": 4}
+    assert nube.merged({"a": 1}, None) == {"a": 1}
+    repo, data = tmp_path / "repo", tmp_path / "data"
+    (repo / "config").mkdir(parents=True)
+    (data / "pc").mkdir(parents=True)
+    (data / "pc" / "local.yaml").write_text("device: dml\nfine_speed: {workers: 2}\n", encoding="utf-8")
+    cfg = nube.write_local_yaml(repo, data, {"hwaccel": "cuda", "fine_speed": {"batch": 16}})
+    assert cfg["hwaccel"] == "cuda" and cfg["fine_speed"] == {"workers": 2, "batch": 16} and cfg["device"] == "auto"

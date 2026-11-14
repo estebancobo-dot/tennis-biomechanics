@@ -336,3 +336,21 @@ def test_compare_jobs_wait_and_run_here(tmp_path):
     files["kaggle_pruebas/p2/output/_prueba_m/manifest.json"] = json.dumps({"fine": {"out_hash": "z"}}).encode()
     assert cola.compare_job(Vol(), j, state, tmp_path, 0.0)["estado"] == "revisar"     # Claude looks, nothing goes on
     assert cola.compare_job(Vol(), {**j, "b": "nadie"}, state, tmp_path, 0.0)["estado"] == "error"
+
+
+def test_a_test_with_other_settings(monkeypatch):
+    """T5: a test job may carry «config» (the settings a proof of concept tries on the whole clip): Kaggle only."""
+    j = {"id": "p", "accion": "prueba", "partido": "m", "config": {"hwaccel": "cuda"}}
+    assert not cola.check_queue([j])
+    assert "solo vale para una prueba" in cola.check_queue([{**j, "accion": "partido"}])[0]
+    assert "es un diccionario" in cola.check_queue([{**j, "config": "hwaccel=cuda"}])[0]
+    got = cola.plan([{**j, "donde": "modal"}], {}, {"modal": {}}, {}, NOV)
+    assert got[0][1] == "" and "Kaggle" in got[0][2]
+    calls = []
+
+    class R:
+        returncode, stdout, stderr = 0, "ok", ""
+    monkeypatch.setattr(cola, "_kaggle", lambda args: calls.append(args) or R())
+    assert cola.kaggle_launch(j)
+    launch = calls[-1]
+    assert launch[launch.index("--config") + 1] == '{"hwaccel": "cuda"}'

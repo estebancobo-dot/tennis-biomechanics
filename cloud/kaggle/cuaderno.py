@@ -137,6 +137,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--salida-remota", default="", help="la carpeta de la ejecución en Modal (/runs/<tag>)")
     ap.add_argument("--output-remoto", default="", help="dónde van sus resultados en Modal (por defecto /output)")
     ap.add_argument("--commit", default="")
+    ap.add_argument("--config", default="", help="T5: ajustes de prueba (JSON) sobre los del PC, solo para este trabajo")
     ap.add_argument("--minutos", type=float, default=50)
     ap.add_argument("--max-cola", type=float, default=10, help="minutos en cola de Kaggle que se aceptan antes de fallar")
     ap.add_argument("--dir", type=Path, default=Path("kaggle-out"))
@@ -202,6 +203,8 @@ def main(argv: list[str] | None = None) -> int:
             job["salida"] = a.salida_remota
         if a.output_remoto:
             job["output_remoto"] = a.output_remoto
+        if a.config:
+            job["config"] = json.loads(a.config)
         folder = write(Path("kaggle-push"), _user(), job, key=not a.sin_clave, slug=a.slug)
         r = _kaggle("kernels", "push", "-p", str(folder))
         print(r.stdout, r.stderr)

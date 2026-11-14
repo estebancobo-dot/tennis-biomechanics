@@ -250,10 +250,20 @@ def place_clicks(registry: list[dict], library: Path, out_root: Path) -> list[st
     return done
 
 
-def write_local_yaml(repo: Path, data: Path) -> dict:
+def merged(base: dict, extra: dict | None) -> dict:
+    """base with extra on top, key by key inside nested dictionaries (the configuration's own merge)."""
+    out = dict(base)
+    for k, v in (extra or {}).items():
+        out[k] = merged(out[k], v) if isinstance(v, dict) and isinstance(out.get(k), dict) else v
+    return out
+
+
+def write_local_yaml(repo: Path, data: Path, overrides: dict | None = None) -> dict:
+    """config/local.yaml of the cloud; `overrides` (T5, a test job's «config»): the settings a proof of concept tries
+    on top, for that run only (e.g. {"hwaccel": "cuda"} or {"inference_preference": ["tensorrt", "cuda", "cpu"]})."""
     pc = data / "pc" / "local.yaml"
     pc_local = yaml.safe_load(pc.read_text(encoding="utf-8-sig")) if pc.exists() else {}
-    cfg = local_yaml(data, pc_local or {})
+    cfg = merged(local_yaml(data, pc_local or {}), overrides)
     (repo / "config" / "local.yaml").write_text(yaml.safe_dump(cfg, allow_unicode=True, sort_keys=False),
                                                 encoding="utf-8")
     return cfg

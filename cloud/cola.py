@@ -162,6 +162,8 @@ def check_queue(jobs: list[dict]) -> list[str]:
             bad.append(f"{jid}: falta el partido")
         if j.get("accion") == "medir" and not j.get("prueba"):
             bad.append(f"{jid}: falta la prueba de concepto («prueba»)")
+        if "config" in j and (not isinstance(j["config"], dict) or j.get("accion") != "prueba"):
+            bad.append(f"{jid}: «config» es un diccionario de ajustes y solo vale para una prueba")
         if j.get("accion") == "comparar" and not (j.get("a") and j.get("b")):
             bad.append(f"{jid}: comparar necesita «a» y «b» (dos trabajos de la cola o dos carpetas del volumen)")
         if j.get("donde", "cualquiera") not in ("cualquiera", *SOURCES):
@@ -235,7 +237,7 @@ def plan(jobs: list[dict], state: dict, spend: dict, sources: dict, now: float,
         for src in SOURCES:
             if where not in ("cualquiera", src):
                 continue
-            if src == "modal" and j["accion"] == "medir":
+            if src == "modal" and (j["accion"] == "medir" or j.get("config")):
                 why.append("Modal: las pruebas de concepto van en Kaggle por ahora")
                 continue
             if src == "modal":
@@ -389,6 +391,8 @@ def kaggle_launch(job: dict) -> bool:
              if job["accion"] == "prueba" else
              ["--salida-remota", run_path(job, "kaggle").rsplit("/", 1)[0], "--prueba", job.get("prueba", "")]
              if job["accion"] == "medir" else [])
+    if job.get("config"):                            # T5: a test of other settings (proof of concept on the whole clip)
+        extra += ["--config", json.dumps(job["config"], ensure_ascii=False)]
     for args in (["clave"], ["lanzar", "--accion", job["accion"], "--partido", job.get("partido", ""),
                              "--commit", os.environ.get("GITHUB_SHA", ""), "--slug", notebook_slug(job["id"]), *extra]):
         r = _kaggle(args)
