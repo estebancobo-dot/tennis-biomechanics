@@ -191,6 +191,39 @@ def test_target_with_her_number_guide_and_glossary(tmp_path):
     assert terms[0] >= 20 and terms[1] > 0
 
 
+def _first_sentence(t: str) -> str:
+    """lShort of the report: the first sentence (up to «.» or «:») when it says something, never inside a parenthesis."""
+    import re
+    for m in re.finditer(r"[.:](?=\s|$)", t):
+        h = t[:m.end()]
+        if h.count("(") == h.count(")"):
+            return h[:-1] + "." if len(h) > 25 else t
+    return t
+
+
+def test_every_lesson_key_has_a_one_line_cue():
+    """R39 (14-11): «una línea de Cómo» (design §1.5): every key the lesson can show has a cue of at most 12 words (its
+    own short cue or the first sentence of the whole one, which stays in «Más»); the fixed text of any 3 keys of a phase
+    leaves room for her values (the audit allows 120 words of keys; on the real report the armado had 124)."""
+    from tennisbio.learn import LESSON_CUE, LESSON_CUE_MAX_WORDS, content
+
+    c = content()
+    by = {p["key"]: p for ph in c["phases"] for p in ph["checkpoints"]}
+    assert set(LESSON_CUE) <= set(by) and c["lesson_cue"] == LESSON_CUE
+    assert _first_sentence("Prepara como ella (arriba: compacta o amplia) y sin pararte: la raqueta no se queda.") \
+        == "Prepara como ella (arriba: compacta o amplia) y sin pararte."
+    for ph, lesson in c["lesson"].items():
+        fixed = []
+        for k in lesson["keys"]:
+            if k not in by:
+                continue
+            cue = LESSON_CUE.get(k) or _first_sentence(by[k]["cue"])
+            assert len(cue.split()) <= LESSON_CUE_MAX_WORDS, (k, cue)
+            unit = "" if k.startswith("class.") else by[k]["read"].split(" (")[0]
+            fixed.append(len(" ".join(["1", by[k]["label"], unit, "Cómo:", cue]).split()))
+        assert sum(sorted(fixed, reverse=True)[:3]) <= 90, (ph, fixed)
+
+
 def test_guide_keys_are_checkpoints_with_targets():
     """The keys of a forehand guide that we already measured are taught in «Cópiala», each with her
     number as a target (turn before the net, hand and elbow at the loaded position, contact against the

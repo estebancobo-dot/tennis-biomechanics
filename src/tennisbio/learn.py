@@ -729,6 +729,42 @@ GLOSSARY = [
 # value of hers that can be trusted in the chosen strokes. mark = what is drawn on the video:
 # hand (shoulder line, hand and racket head), lines (shoulder and hip lines), heights (head and hips
 # against the ready position), base (feet distance on the court), skel (the skeleton only).
+# 14-11 (R39): the lesson's «Cómo» in one line (design §1.5: «una línea de Cómo»), at most 12 words; the whole cue
+# stays in «Más» and in every other screen. Before, the first sentence of the cue (up to 25 words) made up to 124 words
+# of keys in a phase (the audit allows 120).
+LESSON_CUE = {
+    "footwork.split_landing_vs_opp_s": "Aterriza justo cuando golpea la rival.",
+    "ready.hip_height": "Rodillas flexionadas y peso delante, listo para salir.",
+    "stroke.takeback_vs_net": "Empieza a girar en cuanto sepas que es derecha.",
+    "takeback.hands_apart": "Empieza a girar con la mano libre en la raqueta.",
+    "takeback.shoulder_turn": "Gira hombros y tronco juntos, como un bloque.",
+    "class.takeback": "Prepara con su forma (la de arriba), sin pararte atrás.",
+    "stroke.takeback_vs_bounce": "Empieza a girar antes de que la bola bote.",
+    "loaded.elbow_non": "Brazo libre casi estirado, señalando la bola.",
+    "loaded.com_over_feet": "Al armar, peso sobre la pierna del lado de la raqueta.",
+    "loaded.wrist_dom_vs_shoulder": "En el armado, la mano como ella, no sobre la cabeza.",
+    "stroke.wrist_drop": "Deja caer la raqueta por debajo de la bola.",
+    "stroke.acceleration_vs_bounce": "Acelera cuando la bola sube tras botar.",
+    "stroke.swing_low_to_high": "Sube la raqueta de abajo arriba a través de la bola.",
+    "stroke.racket_lag_deg": "Deja la raqueta atrás mientras el brazo va hacia delante.",
+    "impact.wrist_dom_lateral": "Deja entre el cuerpo y la bola la distancia que deja ella.",
+    "impact.wrist_dom_vs_hip": "Golpea entre la cintura y el pecho.",
+    "impact.elbow_dom": "Golpea con el brazo como ella: recto o flexionado, siempre igual.",
+    "stroke.weight_shift": "Pasa el peso del pie de atrás al de delante.",
+    "stroke.head_motion_cm": "Cabeza quieta, mirando el impacto hasta después de golpear.",
+    "stroke.contact_vs_top": "Golpea en el momento del bote en que golpea ella.",
+    "impact.base_court_m": "Pies a la distancia a la que los tiene ella.",
+    "stroke.swing_rise_after": "Atraviesa la bola: la raqueta sigue subiendo y hacia delante.",
+    "class.finish": "Termina como ella en esa situación.",
+    "finish.wrist_dom_vs_shoulder": "Termina con la mano a la altura de ella.",
+    "class.finish_trunk": "Termina con el tronco girado como ella en ese golpe.",
+    "class.catch_racket": "Si ella lo hace, recoge la raqueta con la mano libre.",
+    "footwork.recovery_to_centre_m": "Vuelve al centro antes de que la bola llegue a la rival.",
+    "class.recovery_first_step": "Lejos del centro, paso cruzado; cerca, pasos laterales.",
+    "stroke.last_plant_vs_bounce": "Llega pronto: el último pie, firme cuando bota la bola.",
+}
+LESSON_CUE_MAX_WORDS = 12
+
 LESSON = {
     "ready": ("base", ["footwork.split_landing_vs_opp_s", "class.ready_hands", "ready.hip_height", "ready.base_width"]),
     "takeback": ("lines", ["stroke.takeback_vs_net", "takeback.hands_apart", "stroke.takeback_vs_first_step", "takeback.shoulder_turn", "class.takeback", "stroke.takeback_vs_bounce"]),
@@ -857,7 +893,7 @@ def content() -> dict:
             "symptoms": [{"s": sy, "why": w, "keys": k, **{x: [list(t) for t in v] if isinstance(v, list) else v
                                                           for x, v in SYMPTOM_EXTRAS.get(sy, {}).items()}}
                          for sy, w, k in SYMPTOMS], "symptoms_source": SYMPTOMS_SOURCE, "errors_min": ERRORS_MIN,
-            "lesson": {k: {"mark": m, "keys": ks} for k, (m, ks) in LESSON.items()}, "checks": CHECKS,
+            "lesson": {k: {"mark": m, "keys": ks} for k, (m, ks) in LESSON.items()}, "lesson_cue": LESSON_CUE, "checks": CHECKS,
             "focus_check": FOCUS_CHECK, "why": _why()}
 
 

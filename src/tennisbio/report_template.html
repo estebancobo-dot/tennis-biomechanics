@@ -2743,7 +2743,17 @@ function lTimeOf(s, id) {
 // her value said simply: the median with its unit (the middle half stays in the tooltip)
 const lVal = (st, c) => isN(st.med) ? `${fmt(st.med, c.dec)}${c.unit === "°" ? "°" : c.unit ? " " + c.unit : ""}` : st.txt.replace(/<[^>]+>/g, "").split(" · ").slice(0, 2).join(" · ");
 // the first sentence of a cue (the rest stays one click away): few words per key (cognitive load)
-const lShort = t => { const m = String(t).match(/^.*?[.:](?=\s|$)/); return m && m[0].length > 25 ? m[0].replace(/:$/, ".") : t; };
+// the first sentence (up to «.» or «:») of a cue, if it says something (> 25 characters); never inside a parenthesis
+// (14-11: «Prepara con la forma que usa ella (arriba: compacta…» was cut at «(arriba.»)
+const lShort = t => { t = String(t); const re = /[.:](?=\s|$)/g; let m;
+  while ((m = re.exec(t))) { const h = t.slice(0, m.index + 1);
+    if ((h.match(/\(/g) || []).length === (h.match(/\)/g) || []).length) return h.length > 25 ? h.replace(/:$/, ".") : t; }
+  return t; };
+// the lesson's «Cómo» in one line (design §1.5): its own short cue when it has one (learn.LESSON_CUE), else the first
+// sentence; the whole cue stays in «Más»
+// (a class key shows no unit text: its value already names its classes, «de frente a la red 60 %…»; the text stays in
+// the tooltip)
+const lCue = c => (LEARN.lesson_cue || {})[c.key] || lShort(c.cue);
 const lStage = v => v === true ? 4 : Number.isInteger(v) ? Math.max(0, Math.min(4, v)) : 0;
 function lDone() { try { return JSON.parse(localStorage.getItem("tb-done") || "{}") || {}; } catch (e) { return {}; } }
 // her value of a key by ball speed, shown only when the levels differ beyond her spread and the measuring error
@@ -2816,10 +2826,10 @@ function renderLesson(set) {
   const conv = c => A_UH && ["cm", "m", "%"].includes(c.unit);
   document.getElementById("a-l-keys").innerHTML = keys.length ? keys.map(({ c, st }, i) =>
     `<div class="lkey" data-key="${c.key}"><h4><span class="ln">${i + 1}</span><span>${gloss(c.label)}</span></h4>`
-    + `<div class="lh" title="${c.read} · ${st.txt.replace(/<[^>]+>/g, "").replace(/"/g, "")}">Ella: <b>${lVal(st, c)}</b> <span class="dim3">${c.read.split(" (")[0]}</span> ${st.n >= A_MIN ? `<span class="badge firm">${st.n} golpes</span>` : `<span class="badge prov">${st.n} golpe${st.n > 1 ? "s" : ""}</span>`}${st.warn || ""}</div>`
+    + `<div class="lh" title="${c.read} · ${st.txt.replace(/<[^>]+>/g, "").replace(/"/g, "")}">Ella: <b>${lVal(st, c)}</b> ${c.key.startsWith("class.") ? "" : `<span class="dim3">${c.read.split(" (")[0]}</span>`} ${st.n >= A_MIN ? `<span class="badge firm">${st.n} golpes</span>` : `<span class="badge prov">${st.n} golpe${st.n > 1 ? "s" : ""}</span>`}${st.warn || ""}</div>`
     + (conv(c) ? aTarget(st, c) : "") + lBySpeed(set, c)
-    + `<div class="lhow"><div><span class="l">Cómo:</span> ${gloss(lShort(c.cue))}</div></div>`
-    + `<details class="lmore"><summary title="el porqué, el error típico, el ejercicio y cómo comprobarlo">Más</summary><div class="lhow">${(LEARN.why || {})[c.key] ? `<div><span class="l">Por qué:</span> ${LEARN.why[c.key][0]} <span class="dim3">(${LEARN.why[c.key][1]})</span></div>` : ""}${lShort(c.cue) !== c.cue ? `<div><span class="l">Cómo, entero:</span> ${gloss(c.cue)}</div>` : ""}<div><span class="l">Error típico:</span> ${c.mistake}</div><div><span class="l">Ejercicio:</span> ${c.drill}</div>${(LEARN.checks || {})[c.key] ? `<div><span class="l">Cómo comprobarlo:</span> ${LEARN.checks[c.key]}</div>` : ""}</div></details></div>`).join("")
+    + `<div class="lhow"><div><span class="l">Cómo:</span> ${gloss(lCue(c))}</div></div>`
+    + `<details class="lmore"><summary title="el porqué, el error típico, el ejercicio y cómo comprobarlo">Más</summary><div class="lhow">${(LEARN.why || {})[c.key] ? `<div><span class="l">Por qué:</span> ${LEARN.why[c.key][0]} <span class="dim3">(${LEARN.why[c.key][1]})</span></div>` : ""}${lCue(c) !== c.cue ? `<div><span class="l">Cómo, entero:</span> ${gloss(c.cue)}</div>` : ""}<div><span class="l">Error típico:</span> ${c.mistake}</div><div><span class="l">Ejercicio:</span> ${c.drill}</div>${(LEARN.checks || {})[c.key] ? `<div><span class="l">Cómo comprobarlo:</span> ${LEARN.checks[c.key]}</div>` : ""}</div></details></div>`).join("")
     : `<p class="dim">Todavía no hay valores suyos fiables de esta fase en estos golpes: ${missing.slice(0, 3).map(({ c, st }) => `${c.label.toLowerCase()} (${st.why || aWhyMissing(set, c)})`).join("; ")}.</p>`;
   // the strings in every phase (requirement 4): where they face in her strokes, honest where it is an estimate
   const fk = lPh === "feet" ? null : lPh, fv = fk ? set.map(s => (s.face || {})[fk]).filter(Boolean) : [];
