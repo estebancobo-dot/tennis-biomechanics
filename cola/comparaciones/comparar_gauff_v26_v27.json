@@ -1,0 +1,279 @@
+{
+ "a": "/kaggle_pruebas/prueba_gauff_v26/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+ "b": "/kaggle_pruebas/prueba_gauff_v27_pose16/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+ "veredicto": "distinta",
+ "etapas_iguales": [
+  "audio",
+  "candidates",
+  "court",
+  "fine_opponent",
+  "identity",
+  "players",
+  "probe",
+  "scenes",
+  "score",
+  "spotting",
+  "views",
+  "views_link"
+ ],
+ "etapas_distintas": [
+  "fine",
+  "fine_doubtful",
+  "slowmo_fine",
+  "view_clips"
+ ],
+ "etapas_sin_comparar": [],
+ "golpes": {
+  "strokes.json": {
+   "a": 28,
+   "b": 28,
+   "pares": 28,
+   "solo_a": [],
+   "solo_b": [],
+   "tipo_distinto": [
+    439.79
+   ],
+   "medidas_distintas": {
+    "technique.pose.loaded": 22,
+    "technique.pose.ready": 22,
+    "technique.pose.extension": 22,
+    "technique.pose.finish": 22,
+    "technique.pose.impact": 22,
+    "technique.pose.acceleration": 22,
+    "racket_track": 22,
+    "technique.pose.takeback": 21,
+    "technique.curves.racket": 21,
+    "technique.pose.recovery": 21,
+    "technique.stroke.shoulder_brake": 14,
+    "technique.phases.recovery.hip_turn": 11,
+    "technique.footwork.steps": 11,
+    "technique.phases.takeback.arm_extension": 10,
+    "technique.jitter.impact.face_yaw": 9,
+    "face.extension.yaw_deg": 9,
+    "face.acceleration.yaw_deg": 8,
+    "face.loaded.tilt_deg": 8,
+    "face.loaded.yaw_deg": 8,
+    "face.recovery.yaw_deg": 8
+   },
+   "saltos": [
+    {
+     "t": 400.16,
+     "medida": "metrics.non_elbow_impact_deg",
+     "a": 79.5,
+     "b": 178.5,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 402.2,
+     "medida": "face.recovery.yaw_deg",
+     "a": -110.1,
+     "b": 129.6,
+     "ambigua_a": false,
+     "ambigua_b": false,
+     "mano_a": false,
+     "mano_b": false
+    },
+    {
+     "t": 438.33,
+     "medida": "technique.phases.ball_bounce.face_yaw",
+     "a": -83.6,
+     "b": 73.0,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 439.79,
+     "medida": "technique.phases.recovery.face_tilt",
+     "a": -68.7,
+     "b": 44.8,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 439.79,
+     "medida": "face.acceleration.yaw_deg",
+     "a": 75.3,
+     "b": -96.6,
+     "ambigua_a": true,
+     "ambigua_b": true,
+     "mano_a": false,
+     "mano_b": false
+    },
+    {
+     "t": 439.79,
+     "medida": "technique.phases.recovery.face_yaw",
+     "a": 96.5,
+     "b": -147.5,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 439.79,
+     "medida": "technique.phases.acceleration.face_yaw",
+     "a": 75.3,
+     "b": -96.6,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 439.79,
+     "medida": "face.loaded.yaw_deg",
+     "a": 76.9,
+     "b": -107.2,
+     "ambigua_a": true,
+     "ambigua_b": true,
+     "mano_a": false,
+     "mano_b": false
+    },
+    {
+     "t": 439.79,
+     "medida": "face.recovery.yaw_deg",
+     "a": 96.5,
+     "b": -147.5,
+     "ambigua_a": false,
+     "ambigua_b": false,
+     "mano_a": false,
+     "mano_b": false
+    },
+    {
+     "t": 439.79,
+     "medida": "face.recovery.tilt_deg",
+     "a": -68.7,
+     "b": 44.8,
+     "ambigua_a": false,
+     "ambigua_b": false,
+     "mano_a": false,
+     "mano_b": false
+    },
+    {
+     "t": 439.79,
+     "medida": "technique.phases.loaded.face_yaw",
+     "a": 76.9,
+     "b": -107.2,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    }
+   ],
+   "golpes_con_saltos": 4,
+   "mayor_diferencia": {
+    "face.loaded.yaw_deg": 175.9,
+    "technique.phases.loaded.face_yaw": 175.9,
+    "face.acceleration.yaw_deg": 171.9,
+    "technique.phases.acceleration.face_yaw": 171.9,
+    "technique.phases.ball_bounce.face_yaw": 156.6,
+    "face.recovery.yaw_deg": 120.3,
+    "technique.phases.recovery.face_yaw": 116.0,
+    "face.recovery.tilt_deg": 113.5,
+    "technique.phases.recovery.face_tilt": 113.5,
+    "metrics.non_elbow_impact_deg": 98.9787,
+    "technique.phases.impact.stance_angle": 86.1,
+    "stance_angle_deg": 86.1,
+    "technique.phases.loaded.face_tilt": 66.9,
+    "face.loaded.tilt_deg": 66.9,
+    "face.ready.tilt_deg": 62.3,
+    "face.acceleration.tilt_deg": 60.5,
+    "technique.phases.acceleration.face_tilt": 60.5,
+    "technique.phases.loaded.stance_angle": 49.0,
+    "racket.ready.elevation_deg": 43.2,
+    "metrics.non_arm_extension_loaded_deg": 40.9682
+   },
+   "temblor": {
+    "n": 5310,
+    "cociente_mediano_b_a": 1.0,
+    "b_tiembla_menos": 0.325,
+    "b_tiembla_mas": 0.303
+   }
+  },
+  "strokes_opponent.json": {
+   "a": 0,
+   "b": 0,
+   "pares": 0,
+   "solo_a": [],
+   "solo_b": [],
+   "tipo_distinto": [],
+   "medidas_distintas": {},
+   "saltos": [],
+   "golpes_con_saltos": 0,
+   "mayor_diferencia": {},
+   "temblor": {
+    "n": 0
+   }
+  },
+  "strokes_doubtful.json": {
+   "a": 1,
+   "b": 1,
+   "pares": 1,
+   "solo_a": [],
+   "solo_b": [],
+   "tipo_distinto": [],
+   "medidas_distintas": {
+    "technique.jitter.loaded.racket_tip_height": 1,
+    "technique.phases.loaded.x_factor": 1,
+    "technique.phases.loaded.stance_angle": 1,
+    "technique.jitter.loaded.x_factor": 1,
+    "technique.phases.loaded.hip_turn": 1,
+    "technique.pose.loaded": 1,
+    "technique.curves.hand": 1,
+    "technique.pose.ready": 1,
+    "technique.phases.loaded.wrist_non_height": 1,
+    "technique.phases.loaded.face_tilt": 1,
+    "technique.jitter.loaded.racket_head_lateral": 1,
+    "technique.jitter.loaded.wrist_non_height": 1,
+    "technique.jitter.loaded.front_foot_angle_deg": 1,
+    "technique.phases.ready.hip_tilt": 1,
+    "technique.phases.loaded.knee_non": 1,
+    "technique.jitter.loaded.elbow_non": 1,
+    "technique.stroke.hip_drop_cm": 1,
+    "metrics.non_arm_extension_loaded_deg": 1,
+    "face.loaded.tilt_deg": 1,
+    "technique.classes.takeback_face": 1
+   },
+   "saltos": [],
+   "golpes_con_saltos": 0,
+   "mayor_diferencia": {
+    "technique.stroke.racket_lag_deg": 53.7,
+    "technique.jitter.loaded.racket_forearm": 23.8,
+    "technique.phases.loaded.face_tilt": 17.9,
+    "face.loaded.tilt_deg": 17.9,
+    "technique.jitter.loaded.face_tilt": 9.95,
+    "technique.jitter.loaded.racket_head_lateral": 9.3,
+    "technique.jitter.loaded.racket_head_vs_wrist": 8.75,
+    "technique.jitter.loaded.racket_tip_vs_head": 7.95,
+    "technique.jitter.loaded.racket_tip_height": 7.75,
+    "technique.jitter.loaded.racket_angle": 7.45,
+    "technique.phases.loaded.knee_non": 5.6,
+    "technique.stroke.shoulder_brake": 5.0,
+    "face.loaded.yaw_deg": 4.5,
+    "technique.phases.loaded.face_yaw": 4.5,
+    "technique.phases.loaded.hip_turn": 4.1,
+    "metrics.hip_turn_loaded_deg": 4.0717,
+    "technique.phases.loaded.x_factor": 3.7,
+    "metrics.x_factor_deg": 3.6837,
+    "technique.phases.loaded.stance_angle": 3.5,
+    "technique.phases.loaded.shoulder_abd_non": 3.3
+   },
+   "temblor": {
+    "n": 197,
+    "cociente_mediano_b_a": 1.0,
+    "b_tiembla_menos": 0.335,
+    "b_tiembla_mas": 0.396
+   }
+  }
+ },
+ "ficheros_de_un_solo_lado": [],
+ "no_leidos": {},
+ "experimento": true
+}

@@ -111,18 +111,22 @@
      "horas": 0.45
     },
     "prueba_gauff_v27_pose16": {
-     "estimado_h": 1.0
+     "estimado_h": 1.0,
+     "horas": 0.41
     },
     "prueba_gauff_v28_ocrgpu": {
+     "estimado_h": 1.0
+    },
+    "prueba_gauff_v29_b": {
      "estimado_h": 1.0
     }
    }
   }
  },
  "kaggle_real": {
-  "usadas_h": 23.52,
+  "usadas_h": 23.59,
   "total_h": 30.0,
   "renueva": "2026-11-21 00:00:00",
-  "ts": 1794758368.7951682
+  "ts": 1794758671.3473175
  }
 }
