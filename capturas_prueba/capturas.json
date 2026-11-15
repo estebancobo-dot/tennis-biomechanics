@@ -3,9 +3,9 @@
  "screens": [
   {
    "title": "Cópiala (Aprende su derecha, con su patrón típico)",
-   "text_chars": 3105,
+   "text_chars": 2103,
    "charts": 21,
-   "videos": 15,
+   "videos": 10,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
@@ -32,7 +32,7 @@
    "title": "Sus golpes (Videoteca y pista)",
    "text_chars": 8866,
    "charts": 1,
-   "videos": 16,
+   "videos": 10,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
@@ -57,9 +57,9 @@
   },
   {
    "title": "Análisis de golpe",
-   "text_chars": 6151,
+   "text_chars": 5703,
    "charts": 33,
-   "videos": 17,
+   "videos": 11,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
@@ -85,9 +85,9 @@
   },
   {
    "title": "Comparar dos golpes",
-   "text_chars": 16472,
+   "text_chars": 16469,
    "charts": 2,
-   "videos": 16,
+   "videos": 10,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
@@ -112,9 +112,9 @@
   },
   {
    "title": "Conclusiones (Panel y Comparativas)",
-   "text_chars": 3619,
+   "text_chars": 3515,
    "charts": 20,
-   "videos": 16,
+   "videos": 10,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
@@ -139,13 +139,13 @@
   },
   {
    "title": "Tabla de golpes (Explorador)",
-   "text_chars": 4815,
+   "text_chars": 4719,
    "charts": 0,
-   "videos": 16,
+   "videos": 10,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
-   "dashes": 23,
+   "dashes": 48,
    "ball_moments": 0,
    "feet_cycle": 0,
    "ball_measures": 0,
@@ -168,7 +168,7 @@
    "title": "Vista lateral (entreno)",
    "text_chars": 7620,
    "charts": 0,
-   "videos": 16,
+   "videos": 10,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
@@ -193,9 +193,9 @@
   },
   {
    "title": "Fiabilidad de las medidas",
-   "text_chars": 2541,
+   "text_chars": 2609,
    "charts": 0,
-   "videos": 16,
+   "videos": 10,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
@@ -212,7 +212,7 @@
    "intro": true,
    "external_links": 0,
    "tables": 0,
-   "sentences": 81,
+   "sentences": 80,
    "many_lines": 0,
    "tab": "fiabilidad",
    "file": "pantalla_8_fiabilidad.jpg",
@@ -220,9 +220,9 @@
   },
   {
    "title": "Datos del análisis",
-   "text_chars": 2155,
+   "text_chars": 2170,
    "charts": 0,
-   "videos": 16,
+   "videos": 10,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
@@ -329,7 +329,7 @@
   "checkpoints_checked": 184500,
   "failures": [],
   "rows_all": 90,
-  "valued_all": 87,
+  "valued_all": 86,
   "targeted_all": 54,
   "glossed_all": 76,
   "signature": 3,
@@ -338,24 +338,22 @@
    "exact": 0,
    "near": 7,
    "rows": 90,
-   "valued": 87,
+   "valued": 84,
    "bad": []
   }
  },
  "entry": {
   "entry": {
-   "vid_top": 805,
-   "vid_bottom": 1159,
-   "h2": 2,
-   "words": 609,
+   "vid_top": 336,
+   "vid_bottom": 690,
+   "h2": 1,
+   "words": 403,
    "buttons": 25,
    "height": 900
   },
   "wide": {},
   "file_names": {},
-  "failures": [
-   "el vídeo de la lección acaba en y=1159 (más abajo que la primera pantalla, 900)"
-  ]
+  "failures": []
  },
  "lesson": {
   "phases": [
@@ -365,7 +363,21 @@
     "valued": 3,
     "checked": 3,
     "drilled": 3,
-    "words": 99,
+    "words": 81,
+    "key_words": [
+     [
+      "footwork.split_landing_vs_opp_s",
+      27
+     ],
+     [
+      "class.ready_hands",
+      25
+     ],
+     [
+      "ready.hip_height",
+      29
+     ]
+    ],
     "focus_words": 12,
     "focus_body": false,
     "practice": true,
@@ -374,7 +386,7 @@
     "reason": "",
     "reps": 67,
     "video": true,
-    "height": 1115
+    "height": 1094
    },
    {
     "phase": "takeback",
@@ -382,7 +394,21 @@
     "valued": 3,
     "checked": 3,
     "drilled": 3,
-    "words": 118,
+    "words": 99,
+    "key_words": [
+     [
+      "stroke.takeback_vs_net",
+      37
+     ],
+     [
+      "takeback.hands_apart",
+      39
+     ],
+     [
+      "stroke.takeback_vs_first_step",
+      23
+     ]
+    ],
     "focus_words": 18,
     "focus_body": false,
     "practice": true,
@@ -391,7 +417,7 @@
     "reason": "",
     "reps": 50,
     "video": true,
-    "height": 1155
+    "height": 1136
    },
    {
     "phase": "loaded",
@@ -399,7 +425,21 @@
     "valued": 3,
     "checked": 3,
     "drilled": 3,
-    "words": 78,
+    "words": 70,
+    "key_words": [
+     [
+      "stroke.loaded_vs_bounce",
+      24
+     ],
+     [
+      "loaded.shoulder_turn",
+      24
+     ],
+     [
+      "loaded.elbow_non",
+      22
+     ]
+    ],
     "focus_words": 14,
     "focus_body": false,
     "practice": true,
@@ -416,7 +456,21 @@
     "valued": 3,
     "checked": 3,
     "drilled": 3,
-    "words": 93,
+    "words": 87,
+    "key_words": [
+     [
+      "stroke.wrist_drop",
+      33
+     ],
+     [
+      "stroke.shoulders_open_first",
+      27
+     ],
+     [
+      "stroke.hip_rise",
+      27
+     ]
+    ],
     "focus_words": 17,
     "focus_body": false,
     "practice": true,
@@ -433,7 +487,21 @@
     "valued": 3,
     "checked": 3,
     "drilled": 3,
-    "words": 107,
+    "words": 85,
+    "key_words": [
+     [
+      "impact.wrist_dom_lateral",
+      35
+     ],
+     [
+      "impact.wrist_dom_vs_hip",
+      31
+     ],
+     [
+      "impact.elbow_dom",
+      19
+     ]
+    ],
     "focus_words": 17,
     "focus_body": false,
     "practice": true,
@@ -442,7 +510,7 @@
     "reason": "",
     "reps": 67,
     "video": true,
-    "height": 1171
+    "height": 1152
    },
    {
     "phase": "extension",
@@ -450,7 +518,21 @@
     "valued": 3,
     "checked": 3,
     "drilled": 3,
-    "words": 109,
+    "words": 99,
+    "key_words": [
+     [
+      "extension.arm_extension",
+      29
+     ],
+     [
+      "stroke.swing_rise_after",
+      36
+     ],
+     [
+      "extension.wrist_non_lateral",
+      34
+     ]
+    ],
     "focus_words": 14,
     "focus_body": false,
     "practice": true,
@@ -459,7 +541,7 @@
     "reason": "",
     "reps": 67,
     "video": true,
-    "height": 1211
+    "height": 1192
    },
    {
     "phase": "finish",
@@ -467,7 +549,21 @@
     "valued": 3,
     "checked": 3,
     "drilled": 3,
-    "words": 112,
+    "words": 88,
+    "key_words": [
+     [
+      "class.finish",
+      22
+     ],
+     [
+      "finish.wrist_dom_vs_shoulder",
+      32
+     ],
+     [
+      "finish.head_over_base",
+      34
+     ]
+    ],
     "focus_words": 20,
     "focus_body": false,
     "practice": true,
@@ -476,7 +572,7 @@
     "reason": "",
     "reps": 52,
     "video": true,
-    "height": 1176
+    "height": 1135
    },
    {
     "phase": "recovery",
@@ -484,7 +580,21 @@
     "valued": 3,
     "checked": 3,
     "drilled": 3,
-    "words": 109,
+    "words": 92,
+    "key_words": [
+     [
+      "footwork.recovery_start_s",
+      29
+     ],
+     [
+      "footwork.recovery_to_centre_m",
+      41
+     ],
+     [
+      "class.recovery_first_step",
+      22
+     ]
+    ],
     "focus_words": 15,
     "focus_body": false,
     "practice": true,
@@ -493,7 +603,7 @@
     "reason": "",
     "reps": 52,
     "video": true,
-    "height": 1134
+    "height": 1115
    },
    {
     "phase": "feet",
@@ -501,7 +611,21 @@
     "valued": 3,
     "checked": 3,
     "drilled": 3,
-    "words": 91,
+    "words": 84,
+    "key_words": [
+     [
+      "footwork.first_step_s",
+      29
+     ],
+     [
+      "class.stance_impact",
+      25
+     ],
+     [
+      "footwork.adjustment_steps",
+      30
+     ]
+    ],
     "focus_words": 17,
     "focus_body": false,
     "practice": true,
@@ -510,7 +634,7 @@
     "reason": "",
     "reps": 53,
     "video": true,
-    "height": 1126
+    "height": 1105
    }
   ],
   "failures": [],

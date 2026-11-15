@@ -1,26 +1,51 @@
-﻿commit: e9255ef
-inicio: 2026-11-13T20:34:49
-fin: 2026-11-13T20:52:04
-codigo: 0
+﻿commit: 0b33182
+inicio: 2026-11-15T11:41:35
+fin: 2026-11-15T11:54:02
+codigo: 1
 ...........................................................s.......ss..s [  5%]
-ss...................................................................... [ 11%]
-........................................................................ [ 17%]
-........................................................................ [ 23%]
-........................................................................ [ 29%]
-........................................................................ [ 34%]
-........................................................................ [ 40%]
-........................................................................ [ 46%]
-............................................................ssss.sss.sss [ 52%]
-ss.ss................................................................... [ 58%]
-.................s..........s........................................... [ 64%]
+ss...................................................................... [ 10%]
+........................................................................ [ 16%]
+........................................................................ [ 21%]
+........................................................................ [ 26%]
+........................................................................ [ 32%]
+........................................................................ [ 37%]
+........................................................................ [ 42%]
+........................................................................ [ 48%]
+...........................................s............................ [ 53%]
+..ssss.sss..sssss.ss.................................................... [ 58%]
+................................ss..........s.......F................... [ 64%]
 ........................................................................ [ 69%]
 ........................................................................ [ 75%]
-........................................................................ [ 81%]
-........................................................................ [ 87%]
-...............ssssss................................................... [ 93%]
-.........................................s.............................. [ 99%]
-............                                                             [100%]
+........................................................................ [ 80%]
+........................................................................ [ 85%]
+..................................................ssssss................ [ 91%]
+........................................................................ [ 96%]
+....s..........................................                          [100%]
+================================== FAILURES ===================================
+______________ test_a_match_run_samples_what_the_container_uses _______________
+
+    def test_a_match_run_samples_what_the_container_uses():
+        """13-11: GPU, CPU and memory every minute of a match, to size the container by what was measured (cost)."""
+        nube.sample_resources()                                         # the CPU % is between two samples
+        s = nube.sample_resources()
+>       assert {"t", "cpu_pct", "cores", "ram_gb"} <= set(s) and s["ram_gb"] > 0
+E       AssertionError: assert ({'cores', 'cp...'ram_gb', 't'} <= {'cores', 't'}
+E         
+E         Extra items in the left set:
+E         'cpu_pct'
+E         'ram_gb')
+
+tests\test_nube.py:349: AssertionError
 ============================== warnings summary ===============================
+tests/test_audit_base.py: 1 warning
+tests/test_cloud_checks.py: 1 warning
+tests/test_comparison_doc.py: 1 warning
+tests/test_faults.py: 3 warnings
+tests/test_no_hardcoded_player.py: 1 warning
+tests/test_no_unbounded_calls.py: 2 warnings
+tests/test_worker_hidden.py: 1 warning
+  <unknown>:20: DeprecationWarning: invalid escape sequence '\d'
+
 tests/test_body_scale.py::test_court_scale_without_any_face_seen
 tests/test_fine_ranges.py::test_pose_ranges_fall_back_to_the_whole_window_when_her_height_is_not_seen
   C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
@@ -29,14 +54,6 @@ tests/test_fine_ranges.py::test_pose_ranges_fall_back_to_the_whole_window_when_h
 tests/test_far_measure.py: 17 warnings
   C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
     feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
-
-tests/test_faults.py::test_no_caught_error_is_left_unclassified
-tests/test_faults.py::test_the_catalogue_and_the_code_agree
-tests/test_no_hardcoded_player.py::test_no_player_name_in_the_code
-tests/test_no_unbounded_calls.py::test_every_subprocess_run_has_a_timeout
-tests/test_no_unbounded_calls.py::test_long_lived_processes_are_the_known_watched_ones
-tests/test_worker_hidden.py::test_no_process_of_ours_is_started_detached
-  <unknown>:20: DeprecationWarning: invalid escape sequence '\d'
 
 tests/test_fine_ranges.py::test_pose_ranges_start_from_the_person_the_ball_leaves
   C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:85: RuntimeWarning: invalid value encountered in divide
@@ -47,4 +64,10 @@ tests/test_no_unbounded_calls.py::test_every_module_compiles
     _JS_SCREEN = """(tab) => {
 
 -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-1207 passed, 29 skipped, 27 warnings in 1018.09s (0:16:58)
+=========================== short test summary info ===========================
+FAILED tests/test_nube.py::test_a_match_run_samples_what_the_container_uses - AssertionError: assert ({'cores', 'cp...'ram_gb', 't'} <= {'cores', 't'}
+  
+  Extra items in the left set:
+  'cpu_pct'
+  'ram_gb')
+1 failed, 1311 passed, 31 skipped, 31 warnings in 742.80s (0:12:22)
