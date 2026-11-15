@@ -2,6 +2,8 @@
 TrackNetV3 (RacketVision's, what runs today), on RacketVision's annotated broadcast clips: per annotated frame, the
 ball found within `tol` px of the annotation (hit), found elsewhere or where the ball is not visible (false), or not
 found (miss); precision, recall and F1, and the time per frame. Read only: nothing of the analysis changes.
+The same measure as the PC's candidate bench (scripts/bench_candidates.py, «wasb»: F1 of the ball at 10 px on
+RacketVision's test clips; 07-11: WASB 0.863 against TrackNetV3 0.906, set aside); TOTNet was not in it.
 
 - TrackNetV3 at its own operating point (its threshold inside tennisbio.ball). TOTNet's threshold (the probability of
   its most likely pixel) is chosen on the validation clips (best F1) and then measured on the test clips.
