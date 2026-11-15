@@ -54,11 +54,11 @@ la auditoría las marcará «sin comprobación automática asignada».
 | Estado | Nº |
 |---|---|
 | HECHO | 122 |
-| PARCIAL | 143 |
+| PARCIAL | 144 |
 | FALTA | 23 |
 | NO MEDIBLE | 3 |
 | NO APLICA | 10 |
-| **Total** | **301** |
+| **Total** | **302** |
 
 **27-10:** filas 220-245 nuevas: todo lo pedido en el chat del 19-10 al 27-10 (releídos los mensajes) y lo que
 salió en la prueba de valor; ninguna fila borrada.
@@ -388,6 +388,7 @@ lateral (entreno)» · ≥12 = solo se muestra con 12 golpes o más (`model.MIN_
 | 299 | Preguntar en lenguaje natural sobre su derecha y sus partidos («¿por qué falla más la derecha con bola rápida?»), respondido solo con sus datos medidos y sus vídeos (hueco de la comparativa #257: IBM Match Chat en el US Open 2026, SportAI) (Comparativa, 15-11) | FALTA | — | — | — | Paquete P4. Sin inventar (requisito 3): cada respuesta cita sus golpes y su confianza; lo que no se mide dice «no medible desde la tele» |
 | 300 | Muñeco 3D del golpe que se gira para verlo desde cualquier lado (hueco de la comparativa #257: Sportsbox AI), marcado como estimación (2D desde una cámara) (Comparativa, 15-11) | FALTA | `pose/wholebody3d.py` (RTMW3D, ya calculado) | — | — | Paquete P4. Solo con el 3D que ya se calcula y su fiabilidad a la vista; nunca como medida |
 | 301 | «Los vídeos se suben desde el PC, no desde el móvil. Y la web se ve tanto en PC como en móvil, principalmente PC. Incluso la app de visualización puede ser solo de escritorio PC sin ser web si es mejor, y nada móvil» (Chat, 15-11) | PARCIAL | Decidido (15-11): **aplicación de escritorio en el PC**, sin web ni móvil. La interfaz de P0 (React + TypeScript) va en una ventana del PC (pywebview, WebView2). La subida desde el PC al volumen de Modal ya existe (`scripts/subir_nube.py`). El análisis sigue en la nube, por la cola. Motivos en `docs/n_web.md` | — | — | Lo cierra P0.5: la aplicación de escritorio con subida, clic, aprobación y vídeo local, probada en el PC |
+| 302 | «La maqueta no vale para nada: 0 profesional, 0 funciones válidas. ¿Has revisado todo lo que te he dicho o ha sido inventado? Está fija a un golpe y una jugadora, sin gestión completa de catálogos, jugadores, partidos, golpes, aprendizaje, usabilidad… ¿Has revisado el estado del arte a día de hoy, todas mis peticiones, los documentos internos y las tareas pendientes y futuras?» (Chat, 15-11) | PARCIAL | Reconocido: no se había revisado. Se rehace P0.1: `docs/p0_inventario.md` (las 301 peticiones por función, los documentos de diseño del 17-10, la aplicación y el visor de hoy, las maquetas anteriores y lo pendiente). Después, el estado del arte de verdad, el diseño completo de todas las pantallas y una maqueta genérica | — | — | Lo cierra la maqueta completa (gestión, lección, golpes, comparar, calidad…) que cubre cada fila del inventario, revisada por el usuario |
 | 269 | Estado y progreso: cuánto falta para lanzar los 6 partidos, qué hay en marcha y pendiente en la nube y en el PC (en serie o en paralelo), qué queda para cerrar la Base, por qué seguimos así y qué falló por la noche (Chat, 13-11) | HECHO | respuesta en el chat; `docs/estado_proyecto.md`, «Resumen de la noche (12-11 → 13-11)» y la tabla de tareas | — | — | Como #266, el estado vive en la tabla de tareas. |
 
 ## Lo más grave que falta (por impacto en «copiar su derecha»)

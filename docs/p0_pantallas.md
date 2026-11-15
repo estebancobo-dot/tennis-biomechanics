@@ -1,4 +1,6 @@
-# P0 · Mapa de pantallas, recorridos y sistema de diseño (P0.4, 15-11)
+# P0 · Mapa de pantallas, recorridos y sistema de diseño (P0.4, 15-11) — RETIRADO
+
+> **Retirado el 15-11 (#302).** Se hizo sin el inventario de lo pedido y contradecía el diseño vigente: 5 secciones frente a la aplicación de 8 pantallas (`aplicacion_local.md`) y el visor de 3 entradas (`diseno_definitivo.md`). Además, le faltaba la gestión. Se rehace después de `docs/p0_inventario.md` y del estado del arte de verdad. Lo de abajo queda como histórico.
 
 La aplicación nueva junta la aplicación de hoy (10 pantallas) y el informe (11 pantallas) en **5 secciones**. Cada
 una responde a una pregunta. **15-11 (#301): aplicación de escritorio en el PC**, a 1280-1920 px de ancho y con un
