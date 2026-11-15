@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "cloud"))
 
 import cola  # noqa: E402
-import peticiones as pt  # noqa: E402
+from tennisbio.infra import peticiones as pt  # noqa: E402
 
 NOW = 1_794_800_000.0
 M = "rybakina-ejemplo-r1-2026"

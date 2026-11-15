@@ -64,7 +64,11 @@ def ejemplo() -> dict:
         "players": [{"id": "ejemplo", "name": jug, "hand": "right", "backhand": "two_handed", "height_m": 1.8, "ficha": True}],
         "matches": partidos,
         "queue": {"head": "Última vuelta: ejemplo", "jobs": trabajos, "kaggle": {"used": 10.0, "total": 30.0},
-                  "modal": {"left": 20.0, "total": 30.0}},
+                  "modal": {"left": 20.0, "total": 30.0},
+                  # P0.5d: the queue's answer to the application (cola/app.json), made up
+                  "app": {"esperas": {partidos[2]["id"]: "falta el clic «¿Cuál es ella?» (cuando estén sus fotos)"},
+                          "errores": [["20261115-120000_alta_ejemplo.json", "el vídeo no es de un tipo conocido (ejemplo)"]],
+                          "pausa": None, "borrados": [], "hora": "ejemplo"}},
         "quality": {"total": {"score": 0.9, "ok": 90, "n": 100, "accepted": 20, "cells": 24, "unmeasured": 2},
                     "threshold": 0.8, "cells": [{"d": "Datos", "c": "Exactitud", "l": "nube", "score": None, "n": 0,
                                                  "ok": 0, "unmeasured": True, "accepted": False, "fail": [],

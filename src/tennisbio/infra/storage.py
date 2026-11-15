@@ -28,6 +28,10 @@ class Storage:
         """A file or a folder into local_dir, keeping its last name (remote /a/b → local_dir/b)."""
         raise NotImplementedError
 
+    def put_file(self, local: Path, remote: str) -> None:
+        """P0.5d: ONE file at the path given (a match's video as /videos/<match><ext>, whatever its name on the PC)."""
+        raise NotImplementedError
+
     def list(self, folder: str) -> list[str]:
         """P0.5d: the names of the files directly in a folder, sorted ([] when it is not there; no sub-folders)."""
         raise NotImplementedError
@@ -77,6 +81,13 @@ class LocalStorage(Storage):
         else:
             raise FileNotFoundError(remote)
 
+    def put_file(self, local: Path, remote: str) -> None:
+        dst = self._at(remote)
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        tmp = dst.with_name(dst.name + ".tmp")
+        shutil.copyfile(local, tmp)
+        tmp.replace(dst)
+
     def list(self, folder: str) -> list[str]:
         d = self._at(folder)
         return sorted(f.name for f in d.iterdir() if f.is_file() and not f.name.endswith(".tmp")) if d.is_dir() else []
@@ -106,6 +117,9 @@ def contract(storage: Storage, work: Path) -> None:
     out = work / "contrato_traido"
     storage.get("/contrato/r", out)
     assert (out / "r" / "a.json").read_text(encoding="utf-8") == '{"x": 2}' and (out / "r" / "sub" / "b.bin").exists()
+    storage.put_file(src / "sub" / "b.bin", "/contrato/r/otro_nombre.bin")
+    assert storage.read_bytes("/contrato/r/otro_nombre.bin") == b"\x00\x01"
+    assert storage.delete("/contrato/r/otro_nombre.bin")
     assert storage.list("/contrato/r") == ["a.json"] and storage.list("/contrato/nada") == []     # files only
     assert storage.delete("/contrato/r/a.json") and storage.read_bytes("/contrato/r/a.json") is None
     assert not storage.delete("/contrato/r/a.json") and storage.list("/contrato/r") == []

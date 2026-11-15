@@ -434,6 +434,11 @@ def main(argv: list[str]) -> int:
                     save()
                     last_save = time.time()
             rc = p.wait()
+            if rc == 0 and job["accion"] == "partido" and "identity" in (job.get("etapas") or []):
+                ph = subprocess.run([str(py), "-c", nube.CLICK_PHOTOS, str(out_dir), str(data / "videos" / src["video"])],
+                                    cwd=REPO, env=env_for(data), capture_output=True, text=True, timeout=1800)
+                est["fotos_clic"] = (ph.stdout.strip() or ph.stderr.strip())[-300:]   # P0.5d: for the application
+                lg.write(f"fotos del clic: {est['fotos_clic']}\n")
         stop.set()
         uploader.join(timeout=SYNC_S)                    # R44: a periodic upload in flight ends before the last one
         for attempt in range(3):                         # the last upload: everything not yet sent, retried

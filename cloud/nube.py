@@ -58,6 +58,13 @@ def library_dir(entry: dict, library: Path) -> Path:
     return library / "partidos" / (parts[-1] if parts else str(entry.get("id")))
 
 
+# P0.5d: the two photos of «¿Cuál es ella?» (tennisbio.app.identity_click.photo_set, the PC's own), made where the
+# `identity` stage ran, into <match>/identidad_fotos/: the application downloads them and she clicks there
+CLICK_PHOTOS = ("import sys; from pathlib import Path; from tennisbio.app.identity_click import photo_set; "
+                "r = photo_set(Path(sys.argv[1]), Path(sys.argv[2])); "
+                "print('fotos del clic:', len(r['photos']), 'por', r['by'], (r['check'] or {}).get('why') or '')")
+
+
 APP_REGISTRY = "app/registro_partidos.json"
 
 

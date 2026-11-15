@@ -94,3 +94,84 @@ def test_the_swing_path_is_drawn_on_a_canvas():
             for (let i = 3; i < d.length; i += 4) if (d[i] > 0) n++; return n; }""")
         b.close()
     assert drawn > 200, drawn
+
+
+FAKE_PC = """() => { window.__calls = [];
+  const answers = {elegir_video: "C:/tenis/videos/partido.mp4", proponer: {rival: "Rival de ejemplo", torneo: "Torneo"},
+                   fotos: [{src: "data:image/gif;base64,R0lGODlhAQABAAAAACw=", t: 12.5, by: "clothes"}]};
+  window.pywebview = {api: new Proxy({}, {get: (_, k) => (...a) => { window.__calls.push([k, a]);
+    return Promise.resolve(k in answers ? answers[k] : {ok: true, cuando: "ahora", partido: "jugadora-rival-torneo"}); }})};
+}"""
+
+
+def _page(pw, fake: bool):
+    b = pw.chromium.launch()
+    p = b.new_page(viewport={"width": 1280, "height": 800})
+    p.set_content('<!doctype html><html><head><meta charset="utf-8"></head><body>'
+                  + p0_app.pagina(p0_app.ejemplo()) + "</body></html>")
+    if fake:
+        p.evaluate(FAKE_PC)
+    return b, p
+
+
+def test_management_works_only_in_the_pcs_window_and_says_so():
+    """P0.5d: in a browser there is no window: every management action is disabled and says where it works (never a
+    button that pretends); the queue's waits and refused requests are shown."""
+    pytest.importorskip("playwright")
+    from playwright.sync_api import sync_playwright
+    with sync_playwright() as pw:
+        b, p = _page(pw, fake=False)
+        p.evaluate("() => location.hash = 'cola'")
+        p.wait_for_timeout(200)
+        cola = p.evaluate("() => [...document.querySelectorAll('button[data-pc]')].map(x => [x.dataset.pc, x.disabled, x.title])")
+        text = p.inner_text("body")
+        p.evaluate("() => location.hash = 'inicio'")
+        p.wait_for_timeout(150)
+        inicio = p.inner_text("body")
+        b.close()
+    assert cola and all(dis and "aplicación del PC" in t for _, dis, t in cola), cola
+    assert "Lo que la cola no pudo hacer" in text and "no es de un tipo conocido" in text
+    assert "falta el clic" in inicio
+
+
+def test_the_wizard_asks_the_pc_for_each_step_with_her_yes_to_the_preparation():
+    """P0.5d: with the PC's window, the wizard chooses the video, fills its record, uploads it only with her yes to the
+    preparation, sends her click on a photo and her approval; the queue's pause goes the same way."""
+    pytest.importorskip("playwright")
+    from playwright.sync_api import sync_playwright
+    with sync_playwright() as pw:
+        b, p = _page(pw, fake=True)
+        p.evaluate("() => location.hash = 'partidos'")
+        p.wait_for_timeout(150)
+        p.click("[data-add]")
+        p.wait_for_timeout(150)
+        p.click('[data-pc="elegir"]')
+        p.wait_for_timeout(150)
+        p.click('[data-step="1"]')
+        p.wait_for_timeout(100)
+        assert p.is_disabled('[data-pc="alta"]')                     # not without her yes
+        p.check('input[type="checkbox"]')
+        p.click('[data-pc="alta"]')
+        p.wait_for_timeout(150)
+        p.click('[data-step="1"]')
+        p.click('[data-pc="fotos"]')
+        p.wait_for_timeout(150)
+        p.click('[data-pc="clic"]')
+        p.wait_for_timeout(100)
+        p.click('[data-step="1"]')
+        p.click('[data-pc="aprobar"]')
+        p.wait_for_timeout(100)
+        p.keyboard.press("Escape")
+        p.evaluate("() => location.hash = 'cola'")
+        p.wait_for_timeout(150)
+        p.click('[data-pc="pausar"]')
+        p.wait_for_timeout(100)
+        calls = p.evaluate("() => window.__calls")
+        b.close()
+    by = {k: a for k, a in calls}
+    assert [k for k, _ in calls] == ["elegir_video", "proponer", "alta", "fotos", "clic", "aprobar", "pausar"], calls
+    ruta, ficha, preparar = by["alta"]
+    assert ruta == "C:/tenis/videos/partido.mp4" and preparar is True
+    assert ficha["jugadora"] == "Jugadora de ejemplo" and ficha["rival"] == "Rival de ejemplo" and ficha["torneo"] == "Torneo"
+    assert by["clic"] == ["jugadora-rival-torneo", 12.5, True, "clothes"]
+    assert by["aprobar"][0] == "jugadora-rival-torneo" and by["aprobar"][1]["coste_eur"] == 0

@@ -32,11 +32,21 @@ export interface Trabajo {
   nota: string;
 }
 
+// P0.5d: the queue's answer to what the user did in the application (cola/app.json, tennisbio.infra.peticiones)
+export interface RespuestaApp {
+  esperas: Record<string, string>;
+  errores: [string, string][];
+  pausa: { en_pausa: boolean; cuando: string } | null;
+  borrados: string[];
+  hora?: string;
+}
+
 export interface Cola {
   head: string;
   jobs: Trabajo[];
   kaggle: { used: number; total: number } | null;
   modal: { left: number; total: number } | null;
+  app?: RespuestaApp | null;
 }
 
 export interface Casilla {

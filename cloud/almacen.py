@@ -42,6 +42,10 @@ class ModalStorage(Storage):
         print("$", " ".join(cmd), flush=True)
         self._run(cmd, check=True)
 
+    def put_file(self, local: Path, remote: str) -> None:
+        with self.vol.batch_upload(force=True) as b:
+            b.put_file(str(local), "/" + str(remote).lstrip("/"))
+
     def list(self, folder: str) -> list[str]:
         try:
             entries = self.vol.listdir(str(folder).strip("/") or "/")

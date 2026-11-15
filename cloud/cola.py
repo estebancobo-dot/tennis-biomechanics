@@ -23,6 +23,8 @@ import sys
 import time
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))     # the core's request contract (P0.5d)
+
 APP = "tennisbio"
 VOLUME = "tennisbio-datos"
 # Modal: 30 $ of credit a month and the account's limit at 30 $ (the hard stop); the queue stops launching before it
@@ -482,11 +484,11 @@ def summary(jobs: list[dict], state: dict, spend: dict, decisions: list, now: fl
 
 def app_round(store, state: dict, jobs: list[dict], now: float, before: dict | None = None) -> dict:
     """P0.5d (docs/p0_plan.md §3 ter): the application's requests (/app/peticiones/ on the volume) read and turned into
-    the queue's own jobs (cloud/peticiones.py). A video goes only when its match's whole analysis is done and the
+    the queue's own jobs (tennisbio.infra.peticiones). A video goes only when its match's whole analysis is done and the
     application has its results on the PC; `before` (the last pass's cola/app.json) says which went already. What is
     returned is also the answer the application shows (each match's wait, each refused request with its reason, the
     pause), written to cola/app.json."""
-    import peticiones as pt
+    from tennisbio.infra import peticiones as pt
 
     reqs = []
     for name in store.list(pt.FOLDER):
@@ -746,7 +748,7 @@ def main(argv: list[str] | None = None) -> int:
             spend["kaggle_real"] = {**real, "ts": now}
     decisions = plan(jobs, state, spend, _sources(Path.cwd(), queue, state), now, str(queue.get("partidos_en_espera") or ""))
     if app:
-        import peticiones
+        from tennisbio.infra import peticiones
 
         decisions = peticiones.paused_decisions(decisions, app["pausa"])
     launched = 0

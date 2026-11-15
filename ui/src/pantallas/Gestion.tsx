@@ -1,8 +1,11 @@
 // P0.5a (15-11): the management screens (Inicio, Análisis, Partidos, Personas, Cola, Calidad, Almacenamiento, Ajustes)
 // and the side panels for a match and for adding matches, from the validated mockup (design/p0/aplicacion.html, #305).
-// What the PC alone knows (disk use, the photos of the players, the upload) is marked until P0.5d and P0.5e.
+// P0.5d: the actions go to the PC's window (ui/src/api.ts → tennisbio.app.p0_api) and from there to the cloud's queue;
+// in a browser they stay disabled and say where they work. What only the PC measures (disk use) waits for P0.5e.
 import { useState } from "react";
 import { Cabecera, Panel, useApp } from "../App";
+import { SOLO_PC, api } from "../api";
+import type { FichaAlta, FotoClic, Respuesta } from "../api";
 import type { Datos, Partido, Trabajo } from "../contrato";
 import { GOLPE_ES, fmt, iniciales } from "../datos";
 
@@ -66,7 +69,12 @@ export function Inicio() {
               : <p className="sub">Nada en marcha.</p>}
           </div>
           <div className="card"><span className="eyebrow">Necesita algo de ti</span>
+            {Object.entries(q.app?.esperas || {}).map(([m, why]) => {          // P0.5d: the queue's answer, match by match
+              const pm = d.matches.find((x) => x.id === m);
+              return <Fila key={m} t={pm ? `${etiqueta(pm)} (${pm.personas.join(" – ")})` : m} s={why} pill="espera" cls="warn" />;
+            })}
             {tuyo.length ? tuyo.map((j) => <Fila key={j.id} t={nombreTrabajo(d, j)} s={j.nota} pill="espera" cls="warn" />)
+              : Object.keys(q.app?.esperas || {}).length ? null
               : <Fila t="Nada" s="Ningún clic de identidad ni aprobación esperan." pill="al día" cls="good" />}
           </div>
           <div className="card"><span className="eyebrow">Cuota</span>
@@ -154,54 +162,112 @@ function FichaPartido({ m }: { m: Partido }) {
 }
 
 const PASOS = ["Elegir vídeos", "Datos del partido", "Subida", "¿Quién es ella?", "Aprobar"];
+const CAMPOS: [keyof FichaAlta, string][] = [["jugadora", "Jugadora"], ["rival", "Rival"], ["torneo", "Torneo"],
+  ["ronda", "Ronda"], ["fecha", "Fecha"], ["superficie", "Superficie"]];
+// P0.5d (docs/p0_plan.md §3 ter): only what was measured: the 10-minute test 0,45 h of GPU (v26, Gauff), a whole match
+// 5-6,5 h (the final and Gauff); the pass up to the click is part of the match's hours (kept, never run twice) and its
+// own share is not measured apart yet: no number is shown for it
+const PRUEBA_H = 0.45, PARTIDO_H = "5-6,5";
+
+// P0.5d: the PC's answer, said as it is (never «hecho» when the PC said no)
+function Resultado({ r }: { r: Respuesta | null }) {
+  if (!r) return null;
+  return <p className={`pill ${r.ok ? "good" : "crit"}`} role="status" style={{ marginTop: 8 }}>
+    {r.ok ? `Pedido a la cola (${r.cuando || "ahora"}): la nube lo hace en su vuelta siguiente (cada 30 min).` : r.motivo}</p>;
+}
 
 export function Anadir() {
   const { d } = useApp();
+  const pc = api();
   const [k, setK] = useState(0);
+  const [ruta, setRuta] = useState<string | null>(null);
+  const [ficha, setFicha] = useState<FichaAlta>({ jugadora: d.player.name, rival: "" });
+  const [preparar, setPreparar] = useState(false);
+  const [partido, setPartido] = useState<string | null>(null);
+  const [resp, setResp] = useState<Respuesta | null>(null);
+  const [fotos, setFotos] = useState<FotoClic[] | null>(null);
+  const [ocupado, setOcupado] = useState(false);
   const ej = d.matches.find((m) => !m.analysed) || d.matches[0];
   const kg = d.queue.kaggle;
+  const espera = partido ? d.queue.app?.esperas?.[partido] : undefined;
+  const hacer = async (f: () => Promise<Respuesta>) => {
+    setOcupado(true);
+    try { setResp(await f()); } catch (e) { setResp({ ok: false, motivo: String(e) }); } finally { setOcupado(false); }
+  };
+  const elegir = async () => {
+    if (!pc) return;
+    const r = await pc.elegir_video();
+    if (r) { setRuta(r); setFicha({ ...ficha, ...(await pc.proponer(r)) }); setK(1); }
+  };
+  const soloPC = pc ? undefined : SOLO_PC;
   const vistas = [
-    <div className="card" key="0"><h2>Elige uno o varios vídeos del PC</h2>
-      <p className="sub">Arrastra los ficheros aquí o elígelos. Cada vídeo es un partido; se reconoce por su contenido (renombrarlo no rompe nada).</p>
-      <div className="frame" style={{ aspectRatio: "auto", height: 140, marginTop: 12, display: "grid", placeItems: "center", color: "#eaf1f8" }}>Arrastra aquí los vídeos (.mp4, .mkv, .ts)</div></div>,
-    <div className="card" key="1"><h2>Propuesta de datos</h2>
-      <p className="sub">Del nombre del fichero, la ficha pública y el marcador. Corrige solo si algo está mal.</p>
-      {ej ? <table className="t" style={{ marginTop: 8 }}><tbody>
-        <tr><th>Dato</th><th>Propuesto</th><th>De dónde sale</th></tr>
-        <tr><td>Fichero</td><td>{ej.id}</td><td>—</td></tr>
-        <tr><td>Torneo</td><td>{ej.torneo || "—"}</td><td>nombre del fichero</td></tr>
-        <tr><td>Ronda</td><td>{ej.ronda || "—"}</td><td>nombre del fichero</td></tr>
-        <tr><td>Fecha</td><td>{ej.fecha || "—"}</td><td>nombre del fichero</td></tr>
-        <tr><td>Personas</td><td>{ej.personas.join(" – ")}</td><td>nombre del fichero y marcador</td></tr>
-      </tbody></table> : null}</div>,
-    <div className="card" key="2"><h2>Subiendo a la nube</h2>
-      <p className="sub">Por partes: si se corta, sigue donde iba. El vídeo se queda en el PC para verlo.</p>
-      <div className="bar" style={{ marginTop: 12 }}><i style={{ width: "0%" }} /></div>
-      <p className="mock" style={{ marginTop: 8 }}>La subida al volumen de Modal llega con P0.5e (hoy la hace scripts/subir_nube.py).</p></div>,
-    <div className="card" key="3"><h2>¿Cuál es ella?</h2>
-      <p className="sub">Un clic en su foto, una vez por partido. Las fotos salen del propio vídeo.</p>
+    <div className="card" key="0"><h2>Elige el vídeo del partido en el PC</h2>
+      <p className="sub">Un vídeo es un partido; se reconoce por su contenido (renombrarlo no rompe nada).</p>
+      <button className="btn primary" type="button" data-pc="elegir" disabled={!pc} title={soloPC} onClick={elegir} style={{ marginTop: 12 }}>Elegir vídeo…</button>
+      {ruta ? <p className="sub" style={{ marginTop: 8 }}>{ruta}</p> : null}
+      {!pc ? <p className="mock" style={{ marginTop: 8 }}>{SOLO_PC}.</p> : null}</div>,
+    <div className="card" key="1"><h2>Datos del partido</h2>
+      <p className="sub">Propuestos del nombre del fichero; corrige solo si algo está mal.</p>
+      {pc ? <div className="grid2" style={{ marginTop: 8 }}>
+        {CAMPOS.map(([c, t]) => (
+          <label key={c} className="sub" style={{ display: "grid", gap: 4 }}>{t}
+            <input value={ficha[c] || ""} onChange={(e) => setFicha({ ...ficha, [c]: e.target.value })}
+              style={{ padding: "6px 10px", border: "1px solid var(--line)", borderRadius: 8 }} /></label>
+        ))}</div>
+        : ej ? <table className="t" style={{ marginTop: 8 }}><tbody>
+          <tr><th>Dato</th><th>Propuesto</th><th>De dónde sale</th></tr>
+          <tr><td>Fichero</td><td>{ej.id}</td><td>—</td></tr>
+          <tr><td>Torneo</td><td>{ej.torneo || "—"}</td><td>nombre del fichero</td></tr>
+          <tr><td>Ronda</td><td>{ej.ronda || "—"}</td><td>nombre del fichero</td></tr>
+          <tr><td>Fecha</td><td>{ej.fecha || "—"}</td><td>nombre del fichero</td></tr>
+          <tr><td>Personas</td><td>{ej.personas.join(" – ")}</td><td>nombre del fichero y marcador</td></tr>
+        </tbody></table> : null}</div>,
+    <div className="card" key="2"><h2>Subir y preparar</h2>
+      <p className="sub">El vídeo va al volumen de Modal (se borra de allí cuando sus resultados estén en el PC) y se prepara: una prueba de 10 min y la pasada hasta las fotos de «¿Cuál es ella?». El análisis entero espera a tu aprobación.</p>
       <div className="grid2" style={{ marginTop: 10 }}>
-        {(ej?.personas || []).map((n) => (
-          <button className="card clickable" type="button" key={n} style={{ display: "grid", gap: 8, justifyItems: "center" }}>
-            <div className="frame" style={{ width: "100%", aspectRatio: "3/4" }}><span className="tag">Fotograma del vídeo</span></div><b>{n}</b>
-          </button>
-        ))}
-      </div></div>,
-    <div className="card" key="4"><h2>Aprobar el análisis</h2>
-      <p className="sub">Primero una prueba corta de 10 min en la nube; después, con tu visto bueno, el partido entero.</p>
-      <div className="grid2" style={{ marginTop: 10 }}>
-        <div className="stat"><b>5-6,5 h</b><span>de GPU de Kaggle por partido (medido)</span></div>
-        <div className="stat"><b className="num">{kg ? fmt(kg.total - kg.used, 1) + " h" : "—"}</b><span>quedan esta semana</span></div>
+        <div className="stat"><b className="num">{fmt(PRUEBA_H, 2)} h</b><span>de GPU la prueba de 10 min (medido); la pasada hasta el clic es parte de las {PARTIDO_H} h del partido</span></div>
+        <div className="stat"><b className="num">{kg ? fmt(kg.total - kg.used, 1) + " h" : "—"}</b><span>quedan esta semana · 0 €</span></div>
       </div>
-      <button className="btn primary" type="button" style={{ marginTop: 12 }}>Aprobar</button></div>,
+      <label className="sub" style={{ display: "flex", gap: 8, marginTop: 10 }}>
+        <input type="checkbox" checked={preparar} disabled={!pc} onChange={(e) => setPreparar(e.target.checked)} /> Sí, prepáralo (lo de arriba)</label>
+      <button className="btn primary" type="button" data-pc="alta" disabled={!pc || !ruta || !preparar || ocupado} title={soloPC} style={{ marginTop: 10 }}
+        onClick={() => pc && ruta && hacer(async () => { const r = await pc.alta(ruta, ficha, preparar); if (r.ok && r.partido) setPartido(r.partido); return r; })}>
+        {ocupado ? "Subiendo…" : "Subir y preparar"}</button>
+      <Resultado r={resp} /></div>,
+    <div className="card" key="3"><h2>¿Cuál es ella?</h2>
+      <p className="sub">Un clic en su foto, una vez por partido. Las fotos salen del propio vídeo cuando la nube termina la preparación.</p>
+      {espera ? <p className="pill warn" style={{ marginTop: 8 }}>{espera}</p> : null}
+      <button className="btn" type="button" data-pc="fotos" disabled={!pc || !partido} title={soloPC} style={{ marginTop: 8 }}
+        onClick={async () => { if (pc && partido) setFotos(await pc.fotos(partido)); }}>Mirar si están las fotos</button>
+      <div className="grid2" style={{ marginTop: 10 }}>
+        {fotos && fotos.length ? fotos.map((f, i) => (
+          <button className="card clickable" type="button" key={f.src} data-pc="clic" style={{ display: "grid", gap: 8, justifyItems: "center" }}
+            onClick={() => pc && partido && hacer(() => pc.clic(partido, f.t, true, f.by))}>
+            <img src={f.src} alt={`Persona ${i + 1}`} style={{ width: "100%", borderRadius: 8 }} /><b>Es ella</b>
+          </button>
+        )) : (fotos ? <p className="sub">Aún no están: la cola avisa cuando la preparación termine.</p> : (ej?.personas || []).map((n) => (
+          <div className="card" key={n} style={{ display: "grid", gap: 8, justifyItems: "center" }}>
+            <div className="frame" style={{ width: "100%", aspectRatio: "3/4" }}><span className="tag">Fotograma del vídeo</span></div><b>{n}</b>
+          </div>)))}
+      </div>
+      <Resultado r={resp} /></div>,
+    <div className="card" key="4"><h2>Aprobar el análisis</h2>
+      <p className="sub">Con tu visto bueno, el partido entero (lo ya preparado no se repite).</p>
+      <div className="grid2" style={{ marginTop: 10 }}>
+        <div className="stat"><b>{PARTIDO_H} h</b><span>de GPU de Kaggle por partido (medido)</span></div>
+        <div className="stat"><b className="num">{kg ? fmt(kg.total - kg.used, 1) + " h" : "—"}</b><span>quedan esta semana · 0 €</span></div>
+      </div>
+      <button className="btn primary" type="button" data-pc="aprobar" disabled={!pc || !partido || ocupado} title={soloPC} style={{ marginTop: 12 }}
+        onClick={() => pc && partido && hacer(() => pc.aprobar(partido, { horas_gpu: PARTIDO_H, coste_eur: 0 }))}>Aprobar</button>
+      <Resultado r={resp} /></div>,
   ];
   return (
     <Panel titulo="Añadir partidos">
       <div className="stepper">{PASOS.map((s, i) => <span className="chip" key={s} aria-current={i === k ? "step" : undefined}>{i + 1}. {s}</span>)}</div>
       {vistas[k]}
       <div style={{ display: "flex", gap: 8, justifyContent: "flex-end" }}>
-        <button className="btn" type="button" data-step="-1" disabled={k === 0} onClick={() => setK(Math.max(0, k - 1))}>Atrás</button>
-        <button className="btn primary" type="button" data-step="1" disabled={k === PASOS.length - 1} onClick={() => setK(Math.min(PASOS.length - 1, k + 1))}>Siguiente</button>
+        <button className="btn" type="button" data-step="-1" disabled={k === 0} onClick={() => { setResp(null); setK(Math.max(0, k - 1)); }}>Atrás</button>
+        <button className="btn primary" type="button" data-step="1" disabled={k === PASOS.length - 1} onClick={() => { setResp(null); setK(Math.min(PASOS.length - 1, k + 1)); }}>Siguiente</button>
       </div>
     </Panel>
   );
@@ -225,7 +291,7 @@ export function Partidos() {
                   <td className="num">{m.fecha || "—"}</td>
                   <td>{m.surf && m.surf !== "—" ? m.surf : "—"}</td>
                   <td className="num">{m.analysed ? `${m.near} cerca · ${m.far} lejos` : "—"}</td>
-                  <td>{m.analysed ? <span className="pill good">analizado</span> : <span className="pill warn">en espera</span>}</td>
+                  <td>{m.analysed ? <span className="pill good">analizado</span> : <span className="pill warn" title={d.queue.app?.esperas?.[m.id]}>{d.queue.app?.esperas?.[m.id] || "en espera"}</span>}</td>
                 </tr>
               ))}
             </tbody>
@@ -271,18 +337,36 @@ export function Personas() {
 
 export function ColaPantalla() {
   const { d } = useApp();
+  const pc = api();
+  const [resp, setResp] = useState<Respuesta | null>(null);
   const q = d.queue, de = (st: string) => q.jobs.filter((j) => j.estado === st);
+  const pausa = q.app?.pausa?.en_pausa ? q.app.pausa : null;
+  const pide = async (f: () => Promise<Respuesta>) => { try { setResp(await f()); } catch (e) { setResp({ ok: false, motivo: String(e) }); } };
+  const cancelar = (x: Trabajo) => pc && window.confirm(`¿Cancelar «${nombreTrabajo(d, x)}»? Lo hecho se guarda.`) && pide(() => pc.cancelar(x.id));
   const seccion = (t: string, st: string, cls: string) => {
     const js = de(st);
     return js.length ? (
       <div className="card" key={st}><h2>{t} <span className="sub">({js.length})</span></h2>
-        <div className="list" style={{ marginTop: 6 }}>{js.map((x) => <Fila key={x.id} t={`${nombreTrabajo(d, x)} · ${x.id}`} s={x.nota || x.partido} pill={x.donde || st} cls={cls} />)}</div></div>
+        <div className="list" style={{ marginTop: 6 }}>{js.map((x) => (
+          <div key={x.id} style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 8, alignItems: "center" }}>
+            <Fila t={`${nombreTrabajo(d, x)} · ${x.id}`} s={x.nota || x.partido} pill={x.donde || st} cls={cls} />
+            {st === "en_marcha" || st === "pendiente" ? <button className="btn" type="button" data-pc="cancelar" disabled={!pc}
+              title={pc ? undefined : SOLO_PC} onClick={() => cancelar(x)}>Cancelar</button> : <span />}
+          </div>))}</div></div>
     ) : null;
   };
+  const boton = pausa
+    ? <button className="btn primary" type="button" data-pc="reanudar" disabled={!pc} title={pc ? undefined : SOLO_PC} onClick={() => pc && pide(() => pc.reanudar())}>Reanudar</button>
+    : <button className="btn" type="button" data-pc="pausar" disabled={!pc} title={pc ? undefined : SOLO_PC} onClick={() => pc && pide(() => pc.pausar())}>Pausar</button>;
   return (
     <>
-      <Cabecera titulo="Cola de la nube" sub={q.head} acciones={<button className="btn" type="button">Pausar</button>} />
+      <Cabecera titulo="Cola de la nube" sub={q.head} acciones={boton} />
       <section className="content">
+        {pausa ? <div className="card"><span className="pill warn">En pausa desde la aplicación ({pausa.cuando})</span>
+          <p className="sub" style={{ marginTop: 6 }}>No se lanza nada nuevo; lo que está en marcha termina.</p></div> : null}
+        <Resultado r={resp} />
+        {q.app?.errores?.length ? <div className="card"><h2>Lo que la cola no pudo hacer</h2>
+          <div className="list" style={{ marginTop: 6 }}>{q.app.errores.map(([n, why]) => <Fila key={n} t={why} s={n} pill="rechazada" cls="crit" />)}</div></div> : null}
         {seccion("En marcha", "en_marcha", "est")}{seccion("Pendientes", "pendiente", "warn")}{seccion("Para mirar", "revisar", "warn")}{seccion("Con error", "error", "crit")}
         <details className="fold"><summary>Hechos ({de("hecho").length})</summary>
           <div className="list">{de("hecho").map((x) => <Fila key={x.id} t={x.id} s={x.nota || x.partido} pill={x.donde} cls="good" />)}</div></details>
@@ -326,6 +410,13 @@ export function Calidad() {
 
 export function Almacen() {
   const { d } = useApp();
+  const pc = api();
+  const [resp, setResp] = useState<Respuesta | null>(null);
+  const borrados = new Set(d.queue.app?.borrados || []);
+  const borrar = async (m: Partido) => {
+    if (!pc || !window.confirm(`¿Borrar de la nube el vídeo de ${etiqueta(m)}? Solo se borra si sus resultados ya están en el PC; el vídeo del PC se queda.`)) return;
+    try { setResp(await pc.borrar_video(m.id)); } catch (e) { setResp({ ok: false, motivo: String(e) }); }
+  };
   return (
     <>
       <Cabecera titulo="Almacenamiento" sub="Espacio en el PC y en la nube." />
@@ -336,7 +427,13 @@ export function Almacen() {
               <p className="mock" style={{ marginTop: 8 }}>Lo mide la aplicación en el PC (P0.5e).</p></div>
           ))}
         </div>
-        <div className="card"><h2>Vídeos en la nube</h2><p className="sub">Cada vídeo se borra del volumen de Modal cuando su partido queda aceptado (T22). Hoy están los {d.matches.length} del catálogo.</p></div>
+        <div className="card"><h2>Vídeos en la nube</h2><p className="sub">Un vídeo se borra del volumen de Modal cuando su partido está analizado y sus resultados están en el PC (la cola lo comprueba; si no, lo dice y no borra nada).</p>
+          <div className="list" style={{ marginTop: 6 }}>{d.matches.map((m) => (
+            <div key={m.id} style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 8, alignItems: "center" }}>
+              <Fila t={etiqueta(m)} s={m.personas.join(" – ")} pill={borrados.has(m.id) ? "borrado de la nube" : m.analysed ? "analizado" : "en análisis"} cls={borrados.has(m.id) ? "mute" : m.analysed ? "good" : "warn"} />
+              <button className="btn" type="button" data-pc="borrar_video" disabled={!pc || !m.analysed || borrados.has(m.id)} title={pc ? undefined : SOLO_PC} onClick={() => borrar(m)}>Borrar de la nube</button>
+            </div>))}</div>
+          <Resultado r={resp} /></div>
       </section>
     </>
   );

@@ -1,4 +1,5 @@
-"""P0.5d (15-11, docs/p0_plan.md §3 ter): what the user does in the application, as jobs of the one queue.
+"""P0.5d (15-11, docs/p0_plan.md §3 ter): what the user does in the application, as jobs of the one queue. In the core:
+the application writes the requests (tennisbio.app.p0_api) and the queue reads them (cloud/cola.py) with the same contract.
 
 The application never touches the repository: each action of the user is a file of its own on the volume,
 /app/peticiones/<UTC time>_<type>_<match>.json, written through the storage port and never overwritten or deleted (the

@@ -292,3 +292,20 @@ def test_a_part_of_a_test_runs_its_stages():
     for part, before in ((mid, head), (tail, head + mid)):
         for n in part:                                                   # a part needs only what earlier parts made
             assert set(pipeline.order([n])) - {n} <= set(before) | set(part), n
+
+
+def test_the_click_photos_are_made_where_identity_ran(monkeypatch, capsys):
+    """P0.5d: after a part with `identity`, Kaggle makes the two photos of «¿Cuál es ella?» with the PC's own code, in
+    the match's folder (uploaded with its results): the application downloads them and she clicks there."""
+    import nube
+    from tennisbio.app import identity_click
+
+    seen = {}
+    monkeypatch.setattr(identity_click, "photo_set", lambda d, v: seen.update(d=d, v=v) or
+                        {"photos": [{}, {}], "by": "clothes", "check": {"why": None}})
+    monkeypatch.setattr(sys, "argv", ["-c", "salida/m", "videos/m.mp4"])
+    exec(nube.CLICK_PHOTOS, {})
+    assert seen == {"d": Path("salida/m"), "v": Path("videos/m.mp4")} and "fotos del clic: 2 por clothes" in capsys.readouterr().out
+    src = (ROOT / "cloud" / "kaggle" / "correr.py").read_text(encoding="utf-8")
+    assert 'nube.CLICK_PHOTOS, str(out_dir), str(data / "videos" / src["video"])' in src
+    assert '"identity" in (job.get("etapas") or [])' in src
