@@ -38,7 +38,15 @@ def play_segments(sc: dict, court: dict | None, fps: float, min_s: float = 1.0) 
 
 def track_play(video: Path, sc: dict, court: dict | None, tracker, fps: float, log=None) -> np.ndarray:
     """(M, 4): time (s), x, y (fraction of the frame), confidence of the ball over the match play; x, y NaN
-    where the ball was not seen."""
+    where the ball was not seen.
+
+    T24 piece 2 (15-11): the next stretch is decoded (and shrunk to the model's size, BallFeed) in a thread while the
+    model runs on this one: before, each stretch was decoded and then tracked, with the GPU idle during the decoding
+    (v31_b: the ball took 215 of the detector's 222 s, the GPU at 44-52 %). The values are the same: track(frames) is
+    BallFeed plus track_feed, as here; only small frames are held (two stretches at most)."""
+    from concurrent.futures import ThreadPoolExecutor
+
+    from .ball import BallFeed
     from .io.video import probe, read_frames
 
     info = probe(video)
@@ -46,16 +54,46 @@ def track_play(video: Path, sc: dict, court: dict | None, tracker, fps: float, l
     segs = play_segments(sc, court, fps)
     total = sum(b - a for a, b in segs)
     done = 0.0
-    for k, (a, b) in enumerate(segs):
+
+    def feed_of(a: float, b: float) -> BallFeed:
+        feed = BallFeed(1)
+        for f in read_frames(info, a, b - a, width=min(1280, info.width), fps=BALL_FPS):
+            feed.add(f)
+        return feed
+
+    pool = ThreadPoolExecutor(1, thread_name_prefix="bola-decodifica")
+    nxt = pool.submit(feed_of, *segs[0]) if segs else None
+    try:
+        for k, (a, b) in enumerate(segs):
+            feed = nxt.result()
+            nxt = pool.submit(feed_of, *segs[k + 1]) if k + 1 < len(segs) else None
+            tr = tracker.track_feed(feed)
+            rows.extend(_rows(tr, a, info) if len(tr) else [])
+            done += b - a
+            if log and (k % 20 == 0 or k == len(segs) - 1):
+                log(f"  bola: {done / 60:.1f} de {total / 60:.1f} min de juego")
+    finally:
+        pool.shutdown(wait=True, cancel_futures=True)
+    return np.concatenate(rows) if rows else np.zeros((0, 4))
+
+
+def _rows(tr: np.ndarray, a: float, info) -> list[np.ndarray]:
+    h, w = (min(1280, info.width) * info.height / info.width), min(1280, info.width)
+    t = a + np.arange(len(tr)) / BALL_FPS
+    return [np.column_stack([t, tr[:, 0] / w, tr[:, 1] / h, tr[:, 2]])]
+
+
+def _track_play_serial(video: Path, sc: dict, court: dict | None, tracker, fps: float) -> np.ndarray:
+    """The former track_play (decode a stretch, then track it), kept for the test that the threaded one is the same."""
+    from .io.video import probe, read_frames
+
+    info = probe(video)
+    rows = []
+    for a, b in play_segments(sc, court, fps):
         frames = read_frames(info, a, b - a, width=min(1280, info.width), fps=BALL_FPS)
         tr = tracker.track(frames)
         if len(tr):
-            h, w = (min(1280, info.width) * info.height / info.width), min(1280, info.width)
-            t = a + np.arange(len(tr)) / BALL_FPS
-            rows.append(np.column_stack([t, tr[:, 0] / w, tr[:, 1] / h, tr[:, 2]]))
-        done += b - a
-        if log and (k % 20 == 0 or k == len(segs) - 1):
-            log(f"  bola: {done / 60:.1f} de {total / 60:.1f} min de juego")
+            rows.extend(_rows(tr, a, info))
     return np.concatenate(rows) if rows else np.zeros((0, 4))
 
 

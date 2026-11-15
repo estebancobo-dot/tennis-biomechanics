@@ -339,7 +339,7 @@ Cambios del diseño, por orden:
 1. **Explorador de medidas por familia** (cuerpo, pies, raqueta, bola, contexto).
    - Cada medida de la taxonomía con su fiabilidad, cómo se mide, su reparto y sus golpes.
    - Hoy la maqueta solo enseña los 90 puntos de control de la lección y 26 medidas del informe.
-   - **Hecho en la aplicación (15-11 23:00, «Más → Medidas»):** las 107 medidas que da el análisis (los 90 puntos de
+   - **Hecho en la aplicación (15-11 22:08, «Más → Medidas»):** las 107 medidas que da el análisis (los 90 puntos de
      control golpe a golpe, que el informe ya guardaba en `lv` y la aplicación no recibía; las medidas del informe que no
      son un punto de control; 8 del contexto), por familia (cuerpo 46, pies 26, raqueta 16, bola y ritmo 11, contexto 8)
      y en la situación elegida: golpes con la medida, valor típico y la mitad de sus golpes, fiabilidad, cómo se mide; al
@@ -351,7 +351,7 @@ Cambios del diseño, por orden:
      profundidad.
    - Un punto entero con mini-mapa numerado y «lo que hace bien / dónde pierde» (The Tennis Mentor).
    - La táctica dibujada sobre la pista: las opciones del rival y su punto de recuperación.
-   - **Hecho en la aplicación (15-11 23:30, «Más → Táctica», con lo que dan los datos):** sus derechas juntadas por punto
+   - **Hecho en la aplicación (15-11 22:17, «Más → Táctica», con lo que dan los datos):** sus derechas juntadas por punto
      (cada golpe sabe su número en el punto y los suyos en él, de los impactos de la pasada barata en el mismo plano de la
      cámara principal; mismo partido, mismo total, números crecientes y ≤ 8 s por golpe): largo de sus puntos contado por
      punto (beta: 198 puntos), en qué golpe del punto falla, dos derechas seguidas con sus direcciones (18 pares) y un
@@ -363,7 +363,7 @@ Cambios del diseño, por orden:
    - el saque recibido (abierto, al cuerpo o a la T);
    - el lado (iguales o ventaja);
    - la posición de espera.
-   - **Hecho en la aplicación (15-11 23:50, «Más → Resto»):** cómo se reconoce (de `tennisbio.returns`), el saque
+   - **Hecho en la aplicación (15-11 22:27, «Más → Resto»):** cómo se reconoce (de `tennisbio.returns`), el saque
      recibido, el lado, primer o segundo saque, el tipo de resto, dónde espera y cuánto entra, los que acaban en error y
      cada resto con su vídeo (beta: 86 restos).
 4. **Situaciones completas:** faltan «bola profunda» y «en salto».
@@ -380,12 +380,12 @@ Cambios del diseño, por orden:
    - mano libre en la aceleración y el impacto (10; su medida no existe: #193, paquete M);
    - último apoyo frente al bote (12);
    - sus principios (13);
-   - fuentes citadas (17) — **hecho (15-11 23:50):** cada medida de la lección y del explorador con su «por qué importa» y
+   - fuentes citadas (17) — **hecho (15-11 22:27):** cada medida de la lección y del explorador con su «por qué importa» y
      su fuente (ITF, Tennis Australia, Elliott, Landlinger…), que el informe ya tenía y la aplicación no enseñaba.
 8. **Junto a cada medida, cómo se mide y su fiabilidad** (hoy, cómo se mide solo está en «Lo que la tele no mide»).
 9. **Lo no medible completo:** cada fila ✘ de la matriz dicha en «Lo que la tele no mide» (faltan, por ejemplo, la
    mirada, las fuerzas y el bisel de la empuñadura).
-   - **Hecho (15-11 23:59):** la aplicación añade a la lista del informe cada fila ✘ de `matriz_cobertura.md` con su
+   - **Hecho (15-11 22:35):** la aplicación añade a la lista del informe cada fila ✘ de `matriz_cobertura.md` con su
      motivo y su fuente (`p0_app.no_medible`; 29 filas, sin repetir lo que el informe ya dice). El validador acepta una
      fila de una sola palabra («Mirada») dentro de esa lista. Taxonomía 52 → 56 %.
 

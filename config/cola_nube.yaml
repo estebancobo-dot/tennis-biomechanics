@@ -167,6 +167,13 @@ trabajos:
   # otra ejecuta solo sus etapas sobre lo que hizo la anterior (--sobre-lo-hecho → tennisbio run --no-upstream). Solo la parte c
   - {id: prueba_gauff_v31_c2, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, cpu: true, tras: prueba_gauff_v31_b, junto_a: prueba_gauff_v31_a, etapas: [views, views_link, view_clips, slowmo_fine]}
   - {id: comparar_gauff_v26_v31c2, accion: comparar, a: prueba_gauff_v26, b: prueba_gauff_v31_c2}
+  # 15-11 23:10 (T24, pieza 2): la bola del partido decodifica el tramo siguiente en un hilo mientras el modelo sigue el
+  # actual (la GPU esperaba cada decodificación: 215 de los 222 s del detector en la v31_b, GPU al 44-52 %). Regla escrita
+  # antes de medir: se adopta si sale idéntica a la v26 y la bola de la parte b tarda menos que los 215 s de la v31_b
+  - {id: prueba_gauff_v32_a, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, cpu: true, etapas: [probe, scenes, court, audio]}
+  - {id: prueba_gauff_v32_b, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, tras: prueba_gauff_v32_a, junto_a: prueba_gauff_v32_a, etapas: [players, score, identity, spotting, candidates, fine, fine_opponent, fine_doubtful]}
+  - {id: prueba_gauff_v32_c, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, cpu: true, tras: prueba_gauff_v32_b, junto_a: prueba_gauff_v32_a, etapas: [views, views_link, view_clips, slowmo_fine]}
+  - {id: comparar_gauff_v26_v32, accion: comparar, a: prueba_gauff_v26, b: prueba_gauff_v32_c}
   # R56: comprobar en su registro que la parte b no repitió las etapas de la a (las que reutiliza salen «al día»)
   - {id: leer_v31, accion: leer, tras: prueba_gauff_v31_b, rutas: [/runs/kaggle_prueba_gauff_v31_a/log.txt, /runs/kaggle_prueba_gauff_v31_b/log.txt]}
   # R52 (15-11): los errores de la pasada fina de Zheng (análisis del 13-11 en Modal), leídos sin GPU ni crédito

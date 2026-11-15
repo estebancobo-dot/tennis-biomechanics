@@ -352,3 +352,42 @@ def test_spotting_stops_when_the_match_ball_is_missing(tmp_path, monkeypatch):
     assert res["ball"] == {"min": 2.0, "seen": 1.0, "play_min": 2.0}
     # #264 (R19): what it had of each player during play (no one in these features)
     assert res["inputs"] == {"near_seen": 0.0, "far_seen": 0.0, "play_min": 2.0}
+
+
+def test_the_match_ball_decodes_the_next_stretch_while_tracking_this_one(tmp_path, monkeypatch):
+    """T24 piece 2 (15-11): the match's ball decodes the next stretch in a thread while the model runs on this one (the
+    GPU waited for each decode, v31_b). The track is the same as decoding then tracking each stretch."""
+    import shutil
+    import subprocess
+
+    import numpy as np
+
+    from tennisbio import ball_features as bf
+    from tennisbio.ball import BallFeed
+    if shutil.which("ffmpeg") is None:
+        pytest.skip("ffmpeg not installed")
+    video = tmp_path / "v.mp4"
+    subprocess.run(["ffmpeg", "-v", "error", "-f", "lavfi", "-i", "testsrc=size=160x90:rate=25:duration=7",
+                    "-pix_fmt", "yuv420p", str(video)], check=True)
+
+    class Fake:                                       # the model: values that depend on each frame's pixels
+        def __init__(self):
+            self.feeds = 0
+
+        def track(self, frames):
+            feed = BallFeed(1)
+            for f in frames:
+                feed.add(f)
+            return self.track_feed(feed)
+
+        def track_feed(self, feed):
+            self.feeds += 1
+            return np.array([[float(f.mean()), float(f[10, 20, 1]), 0.5] for f in feed.small])
+
+    monkeypatch.setattr(bf, "play_segments", lambda sc, court, fps: [(0.0, 2.0), (2.4, 4.0), (4.2, 6.6)])
+    fake = Fake()
+    got = bf.track_play(video, {"shots": [1]}, None, fake, 25.0)
+    ref = bf._track_play_serial(video, {"shots": [1]}, None, Fake(), 25.0)
+    assert fake.feeds == 3 and len(got) == len(ref) > 100
+    assert np.array_equal(got, ref, equal_nan=True)
+    assert np.allclose(np.diff(got[:50, 0]), 1 / bf.BALL_FPS)

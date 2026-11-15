@@ -84,14 +84,14 @@ datos de ejemplo), la validación de `validar_maqueta.py` (su cobertura nunca ba
 |---|---|---|
 | P0.5a | **Hecho (15-11 17:50).** **Esqueleto:** `ui/` (React + TypeScript + Vite + Tailwind), compilada a `src/tennisbio/app/p0/` (los estáticos van al repositorio: el PC no tiene Node); el contrato de datos tipado (`ui/src/contrato.ts`) y su adaptador en Python (`tennisbio.app.p0_datos`, de `design/p0/build_app.py`); datos de ejemplo sin nada real; el recorrido y la validación como prueba | nube |
 | P0.5b | **Hecho salvo el reproductor (15-11 19:40).** **Visor:** Lección (fases con su vídeo y sus capas en canvas: esqueleto, raqueta, bola), Sus golpes (galería ordenada) y el análisis de cada golpe (8 fotogramas, la bola y ella, bajar y subir, base, tronco, «Cuenta conmigo», avisos, estroboscópica, tira de contactos) | nube |
-| P0.5c | **Hecho en lo que dan los datos (15-11 19:40): Táctica con dirección, profundidad, dentro o fuera, presión y cambios de dirección. 23:00: el explorador de medidas (cambio 1). 23:30: la táctica por puntos (cambio 2: largo del punto, errores por golpe, secuencias, el punto en mini-mapa). 23:50: el resto (cambio 3) y el «por qué importa» de cada medida con su fuente.** **Más:** explorador de medidas (cambio 1 de `p0_diseno.md` §10), táctica y partido (2), resto (3), situaciones completas (4), comparar, pista, fiabilidad, vista lateral, datos, exportar | nube |
-| P0.5d | **Hecho en la nube (15-11 22:30; diseño y estado en §3 ter).** **Gestión:** Inicio, Partidos (añadir: subida al volumen de Modal, el clic y la aprobación como trabajos de la cola), Personas, Cola, Calidad, Almacenamiento, Ajustes | nube |
+| P0.5c | **Hecho en lo que dan los datos (15-11 19:40): Táctica con dirección, profundidad, dentro o fuera, presión y cambios de dirección. 22:08: el explorador de medidas (cambio 1). 22:17: la táctica por puntos (cambio 2: largo del punto, errores por golpe, secuencias, el punto en mini-mapa). 22:27: el resto (cambio 3) y el «por qué importa» de cada medida con su fuente.** **Más:** explorador de medidas (cambio 1 de `p0_diseno.md` §10), táctica y partido (2), resto (3), situaciones completas (4), comparar, pista, fiabilidad, vista lateral, datos, exportar | nube |
+| P0.5d | **Hecho en la nube (15-11 21:57; diseño y estado en §3 ter).** **Gestión:** Inicio, Partidos (añadir: subida al volumen de Modal, el clic y la aprobación como trabajos de la cola), Personas, Cola, Calidad, Almacenamiento, Ajustes | nube |
 | P0.5e | **En el PC:** la ventana (pywebview), la descarga de los resultados de Modal y la prueba de concepto de N (subir, descargar, borrar) | PC (con el usuario) |
 
 **La aplicación real frente a la maqueta** (los datos de la beta; validación de `design/p0/validar_maqueta.py`, que
 desde el 15-11 exige un vídeo o un dibujo de verdad en pantalla para el vídeo con capas, la estroboscópica y la tira):
 
-| Fuente | Maqueta | P0.5a | P0.5c (15-11 19:40) | 15-11 23:50 (cambios 1-3, fuentes) |
+| Fuente | Maqueta | P0.5a | P0.5c (15-11 19:40) | 15-11 22:35 (cambios 1-3 y 9, fuentes) |
 |---|---|---|---|---|
 | Requisitos | 89 % | 47 % | **96 %** | 96 % |
 | Usabilidad | 94 % | 53 % | **100 %** | 100 % |
@@ -132,7 +132,7 @@ igual; una petición mal formada se queda en el estado con su motivo (no para la
 `/cola/` del volumen (no del repositorio) y enseña en cada partido en qué paso está y qué falta («falta el clic», «falta
 tu aprobación», «en cola: sin horas de GPU hasta el sábado»).
 
-**Construido (15-11 22:30, nube, sin el PC; 1-5 hechos con sus pruebas):** (1) el puerto de almacenamiento con `list` y `delete` (y su contrato
+**Construido (15-11 21:57, nube, sin el PC; 1-5 hechos con sus pruebas):** (1) el puerto de almacenamiento con `list` y `delete` (y su contrato
 en los dos adaptadores); (2) `tennisbio.infra.peticiones`: de las peticiones a trabajos y a la pausa, funciones puras con sus
 pruebas, y su lectura en cada vuelta de `cloud/cola.py`; (3) las fotos del clic en la nube tras la preparación;
 (4) `tennisbio.app.p0_api`: lo que llama la ventana (subir, clic, aprobar, pausar, cancelar, borrar, estado), probado con
@@ -140,7 +140,7 @@ el adaptador local; (5) los botones de Gestión llamándolo (`ui/src/api.ts` y `
 el navegador, sin la ventana, salen desactivados con «Se hace en la aplicación del PC»). Las fotos del clic se hacen en
 Kaggle tras la parte con `identity` (`nube.CLICK_PHOTOS`, el código del PC). Las horas que se enseñan son solo las
 medidas (prueba de 10 min 0,45 h; partido 5-6,5 h): lo que gasta aparte la pasada hasta el clic no está medido aún y no
-se pone. **16-11 00:10:** el alta lleva el id de la ficha de la jugadora (`config/players/<id>.yaml`, buscada por su nombre;
+se pone. **15-11 22:51:** el alta lleva el id de la ficha de la jugadora (`config/players/<id>.yaml`, buscada por su nombre;
 el catálogo de la nube carga la ficha por id) y la cola rechaza, con su motivo, un partido de alguien sin ficha; una
 persona añadida en la aplicación va a `/app/personas.json` y cada sesión de la nube la convierte en su ficha
 (`nube.write_app_players`, nunca encima de una del repositorio). **En el PC (P0.5e, con el usuario):** la ventana, la clave de Modal y la primera subida de verdad.
