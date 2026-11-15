@@ -204,3 +204,28 @@ def test_the_measures_explorer_lists_every_measure_with_its_strokes():
     assert set(checks) <= set(rows) and {"sh", "xf"} <= set(rows)
     assert "12 golpes" in detail and extremes == 6
     assert ctx and all(k.startswith("ctx.") for k in ctx)
+
+
+def test_tactics_put_her_strokes_together_by_point():
+    """Design change 2 (docs/p0_diseno.md §10): the length of her points (counted by point), where in the point she
+    misses, two forehands in a row, and a whole point on a numbered mini-map whose strokes open their panel."""
+    pytest.importorskip("playwright")
+    from playwright.sync_api import sync_playwright
+    with sync_playwright() as pw:
+        b, p = _page(pw, fake=False)
+        p.evaluate("() => location.hash = 'visor'")
+        p.wait_for_timeout(200)
+        p.click('[data-tab="mas"]')
+        p.click('[data-sub="tactica"]')
+        p.wait_for_timeout(150)
+        text = p.inner_text("section.content")
+        dots = p.evaluate("() => document.querySelectorAll('[data-minimapa] text').length")
+        golpes = p.evaluate("() => document.querySelectorAll('[data-punto-golpe]').length")
+        p.click('[data-punto="1"]')
+        p.wait_for_timeout(100)
+        text2 = p.inner_text("section.content")
+        b.close()
+    # the example: 12 strokes in 4 points of 3 (two per match, 100 s apart), 1.º to 3.º each
+    assert "4 puntos vistos desde su principio" in text and "punto 1 de 4" in text and "punto 2 de 4" in text2
+    assert dots == 3 and golpes == 3
+    assert "Dos derechas seguidas" in text and "8 pares" in text

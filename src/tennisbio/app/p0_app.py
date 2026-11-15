@@ -45,7 +45,12 @@ def ejemplo() -> dict:
                "bits": ["rápida" if i % 2 else "lenta", "bola media"], "outcome": "en juego", "stance": "abierto",
                "movement": "en carrera" if i % 3 else "parada", "finish": "sobre el hombro", "quality": (i * 37) % 100,
                "repr": (i * 53) % 100, "fast": bool(i % 2), "m": {"sh": 60.0 + i, "xf": 15.0 + i % 5},
-               "lv": {f"{f['id']}.medida_{k}": round(10 * k + (i * 7 + k * 3) % 11, 1) for f in fases for k in (1, 2, 3)}}
+               "lv": {f"{f['id']}.medida_{k}": round(10 * k + (i * 7 + k * 3) % 11, 1) for f in fases for k in (1, 2, 3)},
+               # four made-up points of three of her strokes (two per match): place, moment, where she is and where it goes
+               "shotInPoint": 1 + (i // 2) % 3, "shotsInPoint": 3, "vt": 100.0 * (i // 6) + 3.0 * ((i // 2) % 3),
+               "x": round(-2.0 + 1.3 * ((i // 2) % 3), 2), "y": round(12.5 - 0.4 * (i % 3), 2),
+               "shotX": round(3.0 - 2.0 * (i % 3), 2), "shotY": round(4.0 + 1.5 * (i % 4), 2), "shotIn": i % 5 != 4,
+               "shotDir": ("cruzada", "paralela", "al centro")[i % 3]}
               for i in range(12)]
     for g in golpes[:4]:
         g["trayectoria"] = _trayectoria_ejemplo()

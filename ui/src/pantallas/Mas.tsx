@@ -12,7 +12,7 @@ import { Explorador } from "./Medidas";
 type AnyRec = Record<string, any>; // eslint-disable-line @typescript-eslint/no-explicit-any
 const MIN_N = 10;
 const sgn = (v: number, d = 0) => (v > 0 ? "+" : v < 0 ? "−" : "") + fmt(Math.abs(v), d);
-const pct = (n: number, de: number) => (de >= MIN_N ? `${fmt((100 * n) / de)} %` : `${n} de ${de} (pocos golpes)`);
+const pct = (n: number, de: number, que = "golpes") => (de >= MIN_N ? `${fmt((100 * n) / de)} %` : `${n} de ${de} (pocos ${que})`);
 export const MAS: [string, string][] = [["medidas", "Medidas"], ["comparar", "Comparar"], ["conclusiones", "Conclusiones"], ["situaciones", "Situaciones"], ["tactica", "Táctica"],
   ["pista", "Pista"], ["tabla", "Tabla de golpes"], ["lateral", "Vista lateral (entreno)"], ["fiabilidad", "Fiabilidad"], ["datos", "Datos"], ["exportar", "Exportar"]];
 
@@ -97,7 +97,104 @@ function reparto(a: Golpe[], campo: string): [string, number][] {
   return Object.entries(c).sort((x, y) => y[1] - x[1]);
 }
 
-function Tactica({ a }: { a: Golpe[] }) {
+// change 2 (docs/p0_diseno.md §10): her forehands put together by point. A stroke knows its place in the point and her
+// hits in it (the cheap pass's hits on her side in the same main-camera shot); strokes of one match with the same total,
+// growing places and close in time (≤ 8 s per hit between them) are one point. Only her forehands are analysed: the
+// backhands of the point count in its length but have no data here.
+interface Punto { match: number; total: number; golpes: Golpe[] }
+export function puntos(a: Golpe[]): Punto[] {
+  const con = a.filter((s) => esN(s.shotInPoint) && esN(s.shotsInPoint) && esN(s.vt))
+    .sort((x, y) => x.match - y.match || (x.vt as number) - (y.vt as number));
+  const out: Punto[] = [];
+  for (const s of con) {
+    const p = out[out.length - 1], last = p?.golpes[p.golpes.length - 1];
+    if (p && last && p.match === s.match && p.total === s.shotsInPoint && (s.shotInPoint as number) > (last.shotInPoint as number)
+        && (s.vt as number) - (last.vt as number) <= 8 * ((s.shotInPoint as number) - (last.shotInPoint as number))) p.golpes.push(s);
+    else out.push({ match: s.match, total: s.shotsInPoint as number, golpes: [s] });
+  }
+  return out;
+}
+
+function MiniPunto({ p }: { p: Punto }) {
+  const { abrir } = useApp();
+  const HL = 11.885, SW = 4.115, DW = 5.485, SL = 6.4;
+  return (
+    <div className="grid2" style={{ alignItems: "start" }}>
+      <div className="court"><svg viewBox="-6.5 -13.5 13 31" role="img" aria-label="Un punto: sus derechas en orden (abajo, dónde golpea; arriba, dónde bota)" data-minimapa
+        style={{ display: "block", margin: "0 auto", maxHeight: 440, width: "100%" }}>
+        <rect className="outer" x={-6.5} y={-13.5} width={13} height={31} />
+        <rect className="surf" x={-DW} y={-HL} width={2 * DW} height={2 * HL} />
+        <rect className="ln" x={-DW} y={-HL} width={2 * DW} height={2 * HL} />
+        <line className="ln" x1={-SW} x2={-SW} y1={-HL} y2={HL} /><line className="ln" x1={SW} x2={SW} y1={-HL} y2={HL} />
+        <line className="ln" x1={-SW} x2={SW} y1={-SL} y2={-SL} /><line className="ln" x1={-SW} x2={SW} y1={SL} y2={SL} />
+        <line className="ln" x1={0} x2={0} y1={-SL} y2={SL} /><line className="net" x1={-6.2} x2={6.2} y1={0} y2={0} />
+        {p.golpes.map((s) => {
+          const x = s.x as number, y = s.y as number, bx = s.shotX as number, by = -((s.shotY as number) - HL);
+          const ok = esN(s.x) && esN(s.y), dest = ok && esN(s.shotX) && esN(s.shotY);
+          return ok ? <g key={s.id}>
+            {dest ? <line x1={x} y1={y} x2={bx} y2={by} stroke={s.shotIn === false ? "#d83a3a" : "#fff"} strokeWidth={0.08} strokeDasharray="0.3 0.2" /> : null}
+            {dest ? <circle cx={bx} cy={by} r={0.22} fill={s.shotIn === false ? "#d83a3a" : "#fff"} /> : null}
+            <circle cx={x} cy={y} r={0.62} fill="var(--accent, #2563eb)" stroke="#fff" strokeWidth={0.08} />
+            <text x={x} y={y + 0.26} fontSize={0.75} textAnchor="middle" fill="#fff" fontWeight={700}>{s.shotInPoint as number}</text>
+          </g> : null;
+        })}
+      </svg></div>
+      <div><p className="sub">Sus {p.total} golpes del punto (los de revés cuentan, pero solo se analizan sus derechas): el número es su golpe en el punto; la línea, adónde fue (rojo: fuera).</p>
+        <div className="list" style={{ marginTop: 6 }}>{p.golpes.map((s) => (
+          <button className="row clickable" type="button" key={s.id} data-punto-golpe style={{ width: "100%", textAlign: "left" }} onClick={() => abrir(<FichaGolpe s={s} />)}>
+            <span><b>{s.shotInPoint as number}.º</b> {[s.shotDir, s.stance, s.outcome && s.outcome !== "sigue" ? s.outcome : null].filter(Boolean).join(" · ") || "—"}</span>
+            <span className="sub">ver</span></button>))}</div></div>
+    </div>
+  );
+}
+
+function Peloteo({ a }: { a: Golpe[] }) {
+  const ps = puntos(a);
+  const largos = ps.filter((p) => p.golpes.length >= 3).sort((x, y) => y.golpes.length - x.golpes.length || y.total - x.total);
+  const [i, setI] = useState(0);
+  const cubo = (n: number) => (n >= 5 ? "5 o más" : String(n));
+  const largo: Record<string, number> = {};
+  for (const p of ps) largo[cubo(p.total)] = (largo[cubo(p.total)] || 0) + 1;
+  const conK = a.filter((s) => esN(s.shotInPoint));
+  const errK: [string, number, number][] = ["1", "2", "3", "4", "5 o más"].map((k) => {
+    const xs = conK.filter((s) => cubo(s.shotInPoint as number) === k);
+    return [k, xs.filter((s) => s.outcome === "error").length, xs.length];
+  });
+  const seq: Record<string, number> = {};
+  let nseq = 0;
+  for (const p of ps) for (let j = 1; j < p.golpes.length; j++) {
+    const x = p.golpes[j - 1], y = p.golpes[j];
+    if ((y.shotInPoint as number) === (x.shotInPoint as number) + 1 && x.shotDir && y.shotDir) { seq[`${x.shotDir} → ${y.shotDir}`] = (seq[`${x.shotDir} → ${y.shotDir}`] || 0) + 1; nseq++; }
+  }
+  const p = largos[Math.min(i, Math.max(0, largos.length - 1))];
+  return (
+    <>
+      <div className="grid3" style={{ marginTop: 12 }}>
+        <div className="card"><h3>Largo de sus puntos</h3><table className="t"><tbody>
+          {["1", "2", "3", "4", "5 o más"].map((k) => <tr key={k}><td>{k} golpe{k === "1" ? "" : "s"} suyos</td><td className="num">{pct(largo[k] || 0, ps.length, "puntos")}</td></tr>)}</tbody></table>
+          <p className="sub">{ps.length} puntos vistos desde su principio, con alguna de sus derechas (los puntos, con todos sus golpes, sea cual sea la situación elegida).</p></div>
+        <div className="card"><h3>En qué golpe del punto falla</h3><table className="t"><tbody>
+          {errK.map(([k, e, n]) => <tr key={k}><td>{k === "5 o más" ? "5.º o más" : `${k}.º`} golpe</td><td className="num">{n ? pct(e, n) : "—"}</td><td className="sub">{e} error{e === 1 ? "" : "es"} de {n}</td></tr>)}</tbody></table>
+          <p className="sub">Sus derechas que acaban en error, según su golpe en el punto.</p></div>
+        <div className="card"><h3>Dos derechas seguidas</h3>
+          {nseq ? <table className="t"><tbody>{Object.entries(seq).sort((x, y) => y[1] - x[1]).slice(0, 6).map(([k, n]) => <tr key={k}><td>{k}</td><td className="num">{pct(n, nseq, "pares")}</td></tr>)}</tbody></table>
+            : <p className="sub">Sin pares de derechas seguidas con las dos direcciones medidas.</p>}
+          <p className="sub">{nseq} pares (su golpe y el siguiente del mismo punto, los dos de derecha y con dirección medida).</p></div>
+      </div>
+      <div className="card"><h3>Un punto entero</h3>
+        {p ? <>
+          <div className="chips" style={{ margin: "6px 0" }}>
+            <button className="chip" type="button" data-punto="-1" disabled={i === 0} onClick={() => setI(Math.max(0, i - 1))}>‹ Anterior</button>
+            <span className="sub">punto {i + 1} de {largos.length} con 3 o más de sus derechas</span>
+            <button className="chip" type="button" data-punto="1" disabled={i >= largos.length - 1} onClick={() => setI(Math.min(largos.length - 1, i + 1))}>Siguiente ›</button>
+          </div>
+          <MiniPunto p={p} /></> : <p className="sub">Ningún punto con 3 o más de sus derechas en esta situación.</p>}
+      </div>
+    </>
+  );
+}
+
+function Tactica({ a, todas }: { a: Golpe[]; todas: Golpe[] }) {
   const conDir = a.filter((s) => typeof s.shotDir === "string" && s.shotDir);
   const presion = conDir.filter((s) => s.pressure), resto = conDir.filter((s) => !s.pressure);
   const visto = a.filter((s) => typeof s.shotIn === "boolean");
@@ -122,7 +219,8 @@ function Tactica({ a }: { a: Golpe[] }) {
             <div><b>Sin presión</b><table className="t"><tbody>{tabla(resto)}</tbody></table><p className="sub">Profundidad: {prof(resto)}</p></div></div>
           <p className="mock" style={{ marginTop: 8 }}>Diferencias en bruto: el ajuste por la bola y el partido de las conclusiones aún no se aplica a la táctica.</p></div>
       </div>
-      <p className="mock">Lo que falta de la táctica (#14 de Ivanovic, The Tennis Mentor): secuencias de 2-3 golpes, longitud del peloteo, el punto entero con mini-mapa y su punto de recuperación frente a las opciones de la rival.</p>
+      <Peloteo a={todas} />
+      <p className="mock">Lo que falta de la táctica (#14 de Ivanovic, The Tennis Mentor): su punto de recuperación frente a las opciones de la rival (hace falta la posición de la rival en cada golpe) y lo que hace bien o dónde pierde en cada punto.</p>
     </>
   );
 }
@@ -197,7 +295,7 @@ export function Mas({ d, sit, onCelda }: { d: Datos; sit: string; onCelda: (sit:
       {sub === "comparar" ? <Comparar d={d} a={a} /> : null}
       {sub === "conclusiones" ? <Conclusiones d={d} /> : null}
       {sub === "situaciones" ? <Situaciones d={d} onCelda={onCelda} /> : null}
-      {sub === "tactica" ? <Tactica a={a} /> : null}
+      {sub === "tactica" ? <Tactica a={a} todas={d.strokes} /> : null}
       {sub === "pista" ? <Pista a={a} /> : null}
       {sub === "tabla" ? <Tabla a={a} /> : null}
       {sub === "lateral" ? <div className="card" style={{ marginTop: 12 }}><h3>Vista lateral (entreno)</h3>

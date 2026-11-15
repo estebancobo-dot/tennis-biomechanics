@@ -351,6 +351,13 @@ Cambios del diseño, por orden:
      profundidad.
    - Un punto entero con mini-mapa numerado y «lo que hace bien / dónde pierde» (The Tennis Mentor).
    - La táctica dibujada sobre la pista: las opciones del rival y su punto de recuperación.
+   - **Hecho en la aplicación (15-11 23:30, «Más → Táctica», con lo que dan los datos):** sus derechas juntadas por punto
+     (cada golpe sabe su número en el punto y los suyos en él, de los impactos de la pasada barata en el mismo plano de la
+     cámara principal; mismo partido, mismo total, números crecientes y ≤ 8 s por golpe): largo de sus puntos contado por
+     punto (beta: 198 puntos), en qué golpe del punto falla, dos derechas seguidas con sus direcciones (18 pares) y un
+     punto entero en mini-mapa numerado (27 con 3 o más de sus derechas) cuyos golpes abren su ficha con vídeo. Los puntos
+     usan todos sus golpes, sea cual sea la situación elegida. **Falta:** la recuperación frente a las opciones de la rival
+     (hace falta la posición de la rival en cada golpe) y «lo que hace bien / dónde pierde» de cada punto.
 3. **Resto:**
    - cómo se reconoce;
    - el saque recibido (abierto, al cuerpo o a la T);
