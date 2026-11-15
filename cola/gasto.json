@@ -103,7 +103,8 @@
      "horas": 0.49
     },
     "medir_youtube": {
-     "estimado_h": 0.5
+     "estimado_h": 0.5,
+     "horas": 0.03
     },
     "prueba_gauff_v26": {
      "estimado_h": 1.0,
@@ -111,14 +112,17 @@
     },
     "prueba_gauff_v27_pose16": {
      "estimado_h": 1.0
+    },
+    "prueba_gauff_v28_ocrgpu": {
+     "estimado_h": 1.0
     }
    }
   }
  },
  "kaggle_real": {
-  "usadas_h": 23.14,
+  "usadas_h": 23.18,
   "total_h": 30.0,
   "renueva": "2026-11-21 00:00:00",
-  "ts": 1794753323.7750177
+  "ts": 1794753962.3960192
  }
 }

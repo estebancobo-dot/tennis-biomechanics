@@ -1,0 +1,45 @@
+{
+ "estado": "hecho",
+ "poc": {
+  "prueba": "youtube",
+  "yt_dlp": "2026.10.26",
+  "videos": [
+   {
+    "id": "2RGdS8xxYIg",
+    "metadata": true,
+    "subtitles": false,
+    "subtitles_error": "ERROR: Unable to download video subtitles for 'en': HTTP Error 429: Too Many Requests",
+    "video": true,
+    "video_mb": 0.87,
+    "seconds": 13.8
+   },
+   {
+    "id": "8JuM_Kaxz1I",
+    "metadata": true,
+    "subtitles": false,
+    "subtitles_error": "ERROR: Unable to download video subtitles for 'en': HTTP Error 429: Too Many Requests",
+    "video": true,
+    "video_mb": 1.96,
+    "seconds": 11.1
+   }
+  ],
+  "conclusion": "YouTube deja descargar desde aquí: 2 de 2 vídeos"
+ },
+ "kaggle": {
+  "python": "3.13.16",
+  "nucleos": 4,
+  "memoria_gib": {
+   "MemTotal": 31.3,
+   "MemAvailable": 29.9
+  },
+  "disco_libre_gib": {
+   "/tmp": 966.8,
+   "/kaggle/working": 19.5
+  },
+  "gpu": "Tesla T4, 15360 MiB\nTesla T4, 15360 MiB",
+  "ffmpeg": "/usr/bin/ffmpeg",
+  "clave_modal": true
+ },
+ "horas_kaggle": 0.03,
+ "nota": null
+}
