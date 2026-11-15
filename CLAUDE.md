@@ -51,6 +51,9 @@ Después: revés, saque, volea y otros jugadores.
     terminan). (2) El rediseño de la aplicación (P0) va **antes** de su interfaz web: P0 se diseña ya como aplicación
     web y se construye una sola vez; de N avanza en paralelo solo lo que no es interfaz (alojamiento a 0 €, subida y
     borrado de vídeos, acceso privado).
+    **Cambio (15-11, #305):** la maqueta, validada por cálculo (`docs/p0_validacion_maqueta.md`), no se itera más: **P0.5
+    (construir la aplicación de escritorio) empieza ya, en paralelo con la Base** mientras esta espera horas de GPU, con
+    el validador como prueba de aceptación (`docs/p0_plan.md` §3 bis).
     **Cambio (15-11, #301):** los vídeos se suben **desde el PC** y la aplicación se ve **en el PC**. **Nada de móvil**
     (P6 descartado). Decisión: **aplicación de escritorio**, la interfaz de P0 en una ventana del PC, sin web ni
     alojamiento. Sube el vídeo al volumen de Modal, guarda el clic y la aprobación, y descarga los resultados para

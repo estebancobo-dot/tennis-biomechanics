@@ -1,0 +1,151 @@
+/* The application's design system (P0.5a, 15-11): the mockup's (design/p0/aplicacion.html), validated with it (#305):
+   tokens for light and dark, the desktop shell, cards, chips, pills, the lesson's phase strip, drawers. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root {
+  --bg: #eef2f6; --surface: #ffffff; --surface-2: #f5f7fa; --ink: #0f1e2e; --muted: #57687b; --line: #d6dee8;
+  --court: #1d4f91; --court-soft: #dbe6f4; --court-2: #2f6b4e; --ball: #cfe02f; --ball-ink: #3b4300;
+  --good: #2b7a4b; --good-soft: #def0e5; --warn: #9a6614; --warn-soft: #f6ead3; --crit: #a83434; --crit-soft: #f6dddd;
+  --frame-a: #234f86; --frame-b: #3c7a5e; --draw: #7cf06a; --draw-2: #ff5a4f;
+  --display: "Barlow Condensed", "Arial Narrow", sans-serif; --body: "Inter", system-ui, "Segoe UI", sans-serif; --r: 12px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0b1520; --surface: #13212f; --surface-2: #182a3b; --ink: #e5edf5; --muted: #9aabbd; --line: #26394d;
+  --court: #6b9be0; --court-soft: #1c3350; --court-2: #5aa57f; --ball: #d6e64a; --ball-ink: #2a3000;
+  --good: #6cc08f; --good-soft: #17352a; --warn: #e2b061; --warn-soft: #3a2e17; --crit: #ec8a8a; --crit-soft: #3d1f22;
+  --frame-a: #1a3b66; --frame-b: #24543f; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0b1520; --surface: #13212f; --surface-2: #182a3b; --ink: #e5edf5; --muted: #9aabbd; --line: #26394d;
+  --court: #6b9be0; --court-soft: #1c3350; --court-2: #5aa57f; --ball: #d6e64a; --ball-ink: #2a3000;
+  --good: #6cc08f; --good-soft: #17352a; --warn: #e2b061; --warn-soft: #3a2e17; --crit: #ec8a8a; --crit-soft: #3d1f22;
+  --frame-a: #1a3b66; --frame-b: #24543f; color-scheme: dark }
+* { box-sizing: border-box }
+[hidden] { display: none !important }
+html, body { height: 100% }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 14px/1.5 var(--body); -webkit-font-smoothing: antialiased }
+button, select, input { font: inherit; color: inherit }
+button { cursor: pointer }
+:focus-visible { outline: 2px solid var(--court); outline-offset: 2px; border-radius: 6px }
+.num { font-variant-numeric: tabular-nums }
+h1, h2, h3 { font-family: var(--display); font-weight: 700; margin: 0; letter-spacing: .2px; text-wrap: balance }
+h1 { font-size: 28px } h2 { font-size: 21px } h3 { font-size: 17px }
+.sub { color: var(--muted); margin: 2px 0 0; font-size: 13px }
+.eyebrow { text-transform: uppercase; letter-spacing: .08em; font-size: 11px; font-weight: 600; color: var(--muted) }
+
+.shell { display: grid; grid-template-columns: 228px minmax(0, 1fr); min-height: 100% }
+nav.side { position: sticky; top: 0; height: 100vh; overflow-y: auto; background: var(--surface); border-right: 1px solid var(--line); padding: 16px 12px; display: grid; align-content: start; gap: 14px }
+.brand { font-family: var(--display); font-weight: 700; font-size: 23px; padding-left: 8px } .brand span { color: var(--court) }
+.group { display: grid; gap: 2px } .group .eyebrow { padding: 0 10px 4px }
+.nav { border: 0; background: none; display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 9px; color: var(--muted); text-align: left; width: 100% }
+.nav:hover { background: var(--surface-2) }
+.nav[aria-current="page"] { background: var(--court-soft); color: var(--court); font-weight: 600 }
+.nav svg { width: 19px; height: 19px; flex: none; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round }
+.nav .count { margin-left: auto; font-size: 11px; background: var(--surface-2); border-radius: 99px; padding: 0 7px; color: var(--muted) }
+.side-note { font-size: 11.5px; color: var(--muted); border-top: 1px solid var(--line); padding: 10px 10px 0 }
+
+main { min-width: 0 }
+.top { position: sticky; top: 0; z-index: 5; background: var(--surface); border-bottom: 1px solid var(--line); padding: 14px 28px 12px; display: grid; gap: 8px }
+.top-row { display: flex; align-items: flex-end; gap: 14px; flex-wrap: wrap }
+.top-row .grow { flex: 1; min-width: 0 }
+.content { padding: 22px 28px 60px; display: grid; gap: 24px; max-width: 1400px }
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: 9px; padding: 7px 13px; font-weight: 600; font-size: 13px }
+.btn.primary { background: var(--court); color: var(--surface); border-color: var(--court) }
+.btn:hover { border-color: var(--court) }
+.chips { display: flex; gap: 6px; flex-wrap: wrap }
+.chip { border: 1px solid var(--line); background: var(--surface-2); border-radius: 99px; padding: 4px 11px; font-size: 12.5px; white-space: nowrap }
+.chip .c { color: var(--muted); margin-left: 4px }
+.chip[aria-pressed="true"] { background: var(--court); border-color: var(--court); color: var(--surface) }
+.chip[aria-pressed="true"] .c { color: var(--surface); opacity: .8 }
+.tabs { display: flex; gap: 2px; border-bottom: 1px solid var(--line); margin-bottom: -13px }
+.tab { border: 0; background: none; padding: 8px 14px 10px; font-weight: 600; color: var(--muted); border-bottom: 2px solid transparent }
+.tab[aria-current="page"] { color: var(--court); border-bottom-color: var(--court) }
+.pill { display: inline-flex; align-items: center; border-radius: 99px; padding: 1px 8px; font-size: 11.5px; font-weight: 600; white-space: nowrap }
+.pill.good { background: var(--good-soft); color: var(--good) } .pill.warn { background: var(--warn-soft); color: var(--warn) }
+.pill.crit { background: var(--crit-soft); color: var(--crit) } .pill.est { background: var(--court-soft); color: var(--court) }
+.pill.mute { background: var(--surface-2); color: var(--muted); border: 1px solid var(--line) }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 16px; min-width: 0 }
+.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px }
+.grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px }
+.grid4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px }
+.stat b { display: block; font-family: var(--display); font-size: 30px; font-weight: 700; line-height: 1.05 }
+.stat span { color: var(--muted); font-size: 12.5px }
+.list { display: grid; gap: 0 }
+.row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 14px; padding: 11px 2px; border-top: 1px solid var(--line); align-items: center }
+.row:first-child { border-top: 0 }
+.row .t { font-weight: 600 } .row .s { color: var(--muted); font-size: 12.5px }
+.clickable { cursor: pointer } .clickable:hover { background: var(--surface-2) }
+.mock { font-size: 12px; color: var(--muted); border-left: 3px solid var(--line); padding-left: 10px; margin: 0 }
+.bar { height: 8px; background: var(--surface-2); border-radius: 99px; overflow: hidden }
+.bar i { display: block; height: 100%; background: var(--court); border-radius: 99px }
+.bar.warn i { background: var(--warn) } .bar.crit i { background: var(--crit) }
+table.t { width: 100%; border-collapse: collapse; font-size: 13px }
+table.t th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 600; padding: 6px 8px; border-bottom: 1px solid var(--line) }
+table.t td { padding: 8px; border-bottom: 1px solid var(--line); vertical-align: top }
+.scroll { overflow-x: auto }
+.avatar { width: 34px; height: 34px; border-radius: 50%; background: var(--court-soft); color: var(--court); display: grid; place-items: center; font-weight: 700; font-size: 12px; flex: none }
+.avatars { display: flex; gap: 6px; align-items: center }
+
+/* frame placeholder with one automatic drawing */
+.frame { position: relative; aspect-ratio: 16 / 10; border-radius: 10px; overflow: hidden; background: linear-gradient(180deg, var(--frame-b) 0 20%, var(--frame-a) 20% 100%) }
+.frame svg { position: absolute; inset: 0; width: 100%; height: 100% }
+.frame .tag { position: absolute; left: 10px; top: 10px; background: rgb(8 18 30 / .6); color: #f1f5fa; font-size: 11px; border-radius: 6px; padding: 3px 8px }
+.frame .cap { position: absolute; left: 0; right: 0; bottom: 12px; text-align: center; font-family: var(--display); font-weight: 700; font-size: 22px; color: #fff; text-shadow: 0 2px 6px rgb(0 0 0 / .6); padding: 0 16px }
+.frame .cap em { font-style: normal; color: var(--ball) }
+.controls { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px }
+
+/* lesson */
+.strip { display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); gap: 8px }
+.ph { border: 1px solid var(--line); background: var(--surface); border-radius: 10px; padding: 0; overflow: hidden; text-align: left; position: relative }
+.ph .mini { aspect-ratio: 4/3; background: linear-gradient(180deg, var(--frame-b) 0 22%, var(--frame-a) 22% 100%) }
+.ph .nm { padding: 6px 8px; font-size: 12px; font-weight: 600; line-height: 1.25 }
+.ph[aria-current="page"] { border-color: var(--court); box-shadow: 0 0 0 2px var(--court) inset }
+.ph .start { position: absolute; top: 6px; right: 6px; background: var(--ball); color: var(--ball-ink); font-size: 10px; font-weight: 700; border-radius: 6px; padding: 1px 6px }
+.lesson { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 22px; align-items: start }
+.focus { font-family: var(--display); font-size: 24px; font-weight: 600; line-height: 1.2 }
+.focus em { font-style: normal; color: var(--court) }
+.key { border-top: 1px solid var(--line); padding-top: 12px; display: grid; gap: 6px }
+.key-h { display: flex; gap: 10px; align-items: baseline; justify-content: space-between }
+.key .v { font-family: var(--display); font-size: 28px; font-weight: 700; line-height: 1 }
+.key .v small { font-size: 14px; color: var(--muted); margin-left: 2px }
+.key .how { margin: 0 }
+.key .pb { margin: 0; font-size: 13px; color: var(--muted) }
+.practice { background: var(--surface-2); border-radius: 10px; padding: 12px 14px; display: grid; gap: 8px }
+details.fold { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 0 14px }
+details.fold > summary { cursor: pointer; padding: 11px 0; font-weight: 600 }
+details.fold > div { padding: 0 0 14px }
+.chart { width: 100%; height: auto; display: block }
+.chart text { fill: var(--muted); font-size: 11px; font-family: var(--body) }
+.chart .lab { fill: var(--ink); font-size: 12px }
+.chart .grid { stroke: var(--line) } .chart .bar { fill: var(--court-soft) } .chart .dot { fill: var(--court) }
+.chart .imp { fill: var(--ball); stroke: var(--ball-ink); stroke-width: 1.2 }
+
+/* strokes */
+.vgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px }
+.vcard { border: 1px solid var(--line); border-radius: 10px; background: var(--surface); overflow: hidden; text-align: left; padding: 0 }
+.vcard .frame { border-radius: 0 }
+.vcard .meta { padding: 9px 11px; display: grid; gap: 4px }
+.vcard .meta b { font-size: 13.5px }
+.vcard .meta span { font-size: 12px; color: var(--muted) }
+.drawer { position: fixed; inset: 0; z-index: 30; background: rgb(5 12 20 / .45); display: grid; justify-items: end }
+.drawer > div { background: var(--bg); height: 100%; overflow-y: auto; width: min(980px, 94vw); padding: 20px 26px 40px; display: grid; gap: 18px; align-content: start; border-left: 1px solid var(--line) }
+.drawer-h { display: flex; justify-content: space-between; align-items: center; gap: 12px }
+.moments { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px }
+.moment .frame { aspect-ratio: 4/3 }
+.moment b { display: block; font-size: 13px; margin-top: 6px } .moment span { color: var(--muted); font-size: 12px }
+.hbar { display: grid; grid-template-columns: 150px minmax(0, 1fr) 70px; gap: 10px; align-items: center; font-size: 13px }
+.hbar .track { height: 12px; background: var(--surface-2); border-radius: 99px; position: relative }
+.hbar .track i { position: absolute; top: 0; bottom: 0; background: var(--court); border-radius: 99px }
+.hbar .track i.up { background: var(--good) }
+.steps { counter-reset: s; list-style: none; padding: 0; margin: 0; display: grid; gap: 10px }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 30px 1fr; gap: 10px }
+.steps li::before { content: counter(s); width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: var(--court-soft); color: var(--court); font-weight: 700; font-size: 12.5px }
+.stepper { display: flex; gap: 6px; flex-wrap: wrap }
+.stepper .chip[aria-current="step"] { background: var(--court); color: var(--surface); border-color: var(--court) }
+.court svg { width: 100%; max-width: 380px; display: block; margin: 0 auto }
+.court .surf { fill: var(--court) } .court .outer { fill: var(--court-2) } .court .ln { stroke: #f4f7fb; stroke-width: .06; fill: none }
+.court .net { stroke: #f4f7fb; stroke-width: .12 } .court .p { fill: var(--ball); stroke: var(--ball-ink); stroke-width: .05 } .court .p.out { fill: var(--crit) }
+.matrix td.cell { text-align: center; cursor: pointer; font-variant-numeric: tabular-nums }
+.matrix td.cell:hover { outline: 2px solid var(--court); outline-offset: -2px }
+@media (max-width: 1150px) { .strip { grid-template-columns: repeat(5, minmax(0, 1fr)) } .lesson { grid-template-columns: 1fr } .grid4 { grid-template-columns: repeat(2, minmax(0, 1fr)) } }
+@media (prefers-reduced-motion: no-preference) { .nav, .chip, .tab, .vcard, .ph { transition: background-color .15s, border-color .15s } }

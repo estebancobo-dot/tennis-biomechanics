@@ -29,6 +29,9 @@ FREE_HOSTS = {"huggingface.co", "github.com", "raw.githubusercontent.com", "code
               "www.modelscope.cn", "download.openmmlab.com", "drive.google.com", "drive.usercontent.google.com",
               "storage.googleapis.com", "files.pythonhosted.org", "fonts.googleapis.com", "fonts.gstatic.com",
               "astral.sh", "www.youtube.com", "youtube.com", "youtu.be"}
+# 15-11 (P0.5a): text inside the new application's built interface, never fetched: the SVG namespace and the link React
+# writes into its error messages
+BUNDLE_TEXT = {"www.w3.org", "reactjs.org"}
 # software development kits of paid or cloud services
 CLOUD_SDKS = re.compile(r"^(boto3|botocore|google-cloud|azure|firebase|openai|anthropic|stripe|twilio|sentry|dropbox|"
                         r"supabase|pusher|ngrok|cloudflare)", re.I)
@@ -80,7 +83,8 @@ def test_every_address_in_the_code_is_a_free_public_download():
     for f in CODE:
         for h in re.findall(r"https?://([a-zA-Z0-9.-]+)", f.read_text(encoding="utf-8", errors="replace")):
             hosts.setdefault(h, f.relative_to(ROOT).as_posix())
-    other = {h: f for h, f in hosts.items() if h not in FREE_HOSTS}
+    other = {h: f for h, f in hosts.items() if h not in FREE_HOSTS
+             and not (h in BUNDLE_TEXT and f == "src/tennisbio/app/p0/index.html")}
     assert hosts and not other, other
 
 
