@@ -104,6 +104,16 @@ def kaggle_room(spend: dict, now: float, state: dict | None = None) -> float:
     return round(KAGGLE_CAP_H - used, 2)
 
 
+def refresh_estimates(state: dict, spend: dict, jobs: dict) -> None:
+    """R49 (15-11): a running Kaggle job's reservation follows the current measured rate (the final kept 17.9 h,
+    estimated before R48 made a match ~2 times cheaper, and held the week's room)."""
+    for w in spend.get("kaggle", {}).values():
+        for jid, r in (w.get("trabajos") or {}).items():
+            st = state.get(jid) or {}
+            if st.get("estado") == "en_marcha" and jid in jobs:
+                r["estimado_h"] = estimate_h(jobs[jid])
+
+
 def kaggle_quota() -> dict | None:
     """Kaggle's own GPU quota counter (used, allowed, renewal), or None when it cannot be read."""
     try:
@@ -587,6 +597,7 @@ def main(argv: list[str] | None = None) -> int:
                 print(f"{jid}: {res.get('estado')} ({res.get('coste_usd')} $, {res.get('horas_kaggle')} h de Kaggle)")
     if not a.en_seco:
         copy_poc_results(vol, state, d)
+        refresh_estimates(state, spend, by_id)          # R49: reservations with today's measured rate
         real = kaggle_quota() if queue.get("kaggle_activo") else None
         if real:                                         # R49: Kaggle's own counter decides the room
             spend["kaggle_real"] = {**real, "ts": now}

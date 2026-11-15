@@ -460,3 +460,13 @@ def test_kaggle_room_from_its_own_counter():
     sp = {"kaggle": {cola.week(NOV): {"trabajos": {"x": {"estimado_h": 1.0}}}}}
     cola.record_result(st, sp, "x", {"estado": "error", "nota": "nunca arrancó"}, NOV + 9000)
     assert sp["kaggle"][cola.week(NOV)]["trabajos"]["x"]["horas"] == 0.0                         # never ran
+
+
+def test_running_reservations_follow_the_measured_rate():
+    """R49: a running job's reservation is re-estimated with the current rate each pass."""
+    job = {"id": "final", "accion": "partido", "partido": "f", "aprobado": True}
+    spend = {"kaggle": {cola.week(NOV): {"trabajos": {"final": {"estimado_h": 17.85}, "x": {"estimado_h": 1.0}}}}}
+    state = {"final": {"estado": "en_marcha", "donde": "kaggle"}, "x": {"estado": "hecho"}}
+    cola.refresh_estimates(state, spend, {"final": job})
+    t = spend["kaggle"][cola.week(NOV)]["trabajos"]
+    assert t["final"]["estimado_h"] == cola.estimate_h(job) < 17.85 and t["x"]["estimado_h"] == 1.0
