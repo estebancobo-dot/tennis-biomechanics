@@ -466,8 +466,8 @@
   "ruta": "/runs/kaggle_prueba_gauff_v23_calidad/estado.json",
   "salida": "/kaggle_pruebas/prueba_gauff_v23_calidad/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cuaderno": "tennisbio-prueba-gauff-v23-calidad",
-  "progreso": "scenes: 100 % (15016/15016 fotogramas) · 2 min · quedan ≈ 0 s (06:34:22; GPU 0 %·0 %, CPU 86 %, 2.2 GB)",
-  "kaggle": "running (06:35)",
+  "progreso": "identity: 100 % (108/108 fotogramas (ropa)) · 35 s · quedan ≈ 0 s (06:38:28; GPU 0 %·0 %, CPU 63 %, 3.3 GB)",
+  "kaggle": "running (06:40)",
   "arranco": "2026-11-15 06:35",
   "espera_min": 5
  },
@@ -483,8 +483,8 @@
   "ruta": "/runs/kaggle_prueba_gauff_rtmw/estado.json",
   "salida": "/kaggle_pruebas/prueba_gauff_rtmw/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cuaderno": "tennisbio-prueba-gauff-rtmw",
-  "progreso": "scenes:  92 % (13786/15016 fotogramas) · 2 min · quedan ≈ 11 s (06:35:04; GPU 0 %·0 %, CPU 88 %, 2.2 GB)",
-  "kaggle": "running (06:35)",
+  "progreso": "identity: 100 % (108/108 fotogramas (ropa)) · 38 s · quedan ≈ 0 s (06:39:27; GPU 0 %·0 %, CPU 53 %, 3.7 GB)",
+  "kaggle": "running (06:40)",
   "arranco": "2026-11-15 06:35",
   "espera_min": 5
  },
