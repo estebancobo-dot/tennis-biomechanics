@@ -107,3 +107,19 @@ def test_equivalence_and_proof_of_concept_items(tmp_path):
     plan = yaml.safe_load((ROOT / "config" / "plan_peticiones.yaml").read_text(encoding="utf-8"))
     for p in plan["paquetes"]["NN"]["prueba"]:                     # the package's main test finds both
         assert any(re.match(p, n) for n in names), p
+
+
+def test_hardcoded_names_are_measured_against_the_configured_players(tmp_path):
+    """P0.2 (15-11): #241 as an audit check (cell datos × mantenibilidad × código), from the players in config, so the
+    check itself names nobody."""
+    from tennisbio import audit
+    (tmp_path / "config" / "players").mkdir(parents=True)
+    (tmp_path / "config" / "players" / "p.yaml").write_text("name: Ana Ejemplova\n", encoding="utf-8")
+    src = tmp_path / "src" / "tennisbio"
+    src.mkdir(parents=True)
+    (src / "ok.py").write_text('"""Ejemplova in a docstring is fine."""\nX = "forehand"\n', encoding="utf-8")
+    assert audit.hardcoded_item(tmp_path)["status"] == "ok"
+    (src / "bad.py").write_text('WHO = "ejemplova"\n', encoding="utf-8")
+    it = audit.hardcoded_item(tmp_path)
+    assert it["status"] == "falta" and "bad.py:1" in it["detail"] and it["area"] == "Mantenibilidad"
+    assert audit.hardcoded_item()["status"] == "ok"                     # the repository itself

@@ -95,6 +95,12 @@ def markdown(res: dict, model: dict | None = None) -> str:
         bad = "; ".join(v["fallan"][:3]) + (f" (+{len(v['fallan']) - 3})" if len(v["fallan"]) > 3 else "")
         lines.append(f"| {D.get(d, d)} | {C.get(c, c)} | {L.get(l, l)} | {_pct(v['score'])} | {v['ok']}/{v['n']} | "
                      f"{v['pocos datos']} | {st} | {bad} |")
+    how = m.get("como_se_mide") or {}
+    pending = [(k, how.get("/".join(k))) for k, v in order if v.get("unmeasured")]
+    if pending:
+        lines += ["", "## Cómo se medirá lo que falta", ""]
+        lines += [f"- **{D.get(d, d)} × {C.get(c, c)} × {L.get(l, l)}:** {txt or 'sin métrica escrita todavía'}"
+                  for (d, c, l), txt in pending]
     if res["unmapped"]:
         lines += ["", "**Áreas de la auditoría sin casilla (añadirlas a `config/calidad.yaml`):** "
                   + ", ".join(f"{k} ({n})" for k, n in res["unmapped"].items())]

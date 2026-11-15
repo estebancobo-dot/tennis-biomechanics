@@ -2519,6 +2519,7 @@ def base_items(match_dirs: list[Path], out_root: Path, cfg: dict | None = None) 
                lambda: [f3set_precision_item(out_root)], lambda: f3set_detector_items(out_root),
                lambda: f3set_sides_items(out_root),          # B4 (08-11): identity and far end against F3Set
                lambda: cloud_items(match_dirs, cfg),         # T3 (14-11): B1, B7 and B8 in the cloud
+               lambda: [hardcoded_item()],                   # P0.2 (15-11): #241 measured, not only tested
                # #30: after the model items, which it reads
                lambda: [comparison_doc_item(items, out_root)]):
         try:
@@ -2530,6 +2531,12 @@ def base_items(match_dirs: list[Path], out_root: Path, cfg: dict | None = None) 
 
 EQUIV_ITEM = "Equivalencia entre infraestructuras"
 POC_ITEM = "Prueba de concepto medida"
+# P0.2 (15-11): the same results on every infrastructure is the portability of the cloud application (#287-#289),
+# and the measured proofs of concept are the models' performance there (the PC's cells wait for nothing since #284)
+PORTABILITY_AREA = "Portabilidad"
+MODEL_SPEED_AREA = "Rendimiento de modelos"
+HARDCODED_ITEM = "Nada fijo en el código: ningún jugador por su nombre"
+HARDCODED_TABLES = ("app/cards.py", "app/state.py")     # file-name transliterations (data), as the test allows
 
 
 def equivalence_item(root: Path | None) -> dict:
@@ -2537,7 +2544,7 @@ def equivalence_item(root: Path | None) -> dict:
     model runs: the queue's comparisons (cola/comparaciones/*.json, tennisbio.infra.equivalence). ok with at least
     one and none «distinta»; a distinct one is a fault to find, not a result."""
     if root is None:
-        return _item(9, "Nube", EQUIV_ITEM, "aviso", "no es la nube (sin paths.cloud en config/local.yaml)")
+        return _item(9, PORTABILITY_AREA, EQUIV_ITEM, "aviso", "no es la nube (sin paths.cloud en config/local.yaml)")
     rows = []
     for f in sorted((root / "cola" / "comparaciones").glob("*.json")):
         try:
@@ -2550,10 +2557,10 @@ def equivalence_item(root: Path | None) -> dict:
             continue
         rows.append((f.stem, d.get("veredicto")))
     if not rows:
-        return _item(9, "Nube", EQUIV_ITEM, "aviso", "ninguna comparación todavía (acción «comparar» de la cola)")
+        return _item(9, PORTABILITY_AREA, EQUIV_ITEM, "aviso", "ninguna comparación todavía (acción «comparar» de la cola)")
     bad = [r for r in rows if r[1] not in ("idéntica", "equivalente")]
     det = "; ".join(f"{k}: {v}" for k, v in rows[-6:])
-    return _item(9, "Nube", EQUIV_ITEM, "falta" if bad else "ok",
+    return _item(9, PORTABILITY_AREA, EQUIV_ITEM, "falta" if bad else "ok",
                  f"{len(rows)} comparaciones, {len(bad)} distintas ({det})")
 
 
@@ -2561,7 +2568,7 @@ def poc_item(root: Path | None) -> dict:
     """#288: every technical choice by a measured proof of concept: runs/kaggle_medir_*/estado.json with its
     measurement («poc»: each option's time and its outputs against the reference). ok with at least one measured."""
     if root is None:
-        return _item(9, "Nube", POC_ITEM, "aviso", "no es la nube (sin paths.cloud en config/local.yaml)")
+        return _item(9, MODEL_SPEED_AREA, POC_ITEM, "aviso", "no es la nube (sin paths.cloud en config/local.yaml)")
     done, failed = [], []
     for f in sorted((root / "runs").glob("kaggle_medir_*/estado.json")):
         try:
@@ -2572,9 +2579,49 @@ def poc_item(root: Path | None) -> dict:
         (done if d.get("estado") == "hecho" and isinstance(d.get("poc"), dict) and d["poc"].get("opciones")
          else failed).append(name)
     if not done:
-        return _item(9, "Nube", POC_ITEM, "aviso",
+        return _item(9, MODEL_SPEED_AREA, POC_ITEM, "aviso",
                      "ninguna prueba de concepto medida todavía" + (f" (con error: {', '.join(failed)})" if failed else ""))
-    return _item(9, "Nube", POC_ITEM, "ok", f"medidas: {', '.join(done)}" + (f"; con error: {', '.join(failed)}" if failed else ""))
+    return _item(9, MODEL_SPEED_AREA, POC_ITEM, "ok", f"medidas: {', '.join(done)}" + (f"; con error: {', '.join(failed)}" if failed else ""))
+
+
+def _player_tokens(players_dir: Path) -> set[str]:
+    """Surnames (and given names) of the configured players, lower case, 4+ letters: what the code must never name."""
+    import yaml
+    out = set()
+    for f in sorted(players_dir.glob("*.yaml")):
+        d = yaml.safe_load(f.read_text(encoding="utf-8")) or {}
+        for w in re.split(r"[^a-záéíóúñüçа-я]+", str(d.get("name") or "").lower()):
+            if len(w) >= 4:
+                out.add(w)
+    return out
+
+
+def hardcoded_item(root: Path | None = None) -> dict:
+    """P0.2 (15-11): request #241 («nada fijo en el código») as a measure of the code the audit runs with: the string
+    constants of src/tennisbio that name a configured player (docstrings and the file-name tables aside)."""
+    import ast
+    root = Path(root or Path(__file__).resolve().parents[2])
+    tokens = _player_tokens(root / "config" / "players")
+    if not tokens:
+        return _item(241, "Mantenibilidad", HARDCODED_ITEM, "pocos datos", "sin jugadores en config/players")
+    bad, n = [], 0
+    src = root / "src" / "tennisbio"
+    for f in sorted(src.rglob("*.py")):
+        rel = f.relative_to(src).as_posix()
+        if rel in HARDCODED_TABLES:
+            continue
+        n += 1
+        tree = ast.parse(f.read_text(encoding="utf-8"))
+        docs = {id(x.body[0].value) for x in ast.walk(tree)
+                if isinstance(x, (ast.Module, ast.FunctionDef, ast.ClassDef, ast.AsyncFunctionDef)) and x.body
+                and isinstance(x.body[0], ast.Expr) and isinstance(x.body[0].value, ast.Constant)}
+        for x in ast.walk(tree):
+            if (isinstance(x, ast.Constant) and isinstance(x.value, str) and id(x) not in docs
+                    and any(t in x.value.lower() for t in tokens) and "help=" not in x.value.lower()):
+                bad.append(f"{rel}:{x.lineno}")
+    return _item(241, "Mantenibilidad", HARDCODED_ITEM, "falta" if bad else "ok",
+                 f"{len(bad)} textos con el nombre de un jugador: {', '.join(bad[:5])}" if bad
+                 else f"{n} módulos sin el nombre de ninguno de los jugadores configurados ({len(tokens)} nombres)")
 
 
 def cloud_items(match_dirs: list[Path], cfg: dict | None = None) -> list[dict]:

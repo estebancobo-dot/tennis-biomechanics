@@ -62,6 +62,9 @@ areas:
   "Uso del PC": [plataforma, rendimiento, pc]
   "Uso de la nube": [plataforma, rendimiento, nube]   # T3 (14-11): B1 en la nube, CPU/GPU/memoria por etapa
   "Nube": [plataforma, fiabilidad, nube]              # T3 (14-11): B7/B8 en la nube, «Cola de la nube»
+  "Portabilidad": [plataforma, portabilidad, nube]    # P0.2 (15-11): los mismos resultados en cada infraestructura
+  "Rendimiento de modelos": [modelos, rendimiento, nube]   # P0.2: pruebas de concepto medidas en la nube
+  "Mantenibilidad": [datos, mantenibilidad, codigo]  # P0.2: #241 medido (ningún jugador por su nombre en el código)
   "Automático": [plataforma, fiabilidad, pc]
   "Infraestructura": [plataforma, fiabilidad, pc]
   "Orquestador": [plataforma, fiabilidad, pc]
@@ -94,9 +97,16 @@ esperadas:
   - [plataforma, fiabilidad, nube]
   - [plataforma, rendimiento, nube]
   - [plataforma, mantenibilidad, codigo]
-  - [plataforma, portabilidad, pc]
+  - [plataforma, portabilidad, nube]   # P0.2 (15-11): el PC no se usa (#284)
   - [modelos, exactitud, verdad]
-  - [modelos, rendimiento, pc]
+  - [modelos, rendimiento, nube]
   - [exportacion, funcional, pc]
 
 umbral_aceptacion: 0.95     # una casilla esta aceptada con >= 95 % de sus comprobaciones cumplidas
+
+# P0.2 (15-11): cómo se medirá cada casilla que sigue sin medir (lo enseña `tennisbio calidad`)
+como_se_mide:
+  pantallas/rendimiento/pantallas: "P0.5: Playwright en cada pantalla de la aplicación web: primera pantalla < 2 s y cambio de pantalla < 300 ms en un móvil simulado (4× CPU más lenta, red 4G); vídeo con capas a 30 fps"
+  pantallas/portabilidad/pantallas: "P0.5: cada pantalla a 390 y 1280 px sin desbordes (anchura del documento = anchura de la ventana) y 0 errores graves de axe-core, en claro y oscuro"
+  situaciones/exactitud/verdad: "F3Set: la dirección de su golpe (cruzada, paralela, al centro) y el tipo de contacto frente a las etiquetas anotadas de los mismos golpes; aceptada con ≥ 85 % de acierto (la dirección es la mejor anotada)"
+  taxonomia/exactitud/verdad: "RacketVision: los 5 puntos de la raqueta frente a los anotados (error mediano en px, a escala de su altura) y la bola; las fases, frente a los instantes de golpe de F3Set (error ≤ 2 fotogramas)"
