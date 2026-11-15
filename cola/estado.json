@@ -869,7 +869,7 @@
   "ruta": "/runs/kaggle_medir_bola_totnet/estado.json",
   "cpu": true,
   "cuaderno": "tennisbio-medir-bola-totnet",
-  "kaggle": "running (18:53)",
+  "kaggle": "running (18:58)",
   "arranco": "2026-11-15 16:40",
   "espera_min": 5
  },
@@ -906,7 +906,7 @@
   }
  },
  "prueba_gauff_v29_c": {
-  "estado": "en_marcha",
+  "estado": "error",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 1,
@@ -921,6 +921,16 @@
   "progreso": "scenes:  24 % (3626/15016 fotogramas) · 2 min · quedan ≈ 7 min (18:52:48; CPU 63 %, 2.6 GB)",
   "kaggle": "running (18:53)",
   "arranco": "2026-11-15 18:53",
-  "espera_min": 5
+  "espera_min": 5,
+  "resultado": {
+   "nota": "cancelado: T24 (15-11 20:00): las partes no reutilizan lo de la anterior: la huella de un modelo lleva la fecha de su fichero y cada sesión lo baja de Modal con fecha nueva (v29_b repitió los cortes; v29_c los repetía otra vez y seguiría con lo de GPU en la CPU). Se arregla la huella (por contenido) y la prueba se repite como v30"
+  }
+ },
+ "comparar_gauff_v26_v29": {
+  "estado": "error",
+  "resultado": {
+   "nota": "cancelado: sin la v29_c (ver arriba)"
+  },
+  "partido": ""
  }
 }

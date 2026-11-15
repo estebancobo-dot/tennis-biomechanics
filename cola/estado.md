@@ -1,6 +1,6 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-15 18:53 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 3.6 h de GPU esta semana (tope 28 h; Kaggle dice 24.4 h usadas de 30.0, se renueva 2026-11-21 00:00)
+Última vuelta: 2026-11-15 18:58 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 3.6 h de GPU esta semana (tope 28 h; Kaggle dice 24.4 h usadas de 30.0, se renueva 2026-11-21 00:00)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
@@ -41,9 +41,9 @@
 | investigar_short_usuario_306 | investigar |  | hecho | kaggle |  |
 | prueba_gauff_v29_a | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
 | prueba_gauff_v29_b | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
-| prueba_gauff_v29_c | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: running (18:53), intento 1 · scenes:  24 % (3626/15016 fotogramas) · 2 min · quedan ≈ 7 min (18:52:48; CPU 63 %, 2.6 GB) |
-| comparar_gauff_v26_v29 | comparar |  | pendiente |  | espera a prueba_gauff_v29_c |
-| medir_bola_totnet | medir |  | en_marcha | kaggle | Kaggle: running (18:53), intento 1 |
+| prueba_gauff_v29_c | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | error | kaggle | cancelado: T24 (15-11 20:00): las partes no reutilizan lo de la anterior: la huella de un modelo lleva la fecha de su fichero y cada sesión lo baja de Modal con fecha nueva (v29_b repitió los cortes; v29_c los repetía otra vez y seguiría con lo de GPU en la CPU). Se arregla la huella (por contenido) y la prueba se repite como v30 |
+| comparar_gauff_v26_v29 | comparar |  | error |  | cancelado: sin la v29_c (ver arriba) |
+| medir_bola_totnet | medir |  | en_marcha | kaggle | Kaggle: running (18:58), intento 1 |
 | leer_zheng_errores | leer |  | hecho | github | leídos: output__zheng-qinwen-elena-rybakina__strokes_errores.json |
 | prueba_gauff | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | modal |  |
 | prueba_gauff_v16 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | error | kaggle | en cola de Kaggle más de 10 min sin arrancar (4 intentos) |
