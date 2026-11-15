@@ -149,6 +149,7 @@ export function Explorador({ d, a }: { d: Datos; a: Golpe[] }) {
               </tr>
               {e.key === sel ? <tr><td colSpan={5} data-medida-detalle style={{ background: "var(--bg-2, transparent)" }}>
                 <p className="sub">{e.read ? `Cómo se mide: ${e.read}` : e.sub || ""}</p>
+                {d.why?.[e.key] ? <p className="sub" data-fuente>Por qué importa: {d.why[e.key][0]} <i>({d.why[e.key][1]})</i></p> : null}
                 {s.n >= MIN_N ? <Reparto e={e} s={s} /> : <p className="sub">{s.n} golpes con esta medida: pocos para dar su reparto.</p>}
                 <div className="grid2" style={{ marginTop: 8 }}>{extremos(e).map(([t, gs]) => (
                   <div key={t}><b className="sub">{t} (con su vídeo)</b>

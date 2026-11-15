@@ -229,3 +229,25 @@ def test_tactics_put_her_strokes_together_by_point():
     assert "4 puntos vistos desde su principio" in text and "punto 1 de 4" in text and "punto 2 de 4" in text2
     assert dots == 3 and golpes == 3
     assert "Dos derechas seguidas" in text and "8 pares" in text
+
+
+def test_the_return_says_how_it_is_found_and_its_variants():
+    """Design change 3 (docs/p0_diseno.md §10): the return of serve: how it is recognised, the serve received, the side,
+    first or second serve, the kind of return, where she waits; each return opens its panel."""
+    pytest.importorskip("playwright")
+    from playwright.sync_api import sync_playwright
+    with sync_playwright() as pw:
+        b, p = _page(pw, fake=False)
+        p.evaluate("() => location.hash = 'visor'")
+        p.wait_for_timeout(200)
+        p.click('[data-tab="mas"]')
+        p.click('[data-sub="resto"]')
+        p.wait_for_timeout(150)
+        text = p.inner_text("section.content")
+        n = p.evaluate("() => document.querySelectorAll('[data-resto]').length")
+        b.close()
+    restos = [g for g in p0_app.ejemplo()["strokes"] if g.get("play") == "resto"]
+    assert n == len(restos) == 4
+    assert "icono de saque del marcador" in text and "El saque que recibe" in text and "Tipo de resto" in text
+    assert "4 restos de derecha" in text.replace("\n", " ") or "4\nrestos de derecha" in text
+    assert "pocos" in text            # 4 returns: below the minimum, no median of where she waits

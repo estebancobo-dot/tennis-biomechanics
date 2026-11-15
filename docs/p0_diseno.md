@@ -363,6 +363,9 @@ Cambios del diseño, por orden:
    - el saque recibido (abierto, al cuerpo o a la T);
    - el lado (iguales o ventaja);
    - la posición de espera.
+   - **Hecho en la aplicación (15-11 23:50, «Más → Resto»):** cómo se reconoce (de `tennisbio.returns`), el saque
+     recibido, el lado, primer o segundo saque, el tipo de resto, dónde espera y cuánto entra, los que acaban en error y
+     cada resto con su vídeo (beta: 86 restos).
 4. **Situaciones completas:** faltan «bola profunda» y «en salto».
 5. **Empuñadura en la fase 1** (estimación o «no medible desde la tele»), y la lección empieza por ella.
 6. **El análisis de cada golpe:**
@@ -377,7 +380,8 @@ Cambios del diseño, por orden:
    - mano libre en la aceleración y el impacto (10; su medida no existe: #193, paquete M);
    - último apoyo frente al bote (12);
    - sus principios (13);
-   - fuentes citadas (17).
+   - fuentes citadas (17) — **hecho (15-11 23:50):** cada medida de la lección y del explorador con su «por qué importa» y
+     su fuente (ITF, Tennis Australia, Elliott, Landlinger…), que el informe ya tenía y la aplicación no enseñaba.
 8. **Junto a cada medida, cómo se mide y su fiabilidad** (hoy, cómo se mide solo está en «Lo que la tele no mide»).
 9. **Lo no medible completo:** cada fila ✘ de la matriz dicha en «Lo que la tele no mide» (faltan, por ejemplo, la
    mirada, las fuerzas y el bisel de la empuñadura).

@@ -64,6 +64,7 @@ function Clave({ d, c, sit }: { d: Datos; c: PuntoDeControl; sit: string }) {
       {c.cue ? <p className="how">{c.cue}</p> : null}
       {c.mistake ? <p className="pb"><b>Si te pasa:</b> {c.mistake}</p> : null}
       {c.read ? <p className="sub">Cómo se mide: {c.read}</p> : null}
+      {d.why?.[c.key] ? <p className="sub" data-fuente>Por qué importa: {d.why[c.key][0]} <i>({d.why[c.key][1]})</i></p> : null}
       <div className="chips">{met ? <Fiabilidad d={d} k={c.m!} /> : <Veredicto v={rel?.verdict} />}{extra}<span className="sub">{rango}</span></div>
     </div>
   );

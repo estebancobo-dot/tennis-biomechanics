@@ -13,7 +13,7 @@ type AnyRec = Record<string, any>; // eslint-disable-line @typescript-eslint/no-
 const MIN_N = 10;
 const sgn = (v: number, d = 0) => (v > 0 ? "+" : v < 0 ? "−" : "") + fmt(Math.abs(v), d);
 const pct = (n: number, de: number, que = "golpes") => (de >= MIN_N ? `${fmt((100 * n) / de)} %` : `${n} de ${de} (pocos ${que})`);
-export const MAS: [string, string][] = [["medidas", "Medidas"], ["comparar", "Comparar"], ["conclusiones", "Conclusiones"], ["situaciones", "Situaciones"], ["tactica", "Táctica"],
+export const MAS: [string, string][] = [["medidas", "Medidas"], ["comparar", "Comparar"], ["conclusiones", "Conclusiones"], ["situaciones", "Situaciones"], ["tactica", "Táctica"], ["resto", "Resto"],
   ["pista", "Pista"], ["tabla", "Tabla de golpes"], ["lateral", "Vista lateral (entreno)"], ["fiabilidad", "Fiabilidad"], ["datos", "Datos"], ["exportar", "Exportar"]];
 
 function Rel({ d, k }: { d: Datos; k: string }) {
@@ -194,6 +194,52 @@ function Peloteo({ a }: { a: Golpe[] }) {
   );
 }
 
+// change 3 (docs/p0_diseno.md §10): the return of serve, as tennisbio.returns finds it and names its variants
+const RESTO_COMO = "Un golpe es un resto cuando saca la rival (el icono de saque del marcador) y es su primer golpe del punto "
+  + "(los impactos de su lado en el mismo plano). El saque recibido sale de dónde bota en su cuadro (homografía): abierto, al "
+  + "cuerpo o a la T, por tercios; el lado, de los puntos jugados en el juego (marcador), comprobado con el bote; primer o "
+  + "segundo saque, de si el plano enseña un saque anterior. El tipo de resto se construye con lo que su golpe ya tiene: "
+  + "preparación (amplia o compacta), terminación y trayectoria de la mano (cortado: de arriba abajo, no el efecto).";
+
+function mediana(xs: number[]) { const v = [...xs].sort((x, y) => x - y); return v.length ? v[Math.floor(v.length / 2)] : NaN; }
+
+function Resto({ todas }: { todas: Golpe[] }) {
+  const { abrir } = useApp();
+  const r = todas.filter((s) => s.play === "resto");
+  const tabla = (campo: string, que = "restos") => {
+    const xs = r.filter((s) => typeof s[campo] === "string" && s[campo]);
+    return <><table className="t"><tbody>{reparto(xs, campo).map(([k, n]) => <tr key={k}><td>{k}</td><td className="num">{pct(n, xs.length, que)}</td></tr>)}</tbody></table>
+      <p className="sub">{xs.length} de {r.length} restos con este dato.</p></>;
+  };
+  const lv = (s: Golpe, k: string) => (s.lv as Record<string, unknown> | undefined)?.[k];
+  const espera = r.map((s) => lv(s, "stroke.return_ready_depth_m")).filter(esN) as number[];
+  const entra = r.map((s) => lv(s, "stroke.return_step_in_m")).filter(esN) as number[];
+  const errores = r.filter((s) => s.outcome === "error").length;
+  return (
+    <>
+      <div className="card" style={{ marginTop: 12 }}><h3>Sus restos de derecha</h3>
+        <p className="sub">{RESTO_COMO}</p></div>
+      <div className="grid4">
+        <div className="card stat"><b className="num">{r.length}</b><span>restos de derecha (de {todas.length} derechas)</span></div>
+        <div className="card stat"><b className="num">{espera.length >= MIN_N ? `${fmt(mediana(espera), 2)} m` : "pocos"}</b><span>dónde espera el saque (desde la línea de fondo; − es detrás) · {espera.length} restos</span></div>
+        <div className="card stat"><b className="num">{entra.length >= MIN_N ? `${fmt(mediana(entra), 2)} m` : "pocos"}</b><span>cuánto entra hacia la bola desde ahí · {entra.length} restos</span></div>
+        <div className="card stat"><b className="num">{pct(errores, r.length, "restos")}</b><span>acaban en error</span></div>
+      </div>
+      <div className="grid3">
+        <div className="card"><h3>El saque que recibe</h3>{tabla("serveDir")}</div>
+        <div className="card"><h3>Lado</h3>{tabla("returnSide")}<h3 style={{ marginTop: 10 }}>Primer o segundo saque</h3>{tabla("serveNumber")}</div>
+        <div className="card"><h3>Tipo de resto</h3>{tabla("returnType")}</div>
+      </div>
+      <div className="card"><h3>Sus restos, con su vídeo</h3>
+        <div className="list">{r.slice(0, 30).map((s) => (
+          <button className="row clickable" type="button" key={s.id} data-resto style={{ width: "100%", textAlign: "left" }} onClick={() => abrir(<FichaGolpe s={s} />)}>
+            <span>{tituloGolpe(s)}</span>
+            <span className="sub">{[s.serveDir ? `saque ${s.serveDir}` : null, s.returnSide, s.returnType].filter(Boolean).join(" · ") || "—"}</span></button>))}</div>
+        {r.length > 30 ? <p className="sub">Los 30 primeros de {r.length}; todos están en «Sus golpes».</p> : null}</div>
+    </>
+  );
+}
+
 function Tactica({ a, todas }: { a: Golpe[]; todas: Golpe[] }) {
   const conDir = a.filter((s) => typeof s.shotDir === "string" && s.shotDir);
   const presion = conDir.filter((s) => s.pressure), resto = conDir.filter((s) => !s.pressure);
@@ -296,6 +342,7 @@ export function Mas({ d, sit, onCelda }: { d: Datos; sit: string; onCelda: (sit:
       {sub === "conclusiones" ? <Conclusiones d={d} /> : null}
       {sub === "situaciones" ? <Situaciones d={d} onCelda={onCelda} /> : null}
       {sub === "tactica" ? <Tactica a={a} todas={d.strokes} /> : null}
+      {sub === "resto" ? <Resto todas={d.strokes} /> : null}
       {sub === "pista" ? <Pista a={a} /> : null}
       {sub === "tabla" ? <Tabla a={a} /> : null}
       {sub === "lateral" ? <div className="card" style={{ marginTop: 12 }}><h3>Vista lateral (entreno)</h3>

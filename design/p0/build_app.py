@@ -162,7 +162,10 @@ def build(data: dict, audit: dict, estado_md: str, match_list: list) -> dict:
                 "lv": s.get("lv") or {},          # change 1 (§10): the checkpoints, stroke by stroke
                 # change 2 (§10): her place in the point (her hits in the main-camera shot, stages._rally_position) and
                 # the moment in the video, to put a point's strokes together and in order
-                "shotInPoint": s.get("shotInPoint"), "shotsInPoint": s.get("shotsInPoint"), "vt": s.get("vt")} for s in near]
+                "shotInPoint": s.get("shotInPoint"), "shotsInPoint": s.get("shotsInPoint"), "vt": s.get("vt"),
+                # change 3 (§10): the return (tennisbio.returns): its moment in the point and its variants
+                **{a: (s.get("cl") or {}).get(b) for a, b in (("play", "play"), ("returnSide", "return_side"),
+                   ("serveDir", "serve_dir"), ("serveNumber", "serve_number"), ("returnType", "return_type"))}} for s in near]
     return {"generated": data.get("generated"), "player": data["player"], "stroke": data.get("stroke"),
             "known": data.get("known_differences") or [], "conclusions": data.get("conclusions") or [],
             "findings": data.get("findings") or [], "metrics": metrics, "situations": sits, "phases": phases,

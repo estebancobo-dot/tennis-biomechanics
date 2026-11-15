@@ -15,7 +15,7 @@ from pathlib import Path
 
 MANAGEMENT = ("inicio", "analisis", "partidos", "personas", "cola", "calidad", "almacen", "ajustes")
 MORE = ("comparar", "conclusiones", "situaciones", "pista", "tabla", "lateral", "fiabilidad", "datos", "exportar")
-OPTIONAL_MORE = ("tactica", "medidas")        # P0.5c (design changes 2 and 1)
+OPTIONAL_MORE = ("tactica", "medidas", "resto")   # P0.5c (design changes 2, 1 and 3)
 WIDTHS = ((1920, 1080), (1280, 800), (1024, 768), (390, 844))
 
 

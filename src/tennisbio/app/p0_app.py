@@ -50,8 +50,15 @@ def ejemplo() -> dict:
                "shotInPoint": 1 + (i // 2) % 3, "shotsInPoint": 3, "vt": 100.0 * (i // 6) + 3.0 * ((i // 2) % 3),
                "x": round(-2.0 + 1.3 * ((i // 2) % 3), 2), "y": round(12.5 - 0.4 * (i % 3), 2),
                "shotX": round(3.0 - 2.0 * (i % 3), 2), "shotY": round(4.0 + 1.5 * (i % 4), 2), "shotIn": i % 5 != 4,
-               "shotDir": ("cruzada", "paralela", "al centro")[i % 3]}
+               "shotDir": ("cruzada", "paralela", "al centro")[i % 3],
+               # the first stroke of each made-up point is a return (tennisbio.returns' classes)
+               **({"play": "resto", "returnSide": ("iguales", "ventaja")[i % 2], "serveDir": ("abierto", "a la T", "al cuerpo")[i % 3],
+                   "serveNumber": "primer saque", "returnType": ("swing completo", "cortado")[i % 2]}
+                  if (i // 2) % 3 == 0 else {"play": "peloteo"})}
               for i in range(12)]
+    for i, g in enumerate(golpes):
+        if g["play"] == "resto":                       # where she waits for the serve and how far she steps in
+            g["lv"].update({"stroke.return_ready_depth_m": round(-1.1 - 0.1 * i, 2), "stroke.return_step_in_m": 0.2})
     for g in golpes[:4]:
         g["trayectoria"] = _trayectoria_ejemplo()
     trabajos = [{"id": "prueba_ejemplo", "accion": "prueba", "partido": partidos[2]["id"], "estado": "en_marcha",
@@ -68,6 +75,7 @@ def ejemplo() -> dict:
         "situations": [{"id": "todas", "label": "Todas", "n": len(golpes), "m": {}}],
         "phases": fases, "plan": [], "symptoms": [], "not_tv": [["Fuerzas", "Solo cinemática desde la tele."]],
         "glossary": [], "strokes": golpes, "n_near": len(golpes), "n_far": 3,
+        "why": {f"{fases[0]['id']}.medida_1": ["Una razón de ejemplo.", "Fuente de ejemplo"]},
         "players": [{"id": "ejemplo", "name": jug, "hand": "right", "backhand": "two_handed", "height_m": 1.8, "ficha": True}],
         "matches": partidos,
         "queue": {"head": "Última vuelta: ejemplo", "jobs": trabajos, "kaggle": {"used": 10.0, "total": 30.0},

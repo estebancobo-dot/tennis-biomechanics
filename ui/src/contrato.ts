@@ -103,6 +103,7 @@ export interface Datos {
   not_tv: [string, string][] | string[];
   glossary: unknown[];
   strokes: Golpe[];
+  why?: Record<string, [string, string]>;   // each checkpoint: why it matters and its source (ITF, Elliott, Landlinger…)
   n_near: number;
   n_far: number;
   players: Persona[];

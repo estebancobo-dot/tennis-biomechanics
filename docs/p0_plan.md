@@ -84,24 +84,24 @@ datos de ejemplo), la validación de `validar_maqueta.py` (su cobertura nunca ba
 |---|---|---|
 | P0.5a | **Hecho (15-11 17:50).** **Esqueleto:** `ui/` (React + TypeScript + Vite + Tailwind), compilada a `src/tennisbio/app/p0/` (los estáticos van al repositorio: el PC no tiene Node); el contrato de datos tipado (`ui/src/contrato.ts`) y su adaptador en Python (`tennisbio.app.p0_datos`, de `design/p0/build_app.py`); datos de ejemplo sin nada real; el recorrido y la validación como prueba | nube |
 | P0.5b | **Hecho salvo el reproductor (15-11 19:40).** **Visor:** Lección (fases con su vídeo y sus capas en canvas: esqueleto, raqueta, bola), Sus golpes (galería ordenada) y el análisis de cada golpe (8 fotogramas, la bola y ella, bajar y subir, base, tronco, «Cuenta conmigo», avisos, estroboscópica, tira de contactos) | nube |
-| P0.5c | **Hecho en lo que dan los datos (15-11 19:40): Táctica con dirección, profundidad, dentro o fuera, presión y cambios de dirección. 23:00: el explorador de medidas (cambio 1). 23:30: la táctica por puntos (cambio 2: largo del punto, errores por golpe, secuencias, el punto en mini-mapa).** **Más:** explorador de medidas (cambio 1 de `p0_diseno.md` §10), táctica y partido (2), resto (3), situaciones completas (4), comparar, pista, fiabilidad, vista lateral, datos, exportar | nube |
+| P0.5c | **Hecho en lo que dan los datos (15-11 19:40): Táctica con dirección, profundidad, dentro o fuera, presión y cambios de dirección. 23:00: el explorador de medidas (cambio 1). 23:30: la táctica por puntos (cambio 2: largo del punto, errores por golpe, secuencias, el punto en mini-mapa). 23:50: el resto (cambio 3) y el «por qué importa» de cada medida con su fuente.** **Más:** explorador de medidas (cambio 1 de `p0_diseno.md` §10), táctica y partido (2), resto (3), situaciones completas (4), comparar, pista, fiabilidad, vista lateral, datos, exportar | nube |
 | P0.5d | **Hecho en la nube (15-11 22:30; diseño y estado en §3 ter).** **Gestión:** Inicio, Partidos (añadir: subida al volumen de Modal, el clic y la aprobación como trabajos de la cola), Personas, Cola, Calidad, Almacenamiento, Ajustes | nube |
 | P0.5e | **En el PC:** la ventana (pywebview), la descarga de los resultados de Modal y la prueba de concepto de N (subir, descargar, borrar) | PC (con el usuario) |
 
 **La aplicación real frente a la maqueta** (los datos de la beta; validación de `design/p0/validar_maqueta.py`, que
 desde el 15-11 exige un vídeo o un dibujo de verdad en pantalla para el vídeo con capas, la estroboscópica y la tira):
 
-| Fuente | Maqueta | P0.5a | P0.5c (15-11 19:40) |
-|---|---|---|---|
-| Requisitos | 89 % | 47 % | **96 %** |
-| Usabilidad | 94 % | 53 % | **100 %** |
-| Patrones | 9 de 10 | 0 | 9 de 10 |
-| Entrenadores | 65 % | 35 % | **82 %** |
-| Ivanovic | 58 % | 47 % | **79 %** |
-| Lista de 15 puntos (por su medida) | 56 % | 76 % | **78 %** |
-| Taxonomía (por su medida) | 35 % | 46 % | **52 %** |
+| Fuente | Maqueta | P0.5a | P0.5c (15-11 19:40) | 15-11 23:50 (cambios 1-3, fuentes) |
+|---|---|---|---|---|
+| Requisitos | 89 % | 47 % | **96 %** | 96 % |
+| Usabilidad | 94 % | 53 % | **100 %** | 100 % |
+| Patrones | 9 de 10 | 0 | 9 de 10 | 9 de 10 |
+| Entrenadores | 65 % | 35 % | **82 %** | **88 %** |
+| Ivanovic | 58 % | 47 % | **79 %** | **89 %** |
+| Lista de 15 puntos (por su medida) | 56 % | 76 % | **78 %** | 78 % |
+| Taxonomía (por su medida) | 35 % | 46 % | **52 %** | 52 % |
 
-Sin errores ni desbordes en escritorio. Lo que falta en las dos es lo mismo: el vídeo real con sus capas, la
+La lista de 15 puntos y la taxonomía no suben con pantallas: lo que les falta son medidas que el análisis aún no calcula (paquetes M). Sin errores ni desbordes en escritorio. Lo que falta en las dos es lo mismo: el vídeo real con sus capas, la
 estroboscópica y la tira de contactos, que necesitan los fotogramas del PC (P0.5e). Después, el resto de la taxonomía
 (cambio 1, explorador) y de la táctica (cambio 2: secuencias, peloteo, el punto con mini-mapa, la recuperación).
 

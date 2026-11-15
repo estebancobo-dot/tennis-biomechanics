@@ -85,7 +85,7 @@ items:
   - {id: IV.12, fuente: ivanovic, texto: "Último apoyo frente al bote", busca: ["último apoyo"], en: [leccion, golpe]}
   - {id: IV.13, fuente: ivanovic, texto: "Sus principios y lo que la distingue", busca: ["principios|la distingue"]}
   - {id: IV.14, fuente: ivanovic, texto: "Táctica medida: cambios de dirección, secuencias, «cómo usa su derecha»", busca: ["cambio de dirección|cambia de dirección|secuencia"]}
-  - {id: IV.15, fuente: ivanovic, texto: "Bajo presión también dirección y profundidad", busca: ["presión[^\\n]{0,80}(dirección|profundidad)|(dirección|profundidad)[^\\n]{0,80}presión"], en: [mas_conclusiones, mas_situaciones, "leccion/"]}
+  - {id: IV.15, fuente: ivanovic, texto: "Bajo presión también dirección y profundidad", busca: ["presión[^\\n]{0,80}(dirección|profundidad)|(dirección|profundidad)[^\\n]{0,80}presión"], en: [mas_conclusiones, mas_situaciones, mas_tactica, "leccion/"]}
   - {id: IV.16, fuente: ivanovic, texto: "Resto bloqueado", busca: ["bloque"]}
   - {id: IV.17, fuente: ivanovic, texto: "Fuentes citadas (Elliott, Knudson, Landlinger…)", busca: ["Elliott|Knudson|Landlinger|Kawamoto|Iino"]}
   - {id: IV.18, fuente: ivanovic, texto: "Medidas de lado: codo por delante de la cadera, inclinación del tronco en la espera", busca: ["por delante de la cadera|inclinación del tronco"], en: [mas_lateral, leccion]}
