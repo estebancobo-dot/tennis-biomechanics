@@ -1,6 +1,6 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-15 01:52 UTC · Modal: quedan 0.53 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 4.1 h de GPU esta semana (tope 28 h; Kaggle dice 11.37 h usadas de 30.0, se renueva 2026-11-21 00:00)
+Última vuelta: 2026-11-15 01:57 UTC · Modal: quedan 0.53 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 4.1 h de GPU esta semana (tope 28 h; Kaggle dice 11.55 h usadas de 30.0, se renueva 2026-11-21 00:00)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
@@ -27,9 +27,9 @@
 | prueba_gauff_v16 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | error | kaggle | en cola de Kaggle más de 10 min sin arrancar (4 intentos) |
 | prueba_gauff_v16b | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
 | gauff | partido | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | error | kaggle | cancelado: R48: con la raqueta en la CPU su pasada fina gastaría ~6 h de más; se relanza como gauff_b con el arreglo cuando la v20 lo compruebe (su pasada barata, ya en Modal, se reutiliza) |
-| gauff_b | partido | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: running (01:52), intento 1 · score:  64 % (349/543 muestras · 286 lecturas · 310 OCR) · 15 min · quedan ≈ 8 min (01:51:57; GPU 51 %·0 %, CPU 99 %, 4.0 GB) |
+| gauff_b | partido | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: running (01:57), intento 1 · score:  81 % (441/543 muestras · 375 lecturas · 393 OCR) · 19 min · quedan ≈ 4 min (01:56:09; GPU 38 %·0 %, CPU 99 %, 3.6 GB) |
 | prueba_final | prueba | tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 | hecho | modal |  |
-| final | partido | tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: running (01:52), intento 1 · identity:  88 % (1749/1991 fotogramas (ropa)) · 11 min · quedan ≈ 2 min (01:49:14; GPU 0 %·0 %, CPU 100 %, 4.1 GB) |
+| final | partido | tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: running (01:57), intento 1 · identity terminada a las 01:50:44 en 13.0 min (01:56:16; GPU 0 %·0 %, CPU 39 %, 4.1 GB) |
 | prueba_sinner | prueba | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | pendiente |  | espera a final (en_marcha) |
 | sinner | partido | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | pendiente |  | espera a prueba_sinner (pendiente) |
 | actualizar_osaka | partido | us-open-2026-r4-naomi-osaka-elena-rybakina | pendiente |  | espera a sinner (pendiente) |
