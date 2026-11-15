@@ -845,10 +845,10 @@
   "ruta": "/runs/kaggle_prueba_gauff_v29_b/estado.json",
   "salida": "/kaggle_pruebas/prueba_gauff_v29_a/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cuaderno": "tennisbio-prueba-gauff-v29-b",
-  "kaggle": "running (18:33)",
+  "kaggle": "running (18:38)",
   "arranco": "2026-11-15 18:27",
   "espera_min": 143,
-  "progreso": "identity: 100 % (108/108 fotogramas (ropa)) · 39 s · quedan ≈ 0 s (18:33:51; GPU 0 %·0 %, CPU 53 %, 3.8 GB)"
+  "progreso": "identity terminada a las 18:33:51 en 42 s (18:37:36; GPU 50 %·0 %, CPU 39 %, 3.6 GB)"
  },
  "medir_bola_totnet": {
   "estado": "en_marcha",
@@ -862,7 +862,7 @@
   "ruta": "/runs/kaggle_medir_bola_totnet/estado.json",
   "cpu": true,
   "cuaderno": "tennisbio-medir-bola-totnet",
-  "kaggle": "running (18:33)",
+  "kaggle": "running (18:38)",
   "arranco": "2026-11-15 16:40",
   "espera_min": 5
  },
@@ -879,7 +879,7 @@
   "partido": ""
  },
  "investigar_short_usuario_306": {
-  "estado": "en_marcha",
+  "estado": "hecho",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 1,
@@ -889,6 +889,13 @@
   "inicio": "2026-11-15 18:33",
   "ruta": "/runs/kaggle_investigar_short_usuario_306/estado.json",
   "cpu": true,
-  "cuaderno": "tennisbio-investigar-short-usuario-306"
+  "cuaderno": "tennisbio-investigar-short-usuario-306",
+  "kaggle": "complete (18:38)",
+  "fin": "2026-11-15 18:38",
+  "resultado": {
+   "estado": "hecho",
+   "segundos": 13,
+   "horas_kaggle": 0.01
+  }
  }
 }
