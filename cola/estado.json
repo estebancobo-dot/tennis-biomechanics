@@ -310,10 +310,10 @@
   "ruta": "/runs/partido_tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5/estado.json",
   "salida": "/output/tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
   "cuaderno": "tennisbio-final",
-  "kaggle": "running (01:00)",
+  "kaggle": "running (01:02)",
   "arranco": "2026-11-14 23:59",
   "espera_min": 2,
-  "progreso": "court:  71 % (1280/1814 fotogramas) · 8 min · quedan ≈ 3 min (00:58:45; GPU 0 %·0 %, CPU 92 %, 3.3 GB)"
+  "progreso": "court:  92 % (1664/1814 fotogramas) · 11 min · quedan ≈ 58 s (01:01:13; GPU 0 %·0 %, CPU 88 %, 3.3 GB)"
  },
  "comparar_gauff_v19_v20": {
   "estado": "hecho",
@@ -375,9 +375,21 @@
   "ruta": "/runs/partido_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5/estado.json",
   "salida": "/output/tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cuaderno": "tennisbio-gauff-b",
-  "kaggle": "running (01:00)",
+  "kaggle": "running (01:02)",
   "arranco": "2026-11-15 00:55",
   "espera_min": 1,
-  "progreso": "scenes:   7 % (14421/200135 fotogramas) · 2 min · quedan ≈ 26 min (01:00:25; GPU 0 %·0 %, CPU 89 %, 2.2 GB)"
+  "progreso": "scenes:  16 % (32300/200135 fotogramas) · 5 min · quedan ≈ 23 min (01:02:55; GPU 0 %·0 %, CPU 88 %, 2.2 GB)"
+ },
+ "comparar_gauff_v20_v21b": {
+  "estado": "revisar",
+  "accion": "comparar",
+  "donde": "github",
+  "fin": "2026-11-15 01:02",
+  "resultado": {
+   "estado": "revisar",
+   "veredicto": "distinta",
+   "nota": "distinta; 7 etapas iguales; distintas: candidates, fine, fine_doubtful, identity, players, slowmo_fine, spotting, view_clips; strokes.json: 27 de 28/28 golpes emparejados, 3 distintos, medidas fuera de tolerancia: technique.pose.ready, technique.pose.impact, technique.pose.acceleration, technique.pose.loaded; strokes_opponent.json: 0 de 0/0 golpes emparejados; strokes_doubtful.json: 1 de 1/1 golpes emparejados, medidas fuera de tolerancia: technique.phases.ready.racket_head_vs_wrist, technique.jitter.ready.hip_turn, technique.jitter.ready.face_tilt, technique.jitter.impact.face_tilt"
+  },
+  "partido": ""
  }
 }

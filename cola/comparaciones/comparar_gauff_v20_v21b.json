@@ -1,0 +1,150 @@
+{
+ "a": "/kaggle_pruebas/prueba_gauff_v20/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+ "b": "/kaggle_pruebas/prueba_gauff_v21_calidad/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+ "veredicto": "distinta",
+ "etapas_iguales": [
+  "audio",
+  "court",
+  "fine_opponent",
+  "probe",
+  "scenes",
+  "score",
+  "views_link"
+ ],
+ "etapas_distintas": [
+  "candidates",
+  "fine",
+  "fine_doubtful",
+  "identity",
+  "players",
+  "slowmo_fine",
+  "spotting",
+  "view_clips",
+  "views"
+ ],
+ "etapas_sin_comparar": [],
+ "golpes": {
+  "strokes.json": {
+   "a": 28,
+   "b": 28,
+   "pares": 27,
+   "solo_a": [
+    182.75
+   ],
+   "solo_b": [
+    182.54
+   ],
+   "tipo_distinto": [
+    439.79
+   ],
+   "medidas_distintas": {
+    "technique.pose.ready": 22,
+    "technique.pose.impact": 22,
+    "technique.pose.acceleration": 22,
+    "technique.pose.loaded": 22,
+    "technique.pose.finish": 22,
+    "technique.pose.extension": 22,
+    "racket_track": 22,
+    "technique.pose.takeback": 21,
+    "technique.pose.recovery": 21,
+    "technique.curves.racket": 20,
+    "face.takeback.tilt_deg": 18,
+    "face.extension.yaw_deg": 17,
+    "face.extension.tilt_deg": 17,
+    "face.loaded.tilt_deg": 17,
+    "face.finish.yaw_deg": 17,
+    "face.acceleration.tilt_deg": 17,
+    "face.recovery.tilt_deg": 16,
+    "face.recovery.yaw_deg": 16,
+    "face.acceleration.yaw_deg": 16,
+    "face.takeback.yaw_deg": 16
+   },
+   "mayor_diferencia": {
+    "face.finish.yaw_deg": 179.9,
+    "technique.phases.finish.face_yaw": 179.9,
+    "face.loaded.yaw_deg": 179.7,
+    "technique.phases.loaded.face_yaw": 179.7,
+    "face.acceleration.yaw_deg": 179.6,
+    "technique.phases.acceleration.face_yaw": 179.6,
+    "technique.phases.ready.face_yaw": 179.5,
+    "face.recovery.yaw_deg": 179.5,
+    "face.ready.yaw_deg": 179.5,
+    "technique.phases.recovery.face_yaw": 179.5,
+    "face.takeback.yaw_deg": 179.3,
+    "technique.phases.takeback.face_yaw": 179.3,
+    "technique.phases.ball_net.face_yaw": 177.8,
+    "metrics.non_arm_extension_loaded_deg": 158.6814,
+    "technique.phases.ball_bounce.face_yaw": 156.5,
+    "technique.phases.acceleration.face_tilt": 143.4,
+    "face.acceleration.tilt_deg": 143.4,
+    "technique.jitter.acceleration.face_yaw": 143.3,
+    "face.recovery.tilt_deg": 121.8,
+    "technique.phases.recovery.face_tilt": 121.8
+   }
+  },
+  "strokes_opponent.json": {
+   "a": 0,
+   "b": 0,
+   "pares": 0,
+   "solo_a": [],
+   "solo_b": [],
+   "tipo_distinto": [],
+   "medidas_distintas": {},
+   "mayor_diferencia": {}
+  },
+  "strokes_doubtful.json": {
+   "a": 1,
+   "b": 1,
+   "pares": 1,
+   "solo_a": [],
+   "solo_b": [],
+   "tipo_distinto": [],
+   "medidas_distintas": {
+    "technique.phases.ready.racket_head_vs_wrist": 1,
+    "technique.jitter.ready.hip_turn": 1,
+    "technique.jitter.ready.face_tilt": 1,
+    "technique.jitter.impact.face_tilt": 1,
+    "technique.stroke.shoulder_brake": 1,
+    "technique.jitter.ready.knee_non": 1,
+    "technique.jitter.takeback.hip_tilt": 1,
+    "technique.stroke.hip_drop_cm": 1,
+    "technique.pose.ready": 1,
+    "technique.phases.takeback.hip_turn": 1,
+    "technique.phases.impact.hip_tilt": 1,
+    "technique.jitter.takeback.shoulder_turn": 1,
+    "technique.curves.hand": 1,
+    "technique.phases.takeback.shoulder_turn": 1,
+    "technique.phases.ready.racket_forearm": 1,
+    "technique.curves.racket": 1,
+    "metrics.x_factor_deg": 1,
+    "technique.jitter.impact.back_foot_angle_deg": 1,
+    "technique.phases.ready.shoulder_tilt": 1,
+    "face.ready.tilt_deg": 1
+   },
+   "mayor_diferencia": {
+    "technique.stroke.shoulder_brake": 14.0,
+    "face.takeback.yaw_deg": 5.6,
+    "technique.phases.ready.racket_forearm": 5.0,
+    "technique.phases.takeback.knee_dom": 3.8,
+    "technique.phases.ready.shoulder_turn": 3.8,
+    "technique.phases.ready.arm_extension": 3.3,
+    "technique.jitter.ready.shoulder_turn": 3.05,
+    "face.acceleration.tilt_deg": 2.7,
+    "technique.phases.ready.shoulder_abd_non": 2.7,
+    "technique.phases.takeback.shoulder_turn": 2.5,
+    "technique.phases.takeback.hip_turn": 2.4,
+    "face.takeback.tilt_deg": 2.1,
+    "face.extension.tilt_deg": 1.5,
+    "technique.phases.loaded.front_foot_angle_deg": 1.4,
+    "technique.phases.impact.back_foot_angle_deg": 1.4,
+    "racket.ready.head_above_wrist_cm": 1.4,
+    "technique.phases.takeback.elbow_non": 1.4,
+    "technique.phases.takeback.shoulder_abd_dom": 1.3,
+    "technique.jitter.ready.arm_extension": 1.25,
+    "face.ready.tilt_deg": 1.1
+   }
+  }
+ },
+ "ficheros_de_un_solo_lado": [],
+ "no_leidos": {}
+}
