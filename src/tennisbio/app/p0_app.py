@@ -84,7 +84,18 @@ def datos_beta(report: Path, audit: Path, estado: Path, matches: Path) -> dict:
               json.loads(matches.read_text(encoding="utf-8")))
     for m in d["matches"]:
         m.setdefault("personas", [p for p in (d["player"]["name"], m.get("rival")) if p])
+    d["grip"] = _first_text(report_data(report), "Empuñadura:")         # explain.grip_compatible, as the report says it
     return d
+
+
+def _first_text(o, prefix: str) -> str | None:
+    if isinstance(o, str):
+        return o if o.startswith(prefix) else None
+    for v in (o.values() if isinstance(o, dict) else o if isinstance(o, list) else ()):
+        t = _first_text(v, prefix)
+        if t:
+            return t
+    return None
 
 
 def main(argv: list[str] | None = None) -> int:

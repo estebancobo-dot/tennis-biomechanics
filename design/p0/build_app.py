@@ -71,9 +71,9 @@ SITUATIONS = [
     ("todas", "Todas", lambda s: True), ("rapida", "Bola rápida", lambda s: s.get("fast") is True),
     ("lenta", "Bola lenta", lambda s: s.get("fast") is False), ("alta", "Alta", lambda s: s.get("height") == "alta"),
     ("baja", "Baja", lambda s: s.get("height") == "baja"), ("abierta", "Abierta", lambda s: s.get("wide") is True),
-    ("corta", "Corta", lambda s: s.get("short") is True),
+    ("corta", "Corta", lambda s: s.get("short") is True), ("profunda", "Profunda", lambda s: s.get("short") is False),
     ("carrera", "En carrera", lambda s: s.get("movement") == "en carrera"),
-    ("parada", "Parada", lambda s: s.get("movement") == "parada"),
+    ("parada", "Parada", lambda s: s.get("movement") == "parada"), ("salto", "En salto", lambda s: s.get("movement") == "en el aire"),
     ("ataque", "Ataque", lambda s: (s.get("cl") or {}).get("intent") == "ataque"),
     ("defensa", "Defensa", lambda s: (s.get("cl") or {}).get("intent") == "defensa"),
 ]

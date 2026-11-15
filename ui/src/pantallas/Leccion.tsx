@@ -63,6 +63,7 @@ function Clave({ d, c, sit }: { d: Datos; c: PuntoDeControl; sit: string }) {
       <div className="key-h"><div><b>{c.label}</b>{n ? <span className="sub"> · {n} golpes</span> : null}</div>{valor}</div>
       {c.cue ? <p className="how">{c.cue}</p> : null}
       {c.mistake ? <p className="pb"><b>Si te pasa:</b> {c.mistake}</p> : null}
+      {c.read ? <p className="sub">Cómo se mide: {c.read}</p> : null}
       <div className="chips">{met ? <Fiabilidad d={d} k={c.m!} /> : <Veredicto v={rel?.verdict} />}{extra}<span className="sub">{rango}</span></div>
     </div>
   );
@@ -77,7 +78,7 @@ function leerHechas(): Record<string, boolean> {
 export function Leccion({ d, sit }: { d: Datos; sit: string }) {
   const [ph, setPh] = useState(0);
   const [hechas, setHechas] = useState(leerHechas);
-  const fases = d.phases, p = fases[ph];
+  const fases = d.phases, p = fases[ph], i0 = ph;
   if (!p) return <p className="sub">Sin fases en este análisis.</p>;
   const plan = new Set(((d.plan as AnyRec[]) || []).slice(0, 3).map((x) => x.key));
   const ritmo: AnyRec = (d.rhythm as AnyRec) || {};
@@ -129,6 +130,11 @@ export function Leccion({ d, sit }: { d: Datos; sit: string }) {
               <div style={{ display: "grid", gap: 10, paddingBottom: 12 }}>
                 {p.checks.filter((c) => !claves.includes(c)).map((c) => <Clave d={d} c={c} sit={sit} key={c.key} />)}
               </div></details>
+          ) : null}
+          {i0 === 0 ? (
+            <div className="key"><b>Empuñadura</b>
+              <p className="how">{d.grip || "El tipo exacto no se ve desde la tele: la mano mide 20-40 px. Solo se dice si sus golpes son compatibles con una familia (por la altura del contacto y la cara en el armado)."}</p>
+              <div className="chips"><span className="pill mute">{d.grip && /compatible con/.test(d.grip) ? "estimación por indicios" : "no medible desde la tele"}</span></div></div>
           ) : null}
           <div className="key"><b>Cuerdas en esta fase</b>
             <p className="how">{fs && esN(fs.med) ? `Cara ${fs.med >= 0 ? "cerrada" : "abierta"} ${fmt(Math.abs(fs.med))}° (mediana de ${fs.n} golpes con la mano en 3D)`
