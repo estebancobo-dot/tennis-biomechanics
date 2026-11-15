@@ -869,7 +869,7 @@
   "ruta": "/runs/kaggle_medir_bola_totnet/estado.json",
   "cpu": true,
   "cuaderno": "tennisbio-medir-bola-totnet",
-  "kaggle": "running (21:42)",
+  "kaggle": "running (21:44)",
   "arranco": "2026-11-15 16:40",
   "espera_min": 5
  },
@@ -1105,5 +1105,19 @@
    "nota": "cancelado: sin la v31_c (ver arriba); se compara con la parte c repetida"
   },
   "partido": ""
+ },
+ "prueba_gauff_v31_c2": {
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1794779053.4510517,
+  "accion": "prueba",
+  "partido": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+  "inicio": "2026-11-15 21:44",
+  "ruta": "/runs/kaggle_prueba_gauff_v31_c2/estado.json",
+  "salida": "/kaggle_pruebas/prueba_gauff_v31_a/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+  "cpu": true,
+  "cuaderno": "tennisbio-prueba-gauff-v31-c2"
  }
 }
