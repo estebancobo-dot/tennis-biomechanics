@@ -121,6 +121,9 @@
     "prueba_gauff_v29_b": {
      "estimado_h": 1.0,
      "horas": 0.37
+    },
+    "prueba_gauff_v30_b": {
+     "estimado_h": 1.0
     }
    }
   }
@@ -129,6 +132,6 @@
   "usadas_h": 24.4,
   "total_h": 30.0,
   "renueva": "2026-11-21 00:00:00",
-  "ts": 1794770973.7903428
+  "ts": 1794771287.0207045
  }
 }
