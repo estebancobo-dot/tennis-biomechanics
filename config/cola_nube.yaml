@@ -134,6 +134,11 @@ trabajos:
   - {id: prueba_gauff_v29_b, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, tras: prueba_gauff_v29_a, junto_a: prueba_gauff_v29_a, etapas: [players, score, identity, spotting, candidates, fine, fine_opponent, fine_doubtful]}
   - {id: prueba_gauff_v29_c, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, cpu: true, tras: prueba_gauff_v29_b, junto_a: prueba_gauff_v29_a, etapas: [views, views_link, view_clips, slowmo_fine]}
   - {id: comparar_gauff_v26_v29, accion: comparar, a: prueba_gauff_v26, b: prueba_gauff_v29_c}
+  # T15 (15-11 16:30): la bola. TOTNet tiene pesos de tenis (MIT; entrenado con las retransmisiones de TrackNet), no solo
+  # de tenis de mesa como decía el registro. Frente a TrackNetV3 en los clips anotados de RacketVision (10 de validación
+  # para su umbral, 30 de prueba), en una sesión de CPU (no gasta horas de GPU; ~3-4 h). Regla escrita antes de medir:
+  # pasa a la prueba de golpes de F3Set si su F1 no es peor que el de TrackNetV3 en más de 0,02
+  - {id: medir_bola_totnet, accion: medir, prueba: bola, donde: kaggle, cpu: true}
   # R52 (15-11): los errores de la pasada fina de Zheng (análisis del 13-11 en Modal), leídos sin GPU ni crédito
   - {id: leer_zheng_errores, accion: leer, rutas: [/output/zheng-qinwen-elena-rybakina/strokes_errores.json]}
   # lotes 3 y 4 (aprobados por el usuario el 13-11: Osaka; Pegula y Zheng; Gauff y la final; Zverev-Sinner), cada

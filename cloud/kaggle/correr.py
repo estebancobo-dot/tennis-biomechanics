@@ -36,7 +36,8 @@ SYNC_S = 600                             # results to Modal every 10 minutes
 TEST_PREFIX = nube.TEST_PREFIX
 # proofs of concept (#288, docs/nube_nativa.md): name → the module that measures it (in the analysis's own Python)
 POCS = {"raqueta": "tennisbio.infra.poc_raqueta", "video": "tennisbio.infra.poc_video",
-        "youtube": "tennisbio.infra.poc_youtube"}       # 15-11 (#304): can the cloud download from YouTube?
+        "youtube": "tennisbio.infra.poc_youtube",       # 15-11 (#304): can the cloud download from YouTube?
+        "bola": "tennisbio.infra.poc_bola"}             # 15-11 (T15): TOTNet against TrackNetV3 on RacketVision
 NEEDS_MATCH = ("video",)                 # proofs of concept measured on a match's broadcast (its video from Modal)
 
 
@@ -179,6 +180,9 @@ def poc_args(job: dict, models: Path, video: Path | None) -> list[str]:
         return ["--modelo", str(models / "racketpose.onnx")]
     if job["prueba"] == "youtube":
         return ["--urls", str(job.get("urls") or "")]
+    if job["prueba"] == "bola":
+        return ["--modelo", str(models / "balltrack.onnx"), "--totnet", str(models / "totnet_tennis.onnx"),
+                "--datos", str(models.parent / "datasets"), "--dispositivo", "cpu" if job.get("cpu") else "cuda"]
     return ["--video", str(video)]
 
 
@@ -191,6 +195,10 @@ def measure(job: dict, py: Path, models: Path, data: Path, run: Path, vol, est: 
         libs = subprocess.run([str(py), "-c", "import tensorrt_libs, os; print(os.path.dirname(tensorrt_libs.__file__))"],
                               capture_output=True, text=True).stdout.strip()
         env["LD_LIBRARY_PATH"] = ":".join(x for x in (libs, env.get("LD_LIBRARY_PATH", "")) if x)
+    if job["prueba"] == "bola":                    # T15: TOTNet exported here with this session's own PyTorch
+        _run([sys.executable, "-m", "pip", "install", "-q", "einops", "onnx", "onnxruntime"])
+        _run([sys.executable, str(REPO / "scripts" / "export_totnet.py"), "--salida", str(models / "totnet_tennis.onnx"),
+              "--repo", str(models.parent / "totnet")])
     if job["prueba"] == "youtube":                 # the newest yt-dlp, as the PC's fallback uses
         subprocess.run(["uv", "pip", "install", "-q", "--python", str(py), "-U", "yt-dlp[default]"])
     out = run / "poc.json"

@@ -66,11 +66,11 @@ Las pruebas cuestan horas de GPU (Kaggle: 30 a la semana, compartidas con los pa
 | Sapiens2 (pose, Meta, ICLR 2026) | Públicos (Hugging Face, `facebook/sapiens2-pose-*`, hasta 5B) | Propia de Meta con restricciones (nada de vigilancia ni identificación biométrica); leer el LICENSE.md oficial | Probable; el 1B cabe en una T4. Puntos con pies (Sapiens v1: 308 con cuerpo, cara, manos y pies; en Sapiens2 por confirmar) |
 | RF-DETR Keypoint (Roboflow) | Públicos | Apache 2.0 | **17 puntos COCO, sin pies**: no sustituye la pose de la pasada fina; candidato para la pasada barata (personas) |
 | RTMW-x frente a RTMPose-x | En `models/` | Apache 2.0 | Elegido RTMPose-x **porque en el PC RTMW-x fue más lento** (B). **Medido en la nube (15-11)**: RTMW-x es un 6 % más lento, encuentra los mismos golpes y su temblor es ×0,988 (4944 medidas). Calidad igual, así que **se queda RTMPose-x** (A, un clip) |
-| RTMPose-x en media precisión | — | — | Fijo en precisión completa porque en DirectML era más lento (B): falta un ajuste para probarlo |
+| RTMPose-x en media precisión | — | — | **Medido en la nube (15-11, v27 frente a v26, misma prueba de 10 min en Kaggle)**: la pasada fina 507 → 489 s (−3,7 %), los 28 golpes emparejados, 1 cambia de tipo, temblor ×1,000 (5310 medidas). **No se adopta**: la ganancia es pequeña (~4 min por partido) y cambia medidas sin prueba de medir mejor (regla: igual calidad medida y menos tiempo). El ajuste `fine_pass.refine_fp16` queda, apagado |
 | F3ED (detector de golpes de los autores de F3Set) | Código en github.com/F3Set/F3Set; pesos por confirmar | Por confirmar | Si no hay pesos, entrenarlo en una GPU con F3Set (el artículo dice que es rápido) |
 | GVHMR / WHAM (cuerpo 3D) | Públicos | Investigación no comercial; **necesitan SMPL**, que exige registro personal en el Max Planck | Solo si el usuario se registra (no lo puede hacer Claude) |
-| TOTNet (bola con oclusión) | Repositorio público; pesos por confirmar | Por confirmar | Entrenado en tenis de mesa: habría que reentrenar |
-| WASB (bola) | Por buscar | Por buscar | — |
+| TOTNet (bola con oclusión) | **Públicos en su repositorio, también de tenis** (`weights/TOTNet_Tennis_…_best.pth`, 94 MB; comprobado el 15-11) | MIT | Corregido el 15-11: no solo de tenis de mesa. Exportado a ONNX (`scripts/export_totnet.py`, igual que PyTorch a 1e-7); ~6 s por fotograma en 4 núcleos de CPU. Medido frente a TrackNetV3 con `medir_bola_totnet` (`tennisbio.infra.poc_bola`) |
+| WASB (bola) | Pesos de tenis en Google Drive (`MODEL_ZOO.md` de nttcom/WASB-SBDT) | Código MIT; los pesos no dicen licencia | Después de TOTNet, con la misma prueba |
 
 Fuentes: [Sapiens2 en Hugging Face](https://huggingface.co/docs/transformers/model_doc/sapiens2),
 [artículo de Sapiens2](https://arxiv.org/abs/2604.21681), [RF-DETR Keypoint](https://blog.roboflow.com/launch-rf-detr-keypoint-in-roboflow/),

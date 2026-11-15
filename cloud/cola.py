@@ -249,8 +249,9 @@ def check_queue(jobs: list[dict]) -> list[str]:
                               or not j["etapas"] or not all(isinstance(e, str) and STAGE_NAME.fullmatch(e)
                                                             for e in j["etapas"])):
             bad.append(f"{jid}: «etapas» es una lista de etapas y solo vale para una prueba o un partido")
-        if j.get("cpu") is True and (j.get("accion") not in ("prueba", "partido") or not j.get("etapas")):
-            bad.append(f"{jid}: «cpu» solo vale para una parte (con «etapas») de una prueba o un partido")
+        if j.get("cpu") is True and not (j.get("accion") == "medir" or
+                                         (j.get("accion") in ("prueba", "partido") and j.get("etapas"))):
+            bad.append(f"{jid}: «cpu» solo vale para medir o para una parte (con «etapas») de una prueba o un partido")
         if j.get("junto_a") and (j.get("accion") != "prueba" or not j.get("etapas") or not j.get("tras")):
             bad.append(f"{jid}: «junto_a» solo vale para una parte (con «etapas» y «tras») de una prueba")
     by = {j.get("id"): j for j in jobs}

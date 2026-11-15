@@ -613,7 +613,7 @@ def test_a_test_in_parts_cpu_gpu_cpu(monkeypatch):
     c = {"id": "pc", "accion": "prueba", "partido": g, "cpu": True, "tras": "pb", "junto_a": "pa",
          "etapas": ["views", "view_clips"]}
     assert not cola.check_queue([a, b, c])
-    assert "solo vale para una parte" in cola.check_queue([{**a, "etapas": None, "cpu": True}])[-1]
+    assert "solo vale para medir o para una parte" in cola.check_queue([{**a, "etapas": None, "cpu": True}])[-1]
     assert "lista de etapas" in cola.check_queue([{**a, "etapas": "probe"}])[0]
     assert "lista de etapas" in cola.check_queue([{"id": "x", "accion": "medir", "prueba": "raqueta", "etapas": ["a"]}])[0]
     assert "no es la primera parte" in cola.check_queue([a, {**b, "partido": "otro"}])[0]
