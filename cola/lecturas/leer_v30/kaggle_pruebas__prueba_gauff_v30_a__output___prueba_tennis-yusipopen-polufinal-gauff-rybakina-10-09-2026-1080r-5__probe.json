@@ -1,0 +1,16 @@
+{
+ "path": "/kaggle/temp/data/videos/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5.mkv",
+ "width": 1920,
+ "height": 1080,
+ "fps": 50.0,
+ "duration": 600.64,
+ "codec": "h264",
+ "interlaced": false,
+ "audio_rate": 48000,
+ "audio_channels": 2,
+ "vfr": true,
+ "audio_tracks": 2,
+ "start_time": 0.0,
+ "jumps": 0,
+ "cleaned": false
+}

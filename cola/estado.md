@@ -1,6 +1,6 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-15 19:55 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 3.3 h de GPU esta semana (tope 28 h; Kaggle dice 24.74 h usadas de 30.0, se renueva 2026-11-21 00:00)
+Última vuelta: 2026-11-15 19:56 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 3.3 h de GPU esta semana (tope 28 h; Kaggle dice 24.74 h usadas de 30.0, se renueva 2026-11-21 00:00)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
@@ -43,11 +43,12 @@
 | prueba_gauff_v29_b | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
 | prueba_gauff_v29_c | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | error | kaggle | cancelado: T24 (15-11 20:00): las partes no reutilizan lo de la anterior: la huella de un modelo lleva la fecha de su fichero y cada sesión lo baja de Modal con fecha nueva (v29_b repitió los cortes; v29_c los repetía otra vez y seguiría con lo de GPU en la CPU). Se arregla la huella (por contenido) y la prueba se repite como v30 |
 | comparar_gauff_v26_v29 | comparar |  | error |  | cancelado: sin la v29_c (ver arriba) |
-| medir_bola_totnet | medir |  | en_marcha | kaggle | Kaggle: running (19:55), intento 1 |
+| medir_bola_totnet | medir |  | en_marcha | kaggle | Kaggle: running (19:56), intento 1 |
 | prueba_gauff_v30_a | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
 | prueba_gauff_v30_b | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
-| prueba_gauff_v30_c | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: running (19:55), intento 1 |
-| comparar_gauff_v26_v30 | comparar |  | pendiente |  | espera a prueba_gauff_v30_c |
+| prueba_gauff_v30_c | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | error | kaggle | cancelado: T24 (15-11 21:00): la v30_b también repitió los cortes (122 s, velocidad de GPU, frente a los 516 s de la v30_a en CPU): queda otra causa además de R55; la v30_c en la CPU repetiría lo de GPU. Se diagnostica con leer_v30 |
+| comparar_gauff_v26_v30 | comparar |  | error |  | cancelado: sin la v30_c (ver arriba) |
+| leer_v30 | leer |  | hecho | github | leídos: runs__kaggle_prueba_gauff_v30_a__log.txt, runs__kaggle_prueba_gauff_v30_b__log.txt, kaggle_pruebas__prueba_gauff_v30_a__output___prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5__video.json, kaggle_pruebas__prueba_gauff_v30_a__output___prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5__manifest.json, kaggle_pruebas__prueba_gauff_v30_a__output___prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5__probe.json |
 | leer_zheng_errores | leer |  | hecho | github | leídos: output__zheng-qinwen-elena-rybakina__strokes_errores.json |
 | prueba_gauff | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | modal |  |
 | prueba_gauff_v16 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | error | kaggle | en cola de Kaggle más de 10 min sin arrancar (4 intentos) |

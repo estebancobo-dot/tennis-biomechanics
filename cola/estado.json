@@ -869,7 +869,7 @@
   "ruta": "/runs/kaggle_medir_bola_totnet/estado.json",
   "cpu": true,
   "cuaderno": "tennisbio-medir-bola-totnet",
-  "kaggle": "running (19:55)",
+  "kaggle": "running (19:56)",
   "arranco": "2026-11-15 16:40",
   "espera_min": 5
  },
@@ -983,7 +983,7 @@
   }
  },
  "prueba_gauff_v30_c": {
-  "estado": "en_marcha",
+  "estado": "error",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 1,
@@ -997,6 +997,26 @@
   "cuaderno": "tennisbio-prueba-gauff-v30-c",
   "kaggle": "running (19:55)",
   "arranco": "2026-11-15 19:55",
-  "espera_min": 1
+  "espera_min": 1,
+  "resultado": {
+   "nota": "cancelado: T24 (15-11 21:00): la v30_b también repitió los cortes (122 s, velocidad de GPU, frente a los 516 s de la v30_a en CPU): queda otra causa además de R55; la v30_c en la CPU repetiría lo de GPU. Se diagnostica con leer_v30"
+  }
+ },
+ "comparar_gauff_v26_v30": {
+  "estado": "error",
+  "resultado": {
+   "nota": "cancelado: sin la v30_c (ver arriba)"
+  },
+  "partido": ""
+ },
+ "leer_v30": {
+  "estado": "hecho",
+  "accion": "leer",
+  "donde": "github",
+  "fin": "2026-11-15 19:56",
+  "resultado": {
+   "nota": "leídos: runs__kaggle_prueba_gauff_v30_a__log.txt, runs__kaggle_prueba_gauff_v30_b__log.txt, kaggle_pruebas__prueba_gauff_v30_a__output___prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5__video.json, kaggle_pruebas__prueba_gauff_v30_a__output___prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5__manifest.json, kaggle_pruebas__prueba_gauff_v30_a__output___prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5__probe.json"
+  },
+  "partido": ""
  }
 }
