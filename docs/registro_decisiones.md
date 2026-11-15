@@ -65,7 +65,7 @@ Las pruebas cuestan horas de GPU (Kaggle: 30 a la semana, compartidas con los pa
 |---|---|---|---|
 | Sapiens2 (pose, Meta, ICLR 2026) | Públicos (Hugging Face, `facebook/sapiens2-pose-*`, hasta 5B) | Propia de Meta con restricciones (nada de vigilancia ni identificación biométrica); leer el LICENSE.md oficial | Probable; el 1B cabe en una T4. Puntos con pies (Sapiens v1: 308 con cuerpo, cara, manos y pies; en Sapiens2 por confirmar) |
 | RF-DETR Keypoint (Roboflow) | Públicos | Apache 2.0 | **17 puntos COCO, sin pies**: no sustituye la pose de la pasada fina; candidato para la pasada barata (personas) |
-| RTMW-x frente a RTMPose-x | En `models/` | Apache 2.0 | Elegido RTMPose-x **porque en el PC RTMW-x fue más lento** (B): se mide en la nube con un ajuste (`prueba_gauff_rtmw`) |
+| RTMW-x frente a RTMPose-x | En `models/` | Apache 2.0 | Elegido RTMPose-x **porque en el PC RTMW-x fue más lento** (B). **Medido en la nube (15-11)**: RTMW-x es un 6 % más lento, encuentra los mismos golpes y su temblor es ×0,988 (4944 medidas). Calidad igual, así que **se queda RTMPose-x** (A, un clip) |
 | RTMPose-x en media precisión | — | — | Fijo en precisión completa porque en DirectML era más lento (B): falta un ajuste para probarlo |
 | F3ED (detector de golpes de los autores de F3Set) | Código en github.com/F3Set/F3Set; pesos por confirmar | Por confirmar | Si no hay pesos, entrenarlo en una GPU con F3Set (el artículo dice que es rápido) |
 | GVHMR / WHAM (cuerpo 3D) | Públicos | Investigación no comercial; **necesitan SMPL**, que exige registro personal en el Max Planck | Solo si el usuario se registra (no lo puede hacer Claude) |

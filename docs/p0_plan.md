@@ -56,8 +56,8 @@ las referencias; se decide en P0.3 con sus motivos escritos.
 |---|---|---|---|
 | P0.1 | Este plan | nube | — |
 | P0.2 | Modelo de calidad completo (#256): métricas para las 7 casillas sin medir (rendimiento y portabilidad de pantallas, exactitud con verdad de taxonomía y situaciones, mantenibilidad de datos, portabilidad del PC), pesos | nube | `tennisbio calidad` sin casillas «sin medir» esperadas |
-| P0.3 | Comparativa catalogada (#257): `config/referencias.yaml` y `docs/comparativa_completa.md`; cada hueco → petición | nube (web) + PC (fotogramas de YouTube) | cada referencia con sus casillas puntuadas |
-| P0.4 | Diseño: mapa de pantallas (unión de aplicación + informe, sin duplicados, lo que sobra fuera), recorridos de tareas, sistema de diseño, maqueta interactiva | nube | **una revisión del usuario** del prototipo (no de datos) |
+| P0.3 | Comparativa catalogada (#257): `config/referencias.yaml` y `docs/comparativa_completa.md`; cada hueco → petición | nube (web) | cada referencia con sus casillas puntuadas · **hecha (15-11)**: 15 referencias de su descripción pública; huecos #299 y #300 |
+| P0.4 | Diseño: mapa de pantallas (unión de aplicación + informe, sin duplicados, lo que sobra fuera), recorridos de tareas, sistema de diseño, maqueta interactiva | nube | **una revisión del usuario** del prototipo (no de datos) · **maqueta publicada (15-11)**: `docs/p0_pantallas.md`, a la espera de la revisión |
 | P0.5 | Construcción por pantallas, cada una con su recorrido de Playwright y su captura de referencia | nube + PC | pruebas en verde, capturas sin cambios no queridos |
 | P0.6 | Aceptación | PC | modelo de calidad: casillas de pantallas, usabilidad y aprendizaje ≥ umbral |
 

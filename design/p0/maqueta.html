@@ -27,6 +27,7 @@
   --frame-a: #1a3b66; --frame-b: #24543f; color-scheme: dark }
 
 * { box-sizing: border-box }
+[hidden] { display: none !important }
 html, body { height: 100% }
 body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.5;
   -webkit-font-smoothing: antialiased }
@@ -75,11 +76,11 @@ details.beta ul { margin: 8px 0 2px; padding-left: 18px; font-size: 13px; displa
 .concl .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: 12.5px; color: var(--muted) }
 .link { background: none; border: 0; padding: 0; color: var(--court); font-weight: 600; font-size: 13px }
 
-.phases { display: grid; grid-auto-flow: column; grid-auto-columns: min(86%, 340px); gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory;
+.phases { display: grid; align-items: start; grid-auto-flow: column; grid-auto-columns: min(86%, 340px); gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory;
   padding-bottom: 6px; margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); padding-inline: max(16px, env(safe-area-inset-left, 0px)) }
 .phase { scroll-snap-align: start; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; display: grid; align-content: start; min-width: 0 }
 .frame { position: relative; aspect-ratio: 4 / 3; max-width: 100%; background:
-  linear-gradient(180deg, var(--frame-a) 0 58%, var(--frame-b) 58% 100%); display: grid; place-items: center; color: #e9f0f8 }
+  linear-gradient(180deg, var(--frame-b) 0 22%, var(--frame-a) 22% 100%); display: grid; place-items: center; color: #e9f0f8 }
 .frame svg { position: absolute; inset: 0; width: 100%; height: 100% }
 .frame .tag { position: absolute; left: 10px; top: 10px; background: rgb(8 18 30 / .55); color: #f1f5fa; font-size: 11px; border-radius: 6px; padding: 3px 7px }
 .frame .when { position: absolute; right: 10px; bottom: 10px; background: rgb(8 18 30 / .62); color: #f1f5fa; font-family: var(--display); font-size: 17px; font-weight: 600; border-radius: 6px; padding: 1px 8px }
@@ -124,7 +125,8 @@ details.beta ul { margin: 8px 0 2px; padding-left: 18px; font-size: 13px; displa
 
 .sheet { position: fixed; inset: 0; z-index: 20; background: rgb(5 12 20 / .5); display: grid; align-items: end }
 .sheet-inner { background: var(--bg); border-radius: 18px 18px 0 0; max-height: 92%; overflow-y: auto; width: 100%; max-width: 760px; margin: 0 auto;
-  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 14px calc(20px + env(safe-area-inset-bottom, 0px)); display: grid; gap: 14px }
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 14px calc(20px + env(safe-area-inset-bottom, 0px)); display: flex; flex-direction: column; gap: 14px }
+.sheet-inner > * { flex: none }
 .sheet-head { display: flex; justify-content: space-between; align-items: center; gap: 10px }
 .close { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 6px 14px; font-weight: 600 }
 .video { aspect-ratio: 16 / 9; max-width: 100%; border-radius: 12px; overflow: hidden; position: relative; background:
@@ -240,7 +242,7 @@ details.beta ul { margin: 8px 0 2px; padding-left: 18px; font-size: 13px; displa
     <div><h2 id="h-pista">En la pista</h2><p class="sub" id="pista-sub"></p></div>
     <div class="chips" id="p-mode" role="group" aria-label="Qué se ve"></div>
     <div class="court-wrap">
-      <svg class="court" id="court" viewBox="-6.5 -13.5 13 31" role="img" aria-label="Pista con sus golpes"></svg>
+      <svg class="court" id="court" viewBox="-6.5 -1.5 13 19" role="img" aria-label="Pista con sus golpes"></svg>
       <div class="stats" id="p-stats"></div>
     </div>
   </section>
@@ -332,9 +334,10 @@ function measureRow(k) {
 
 const RH = () => Object.fromEntries(D.rhythm.events.map(e => [e.k, e]));
 function frameSvg(id) {
-  // a schematic marker of what the real frame will show; no measure is drawn from it
-  if (id === "impact") return `<svg viewBox="0 0 100 75" aria-hidden="true"><circle cx="62" cy="34" r="3.4" fill="var(--ball)" stroke="var(--ball-ink)" stroke-width=".6"/></svg>`;
-  return "";
+  // a sketch of the TV view (court from behind and above) marking where the real frame goes; nothing is measured on it
+  const lines = `<g fill="none" stroke="#f3f7fb" stroke-opacity=".55" stroke-width=".5"><path d="M30 22 L70 22 L92 72 L8 72 Z"/><path d="M36 22 L26 72 M64 22 L74 72 M33 38 L67 38 M50 38 L50 72"/><path d="M27 44 L73 44" stroke-width="1.1" stroke-opacity=".8"/></g>`;
+  const ball = id === "impact" ? `<circle cx="62" cy="52" r="2.6" fill="var(--ball)" stroke="var(--ball-ink)" stroke-width=".5"/>` : "";
+  return `<svg viewBox="0 0 100 75" preserveAspectRatio="none" aria-hidden="true">${lines}${ball}</svg>`;
 }
 function phases() {
   const rh = RH(), s = sitOf(SIT);
@@ -359,7 +362,7 @@ function phases() {
 }
 
 function rhythmChart(svg, events, mark) {
-  const W = 640, L = 150, R = 20, rowH = 26, top = 24, H = top + rowH * events.length + 26;
+  const W = Math.max(320, Math.min(700, Math.round((svg.parentElement.clientWidth || 360) - 28))), L = W < 420 ? 128 : 150, R = 16, rowH = 26, top = 24, H = top + rowH * events.length + 26;
   const lo = -1.6, hi = 0.7, X = t => L + (t - lo) / (hi - lo) * (W - L - R);
   let g = "";
   for (let t = -1.5; t <= 0.51; t += 0.5) g += `<line class="grid" x1="${X(t)}" x2="${X(t)}" y1="${top - 8}" y2="${H - 22}"/><text x="${X(t)}" y="${H - 6}" text-anchor="middle">${t === 0 ? "impacto" : sgn(t, 1) + " s"}</text>`;
@@ -418,7 +421,6 @@ function openStroke(id) {
   $("sh-video").innerHTML = `<div><b>Vídeo real del golpe</b><br>a velocidad real, con el esqueleto, la raqueta y la bola encima<br><span style="opacity:.8">captura ${fmt(100 * (s.quality ?? 0))} % · ${esc(s.id)}</span></div>`;
   $("sh-controls").innerHTML = ["Velocidad real", "Lento ×4", "Fotograma a fotograma", "Capas", "Lado a lado"].map((t, i) => `<button class="chip" type="button" aria-pressed="${i === 0}">${t}</button>`).join("");
   const ph = s.phases || {}, rh = D.rhythm.events.filter(e => e.k !== "opp");
-  rhythmChart($("sh-rhythm"), rh, ph);
   const keys = ["sh", "xf", "contactH", "lat", "elbow", "baseM", "head", "finishH", "split", "disp", "recov"];
   $("sh-measures").innerHTML = `<p class="sub" style="margin:0">Círculo vacío: este golpe. Punto y barra: lo habitual en ella.</p>` + keys.map(k => {
     const v = s.m[k], md = D.metrics[k], all = sitOf("todas").stats[k]; if (!md) return "";
@@ -428,6 +430,7 @@ function openStroke(id) {
     return `<div class="m"><span class="name">${esc(md.name)}</span><span class="val num">${fmt(v, d)}<small>${esc(u)}</small></span><div class="rng">${relPill(k)}${note}</div></div>`;
   }).join("");
   $("sheet").hidden = false;
+  rhythmChart($("sh-rhythm"), rh, ph);
   $("sh-close").focus();
 }
 $("sh-close").onclick = () => { $("sheet").hidden = true; };
@@ -437,7 +440,7 @@ $("sh-controls").onclick = e => { const b = e.target.closest(".chip"); if (!b) r
 
 // compare
 function compare() {
-  const opts = D.situations.map(s => `<option value="${s.id}">${esc(s.label)} (${s.n})</option>`).join("");
+  const opts = D.situations.map(s => `<option value="${s.id}">${esc(s.label)}</option>`).join("");
   if (!$("cmp-a").options.length) { $("cmp-a").innerHTML = opts; $("cmp-b").innerHTML = opts; $("cmp-a").value = "rapida"; $("cmp-b").value = "lenta"; }
   const A = sitOf($("cmp-a").value), B = sitOf($("cmp-b").value);
   const keys = Object.keys(D.metrics).filter(k => (A.stats[k] && isN(A.stats[k].med)) || (B.stats[k] && isN(B.stats[k].med)));
@@ -470,6 +473,7 @@ function court() {
   let pts;
   if (PMODE === "impacto") pts = a.filter(s => isN(s.x) && isN(s.y)).map(s => `<circle class="p" cx="${s.x.toFixed(2)}" cy="${s.y.toFixed(2)}" r=".2"/>`);
   else pts = a.filter(s => isN(s.shotX) && isN(s.shotY)).map(s => `<circle class="p${s.shotIn === false ? " out" : ""}" cx="${s.shotX.toFixed(2)}" cy="${(-(s.shotY - HL)).toFixed(2)}" r=".2"/>`);
+  $("court").setAttribute("viewBox", PMODE === "impacto" ? "-6.5 -1.5 13 19" : "-6.5 -13.5 13 15");
   $("court").innerHTML = g + pts.join("");
   const pos = a.filter(s => isN(s.y)), pct = (arr, f) => arr.length ? 100 * arr.filter(f).length / arr.length : NaN;
   const shots = a.filter(s => isN(s.shotY));
@@ -519,5 +523,6 @@ function renderAll() {
 }
 
 header(); beta(); conclusions(); rhythm(); copy();
+let RS; window.addEventListener("resize", () => { clearTimeout(RS); RS = setTimeout(rhythm, 150); });
 show(location.hash.slice(1) || "derecha");
 </script>
