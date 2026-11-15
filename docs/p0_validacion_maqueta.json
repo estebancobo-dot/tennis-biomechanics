@@ -1,0 +1,2341 @@
+[
+ {
+  "id": "M1.1",
+  "fuente": "taxonomia",
+  "texto": "Golpe del rival → split step",
+  "estado_medida": "✔",
+  "resultado": "por_texto",
+  "donde": "leccion_fase_0",
+  "nota": "sin medida con clave"
+ },
+ {
+  "id": "M1.2",
+  "fuente": "taxonomia",
+  "texto": "Inicio del giro de bloque (preparación)",
+  "estado_medida": "✔",
+  "resultado": "por_texto",
+  "donde": "leccion_fase_6",
+  "nota": "sin medida con clave"
+ },
+ {
+  "id": "M1.3",
+  "fuente": "taxonomia",
+  "texto": "Final del armado (máximo giro, raqueta más atrás)",
+  "estado_medida": "◐",
+  "resultado": "por_texto",
+  "donde": "leccion_fase_8",
+  "nota": "sin medida con clave"
+ },
+ {
+  "id": "M1.4",
+  "fuente": "taxonomia",
+  "texto": "Inicio del swing hacia delante",
+  "estado_medida": "✔",
+  "resultado": "por_texto",
+  "donde": "leccion_fase_0",
+  "nota": "sin medida con clave"
+ },
+ {
+  "id": "M1.5",
+  "fuente": "taxonomia",
+  "texto": "Impacto",
+  "estado_medida": "✔",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "sin medida con clave"
+ },
+ {
+  "id": "M1.6",
+  "fuente": "taxonomia",
+  "texto": "Final de la extensión",
+  "estado_medida": "◐",
+  "resultado": "por_texto",
+  "donde": "leccion_fase_8",
+  "nota": "sin medida con clave"
+ },
+ {
+  "id": "M1.7",
+  "fuente": "taxonomia",
+  "texto": "Final de la terminación",
+  "estado_medida": "✔",
+  "resultado": "por_texto",
+  "donde": "leccion_fase_8",
+  "nota": "sin medida con clave"
+ },
+ {
+  "id": "M1.8",
+  "fuente": "taxonomia",
+  "texto": "Primer paso de recuperación",
+  "estado_medida": "✔",
+  "resultado": "por_texto",
+  "donde": "leccion_fase_0",
+  "nota": "sin medida con clave"
+ },
+ {
+  "id": "M2.9",
+  "fuente": "taxonomia",
+  "texto": "Postura de espera (rodillas, base, peso)",
+  "estado_medida": "✔",
+  "resultado": "en_maqueta",
+  "donde": "ready.base_width, ready.hip_height"
+ },
+ {
+  "id": "M2.10",
+  "fuente": "taxonomia",
+  "texto": "Mano libre en la garganta de la raqueta en la espera / giro de bloque",
+  "estado_medida": "✔",
+  "resultado": "por_texto",
+  "donde": "leccion_fase_2",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M2.11",
+  "fuente": "taxonomia",
+  "texto": "Momento del armado respecto al bote (\"armado completo al botar\")",
+  "estado_medida": "✔",
+  "resultado": "por_texto",
+  "donde": "leccion_fase_1",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M2.12",
+  "fuente": "taxonomia",
+  "texto": "Giro de cadera y de hombros al final del armado",
+  "estado_medida": "◐",
+  "resultado": "en_maqueta",
+  "donde": "loaded.shoulder_turn"
+ },
+ {
+  "id": "M2.13",
+  "fuente": "taxonomia",
+  "texto": "Separación cadera–hombros (X-factor)",
+  "estado_medida": "◐",
+  "resultado": "en_maqueta",
+  "donde": "loaded.x_factor"
+ },
+ {
+  "id": "M2.14",
+  "fuente": "taxonomia",
+  "texto": "Pausa entre armado y swing",
+  "estado_medida": "✘",
+  "resultado": "dicho",
+  "donde": "no medible",
+  "nota": "no medible desde la tele: la aplicación lo dice"
+ },
+ {
+  "id": "M2.15",
+  "fuente": "taxonomia",
+  "texto": "Brazo libre extendido y cruzado",
+  "estado_medida": "✔",
+  "resultado": "en_maqueta",
+  "donde": "loaded.elbow_non"
+ },
+ {
+  "id": "M2.16",
+  "fuente": "taxonomia",
+  "texto": "Carga de la pierna exterior / descenso de cadera",
+  "estado_medida": "✔",
+  "resultado": "en_maqueta",
+  "donde": "ready.hip_height"
+ },
+ {
+  "id": "M2.17",
+  "fuente": "taxonomia",
+  "texto": "Peso entre los pies / equilibrio",
+  "estado_medida": "✔",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M2.18",
+  "fuente": "taxonomia",
+  "texto": "Cadena cinética (orden pelvis → tronco → brazo → antebrazo)",
+  "estado_medida": "✔",
+  "resultado": "por_texto",
+  "donde": "leccion_fase_0",
+  "nota": "sin medida con clave"
+ },
+ {
+  "id": "M2.19",
+  "fuente": "taxonomia",
+  "texto": "Momento de los picos en ms",
+  "estado_medida": "✘",
+  "resultado": "dicho",
+  "donde": "no medible",
+  "nota": "no medible desde la tele: la aplicación lo dice"
+ },
+ {
+  "id": "M2.20",
+  "fuente": "taxonomia",
+  "texto": "Rotación interna del hombro, pronación, desviaciones de la muñeca",
+  "estado_medida": "✘",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "no medible y no lo dice"
+ },
+ {
+  "id": "M2.21",
+  "fuente": "taxonomia",
+  "texto": "Altura del contacto (respecto a rodilla, cadera, hombro)",
+  "estado_medida": "✔",
+  "resultado": "en_maqueta",
+  "donde": "finish.wrist_dom_vs_shoulder, impact.wrist_dom_vs_hip"
+ },
+ {
+  "id": "M2.22",
+  "fuente": "taxonomia",
+  "texto": "Separación lateral del contacto",
+  "estado_medida": "✔",
+  "resultado": "en_maqueta",
+  "donde": "impact.wrist_dom_lateral"
+ },
+ {
+  "id": "M2.23",
+  "fuente": "taxonomia",
+  "texto": "Contacto delante/detrás del cuerpo",
+  "estado_medida": "✘",
+  "resultado": "dicho",
+  "donde": "leccion/Glosario",
+  "nota": "no medible desde la tele: la aplicación lo dice"
+ },
+ {
+  "id": "M2.24",
+  "fuente": "taxonomia",
+  "texto": "Ángulo del codo en el impacto (brazo recto / doble flexión)",
+  "estado_medida": "✔",
+  "resultado": "en_maqueta",
+  "donde": "impact.elbow_dom"
+ },
+ {
+  "id": "M2.25",
+  "fuente": "taxonomia",
+  "texto": "Cabeza estable en el impacto",
+  "estado_medida": "✔",
+  "resultado": "por_texto",
+  "donde": "leccion_fase_3",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M2.26",
+  "fuente": "taxonomia",
+  "texto": "Cabeza quieta tras el impacto",
+  "estado_medida": "◐",
+  "resultado": "por_texto",
+  "donde": "leccion_fase_3",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M2.27",
+  "fuente": "taxonomia",
+  "texto": "Mirada",
+  "estado_medida": "✘",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "no medible y no lo dice"
+ },
+ {
+  "id": "M2.28",
+  "fuente": "taxonomia",
+  "texto": "Hombros más girados que la cadera en el impacto",
+  "estado_medida": "◐",
+  "resultado": "en_maqueta",
+  "donde": "loaded.shoulder_turn"
+ },
+ {
+  "id": "M2.29",
+  "fuente": "taxonomia",
+  "texto": "Extensión tras el contacto",
+  "estado_medida": "✔",
+  "resultado": "en_maqueta",
+  "donde": "extension.arm_extension, stroke.swing_rise_after"
+ },
+ {
+  "id": "M2.30",
+  "fuente": "taxonomia",
+  "texto": "Terminación sobre el hombro / limpiaparabrisas / alrededor / invertida",
+  "estado_medida": "✔",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "sin medida con clave"
+ },
+ {
+  "id": "M2.31",
+  "fuente": "taxonomia",
+  "texto": "\"3 × 90°\" al final",
+  "estado_medida": "✔",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M2.32",
+  "fuente": "taxonomia",
+  "texto": "Paso adelante de la pierna trasera tras el impacto",
+  "estado_medida": "✔",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M2.33",
+  "fuente": "taxonomia",
+  "texto": "Altura y separación del codo (armado e impacto)",
+  "estado_medida": "✔",
+  "resultado": "por_texto",
+  "donde": "leccion/Todas las medidas",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M2.34",
+  "fuente": "taxonomia",
+  "texto": "Transferencia de peso del armado al impacto",
+  "estado_medida": "◐",
+  "resultado": "por_texto",
+  "donde": "leccion_fase_0",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M2.35",
+  "fuente": "taxonomia",
+  "texto": "Empuje de piernas («bajar y subir»)",
+  "estado_medida": "◐",
+  "resultado": "por_texto",
+  "donde": "leccion/Lo que la tele no mide",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M2.36",
+  "fuente": "taxonomia",
+  "texto": "Fuerzas, momentos articulares",
+  "estado_medida": "✘",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "no medible y no lo dice"
+ },
+ {
+  "id": "M3.37",
+  "fuente": "taxonomia",
+  "texto": "Split step: aterrizaje respecto al golpe del rival",
+  "estado_medida": "✔",
+  "resultado": "por_texto",
+  "donde": "leccion_fase_0",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M3.38",
+  "fuente": "taxonomia",
+  "texto": "Split step: despegue y aterrizaje respecto al golpe del rival",
+  "estado_medida": "✔",
+  "resultado": "en_maqueta",
+  "donde": "footwork.split_landing_vs_opp_s"
+ },
+ {
+  "id": "M3.39",
+  "fuente": "taxonomia",
+  "texto": "Presencia del split",
+  "estado_medida": "✔",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "sin medida con clave"
+ },
+ {
+  "id": "M3.40",
+  "fuente": "taxonomia",
+  "texto": "Velocidad 0,2 s antes y después del split",
+  "estado_medida": "✔",
+  "resultado": "por_texto",
+  "donde": "leccion_fase_0",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M3.41",
+  "fuente": "taxonomia",
+  "texto": "Primer paso: momento (reacción)",
+  "estado_medida": "✔",
+  "resultado": "en_maqueta",
+  "donde": "footwork.first_step_s"
+ },
+ {
+  "id": "M3.42",
+  "fuente": "taxonomia",
+  "texto": "Primer paso: tipo (gravity, jab, pivot, counter, cruzado, lateral)",
+  "estado_medida": "◐",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "sin medida con clave"
+ },
+ {
+  "id": "M3.43",
+  "fuente": "taxonomia",
+  "texto": "Primer paso: dirección correcta respecto a la bola",
+  "estado_medida": "✔",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M3.44",
+  "fuente": "taxonomia",
+  "texto": "Número de pasos hasta la bola",
+  "estado_medida": "✔",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M3.45",
+  "fuente": "taxonomia",
+  "texto": "Longitud de cada paso; anchura del primero",
+  "estado_medida": "✔",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M3.46",
+  "fuente": "taxonomia",
+  "texto": "Pasos de ajuste",
+  "estado_medida": "✔",
+  "resultado": "por_texto",
+  "donde": "leccion_fase_7",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M3.47",
+  "fuente": "taxonomia",
+  "texto": "Distribución lateral / delante / atrás",
+  "estado_medida": "✔",
+  "resultado": "en_maqueta",
+  "donde": "golpe: move_direction"
+ },
+ {
+  "id": "M3.48",
+  "fuente": "taxonomia",
+  "texto": "Cambios de dirección",
+  "estado_medida": "✔",
+  "resultado": "en_maqueta",
+  "donde": "golpe: direction_changes"
+ },
+ {
+  "id": "M3.49",
+  "fuente": "taxonomia",
+  "texto": "Velocidad media y máxima de carrera",
+  "estado_medida": "✔",
+  "resultado": "en_maqueta",
+  "donde": "golpe: peak_speed_mps"
+ },
+ {
+  "id": "M3.50",
+  "fuente": "taxonomia",
+  "texto": "Recorrido hasta la bola",
+  "estado_medida": "✔",
+  "resultado": "en_maqueta",
+  "donde": "footwork.path_m"
+ },
+ {
+  "id": "M3.51",
+  "fuente": "taxonomia",
+  "texto": "Tipo de apoyo (abierto, semiabierto, neutro, cerrado)",
+  "estado_medida": "✔",
+  "resultado": "en_maqueta",
+  "donde": "class.stance_impact"
+ },
+ {
+  "id": "M3.52",
+  "fuente": "taxonomia",
+  "texto": "Subtipos: abierto de ataque, abierto defensivo, neutro de ataque",
+  "estado_medida": "✔",
+  "resultado": "en_maqueta",
+  "donde": "golpe: stance_role"
+ },
+ {
+  "id": "M3.53",
+  "fuente": "taxonomia",
+  "texto": "Pierna que carga",
+  "estado_medida": "✔",
+  "resultado": "por_texto",
+  "donde": "leccion/Tu plan completo",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M3.54",
+  "fuente": "taxonomia",
+  "texto": "En carrera, en salto, a un pie, deslizando",
+  "estado_medida": "✔",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "sin medida con clave"
+ },
+ {
+  "id": "M3.55",
+  "fuente": "taxonomia",
+  "texto": "Última zancada más larga en carrera",
+  "estado_medida": "✔",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M3.56",
+  "fuente": "taxonomia",
+  "texto": "Recuperación: distancia, dirección, tiempo",
+  "estado_medida": "✔",
+  "resultado": "por_texto",
+  "donde": "leccion/Lo que la tele no mide",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M3.57",
+  "fuente": "taxonomia",
+  "texto": "Cada paso nombrado: lateral (sin cruzar), cruzado, de carrera, hacia delante, hacia atrás, de ajuste",
+  "estado_medida": "◐",
+  "resultado": "en_maqueta",
+  "donde": "class.approach_main"
+ },
+ {
+  "id": "M3.58",
+  "fuente": "taxonomia",
+  "texto": "Rodear la bola para la derecha invertida",
+  "estado_medida": "✔",
+  "resultado": "en_maqueta",
+  "donde": "golpe: around_ball"
+ },
+ {
+  "id": "M3.59",
+  "fuente": "taxonomia",
+  "texto": "Frenado: último paso largo con caída de la velocidad",
+  "estado_medida": "◐",
+  "resultado": "por_texto",
+  "donde": "leccion_fase_1",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M3.60",
+  "fuente": "taxonomia",
+  "texto": "Patada atrás (tijera) tras el impacto",
+  "estado_medida": "◐",
+  "resultado": "por_texto",
+  "donde": "leccion_fase_2",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M3.61",
+  "fuente": "taxonomia",
+  "texto": "Recuperación: tipo de cada paso de vuelta, cuándo empieza",
+  "estado_medida": "◐",
+  "resultado": "en_maqueta",
+  "donde": "class.recovery_first_step, footwork.recovery_start_s"
+ },
+ {
+  "id": "M3.62",
+  "fuente": "taxonomia",
+  "texto": "Nuevo split step antes del siguiente golpe de la rival",
+  "estado_medida": "✘",
+  "resultado": "dicho",
+  "donde": "no medible",
+  "nota": "no medible desde la tele: la aplicación lo dice"
+ },
+ {
+  "id": "M3.63",
+  "fuente": "taxonomia",
+  "texto": "Orientación del pie (talón → dedo gordo respecto a la línea de fondo) en el armado y el impacto",
+  "estado_medida": "◐",
+  "resultado": "por_texto",
+  "donde": "leccion_fase_0",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M3.64",
+  "fuente": "taxonomia",
+  "texto": "Pivote sobre la punta del pie de atrás (talón arriba, punta apoyada)",
+  "estado_medida": "◐",
+  "resultado": "en_maqueta",
+  "donde": "golpe: back_heel_lift, golpe: back_heel_lift_s"
+ },
+ {
+  "id": "M3.65",
+  "fuente": "taxonomia",
+  "texto": "Base y anchura de la base sobre la pista",
+  "estado_medida": "✔",
+  "resultado": "en_maqueta",
+  "donde": "impact.base_court_m"
+ },
+ {
+  "id": "M3.66",
+  "fuente": "taxonomia",
+  "texto": "Altura del split step",
+  "estado_medida": "✘",
+  "resultado": "dicho",
+  "donde": "no medible",
+  "nota": "no medible desde la tele: la aplicación lo dice"
+ },
+ {
+  "id": "M4.67",
+  "fuente": "taxonomia",
+  "texto": "Forma del armado: bucle, recto, \"pat the dog\"",
+  "estado_medida": "✔",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M4.68",
+  "fuente": "taxonomia",
+  "texto": "Raqueta al lado del cuerpo o por detrás de la espalda en el armado (debate WTA/ATP)",
+  "estado_medida": "◐",
+  "resultado": "por_texto",
+  "donde": "leccion_fase_2",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M4.69",
+  "fuente": "taxonomia",
+  "texto": "Inicio de la aceleración respecto al bote; girar mientras se desplaza",
+  "estado_medida": "✔",
+  "resultado": "por_texto",
+  "donde": "leccion_fase_8",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M4.70",
+  "fuente": "taxonomia",
+  "texto": "Altura de la mano en el armado (no por encima de la cabeza)",
+  "estado_medida": "✔",
+  "resultado": "en_maqueta",
+  "donde": "finish.wrist_dom_vs_shoulder"
+ },
+ {
+  "id": "M4.71",
+  "fuente": "taxonomia",
+  "texto": "Cara de la raqueta al final del armado",
+  "estado_medida": "✔",
+  "resultado": "en_maqueta",
+  "donde": "finish.face_tilt"
+ },
+ {
+  "id": "M4.72",
+  "fuente": "taxonomia",
+  "texto": "Caída de la raqueta antes de acelerar",
+  "estado_medida": "✔",
+  "resultado": "en_maqueta",
+  "donde": "stroke.wrist_drop"
+ },
+ {
+  "id": "M4.73",
+  "fuente": "taxonomia",
+  "texto": "Retraso de la muñeca (lag)",
+  "estado_medida": "◐",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M4.74",
+  "fuente": "taxonomia",
+  "texto": "Trayectoria de abajo arriba (signo) / liftado-plano-cortado",
+  "estado_medida": "✔",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M4.75",
+  "fuente": "taxonomia",
+  "texto": "Ángulo exacto de la trayectoria en el impacto",
+  "estado_medida": "✘",
+  "resultado": "dicho",
+  "donde": "no medible",
+  "nota": "no medible desde la tele: la aplicación lo dice"
+ },
+ {
+  "id": "M4.76",
+  "fuente": "taxonomia",
+  "texto": "Cara en el impacto",
+  "estado_medida": "◐",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "sin medida con clave"
+ },
+ {
+  "id": "M4.77",
+  "fuente": "taxonomia",
+  "texto": "Velocidad de la raqueta absoluta",
+  "estado_medida": "✘",
+  "resultado": "dicho",
+  "donde": "no medible",
+  "nota": "no medible desde la tele: la aplicación lo dice"
+ },
+ {
+  "id": "M4.78",
+  "fuente": "taxonomia",
+  "texto": "Velocidad de la raqueta relativa entre golpes",
+  "estado_medida": "◐",
+  "resultado": "por_texto",
+  "donde": "leccion_fase_0",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M4.79",
+  "fuente": "taxonomia",
+  "texto": "Posición de la mano en el mango",
+  "estado_medida": "◐",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M4.80",
+  "fuente": "taxonomia",
+  "texto": "Empuñadura (bisel)",
+  "estado_medida": "✘",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "no medible y no lo dice"
+ },
+ {
+  "id": "M4.81",
+  "fuente": "taxonomia",
+  "texto": "Empuñadura: \"compatible con este / semioccidental-occidental\"",
+  "estado_medida": "✔",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M4.82",
+  "fuente": "taxonomia",
+  "texto": "Empuñadura en la espera y cambio de empuñadura",
+  "estado_medida": "✘",
+  "resultado": "dicho",
+  "donde": "no medible",
+  "nota": "no medible desde la tele: la aplicación lo dice"
+ },
+ {
+  "id": "M4.83",
+  "fuente": "taxonomia",
+  "texto": "Pronación, contribución de cada segmento, punto en el cordaje, presión de agarre",
+  "estado_medida": "✘",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "no medible y no lo dice"
+ },
+ {
+  "id": "M5.84",
+  "fuente": "taxonomia",
+  "texto": "Bote: profundidad, anchura, dentro/fuera",
+  "estado_medida": "✔",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M5.85",
+  "fuente": "taxonomia",
+  "texto": "Dirección cruzada, paralela, al centro, invertidas",
+  "estado_medida": "✔",
+  "resultado": "por_texto",
+  "donde": "leccion/Lo esencial",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M5.86",
+  "fuente": "taxonomia",
+  "texto": "Golpe angulado (cruzado, corto y junto al lateral)",
+  "estado_medida": "✔",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M5.87",
+  "fuente": "taxonomia",
+  "texto": "Bola corta cerca de la red: baja, media, alta",
+  "estado_medida": "◐",
+  "resultado": "por_texto",
+  "donde": "leccion_fase_0",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M5.88",
+  "fuente": "taxonomia",
+  "texto": "Velocidad media de la bola en pista",
+  "estado_medida": "✔",
+  "resultado": "por_texto",
+  "donde": "leccion_fase_0",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M5.89",
+  "fuente": "taxonomia",
+  "texto": "Altura de la bola en su vuelo, bote, punto más alto; contacto subiendo / arriba / cayendo",
+  "estado_medida": "◐",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M5.90",
+  "fuente": "taxonomia",
+  "texto": "Qué hace ella en cada momento de la bola (cruza la red, bota, punto más alto)",
+  "estado_medida": "✔",
+  "resultado": "en_maqueta",
+  "donde": "stroke.takeback_vs_net"
+ },
+ {
+  "id": "M5.91",
+  "fuente": "taxonomia",
+  "texto": "Curvas de altura (cabeza, cadera, mano, cabeza de la raqueta) a lo largo del golpe, con su curva típica y su franja",
+  "estado_medida": "✔",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M5.92",
+  "fuente": "taxonomia",
+  "texto": "Efecto (rpm), velocidad de salida, altura sobre la red",
+  "estado_medida": "✘",
+  "resultado": "dicho",
+  "donde": "no medible",
+  "nota": "no medible desde la tele: la aplicación lo dice"
+ },
+ {
+  "id": "M5.93",
+  "fuente": "taxonomia",
+  "texto": "Fase ataque / neutra / defensa",
+  "estado_medida": "✔",
+  "resultado": "por_texto",
+  "donde": "leccion_fase_0",
+  "nota": "sin medida con clave"
+ },
+ {
+  "id": "M5.94",
+  "fuente": "taxonomia",
+  "texto": "Calidad del golpe (sustituto: profundidad, anchura, velocidad media)",
+  "estado_medida": "✔",
+  "resultado": "por_texto",
+  "donde": "leccion_fase_0",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M5.95",
+  "fuente": "taxonomia",
+  "texto": "Puntos ganados en ataque / en defensa",
+  "estado_medida": "✔",
+  "resultado": "por_texto",
+  "donde": "mas_conclusiones",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M5.96",
+  "fuente": "taxonomia",
+  "texto": "Longitud del peloteo",
+  "estado_medida": "◐",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M5.97",
+  "fuente": "taxonomia",
+  "texto": "Resto, globo, dejada, volea, subida a la red",
+  "estado_medida": "◐",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M5.98",
+  "fuente": "taxonomia",
+  "texto": "Ganador / error (forzado o no)",
+  "estado_medida": "◐",
+  "resultado": "por_texto",
+  "donde": "leccion/Lo esencial",
+  "nota": "sin medida con clave"
+ },
+ {
+  "id": "M5.99",
+  "fuente": "taxonomia",
+  "texto": "Presión, set, fatiga",
+  "estado_medida": "✔",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "sin medida con clave"
+ },
+ {
+  "id": "M5b.100",
+  "fuente": "taxonomia",
+  "texto": "Resto: reconocerlo (saca la rival y es su primer golpe del punto)",
+  "estado_medida": "✔",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M5b.101",
+  "fuente": "taxonomia",
+  "texto": "Resto de primer o de segundo saque",
+  "estado_medida": "◐",
+  "resultado": "por_texto",
+  "donde": "leccion/Lo que la tele no mide",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M5b.102",
+  "fuente": "taxonomia",
+  "texto": "Dirección del saque recibido: abierto, al cuerpo, a la T",
+  "estado_medida": "✔",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M5b.103",
+  "fuente": "taxonomia",
+  "texto": "Lado del resto: iguales / ventaja",
+  "estado_medida": "✔",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M5b.104",
+  "fuente": "taxonomia",
+  "texto": "Resto: posición de espera",
+  "estado_medida": "✔",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M5b.105",
+  "fuente": "taxonomia",
+  "texto": "Resto: entrar hacia la bola",
+  "estado_medida": "✔",
+  "resultado": "por_texto",
+  "donde": "leccion/Lo esencial",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M5b.106",
+  "fuente": "taxonomia",
+  "texto": "Resto: split step respecto al saque",
+  "estado_medida": "✔",
+  "resultado": "en_maqueta",
+  "donde": "footwork.split_landing_vs_opp_s"
+ },
+ {
+  "id": "M5b.107",
+  "fuente": "taxonomia",
+  "texto": "Resto: armado corto (bloqueo) o swing completo; terminación",
+  "estado_medida": "✔",
+  "resultado": "por_texto",
+  "donde": "leccion_fase_2",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M5b.108",
+  "fuente": "taxonomia",
+  "texto": "Resto: dirección y profundidad de su resto",
+  "estado_medida": "✔",
+  "resultado": "por_texto",
+  "donde": "leccion/Lo esencial",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M5b.109",
+  "fuente": "taxonomia",
+  "texto": "Resto: tiempo que tiene desde el saque",
+  "estado_medida": "✔",
+  "resultado": "por_texto",
+  "donde": "leccion/Lo que la tele no mide",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M5b.110",
+  "fuente": "taxonomia",
+  "texto": "Velocidad y efecto del saque que resta (km/h, rpm)",
+  "estado_medida": "✘",
+  "resultado": "dicho",
+  "donde": "no medible",
+  "nota": "no medible desde la tele: la aplicación lo dice"
+ },
+ {
+  "id": "M6.111",
+  "fuente": "lista15",
+  "texto": "Reacción al suelo (fuerza contra la pista)",
+  "estado_medida": "✘",
+  "resultado": "dicho",
+  "donde": "no medible",
+  "nota": "no medible desde la tele: la aplicación lo dice"
+ },
+ {
+  "id": "M6.112",
+  "fuente": "lista15",
+  "texto": "Empuje de piernas / extensión triple (tobillo, rodilla, cadera)",
+  "estado_medida": "◐",
+  "resultado": "en_maqueta",
+  "donde": "ready.hip_height"
+ },
+ {
+  "id": "M6.113",
+  "fuente": "lista15",
+  "texto": "Rotación pélvica",
+  "estado_medida": "◐",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M6.114",
+  "fuente": "lista15",
+  "texto": "Separación cadera–hombro (torque)",
+  "estado_medida": "◐",
+  "resultado": "en_maqueta",
+  "donde": "loaded.x_factor"
+ },
+ {
+  "id": "M6.115",
+  "fuente": "lista15",
+  "texto": "Giro de hombros (unit turn)",
+  "estado_medida": "✔",
+  "resultado": "en_maqueta",
+  "donde": "loaded.shoulder_turn"
+ },
+ {
+  "id": "M6.116",
+  "fuente": "lista15",
+  "texto": "Extensión del codo",
+  "estado_medida": "✔",
+  "resultado": "en_maqueta",
+  "donde": "extension.arm_extension, impact.elbow_dom"
+ },
+ {
+  "id": "M6.117",
+  "fuente": "lista15",
+  "texto": "Pronación del antebrazo, flexión palmar y desviación de la muñeca",
+  "estado_medida": "✘",
+  "resultado": "dicho",
+  "donde": "no medible",
+  "nota": "no medible desde la tele: la aplicación lo dice"
+ },
+ {
+  "id": "M6.118",
+  "fuente": "lista15",
+  "texto": "Retraso de la muñeca (lag) y su liberación",
+  "estado_medida": "◐",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M6.119",
+  "fuente": "lista15",
+  "texto": "Mirada fija en el punto de impacto («quiet eye»)",
+  "estado_medida": "✘",
+  "resultado": "dicho",
+  "donde": "no medible",
+  "nota": "no medible desde la tele: la aplicación lo dice"
+ },
+ {
+  "id": "M6.120",
+  "fuente": "lista15",
+  "texto": "Cabeza estable y eje vertical",
+  "estado_medida": "✔",
+  "resultado": "en_maqueta",
+  "donde": "stroke.head_motion_cm"
+ },
+ {
+  "id": "M6.121",
+  "fuente": "lista15",
+  "texto": "Brazo recto o doble flexión",
+  "estado_medida": "✔",
+  "resultado": "en_maqueta",
+  "donde": "impact.elbow_dom"
+ },
+ {
+  "id": "M6.122",
+  "fuente": "lista15",
+  "texto": "Brazo libre paralelo a la línea de fondo en el giro; distancia a la bola",
+  "estado_medida": "✔",
+  "resultado": "en_maqueta",
+  "donde": "impact.wrist_dom_lateral, loaded.elbow_non"
+ },
+ {
+  "id": "M6.123",
+  "fuente": "lista15",
+  "texto": "Brazo libre recogido al pecho tras el contacto («catch»)",
+  "estado_medida": "✔",
+  "resultado": "en_maqueta",
+  "donde": "extension.wrist_non_lateral"
+ },
+ {
+  "id": "M6.124",
+  "fuente": "lista15",
+  "texto": "Inclinación lateral del tronco",
+  "estado_medida": "✔",
+  "resultado": "por_texto",
+  "donde": "golpe",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M6.125",
+  "fuente": "lista15",
+  "texto": "Estabilidad lumbopélvica, activación de oblicuos (fugas de energía musculares)",
+  "estado_medida": "✘",
+  "resultado": "dicho",
+  "donde": "no medible",
+  "nota": "no medible desde la tele: la aplicación lo dice"
+ },
+ {
+  "id": "M6.126",
+  "fuente": "lista15",
+  "texto": "Carga: flexión de rodillas",
+  "estado_medida": "◐",
+  "resultado": "en_maqueta",
+  "donde": "ready.hip_height"
+ },
+ {
+  "id": "M6.127",
+  "fuente": "lista15",
+  "texto": "Pie de arrastre (pie trasero que se arrastra)",
+  "estado_medida": "◐",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M6.128",
+  "fuente": "lista15",
+  "texto": "Bucle de la preparación (forma)",
+  "estado_medida": "✔",
+  "resultado": "por_texto",
+  "donde": "leccion/Lo que la tele no mide",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M6.129",
+  "fuente": "lista15",
+  "texto": "Caída de la raqueta por debajo de la mano",
+  "estado_medida": "✔",
+  "resultado": "en_maqueta",
+  "donde": "stroke.wrist_drop"
+ },
+ {
+  "id": "M6.130",
+  "fuente": "lista15",
+  "texto": "Caída de la raqueta por debajo de la bola",
+  "estado_medida": "◐",
+  "resultado": "por_texto",
+  "donde": "leccion_fase_0",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M6.131",
+  "fuente": "lista15",
+  "texto": "Cara de la raqueta en la caída y en el impacto",
+  "estado_medida": "◐",
+  "resultado": "en_maqueta",
+  "donde": "finish.face_tilt"
+ },
+ {
+  "id": "M6.132",
+  "fuente": "lista15",
+  "texto": "Trayectoria vertical del swing (de abajo arriba)",
+  "estado_medida": "◐",
+  "resultado": "por_texto",
+  "donde": "leccion/Tu plan completo",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M6.133",
+  "fuente": "lista15",
+  "texto": "Trayectoria horizontal del swing (de dentro a fuera)",
+  "estado_medida": "✘",
+  "resultado": "dicho",
+  "donde": "no medible",
+  "nota": "no medible desde la tele: la aplicación lo dice"
+ },
+ {
+  "id": "M6.134",
+  "fuente": "lista15",
+  "texto": "Apoyos abierto, semiabierto, neutro, cerrado",
+  "estado_medida": "✔",
+  "resultado": "en_maqueta",
+  "donde": "class.stance_impact"
+ },
+ {
+  "id": "M6.135",
+  "fuente": "lista15",
+  "texto": "Apoyo en suspensión (salto)",
+  "estado_medida": "✔",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "sin medida con clave"
+ },
+ {
+  "id": "M6.136",
+  "fuente": "lista15",
+  "texto": "Apoyo abierto extremo defensivo",
+  "estado_medida": "✔",
+  "resultado": "en_maqueta",
+  "donde": "golpe: stance_role"
+ },
+ {
+  "id": "M6.137",
+  "fuente": "lista15",
+  "texto": "Split step",
+  "estado_medida": "✔",
+  "resultado": "en_maqueta",
+  "donde": "footwork.split_landing_vs_opp_s"
+ },
+ {
+  "id": "M6.138",
+  "fuente": "lista15",
+  "texto": "Pasos de ajuste",
+  "estado_medida": "✔",
+  "resultado": "por_texto",
+  "donde": "leccion_fase_7",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M6.139",
+  "fuente": "lista15",
+  "texto": "Pasos cruzados",
+  "estado_medida": "✔",
+  "resultado": "en_maqueta",
+  "donde": "footwork.crossover_steps"
+ },
+ {
+  "id": "M6.140",
+  "fuente": "lista15",
+  "texto": "Paso de ataque hacia dentro de la pista (step-in)",
+  "estado_medida": "✔",
+  "resultado": "por_texto",
+  "donde": "leccion_fase_8",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M6.141",
+  "fuente": "lista15",
+  "texto": "Pasos de recuperación (laterales o cruzados)",
+  "estado_medida": "✔",
+  "resultado": "en_maqueta",
+  "donde": "class.recovery_first_step"
+ },
+ {
+  "id": "M6.142",
+  "fuente": "lista15",
+  "texto": "Golpe plano, liftado o cortado",
+  "estado_medida": "◐",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "sin medida con clave"
+ },
+ {
+  "id": "M6.143",
+  "fuente": "lista15",
+  "texto": "Botepronto (media volea)",
+  "estado_medida": "◐",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M6.144",
+  "fuente": "lista15",
+  "texto": "Volea de derecha",
+  "estado_medida": "◐",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M6.145",
+  "fuente": "lista15",
+  "texto": "Terminación sobre el hombro contrario",
+  "estado_medida": "✔",
+  "resultado": "por_texto",
+  "donde": "leccion_fase_0",
+  "nota": "sin medida con clave"
+ },
+ {
+  "id": "M6.146",
+  "fuente": "lista15",
+  "texto": "Terminación en látigo sobre el mismo hombro (buggy whip)",
+  "estado_medida": "✔",
+  "resultado": "por_texto",
+  "donde": "leccion_fase_0",
+  "nota": "sin medida con clave"
+ },
+ {
+  "id": "M6.147",
+  "fuente": "lista15",
+  "texto": "Terminación baja, a la cintura contraria",
+  "estado_medida": "✔",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "sin medida con clave"
+ },
+ {
+  "id": "M6.148",
+  "fuente": "lista15",
+  "texto": "Adaptación a bola rápida, corta, alta, abierta",
+  "estado_medida": "✔",
+  "resultado": "por_texto",
+  "donde": "leccion_fase_0",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M6.149",
+  "fuente": "lista15",
+  "texto": "Dirección: cruzado, paralelo, dentro-fuera, dentro-dentro",
+  "estado_medida": "✔",
+  "resultado": "por_texto",
+  "donde": "leccion/Lo que la tele no mide",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M6.150",
+  "fuente": "lista15",
+  "texto": "Zona de impacto: altura y separación lateral",
+  "estado_medida": "✔",
+  "resultado": "en_maqueta",
+  "donde": "impact.wrist_dom_lateral, impact.wrist_dom_vs_hip"
+ },
+ {
+  "id": "M6.151",
+  "fuente": "lista15",
+  "texto": "Zona de impacto: delante de la cadera",
+  "estado_medida": "◐",
+  "resultado": "por_texto",
+  "donde": "leccion_fase_0",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M6.152",
+  "fuente": "lista15",
+  "texto": "Relajación y tensión de la empuñadura",
+  "estado_medida": "✘",
+  "resultado": "dicho",
+  "donde": "no medible",
+  "nota": "no medible desde la tele: la aplicación lo dice"
+ },
+ {
+  "id": "M6.153",
+  "fuente": "lista15",
+  "texto": "Equilibrio al terminar",
+  "estado_medida": "✔",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M6.154",
+  "fuente": "lista15",
+  "texto": "Propiedades de la raqueta: swingweight, rigidez, encordado, tensión",
+  "estado_medida": "✘",
+  "resultado": "dicho",
+  "donde": "no medible",
+  "nota": "no medible desde la tele: la aplicación lo dice"
+ },
+ {
+  "id": "M6.155",
+  "fuente": "lista15",
+  "texto": "Velocidad de la cabeza de la raqueta en km/h",
+  "estado_medida": "✘",
+  "resultado": "dicho",
+  "donde": "no medible",
+  "nota": "no medible desde la tele: la aplicación lo dice"
+ },
+ {
+  "id": "M6.156",
+  "fuente": "lista15",
+  "texto": "Velocidad angular de cada segmento en grados por segundo",
+  "estado_medida": "✘",
+  "resultado": "dicho",
+  "donde": "no medible",
+  "nota": "no medible desde la tele: la aplicación lo dice"
+ },
+ {
+  "id": "M6.157",
+  "fuente": "lista15",
+  "texto": "Tasa de desarrollo de fuerza contra el suelo",
+  "estado_medida": "✘",
+  "resultado": "dicho",
+  "donde": "no medible",
+  "nota": "no medible desde la tele: la aplicación lo dice"
+ },
+ {
+  "id": "M6.158",
+  "fuente": "lista15",
+  "texto": "Efecto, ángulo y velocidad de salida de la bola",
+  "estado_medida": "✘",
+  "resultado": "dicho",
+  "donde": "no medible",
+  "nota": "no medible desde la tele: la aplicación lo dice"
+ },
+ {
+  "id": "M6.159",
+  "fuente": "lista15",
+  "texto": "Latencia de reacción al golpe de la rival",
+  "estado_medida": "◐",
+  "resultado": "en_maqueta",
+  "donde": "footwork.first_step_s, footwork.split_landing_vs_opp_s"
+ },
+ {
+  "id": "M6.160",
+  "fuente": "lista15",
+  "texto": "Activación muscular (electromiografía)",
+  "estado_medida": "✘",
+  "resultado": "dicho",
+  "donde": "no medible",
+  "nota": "no medible desde la tele: la aplicación lo dice"
+ },
+ {
+  "id": "M6.161",
+  "fuente": "lista15",
+  "texto": "Rangos articulares de muñeca, codo y hombro; cargas del codo",
+  "estado_medida": "✘",
+  "resultado": "dicho",
+  "donde": "no medible",
+  "nota": "no medible desde la tele: la aplicación lo dice"
+ },
+ {
+  "id": "M6.162",
+  "fuente": "lista15",
+  "texto": "Apertura prematura de hombros (fuga de energía)",
+  "estado_medida": "◐",
+  "resultado": "en_maqueta",
+  "donde": "stroke.shoulders_open_first"
+ },
+ {
+  "id": "M6.163",
+  "fuente": "lista15",
+  "texto": "Liberación anticipada de la muñeca («casting»)",
+  "estado_medida": "◐",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M6.164",
+  "fuente": "lista15",
+  "texto": "Fuerza en dirección incorrecta (horizontal o descendente)",
+  "estado_medida": "◐",
+  "resultado": "por_texto",
+  "donde": "leccion/Lo que la tele no mide",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M6.165",
+  "fuente": "lista15",
+  "texto": "Ángulo real del swing de abajo arriba (+10° a +45°)",
+  "estado_medida": "◐",
+  "resultado": "por_texto",
+  "donde": "leccion/Tu plan completo",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M6.166",
+  "fuente": "lista15",
+  "texto": "Rodilla de atrás en la carga (110–130°) y de delante en el impacto",
+  "estado_medida": "◐",
+  "resultado": "por_texto",
+  "donde": "leccion_fase_0",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M6.167",
+  "fuente": "lista15",
+  "texto": "Inclinación del tronco hacia delante o atrás en el impacto",
+  "estado_medida": "◐",
+  "resultado": "por_texto",
+  "donde": "leccion_fase_5",
+  "nota": "su medida no está en la lección"
+ },
+ {
+  "id": "M6.168",
+  "fuente": "lista15",
+  "texto": "Superficie de la pista",
+  "estado_medida": "✔",
+  "resultado": "falta",
+  "donde": "",
+  "nota": "sin medida con clave"
+ },
+ {
+  "id": "M6.169",
+  "fuente": "lista15",
+  "texto": "Aerodinámica, altitud, temperatura, humedad",
+  "estado_medida": "✘",
+  "resultado": "dicho",
+  "donde": "no medible",
+  "nota": "no medible desde la tele: la aplicación lo dice"
+ },
+ {
+  "id": "R1.espera",
+  "fuente": "requisitos",
+  "texto": "Espera",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "R1.empunadura",
+  "fuente": "requisitos",
+  "texto": "Empuñadura (en espera y al golpear, si se puede ver)",
+  "donde": "",
+  "resultado": "falta"
+ },
+ {
+  "id": "R1.split",
+  "fuente": "requisitos",
+  "texto": "Split step",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "R1.primer_paso",
+  "fuente": "requisitos",
+  "texto": "Primer paso",
+  "donde": "leccion_fase_0, leccion_fase_7, leccion_fase_8",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "R1.pasos",
+  "fuente": "requisitos",
+  "texto": "Pasos y juego de pies",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "R1.preparacion",
+  "fuente": "requisitos",
+  "texto": "Preparación",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "R1.armado",
+  "fuente": "requisitos",
+  "texto": "Armado",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "R1.aceleracion",
+  "fuente": "requisitos",
+  "texto": "Aceleración",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "R1.impacto",
+  "fuente": "requisitos",
+  "texto": "Impacto",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "R1.terminacion",
+  "fuente": "requisitos",
+  "texto": "Terminación",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "R1.recuperacion",
+  "fuente": "requisitos",
+  "texto": "Recuperación",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "R1.ritmo",
+  "fuente": "requisitos",
+  "texto": "Ritmo",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "R1.rapida_lenta",
+  "fuente": "requisitos",
+  "texto": "Bola rápida / lenta",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "R1.alta_baja",
+  "fuente": "requisitos",
+  "texto": "Bola alta / baja",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "R1.corta_profunda",
+  "fuente": "requisitos",
+  "texto": "Bola corta / profunda",
+  "donde": "",
+  "resultado": "falta"
+ },
+ {
+  "id": "R1.carrera_parada_salto",
+  "fuente": "requisitos",
+  "texto": "En carrera / parada / en salto",
+  "donde": "",
+  "resultado": "falta"
+ },
+ {
+  "id": "R1.apoyos",
+  "fuente": "requisitos",
+  "texto": "Cada apoyo",
+  "donde": "golpes, mas_situaciones",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "R1.direccion",
+  "fuente": "requisitos",
+  "texto": "Dirección del golpe",
+  "donde": "leccion/Lo esencial, leccion/Glosario",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "R1.ataque_defensa",
+  "fuente": "requisitos",
+  "texto": "Ataque / defensa",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "R2.video_primero",
+  "fuente": "requisitos",
+  "texto": "Vídeo primero: cada fase con su vídeo real",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "R2.informacion",
+  "fuente": "requisitos",
+  "texto": "Información en frases, no tablas",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "R3.no_medible",
+  "fuente": "requisitos",
+  "texto": "Lo no fiable: «no medible desde la tele»",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "R3.error_medida",
+  "fuente": "requisitos",
+  "texto": "Diferencias solo si superan el error de medida",
+  "donde": "mas_conclusiones, mas_fiabilidad, leccion/Qué cambia según la bola",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "R4.cuerdas",
+  "fuente": "requisitos",
+  "texto": "Cara de la raqueta en cada fase, marcada como estimación donde lo es",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "R4.estimacion",
+  "fuente": "requisitos",
+  "texto": "La cara en el impacto, como estimación",
+  "donde": "leccion_fase_4, leccion/Lo esencial, leccion/Lo que la tele no mide",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "R5.clic",
+  "fuente": "requisitos",
+  "texto": "Un clic por partido para la identidad",
+  "donde": "anadir_4",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "R5.aprobacion",
+  "fuente": "requisitos",
+  "texto": "Aprobación del análisis completo (#262)",
+  "donde": "inicio, anadir_1, anadir_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "R5.sin_revision",
+  "fuente": "requisitos",
+  "texto": "Nada pide revisión: los dudosos se marcan",
+  "donde": "",
+  "resultado": "falta"
+ },
+ {
+  "id": "R6.lateral",
+  "fuente": "requisitos",
+  "texto": "Vista lateral (entreno), aparte y marcada",
+  "donde": "mas_lateral",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "R10.borrado",
+  "fuente": "requisitos",
+  "texto": "Los vídeos se borran al terminar (N)",
+  "donde": "almacen",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "V.bola_y_ella",
+  "fuente": "requisitos",
+  "texto": "La bola y ella: su cuerpo en cada momento de la bola, con medidas",
+  "donde": "golpe",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "V.bajar_subir",
+  "fuente": "requisitos",
+  "texto": "Bajar y subir: espera → punto más bajo → más alto, en cm",
+  "donde": "golpe",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "V.base",
+  "fuente": "requisitos",
+  "texto": "Base: distancia entre los pies en armado, impacto y terminación; pies plantados",
+  "donde": "golpe",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "V.tronco",
+  "fuente": "requisitos",
+  "texto": "Tronco al terminar: hacia dónde mira",
+  "donde": "golpe",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "I.ocho_fotogramas",
+  "fuente": "requisitos",
+  "texto": "Secuencia de 8 fotogramas clave por golpe con esqueleto y valores",
+  "donde": "golpe",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "I.estroboscopica",
+  "fuente": "requisitos",
+  "texto": "Imagen estroboscópica (esqueletos superpuestos y trayectoria de la muñeca)",
+  "donde": "",
+  "resultado": "falta"
+ },
+ {
+  "id": "I.tira_contactos",
+  "fuente": "requisitos",
+  "texto": "Tira de contactos",
+  "donde": "",
+  "resultado": "falta"
+ },
+ {
+  "id": "I.galerias",
+  "fuente": "requisitos",
+  "texto": "Galerías por golpe y situación ordenadas por calidad de captura, representatividad y resultado",
+  "donde": "golpes",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "I.sin_puntuacion",
+  "fuente": "requisitos",
+  "texto": "Sin puntuación de «mejor técnica»",
+  "donde": "",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "I.mapa_pista",
+  "fuente": "requisitos",
+  "texto": "Mapa de pista (impactos, botes, destino)",
+  "donde": "mas_pista",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "I.comparativas_situacion",
+  "fuente": "requisitos",
+  "texto": "Comparativas por situación",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "I.numero_enlaza",
+  "fuente": "requisitos",
+  "texto": "Cada número enlaza a sus clips",
+  "donde": "situacion_celda",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "I.fiabilidad",
+  "fuente": "requisitos",
+  "texto": "Fiabilidad de cada métrica, a la vista",
+  "donde": "leccion_fase_0, leccion_fase_2, leccion_fase_3",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "I.conclusiones_confianza",
+  "fuente": "requisitos",
+  "texto": "Conclusiones en frases con su confianza",
+  "donde": "mas_conclusiones, leccion/Lo esencial",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "I.fatiga",
+  "fuente": "requisitos",
+  "texto": "Inicio frente a final (fatiga)",
+  "donde": "mas_conclusiones, leccion/Qué cambia según la bola",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "I.presion",
+  "fuente": "requisitos",
+  "texto": "Bajo presión",
+  "donde": "mas_conclusiones, leccion/Qué cambia según la bola",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "I.ganadores_errores",
+  "fuente": "requisitos",
+  "texto": "Ganadores frente a errores",
+  "donde": "leccion/Lo esencial",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "I.lado_lejano",
+  "fuente": "requisitos",
+  "texto": "Lado lejano con menos detalle, marcado",
+  "donde": "inicio, analisis, leccion_fase_8",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "I.otros_golpes",
+  "fuente": "requisitos",
+  "texto": "Otros golpes (revés, saque, volea…) con su análisis cuando haya casos",
+  "donde": "analisis",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "I.glosario",
+  "fuente": "requisitos",
+  "texto": "Glosario (vocabulario biomecánico)",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "G.catalogo",
+  "fuente": "requisitos",
+  "texto": "Catálogo de partidos",
+  "donde": "partidos",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "G.personas",
+  "fuente": "requisitos",
+  "texto": "Jugadoras y rivales con su ficha",
+  "donde": "personas",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "G.anadir",
+  "fuente": "requisitos",
+  "texto": "Añadir partido desde un nombre de fichero mínimo",
+  "donde": "anadir_1",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "G.cola",
+  "fuente": "requisitos",
+  "texto": "Cola de la nube con su estado",
+  "donde": "cola",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "G.calidad",
+  "fuente": "requisitos",
+  "texto": "Calidad (auditoría, modelo de calidad)",
+  "donde": "calidad",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "IV.01",
+  "fuente": "ivanovic",
+  "texto": "Sin pausa entre armado y swing (no medible: dicho)",
+  "donde": "leccion/Si te pasa…, leccion/Lo que la tele no mide",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "IV.02",
+  "fuente": "ivanovic",
+  "texto": "Sus claves en la lección (giro al cruzar la red…)",
+  "donde": "leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "IV.03",
+  "fuente": "ivanovic",
+  "texto": "Forma del armado: bucle, loop falso, recto atrás; punta arriba / codo alto",
+  "donde": "leccion/Lo que la tele no mide, leccion/Glosario",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "IV.04",
+  "fuente": "ivanovic",
+  "texto": "Su ritmo con la bola, distancia y peso",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "IV.05",
+  "fuente": "ivanovic",
+  "texto": "Índice «Si te pasa…»",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "IV.06",
+  "fuente": "ivanovic",
+  "texto": "Avisos de técnica por golpe",
+  "donde": "",
+  "resultado": "falta"
+ },
+ {
+  "id": "IV.07",
+  "fuente": "ivanovic",
+  "texto": "«Cómo comprobarlo» en cada punto de control",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "IV.08",
+  "fuente": "ivanovic",
+  "texto": "Glosario completo",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "IV.09",
+  "fuente": "ivanovic",
+  "texto": "Terminación hacia adelante, la mano libre recoge la raqueta, codo al terminar",
+  "donde": "",
+  "resultado": "falta"
+ },
+ {
+  "id": "IV.10",
+  "fuente": "ivanovic",
+  "texto": "Mano libre en la aceleración y el impacto",
+  "donde": "",
+  "resultado": "falta"
+ },
+ {
+  "id": "IV.11",
+  "fuente": "ivanovic",
+  "texto": "Pies según la distancia que corre",
+  "donde": "golpe",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "IV.12",
+  "fuente": "ivanovic",
+  "texto": "Último apoyo frente al bote",
+  "donde": "",
+  "resultado": "falta"
+ },
+ {
+  "id": "IV.13",
+  "fuente": "ivanovic",
+  "texto": "Sus principios y lo que la distingue",
+  "donde": "",
+  "resultado": "falta"
+ },
+ {
+  "id": "IV.14",
+  "fuente": "ivanovic",
+  "texto": "Táctica medida: cambios de dirección, secuencias, «cómo usa su derecha»",
+  "donde": "",
+  "resultado": "falta"
+ },
+ {
+  "id": "IV.15",
+  "fuente": "ivanovic",
+  "texto": "Bajo presión también dirección y profundidad",
+  "donde": "",
+  "resultado": "falta"
+ },
+ {
+  "id": "IV.16",
+  "fuente": "ivanovic",
+  "texto": "Resto bloqueado",
+  "donde": "leccion_fase_6, leccion/Glosario",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "IV.17",
+  "fuente": "ivanovic",
+  "texto": "Fuentes citadas (Elliott, Knudson, Landlinger…)",
+  "donde": "",
+  "resultado": "falta"
+ },
+ {
+  "id": "IV.18",
+  "fuente": "ivanovic",
+  "texto": "Medidas de lado: codo por delante de la cadera, inclinación del tronco en la espera",
+  "donde": "mas_lateral",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "IV.19",
+  "fuente": "ivanovic",
+  "texto": "Progresión por etapas con criterio de paso",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "IV.20",
+  "fuente": "ivanovic",
+  "texto": "Rutina entre puntos bajo presión",
+  "donde": "",
+  "resultado": "hueco",
+  "nota": "opcional (#198)"
+ },
+ {
+  "id": "E3.gancho",
+  "fuente": "entrenadores",
+  "texto": "Gancho y caracterización en una frase antes del detalle",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "E3.que_por_que_copiar",
+  "fuente": "entrenadores",
+  "texto": "Cada fase: qué hace → por qué sirve → qué copiar",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "E3.error_club",
+  "fuente": "entrenadores",
+  "texto": "Contraste con el error típico de club (solo texto)",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "E3.tres_cosas",
+  "fuente": "entrenadores",
+  "texto": "Resumen de «3 cosas» / «si solo copias una»",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "E3.lento",
+  "fuente": "entrenadores",
+  "texto": "Cámara lenta y fotograma a fotograma",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_3",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "E3.lineas",
+  "fuente": "entrenadores",
+  "texto": "Líneas dibujadas (hombros, punta, bajo la raqueta, cadera)",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "E3.pared",
+  "fuente": "entrenadores",
+  "texto": "Plano vertical junto al cuerpo («a wall here»)",
+  "donde": "",
+  "resultado": "hueco",
+  "nota": "M (no medible de frente; vista lateral)"
+ },
+ {
+  "id": "E3.contactos_superpuestos",
+  "fuente": "entrenadores",
+  "texto": "Todos sus impactos superpuestos en un fotograma",
+  "donde": "",
+  "resultado": "falta"
+ },
+ {
+  "id": "E5.short",
+  "fuente": "entrenadores",
+  "texto": "Clave en forma de short: bucle real, un dibujo, una frase, el problema que resuelve",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "E5.contrastes",
+  "fuente": "entrenadores",
+  "texto": "Contrastes con sus propios golpes (resto/peloteo, rápida/lenta, abierto/cerrado)",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "E5.cuenta_conmigo",
+  "fuente": "entrenadores",
+  "texto": "«Cuenta conmigo»: un punto entero con cada golpe y su apoyo",
+  "donde": "",
+  "resultado": "falta"
+ },
+ {
+  "id": "E6.orden_corta",
+  "fuente": "entrenadores",
+  "texto": "Cada clave con un nombre corto en forma de orden",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "E6.por_que",
+  "fuente": "entrenadores",
+  "texto": "Siempre: qué hace, por qué importa, error típico, cómo se nota en sus golpes",
+  "donde": "",
+  "resultado": "falta"
+ },
+ {
+  "id": "E6.tactica_pista",
+  "fuente": "entrenadores",
+  "texto": "Táctica dibujada en la pista: opciones del rival y su punto de recuperación",
+  "donde": "",
+  "resultado": "falta"
+ },
+ {
+  "id": "E6.analisis_partido",
+  "fuente": "entrenadores",
+  "texto": "Análisis de partido: punto entero con mini-mapa numerado y «lo que hace bien / dónde pierde»",
+  "donde": "",
+  "resultado": "falta"
+ },
+ {
+  "id": "E6.empunadura_primero",
+  "fuente": "entrenadores",
+  "texto": "Lección por etapas empezando por la empuñadura",
+  "donde": "",
+  "resultado": "falta"
+ },
+ {
+  "id": "E6.cabeza_quieta",
+  "fuente": "entrenadores",
+  "texto": "Cabeza quieta en el contacto",
+  "donde": "golpe",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "E6.antes_del_bote",
+  "fuente": "entrenadores",
+  "texto": "«Prepara antes del bote» y «vuelve antes de su golpe»",
+  "donde": "leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "P.video_capas",
+  "fuente": "patrones",
+  "texto": "Vídeo con capas (esqueleto, raqueta, bola)",
+  "donde": "",
+  "resultado": "falta"
+ },
+ {
+  "id": "P.fotogramas_clave",
+  "fuente": "patrones",
+  "texto": "Fotogramas clave por fase",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "P.lado_a_lado",
+  "fuente": "patrones",
+  "texto": "Dos golpes lado a lado, sincronizados por el impacto",
+  "donde": "mas_comparar",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "P.angulo_dibujado",
+  "fuente": "patrones",
+  "texto": "La medida dibujada sobre el fotograma",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "P.cadena_cinetica",
+  "fuente": "patrones",
+  "texto": "Gráfico de la cadena cinética",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "P.mapa_pista",
+  "fuente": "patrones",
+  "texto": "Mapa de pista con botes e impactos",
+  "donde": "mas_pista",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "P.resumen_tarjetas",
+  "fuente": "patrones",
+  "texto": "Resumen en tarjetas cortas (frase + dato + vídeo)",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "P.circulo_y_frase",
+  "fuente": "patrones",
+  "texto": "Un círculo sobre lo que importa y una frase corta",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "P.real_y_lento",
+  "fuente": "patrones",
+  "texto": "Velocidad real y después lenta",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "P.lo_que_copiar",
+  "fuente": "patrones",
+  "texto": "Cierre «lo que puedes copiar»",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "P.chat",
+  "fuente": "patrones",
+  "texto": "Preguntar en lenguaje natural",
+  "donde": "",
+  "resultado": "hueco",
+  "nota": "P4 (#299)"
+ },
+ {
+  "id": "P.avatar_3d",
+  "fuente": "patrones",
+  "texto": "Muñeco 3D que se gira",
+  "donde": "",
+  "resultado": "hueco",
+  "nota": "P4 (#300)"
+ },
+ {
+  "id": "U.estado_sistema",
+  "fuente": "ux",
+  "texto": "Estado del sistema a la vista (qué se analiza, cuánto falta)",
+  "donde": "inicio",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "U.control",
+  "fuente": "ux",
+  "texto": "Control del usuario: todo panel se cierra",
+  "donde": "partido_ficha, anadir_1, golpe",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "U.prevenir_errores",
+  "fuente": "ux",
+  "texto": "Prevenir errores: el análisis largo pide aprobación con su coste y su tiempo",
+  "donde": "anadir_5",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "U.reconocer",
+  "fuente": "ux",
+  "texto": "Reconocer antes que recordar: las fases con su nombre siempre a la vista",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "U.flexibilidad",
+  "fuente": "ux",
+  "texto": "Flexibilidad: filtrar por situación desde cualquier pantalla del visor",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "U.ayuda_glosario",
+  "fuente": "ux",
+  "texto": "Ayuda: glosario a mano en la lección",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "U.ayuda_como_se_mide",
+  "fuente": "ux",
+  "texto": "Ayuda: cómo se mide cada medida, junto a ella",
+  "donde": "",
+  "resultado": "falta"
+ },
+ {
+  "id": "U.errores_claros",
+  "fuente": "ux",
+  "texto": "Errores dichos en claro y qué hacer",
+  "donde": "cola, calidad",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "U.aprendizaje",
+  "fuente": "ux",
+  "texto": "Aprendizaje: plan, práctica con criterio de logro",
+  "donde": "leccion_fase_0, leccion_fase_1, leccion_fase_2",
+  "resultado": "en_maqueta"
+ },
+ {
+  "id": "U.errores_1920",
+  "fuente": "ux",
+  "texto": "Sin errores de JavaScript a 1920 px",
+  "resultado": "en_maqueta",
+  "donde": ""
+ },
+ {
+  "id": "U.desborde_1920",
+  "fuente": "ux",
+  "texto": "Nada se sale de la pantalla a 1920 px",
+  "resultado": "en_maqueta",
+  "donde": ""
+ },
+ {
+  "id": "U.errores_1280",
+  "fuente": "ux",
+  "texto": "Sin errores de JavaScript a 1280 px",
+  "resultado": "en_maqueta",
+  "donde": ""
+ },
+ {
+  "id": "U.desborde_1280",
+  "fuente": "ux",
+  "texto": "Nada se sale de la pantalla a 1280 px",
+  "resultado": "en_maqueta",
+  "donde": ""
+ },
+ {
+  "id": "U.errores_1024",
+  "fuente": "ux",
+  "texto": "Sin errores de JavaScript a 1024 px",
+  "resultado": "en_maqueta",
+  "donde": ""
+ },
+ {
+  "id": "U.desborde_1024",
+  "fuente": "ux",
+  "texto": "Nada se sale de la pantalla a 1024 px",
+  "resultado": "en_maqueta",
+  "donde": ""
+ },
+ {
+  "id": "U.errores_390",
+  "fuente": "ux",
+  "texto": "Sin errores de JavaScript a 390 px",
+  "resultado": "en_maqueta",
+  "donde": ""
+ },
+ {
+  "id": "U.desborde_390",
+  "fuente": "ux",
+  "texto": "Nada se sale de la pantalla a 390 px (móvil: solo para revisar, #301)",
+  "resultado": "aviso",
+  "donde": "28 de 35 pantallas"
+ },
+ {
+  "id": "U.pocos_numeros",
+  "fuente": "ux",
+  "texto": "Pocas medidas a la vista en cada fase de la lección (≤ 4; requisito 2)",
+  "resultado": "en_maqueta",
+  "donde": "como mucho 3 por fase"
+ }
+]

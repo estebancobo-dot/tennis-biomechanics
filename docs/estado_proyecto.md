@@ -25,6 +25,8 @@ usuario pertenece a un paquete; un paquete está **aceptado** cuando su prueba p
 (tabla «¿Cerrado?» de `estado_real_partidos.md`, calculada, no a mano).
 
 > **PC (15-11, #303): hecho y otra vez en pausa.** La petición 295 bajó los 52 shorts de Joel Myers (1048 fotogramas en `pc-logs:investigacion_295`) y el PC volvió a `pausa: si` a las 12:10. Lo aprendido está en `aprendido_entrenadores.md` §5 y en la forma de cada clave de la lección (`p0_diseno.md` §5.1).
+> **15-11 17:40 (#305):** la maqueta validada por cálculo (`docs/p0_validacion_maqueta.md`; `p0_diseno.md` §10): la estructura está (requisitos 89 %, usabilidad 94 %, patrones 9/10), pero no cubre todo lo escrito: falta amplitud (taxonomía 38/110 y lista de 15 puntos 33/59 por su medida; táctica, resto, vistas de informe). Propuesta: construir P0.5 con el validador como aceptación, en vez de seguir con la maqueta. También: `config/referencias.yaml` no cargaba (YAML roto, arreglado y con prueba).
+>
 > **15-11 16:40:** The Tennis Mentor aprendido (§6 de `aprendido_entrenadores.md`, 6 huecos medibles nuevos en la matriz; #304 cerrada). v27 decidida (no se adopta). T15 bola: TOTNet (pesos de tenis, MIT) exportado a ONNX y medido en local en 2 clips; la medida completa `medir_bola_totnet` va en una sesión de CPU de Kaggle (~4-5 h). Esperan una sesión de GPU: v28 (marcador con CUDA) y v29_b (la parte de GPU de la prueba por partes).
 >
 > **Kaggle (15-11 15:40):** v27 (pose en media precisión) y v28 (marcador con CUDA) en cola de Kaggle; `investigar_tennis_mentor` en una sesión de CPU; `prueba_gauff_v29_a/b/c` (T24, la prueba por partes CPU → GPU → CPU) lanzada. Horas de GPU: ~2,8 h hasta el 21-11 (Kaggle dice 23,2 de 30).

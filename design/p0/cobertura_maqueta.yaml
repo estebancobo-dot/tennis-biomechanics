@@ -1,0 +1,135 @@
+# #305 (15-11): what the P0 mockup must show, by source, beyond what design/p0/validar_maqueta.py reads by itself
+# (docs/matriz_cobertura.md, the taxonomy and the user's 15-point list, by measure keys; config/referencias.yaml, the
+# patterns). Each item: what is asked, where it comes from, and where in the walked mockup it must be visible
+# (`busca`: any of these patterns, ignoring case; `en`: only in these screens, by name prefix; `todos`: every pattern
+# must be found in one same screen). `tipo`: debe (the mockup must show it) · hueco (asked, planned in a later
+# package: reported, not required now).
+fuentes:
+  requisitos: "CLAUDE.md, requisitos del usuario 1-10, vistas pedidas, informe y salida visual"
+  ivanovic: "Guía «Derecha estilo Ivanovic», sus 20 huecos (docs/comparacion_guia_ivanovic.md §3)"
+  entrenadores: "Lo aprendido de los entrenadores (docs/aprendido_entrenadores.md §3, §5 Joel Myers, §6 The Tennis Mentor)"
+  ux: "Usabilidad y aprendizaje (heurísticas de Nielsen, modelo de calidad P0.2)"
+items:
+  # --- Requisito 1: la taxonomía completa del golpe y sus variantes
+  - {id: R1.espera, fuente: requisitos, texto: "Espera", busca: ["Espera"], en: [leccion]}
+  - {id: R1.empunadura, fuente: requisitos, texto: "Empuñadura (en espera y al golpear, si se puede ver)", busca: ["empuñadura"], en: [leccion_fase]}
+  - {id: R1.split, fuente: requisitos, texto: "Split step", busca: ["split"], en: [leccion]}
+  - {id: R1.primer_paso, fuente: requisitos, texto: "Primer paso", busca: ["primer paso"], en: [leccion]}
+  - {id: R1.pasos, fuente: requisitos, texto: "Pasos y juego de pies", busca: ["Pies: del split"], en: [leccion]}
+  - {id: R1.preparacion, fuente: requisitos, texto: "Preparación", busca: ["preparación"], en: [leccion]}
+  - {id: R1.armado, fuente: requisitos, texto: "Armado", busca: ["Armado completo"], en: [leccion]}
+  - {id: R1.aceleracion, fuente: requisitos, texto: "Aceleración", busca: ["aceleración"], en: [leccion]}
+  - {id: R1.impacto, fuente: requisitos, texto: "Impacto", busca: ["Impacto"], en: [leccion]}
+  - {id: R1.terminacion, fuente: requisitos, texto: "Terminación", busca: ["Terminación"], en: [leccion]}
+  - {id: R1.recuperacion, fuente: requisitos, texto: "Recuperación", busca: ["Recuperación"], en: [leccion]}
+  - {id: R1.ritmo, fuente: requisitos, texto: "Ritmo", busca: ["ritmo"], en: [leccion]}
+  - {id: R1.rapida_lenta, fuente: requisitos, texto: "Bola rápida / lenta", busca: ["Bola rápida"], todos: true, en: [leccion]}
+  - {id: R1.alta_baja, fuente: requisitos, texto: "Bola alta / baja", busca: ["Alta\\d", "Baja\\d"], todos: true, en: [leccion]}
+  - {id: R1.corta_profunda, fuente: requisitos, texto: "Bola corta / profunda", busca: ["Corta\\d", "Profunda"], todos: true, en: [leccion]}
+  - {id: R1.carrera_parada_salto, fuente: requisitos, texto: "En carrera / parada / en salto", busca: ["En carrera", "Parada", "salto"], todos: true, en: [leccion, mas_situaciones]}
+  - {id: R1.apoyos, fuente: requisitos, texto: "Cada apoyo", busca: ["abierto", "semiabierto", "cerrado"], todos: true, en: [mas_situaciones, golpes]}
+  - {id: R1.direccion, fuente: requisitos, texto: "Dirección del golpe", busca: ["cruzad", "paralel"], todos: true, en: [leccion, golpe, mas_, situacion]}
+  - {id: R1.ataque_defensa, fuente: requisitos, texto: "Ataque / defensa", busca: ["Ataque", "Defensa"], todos: true, en: [leccion]}
+  # --- Requisitos 2-6 y 10
+  - {id: R2.video_primero, fuente: requisitos, texto: "Vídeo primero: cada fase con su vídeo real", busca: ["fotograma real", "Velocidad real"], todos: true, en: [leccion]}
+  - {id: R2.informacion, fuente: requisitos, texto: "Información en frases, no tablas", busca: ["Si te pasa", "FOCO"], todos: true, en: [leccion]}
+  - {id: R3.no_medible, fuente: requisitos, texto: "Lo no fiable: «no medible desde la tele»", busca: ["Lo que la tele no mide"], en: [leccion]}
+  - {id: R3.error_medida, fuente: requisitos, texto: "Diferencias solo si superan el error de medida", busca: ["error de medida|ruido"], en: [leccion, mas]}
+  - {id: R4.cuerdas, fuente: requisitos, texto: "Cara de la raqueta en cada fase, marcada como estimación donde lo es", busca: ["Cuerdas en esta fase"], en: [leccion]}
+  - {id: R4.estimacion, fuente: requisitos, texto: "La cara en el impacto, como estimación", busca: ["estimación|estimad"], en: [leccion, golpe]}
+  - {id: R5.clic, fuente: requisitos, texto: "Un clic por partido para la identidad", busca: ["clic"], en: [anadir]}
+  - {id: R5.aprobacion, fuente: requisitos, texto: "Aprobación del análisis completo (#262)", busca: ["aprob"], en: [anadir, inicio]}
+  - {id: R5.sin_revision, fuente: requisitos, texto: "Nada pide revisión: los dudosos se marcan", busca: ["dudos|con dudas"], en: [golpe, golpes, mas_tabla]}
+  - {id: R6.lateral, fuente: requisitos, texto: "Vista lateral (entreno), aparte y marcada", busca: ["entreno"], en: [mas_lateral]}
+  - {id: R10.borrado, fuente: requisitos, texto: "Los vídeos se borran al terminar (N)", busca: ["borra"], en: [almacen, ajustes, anadir]}
+  # --- Vistas pedidas
+  - {id: V.bola_y_ella, fuente: requisitos, texto: "La bola y ella: su cuerpo en cada momento de la bola, con medidas", busca: ["La bola y ella"], en: [golpe]}
+  - {id: V.bajar_subir, fuente: requisitos, texto: "Bajar y subir: espera → punto más bajo → más alto, en cm", busca: ["Bajar y subir", "más bajo", "cm"], todos: true, en: [golpe]}
+  - {id: V.base, fuente: requisitos, texto: "Base: distancia entre los pies en armado, impacto y terminación; pies plantados", busca: ["entre los pies|Base"], en: [golpe]}
+  - {id: V.tronco, fuente: requisitos, texto: "Tronco al terminar: hacia dónde mira", busca: ["de frente a la red|mirando a la valla|hacia el lado del revés|Tronco al terminar"], en: [golpe]}
+  # --- Informe y salida visual
+  - {id: I.ocho_fotogramas, fuente: requisitos, texto: "Secuencia de 8 fotogramas clave por golpe con esqueleto y valores", busca: ["Recuperación", "Extensión", "Terminación"], todos: true, en: [golpe]}
+  - {id: I.estroboscopica, fuente: requisitos, texto: "Imagen estroboscópica (esqueletos superpuestos y trayectoria de la muñeca)", busca: ["estrobosc|trayectoria de la muñeca"]}
+  - {id: I.tira_contactos, fuente: requisitos, texto: "Tira de contactos", busca: ["tira de contactos|todos sus impactos en"]}
+  - {id: I.galerias, fuente: requisitos, texto: "Galerías por golpe y situación ordenadas por calidad de captura, representatividad y resultado", busca: ["representativ", "calidad"], todos: true, en: [golpes]}
+  - {id: I.sin_puntuacion, fuente: requisitos, texto: "Sin puntuación de «mejor técnica»", busca: ["puntuación|nota de técnica"], niega: true}
+  - {id: I.mapa_pista, fuente: requisitos, texto: "Mapa de pista (impactos, botes, destino)", busca: ["bote|destino|impacto"], en: [mas_pista]}
+  - {id: I.comparativas_situacion, fuente: requisitos, texto: "Comparativas por situación", busca: ["Qué cambia según la bola"], en: [leccion]}
+  - {id: I.numero_enlaza, fuente: requisitos, texto: "Cada número enlaza a sus clips", busca: ["golpes"], en: [situacion_celda]}
+  - {id: I.fiabilidad, fuente: requisitos, texto: "Fiabilidad de cada métrica, a la vista", busca: ["(?m)^(media|buena|baja|mala)$"], en: [leccion_fase, mas_fiabilidad]}
+  - {id: I.conclusiones_confianza, fuente: requisitos, texto: "Conclusiones en frases con su confianza", busca: ["confianza|\\bprobable|diferencia real|no concluyente|dentro del ruido"], en: [mas_conclusiones, "leccion/Lo esencial"]}
+  - {id: I.fatiga, fuente: requisitos, texto: "Inicio frente a final (fatiga)", busca: ["fatiga|al final del partido|primer set"], en: [leccion, mas_conclusiones, mas_situaciones]}
+  - {id: I.presion, fuente: requisitos, texto: "Bajo presión", busca: ["presión"], en: [leccion, mas_conclusiones, mas_situaciones]}
+  - {id: I.ganadores_errores, fuente: requisitos, texto: "Ganadores frente a errores", busca: ["ganador", "error"], todos: true, en: [leccion, mas_conclusiones, golpes]}
+  - {id: I.lado_lejano, fuente: requisitos, texto: "Lado lejano con menos detalle, marcado", busca: ["lejan"]}
+  - {id: I.otros_golpes, fuente: requisitos, texto: "Otros golpes (revés, saque, volea…) con su análisis cuando haya casos", busca: ["revés", "saque", "volea"], todos: true, en: [analisis]}
+  - {id: I.glosario, fuente: requisitos, texto: "Glosario (vocabulario biomecánico)", busca: ["Glosario"], en: [leccion]}
+  # --- Gestión (#252, #258)
+  - {id: G.catalogo, fuente: requisitos, texto: "Catálogo de partidos", busca: ["partidos en el catálogo"], en: [partidos]}
+  - {id: G.personas, fuente: requisitos, texto: "Jugadoras y rivales con su ficha", busca: ["mano|revés|estatura|altura"], en: [personas]}
+  - {id: G.anadir, fuente: requisitos, texto: "Añadir partido desde un nombre de fichero mínimo", busca: ["fichero|nombre"], en: [anadir_1]}
+  - {id: G.cola, fuente: requisitos, texto: "Cola de la nube con su estado", busca: ["en marcha|espera"], en: [cola]}
+  - {id: G.calidad, fuente: requisitos, texto: "Calidad (auditoría, modelo de calidad)", busca: ["calidad"], en: [calidad]}
+  # --- Guía de Ivanovic: sus 20 huecos
+  - {id: IV.01, fuente: ivanovic, texto: "Sin pausa entre armado y swing (no medible: dicho)", busca: ["pausa entre|sin pausa|pausa arriba|se para arriba"], en: [leccion, golpe, mas_]}
+  - {id: IV.02, fuente: ivanovic, texto: "Sus claves en la lección (giro al cruzar la red…)", busca: ["red"], en: [leccion_fase_1, leccion_fase_2]}
+  - {id: IV.03, fuente: ivanovic, texto: "Forma del armado: bucle, loop falso, recto atrás; punta arriba / codo alto", busca: ["bucle|loop|recto atrás"], en: [leccion, golpe]}
+  - {id: IV.04, fuente: ivanovic, texto: "Su ritmo con la bola, distancia y peso", busca: ["Su ritmo"], en: [leccion]}
+  - {id: IV.05, fuente: ivanovic, texto: "Índice «Si te pasa…»", busca: ["Si te pasa"], en: [leccion]}
+  - {id: IV.06, fuente: ivanovic, texto: "Avisos de técnica por golpe", busca: ["aviso|alerta|cara al cielo|punta hacia la red"], en: [golpe]}
+  - {id: IV.07, fuente: ivanovic, texto: "«Cómo comprobarlo» en cada punto de control", busca: ["Cómo comprobarlo|Comprueba|Practica"], en: [leccion]}
+  - {id: IV.08, fuente: ivanovic, texto: "Glosario completo", busca: ["Glosario \\(5\\d términos\\)"], en: [leccion]}
+  - {id: IV.09, fuente: ivanovic, texto: "Terminación hacia adelante, la mano libre recoge la raqueta, codo al terminar", busca: ["hacia adelante|recoge"], en: [leccion_fase_6, golpe]}
+  - {id: IV.10, fuente: ivanovic, texto: "Mano libre en la aceleración y el impacto", busca: ["mano libre|brazo libre"], en: [leccion_fase_3, leccion_fase_4]}
+  - {id: IV.11, fuente: ivanovic, texto: "Pies según la distancia que corre", busca: ["según la distancia|metros recorridos|recorrido"], en: [leccion_fase_8, golpe]}
+  - {id: IV.12, fuente: ivanovic, texto: "Último apoyo frente al bote", busca: ["último apoyo"], en: [leccion, golpe]}
+  - {id: IV.13, fuente: ivanovic, texto: "Sus principios y lo que la distingue", busca: ["principios|la distingue"]}
+  - {id: IV.14, fuente: ivanovic, texto: "Táctica medida: cambios de dirección, secuencias, «cómo usa su derecha»", busca: ["cambio de dirección|cambia de dirección|secuencia"]}
+  - {id: IV.15, fuente: ivanovic, texto: "Bajo presión también dirección y profundidad", busca: ["presión[^\\n]{0,80}(dirección|profundidad)|(dirección|profundidad)[^\\n]{0,80}presión"], en: [mas_conclusiones, mas_situaciones, "leccion/"]}
+  - {id: IV.16, fuente: ivanovic, texto: "Resto bloqueado", busca: ["bloque"]}
+  - {id: IV.17, fuente: ivanovic, texto: "Fuentes citadas (Elliott, Knudson, Landlinger…)", busca: ["Elliott|Knudson|Landlinger|Kawamoto|Iino"]}
+  - {id: IV.18, fuente: ivanovic, texto: "Medidas de lado: codo por delante de la cadera, inclinación del tronco en la espera", busca: ["por delante de la cadera|inclinación del tronco"], en: [mas_lateral, leccion]}
+  - {id: IV.19, fuente: ivanovic, texto: "Progresión por etapas con criterio de paso", busca: ["Criterio", "Conseguido"], todos: true, en: [leccion]}
+  - {id: IV.20, fuente: ivanovic, texto: "Rutina entre puntos bajo presión", busca: ["entre puntos|rutina"], tipo: hueco, paquete: "opcional (#198)"}
+  # --- Entrenadores (§3, §5 Joel Myers, §6 The Tennis Mentor)
+  - {id: E3.gancho, fuente: entrenadores, texto: "Gancho y caracterización en una frase antes del detalle", busca: ["Lo esencial|la distingue"], en: [leccion, mas_conclusiones]}
+  - {id: E3.que_por_que_copiar, fuente: entrenadores, texto: "Cada fase: qué hace → por qué sirve → qué copiar", busca: ["FOCO", "Practica"], todos: true, en: [leccion]}
+  - {id: E3.error_club, fuente: entrenadores, texto: "Contraste con el error típico de club (solo texto)", busca: ["Si te pasa"], en: [leccion]}
+  - {id: E3.tres_cosas, fuente: entrenadores, texto: "Resumen de «3 cosas» / «si solo copias una»", busca: ["Tu plan|si solo|3 cosas"], en: [leccion]}
+  - {id: E3.lento, fuente: entrenadores, texto: "Cámara lenta y fotograma a fotograma", busca: ["¼", "fotograma a fotograma"], todos: true, en: [leccion, golpe]}
+  - {id: E3.lineas, fuente: entrenadores, texto: "Líneas dibujadas (hombros, punta, bajo la raqueta, cadera)", busca: ["dibujo|línea"], en: [leccion]}
+  - {id: E3.pared, fuente: entrenadores, texto: "Plano vertical junto al cuerpo («a wall here»)", busca: ["plano vertical|pared"], tipo: hueco, paquete: "M (no medible de frente; vista lateral)"}
+  - {id: E3.contactos_superpuestos, fuente: entrenadores, texto: "Todos sus impactos superpuestos en un fotograma", busca: ["impactos superpuestos|superpone sus impactos|todos sus impactos en"]}
+  - {id: E5.short, fuente: entrenadores, texto: "Clave en forma de short: bucle real, un dibujo, una frase, el problema que resuelve", busca: ["El dibujo sale de la medida", "Si te pasa"], todos: true, en: [leccion]}
+  - {id: E5.contrastes, fuente: entrenadores, texto: "Contrastes con sus propios golpes (resto/peloteo, rápida/lenta, abierto/cerrado)", busca: ["Otro golpe suyo|lado a lado"], en: [leccion, mas_comparar]}
+  - {id: E5.cuenta_conmigo, fuente: entrenadores, texto: "«Cuenta conmigo»: un punto entero con cada golpe y su apoyo", busca: ["punto entero|Cuenta conmigo"]}
+  - {id: E6.orden_corta, fuente: entrenadores, texto: "Cada clave con un nombre corto en forma de orden", busca: ["FOCO"], en: [leccion]}
+  - {id: E6.por_que, fuente: entrenadores, texto: "Siempre: qué hace, por qué importa, error típico, cómo se nota en sus golpes", busca: ["por qué|porque|para que"], en: [leccion]}
+  - {id: E6.tactica_pista, fuente: entrenadores, texto: "Táctica dibujada en la pista: opciones del rival y su punto de recuperación", busca: ["punto medio|opciones del rival|bisectriz"]}
+  - {id: E6.analisis_partido, fuente: entrenadores, texto: "Análisis de partido: punto entero con mini-mapa numerado y «lo que hace bien / dónde pierde»", busca: ["lo que hace bien|dónde pierde"]}
+  - {id: E6.empunadura_primero, fuente: entrenadores, texto: "Lección por etapas empezando por la empuñadura", busca: ["empuñadura|agarre"], en: [leccion_fase_0]}
+  - {id: E6.cabeza_quieta, fuente: entrenadores, texto: "Cabeza quieta en el contacto", busca: ["cabeza (quieta|estable)|estabilidad de la cabeza|la cabeza se mueve"], en: [leccion_fase_4, golpe]}
+  - {id: E6.antes_del_bote, fuente: entrenadores, texto: "«Prepara antes del bote» y «vuelve antes de su golpe»", busca: ["antes del bote|Bote = armado"], en: [leccion_fase]}
+  # --- Patrones del estado del arte que no salen solos de su texto (config/referencias.yaml)
+  - {id: P.video_capas, fuente: patrones, texto: "Vídeo con capas (esqueleto, raqueta, bola)", busca: ["esqueleto"], en: [leccion_fase, golpe, mas_comparar]}
+  - {id: P.fotogramas_clave, fuente: patrones, texto: "Fotogramas clave por fase", busca: ["· [−-]?\\d+,\\d+ s"], en: [leccion]}
+  - {id: P.lado_a_lado, fuente: patrones, texto: "Dos golpes lado a lado, sincronizados por el impacto", busca: ["lado a lado", "impacto"], todos: true, en: [mas_comparar]}
+  - {id: P.angulo_dibujado, fuente: patrones, texto: "La medida dibujada sobre el fotograma", busca: ["El dibujo sale de la medida"], en: [leccion]}
+  - {id: P.cadena_cinetica, fuente: patrones, texto: "Gráfico de la cadena cinética", busca: ["cadena cinética"], en: [leccion]}
+  - {id: P.mapa_pista, fuente: patrones, texto: "Mapa de pista con botes e impactos", busca: ["bote|impacto"], en: [mas_pista]}
+  - {id: P.resumen_tarjetas, fuente: patrones, texto: "Resumen en tarjetas cortas (frase + dato + vídeo)", busca: ["Lo esencial: conclusiones medidas"], en: [leccion_fase]}
+  - {id: P.circulo_y_frase, fuente: patrones, texto: "Un círculo sobre lo que importa y una frase corta", busca: ["FOCO", "dibujo"], todos: true, en: [leccion]}
+  - {id: P.real_y_lento, fuente: patrones, texto: "Velocidad real y después lenta", busca: ["Velocidad real", "¼"], todos: true, en: [leccion]}
+  - {id: P.lo_que_copiar, fuente: patrones, texto: "Cierre «lo que puedes copiar»", busca: ["Tu plan"], en: [leccion]}
+  - {id: P.chat, fuente: patrones, texto: "Preguntar en lenguaje natural", busca: ["pregunta"], tipo: hueco, paquete: "P4 (#299)"}
+  - {id: P.avatar_3d, fuente: patrones, texto: "Muñeco 3D que se gira", busca: ["muñeco"], tipo: hueco, paquete: "P4 (#300)"}
+  # --- Usabilidad y aprendizaje
+  - {id: U.estado_sistema, fuente: ux, texto: "Estado del sistema a la vista (qué se analiza, cuánto falta)", busca: ["en marcha|esperando|terminad"], en: [inicio]}
+  - {id: U.control, fuente: ux, texto: "Control del usuario: todo panel se cierra", busca: ["Cerrar"], todos: true, en: [anadir_1, partido_ficha, golpe]}
+  - {id: U.prevenir_errores, fuente: ux, texto: "Prevenir errores: el análisis largo pide aprobación con su coste y su tiempo", busca: ["aprob", "h|min"], todos: true, en: [anadir_5]}
+  - {id: U.reconocer, fuente: ux, texto: "Reconocer antes que recordar: las fases con su nombre siempre a la vista", busca: ["1 · Espera", "8 · Recuperación"], todos: true, en: [leccion]}
+  - {id: U.flexibilidad, fuente: ux, texto: "Flexibilidad: filtrar por situación desde cualquier pantalla del visor", busca: ["Bola rápida"], todos: true, en: [leccion, golpes]}
+  - {id: U.ayuda_glosario, fuente: ux, texto: "Ayuda: glosario a mano en la lección", busca: ["Glosario"], en: [leccion_fase]}
+  - {id: U.ayuda_como_se_mide, fuente: ux, texto: "Ayuda: cómo se mide cada medida, junto a ella", busca: ["se mide"], en: [leccion_fase, golpe, mas_fiabilidad]}
+  - {id: U.errores_claros, fuente: ux, texto: "Errores dichos en claro y qué hacer", busca: ["falló|error|no se pudo"], en: [cola, inicio, calidad]}
+  - {id: U.aprendizaje, fuente: ux, texto: "Aprendizaje: plan, práctica con criterio de logro", busca: ["Tu plan", "Criterio"], todos: true, en: [leccion]}

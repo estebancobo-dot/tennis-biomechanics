@@ -179,7 +179,7 @@ referencias:
     tipo: entrenador
     fuente: vídeos propios
     mide: ángulos, distancias, trayectorias, cronómetros (a mano)
-    ensena: no explica: es una herramienta de medida
+    ensena: "no explica: es una herramienta de medida"
     graficos: ángulos y trayectorias dibujados sobre el vídeo, lado a lado
     plataforma: Windows, gratis y libre
     precio: gratis

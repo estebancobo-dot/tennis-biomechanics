@@ -306,3 +306,76 @@ Las versiones 1 y 2 (`maqueta.html`, `build_maqueta.py`) quedan como histórico.
    derecha de Rybakina) y los demás como «se puede analizar».
 2. Una revisión del usuario de esa maqueta.
 3. La construcción (P0.5).
+
+## 10. Validación de la maqueta (15-11, #305) y lo que cambia en el diseño
+
+**Cómo se valida.** Por cálculo, no a ojo:
+- `design/p0/recorrer_maqueta.py` recorre en un navegador las 35 pantallas y paneles, a 1920, 1280, 1024 y 390 px;
+- `design/p0/validar_maqueta.py` comprueba cada elemento de cada fuente frente a lo que se ve.
+- Fuentes: los requisitos de CLAUDE.md, la matriz de cobertura (taxonomía y tu lista de 15 puntos), los 20 huecos de
+  Ivanovic, lo aprendido de los entrenadores, los patrones del catálogo de referencias y la usabilidad.
+- Resultado completo: `docs/p0_validacion_maqueta.md`.
+
+**Resultado** (✔ se ve o se abre con un clic):
+
+| Fuente | Cobertura |
+|---|---|
+| Requisitos de CLAUDE.md | 49 de 55 (89 %) |
+| Usabilidad y aprendizaje | 16 de 17 (94 %) |
+| Patrones del estado del arte adoptados | 9 de 10; chat y muñeco 3D, para P4 |
+| Entrenadores | 11 de 17 |
+| Ivanovic | 11 de 19 (más 1 opcional) |
+| Tu lista de 15 puntos | 33 de 59 por su medida; 15 más solo por palabras |
+| Taxonomía completa | 38 de 110 por su medida; 38 más solo por palabras |
+
+- Sin errores y sin nada que se salga de la pantalla a 1920, 1280 y 1024 px.
+- A 390 px (móvil) se salen 28 de 35 pantallas. La aplicación es de escritorio (#301): para revisar desde el móvil se
+  publica la validación como página legible en el teléfono.
+
+**Qué dice:** la estructura está (requisitos, usabilidad, patrones), pero **no cubre todo lo escrito**. Lo que falta es
+sobre todo **amplitud**: medidas, táctica y vistas que el análisis ya calcula y la maqueta no enseña en ninguna parte.
+Cambios del diseño, por orden:
+
+1. **Explorador de medidas por familia** (cuerpo, pies, raqueta, bola, contexto).
+   - Cada medida de la taxonomía con su fiabilidad, cómo se mide, su reparto y sus golpes.
+   - Hoy la maqueta solo enseña los 90 puntos de control de la lección y 26 medidas del informe.
+2. **Táctica y partido.**
+   - Bote: profundidad, anchura, dentro o fuera. Golpe angulado. Dirección y sus cambios. Secuencias de 2-3 golpes.
+     Longitud del peloteo. Puntos en ataque y en defensa. «Cómo usa su derecha». Bajo presión, también dirección y
+     profundidad.
+   - Un punto entero con mini-mapa numerado y «lo que hace bien / dónde pierde» (The Tennis Mentor).
+   - La táctica dibujada sobre la pista: las opciones del rival y su punto de recuperación.
+3. **Resto:**
+   - cómo se reconoce;
+   - el saque recibido (abierto, al cuerpo o a la T);
+   - el lado (iguales o ventaja);
+   - la posición de espera.
+4. **Situaciones completas:** faltan «bola profunda» y «en salto».
+5. **Empuñadura en la fase 1** (estimación o «no medible desde la tele»), y la lección empieza por ella.
+6. **El análisis de cada golpe:**
+   - avisos de técnica (Ivanovic 6);
+   - «Cuenta conmigo»: un punto entero con el apoyo de cada golpe;
+   - golpes con dudas marcados (requisito 5);
+   - imagen estroboscópica;
+   - tira de contactos con sus impactos superpuestos;
+   - el vídeo con capas (esqueleto, raqueta, bola). En la maqueta es un recuadro y solo la aplicación real lo enseña.
+7. **Lo que aún falta de Ivanovic:**
+   - terminación hacia adelante y mano libre que recoge (9);
+   - mano libre en la aceleración y el impacto (10; su medida no existe: #193, paquete M);
+   - último apoyo frente al bote (12);
+   - sus principios (13);
+   - fuentes citadas (17).
+8. **Junto a cada medida, cómo se mide y su fiabilidad** (hoy, cómo se mide solo está en «Lo que la tele no mide»).
+9. **Lo no medible completo:** cada fila ✘ de la matriz dicha en «Lo que la tele no mide» (faltan, por ejemplo, la
+   mirada, las fuerzas y el bisel de la empuñadura).
+
+Lo medible que aún no se calcula (◐ y ✘ medibles de la matriz) es trabajo de los paquetes de medidas M, no del diseño.
+
+**Decisión propuesta: no seguir iterando la maqueta; construir la aplicación (P0.5) con este validador como su prueba
+de aceptación.**
+- La maqueta ya hizo su trabajo: la estructura y los recorridos están comprobados.
+- Lo que falta es amplitud con datos que ya existen. Construirlo una vez en la aplicación real cuesta menos que copiarlo
+  en una maqueta estática.
+- Lo más importante no se puede validar en una maqueta: el vídeo primero con sus capas, la velocidad real de la
+  interacción y si de verdad se aprende con ella.
+- El validador pasa a recorrer la aplicación real en cada versión: cada hueco sigue medido hasta cerrarse.
