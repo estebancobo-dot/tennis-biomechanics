@@ -122,7 +122,7 @@
  },
  "score": {
   "version": "16",
-  "hash": "ead57e8afa76ec58",
+  "hash": "72aacb7c0b3371ec",
   "modules": [
    "faults",
    "infra.devices",

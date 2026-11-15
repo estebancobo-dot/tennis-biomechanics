@@ -1470,8 +1470,10 @@ def st_score(ctx: Context):
         _write(ctx.path("score.json"), {"readings": [], "note": "uv sync --extra ocr"})
         fault("modelo.ocr_falta", "uv sync --extra ocr", exc=e)
         return {"readings": 0, "note": "sin OCR instalado"}
-    # T23 (15-11): the OCR on an NVIDIA GPU with `score.ocr_gpu: true` (the same models; on the CPU by default)
-    ocr = make_ocr(bool((ctx.cfg.get("score") or {}).get("ocr_gpu", False)) and ctx.cfg.get("device") in NVIDIA_DEVICES)
+    # T23 (15-11): the OCR on an NVIDIA GPU (the same models). Measured on Kaggle (v28 against v26, the same 10-min
+    # test): identical results and the stage 110 → 61 s, so it is on by default; `score.ocr_gpu: false` turns it off.
+    # On the PC (DirectML) and on the CPU nothing changes.
+    ocr = make_ocr(bool((ctx.cfg.get("score") or {}).get("ocr_gpu", True)) and ctx.cfg.get("device") in NVIDIA_DEVICES)
     mains = [s for s in sc["shots"] if s["main_camera"]]
     court = _read(ctx.path("court.json")) if ctx.path("court.json").exists() else {}
     # the opponent's name is looked for during match play (court found): before the match a

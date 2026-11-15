@@ -1,3 +1,4 @@
+from pathlib import Path
 import numpy as np
 import pytest
 
@@ -245,3 +246,6 @@ def test_the_ocr_runs_on_the_gpu_only_when_asked(monkeypatch):
     scoreboard.make_ocr()
     scoreboard.make_ocr(gpu=True)
     assert made == [{}, {"det_use_cuda": True, "cls_use_cuda": True, "rec_use_cuda": True}]
+    src = (Path(__file__).resolve().parents[1] / "src" / "tennisbio" / "stages.py").read_text(encoding="utf-8")
+    # 15-11 (v28 against v26: identical, the stage 110 → 61 s): on by default, only on an NVIDIA device
+    assert '.get("ocr_gpu", True)) and ctx.cfg.get("device") in NVIDIA_DEVICES' in src
