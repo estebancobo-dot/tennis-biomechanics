@@ -1,0 +1,11 @@
+{
+ "id": "8EFyYlWnY3Y",
+ "title": "3 Tips With… Kei Nishikori",
+ "channel": "The Tennis Mentor",
+ "duration_s": 25.0,
+ "chosen_by_user": true,
+ "transcription_error": "transcripción: TypeError: open() got an unexpected keyword argument 'metadata_errors'",
+ "subtitles": false,
+ "frame_every_s": 3.0,
+ "frames": 8
+}

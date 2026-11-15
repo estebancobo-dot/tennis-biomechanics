@@ -1,0 +1,11 @@
+{
+ "id": "fjnBI_yzXF0",
+ "title": "Alex Eala Return Of Serve (3 Pros & 1 Con)",
+ "channel": "The Tennis Mentor",
+ "duration_s": 78.0,
+ "chosen_by_user": true,
+ "transcription_error": "transcripción: TypeError: open() got an unexpected keyword argument 'metadata_errors'",
+ "subtitles": false,
+ "frame_every_s": 3.0,
+ "frames": 26
+}

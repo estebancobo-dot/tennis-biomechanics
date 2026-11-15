@@ -1,0 +1,11 @@
+{
+ "id": "g6nwBjMaTl0",
+ "title": "Lorenzo Musetti’s Explains His Setup",
+ "channel": "The Tennis Mentor",
+ "duration_s": 68.0,
+ "chosen_by_user": true,
+ "transcription_error": "transcripción: TypeError: open() got an unexpected keyword argument 'metadata_errors'",
+ "subtitles": false,
+ "frame_every_s": 3.0,
+ "frames": 23
+}

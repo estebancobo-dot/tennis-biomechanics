@@ -1,0 +1,29 @@
+{
+ "estado": "hecho",
+ "investigacion": {
+  "videos": 41,
+  "con_texto": 15,
+  "texto_de": {
+   "subtitulos": 15
+  },
+  "con_fotogramas": 41,
+  "fallan": []
+ },
+ "kaggle": {
+  "python": "3.13.18",
+  "nucleos": 4,
+  "memoria_gib": {
+   "MemTotal": 31.3,
+   "MemAvailable": 30.2
+  },
+  "disco_libre_gib": {
+   "/tmp": 966.8,
+   "/kaggle/working": 19.5
+  },
+  "gpu": "",
+  "ffmpeg": "/usr/bin/ffmpeg",
+  "clave_modal": true
+ },
+ "horas_kaggle": 0.34,
+ "nota": null
+}

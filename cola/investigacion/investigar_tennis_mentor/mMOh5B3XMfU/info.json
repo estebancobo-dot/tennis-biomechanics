@@ -1,0 +1,11 @@
+{
+ "id": "mMOh5B3XMfU",
+ "title": "Recovery: Crossover Step - Weekly Tennis Non-Negotiable",
+ "channel": "The Tennis Mentor",
+ "duration_s": 64.0,
+ "chosen_by_user": true,
+ "transcription_error": "transcripción: TypeError: open() got an unexpected keyword argument 'metadata_errors'",
+ "subtitles": false,
+ "frame_every_s": 3.0,
+ "frames": 21
+}

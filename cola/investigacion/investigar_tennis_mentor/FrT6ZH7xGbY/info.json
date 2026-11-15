@@ -1,0 +1,11 @@
+{
+ "id": "FrT6ZH7xGbY",
+ "title": "3 Slice Backhands… Describe Them!",
+ "channel": "The Tennis Mentor",
+ "duration_s": 24.0,
+ "chosen_by_user": true,
+ "transcription_error": "transcripción: TypeError: open() got an unexpected keyword argument 'metadata_errors'",
+ "subtitles": false,
+ "frame_every_s": 3.0,
+ "frames": 8
+}
