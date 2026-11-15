@@ -310,10 +310,10 @@
   "ruta": "/runs/partido_tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5/estado.json",
   "salida": "/output/tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
   "cuaderno": "tennisbio-final",
-  "kaggle": "running (05:54)",
+  "kaggle": "running (05:59)",
   "arranco": "2026-11-14 23:59",
   "espera_min": 2,
-  "progreso": "view_clips:  73 % (584/797 recortes de repeticiones y otras cámaras) · 43 min · quedan ≈ 16 min (05:53:21; GPU 0 %·0 %, CPU 87 %, 4.2 GB)"
+  "progreso": "view_clips:  80 % (637/797 recortes de repeticiones y otras cámaras) · 48 min · quedan ≈ 12 min (05:57:53; GPU 0 %·0 %, CPU 89 %, 4.2 GB)"
  },
  "comparar_gauff_v19_v20": {
   "estado": "hecho",
@@ -364,7 +364,7 @@
   "partido": ""
  },
  "gauff_b": {
-  "estado": "en_marcha",
+  "estado": "hecho",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 1,
@@ -375,10 +375,17 @@
   "ruta": "/runs/partido_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5/estado.json",
   "salida": "/output/tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cuaderno": "tennisbio-gauff-b",
-  "kaggle": "running (05:54)",
+  "kaggle": "complete (05:59)",
   "arranco": "2026-11-15 00:55",
   "espera_min": 1,
-  "progreso": "fine_doubtful:  77 % (30/39 golpes candidatos · 16 confirmados · 0 ventanas descartadas sin pose) · 5 min · quedan ≈ 2 min (05:53:34; GPU 45 %·32 %, CPU 83 %, 12.2 GB)"
+  "progreso": "fine_doubtful terminada a las 05:56:02 en 9.0 min (05:56:00)",
+  "fin": "2026-11-15 05:59",
+  "resultado": {
+   "estado": "hecho",
+   "coste_usd": 0.0,
+   "segundos": 17897,
+   "horas_kaggle": 5.03
+  }
  },
  "comparar_gauff_v20_v21b": {
   "estado": "revisar",
@@ -415,5 +422,18 @@
    "nota": "distinta; 7 etapas iguales; distintas: candidates, fine, fine_doubtful, identity, players, slowmo_fine, spotting, view_clips; strokes.json: 27 de 28/28 golpes emparejados, 3 distintos, medidas fuera de tolerancia: technique.pose.loaded, technique.pose.finish, technique.pose.extension, technique.pose.ready; strokes_opponent.json: 0 de 0/0 golpes emparejados; strokes_doubtful.json: 1 de 1/1 golpes emparejados, medidas fuera de tolerancia: technique.pose.takeback, technique.jitter.ready.shoulder_turn, technique.phases.ready.shoulder_turn, face.takeback.tilt_deg"
   },
   "partido": ""
+ },
+ "prueba_gauff_v22": {
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1794722364.524092,
+  "accion": "prueba",
+  "partido": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+  "inicio": "2026-11-15 05:59",
+  "ruta": "/runs/kaggle_prueba_gauff_v22/estado.json",
+  "salida": "/kaggle_pruebas/prueba_gauff_v22/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+  "cuaderno": "tennisbio-prueba-gauff-v22"
  }
 }

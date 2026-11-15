@@ -69,15 +69,19 @@
      "horas": 0.64
     },
     "gauff_b": {
-     "estimado_h": 5.98
+     "estimado_h": 5.98,
+     "horas": 5.03
+    },
+    "prueba_gauff_v22": {
+     "estimado_h": 1.0
     }
    }
   }
  },
  "kaggle_real": {
-  "usadas_h": 19.44,
+  "usadas_h": 19.56,
   "total_h": 30.0,
   "renueva": "2026-11-21 00:00:00",
-  "ts": 1794722056.4429138
+  "ts": 1794722364.524092
  }
 }
