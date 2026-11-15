@@ -25,6 +25,7 @@ usuario pertenece a un paquete; un paquete está **aceptado** cuando su prueba p
 (tabla «¿Cerrado?» de `estado_real_partidos.md`, calculada, no a mano).
 
 > **PC (15-11, #303): hecho y otra vez en pausa.** La petición 295 bajó los 52 shorts de Joel Myers (1048 fotogramas en `pc-logs:investigacion_295`) y el PC volvió a `pausa: si` a las 12:10. Lo aprendido está en `aprendido_entrenadores.md` §5 y en la forma de cada clave de la lección (`p0_diseno.md` §5.1).
+> **PC (15-11 12:40, #304):** pausa quitada otra vez **solo** para la petición 296, con 41 vídeos de The Tennis Mentor. Hace falta un doble clic del usuario en `2c_solo_informe.bat`; al terminar, `pausa: si`.
 
 **PLAN ÚNICO A SEGUIR (14-11 16:30; sustituye al orden de la tabla «DÓNDE ESTAMOS» de abajo, que queda como historia)**
 

@@ -13,4 +13,5 @@ pausa: si"), y solo cuando el usuario lo diga.
 # Joel Myers, que YouTube no deja descargar desde la nube). Claude la vuelve a poner en cuanto la 295 suba sus
 # resultados a pc-logs; el analisis de los partidos sigue en la nube.
 # 15-11 12:10: la 295 termino (52 shorts, 1048 fotogramas en pc-logs:investigacion_295): pausa otra vez.
-pausa: si
+# 15-11 12:40 (#304): pausa quitada otra vez SOLO para la peticion 296 (The Tennis Mentor); vuelve al acabar.
+pausa: no
