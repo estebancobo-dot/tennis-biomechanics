@@ -23,9 +23,9 @@ prueba de concepto (#288). Lo que cambia resultados se decide con «calidad ante
 
 | Ajuste | Por qué se decidió en el PC | En la nube |
 |---|---|---|
-| `racket_face.fp16: true` | Raqueta y 3D más rápidos en la iGPU; «cambia los puntos muy poco, pero cambia» | **Por medir** (calidad): precisión completa, `prueba_gauff_v21_calidad` |
-| `racket_face.hand3d_step: 2` | El 3D de la mano, uno de cada 2 fotogramas, por tiempo en el PC | **Por medir** (calidad): cada fotograma, la misma prueba |
-| `fp16: true` (pose YOLO) | 2,2 veces más rápido en la iGPU; puntos a 0,25 px | **Por medir** (calidad): la misma prueba |
+| `racket_face.fp16: true` | Raqueta y 3D más rápidos en la iGPU; «cambia los puntos muy poco, pero cambia» | **Medido en la nube** (15-11, v21 frente a v20): todo en precisión completa +16,8 % de tiempo, 1 golpe de 28 distinto; sin prueba de que mida mejor: **se queda en media precisión** (regla ≤ 15 %). Destapó R50 |
+| `racket_face.hand3d_step: 2` | El 3D de la mano, uno de cada 2 fotogramas, por tiempo en el PC | **Medido en la nube** (la misma prueba): se queda en 1 de cada 2 |
+| `fp16: true` (pose YOLO) | 2,2 veces más rápido en la iGPU; puntos a 0,25 px | **Medido en la nube** (la misma prueba): se queda en media precisión |
 | `ball.fp16: true` | 16 → 25 fotogramas/s en la iGPU; 0 px de diferencia | La misma prueba (no debería cambiar nada) |
 | RTMPose en precisión completa | En media precisión era más lento en DirectML | **Por medir** (velocidad), después |
 | `ball.static_batch: false` | En DirectML no era más rápido | **Por medir** (velocidad) en CUDA, después |

@@ -24,7 +24,10 @@ kaggle_activo: true
 # límite). Lo que se acelere después (CPU de la pasada fina, T19) se comprueba con su prueba y vale para lo que falte
 # 14-11 23:55 (T23, docs/herencia_pc.md): esperan a decidir la calidad en la nube (precisión completa y el 3D de la
 # mano en cada fotograma, decididos así por el tiempo del PC): si cuesta ≤ 15 % más, se adopta antes de Gauff
-partidos_en_espera: "hasta decidir la calidad en la nube (prueba_gauff_v21_calidad frente a la v20; docs/herencia_pc.md)"
+# 15-11 00:55: decidido con la regla escrita antes de medir: la precisión completa y el 3D en cada fotograma cuestan
+# +16,8 % (> 15 %) sin prueba de que midan mejor: no se adoptan. Partidos liberados (R50, medidas de la cara que
+# saltan 180°, se arregla aparte: rehace solo las medidas desde las cachés de las ventanas)
+partidos_en_espera: ""
 # trabajos que empiezan de nuevo, una vez cada «id#n»: la final se lanzó en Kaggle a las 14:32 y Kaggle no la arrancó
 reiniciar: ["final#1"]
 # trabajos cancelados (su sesión de Kaggle se libera; acaban en «error» con el motivo). 14-11 21:10: la fase A midió la
