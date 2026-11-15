@@ -1,6 +1,6 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-15 12:33 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 3.8 h de GPU esta semana (tope 28 h; Kaggle dice 22.68 h usadas de 30.0, se renueva 2026-11-21 00:00)
+Última vuelta: 2026-11-15 12:44 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 3.8 h de GPU esta semana (tope 28 h; Kaggle dice 22.86 h usadas de 30.0, se renueva 2026-11-21 00:00)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
@@ -30,10 +30,10 @@
 | prueba_gauff_v24 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
 | prueba_gauff_v25_calidad | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
 | comparar_gauff_v24_v25 | comparar |  | revisar | github | distinta; 7 etapas iguales; distintas: candidates, fine, fine_doubtful, identity, players, slowmo_fine, spotting, view_clips; strokes.json: 27 de 28/28 golpes emparejados, 3 distintos, medidas fuera de tolerancia: technique.pose.extension, technique.pose.loaded, technique.pose.finish, technique.pose.ready; strokes.json: temblor de b frente a a ×1.00 (mediana de 5308 medidas; b tiembla menos en el 36 %); strokes_opponent.json: 0 de 0/0 golpes emparejados; strokes_doubtful.json: 1 de 1/1 golpes emparejados, medidas fuera de tolerancia: face.acceleration.tilt_deg, technique.pose.extension, techni |
-| medir_youtube | medir |  | en_marcha | kaggle |  |
-| prueba_gauff_v26 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle |  |
-| prueba_gauff_v27_pose16 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | pendiente |  | sin capacidad: kaggle: sus 2 sesiones ocupadas (la última, prueba_gauff_v26) |
-| prueba_gauff_v28_ocrgpu | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | pendiente |  | sin capacidad: kaggle: sus 2 sesiones ocupadas (la última, prueba_gauff_v26) |
+| medir_youtube | medir |  | en_marcha | kaggle | Kaggle: queued (12:44), intento 1 |
+| prueba_gauff_v26 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: running (12:44), intento 1 · identity terminada a las 12:43:18 en 40 s (12:43:28; GPU 0 %·0 %, CPU 64 %, 3.5 GB) |
+| prueba_gauff_v27_pose16 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | pendiente |  | sin capacidad: kaggle: ocupado con medir_youtube, prueba_gauff_v26 |
+| prueba_gauff_v28_ocrgpu | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | pendiente |  | sin capacidad: kaggle: ocupado con medir_youtube, prueba_gauff_v26 |
 | comparar_gauff_v26_v27 | comparar |  | pendiente |  | espera a prueba_gauff_v26, prueba_gauff_v27_pose16 |
 | comparar_gauff_v26_v28 | comparar |  | pendiente |  | espera a prueba_gauff_v26, prueba_gauff_v28_ocrgpu |
 | leer_zheng_errores | leer |  | hecho | github | leídos: output__zheng-qinwen-elena-rybakina__strokes_errores.json |
