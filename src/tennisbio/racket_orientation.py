@@ -197,13 +197,31 @@ from .clip_pipeline import READY_HALF  # noqa: E402  (the racket is searched aro
 # the known truth: with it, median error 6°, 93 % right; with the silhouette alone, 22° and one stroke in ten wrong by
 # more than 128°); on Kaggle, 17 of the 20 face flips between half and full precision were at frames without it
 HAND_NEAR_FRAMES = 2
-NO_HAND = "sin la mano en 3D cerca: la cara no es medible desde la tele"
+NO_HAND = "sin la mano en 3D cerca que confirme la cara: no es medible desde la tele"
+# R50b (15-11): the hand near was not enough (Kaggle v22/v23: 16 face flips in 6 of 27 strokes, all the face seen from
+# the other side). Both sides of the strings are candidates at every frame and continuity treats them alike, so the
+# side is decided only by weak evidence. Synthetic study (`validation.face_rules`, two near-identical runs): asking the
+# hand near to agree with the solved side keeps about as much (35 % against 40 % of the frames with little hand
+# evidence; 82 % against 83 % with more) and halves to quarters the frames whose side differs between the runs
+HAND_AGREES_DEG = 90.0
+
+
+def _agrees(face, hand_face) -> bool:
+    if face is None or hand_face is None:      # a track without the hand's face (older format): its evidence stands
+        return True
+    f, h = np.asarray(face, float), np.asarray(hand_face, float)
+    nf, nh = np.linalg.norm(f), np.linalg.norm(h)
+    if nf == 0 or nh == 0:
+        return False
+    return float(np.degrees(np.arccos(np.clip(f @ h / (nf * nh), -1, 1)))) < HAND_AGREES_DEG
 
 
 def hand_near(track: list[dict], k: int = HAND_NEAR_FRAMES) -> set:
-    """Frames with 3D hand evidence within ±k frames (only there is the face given as a number)."""
-    ev = sorted(t["frame"] for t in track if t.get("hand_evidence"))
-    return {t["frame"] for t in track if any(abs(t["frame"] - g) <= k for g in ev)}
+    """Frames whose face is confirmed by 3D hand evidence within ±k frames: the hand's face on the same side of the
+    strings as the solved one (only there is the face given as a number)."""
+    ev = [t for t in track if t.get("hand_evidence")]
+    return {t["frame"] for t in track
+            if any(abs(t["frame"] - g["frame"]) <= k and _agrees(t.get("face"), g.get("hand_face")) for g in ev)}
 
 def stroke_faces(video: Path, run, stroke, height_m: float, pitch_deg: float | None = None, rpose=None,
                  wb3d=None, hand3d_step: int = 2, grip_close_deg: float = 15.0, window=(1.0, 0.8),

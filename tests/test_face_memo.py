@@ -97,3 +97,22 @@ def test_the_face_is_given_only_near_the_3d_hand(monkeypatch, tmp_path):
     first = out["first"]
     assert out["tilt"][10 - first] == 1.0 and out["tilt"][14 - first] == 1.0 and out["tilt"][15 - first] is None
     assert ro.hand_near([{"frame": f, "hand_evidence": f == 5} for f in range(10)], 2) == {3, 4, 5, 6, 7}
+
+
+def test_the_hand_must_agree_with_the_face_it_confirms():
+    """R50b (15-11): on Kaggle the face still flipped with the hand near; the hand near now has to be on the same side
+    of the strings as the solved face to make it a number."""
+    up, down = [0.0, 1.0, 0.0], [0.0, -1.0, 0.0]
+    track = [{"frame": f, "face": up, "hand_evidence": f == 5, "hand_face": up if f == 5 else None} for f in range(10)]
+    assert ro.hand_near(track, 2) == {3, 4, 5, 6, 7}
+    track[5]["hand_face"] = down                                         # the hand says the other side: no number
+    assert ro.hand_near(track, 2) == set()
+    track[4]["face"] = down                                              # a frame on the hand's side keeps it
+    assert ro.hand_near(track, 2) == {4}
+
+
+def test_the_face_rules_study_runs():
+    from tennisbio.validation.face_rules import study
+    out = study(n=2, cov=0.3, sd=40.0)
+    assert set(out) == {"todo", "mano_cerca", "mano_de_acuerdo"}
+    assert out["todo"]["kept"] == 1.0 and out["mano_de_acuerdo"]["kept"] <= out["mano_cerca"]["kept"]

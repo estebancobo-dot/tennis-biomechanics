@@ -104,6 +104,11 @@ trabajos:
   # el PC): sin GPU, en GitHub
   - {id: comparar_gauff_v22_rtmw_b, accion: comparar, experimento: true, a: prueba_gauff_v22, b: prueba_gauff_rtmw}
   - {id: comparar_gauff_v22_v23_b, accion: comparar, experimento: true, a: prueba_gauff_v22, b: prueba_gauff_v23_calidad}
+  # R50b (15-11 09:30): la mano cerca tiene que estar de acuerdo con la cara elegida. Mismo par que v22/v23 (16 saltos
+  # de la cara en 6 golpes): los saltos deben bajar mucho o quedar en «no medible»
+  - {id: prueba_gauff_v24, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle}
+  - {id: prueba_gauff_v25_calidad, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, config: {fp16: false, ball: {fp16: false}, racket_face: {fp16: false, hand3d_step: 1}}}
+  - {id: comparar_gauff_v24_v25, accion: comparar, experimento: true, a: prueba_gauff_v24, b: prueba_gauff_v25_calidad}
   # lotes 3 y 4 (aprobados por el usuario el 13-11: Osaka; Pegula y Zheng; Gauff y la final; Zverev-Sinner), cada
   # partido tras su prueba corta de 10 minutos (#277); el informe y la auditoría de la Base al final
   - {id: prueba_gauff, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5}

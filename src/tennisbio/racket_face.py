@@ -47,5 +47,7 @@ def face_track(frames: dict, boxes: list, img_kp: np.ndarray, rackets: list, sk,
         d = describe_face(normals[k], sk.hand)
         out.append(dict(frame=f, face=normals[k].tolist(), axis=axes[k].tolist(), observed=obs[k] is not None,
                         hand_evidence=priors[k] is not None and priors[k].face is not None,
+                        hand_face=priors[k].face.tolist() if priors[k] is not None and priors[k].face is not None
+                        else None,
                         ambiguous=bool(amb[k]), **d))
     return out
