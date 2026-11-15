@@ -383,12 +383,19 @@ de aceptación.**
 ## 11. La trayectoria del swing sobre su vídeo (15-11, #306)
 
 Del short que eligió el usuario (`aprendido_entrenadores.md` §7):
-- **Qué se dibuja:**
-  - sobre el vídeo real del golpe, toda la trayectoria a la vez en puntos: la de la mano (huecos, un color por fase:
-    preparación, bucle, caída, aceleración, terminación) y la de la punta de la raqueta (llenos);
-  - un recuadro en su zona de contacto.
-- **De dónde sale:** de la serie fotograma a fotograma de cada golpe, que ya existe en el PC: la muñeca de la pose y la
-  punta y la empuñadura de la raqueta (5 puntos), en píxeles del vídeo. Las fases salen de los momentos de cada golpe.
+- **Qué se dibuja:** sobre el vídeo real del golpe, toda la trayectoria de la raqueta a la vez en puntos, con cuatro
+  colores que marcan **su ritmo con la bola** (corrección del usuario, 15-11):
+  1. **amarillo:** hacia atrás hasta su punto más alto;
+  2. **blanco:** la caída y el swing antes del bote;
+  3. **verde:** el swing tras el bote;
+  4. **rojo:** el contacto y la terminación.
+  Además, un recuadro en su zona de contacto.
+- **De dónde sale:**
+  - la serie fotograma a fotograma de cada golpe, que ya existe en el PC: la cabeza de la raqueta (5 puntos) o, si no
+    se ve, la muñeca;
+  - el punto más alto de la raqueta;
+  - el bote de la bola recibida y el impacto, que ya se miden con la bola.
+- **Sin el bote visto:** el blanco y el verde no se separan (un solo color, «bote no visto»); nunca se inventa el bote.
 - **Honestidad:**
   - donde la raqueta sale borrosa (aceleración e impacto) los puntos van más tenues y dice «estimado»;
   - un fotograma sin raqueta no se dibuja; nunca se inventa.

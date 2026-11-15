@@ -77,21 +77,30 @@ def ejemplo() -> dict:
 
 
 def _trayectoria_ejemplo() -> dict:
-    """A made-up swing path (1280x720 px) with the shape of a looped forehand seen from behind: up and back, over the
-    loop, down under the ball, up to contact and over the shoulder; the blurred stretch marked."""
+    """A made-up swing path (1280x720 px) with the shape of a looped forehand seen from behind, coloured as the user
+    explained the short (#306): back to its highest point, before the bounce, after the bounce, contact and finish; the
+    blurred stretch (acceleration and impact) marked."""
     import math
 
+    def oval(deg: float) -> list[float]:                # the loop around her, seen from behind (1280x720 px)
+        r = math.radians(deg)
+        return [round(640 + 290 * math.cos(r), 1), round(360 - 170 * math.sin(r), 1)]
+
     puntos = []
-    for i in range(40):
-        t = -1.0 + 1.6 * i / 39
-        a = math.pi * (0.15 + 1.75 * i / 39)              # around the body, as a lasso
-        hx, hy = 640 + 260 * math.cos(a), 360 - 150 * math.sin(a) + (60 if 0.9 < a < 2.2 else 0)
-        fase = ("takeback" if t < -0.7 else "loaded" if t < -0.35 else "acceleration" if t < -0.02 else
-                "impact" if t < 0.04 else "extension" if t < 0.2 else "finish")
-        puntos.append({"t": round(t, 3), "fase": fase, "mano": [round(hx, 1), round(hy, 1)],
-                       "punta": [round(640 + 380 * math.cos(a), 1), round(330 - 230 * math.sin(a), 1)],
-                       "borroso": fase in ("acceleration", "impact")})
-    return {"ancho": 1280, "alto": 720, "puntos": puntos, "contacto": [930, 330, 70, 60]}
+    tramos = (("atras", 20, 105, 9), ("antes_bote", 105, 190, 8), ("tras_bote", 190, 335, 12))
+    for tramo, d0, d1, n in tramos:                    # back and up, over the loop, down and forward to the ball
+        for k in range(n):
+            puntos.append({"tramo": tramo, "xy": oval(d0 + (d1 - d0) * k / n)})
+    c0, top, end = oval(335), [560.0, 150.0], [330.0, 280.0]
+    for k in range(13):                                # from the contact up over the shoulder to the finish
+        u = k / 12
+        puntos.append({"tramo": "contacto", "xy": [round((1 - u) ** 2 * c0[0] + 2 * (1 - u) * u * top[0] + u * u * end[0], 1),
+                                                     round((1 - u) ** 2 * c0[1] + 2 * (1 - u) * u * top[1] + u * u * end[1], 1)]})
+    for i, q in enumerate(puntos):
+        q["t"] = round(-1.0 + 1.6 * i / (len(puntos) - 1), 3)
+        q["borroso"] = -0.15 < q["t"] < 0.05           # acceleration and impact: blurred on TV
+    cx, cy = c0
+    return {"ancho": 1280, "alto": 720, "puntos": puntos, "contacto": [cx - 35, cy - 30, 70, 60]}
 
 
 def datos_beta(report: Path, audit: Path, estado: Path, matches: Path) -> dict:

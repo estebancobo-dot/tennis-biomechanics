@@ -1,22 +1,25 @@
 // #306 (15-11): the swing's whole path over the stroke's video, as the short the user chose (docs/aprendido_entrenadores.md
-// §7): the hand's path in hollow dots, one colour per phase; the racket tip's path in filled dots; a box on her contact
-// zone. Where the racket is blurred on TV (acceleration, impact) the dots are faded and the legend says «estimado». A frame
-// without the racket is not drawn: nothing is invented. Data: each stroke's frame series (in video pixels).
+// §7), with its colour code as the user explained it: the racket's path coloured by its rhythm with the ball —
+// yellow back to its highest point, white the drop and swing before the bounce, green the swing after the bounce, red the
+// contact and the finish — and a box on her contact zone. Where the racket is blurred on TV (acceleration, impact) the
+// dots are faded and the legend says «estimado»; without the bounce seen, white and green are one colour (never a
+// made-up bounce). Data: each stroke's frame series (in video pixels), its highest racket point, the bounce and the impact.
 import { useEffect, useRef } from "react";
 
-export interface PuntoTrayectoria { t: number; fase: string; mano?: [number, number] | null; punta?: [number, number] | null; borroso?: boolean }
+export type Tramo = "atras" | "antes_bote" | "tras_bote" | "sin_bote" | "contacto";
+export interface PuntoTrayectoria { t: number; tramo: Tramo; xy: [number, number]; borroso?: boolean }
 export interface Trayectoria { ancho: number; alto: number; puntos: PuntoTrayectoria[]; contacto?: [number, number, number, number] | null }
 
-export const COLOR_FASE: Record<string, string> = {
-  takeback: "#f2d64b", loaded: "#f4f7fb", acceleration: "#7cf06a", impact: "#7cf06a", extension: "#6fd3ff", finish: "#6fd3ff",
+export const COLOR_TRAMO: Record<Tramo, string> = {
+  atras: "#f2d64b", antes_bote: "#f4f7fb", tras_bote: "#7cf06a", sin_bote: "#b9c4cf", contacto: "#d83a3a",
 };
-export const NOMBRE_FASE: Record<string, string> = {
-  takeback: "preparación", loaded: "bucle y armado", acceleration: "caída y aceleración", impact: "impacto",
-  extension: "extensión", finish: "terminación",
+export const NOMBRE_TRAMO: Record<Tramo, string> = {
+  atras: "hacia atrás, hasta lo más alto", antes_bote: "caída y swing antes del bote", tras_bote: "swing tras el bote",
+  sin_bote: "caída y swing (bote no visto)", contacto: "contacto y terminación",
 };
-const PUNTA = "#d83a3a";
-// the legend's sample on the video's own dark ground, so the light colours (the loop's white) show on a light chip
-const MUESTRA = (c?: string) => ({ color: c || "#fff", background: "var(--frame-a)", borderRadius: 4, padding: "0 4px", fontWeight: 700 });
+const ORDEN: Tramo[] = ["atras", "antes_bote", "tras_bote", "sin_bote", "contacto"];
+// the legend's sample on the video's own dark ground, so the light colours (white) show on a light chip
+const MUESTRA = (c: string) => ({ color: c, background: "var(--frame-a)", borderRadius: 4, padding: "0 4px", fontWeight: 700 });
 
 export function dibujar(ctx: CanvasRenderingContext2D, tr: Trayectoria, w: number, h: number) {
   const sx = w / tr.ancho, sy = h / tr.alto, r = Math.max(2.5, w / 200);
@@ -28,18 +31,16 @@ export function dibujar(ctx: CanvasRenderingContext2D, tr: Trayectoria, w: numbe
     ctx.strokeRect(x * sx, y * sy, cw * sx, ch * sy);
   }
   for (const p of tr.puntos) {
+    const c = COLOR_TRAMO[p.tramo] || "#ffffff";
     ctx.globalAlpha = p.borroso ? 0.35 : 0.95;
-    if (p.punta) {
-      ctx.fillStyle = PUNTA;
-      ctx.beginPath();
-      ctx.arc(p.punta[0] * sx, p.punta[1] * sy, r, 0, 2 * Math.PI);
+    ctx.beginPath();
+    ctx.arc(p.xy[0] * sx, p.xy[1] * sy, r, 0, 2 * Math.PI);
+    if (p.tramo === "contacto") {                 // as in the short: contact and finish in filled dots
+      ctx.fillStyle = c;
       ctx.fill();
-    }
-    if (p.mano) {
-      ctx.strokeStyle = COLOR_FASE[p.fase] || "#ffffff";
+    } else {
+      ctx.strokeStyle = c;
       ctx.lineWidth = Math.max(1.5, r / 2);
-      ctx.beginPath();
-      ctx.arc(p.mano[0] * sx, p.mano[1] * sy, r, 0, 2 * Math.PI);
       ctx.stroke();
     }
   }
@@ -62,18 +63,17 @@ export function TrayectoriaSwing({ tr, titulo }: { tr: Trayectoria; titulo?: str
     window.addEventListener("resize", pinta);
     return () => window.removeEventListener("resize", pinta);
   }, [tr]);
-  const fases = [...new Set(tr.puntos.filter((p) => p.mano).map((p) => p.fase))];
+  const tramos = ORDEN.filter((k) => tr.puntos.some((p) => p.tramo === k));
   const estimado = tr.puntos.some((p) => p.borroso);
   return (
     <div style={{ display: "grid", gap: 8 }}>
       <div className="frame" style={{ aspectRatio: `${tr.ancho} / ${tr.alto}` }}>
         <canvas ref={ref} data-trayectoria style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}
-          role="img" aria-label={titulo || "Trayectoria del swing: la mano por fases y la punta de la raqueta"} />
-        <span className="tag">Trayectoria del swing</span>
+          role="img" aria-label={titulo || "Trayectoria del swing coloreada por su ritmo con la bola"} />
+        <span className="tag">Trayectoria del swing y su ritmo con la bola</span>
       </div>
       <div className="chips">
-        {fases.map((f) => <span className="chip" key={f}><span style={MUESTRA(COLOR_FASE[f])}>○</span> mano: {NOMBRE_FASE[f] || f}</span>)}
-        <span className="chip"><span style={MUESTRA(PUNTA)}>●</span> punta de la raqueta</span>
+        {tramos.map((k) => <span className="chip" key={k}><span style={MUESTRA(COLOR_TRAMO[k])}>{k === "contacto" ? "●" : "○"}</span> {NOMBRE_TRAMO[k]}</span>)}
         {tr.contacto ? <span className="chip"><span style={MUESTRA("#7cf06a")}>□</span> su zona de contacto</span> : null}
         {estimado ? <span className="pill est">tenue = estimado (raqueta borrosa en la tele)</span> : null}
       </div>
