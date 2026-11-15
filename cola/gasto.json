@@ -83,7 +83,8 @@
      "horas": 0.44
     },
     "prueba_gauff_v23_calidad": {
-     "estimado_h": 1.0
+     "estimado_h": 1.0,
+     "horas": 0.47
     },
     "prueba_gauff_rtmw": {
      "estimado_h": 1.0,
@@ -96,9 +97,9 @@
   }
  },
  "kaggle_real": {
-  "usadas_h": 21.45,
+  "usadas_h": 21.48,
   "total_h": 30.0,
   "renueva": "2026-11-21 00:00:00",
-  "ts": 1794725916.907834
+  "ts": 1794726039.559971
  }
 }

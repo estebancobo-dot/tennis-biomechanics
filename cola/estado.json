@@ -455,7 +455,7 @@
   }
  },
  "prueba_gauff_v23_calidad": {
-  "estado": "en_marcha",
+  "estado": "hecho",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 1,
@@ -466,10 +466,17 @@
   "ruta": "/runs/kaggle_prueba_gauff_v23_calidad/estado.json",
   "salida": "/kaggle_pruebas/prueba_gauff_v23_calidad/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cuaderno": "tennisbio-prueba-gauff-v23-calidad",
-  "progreso": "view_clips:  61 % (27/44 recortes de repeticiones y otras cámaras) · 2 min · quedan ≈ 62 s (06:56:38; GPU 0 %·0 %, CPU 87 %, 3.4 GB)",
-  "kaggle": "running (06:58)",
+  "progreso": "fine_doubtful terminada a las 06:58:49 en 47 s (06:58:44)",
+  "kaggle": "complete (07:00)",
   "arranco": "2026-11-15 06:35",
-  "espera_min": 5
+  "espera_min": 5,
+  "fin": "2026-11-15 07:00",
+  "resultado": {
+   "estado": "hecho",
+   "coste_usd": 0.0,
+   "segundos": 1594,
+   "horas_kaggle": 0.47
+  }
  },
  "prueba_gauff_rtmw": {
   "estado": "hecho",
@@ -539,6 +546,21 @@
   "inicio": "2026-11-15 06:58",
   "ruta": "/runs/kaggle_prueba_sinner/estado.json",
   "salida": "/kaggle_pruebas/prueba_sinner/output/_prueba_zverev-alexander-sinner-jannik-indian-wells-2026-semi-final",
-  "cuaderno": "tennisbio-prueba-sinner"
+  "cuaderno": "tennisbio-prueba-sinner",
+  "kaggle": "running (07:00)",
+  "arranco": "2026-11-15 07:00",
+  "espera_min": 2
+ },
+ "comparar_gauff_v22_v23": {
+  "estado": "revisar",
+  "accion": "comparar",
+  "donde": "github",
+  "fin": "2026-11-15 07:00",
+  "resultado": {
+   "estado": "revisar",
+   "veredicto": "distinta",
+   "nota": "distinta; 7 etapas iguales; distintas: candidates, fine, fine_doubtful, identity, players, slowmo_fine, spotting, view_clips; strokes.json: 27 de 28/28 golpes emparejados, 3 distintos, medidas fuera de tolerancia: technique.pose.acceleration, technique.pose.finish, racket_track, technique.pose.ready; strokes_opponent.json: 0 de 0/0 golpes emparejados; strokes_doubtful.json: 1 de 1/1 golpes emparejados, medidas fuera de tolerancia: technique.phases.ready.racket_angle, face.acceleration.tilt_deg, technique.pose.acceleration, phases.takeback.frame"
+  },
+  "partido": ""
  }
 }
