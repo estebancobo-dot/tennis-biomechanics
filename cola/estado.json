@@ -536,7 +536,7 @@
   "partido": ""
  },
  "prueba_sinner": {
-  "estado": "en_marcha",
+  "estado": "error",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 1,
@@ -550,7 +550,10 @@
   "kaggle": "running (07:16)",
   "arranco": "2026-11-15 07:00",
   "espera_min": 2,
-  "progreso": "fine:  67 % (10/15 golpes candidatos · 10 confirmados · 0 ventanas descartadas sin pose) · 87 s · quedan ≈ 43 s (07:16:09; GPU 18 %·41 %, CPU 78 %, 10.0 GB)"
+  "progreso": "fine:  67 % (10/15 golpes candidatos · 10 confirmados · 0 ventanas descartadas sin pose) · 87 s · quedan ≈ 43 s (07:16:09; GPU 18 %·41 %, CPU 78 %, 10.0 GB)",
+  "resultado": {
+   "nota": "cancelado: #295: la prueba corta de un partido espera con su partido a la nube nativa (comprueba el código con el que se analizará); se repite entonces como prueba_sinner_b"
+  }
  },
  "comparar_gauff_v22_v23": {
   "estado": "revisar",
@@ -561,6 +564,30 @@
    "estado": "revisar",
    "veredicto": "distinta",
    "nota": "distinta; 7 etapas iguales; distintas: candidates, fine, fine_doubtful, identity, players, slowmo_fine, spotting, view_clips; strokes.json: 27 de 28/28 golpes emparejados, 3 distintos, medidas fuera de tolerancia: technique.pose.acceleration, technique.pose.finish, racket_track, technique.pose.ready; strokes_opponent.json: 0 de 0/0 golpes emparejados; strokes_doubtful.json: 1 de 1/1 golpes emparejados, medidas fuera de tolerancia: technique.phases.ready.racket_angle, face.acceleration.tilt_deg, technique.pose.acceleration, phases.takeback.frame"
+  },
+  "partido": ""
+ },
+ "comparar_gauff_v22_rtmw_b": {
+  "estado": "revisar",
+  "accion": "comparar",
+  "donde": "github",
+  "fin": "2026-11-15 07:17",
+  "resultado": {
+   "estado": "revisar",
+   "veredicto": "distinta",
+   "nota": "distinta; 12 etapas iguales; distintas: fine, fine_doubtful, slowmo_fine, view_clips; strokes.json: 27 de 28/28 golpes emparejados, 2 distintos, medidas fuera de tolerancia: metrics.non_elbow_impact_deg, technique.pose.ready, technique.phases.acceleration.wrist_dom_height, technique.phases.acceleration.x_factor; strokes.json: temblor de b frente a a ×0.99 (mediana de 4944 medidas; b tiembla menos en el 50 %); strokes_opponent.json: 0 de 0/0 golpes emparejados; strokes_doubtful.json: 1 de 1/1 golpes emparejados, medidas fuera de tolerancia: face.extension.yaw_deg, technique.phases.acceleration."
+  },
+  "partido": ""
+ },
+ "comparar_gauff_v22_v23_b": {
+  "estado": "revisar",
+  "accion": "comparar",
+  "donde": "github",
+  "fin": "2026-11-15 07:17",
+  "resultado": {
+   "estado": "revisar",
+   "veredicto": "distinta",
+   "nota": "distinta; 7 etapas iguales; distintas: candidates, fine, fine_doubtful, identity, players, slowmo_fine, spotting, view_clips; strokes.json: 27 de 28/28 golpes emparejados, 3 distintos, medidas fuera de tolerancia: technique.pose.ready, technique.pose.extension, technique.pose.finish, racket_track; strokes.json: temblor de b frente a a ×1.00 (mediana de 5308 medidas; b tiembla menos en el 36 %); strokes_opponent.json: 0 de 0/0 golpes emparejados; strokes_doubtful.json: 1 de 1/1 golpes emparejados, medidas fuera de tolerancia: technique.phases.takeback.hip_turn, technique.curves.hand, technique."
   },
   "partido": ""
  }

@@ -91,15 +91,16 @@
      "horas": 0.45
     },
     "prueba_sinner": {
-     "estimado_h": 1.0
+     "estimado_h": 1.0,
+     "horas": 0.31
     }
    }
   }
  },
  "kaggle_real": {
-  "usadas_h": 21.74,
+  "usadas_h": 21.76,
   "total_h": 30.0,
   "renueva": "2026-11-21 00:00:00",
-  "ts": 1794726969.6922984
+  "ts": 1794727025.2213817
  }
 }
