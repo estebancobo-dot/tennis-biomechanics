@@ -739,7 +739,7 @@
   "ruta": "/runs/kaggle_prueba_gauff_v28_ocrgpu/estado.json",
   "salida": "/kaggle_pruebas/prueba_gauff_v28_ocrgpu/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cuaderno": "tennisbio-prueba-gauff-v28-ocrgpu",
-  "kaggle": "queued (16:09)"
+  "kaggle": "queued (16:14)"
  },
  "investigar_tennis_mentor": {
   "estado": "hecho",
@@ -835,6 +835,6 @@
   "ruta": "/runs/kaggle_prueba_gauff_v29_b/estado.json",
   "salida": "/kaggle_pruebas/prueba_gauff_v29_a/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cuaderno": "tennisbio-prueba-gauff-v29-b",
-  "kaggle": "queued (16:09)"
+  "kaggle": "queued (16:14)"
  }
 }
