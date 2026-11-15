@@ -3,10 +3,10 @@
  "strokes": 25,
  "near": 13,
  "summary": {
-  "ok": 408,
-  "falta": 30,
-  "pocos datos": 98,
-  "aviso": 126
+  "ok": 407,
+  "falta": 40,
+  "pocos datos": 97,
+  "aviso": 150
  },
  "items": [
   {
@@ -2700,7 +2700,7 @@
    "area": "Valores posibles",
    "name": "Cada frase lleva cuántos golpes la respaldan y su fiabilidad",
    "status": "ok",
-   "detail": "98 frases"
+   "detail": "95 frases"
   },
   {
    "req": 3,
@@ -2861,7 +2861,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»",
    "status": "ok",
-   "detail": "3105 caracteres de texto, 15 vídeos, 21 gráficos",
+   "detail": "2103 caracteres de texto, 10 vídeos, 21 gráficos",
    "file": "pantalla_1_aprende.jpg"
   },
   {
@@ -2869,7 +2869,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Sus golpes (Videoteca y pista)»",
    "status": "ok",
-   "detail": "8866 caracteres de texto, 16 vídeos, 1 gráficos",
+   "detail": "8866 caracteres de texto, 10 vídeos, 1 gráficos",
    "file": "pantalla_2_videoteca.jpg"
   },
   {
@@ -2877,7 +2877,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Análisis de golpe»",
    "status": "ok",
-   "detail": "6151 caracteres de texto, 17 vídeos, 33 gráficos",
+   "detail": "5703 caracteres de texto, 11 vídeos, 33 gráficos",
    "file": "pantalla_3_golpe.jpg"
   },
   {
@@ -2885,7 +2885,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Comparar dos golpes»",
    "status": "ok",
-   "detail": "16472 caracteres de texto, 16 vídeos, 2 gráficos",
+   "detail": "16469 caracteres de texto, 10 vídeos, 2 gráficos",
    "file": "pantalla_4_comparar.jpg"
   },
   {
@@ -2893,7 +2893,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Conclusiones (Panel y Comparativas)»",
    "status": "ok",
-   "detail": "3619 caracteres de texto, 16 vídeos, 20 gráficos",
+   "detail": "3515 caracteres de texto, 10 vídeos, 20 gráficos",
    "file": "pantalla_5_conclusiones.jpg"
   },
   {
@@ -2901,7 +2901,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Tabla de golpes (Explorador)»",
    "status": "ok",
-   "detail": "4815 caracteres de texto, 16 vídeos, 0 gráficos",
+   "detail": "4719 caracteres de texto, 10 vídeos, 0 gráficos",
    "file": "pantalla_6_explorador.jpg"
   },
   {
@@ -2909,7 +2909,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Vista lateral (entreno)»",
    "status": "ok",
-   "detail": "7620 caracteres de texto, 16 vídeos, 0 gráficos",
+   "detail": "7620 caracteres de texto, 10 vídeos, 0 gráficos",
    "file": "pantalla_7_lateral.jpg"
   },
   {
@@ -2917,7 +2917,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Fiabilidad de las medidas»",
    "status": "ok",
-   "detail": "2541 caracteres de texto, 16 vídeos, 0 gráficos",
+   "detail": "2609 caracteres de texto, 10 vídeos, 0 gráficos",
    "file": "pantalla_8_fiabilidad.jpg"
   },
   {
@@ -2925,7 +2925,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "2155 caracteres de texto, 16 vídeos, 0 gráficos",
+   "detail": "2170 caracteres de texto, 10 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -3017,7 +3017,7 @@
    "area": "Aprende su derecha",
    "name": "Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha",
    "status": "pocos datos",
-   "detail": "0 golpes exactos, 7 parecidos; 87 de 90 puntos con su valor medido"
+   "detail": "0 golpes exactos, 7 parecidos; 84 de 90 puntos con su valor medido"
   },
   {
    "req": 1,
@@ -3038,7 +3038,7 @@
    "area": "Aprende su derecha",
    "name": "Puntos de «Aprende» con su valor medido (todas sus derechas)",
    "status": "ok",
-   "detail": "87 de 90; el resto dice por qué falta"
+   "detail": "86 de 90; el resto dice por qué falta"
   },
   {
    "req": 1,
@@ -3051,8 +3051,8 @@
    "req": 2,
    "area": "Diseño",
    "name": "Primera pantalla, anchura y nombres (diseño definitivo)",
-   "status": "falta",
-   "detail": "vídeo de la lección en y=805–1159 de 900; al abrir 2 títulos, 609 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=1159 (más abajo que la primera pantalla, 900)"
+   "status": "ok",
+   "detail": "vídeo de la lección en y=336–690 de 900; al abrir 1 títulos, 403 palabras, 25 botones"
   },
   {
    "req": 1,
@@ -3226,10 +3226,10 @@
    "req": 5,
    "area": "Automático",
    "name": "Pruebas del código en este PC",
-   "status": "ok",
-   "detail": "código 446465f (2026-11-13T06:22:15): 1178 bien, 0 fallan, 0 errores",
-   "passed": 1178,
-   "failed": 0
+   "status": "falta",
+   "detail": "código 0b33182 (2026-11-15T11:54:02): 1311 bien, 1 fallan, 0 errores; fallan: tests/test_nube.py::test_a_match_run_samples_what_the_container_uses",
+   "passed": 1311,
+   "failed": 1
   },
   {
    "req": 5,
@@ -3243,7 +3243,7 @@
    "area": "Pruebas en este PC",
    "name": "Pruebas en este PC: test_auto_cycle",
    "status": "ok",
-   "detail": "15 bien, 0 fallan, 0 omitidas"
+   "detail": "17 bien, 0 fallan, 0 omitidas"
   },
   {
    "req": 5,
@@ -3341,7 +3341,7 @@
    "area": "Pruebas en este PC",
    "name": "Pruebas en este PC: test_fine_parallel",
    "status": "ok",
-   "detail": "9 bien, 0 fallan, 0 omitidas"
+   "detail": "10 bien, 0 fallan, 0 omitidas"
   },
   {
    "req": 5,
@@ -3404,7 +3404,7 @@
    "area": "Pruebas en este PC",
    "name": "Pruebas en este PC: test_local_only",
    "status": "ok",
-   "detail": "6 bien, 0 fallan, 0 omitidas"
+   "detail": "7 bien, 0 fallan, 0 omitidas"
   },
   {
    "req": 5,
@@ -3467,7 +3467,7 @@
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "51 carpetas, 38.3 GB en total (2026-11-13T20:18:58); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.9 GB"
+   "detail": "52 carpetas, 38.3 GB en total (2026-11-15T11:49:12); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.9 GB"
   },
   {
    "req": 5,
@@ -3516,7 +3516,7 @@
    "area": "Automático",
    "name": "Ninguna ventana vacía del análisis en la pantalla del PC",
    "status": "ok",
-   "detail": "ninguna consola nuestra entre las 5 ventanas visibles (2026-11-13 20:01:32)"
+   "detail": "ninguna consola nuestra entre las 5 ventanas visibles (2026-11-13 20:45:13)"
   },
   {
    "req": 5,
@@ -3529,8 +3529,8 @@
    "req": 5,
    "area": "Orquestador",
    "name": "Orquestador: ejecutor vivo cuando hay trabajo",
-   "status": "ok",
-   "detail": "ejecutor vivo; 0 trabajos esperando"
+   "status": "falta",
+   "detail": "ejecutor parado; 1 trabajos esperando"
   },
   {
    "req": 5,
@@ -3565,7 +3565,7 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar",
    "status": "ok",
-   "detail": "terminó el 2026-11-13 20:19:11 en 0 min: 118 vídeos de 118 golpes"
+   "detail": "terminó el 2026-11-15 11:54:55 en 6 min: 118 vídeos de 118 golpes"
   },
   {
    "req": 2,
@@ -3747,14 +3747,14 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-13_0629.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el players (2.0 min): CPU 17/23/32 %, iGPU 77/86/98 %, RAM máx 6.6 GB → iGPU al límite; us-open-2026-r4-naomi-osaka-el identity (2.0 min): CPU 15/33/60 %, iGPU 0/22/91 %, RAM máx 6.6 GB → equipo infrautilizado: trabajo en serie (se puede repartir); us-open-2026-r4-naomi-osaka-el views (2.0 min): CPU 19/34/49 %, iGPU 0/42/75 %, RAM máx 6.8 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine (65.5 min): CPU 22/76/100 %, iGPU 0/29/100 %, RAM máx 18.7 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el view_clips (0.2 min): CPU 13/13/13 %, iGPU 0/0/0 %, RAM máx 6.1 GB → equipo infrautilizado: trabajo en serie (se puede repartir); us-open-2026-r4-naomi-osaka-el fine_doubtful (5.2 min): CPU 5/59/100 %, iGPU 0/27/100 %, RAM máx 15.0 GB → uso medio: margen para repartir trabajo; 340.6 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa); más recientes sin muestras de una etapa en marcha (ejecuciones desde las cachés): recursos_2026-11-13_2019.csv, recursos_2026-11-13_2001.csv, recursos_2026-11-13_1954.csv"
+   "detail": "recursos_2026-11-13_0629.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el players (2.0 min): CPU 17/23/32 %, iGPU 77/86/98 %, RAM máx 6.6 GB → iGPU al límite; us-open-2026-r4-naomi-osaka-el identity (2.0 min): CPU 15/33/60 %, iGPU 0/22/91 %, RAM máx 6.6 GB → equipo infrautilizado: trabajo en serie (se puede repartir); us-open-2026-r4-naomi-osaka-el views (2.0 min): CPU 19/34/49 %, iGPU 0/42/75 %, RAM máx 6.8 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine (65.5 min): CPU 22/76/100 %, iGPU 0/29/100 %, RAM máx 18.7 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el view_clips (0.2 min): CPU 13/13/13 %, iGPU 0/0/0 %, RAM máx 6.1 GB → equipo infrautilizado: trabajo en serie (se puede repartir); us-open-2026-r4-naomi-osaka-el fine_doubtful (5.2 min): CPU 5/59/100 %, iGPU 0/27/100 %, RAM máx 15.0 GB → uso medio: margen para repartir trabajo; 340.6 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa); más recientes sin muestras de una etapa en marcha (ejecuciones desde las cachés): recursos_2026-11-15_1149.csv, recursos_2026-11-13_2019.csv, recursos_2026-11-13_2001.csv"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
    "status": "ok",
-   "detail": "petición del 13-11 20:18, empezó a los 0.3 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
+   "detail": "petición del 15-11 11:40, empezó a los 1.1 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
   },
   {
    "req": 1,
@@ -3792,6 +3792,41 @@
    "detail": "lado lejano 253 de 288 (88%) frente al cercano 213 de 229 (93%); diferencia 5 puntos (objetivo ≤ 10) (recall_validation_detector.json)"
   },
   {
+   "req": 9,
+   "area": "Uso de la nube",
+   "name": "Uso de la nube por etapa (CPU, GPU y memoria)",
+   "status": "aviso",
+   "detail": "no es la nube (sin paths.cloud en config/local.yaml)"
+  },
+  {
+   "req": 5,
+   "area": "Nube",
+   "name": "Cola de la nube",
+   "status": "aviso",
+   "detail": "no es la nube (sin paths.cloud en config/local.yaml)"
+  },
+  {
+   "req": 9,
+   "area": "Portabilidad",
+   "name": "Equivalencia entre infraestructuras",
+   "status": "aviso",
+   "detail": "no es la nube (sin paths.cloud en config/local.yaml)"
+  },
+  {
+   "req": 9,
+   "area": "Rendimiento de modelos",
+   "name": "Prueba de concepto medida",
+   "status": "aviso",
+   "detail": "no es la nube (sin paths.cloud en config/local.yaml)"
+  },
+  {
+   "req": 241,
+   "area": "Mantenibilidad",
+   "name": "Nada fijo en el código: ningún jugador por su nombre",
+   "status": "ok",
+   "detail": "135 módulos sin el nombre de ninguno de los jugadores configurados (6 nombres)"
+  },
+  {
    "req": 12,
    "area": "Modelos",
    "name": "Comparativa con otras apps al día (docs/comparativa_apps.md)",
@@ -3804,13 +3839,6 @@
    "name": "#1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final",
    "status": "pocos datos",
    "detail": "6 comprobaciones: 1 pocos datos, 5 ok; la peor: «forehand: golpes analizados» (13 del lado cercano (con todo el detalle), 12 del lejano; con menos de 20 muchas situaciones no se pueden describir)"
-  },
-  {
-   "req": 11,
-   "area": "Peticiones",
-   "name": "#2 Ver informe y salidas en el móvil",
-   "status": "aviso",
-   "detail": "A MEDIAS según el registro (#2); no se comprueba en las salidas: aplazado por el usuario (móvil al final)"
   },
   {
    "req": 11,
@@ -3879,8 +3907,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok"
+   "status": "falta",
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código 0b33182 (2026-11-15T11:54:02): 1311 bien, 1 fallan, 0 errores; fallan: tests/test_nube.py::test_a_match_run_sampl)"
   },
   {
    "req": 11,
@@ -3908,7 +3936,7 @@
    "area": "Peticiones",
    "name": "#17 Una entrada que se entienda sola: «no entiendo nada ni cómo usarla»",
    "status": "pocos datos",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 10 comprobaciones: 1 pocos datos, 9 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 7 parecidos; 87 de 90 puntos con su valor medido)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 10 comprobaciones: 1 pocos datos, 9 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 7 parecidos; 84 de 90 puntos con su valor medido)"
   },
   {
    "req": 11,
@@ -3928,8 +3956,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML",
-   "status": "pocos datos",
-   "detail": "3 comprobaciones: 1 pocos datos, 2 ok; la peor: «Tiempo desde cero» (ninguna ejecución desde cero de 20 min de vídeo o más (prueba app_nuevo o poc del PC))"
+   "status": "falta",
+   "detail": "3 comprobaciones: 1 falta, 1 pocos datos, 1 ok; la peor: «Pruebas del código en este PC» (código 0b33182 (2026-11-15T11:54:02): 1311 bien, 1 fallan, 0 errores; fallan: tests/test_nube.py::test_a_match_run_sampl)"
   },
   {
    "req": 11,
@@ -4145,8 +4173,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#51 El código de la prueba es el de los casos reales",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok"
+   "status": "falta",
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código 0b33182 (2026-11-15T11:54:02): 1311 bien, 1 fallan, 0 errores; fallan: tests/test_nube.py::test_a_match_run_sampl)"
   },
   {
    "req": 11,
@@ -4237,14 +4265,14 @@
    "area": "Peticiones",
    "name": "#68 La meta: mejorar mi derecha tomando la de X como base",
    "status": "pocos datos",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 8 comprobaciones: 1 pocos datos, 7 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 7 parecidos; 87 de 90 puntos con su valor medido)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 8 comprobaciones: 1 pocos datos, 7 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 7 parecidos; 84 de 90 puntos con su valor medido)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#69 Ejemplo: «derecha paralela, apoyo cerrado, parada, bola plana, lado derecho» (cómo lo hace ella y cómo replica",
    "status": "pocos datos",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 pocos datos; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 7 parecidos; 87 de 90 puntos con su valor medido)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 pocos datos; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 7 parecidos; 84 de 90 puntos con su valor medido)"
   },
   {
    "req": 11,
@@ -4572,8 +4600,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#119 Automatizar todo el ciclo en el PC: el usuario no lanza pruebas ni avisa",
-   "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (98 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 8 esperaron más de 5 min)"
+   "status": "falta",
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 falta, 1 aviso; la peor: «Orquestador: ejecutor vivo cuando hay trabajo» (ejecutor parado; 1 trabajos esperando)"
   },
   {
    "req": 11,
@@ -4798,13 +4826,6 @@
    "name": "#153 y analizo estos videos (2 enlaces de Olivari) (Chat, 18-10 11:19)",
    "status": "aviso",
    "detail": "sin comprobación automática asignada"
-  },
-  {
-   "req": 11,
-   "area": "Peticiones",
-   "name": "#154 mi movil es android google pixel 8 ... que copie directo al pixel (Chat, 18-10 12:11)",
-   "status": "aviso",
-   "detail": "A MEDIAS según el registro (#154); sin comprobación automática asignada"
   },
   {
    "req": 11,
@@ -5377,8 +5398,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min",
-   "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (98 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 8 esperaron más de 5 min)"
+   "status": "falta",
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 falta, 1 aviso, 1 ok; la peor: «Orquestador: ejecutor vivo cuando hay trabajo» (ejecutor parado; 1 trabajos esperando)"
   },
   {
    "req": 11,
@@ -5405,8 +5426,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código",
-   "status": "ok",
-   "detail": "2 comprobaciones: 2 ok"
+   "status": "falta",
+   "detail": "2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código 0b33182 (2026-11-15T11:54:02): 1311 bien, 1 fallan, 0 errores; fallan: tests/test_nube.py::test_a_match_run_sampl)"
   },
   {
    "req": 11,
@@ -5440,8 +5461,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#246 Un único orquestador: mismo código y misma fuente de datos para la aplicación y el chat; monitorizar, pausar, ",
-   "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (98 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 8 esperaron más de 5 min)"
+   "status": "falta",
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 falta, 1 aviso, 1 ok; la peor: «Orquestador: ejecutor vivo cuando hay trabajo» (ejecutor parado; 1 trabajos esperando)"
   },
   {
    "req": 11,
@@ -5635,6 +5656,209 @@
   {
    "req": 11,
    "area": "Peticiones",
+   "name": "#275 **Parar todo el PC y rehacer el plan entero en Modal, con gasto 0** («para todo el pc en local y replantea tod",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#275); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#276 R22 (F3Set pierde 2 golpes y da 3 identidades al revés frente a v15): el usuario no sabe decidirlo y acepta la",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#276); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#277 Una prueba corta antes de un partido entero en la nube («¿tiene sentido hacer un smoke test previo y no un par",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#277); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#278 La aplicación completa no puede quedarse parada esperando al crédito del mes: «no puedo estar parado 2 semanas",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#278); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#279 Uno o dos partidos nuevos al mes no es una solución válida para la aplicación (Chat, 14-11)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#279); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#280 El coste tiene que seguir siendo 0 € (Chat, 14-11; confirma #272)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#280); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#281 «Haz el 1»: el paso 8, encadenar sin depender de una sesión: una cola de trabajos de la nube en el repositorio",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#281); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#282 Nada puede pararse: «no puedo estar parado medio mes»; la Base tiene que poder cerrarse ya, no en diciembre (C",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#282); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#283 La arquitectura y la infraestructura de la nube tienen que cumplir los requisitos (0 €, sin parar, un partido ",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#283); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#284 «El PC no se usa» (Chat, 14-11): ni para cerrar la Base; todo va en la nube gratuita",
+   "status": "aviso",
+   "detail": "sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#285 Guía detallada para configurar la otra nube (Kaggle), si de verdad cumple todos los requisitos y cómo se usan ",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#285); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#286 «Sí, reescribe los criterios»: B1, B7 y B8 de la Base, para la nube (Chat, 14-11)",
+   "status": "aviso",
+   "detail": "sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#287 **Fallo crítico: el código de la nube sigue basado en el PC.** «Si estamos usando infra cloud el código no se ",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#287); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#288 «Yo no te puedo dar el visto bueno técnicamente»: las decisiones técnicas se toman con pruebas de concepto med",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#288); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#289 **Código híbrido: N tipos de infraestructura por configuración y descubrimiento** (PC, nube de Claude, Modal, ",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#289); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#290 El usuario canceló las versiones 7 y 8 atascadas en Kaggle y **autoriza a Claude a borrar automáticamente un c",
+   "status": "aviso",
+   "detail": "sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#291 «¿No habías hecho en GitHub una cola para la gestión asíncrona de todas las tareas? No puedo estar preguntando",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#291); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#292 «¿Tienes claro que todo el código usado no tiene condicionales del PC como lo que has visto? ¿Las últimas POCs",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#292); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#293 «¿Las fases y etapas del análisis de un partido no cambian? Se han hecho sobre un PC con Windows 11. ¿Es el me",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#293); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#294 «¿Todo el estado del arte que hemos visto no lo tienes que repetir desde 0? ¿Realmente lo seleccionado es lo m",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#294); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#295 «¿La nube nativa no iría antes que el resto de partidos? Dejar los 2 de ahora avanzar y acabar, pero no hacer ",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#295); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#296 «¿El rediseño de la app no iría antes de la app web en la nube, para no tirar trabajo?» (Chat, 15-11)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#296); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#297 «Del plan Base, con los partidos analizados estos días, ¿se puede hacer en la nube el resto de tareas en un al",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#297); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#298 «¿Se puede empezar P0 y N en la nube de Claude si lo del punto 1 se puede hacer?» (Chat, 15-11)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#298); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#299 Preguntar en lenguaje natural sobre su derecha y sus partidos («¿por qué falla más la derecha con bola rápida?",
+   "status": "falta",
+   "detail": "SIN HACER según el registro (#299, docs/peticiones_usuario.md)"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#300 Muñeco 3D del golpe que se gira para verlo desde cualquier lado (hueco de la comparativa #257: Sportsbox AI), ",
+   "status": "falta",
+   "detail": "SIN HACER según el registro (#300, docs/peticiones_usuario.md)"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#301 «Los vídeos se suben desde el PC, no desde el móvil. Y la web se ve tanto en PC como en móvil, principalmente ",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#301); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#302 «La maqueta no vale para nada: 0 profesional, 0 funciones válidas. ¿Has revisado todo lo que te he dicho o ha ",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#302); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#303 «Mi listado de 15 puntos o el listado de la derecha de Ivanovic, ¿está en la app de alguna forma? ¿El resto de",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#303); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
    "name": "#269 Estado y progreso: cuánto falta para lanzar los 6 partidos, qué hay en marcha y pendiente en la nube y en el P",
    "status": "aviso",
    "detail": "sin comprobación automática asignada"
@@ -5644,7 +5868,7 @@
    "area": "Automático",
    "name": "Comprobaciones que saben fallar",
    "status": "aviso",
-   "detail": "sin el registro de las pruebas en este PC (comprobaciones_pruebas/rec_*.json)"
+   "detail": "523 de 600 tipos de comprobación con una prueba que las hace fallar; 59 sin ninguna prueba y 18 que nunca fallan en las pruebas; de las pruebas principales de la Base: 1 (Diseño | Primera pantalla, anchura y nombres (diseño definitivo))"
   },
   {
    "req": 12,
