@@ -310,10 +310,10 @@
   "ruta": "/runs/partido_tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5/estado.json",
   "salida": "/output/tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
   "cuaderno": "tennisbio-final",
-  "kaggle": "running (01:20)",
+  "kaggle": "running (01:26)",
   "arranco": "2026-11-14 23:59",
   "espera_min": 2,
-  "progreso": "players:  56 % (14783/26328 fotogramas con jugadoras) · 15 min · quedan ≈ 11 min (01:20:44; GPU 57 %·0 %, CPU 99 %, 4.5 GB)"
+  "progreso": "score:  64 % (429/670 muestras · 357 lecturas · 374 OCR) · 18 min · quedan ≈ 10 min (01:25:01; GPU 65 %·0 %, CPU 99 %, 4.3 GB)"
  },
  "comparar_gauff_v19_v20": {
   "estado": "hecho",
@@ -375,10 +375,10 @@
   "ruta": "/runs/partido_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5/estado.json",
   "salida": "/output/tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cuaderno": "tennisbio-gauff-b",
-  "kaggle": "running (01:20)",
+  "kaggle": "running (01:26)",
   "arranco": "2026-11-15 00:55",
   "espera_min": 1,
-  "progreso": "scenes:  78 % (156179/200135 fotogramas) · 22 min · quedan ≈ 6 min (01:20:25; GPU 0 %·0 %, CPU 88 %, 2.3 GB)"
+  "progreso": "scenes:  96 % (192810/200135 fotogramas) · 27 min · quedan ≈ 62 s (01:25:25; GPU 63 %·0 %, CPU 88 %, 2.3 GB)"
  },
  "comparar_gauff_v20_v21b": {
   "estado": "revisar",
