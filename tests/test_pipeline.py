@@ -160,8 +160,9 @@ def test_a_ts_without_timestamps_is_cleaned_on_the_second_try(tmp_path, monkeypa
 
     def flaky(cmd, **kw):
         if cmd and cmd[0] == "ffmpeg" and "-c" in cmd and "copy" in cmd:
-            calls.append("-fflags" in cmd)
-            if "-fflags" not in cmd:                     # the plain copy fails as on the PC
+            second = "+genpts+igndts" in cmd             # (both tries carry «-fflags +bitexact» since R56)
+            calls.append(second)
+            if not second:                               # the plain copy fails as on the PC
                 return subprocess.CompletedProcess(cmd, 1, "", "Can't write packet with unknown timestamp")
         return real(cmd, **kw)
     monkeypatch.setattr(stages.subprocess, "run", flaky)

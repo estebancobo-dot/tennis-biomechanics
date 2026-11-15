@@ -335,6 +335,37 @@ def test_the_cloud_cleans_a_ts_with_the_probes_own_command(tmp_path):
     assert nube.clean_copy(tmp_path / "no.ts", tmp_path / "b.mkv") != ""
 
 
+def test_a_copy_or_a_test_clip_is_the_same_bytes_each_time(tmp_path):
+    """T24 (15-11): a test's later part cuts its clip again in a new session; Matroska writes a random segment id and the
+    date, so the clip got a new identity and every stage ran again. Copies and cuts must be the same bytes each time."""
+    import hashlib
+    import inspect
+    import shutil
+    import subprocess
+
+    from tennisbio import stages
+    assert '"-flags:v", "+bitexact", "-flags:a", "+bitexact"' in inspect.getsource(stages.st_probe)
+    for f in ("kaggle/correr.py", "modal_app.py"):        # both clouds cut the test's clip with the one function
+        src = (ROOT / "cloud" / f).read_text(encoding="utf-8")
+        assert "nube.cut_clip(" in src and '"-ss"' not in src, f
+    if shutil.which("ffmpeg") is None:
+        pytest.skip("ffmpeg not installed")
+    ts = tmp_path / "a.ts"
+    subprocess.run(["ffmpeg", "-v", "error", "-f", "lavfi", "-i", "testsrc=size=64x48:rate=25:duration=4",
+                    "-f", "lavfi", "-i", "sine=duration=4", "-c:v", "mpeg2video", "-c:a", "mp2", str(ts)], check=True)
+    def sha(p):
+        return hashlib.sha1(p.read_bytes()).hexdigest()
+    copies, clips = [], []
+    for k in (1, 2):
+        full = tmp_path / f"full{k}.mkv"
+        assert nube.clean_copy(ts, full) == ""
+        clip = tmp_path / f"clip{k}.mkv"
+        nube.cut_clip(full, clip, 1, 2)
+        copies.append(sha(full))
+        clips.append(sha(clip))
+    assert copies[0] == copies[1] and clips[0] == clips[1]
+
+
 def test_the_10_minute_test_archives_its_earlier_run_and_reports_the_cleaning():
     src = (ROOT / "cloud" / "modal_app.py").read_text(encoding="utf-8")
     body = src[src.index("def prueba("):]

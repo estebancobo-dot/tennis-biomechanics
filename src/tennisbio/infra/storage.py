@@ -28,6 +28,14 @@ class Storage:
         """A file or a folder into local_dir, keeping its last name (remote /a/b → local_dir/b)."""
         raise NotImplementedError
 
+    def list(self, folder: str) -> list[str]:
+        """P0.5d: the names of the files directly in a folder, sorted ([] when it is not there; no sub-folders)."""
+        raise NotImplementedError
+
+    def delete(self, path: str) -> bool:
+        """P0.5d: removes ONE file (never a folder: nothing done is ever deleted by mistake); False when not there."""
+        raise NotImplementedError
+
     def read_json(self, path: str):
         data = self.read_bytes(path)
         if data is None:
@@ -69,6 +77,17 @@ class LocalStorage(Storage):
         else:
             raise FileNotFoundError(remote)
 
+    def list(self, folder: str) -> list[str]:
+        d = self._at(folder)
+        return sorted(f.name for f in d.iterdir() if f.is_file() and not f.name.endswith(".tmp")) if d.is_dir() else []
+
+    def delete(self, path: str) -> bool:
+        f = self._at(path)
+        if not f.is_file():
+            return False
+        f.unlink()
+        return True
+
 
 def contract(storage: Storage, work: Path) -> None:
     """What every adapter must do (raises AssertionError otherwise): files written are read back the same, a file
@@ -87,3 +106,7 @@ def contract(storage: Storage, work: Path) -> None:
     out = work / "contrato_traido"
     storage.get("/contrato/r", out)
     assert (out / "r" / "a.json").read_text(encoding="utf-8") == '{"x": 2}' and (out / "r" / "sub" / "b.bin").exists()
+    assert storage.list("/contrato/r") == ["a.json"] and storage.list("/contrato/nada") == []     # files only
+    assert storage.delete("/contrato/r/a.json") and storage.read_bytes("/contrato/r/a.json") is None
+    assert not storage.delete("/contrato/r/a.json") and storage.list("/contrato/r") == []
+    assert not storage.delete("/contrato/r/sub") and storage.read_bytes("/contrato/r/sub/b.bin") == b"\x00\x01"

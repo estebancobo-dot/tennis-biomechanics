@@ -454,7 +454,7 @@ def record_result(state: dict, spend: dict, job_id: str, result: dict, now: floa
             r["horas"] = 0.0                 # R49: it ended (e.g. never started in Kaggle's queue) without running
 
 
-def summary(jobs: list[dict], state: dict, spend: dict, decisions: list, now: float) -> str:
+def summary(jobs: list[dict], state: dict, spend: dict, decisions: list, now: float, pause: dict | None = None) -> str:
     waits = {i: why for i, src, why in decisions if not src}
     rows = ["# Cola de la nube", "", f"Última vuelta: {time.strftime('%Y-%m-%d %H:%M UTC', time.gmtime(now))} · "
             f"Modal: quedan {modal_room(spend, now):.2f} $ de {CREDIT_USD:.0f} $ este mes (tope de la cola {CAP_USD} $) · "
@@ -463,6 +463,9 @@ def summary(jobs: list[dict], state: dict, spend: dict, decisions: list, now: fl
                f"renueva {spend['kaggle_real']['renueva'][:16]}" if (spend.get("kaggle_real") or {}).get("usadas_h")
                is not None else "; cuenta propia") + ")", "",
             "| Trabajo | Acción | Partido | Estado | Dónde | Nota |", "|---|---|---|---|---|---|"]
+    if pause and pause.get("en_pausa"):
+        rows[4:4] = [f"**En pausa desde la aplicación ({pause.get('cuando', '')}):** no se lanza nada nuevo; lo que "
+                     "está en marcha termina.", ""]
     for j in jobs:
         st = state.get(j["id"], {})
         note = waits.get(j["id"]) or (st.get("resultado") or {}).get("nota") or ""
@@ -477,8 +480,43 @@ def summary(jobs: list[dict], state: dict, spend: dict, decisions: list, now: fl
     return "\n".join(rows) + "\n"
 
 
+def app_round(store, state: dict, jobs: list[dict], now: float, before: dict | None = None) -> dict:
+    """P0.5d (docs/p0_plan.md §3 ter): the application's requests (/app/peticiones/ on the volume) read and turned into
+    the queue's own jobs (cloud/peticiones.py). A video goes only when its match's whole analysis is done and the
+    application has its results on the PC; `before` (the last pass's cola/app.json) says which went already. What is
+    returned is also the answer the application shows (each match's wait, each refused request with its reason, the
+    pause), written to cola/app.json."""
+    import peticiones as pt
+
+    reqs = []
+    for name in store.list(pt.FOLDER):
+        r = store.read_json(f"{pt.FOLDER}/{name}")
+        reqs.append((name, r if isinstance(r, dict) else {"tipo": None}))
+    first = pt.interpret(reqs)
+    analysed = {j["partido"] for j in first["trabajos"] if j["accion"] == "partido" and not j.get("etapas")
+                and state.get(j["id"], {}).get("estado") == "hecho"}
+    out = pt.interpret(reqs, analysed=analysed)
+    have = {j["id"] for j in jobs}
+    out["trabajos"] = [j for j in out["trabajos"] if j["id"] not in have]        # Claude's own jobs keep their ids
+    gone = set((before or {}).get("borrados") or [])
+    videos = {e["id"]: e["video"] for e in out["partidos"]}
+    for m in out["borrar"]:
+        if m not in gone and store.delete(f"/videos/{videos[m]}"):
+            gone.add(m)
+    out["borrados"] = sorted(gone)
+    out["hora"] = time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime(now))
+    return out
+
+
 def _read(vol, path: str) -> bytes:
     return b"".join(vol.read_file(path.lstrip("/")))
+
+
+def nube_registry(pc: list[dict], app: list[dict]) -> list[dict]:
+    """The PC's list of matches and the application's (P0.5d): a match in both is the PC's (it was there first)."""
+    import nube
+
+    return nube.registry(pc, app)
 
 
 def matches_on_volume(vol) -> list[dict]:
@@ -489,6 +527,10 @@ def matches_on_volume(vol) -> list[dict]:
     except Exception as e:                                       # the list is not there: say it, check nothing
         print(f"sin la lista de partidos del PC en el volumen ({type(e).__name__})")
         return []
+    try:                                                         # P0.5d: and those added in the application
+        registry = nube_registry(registry, json.loads(_read(vol, "app/registro_partidos.json").decode("utf-8")))
+    except Exception:  # noqa: BLE001 — esperado: none added yet
+        pass
     out = []
     for m in registry:
         try:
@@ -596,6 +638,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--logs", type=Path, required=True, help="la rama nube-logs, ya descargada")
     ap.add_argument("--en-seco", action="store_true", help="decide y escribe el estado sin lanzar ni consultar nada")
     ap.add_argument("--avisos", type=Path, help="#291: aquí, lo que necesita a Claude (el flujo lo comenta en el PR buzón)")
+    ap.add_argument("--peticiones", type=Path, help="P0.5d: una carpeta local con app/peticiones/ (en seco; si no, el volumen)")
     a = ap.parse_args(argv)
     now = time.time()
     queue = yaml.safe_load(a.cola.read_text(encoding="utf-8")) or {}
@@ -608,6 +651,27 @@ def main(argv: list[str] | None = None) -> int:
     done_f = d / "reinicios.json"
     done = _load(done_f, [])
     cancels = queue.get("cancelar") or {}
+    vol = None
+    if not a.en_seco:
+        import modal
+
+        vol = modal.Volume.from_name(VOLUME)
+    import almacen
+    from tennisbio.infra.storage import LocalStorage
+
+    store = almacen.ModalStorage(vol, VOLUME) if vol is not None else LocalStorage(a.peticiones) if a.peticiones else None
+    app = None
+    if store is not None:                                # P0.5d: what the user did in the application
+        try:
+            app = app_round(store, state, jobs, now, _load(d / "app.json", {}))
+        except Exception as e:  # noqa: BLE001 — the application's part never stops Claude's queue; said in its answer
+            print(f"cola: peticiones de la aplicación ({type(e).__name__}: {e})")
+            app = {"trabajos": [], "cancelar": {}, "pausa": None, "partidos": [], "errores": [["(todas)", str(e)[:200]]],
+                   "esperas": {}, "borrados": (_load(d / "app.json", {}) or {}).get("borrados", [])}
+        jobs = jobs + app["trabajos"]
+        cancels = {**cancels, **app["cancelar"]}
+        for name, why in app["errores"]:
+            print(f"cola: petición {name}: {why}")
     for jid in cancel(state, list(cancels), cancels,
                       (lambda slug: print("cola: borrar", slug, _kaggle(["borrar", "--slug", slug]).returncode))
                       if not a.en_seco else (lambda slug: None), spend, now):
@@ -623,9 +687,11 @@ def main(argv: list[str] | None = None) -> int:
     jobs = [j for j in jobs if j.get("id") and j["id"] not in bad_ids]
     by_id = {j["id"]: j for j in jobs}
     if not a.en_seco:
-        import modal
-
-        vol = modal.Volume.from_name(VOLUME)
+        if app and app["partidos"]:                      # the application's matches, for the cloud's list (nube.registry)
+            f = d / "app_registro" / "registro_partidos.json"
+            f.parent.mkdir(exist_ok=True)
+            f.write_text(json.dumps(app["partidos"], ensure_ascii=False, indent=1), encoding="utf-8")
+            store.put_files([f], f.parent, "/app")
         catalog = matches_on_volume(vol)                 # the matches the cloud knows, and which are analysed
         (d / "partidos.json").write_text(json.dumps(catalog, ensure_ascii=False, indent=1), encoding="utf-8")
         known = {m["id"] for m in catalog}
@@ -679,6 +745,10 @@ def main(argv: list[str] | None = None) -> int:
         if real:                                         # R49: Kaggle's own counter decides the room
             spend["kaggle_real"] = {**real, "ts": now}
     decisions = plan(jobs, state, spend, _sources(Path.cwd(), queue, state), now, str(queue.get("partidos_en_espera") or ""))
+    if app:
+        import peticiones
+
+        decisions = peticiones.paused_decisions(decisions, app["pausa"])
     launched = 0
     for jid, src, why in decisions:
         print(f"{jid}: {'→ ' + src if src else 'espera'} · {why}")
@@ -713,7 +783,10 @@ def main(argv: list[str] | None = None) -> int:
             st.setdefault("partido", by_id[jid].get("partido", ""))
     (d / "estado.json").write_text(json.dumps(state, ensure_ascii=False, indent=1), encoding="utf-8")
     (d / "gasto.json").write_text(json.dumps(spend, ensure_ascii=False, indent=1), encoding="utf-8")
-    (d / "estado.md").write_text(summary(jobs, state, spend, decisions, now), encoding="utf-8")
+    (d / "estado.md").write_text(summary(jobs, state, spend, decisions, now, (app or {}).get("pausa")), encoding="utf-8")
+    if app is not None:                                   # P0.5d: the application's answer (also on the volume, /cola/)
+        (d / "app.json").write_text(json.dumps({k: v for k, v in app.items() if k not in ("trabajos", "cancelar")},
+                                               ensure_ascii=False, indent=1), encoding="utf-8")
     (d / "vuelta.json").write_text(json.dumps({"ts": now, "hora": time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime(now)),
                                                "trabajos": len(jobs)}, ensure_ascii=False), encoding="utf-8")
     if not a.en_seco:
@@ -753,7 +826,7 @@ def wake_message(lines: list[str], now: float) -> str:
             + "\n\nEstado completo: rama `nube-logs`, `cola/estado.md`.\n")
 
 
-QUEUE_FILES = ("estado.json", "gasto.json", "vuelta.json", "estado.md")
+QUEUE_FILES = ("estado.json", "gasto.json", "vuelta.json", "estado.md", "app.json")
 REPORT_LOG_MAX = 15 * 1024 * 1024        # a report page larger than this stays only on the volume
 
 

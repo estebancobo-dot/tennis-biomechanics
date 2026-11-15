@@ -41,3 +41,19 @@ class ModalStorage(Storage):
         cmd = ["modal", "volume", "get", "--force", self.name, remote, str(local_dir) + "/"]
         print("$", " ".join(cmd), flush=True)
         self._run(cmd, check=True)
+
+    def list(self, folder: str) -> list[str]:
+        try:
+            entries = self.vol.listdir(str(folder).strip("/") or "/")
+        except Exception as e:  # noqa: BLE001 — not there (Modal's NotFound): an empty folder for the caller
+            self.last_error = f"{type(e).__name__}: {str(e)[:200]}"
+            return []
+        return sorted(str(e.path).rstrip("/").split("/")[-1] for e in entries
+                      if "FILE" in str(getattr(e.type, "name", e.type)).upper())
+
+    def delete(self, path: str) -> bool:
+        p = str(path).strip("/")
+        if self.read_bytes(p) is None:                      # not there, or a folder (never removed)
+            return False
+        self.vol.remove_file(p, recursive=False)
+        return True

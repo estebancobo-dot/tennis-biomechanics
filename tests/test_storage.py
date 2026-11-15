@@ -36,6 +36,19 @@ class FakeVolume:
                 vol.files[dst.lstrip("/")] = Path(src).read_bytes()
         return B()
 
+    def listdir(self, path, recursive=False):
+        from types import SimpleNamespace as NS
+        pre = path.strip("/") + "/"
+        names = {k[len(pre):].split("/")[0]: "/" in k[len(pre):] for k in self.files if k.startswith(pre)}
+        if not names:
+            raise FileNotFoundError(path)               # Modal raises its NotFoundError
+        return [NS(path=pre + n, type=NS(name="DIRECTORY" if d else "FILE")) for n, d in names.items()]
+
+    def remove_file(self, path, recursive=False):
+        if path not in self.files:
+            raise FileNotFoundError(path)
+        del self.files[path]
+
     def cli(self, cmd, check=True):
         remote, local = cmd[-2].lstrip("/"), Path(cmd[-1])
         name = remote.rstrip("/").split("/")[-1]

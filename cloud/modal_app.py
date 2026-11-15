@@ -294,7 +294,7 @@ def _catalog() -> list[dict]:
 
     import nube
     reg_f = DATA / "pc" / "registro_partidos.json"
-    registry = json.loads(reg_f.read_text(encoding="utf-8")) if reg_f.exists() else []
+    registry = nube.read_registry(DATA) if reg_f.exists() else []         # P0.5d: with the application's
     cat = nube.cloud_catalog(registry, DATA / "biblioteca")
     cat["matches"] += nube.test_entries(cat["matches"], DATA / "videos")     # the 10-minute tests (prueba)
     Path("/repo/config/matches.yaml").write_text(yaml.safe_dump(cat, allow_unicode=True, sort_keys=False),
@@ -403,7 +403,7 @@ def informe(tag: str = "informe") -> dict:
     _prepare()
     run = DATA / "runs" / tag
     reg_f = DATA / "pc" / "registro_partidos.json"
-    registry = json.loads(reg_f.read_text(encoding="utf-8")) if reg_f.exists() else []
+    registry = nube.read_registry(DATA) if reg_f.exists() else []         # P0.5d: with the application's
     cat = nube.cloud_catalog(registry, DATA / "biblioteca")
     done = nube.analysed_matches(cat["matches"], DATA / "output")
     Path("/repo/config/matches.yaml").write_text(yaml.safe_dump({"matches": done}, allow_unicode=True, sort_keys=False),
@@ -447,7 +447,6 @@ def prueba(match_id: str, inicio_s: int = 600, duracion_s: int = 600) -> dict:
     without re-encoding, analysed as a match of its own (`_prueba_<id>`, no identity click: the click is for the whole
     match) with the same code: the whole chain in the cloud in minutes and cents before a match takes GPU hours."""
     import shutil
-    import subprocess
     import time
 
     _prepare()
@@ -477,8 +476,7 @@ def prueba(match_id: str, inicio_s: int = 600, duracion_s: int = 600) -> dict:
         if not err:
             video = full
     clip = DATA / "videos" / f"{pid}{video.suffix.lower()}"     # a .ts stays a .ts (the probe then tries, as on the PC)
-    subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", str(inicio_s), "-i", str(video), "-t", str(duracion_s),
-                    "-map", "0:v:0", "-map", "0:a?", "-c", "copy", str(clip)], check=True, timeout=1800)
+    nube.cut_clip(video, clip, inicio_s, duracion_s)
     vol.commit()
     est = partido.local(pid)                  # its catalogue entry comes from the clip (nube.test_entries)
     est["limpieza"] = limpieza

@@ -63,7 +63,9 @@ def st_probe(ctx: Context):
             # timestamp» on the Osaka – Rybakina R4): the second try makes them up from the stream's clock
             for flags in ([], ["-fflags", "+genpts+igndts", "-avoid_negative_ts", "make_zero"]):
                 r = subprocess.run(["ffmpeg", "-v", "error", "-y", *flags[:2], "-i", str(ctx.match.video), *flags[2:],
-                                    "-map", "0:v:0", "-map", "0:a?", "-dn", "-sn", "-c", "copy", str(tmp)],
+                                    "-map", "0:v:0", "-map", "0:a?", "-dn", "-sn", "-c", "copy",
+                                    # T24: the same bytes each time (Matroska writes a random id and the date)
+                                    "-fflags", "+bitexact", "-flags:v", "+bitexact", "-flags:a", "+bitexact", str(tmp)],
                                    capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=3600)
                 if r.returncode == 0 and _valid_video(tmp):
                     break

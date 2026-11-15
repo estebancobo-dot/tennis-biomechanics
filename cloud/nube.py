@@ -58,6 +58,27 @@ def library_dir(entry: dict, library: Path) -> Path:
     return library / "partidos" / (parts[-1] if parts else str(entry.get("id")))
 
 
+APP_REGISTRY = "app/registro_partidos.json"
+
+
+def registry(pc: list[dict], app: list[dict] | None) -> list[dict]:
+    """P0.5d: the cloud's list of matches: the PC's (pc/registro_partidos.json) and those the user added in the
+    application (app/registro_partidos.json, written by the queue from her requests); a match in both is the PC's."""
+    have = {str(m.get("id")) for m in pc}
+    return list(pc) + [m for m in (app or []) if isinstance(m, dict) and m.get("id") and str(m["id"]) not in have]
+
+
+def read_registry(data: Path) -> list[dict]:
+    """The list as a cloud session reads it from the volume (mounted on Modal, brought to Kaggle)."""
+    pc = json.loads((data / "pc" / "registro_partidos.json").read_text(encoding="utf-8"))
+    f = data / APP_REGISTRY
+    try:
+        app = json.loads(f.read_text(encoding="utf-8")) if f.exists() else []
+    except (ValueError, OSError):  # esperado: a damaged list of the application never hides the PC's
+        app = []
+    return registry(pc, app)
+
+
 def cloud_catalog(registry: list[dict], library: Path) -> dict:
     """config/matches.yaml of the cloud (13-11, everything in Modal): each match of the PC's list with its video as
     uploaded (/data/videos/<id><ext>, scripts/subir_nube.py) and what its record says (opponent, tournament, date,
@@ -203,6 +224,10 @@ def per_stage(samples: list[dict], manifest: dict) -> dict:
 TS_SUFFIXES = (".ts", ".m2ts", ".mts", ".trp")
 # the probe stage's two tries (tennisbio.stages.st_probe; tests/test_nube.py keeps them equal)
 CLEAN_TRIES = ([], ["-fflags", "+genpts+igndts", "-avoid_negative_ts", "make_zero"])
+# T24 (15-11): the Matroska muxer writes a random segment id and the date, so two copies of the same video differed byte
+# for byte and a test's later part took its clip for a new video (every stage again). These output options make a copy
+# the same bytes each time (verified: two cuts of the same .ts, identical with them, different without).
+BITEXACT = ["-fflags", "+bitexact", "-flags:v", "+bitexact", "-flags:a", "+bitexact"]
 
 
 def needs_clean_copy(video: Path) -> bool:
@@ -215,12 +240,19 @@ def clean_copy(src: Path, dst: Path, timeout: int = 3600) -> str:
     err = ""
     for flags in CLEAN_TRIES:
         r = subprocess.run(["ffmpeg", "-v", "error", "-y", *flags[:2], "-i", str(src), *flags[2:], "-map", "0:v:0",
-                            "-map", "0:a?", "-dn", "-sn", "-c", "copy", str(dst)],
+                            "-map", "0:a?", "-dn", "-sn", "-c", "copy", *BITEXACT, str(dst)],
                            capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=timeout)
         if r.returncode == 0 and dst.exists() and dst.stat().st_size > 0:
             return ""
         err = (r.stderr or f"código {r.returncode}").strip()[-300:]
     return err or "sin salida"
+
+
+def cut_clip(video: Path, clip: Path, start_s: float, dur_s: float, timeout: int = 1800) -> None:
+    """A 10-minute test's clip (no re-encoding), the same bytes each time it is cut (T24: a later part cuts it again)."""
+    import subprocess
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", str(start_s), "-i", str(video), "-t", str(dur_s),
+                    "-map", "0:v:0", "-map", "0:a?", "-c", "copy", *BITEXACT, str(clip)], check=True, timeout=timeout)
 
 
 def analysed_matches(matches: list[dict], out_root: Path) -> list[dict]:

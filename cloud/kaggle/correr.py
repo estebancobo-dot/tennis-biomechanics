@@ -327,11 +327,15 @@ def main(argv: list[str]) -> int:
             return research(job, run, vol, est, save)
         for d in ("/pc", "/biblioteca", "/home", "/models"):
             modal_get(d, data)
+        try:                                      # P0.5d: the matches added in the application (none yet: no folder)
+            modal_get("/app/registro_partidos.json", data / "app")
+        except subprocess.CalledProcessError:
+            print("sin partidos añadidos en la aplicación", flush=True)
         models = nube.unnested(data / "models")
         est["descarga_s"] = round(time.time() - t0)
         py = setup_env(REPO, scratch / "venv", gpu=not job.get("cpu"))
         est["entorno_s"] = round(time.time() - t0) - est["descarga_s"]
-        registry = json.loads((data / "pc" / "registro_partidos.json").read_text(encoding="utf-8"))
+        registry = nube.read_registry(data)        # the PC's list and the application's (P0.5d)
         prepare(REPO, data, registry, job.get("config"))
         try:                                      # 14-11 (the user: nothing decided by the PC's old settings): the
             import yaml                           # settings this run really uses, without paths, in its state
@@ -374,8 +378,7 @@ def main(argv: list[str]) -> int:
                 est["limpieza"] = f"no se puede: se usa el .ts tal cual ({err[-120:]})" if err else "bien"
                 video = full if not err else video
             clip = data / "videos" / f"{job['run_id']}{video.suffix.lower()}"
-            _run(["ffmpeg", "-v", "error", "-y", "-ss", str(job.get("inicio_s", 600)), "-i", str(video), "-t",
-                  str(job.get("duracion_s", 600)), "-map", "0:v:0", "-map", "0:a?", "-c", "copy", str(clip)])
+            nube.cut_clip(video, clip, job.get("inicio_s", 600), job.get("duracion_s", 600))
             prepare(REPO, data, registry, job.get("config"))
             if job.get("previa"):                         # T24: what this test's earlier part left (same clip, cut again)
                 try:

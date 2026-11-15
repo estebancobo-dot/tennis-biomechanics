@@ -154,6 +154,13 @@ trabajos:
   - {id: comparar_gauff_v26_v30, accion: comparar, a: prueba_gauff_v26, b: prueba_gauff_v30_c}
   # 15-11 21:00: por qué cada parte repite las etapas de la anterior (R55 no bastaba): sus registros y la identidad del clip
   - {id: leer_v30, accion: leer, rutas: [/runs/kaggle_prueba_gauff_v30_a/log.txt, /runs/kaggle_prueba_gauff_v30_b/log.txt, /kaggle_pruebas/prueba_gauff_v30_a/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5/video.json, /kaggle_pruebas/prueba_gauff_v30_a/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5/manifest.json, /kaggle_pruebas/prueba_gauff_v30_a/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5/probe.json]}
+  # 15-11 21:25 (R56): leer_v30 dio la otra causa: el clip de 10 min se corta de nuevo en cada sesión y Matroska escribe
+  # un identificador al azar y la fecha, así que cada corte tenía otros bytes y el clip pasaba por otro vídeo (todas las
+  # etapas otra vez). Arreglado (cortes y copias con «bitexact»: los mismos bytes cada vez). La prueba por partes otra vez
+  - {id: prueba_gauff_v31_a, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, cpu: true, etapas: [probe, scenes, court, audio]}
+  - {id: prueba_gauff_v31_b, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, tras: prueba_gauff_v31_a, junto_a: prueba_gauff_v31_a, etapas: [players, score, identity, spotting, candidates, fine, fine_opponent, fine_doubtful]}
+  - {id: prueba_gauff_v31_c, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, cpu: true, tras: prueba_gauff_v31_b, junto_a: prueba_gauff_v31_a, etapas: [views, views_link, view_clips, slowmo_fine]}
+  - {id: comparar_gauff_v26_v31, accion: comparar, a: prueba_gauff_v26, b: prueba_gauff_v31_c}
   # R52 (15-11): los errores de la pasada fina de Zheng (análisis del 13-11 en Modal), leídos sin GPU ni crédito
   - {id: leer_zheng_errores, accion: leer, rutas: [/output/zheng-qinwen-elena-rybakina/strokes_errores.json]}
   # lotes 3 y 4 (aprobados por el usuario el 13-11: Osaka; Pegula y Zheng; Gauff y la final; Zverev-Sinner), cada

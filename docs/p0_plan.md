@@ -105,6 +105,41 @@ Sin errores ni desbordes en escritorio. Lo que falta en las dos es lo mismo: el 
 estroboscópica y la tira de contactos, que necesitan los fotogramas del PC (P0.5e). Después, el resto de la taxonomía
 (cambio 1, explorador) y de la táctica (cambio 2: secuencias, peloteo, el punto con mini-mapa, la recuperación).
 
+## 3 ter. P0.5d: la gestión de verdad (diseño, 15-11 21:40)
+
+Lo que el usuario hace en la aplicación (#301: sube el vídeo desde el PC, hace el clic, aprueba y ve los resultados en el
+PC) pasa por **la misma cola** que los trabajos de Claude (`config/cola_nube.yaml`, `cloud/cola.py`): una sola cola, un
+solo estado (`nube-logs:cola/estado.md` y `/cola/` del volumen), los mismos topes (0 €). Nada nuevo que vigilar.
+
+**El canal: peticiones en el volumen.** La aplicación no toca el repositorio (el PC no hace subidas al código: chocarían
+con las de Claude). Cada acción del usuario es un fichero propio en el volumen de Modal, `/app/peticiones/<fecha>_<tipo>_<partido>.json`,
+escrito por el puerto de almacenamiento (`tennisbio.infra.storage`; en el PC, su adaptador de Modal con la clave de
+`5_conectar_nube.bat`). Nunca se sobrescribe ni se borra (es el registro de lo que pidió y cuándo, como las revisiones).
+La cola los lee en cada vuelta (cada 30 min, o al momento con el aviso de la aplicación) y los convierte en trabajos con
+los campos que ya existen.
+
+| Petición | Qué escribe la aplicación | Qué hace la cola |
+|---|---|---|
+| `alta` | el vídeo en `/videos/` y su ficha en `/biblioteca/<partido>/partido.json` (jugadoras, torneo, fecha, superficie, ronda) | `app_prueba_<partido>` (10 min) y después `app_preparar_<partido>`: la pasada barata hasta `identity` en una sesión de **CPU** (no gasta horas de GPU) y las dos fotos de «¿Cuál es ella?» |
+| `clic` | `/biblioteca/<partido>/etapas/identidad_clic.json` (el mismo fichero que hoy) | nada que lanzar: el partido queda «listo para aprobar» |
+| `aprobar` | la aprobación con lo que se le enseñó (horas y coste previstos) | `app_<partido>` (`accion: partido`, `aprobado: true`, tras la preparación y con el clic); #262: solo con este botón o con `aprobado: true` de Claude tras el visto bueno del usuario en el chat |
+| `pausar` / `reanudar` | — | en pausa no lanza nada nuevo (lo que corre termina); el estado lo dice con la hora |
+| `cancelar` | el trabajo | el mismo camino que la cancelación de Claude (se registra el motivo «desde la aplicación») |
+| `borrar_video` | — | borra el vídeo del volumen **solo** si el partido está analizado y la aplicación confirmó la descarga de sus resultados (CLAUDE.md, requisito 10: «se borran al terminar»); si no, lo rechaza con el motivo |
+| `persona` | su ficha (`name`, `hand`, `backhand`, `height_m`) en `/biblioteca/personas/<id>.json` | el catálogo de la nube la junta con `config/players/` (la del repositorio manda si están las dos) |
+
+**Reglas.** Los ids de la aplicación llevan `app_` (nunca chocan con los de Claude); `check_queue` valida las dos fuentes
+igual; una petición mal formada se queda en el estado con su motivo (no para la cola). La aplicación lee el estado de
+`/cola/` del volumen (no del repositorio) y enseña en cada partido en qué paso está y qué falta («falta el clic», «falta
+tu aprobación», «en cola: sin horas de GPU hasta el sábado»).
+
+**Lo que se construye ahora (nube, sin el PC):** (1) el puerto de almacenamiento con `list` y `delete` (y su contrato
+en los dos adaptadores); (2) `cloud/peticiones.py`: de las peticiones a trabajos y a la pausa, funciones puras con sus
+pruebas, y su lectura en cada vuelta de `cloud/cola.py`; (3) las fotos del clic en la nube tras la preparación;
+(4) `tennisbio.app.p0_api`: lo que llama la ventana (subir, clic, aprobar, pausar, cancelar, borrar, estado), probado con
+el adaptador local; (5) los botones de Gestión llamándolo (en el navegador, sin la ventana, salen desactivados con «en la
+aplicación del PC»). **En el PC (P0.5e, con el usuario):** la ventana, la clave de Modal y la primera subida de verdad.
+
 ## 4. Métricas de aceptación (casillas del modelo de calidad que P0 debe llenar)
 - **Usabilidad:** cada tarea principal (añadir un partido, señalar a la jugadora, ver «cómo pega la derecha» en una
   situación, ver un golpe en vídeo con sus medidas, comparar dos golpes, pausar la cola) en ≤ N clics y sin errores de
