@@ -46,6 +46,7 @@ def _leaves(d, prefix=""):
 
 
 ANGLE_HINTS = ("_deg", "yaw", "tilt", "angle", "turn", "x_factor")
+JUMP_DEG = 90.0                  # an angle that changes more than this between two runs has jumped (R50)
 
 
 def is_angle(key: str) -> bool:
@@ -92,6 +93,7 @@ def compare_strokes(a: list[dict], b: list[dict], skip=("series", "window", "vie
     kinds = [round(stroke_time(s), 2) for s, x in pairs if s.get("stroke") != x.get("stroke")]
     diffs: dict[str, int] = {}
     worst: dict[str, float] = {}
+    jumps: list = []
     for s, x in pairs:
         la = dict(_leaves({k: v for k, v in s.items() if k not in skip}))
         lb = dict(_leaves({k: v for k, v in x.items() if k not in skip}))
@@ -103,8 +105,14 @@ def compare_strokes(a: list[dict], b: list[dict], skip=("series", "window", "vie
                 diffs[k] = diffs.get(k, 0) + 1
                 if isinstance(va, (int, float)) and isinstance(vb, (int, float)) and not isinstance(va, bool):
                     worst[k] = max(worst.get(k, 0.0), _diff(float(va), float(vb), k))
+                    if is_angle(k) and _diff(float(va), float(vb), k) > JUMP_DEG:
+                        # R50: an angle that jumps, with the «ambiguous» flag of its phase on each side if it has one
+                        amb = k.rsplit(".", 1)[0] + ".ambiguous"
+                        jumps.append({"t": round(stroke_time(s), 2), "medida": k, "a": round(float(va), 1),
+                                      "b": round(float(vb), 1), "ambigua_a": la.get(amb), "ambigua_b": lb.get(amb)})
     return {"a": len(a), "b": len(b), "pares": len(pairs), "solo_a": only_a[:20], "solo_b": only_b[:20],
             "tipo_distinto": kinds[:20], "medidas_distintas": dict(sorted(diffs.items(), key=lambda kv: -kv[1])[:20]),
+            "saltos": jumps[:400], "golpes_con_saltos": len({j["t"] for j in jumps}),
             "mayor_diferencia": {k: round(v, 4) for k, v in sorted(worst.items(), key=lambda kv: -kv[1])[:20]}}
 
 
