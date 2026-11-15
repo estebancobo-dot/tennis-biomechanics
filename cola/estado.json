@@ -378,7 +378,7 @@
   "kaggle": "running (01:36)",
   "arranco": "2026-11-15 00:55",
   "espera_min": 1,
-  "progreso": "court:  77 % (1088/1420 fotogramas) · 5 min · quedan ≈ 2 min (01:32:23; GPU 0 %·0 %, CPU 95 %, 3.0 GB)"
+  "progreso": "court terminada a las 01:36:24 en 9.8 min (01:36:24; GPU 0 %·0 %, CPU 100 %, 3.0 GB)"
  },
  "comparar_gauff_v20_v21b": {
   "estado": "revisar",
