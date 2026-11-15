@@ -310,10 +310,10 @@
   "ruta": "/runs/partido_tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5/estado.json",
   "salida": "/output/tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
   "cuaderno": "tennisbio-final",
-  "kaggle": "running (04:37)",
+  "kaggle": "running (04:43)",
   "arranco": "2026-11-14 23:59",
   "espera_min": 2,
-  "progreso": "fine:  74 % (278/377 golpes candidatos · 263 confirmados · 0 ventanas descartadas sin pose) · 68 min · quedan ≈ 24 min (04:35:55; GPU 0 %·78 %, CPU 86 %, 12.6 GB)"
+  "progreso": "fine:  79 % (299/377 golpes candidatos · 283 confirmados · 0 ventanas descartadas sin pose) · 76 min · quedan ≈ 20 min (04:43:05; GPU 26 %·0 %, CPU 85 %, 12.6 GB)"
  },
  "comparar_gauff_v19_v20": {
   "estado": "hecho",
@@ -375,10 +375,10 @@
   "ruta": "/runs/partido_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5/estado.json",
   "salida": "/output/tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cuaderno": "tennisbio-gauff-b",
-  "kaggle": "running (04:37)",
+  "kaggle": "running (04:43)",
   "arranco": "2026-11-15 00:55",
   "espera_min": 1,
-  "progreso": "fine:  82 % (300/368 golpes candidatos · 291 confirmados · 0 ventanas descartadas sin pose) · 77 min · quedan ≈ 17 min (04:36:41; GPU 47 %·0 %, CPU 85 %, 12.5 GB)"
+  "progreso": "fine:  86 % (315/368 golpes candidatos · 306 confirmados · 0 ventanas descartadas sin pose) · 82 min · quedan ≈ 14 min (04:41:27; GPU 78 %·75 %, CPU 84 %, 12.4 GB)"
  },
  "comparar_gauff_v20_v21b": {
   "estado": "revisar",
