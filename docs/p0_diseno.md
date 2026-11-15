@@ -266,7 +266,9 @@ nueva. Cada uno tiene su estado visible en la ficha del partido.
 
 ## 9. Lo que sigue
 
-1. Maqueta navegable de **todas** las pantallas de las secciones 4-6, con los datos reales de la beta y el catálogo
+1. Maqueta navegable de **todas** las pantallas de las secciones 4-6. Tiene que enseñar el contenido de
+   `p0_cobertura_listas.md`: la matriz de 15 puntos, la guía de Ivanovic, el juego de pies, las alturas, la bola y ella
+   y los demás golpes con su estado, sin esconder lo que falta, con los datos reales de la beta y el catálogo
    real: las 3 fichas de personas, los 6 partidos (5 analizados y Zverev–Sinner pendiente), un análisis hecho (la
    derecha de Rybakina) y los demás como «se puede analizar».
 2. Una revisión del usuario de esa maqueta.

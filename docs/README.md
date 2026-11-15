@@ -43,6 +43,7 @@ Cada documento tiene **un solo papel**. Si dos dicen cosas distintas, manda el *
 | `comparativa_completa.md` (15-11) | P0.3: el catálogo de referencias (`config/referencias.yaml`) resumido: notas por criterio, patrones que se adoptan y cuáles no (con su motivo), huecos (#299, #300) |
 | `p0_inventario.md` (15-11) | **P0.1 rehecho (#302):** las 301 peticiones por función de la aplicación, los documentos de diseño del 17-10, la aplicación y el visor de hoy, las maquetas anteriores y lo pendiente; lo que el diseño de P0 tiene que cubrir |
 | `p0_diseno.md` (15-11) | **El diseño de P0 vigente (#252, #301, #302):** objetos, navegación (Ver, Gestionar, Sistema), las 8 pantallas de gestión, el visor de un análisis en 3 entradas, los flujos, el sistema de diseño y los criterios; cada pantalla con sus peticiones |
+| `p0_cobertura_listas.md` (15-11) | Tus listas frente a la aplicación, comprobado en el código: tu matriz de 15 puntos, los 20 huecos de la guía de Ivanovic, los demás golpes, el juego de pies, las alturas y la bola y ella |
 | `p0_estado_del_arte.md` (15-11) | Estado del arte de verdad para P0: pantallas y flujos de Sportscode, Kinovea, OnForm, SwingVision, Sportsbox, TennisViz, IBM y SportAI leídos en sus fuentes oficiales; patrones y qué hace P0 con cada uno |
 | `p0_pantallas.md` (15-11) | Retirado (#302): el mapa de 5 secciones hecho sin el inventario; se rehace |
 | `maqueta-informe.html`, `maqueta_leccion_armado.html`, `maqueta_aplicacion.html` | Maquetas de diseño (datos inventados) |
