@@ -1,6 +1,6 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-15 07:10 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 5.5 h de GPU esta semana (tope 28 h; Kaggle dice 21.65 h usadas de 30.0, se renueva 2026-11-21 00:00)
+Última vuelta: 2026-11-15 07:16 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 5.5 h de GPU esta semana (tope 28 h; Kaggle dice 21.74 h usadas de 30.0, se renueva 2026-11-21 00:00)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
@@ -32,7 +32,7 @@
 | gauff_b | partido | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
 | prueba_final | prueba | tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 | hecho | modal |  |
 | final | partido | tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 | hecho | kaggle |  |
-| prueba_sinner | prueba | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | en_marcha | kaggle | Kaggle: running (07:10), intento 1 · identity: 100 % (97/97 fotogramas (ropa)) · 35 s · quedan ≈ 0 s (07:07:28; GPU 0 %·0 %, CPU 67 %, 3.9 GB) |
+| prueba_sinner | prueba | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | en_marcha | kaggle | Kaggle: running (07:16), intento 1 · fine:  67 % (10/15 golpes candidatos · 10 confirmados · 0 ventanas descartadas sin pose) · 87 s · quedan ≈ 43 s (07:16:09; GPU 18 %·41 %, CPU 78 %, 10.0 GB) |
 | sinner | partido | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | pendiente |  | espera a prueba_sinner (en_marcha) |
 | actualizar_osaka | partido | us-open-2026-r4-naomi-osaka-elena-rybakina | pendiente |  | espera a sinner (pendiente) |
 | actualizar_pegula | partido | elena-rybakina-jessica-pegula-miami-2026-quarter-final | pendiente |  | espera a actualizar_osaka (pendiente) |
