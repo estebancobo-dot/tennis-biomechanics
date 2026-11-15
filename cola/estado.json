@@ -1182,7 +1182,7 @@
   "inicio": "2026-11-15 22:10",
   "ruta": "/runs/kaggle_medir_bola_totnet_gpu/estado.json",
   "cuaderno": "tennisbio-medir-bola-totnet-gpu",
-  "kaggle": "running (22:39)",
+  "kaggle": "running (22:44)",
   "arranco": "2026-11-15 22:13",
   "espera_min": 3
  },
@@ -1211,7 +1211,7 @@
   }
  },
  "medir_sapiens2": {
-  "estado": "en_marcha",
+  "estado": "error",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 1,
@@ -1221,7 +1221,13 @@
   "inicio": "2026-11-15 22:39",
   "ruta": "/runs/kaggle_medir_sapiens2/estado.json",
   "salida": "/output/tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
-  "cuaderno": "tennisbio-medir-sapiens2"
+  "cuaderno": "tennisbio-medir-sapiens2",
+  "kaggle": "error (22:44)",
+  "fin": "2026-11-15 22:44",
+  "resultado": {
+   "estado": "error",
+   "horas_kaggle": 0.06
+  }
  },
  "prueba_gauff_v32_c": {
   "estado": "en_marcha",
@@ -1235,6 +1241,10 @@
   "ruta": "/runs/kaggle_prueba_gauff_v32_c/estado.json",
   "salida": "/kaggle_pruebas/prueba_gauff_v32_a/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cpu": true,
-  "cuaderno": "tennisbio-prueba-gauff-v32-c"
+  "cuaderno": "tennisbio-prueba-gauff-v32-c",
+  "progreso": "views:  24 % (36/147 fotogramas de otras tomas) · 2 min · quedan ≈ 7 min (22:43:59; CPU 88 %, 3.2 GB)",
+  "kaggle": "running (22:44)",
+  "arranco": "2026-11-15 22:44",
+  "espera_min": 5
  }
 }

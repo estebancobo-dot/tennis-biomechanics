@@ -138,15 +138,16 @@
      "horas": 0.27
     },
     "medir_sapiens2": {
-     "estimado_h": 0.5
+     "estimado_h": 0.5,
+     "horas": 0.06
     }
    }
   }
  },
  "kaggle_real": {
-  "usadas_h": 25.78,
+  "usadas_h": 25.93,
   "total_h": 30.0,
   "renueva": "2026-11-21 00:00:00",
-  "ts": 1794782351.0261855
+  "ts": 1794782659.3554778
  }
 }

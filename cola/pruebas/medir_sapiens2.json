@@ -1,0 +1,23 @@
+{
+ "estado": "error",
+ "poc": {
+  "error": "egrations/sdpa_attention.py\", line 193, in sdpa_attention_forward\n    attn_output = torch.nn.functional.scaled_dot_product_attention(\n        query,\n    ...<6 lines>...\n        **sdpa_kwargs,\n    )\ntorch.OutOfMemoryError: CUDA out of memory. Tried to allocate 9.05 GiB. GPU 0 has a total capacity of 14.56 GiB of which 8.62 GiB is free. Including non-PyTorch memory, this process has 5.94 GiB memory in use. Of the allocated memory 5.32 GiB is allocated by PyTorch, and 508.11 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)\n"
+ },
+ "kaggle": {
+  "python": "3.13.16",
+  "nucleos": 4,
+  "memoria_gib": {
+   "MemTotal": 31.3,
+   "MemAvailable": 30.0
+  },
+  "disco_libre_gib": {
+   "/tmp": 966.8,
+   "/kaggle/working": 19.5
+  },
+  "gpu": "Tesla T4, 15360 MiB\nTesla T4, 15360 MiB",
+  "ffmpeg": "/usr/bin/ffmpeg",
+  "clave_modal": true
+ },
+ "horas_kaggle": 0.06,
+ "nota": null
+}
