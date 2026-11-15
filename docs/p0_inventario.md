@@ -156,7 +156,7 @@ la nube, por ejemplo) y esa huella está en 2.2.
   (#197).
 - La cola y el estado son los de la nube; la descarga de resultados al PC (N, `docs/n_web.md`).
 
-## 5. Estado del arte de verdad (pendiente: lo siguiente que se hace)
+## 5. Estado del arte de verdad (hecho el 15-11: `docs/p0_estado_del_arte.md`)
 
 La comparativa del 15-11 se hizo con fichas y prensa, y la del 17-10 con capturas propias y memoria. Falta hacerla mirando
 sus pantallas y flujos reales a día de hoy: capturas de sus tiendas de aplicaciones, documentación, vídeos de
