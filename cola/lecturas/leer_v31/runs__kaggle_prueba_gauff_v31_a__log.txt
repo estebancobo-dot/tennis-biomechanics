@@ -1,0 +1,28 @@
+[_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] probe… (2026-11-15 20:48:08, etapa 1 de 16)
+[_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] probe terminada a las 20:48:09 en 1 s
+[_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] scenes… (2026-11-15 20:48:09, etapa 2 de 16)
+  scenes:   0 % (1/15016 fotogramas) · 0 s · quedan ≈ 0 s
+  scenes:   7 % (1044/15016 fotogramas) · 30 s · quedan ≈ 7 min
+  scenes:  12 % (1826/15016 fotogramas) · 61 s · quedan ≈ 7 min
+  scenes:  19 % (2826/15016 fotogramas) · 2 min · quedan ≈ 7 min
+  scenes:  27 % (4000/15016 fotogramas) · 2 min · quedan ≈ 6 min
+  scenes:  33 % (5026/15016 fotogramas) · 3 min · quedan ≈ 5 min
+  scenes:  40 % (6026/15016 fotogramas) · 3 min · quedan ≈ 5 min
+  scenes:  47 % (7026/15016 fotogramas) · 4 min · quedan ≈ 4 min
+  scenes:  55 % (8226/15016 fotogramas) · 4 min · quedan ≈ 3 min
+  scenes:  61 % (9226/15016 fotogramas) · 5 min · quedan ≈ 3 min
+  scenes:  68 % (10226/15016 fotogramas) · 5 min · quedan ≈ 2 min
+  scenes:  76 % (11426/15016 fotogramas) · 6 min · quedan ≈ 2 min
+  scenes:  84 % (12626/15016 fotogramas) · 6 min · quedan ≈ 72 s
+  scenes:  92 % (13826/15016 fotogramas) · 7 min · quedan ≈ 36 s
+  scenes: 100 % (15016/15016 fotogramas) · 7 min · quedan ≈ 0 s
+[_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] scenes terminada a las 20:55:41 en 7.5 min
+[_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] court… (2026-11-15 20:55:41, etapa 3 de 16)
+  court:  55 % (64/117 fotogramas) · 0 s · quedan ≈ 0 s
+  court: 100 % (117/117 fotogramas) · 28 s · quedan ≈ 0 s
+[_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] court terminada a las 20:57:27 en 1.8 min
+[_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] audio… (2026-11-15 20:57:27, etapa 4 de 16)
+  audio:  25 % (300/1201 s de sonido) · 0 s · quedan ≈ 0 s
+  audio: 100 % (1201/1201 s de sonido) · 9 s · quedan ≈ 0 s
+[_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] audio terminada a las 20:58:02 en 35 s
+_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5: ejecutado probe, scenes, court, audio
