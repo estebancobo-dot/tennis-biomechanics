@@ -677,6 +677,7 @@ def wake_message(lines: list[str], now: float) -> str:
 
 
 QUEUE_FILES = ("estado.json", "gasto.json", "vuelta.json", "estado.md")
+REPORT_LOG_MAX = 15 * 1024 * 1024        # a report page larger than this stays only on the volume
 
 
 def copy_poc_results(vol, state: dict, logs: Path) -> list[str]:
@@ -684,6 +685,20 @@ def copy_poc_results(vol, state: dict, logs: Path) -> list[str]:
     (cola/pruebas/<id>.json), and every finished test's and match's time and resources by stage
     (cola/ejecuciones/<id>.json), where Claude reads them without Modal's keys; once per job, the finished ones too."""
     out = []
+    for jid, st in state.items():                         # 15-11 (#297): a report's audit (and its page, if small)
+        if isinstance(st, dict) and st.get("accion") == "informe" and st.get("estado") in FINAL and st.get("ruta"):
+            dest = logs / "informes" / jid
+            if not dest.exists():
+                import almacen
+
+                store, base = almacen.ModalStorage(vol, VOLUME), st["ruta"].rsplit("/", 1)[0]
+                for name, limit in (("auditoria.md", None), ("auditoria.json", None), ("informe.html", REPORT_LOG_MAX)):
+                    data = store.read_bytes(f"{base}/{name}")
+                    if data is not None and (limit is None or len(data) <= limit):
+                        dest.mkdir(parents=True, exist_ok=True)
+                        (dest / name).write_bytes(data)
+                if dest.exists():
+                    out.append(jid)
     for jid, st in state.items():
         if not isinstance(st, dict) or st.get("accion") not in ("medir", "prueba", "partido") \
                 or st.get("estado") not in (*FINAL, "revisar") or not st.get("ruta"):

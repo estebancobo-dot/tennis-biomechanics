@@ -470,3 +470,20 @@ def test_running_reservations_follow_the_measured_rate():
     cola.refresh_estimates(state, spend, {"final": job})
     t = spend["kaggle"][cola.week(NOV)]["trabajos"]
     assert t["final"]["estimado_h"] == cola.estimate_h(job) < 17.85 and t["x"]["estimado_h"] == 1.0
+
+
+def test_a_reports_audit_reaches_the_logs(tmp_path):
+    """15-11 (#297): a finished report's audit (and its page when small) is copied to nube-logs/cola/informes/<id>."""
+    files = {"runs/informe_beta/auditoria.md": b"# Auditoria", "runs/informe_beta/auditoria.json": b"{}",
+             "runs/informe_beta/informe.html": b"<html></html>"}
+
+    class Vol:
+        def read_file(self, path):
+            if path not in files:
+                raise FileNotFoundError(path)
+            return [files[path]]
+    state = {"informe_beta": {"accion": "informe", "estado": "hecho", "ruta": "/runs/informe_beta/estado.json"}}
+    assert cola.copy_poc_results(Vol(), state, tmp_path) == ["informe_beta"]
+    d = tmp_path / "informes" / "informe_beta"
+    assert (d / "auditoria.md").read_bytes() == b"# Auditoria" and (d / "informe.html").exists()
+    assert cola.copy_poc_results(Vol(), state, tmp_path) == []
