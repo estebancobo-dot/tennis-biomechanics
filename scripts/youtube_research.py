@@ -28,7 +28,8 @@ QUERIES = [
     "forehand footwork split step analysis", "forehand racket face lag analysis",
 ]
 MAX_MIN = 25          # longer videos are interviews or whole matches
-WHISPER_MODEL = "small"   # multilingual (coaches in English or Spanish); int8 on the CPU
+WHISPER_MODEL = "small"
+EVERY_S = 0.0             # --cada: one frame every so many seconds for the chosen videos (0: about 90 per video)   # multilingual (coaches in English or Spanish); int8 on the CPU
 
 
 YTDLP = [sys.executable, "-m", "yt_dlp"]
@@ -179,7 +180,7 @@ def one(v: dict, dest: Path, tmp: Path, transcribe_speech: bool = False) -> dict
     n = 0
     if vids:
         # about 36 frames per video at most; the ones the user chose, about 90 (their graphics matter)
-        every = max(3.0, v["duration_s"] / 90) if v.get("chosen_by_user") else max(6.0, v["duration_s"] / 36)
+        every = (EVERY_S or max(3.0, v["duration_s"] / 90)) if v.get("chosen_by_user") else max(6.0, v["duration_s"] / 36)
         subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(vids[0]), "-vf", f"fps=1/{every:.1f},scale=480:-2", "-q:v", "6",
                         str(d / "f_%03d.jpg")], timeout=900)
         n = len(list(d.glob("f_*.jpg")))
@@ -200,7 +201,10 @@ def main():
     ap.add_argument("--per-query", type=int, default=6)
     ap.add_argument("--urls", default="", help="videos chosen by the user (YouTube links or ids, separated by spaces or commas)")
     ap.add_argument("--transcribir", action="store_true", help="no subtitles: transcribe the speech (faster-whisper)")
+    ap.add_argument("--cada", type=float, default=0.0, help="one frame every so many seconds (to study on-screen graphics)")
     args = ap.parse_args()
+    global EVERY_S
+    EVERY_S = max(0.0, args.cada)
     dest = Path(args.out)
     dest.mkdir(parents=True, exist_ok=True)
     if not shutil.which("ffmpeg"):

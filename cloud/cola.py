@@ -544,6 +544,7 @@ def kaggle_launch(job: dict, slug: str | None = None) -> bool:
               + (["--urls", str(job["urls"])] if job.get("urls") else []))
              if job["accion"] == "medir" else
              ["--salida-remota", run_path(job, "kaggle").rsplit("/", 1)[0], "--urls", str(job.get("urls") or ""), "--cpu"]
+             + (["--cada", str(job["cada"])] if job.get("cada") else [])
              if job["accion"] == "investigar" else [])
     if job.get("config"):                            # T5: a test of other settings (proof of concept on the whole clip)
         extra += ["--config", json.dumps(job["config"], ensure_ascii=False)]

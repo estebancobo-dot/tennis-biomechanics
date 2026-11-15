@@ -654,3 +654,20 @@ def test_a_test_in_parts_cpu_gpu_cpu(monkeypatch):
     assert cola.kaggle_launch(whole)
     L = calls[-1]
     assert L[L.index("--salida-remota") + 1] == "/runs/kaggle_gx" and "--cpu" in L
+
+
+def test_a_research_job_may_ask_for_dense_frames(monkeypatch):
+    """#306 (15-11): to study a video's on-screen graphics, `cada: 1` asks for one frame per second; it reaches the
+    notebook and the research script."""
+    calls = []
+
+    class R:
+        returncode, stdout, stderr = 0, "", ""
+    monkeypatch.setattr(cola, "_kaggle", lambda args: calls.append(args) or R())
+    j = {"id": "inv", "accion": "investigar", "donde": "kaggle", "cada": 1, "urls": "https://youtu.be/AAAAAAAAAAA"}
+    assert not cola.check_queue([j]) and cola.kaggle_launch(j)
+    assert calls[-1][calls[-1].index("--cada") + 1] == "1"
+    src = (ROOT / "cloud" / "kaggle" / "correr.py").read_text(encoding="utf-8")
+    assert '["--cada", str(job["cada"])]' in src
+    yr = (ROOT / "scripts" / "youtube_research.py").read_text(encoding="utf-8")
+    assert "EVERY_S or max(3.0" in yr and '"--cada"' in yr

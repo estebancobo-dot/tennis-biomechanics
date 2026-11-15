@@ -243,7 +243,8 @@ def research(job: dict, run: Path, vol, est: dict, save) -> int:
     t1, last = time.time(), time.time()
     with open(run / "log.txt", "a", encoding="utf-8") as lg:
         p = subprocess.Popen([sys.executable, str(REPO / "scripts" / "youtube_research.py"), "--out", str(out),
-                              "--urls", str(job["urls"]), "--transcribir"], cwd=REPO, stdout=subprocess.PIPE,
+                              "--urls", str(job["urls"]), "--transcribir",
+                              *(["--cada", str(job["cada"])] if job.get("cada") else [])], cwd=REPO, stdout=subprocess.PIPE,
                              stderr=subprocess.STDOUT, text=True, env={**os.environ, "PYTHONUNBUFFERED": "1"})
         for line in p.stdout:
             lg.write(line)

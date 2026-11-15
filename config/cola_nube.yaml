@@ -126,6 +126,9 @@ trabajos:
   # 15-11 15:50: 41 de 41 con fotogramas y 15 con subtítulos; la voz de los otros 26 no se transcribió (la PyAV más
   # nueva de Kaggle no acepta un argumento de faster-whisper): ahora el audio lo decodifica ffmpeg. Solo esos 26
   - {id: investigar_tennis_mentor_voz, accion: investigar, donde: kaggle, urls: "https://youtu.be/8JuM_Kaxz1I https://youtu.be/w8TD0IT9ENE https://youtu.be/6FrriAMfYJ0 https://youtu.be/cu9hTN5OZgU https://youtu.be/uHlETNUebPg https://youtu.be/L6kvry9-S48 https://youtu.be/xzRukoW1cKc https://youtu.be/mMOh5B3XMfU https://youtu.be/2RGdS8xxYIg https://youtu.be/Pm3LJp0vEmo https://youtu.be/HpMzIsRwbi0 https://youtu.be/g6nwBjMaTl0 https://youtu.be/PxaWwqpa1BQ https://youtu.be/I3gjHEKn4RA https://youtu.be/8UZsaCaaraM https://youtu.be/FrT6ZH7xGbY https://youtu.be/kXBNFMjgTgA https://youtu.be/8EFyYlWnY3Y https://youtu.be/-ErqBvN4Uks https://youtu.be/VIjEQpTcpM4 https://youtu.be/ee79NaEMiuk https://youtu.be/Tri8ArCCMS0 https://youtu.be/4tPinxg9TB0 https://youtu.be/fjnBI_yzXF0 https://youtu.be/AobpD0jbuJU https://youtu.be/upHPbkjeM9I"}
+  # 15-11 19:30 (#306, el usuario: «este vídeo y los gráficos están muy bien»): sus gráficos en pantalla, un fotograma
+  # por segundo, y lo que dice; para el diseño de la aplicación (requisito 6: solo para aprender a explicar)
+  - {id: investigar_short_usuario_306, accion: investigar, donde: kaggle, cada: 1, urls: "https://youtube.com/shorts/WfvYEYP-QWk"}
   # T24 (15-11 15:40): en la final y en Gauff, ~39 % de cada sesión de GPU fue a etapas con la GPU parada (cortes, pista y
   # audio al principio; vistas, recortes y cámara lenta al final). Prueba de concepto medida: la misma prueba de 10 min
   # que la v26 (mismo código de las etapas) en 3 partes, CPU → GPU → CPU; se acepta si sale idéntica o equivalente a la

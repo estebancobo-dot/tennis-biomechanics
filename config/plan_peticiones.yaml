@@ -70,7 +70,7 @@ paquetes:
     # 15-11 (#301): aplicación de escritorio en el PC (la interfaz React en una ventana), sin web ni móvil
     nombre: "Producto · rediseño completo de la aplicación (comparativa profesional, UX, aprendizaje, gestión, gráficos)"
     cierre: "Diseño desde la comparativa con las apps profesionales; capturas de cada pantalla comparadas con las de referencia, sin restos inútiles ni nada fijo en el código"
-    peticiones: [256, 257, 252, 258, 296, 298, 301, 302, 303, 304, 305]
+    peticiones: [256, 257, 252, 258, 296, 298, 301, 302, 303, 304, 305, 306]
     prueba: ["^Aplicación: rediseño "]
   M1:
     nombre: "Medidas · fases, cadena cinética y ritmo"

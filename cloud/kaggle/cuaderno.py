@@ -143,6 +143,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--commit", default="")
     ap.add_argument("--config", default="", help="T5: ajustes de prueba (JSON) sobre los del PC, solo para este trabajo")
     ap.add_argument("--urls", default="", help="medir youtube / investigar: los vídeos (15-11, #304)")
+    ap.add_argument("--cada", type=float, default=0, help="investigar: un fotograma cada tantos segundos (15-11, #306)")
     ap.add_argument("--cpu", action="store_true", help="una sesión sin GPU (investigar: no gasta horas de GPU)")
     ap.add_argument("--etapas", default="", help="T24: solo estas etapas (una parte de una prueba o de un partido)")
     ap.add_argument("--previa", action="store_true", help="T24: una prueba que sigue lo que dejó su parte anterior")
@@ -209,6 +210,8 @@ def main(argv: list[str] | None = None) -> int:
             job["prueba"] = a.prueba
         if a.urls:
             job["urls"] = a.urls
+        if a.cada:
+            job["cada"] = a.cada
         if a.salida_remota:
             job["salida"] = a.salida_remota
         if a.output_remoto:
