@@ -108,6 +108,9 @@
     "prueba_gauff_v26": {
      "estimado_h": 1.0,
      "horas": 0.45
+    },
+    "prueba_gauff_v27_pose16": {
+     "estimado_h": 1.0
     }
    }
   }
@@ -116,6 +119,6 @@
   "usadas_h": 23.14,
   "total_h": 30.0,
   "renueva": "2026-11-21 00:00:00",
-  "ts": 1794747646.2967563
+  "ts": 1794747990.6407406
  }
 }

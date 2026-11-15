@@ -672,7 +672,7 @@
   "inicio": "2026-11-15 12:33",
   "ruta": "/runs/kaggle_medir_youtube/estado.json",
   "cuaderno": "tennisbio-medir-youtube",
-  "kaggle": "queued (13:00)"
+  "kaggle": "queued (13:06)"
  },
  "prueba_gauff_v26": {
   "estado": "hecho",
@@ -699,7 +699,16 @@
   }
  },
  "prueba_gauff_v27_pose16": {
-  "aviso": "Kaggle no lo aceptó: Kernel push error: Maximum batch GPU session count of 2 reached.",
-  "partido": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5"
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1794747990.6407406,
+  "accion": "prueba",
+  "partido": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+  "inicio": "2026-11-15 13:06",
+  "ruta": "/runs/kaggle_prueba_gauff_v27_pose16/estado.json",
+  "salida": "/kaggle_pruebas/prueba_gauff_v27_pose16/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+  "cuaderno": "tennisbio-prueba-gauff-v27-pose16"
  }
 }
