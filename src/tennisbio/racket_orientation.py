@@ -192,6 +192,19 @@ class _Memo3D:
 from .clip_pipeline import READY_HALF  # noqa: E402  (the racket is searched around the wait the same width)
 
 
+
+# R50 (15-11): the face of the racket from TV is reliable only with the 3D hand as evidence (synthetic validation with
+# the known truth: with it, median error 6°, 93 % right; with the silhouette alone, 22° and one stroke in ten wrong by
+# more than 128°); on Kaggle, 17 of the 20 face flips between half and full precision were at frames without it
+HAND_NEAR_FRAMES = 2
+NO_HAND = "sin la mano en 3D cerca: la cara no es medible desde la tele"
+
+
+def hand_near(track: list[dict], k: int = HAND_NEAR_FRAMES) -> set:
+    """Frames with 3D hand evidence within ±k frames (only there is the face given as a number)."""
+    ev = sorted(t["frame"] for t in track if t.get("hand_evidence"))
+    return {t["frame"] for t in track if any(abs(t["frame"] - g) <= k for g in ev)}
+
 def stroke_faces(video: Path, run, stroke, height_m: float, pitch_deg: float | None = None, rpose=None,
                  wb3d=None, hand3d_step: int = 2, grip_close_deg: float = 15.0, window=(1.0, 0.8),
                  hitting_face: str | None = None, shot_dir=None, memo: ModelMemo | None = None) -> dict:
@@ -274,6 +287,7 @@ def stroke_faces(video: Path, run, stroke, height_m: float, pitch_deg: float | N
                 if rt is not None:
                     rot[f] = rt
     by_f = {t["frame"]: t for t in track}
+    near = hand_near(track)
     phases = {}
     for name, p in stroke.phases.items():
         t = by_f.get(p.get("frame"))
@@ -281,7 +295,10 @@ def stroke_faces(video: Path, run, stroke, height_m: float, pitch_deg: float | N
             phases[name] = None
             continue
         phases[name] = {k: t[k] for k in ("points_to", "tilt_deg", "yaw_deg", "observed", "hand_evidence", "ambiguous")}
+        if t["frame"] not in near:                  # R50: never a number for a face without the 3D hand near it
+            phases[name].update(points_to=None, tilt_deg=None, yaw_deg=None, no_medible=NO_HAND)
     per = [by_f.get(f) or {} for f in range(a, b)]
+    per = [t if t.get("frame") in near else {**t, "tilt_deg": None, "yaw_deg": None, "points_to": None} for t in per]
     trunk = trunk_at(rot, (stroke.phases.get("loaded") or {}).get("frame"), 3 * max(1, hand3d_step))
     if memo is not None:
         memo.save()

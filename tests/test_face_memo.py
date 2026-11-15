@@ -73,3 +73,27 @@ def test_other_models_start_afresh(monkeypatch, tmp_path):
     assert calls["read"] == 2
     path.write_bytes(b"damaged")
     assert ro.ModelMemo(path, "m:1").data == {}
+
+
+def test_the_face_is_given_only_near_the_3d_hand(monkeypatch, tmp_path):
+    """R50 (15-11): the racket face is a number only within ±2 frames of a frame with 3D hand evidence; elsewhere it
+    is «not measurable from TV» (synthetic check: without the hand, a median error of 22° and one stroke in ten wrong
+    by more than 128°; on Kaggle 17 of 20 face flips were there)."""
+    calls = {"read": 0, "racket": 0, "3d": 0}
+    rpose, _ = setup(monkeypatch, calls)
+    run = fake_run()
+    stroke = SimpleNamespace(impact_frame=20, phases={"loaded": {"frame": 10}, "finish": {"frame": 30}}, stroke="forehand")
+
+    def wb3d(frame, box):                        # the 3D hand only up to frame 12
+        f = int(frame[0, 0, 0])
+        return (np.full((133, 3), float(f)), np.ones(133), np.zeros((133, 2))) if f <= 12 else (None, None, None)
+    def face_track(frames, boxes, img, rackets, sk, hpx, hm, i, a, b, wb3d=None, cam=None, *args, racket_kps=None, **kw):
+        return [{"frame": f, "face": [0.0, 1.0, 0.0], "points_to": "red", "tilt_deg": 1.0, "yaw_deg": 2.0,
+                 "observed": True, "hand_evidence": f <= 12, "ambiguous": False} for f in range(a, b)]
+    monkeypatch.setattr(ro, "face_track", face_track)
+    out = ro.stroke_faces(tmp_path / "w1_2000.mp4", run, stroke, 1.8, None, rpose, wb3d, 1)
+    assert out["phases"]["loaded"]["tilt_deg"] == 1.0
+    assert out["phases"]["finish"]["tilt_deg"] is None and out["phases"]["finish"]["no_medible"] == ro.NO_HAND
+    first = out["first"]
+    assert out["tilt"][10 - first] == 1.0 and out["tilt"][14 - first] == 1.0 and out["tilt"][15 - first] is None
+    assert ro.hand_near([{"frame": f, "hand_evidence": f == 5} for f in range(10)], 2) == {3, 4, 5, 6, 7}
