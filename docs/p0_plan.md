@@ -121,7 +121,7 @@ La cola los lee en cada vuelta (cada 30 min) y los convierte en trabajos con los
 |---|---|---|
 | `alta` | el vídeo en `/videos/` y su ficha en `/biblioteca/<partido>/partido.json` (jugadoras, torneo, fecha, superficie, ronda) | `app_prueba_<partido>` (10 min) y después `app_preparar_<partido>`: la pasada barata hasta `identity` en una sesión de **CPU** (no gasta horas de GPU) y las dos fotos de «¿Cuál es ella?» |
 | `clic` | `/biblioteca/<partido>/etapas/identidad_clic.json` (el mismo fichero que hoy) | nada que lanzar: el partido queda «listo para aprobar» |
-| `aprobar` | la aprobación con lo que se le enseñó (horas y coste previstos) | `app_<partido>` (`accion: partido`, `aprobado: true`, tras la preparación y con el clic); #262: solo con este botón o con `aprobado: true` de Claude tras el visto bueno del usuario en el chat |
+| `aprobar` | la aprobación con lo que se le enseñó (horas y coste previstos) | por partes (T24, adoptado el 15-11): `app_fina_<partido>` (la pasada fina, en GPU) y `app_<partido>` (vistas y recortes, en CPU), con `aprobado: true`, tras la preparación y con el clic; #262: solo con este botón o con `aprobado: true` de Claude tras el visto bueno del usuario en el chat |
 | `pausar` / `reanudar` | — | en pausa no lanza nada nuevo (lo que corre termina); el estado lo dice con la hora |
 | `cancelar` | el trabajo | el mismo camino que la cancelación de Claude (se registra el motivo «desde la aplicación») |
 | `borrar_video` | — | borra el vídeo del volumen **solo** si el partido está analizado y la aplicación confirmó la descarga de sus resultados (CLAUDE.md, requisito 10: «se borran al terminar»); si no, lo rechaza con el motivo |

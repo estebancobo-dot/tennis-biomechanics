@@ -39,8 +39,13 @@ def test_an_added_match_is_prepared_and_waits_for_the_click_then_for_her_approva
     out = pt.interpret([alta(), req("clic", 5, t=12.5, near_is_her=True)])
     assert f"app_{M}" not in ids(out) and "aprobación" in out["esperas"][M]
     out = pt.interpret([alta(), req("aprobar", 9), req("clic", 5, t=12.5)])     # in time order: click, then approval
-    whole = out["trabajos"][-1]
-    assert whole["id"] == f"app_{M}" and whole["aprobado"] is True and whole["tras"] == f"app_clic_{M}"
+    fina, whole = out["trabajos"][-2:]                  # by parts (T24): the fine pass on a GPU, the end on a CPU
+    assert fina["id"] == f"app_fina_{M}" and fina["tras"] == f"app_clic_{M}" and fina["etapas"] == pt.FINE_STAGES
+    assert whole["id"] == f"app_{M}" and whole["aprobado"] is True and whole["tras"] == fina["id"] and whole["cpu"]
+    # every stage of the analysis is in one of the parts, once
+    from tennisbio import pipeline, stages  # noqa: F401
+    allp = pt.CPU_STAGES + pt.CLICK_STAGES + pt.FINE_STAGES + pt.END_STAGES
+    assert sorted(allp) == sorted(pipeline.STAGES) and len(set(allp)) == len(allp)
     assert M not in out["esperas"]
     assert cola.check_queue(out["trabajos"]) == []          # the queue's own checks pass on them
 

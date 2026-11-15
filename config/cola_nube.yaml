@@ -193,12 +193,22 @@ trabajos:
   - {id: prueba_sinner, accion: prueba, partido: zverev-alexander-sinner-jannik-indian-wells-2026-semi-final, tras: final}
   # 15-11 (#295): la prueba de Sinner espera con su partido a la nube nativa (la de arriba, lanzada antes, se canceló)
   - {id: prueba_sinner_b, accion: prueba, partido: zverev-alexander-sinner-jannik-indian-wells-2026-semi-final, tras: final}
-  - {id: sinner, accion: partido, partido: zverev-alexander-sinner-jannik-indian-wells-2026-semi-final, tras: prueba_sinner_b, aprobado: true}
+  # 15-11 23:20 (T24 adoptado): cada partido por partes, el principio y el final en CPU (no gastan horas de GPU) y el medio
+  # en GPU; la última parte lleva el id de siempre, así las cadenas y el informe siguen igual (la misma aprobación: el mismo análisis)
+  - {id: sinner_a, accion: partido, partido: zverev-alexander-sinner-jannik-indian-wells-2026-semi-final, tras: prueba_sinner_b, aprobado: true, cpu: true, etapas: [probe, scenes, court, audio]}
+  - {id: sinner_b, accion: partido, partido: zverev-alexander-sinner-jannik-indian-wells-2026-semi-final, tras: sinner_a, aprobado: true, etapas: [players, score, identity, spotting, candidates, fine, fine_opponent, fine_doubtful]}
+  - {id: sinner, accion: partido, partido: zverev-alexander-sinner-jannik-indian-wells-2026-semi-final, tras: sinner_b, aprobado: true, cpu: true, etapas: [views, views_link, view_clips, slowmo_fine]}
   # paso 10: Osaka, Pegula y Zheng al día con el código final (marcador v16, R36, R37): solo lo que cambió, desde lo
   # guardado en Modal (las ventanas no se repiten); aprobado en el plan (paso 10 de docs/estado_proyecto.md)
-  - {id: actualizar_osaka, accion: partido, partido: us-open-2026-r4-naomi-osaka-elena-rybakina, tras: sinner, aprobado: true, minutos_video: 70}
-  - {id: actualizar_pegula, accion: partido, partido: elena-rybakina-jessica-pegula-miami-2026-quarter-final, tras: actualizar_osaka, aprobado: true, minutos_video: 112}
-  - {id: actualizar_zheng, accion: partido, partido: zheng-qinwen-elena-rybakina, tras: actualizar_pegula, aprobado: true, minutos_video: 117}
+  - {id: actualizar_osaka_a, accion: partido, partido: us-open-2026-r4-naomi-osaka-elena-rybakina, tras: sinner, aprobado: true, cpu: true, etapas: [probe, scenes, court, audio], minutos_video: 70}
+  - {id: actualizar_osaka_b, accion: partido, partido: us-open-2026-r4-naomi-osaka-elena-rybakina, tras: actualizar_osaka_a, aprobado: true, etapas: [players, score, identity, spotting, candidates, fine, fine_opponent, fine_doubtful], minutos_video: 70}
+  - {id: actualizar_osaka, accion: partido, partido: us-open-2026-r4-naomi-osaka-elena-rybakina, tras: actualizar_osaka_b, aprobado: true, cpu: true, etapas: [views, views_link, view_clips, slowmo_fine], minutos_video: 70}
+  - {id: actualizar_pegula_a, accion: partido, partido: elena-rybakina-jessica-pegula-miami-2026-quarter-final, tras: actualizar_osaka, aprobado: true, cpu: true, etapas: [probe, scenes, court, audio], minutos_video: 112}
+  - {id: actualizar_pegula_b, accion: partido, partido: elena-rybakina-jessica-pegula-miami-2026-quarter-final, tras: actualizar_pegula_a, aprobado: true, etapas: [players, score, identity, spotting, candidates, fine, fine_opponent, fine_doubtful], minutos_video: 112}
+  - {id: actualizar_pegula, accion: partido, partido: elena-rybakina-jessica-pegula-miami-2026-quarter-final, tras: actualizar_pegula_b, aprobado: true, cpu: true, etapas: [views, views_link, view_clips, slowmo_fine], minutos_video: 112}
+  - {id: actualizar_zheng_a, accion: partido, partido: zheng-qinwen-elena-rybakina, tras: actualizar_pegula, aprobado: true, cpu: true, etapas: [probe, scenes, court, audio], minutos_video: 117}
+  - {id: actualizar_zheng_b, accion: partido, partido: zheng-qinwen-elena-rybakina, tras: actualizar_zheng_a, aprobado: true, etapas: [players, score, identity, spotting, candidates, fine, fine_opponent, fine_doubtful], minutos_video: 117}
+  - {id: actualizar_zheng, accion: partido, partido: zheng-qinwen-elena-rybakina, tras: actualizar_zheng_b, aprobado: true, cpu: true, etapas: [views, views_link, view_clips, slowmo_fine], minutos_video: 117}
   # 15-11 (#297): la Base en beta con los 5 partidos ya analizados (Osaka, Pegula, Zheng, Gauff, la final): el informe y
   # la auditoría en Modal (CPU, ~0,15 $), con sus diferencias conocidas en la primera pantalla
   - {id: informe_beta, accion: informe, tras: final}

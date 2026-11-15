@@ -80,6 +80,7 @@ def test_the_click_is_the_file_the_pc_writes_and_the_queue_then_waits_for_her_ap
     reqs = [(n, store.read_json(f"{pt.FOLDER}/{n}")) for n in store.list(pt.FOLDER)]
     jobs = pt.interpret(reqs)["trabajos"]
     assert jobs[-1]["id"] == f"app_{m}" and jobs[-1]["aprobado"] is True and cola.check_queue(jobs) == []
+    assert jobs[-2]["id"] == f"app_fina_{m}"
 
 
 def test_pause_cancel_and_the_queues_answer(tmp_path):

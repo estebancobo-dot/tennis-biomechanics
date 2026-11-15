@@ -496,7 +496,7 @@ def app_round(store, state: dict, jobs: list[dict], now: float, before: dict | N
         reqs.append((name, r if isinstance(r, dict) else {"tipo": None}))
     players = {f.stem for f in (Path(__file__).resolve().parents[1] / "config" / "players").glob("*.yaml")}
     first = pt.interpret(reqs, players=players)
-    analysed = {j["partido"] for j in first["trabajos"] if j["accion"] == "partido" and not j.get("etapas")
+    analysed = {j["partido"] for j in first["trabajos"] if j["id"] == f"{pt.PREFIX}{j['partido']}"     # its last part
                 and state.get(j["id"], {}).get("estado") == "hecho"}
     out = pt.interpret(reqs, analysed=analysed, players=players)
     have = {j["id"] for j in jobs}

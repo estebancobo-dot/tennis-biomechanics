@@ -35,6 +35,9 @@ HANDS, BACKHANDS = ("right", "left"), ("one_handed", "two_handed")
 # on a GPU one; after the approval the whole match, which keeps what these did
 CPU_STAGES = ["probe", "scenes", "court", "audio"]
 CLICK_STAGES = ["players", "score", "identity"]
+# after her approval (T24, adopted 15-11): the fine pass on a GPU, then the end (views, clips) on a CPU session
+FINE_STAGES = ["spotting", "candidates", "fine", "fine_opponent", "fine_doubtful"]
+END_STAGES = ["views", "views_link", "view_clips", "slowmo_fine"]
 
 
 APP_PLAYERS = "app/personas.json"          # the queue writes the people added in the application (the cloud reads it)
@@ -142,9 +145,10 @@ def interpret(requests: list[tuple[str, dict]], analysed: set[str] | None = None
         elif m not in approved:
             out["esperas"][m] = "falta tu aprobación del análisis completo"
         else:                                            # #262: only with the user's own approval, and after the click
-            out["trabajos"].append({"id": f"{PREFIX}{m}", "accion": "partido", "partido": m, "aprobado": True,
-                                    "tras": f"{PREFIX}clic_{m}", "minutos_video": r.get("minutos_video"),
-                                    "aprobado_en": approved[m].get("cuando", "")})
+            ok = {"accion": "partido", "partido": m, "aprobado": True, "minutos_video": r.get("minutos_video"),
+                  "aprobado_en": approved[m].get("cuando", "")}
+            out["trabajos"] += [{"id": f"{PREFIX}fina_{m}", **ok, "etapas": FINE_STAGES, "tras": f"{PREFIX}clic_{m}"},
+                                {"id": f"{PREFIX}{m}", **ok, "cpu": True, "etapas": END_STAGES, "tras": f"{PREFIX}fina_{m}"}]
     for t in out["trabajos"]:
         if t.get("minutos_video") is None:
             t.pop("minutos_video", None)
