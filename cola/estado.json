@@ -310,10 +310,10 @@
   "ruta": "/runs/partido_tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5/estado.json",
   "salida": "/output/tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
   "cuaderno": "tennisbio-final",
-  "kaggle": "running (05:59)",
+  "kaggle": "running (06:04)",
   "arranco": "2026-11-14 23:59",
   "espera_min": 2,
-  "progreso": "view_clips:  80 % (637/797 recortes de repeticiones y otras cámaras) · 48 min · quedan ≈ 12 min (05:57:53; GPU 0 %·0 %, CPU 89 %, 4.2 GB)"
+  "progreso": "view_clips:  88 % (698/797 recortes de repeticiones y otras cámaras) · 52 min · quedan ≈ 7 min (06:02:21; GPU 0 %·0 %, CPU 89 %, 4.2 GB)"
  },
  "comparar_gauff_v19_v20": {
   "estado": "hecho",
@@ -434,6 +434,9 @@
   "inicio": "2026-11-15 05:59",
   "ruta": "/runs/kaggle_prueba_gauff_v22/estado.json",
   "salida": "/kaggle_pruebas/prueba_gauff_v22/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
-  "cuaderno": "tennisbio-prueba-gauff-v22"
+  "cuaderno": "tennisbio-prueba-gauff-v22",
+  "kaggle": "running (06:04)",
+  "arranco": "2026-11-15 06:04",
+  "espera_min": 5
  }
 }
