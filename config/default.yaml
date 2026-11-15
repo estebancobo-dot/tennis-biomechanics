@@ -249,3 +249,13 @@ registry:
 # (tennisbio worker, el mismo del ciclo y del chat); «propio» = el proceso propio de la ventana, como antes
 app:
   ejecutor: unico
+
+# 15-11 (#297): la Base en beta con los partidos ya analizados; lo que el lector debe saber, en la primera pantalla
+# del informe. Se vacía al cerrar la Base con la versión final
+informe:
+  diferencias_conocidas:
+    - "Partidos: 5 de 6. Falta Sinner (Indian Wells), que se analiza con la versión final."
+    - "Osaka, Pegula y Zheng se analizaron el 13-11 con el código de entonces, antes de los arreglos del 14-11 (relleno de la raqueta entre fotogramas, altura de la bola, lectura del rival en el marcador); se rehacen con la versión final. Gauff y la final ya llevan esos arreglos."
+    - "La cara de la raqueta solo se muestra en las fases con la mano en 3D; en el resto pone «no medible desde la tele» (sin ella no es fiable)."
+    - "F3Set: el detector actual encuentra 2 golpes menos y da 3 identidades al revés frente a la versión del 13-10 (diferencia conocida desde el 13-11)."
+

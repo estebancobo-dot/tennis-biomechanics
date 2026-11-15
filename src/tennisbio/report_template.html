@@ -803,6 +803,15 @@ document.addEventListener("mouseout", e => { if (e.target.closest && e.target.cl
 const PL = DATA.player || {}, STROKE_ES = { forehand: "Derecha", backhand: "Revés", overhead: "Saque / remate" };
 document.getElementById("h-player").textContent = PL.name || "Jugador";
 document.getElementById("h-stroke").textContent = STROKE_ES[DATA.stroke] || DATA.stroke;
+if ((DATA.known_differences || []).length) {       // 15-11: a beta says what it does not have yet
+  const b = document.createElement("details");     // one line until opened: the first screen stays the lesson
+  b.id = "beta-note";
+  b.style.cssText = "margin:4px 16px;padding:4px 10px;border:1px solid #c9a227;border-radius:6px;background:rgba(201,162,39,.10);font-size:13px;line-height:1.4";
+  b.innerHTML = `<summary style="cursor:pointer"><b>Versión beta</b> · ${DATA.known_differences.length} diferencias conocidas</summary>`
+    + "<ul style='margin:6px 0 4px 18px;padding:0'>"
+    + DATA.known_differences.map(t => `<li>${String(t).replace(/[<>&]/g, c => ({"<": "&lt;", ">": "&gt;", "&": "&amp;"}[c]))}</li>`).join("") + "</ul>";
+  document.body.insertBefore(b, document.body.firstChild);
+}
 document.getElementById("foot").innerHTML = `<span>Generado <span class="mono">${DATA.generated || ""}</span></span><span>Ruido de medida <span class="mono">${DATA.noise_validated ? "medido en golpes equivalentes" : "provisional"}</span></span>`;
 const handTxt = PL.hand ? `${PL.hand === "left" ? "Zurda" : "Diestra"}${PL.backhand ? " · revés a " + (PL.backhand === "one_handed" ? "1 mano" : "2 manos") : ""}` : "";
 document.getElementById("scope").innerHTML = `<span class="tag"><b>${MATCHES.length}</b> partidos</span><span class="tag"><b>${STROKES.length}</b> golpes · ${STROKES.filter(s => s.side === "far").length} desde el fondo</span><span class="tag"><b>${STROKES.filter(s => s.side !== "far" && (s.review || []).length).length}</b> con dudas</span>${handTxt ? `<span class="tag">${handTxt}</span>` : ""}`;

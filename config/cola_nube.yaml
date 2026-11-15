@@ -116,4 +116,7 @@ trabajos:
   - {id: actualizar_osaka, accion: partido, partido: us-open-2026-r4-naomi-osaka-elena-rybakina, tras: sinner, aprobado: true, minutos_video: 70}
   - {id: actualizar_pegula, accion: partido, partido: elena-rybakina-jessica-pegula-miami-2026-quarter-final, tras: actualizar_osaka, aprobado: true, minutos_video: 112}
   - {id: actualizar_zheng, accion: partido, partido: zheng-qinwen-elena-rybakina, tras: actualizar_pegula, aprobado: true, minutos_video: 117}
+  # 15-11 (#297): la Base en beta con los 5 partidos ya analizados (Osaka, Pegula, Zheng, Gauff, la final): el informe y
+  # la auditoría en Modal (CPU, ~0,15 $), con sus diferencias conocidas en la primera pantalla
+  - {id: informe_beta, accion: informe, tras: final}
   - {id: informe_6, accion: informe, tras: actualizar_zheng}

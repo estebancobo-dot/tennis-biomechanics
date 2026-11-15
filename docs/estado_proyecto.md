@@ -68,7 +68,9 @@ usuario pertenece a un paquete; un paquete está **aceptado** cuando su prueba p
 3. **P0, diseñado ya como aplicación web** (antes de la interfaz web de N, para no hacerla dos veces); en paralelo, lo de N que no es interfaz: alojamiento a 0 €, subida y borrado de vídeos, acceso privado.
 4. Después: M1-M7, P1-P6; el móvil al final.
 
-Mientras tanto, en la nube de Claude (sin GPU): preparar las pruebas de modelos (T25), los puertos (T4), el reparto de un partido (T24) y el diseño de P0 como web.
+**Base en beta (15-11, #297):** con los 5 partidos ya analizados (Osaka, Pegula, Zheng del 13-11; Gauff y la final del 15-11): informe y auditoría en Modal (CPU, `informe_beta`), la cara de la raqueta solo con la mano en 3D (aplicado al leer, `tennisbio.face_evidence`) y las diferencias conocidas en la primera pantalla; la exportación de vídeos (CPU). La Base final, con los 6 y los modelos elegidos, después de la nube nativa.
+
+Mientras tanto, en la nube de Claude (sin GPU, #298): preparar las pruebas de modelos (T25), los puertos (T4), el reparto de un partido (T24), **P0 diseñado como web** (maqueta publicada para revisión del usuario) y **de N lo que no es interfaz** (alojamiento a 0 € privado, subida y borrado de vídeos).
 
 **Para continuar en cualquier caso** (fallos, Kaggle, Modal, pruebas en «revisar») y el **modelo de validación y aceptación**: `docs/operacion_nube.md`.
 

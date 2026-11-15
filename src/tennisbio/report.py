@@ -455,6 +455,9 @@ def collect(matches: list[Match], out_root: Path, stroke="forehand", player_id: 
             continue
         dur = json.loads((_mf.at(d, "probe.json")).read_text(encoding="utf-8")).get("duration", 0) if (_mf.at(d, "probe.json")).exists() else 0
         rows = [s for s in json.loads(f.read_text(encoding="utf-8")) if s.get("stroke") == stroke]
+        from .face_evidence import hide_unreliable_faces   # R50: no face without the 3D hand (analyses before the fix)
+        for s in rows:
+            hide_unreliable_faces(s)
         from .situations import apply as _situations
         for s in rows:                    # strokes analysed before the situations existed: added, never overwritten
             _situations(s, overwrite=False)
@@ -697,6 +700,9 @@ def build(matches: list[Match], out_root: Path, dest: Path | None = None, stroke
     data["player"] = player or {}
     data["stroke"] = stroke
     data["generated"] = time.strftime("%Y-%m-%d %H:%M")
+    # 15-11 (#297, the Base in beta): what the reader must know about this version, said on its first screen
+    from .config import load_config
+    data["known_differences"] = list(((load_config().get("informe") or {}).get("diferencias_conocidas")) or [])
     data["practice"] = practice_data(out_root, dest)
     data["run_info"] = run_info(matches, out_root)
     # B4 (08-11): the serve report says how much of her serves it covers (her serves found against the points of her
