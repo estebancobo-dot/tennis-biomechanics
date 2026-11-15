@@ -83,6 +83,9 @@ trabajos:
   - {id: comparar_gauff_v20_v21b, accion: comparar, a: prueba_gauff_v20, b: prueba_gauff_v21_calidad}
   # R50: golpe a golpe, qué ángulos saltan más de 90° y si su fase estaba marcada como ambigua
   - {id: comparar_gauff_v20_v21c, accion: comparar, a: prueba_gauff_v20, b: prueba_gauff_v21_calidad}
+  # R50: y si cada fase que salta tenía evidencia de la mano en 3D (la validación sintética: con ella la cara es
+  # fiable, error mediano 6°; sin ella, 22° y una de cada diez a más de 128°)
+  - {id: comparar_gauff_v20_v21d, accion: comparar, a: prueba_gauff_v20, b: prueba_gauff_v21_calidad}
   # lotes 3 y 4 (aprobados por el usuario el 13-11: Osaka; Pegula y Zheng; Gauff y la final; Zverev-Sinner), cada
   # partido tras su prueba corta de 10 minutos (#277); el informe y la auditoría de la Base al final
   - {id: prueba_gauff, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5}

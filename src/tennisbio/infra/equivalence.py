@@ -107,9 +107,11 @@ def compare_strokes(a: list[dict], b: list[dict], skip=("series", "window", "vie
                     worst[k] = max(worst.get(k, 0.0), _diff(float(va), float(vb), k))
                     if is_angle(k) and _diff(float(va), float(vb), k) > JUMP_DEG:
                         # R50: an angle that jumps, with the «ambiguous» flag of its phase on each side if it has one
-                        amb = k.rsplit(".", 1)[0] + ".ambiguous"
+                        base = k.rsplit(".", 1)[0]
+                        amb, hand = base + ".ambiguous", base + ".hand_evidence"
                         jumps.append({"t": round(stroke_time(s), 2), "medida": k, "a": round(float(va), 1),
-                                      "b": round(float(vb), 1), "ambigua_a": la.get(amb), "ambigua_b": lb.get(amb)})
+                                      "b": round(float(vb), 1), "ambigua_a": la.get(amb), "ambigua_b": lb.get(amb),
+                                      "mano_a": la.get(hand), "mano_b": lb.get(hand)})
     return {"a": len(a), "b": len(b), "pares": len(pairs), "solo_a": only_a[:20], "solo_b": only_b[:20],
             "tipo_distinto": kinds[:20], "medidas_distintas": dict(sorted(diffs.items(), key=lambda kv: -kv[1])[:20]),
             "saltos": jumps[:400], "golpes_con_saltos": len({j["t"] for j in jumps}),

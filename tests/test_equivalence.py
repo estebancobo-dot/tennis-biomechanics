@@ -107,4 +107,4 @@ def test_jumps_are_listed_with_their_ambiguity():
     g = eq.compare_strokes(a, b)
     assert g["golpes_con_saltos"] == 1
     assert g["saltos"] == [{"t": 5.0, "medida": "face.loaded.yaw_deg", "a": 10.0, "b": 189.0,
-                            "ambigua_a": True, "ambigua_b": False}]
+                            "ambigua_a": True, "ambigua_b": False, "mano_a": None, "mano_b": None}]
