@@ -739,7 +739,7 @@
   "ruta": "/runs/kaggle_prueba_gauff_v28_ocrgpu/estado.json",
   "salida": "/kaggle_pruebas/prueba_gauff_v28_ocrgpu/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cuaderno": "tennisbio-prueba-gauff-v28-ocrgpu",
-  "kaggle": "queued (16:04)"
+  "kaggle": "queued (16:09)"
  },
  "investigar_tennis_mentor": {
   "estado": "hecho",
@@ -789,7 +789,7 @@
   }
  },
  "investigar_tennis_mentor_voz": {
-  "estado": "en_marcha",
+  "estado": "hecho",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 1,
@@ -800,10 +800,16 @@
   "ruta": "/runs/kaggle_investigar_tennis_mentor_voz/estado.json",
   "cpu": true,
   "cuaderno": "tennisbio-investigar-tennis-mentor-voz",
-  "kaggle": "running (16:04)",
+  "kaggle": "complete (16:09)",
   "arranco": "2026-11-15 15:33",
   "espera_min": 1,
-  "progreso": "25/26 Where Power ACTUALLY Comes From In Tennis (Not Your Arm) (15:57:37)"
+  "progreso": "25/26 Where Power ACTUALLY Comes From In Tennis (Not Your Arm) (15:57:37)",
+  "fin": "2026-11-15 16:09",
+  "resultado": {
+   "estado": "hecho",
+   "segundos": 1957,
+   "horas_kaggle": 0.55
+  }
  },
  "comparar_gauff_v26_v27": {
   "estado": "revisar",
@@ -828,6 +834,7 @@
   "inicio": "2026-11-15 16:04",
   "ruta": "/runs/kaggle_prueba_gauff_v29_b/estado.json",
   "salida": "/kaggle_pruebas/prueba_gauff_v29_a/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
-  "cuaderno": "tennisbio-prueba-gauff-v29-b"
+  "cuaderno": "tennisbio-prueba-gauff-v29-b",
+  "kaggle": "queued (16:09)"
  }
 }

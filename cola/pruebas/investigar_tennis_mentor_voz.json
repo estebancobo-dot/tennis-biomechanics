@@ -1,0 +1,30 @@
+{
+ "estado": "hecho",
+ "investigacion": {
+  "videos": 26,
+  "con_texto": 25,
+  "texto_de": {
+   "subtitulos": 3,
+   "voz transcrita (Whisper small)": 22
+  },
+  "con_fotogramas": 26,
+  "fallan": []
+ },
+ "kaggle": {
+  "python": "3.13.18",
+  "nucleos": 4,
+  "memoria_gib": {
+   "MemTotal": 31.3,
+   "MemAvailable": 30.1
+  },
+  "disco_libre_gib": {
+   "/tmp": 966.8,
+   "/kaggle/working": 19.5
+  },
+  "gpu": "",
+  "ffmpeg": "/usr/bin/ffmpeg",
+  "clave_modal": true
+ },
+ "horas_kaggle": 0.55,
+ "nota": null
+}
