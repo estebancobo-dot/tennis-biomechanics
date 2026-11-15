@@ -22,7 +22,9 @@ kaggle_activo: true
 # 14-11 22:20: liberados. La fase B dio lo que da en Kaggle sin cambiar resultados (v19 idéntica a la v16b: el
 # dispositivo por descubrimiento, la subida sin pérdidas y las 2 T4, −8,5 % de tiempo; la CPU de 4 núcleos es el
 # límite). Lo que se acelere después (CPU de la pasada fina, T19) se comprueba con su prueba y vale para lo que falte
-partidos_en_espera: ""
+# 14-11 23:55 (T23, docs/herencia_pc.md): esperan a decidir la calidad en la nube (precisión completa y el 3D de la
+# mano en cada fotograma, decididos así por el tiempo del PC): si cuesta ≤ 15 % más, se adopta antes de Gauff
+partidos_en_espera: "hasta decidir la calidad en la nube (prueba_gauff_v21_calidad frente a la v20; docs/herencia_pc.md)"
 # trabajos que empiezan de nuevo, una vez cada «id#n»: la final se lanzó en Kaggle a las 14:32 y Kaggle no la arrancó
 reiniciar: ["final#1"]
 # trabajos cancelados (su sesión de Kaggle se libera; acaban en «error» con el motivo). 14-11 21:10: la fase A midió la
@@ -69,6 +71,10 @@ trabajos:
   # v19 (igual en todo salvo esto)
   - {id: prueba_gauff_v20, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle}
   - {id: comparar_gauff_v19_v20, accion: comparar, a: prueba_gauff_v19, b: prueba_gauff_v20}
+  # T23 (14-11 23:55): lo que el PC decidió por su tiempo, en la nube con las GPU casi paradas: todo en precisión
+  # completa y el 3D de la mano en cada fotograma; su tiempo y lo que cambia cada medida, frente a la v20
+  - {id: prueba_gauff_v21_calidad, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, config: {fp16: false, ball: {fp16: false}, racket_face: {fp16: false, hand3d_step: 1}}}
+  - {id: comparar_gauff_v20_v21, accion: comparar, a: prueba_gauff_v20, b: prueba_gauff_v21_calidad}
   # lotes 3 y 4 (aprobados por el usuario el 13-11: Osaka; Pegula y Zheng; Gauff y la final; Zverev-Sinner), cada
   # partido tras su prueba corta de 10 minutos (#277); el informe y la auditoría de la Base al final
   - {id: prueba_gauff, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5}

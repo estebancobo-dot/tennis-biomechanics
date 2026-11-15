@@ -54,11 +54,11 @@ la auditoría las marcará «sin comprobación automática asignada».
 | Estado | Nº |
 |---|---|
 | HECHO | 122 |
-| PARCIAL | 137 |
+| PARCIAL | 138 |
 | FALTA | 21 |
 | NO MEDIBLE | 3 |
 | NO APLICA | 8 |
-| **Total** | **291** |
+| **Total** | **292** |
 
 **27-10:** filas 220-245 nuevas: todo lo pedido en el chat del 19-10 al 27-10 (releídos los mensajes) y lo que
 salió en la prueba de valor; ninguna fila borrada.
@@ -378,6 +378,7 @@ lateral (entreno)» · ≥12 = solo se muestra con 12 golpes o más (`model.MIN_
 | 289 | **Código híbrido: N tipos de infraestructura por configuración y descubrimiento** (PC, nube de Claude, Modal, Kaggle, otras), con arquitectura moderna y extensible: código común y adaptadores; revisar a fondo el estado del arte en todas las capas y patrones de diseño (Chat, 14-11) | PARCIAL | Plan en `docs/nube_nativa.md` §Arquitectura: puertos (cálculo, almacenamiento, vídeo, inferencia, modelos, cola) con un adaptador por infraestructura y descubrimiento de capacidades (GPU, núcleos, decodificador, cuotas, coste) | — | — | Claude reconoce que la revisión del estado del arte del 14-11 fue superficial (5 búsquedas): falta la revisión por capas. |
 | 290 | El usuario canceló las versiones 7 y 8 atascadas en Kaggle y **autoriza a Claude a borrar automáticamente un cuaderno de trabajo atascado** (Chat, 14-11) | HECHO (14-11) | La cola, si una sesión sigue en cola de Kaggle más de 45 min, borra el cuaderno de ese trabajo (`cuaderno.py borrar`, solo `tennisbio-<trabajo>`, nunca el compartido) y lo relanza | — | `tests/test_kaggle.py` | Los resultados de cada trabajo se guardan en Modal: borrar el cuaderno no pierde nada. |
 | 291 | «¿No habías hecho en GitHub una cola para la gestión asíncrona de todas las tareas? No puedo estar preguntando todo el rato y tú parado. Y tiene que monitorizar siempre progreso y estado en tiempo real» (Chat, 14-11) | PARCIAL | La cola de GitHub gestiona los trabajos de Kaggle y Modal, pero no el trabajo de Claude, que se paraba al acabar cada turno, y el estado solo cambiaba al terminar un trabajo. Arreglo: (1) Claude retoma solo cada hora (tarea programada de la sesión); (2) cada trabajo escribe su etapa y su % cada 2 min (`cloud/nube.py` `progress_of`, Kaggle y Modal) y la cola lo muestra en `nube-logs/cola/estado.md` y en la página de cada vuelta; (3) la vuelta y el latido de la cola, separados: un cambio ya no espera 25 min detrás de un latido dormido. 14-11 20:00 (el usuario: «no puedes hacer un pooling de una hora; tiene que ser asíncrono en tiempo real el despertar, y sin consumir tokens extra»): el aviso de cada hora, borrado; la cola comenta en el PR buzón #1 (aprobado por el usuario) solo cuando algo necesita a Claude, y la suscripción de la sesión lo despierta al momento | — | `tests/test_kaggle.py`, `tests/test_cola.py` | Lo cierra: un análisis en marcha se ve en `cola/estado.md` con su etapa y su % de hace menos de 10 min, y Claude retoma sin que el usuario escriba. |
+| 292 | «¿Tienes claro que todo el código usado no tiene condicionales del PC como lo que has visto? ¿Las últimas POCs de hoy han sido 100 % desde cero? No quiero que hayas desechado opciones por información antigua del PC o código del PC» (Chat, 14-11) | PARCIAL | Revisión hecha: en el código, lo que frenaba la nube ya está cambiado (T4, T8, R48); las pruebas de hoy partían de cero en sus resultados pero con la carpeta de modelos y los ajustes del PC. Inventario y plan en `docs/herencia_pc.md` (T23); cada ejecución guarda los ajustes que usó; primera medida: la calidad completa en la nube (v21) | — | — | Lo cierra: cada fila de `docs/herencia_pc.md` mantenida con una medida en la nube, cambiada o medida |
 | 269 | Estado y progreso: cuánto falta para lanzar los 6 partidos, qué hay en marcha y pendiente en la nube y en el PC (en serie o en paralelo), qué queda para cerrar la Base, por qué seguimos así y qué falló por la noche (Chat, 13-11) | HECHO | respuesta en el chat; `docs/estado_proyecto.md`, «Resumen de la noche (12-11 → 13-11)» y la tabla de tareas | — | — | Como #266, el estado vive en la tabla de tareas. |
 
 ## Lo más grave que falta (por impacto en «copiar su derecha»)

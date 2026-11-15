@@ -37,6 +37,7 @@ Cada documento tiene **un solo papel**. Si dos dicen cosas distintas, manda el *
 | `estado_del_arte_nube.md` (14-11, #287, #289) | Revisión del estado del arte por capas (infraestructura, orquestación, vídeo en GPU, ejecución de modelos, modelos por tarea, datos, configuración, observabilidad, pruebas), con fuentes, candidatos y la prueba de concepto que decide cada uno; primera vuelta, con lo que falta |
 | `operacion_nube.md` (14-11) | Para retomar en cualquier caso: dónde mirar, qué hace la cola sola y qué hace Claude ante cada fallo (Kaggle, Modal, pruebas en «revisar»), el modelo de validación y aceptación, y los riesgos abiertos |
 | `trazabilidad_nube.md` (14-11) | Cada requisito y petición de la nube frente al plan, con su comprobación, lo que falta y los riesgos (T17) |
+| `herencia_pc.md` (14-11) | Lo que la nube hereda del PC (código, ajustes, ficheros, documentos) y qué se hace con cada cosa: mantenido con una medida en la nube, cambiado o por medir (T23, #292) |
 | `maqueta-informe.html`, `maqueta_leccion_armado.html`, `maqueta_aplicacion.html` | Maquetas de diseño (datos inventados) |
 | `matriz_en_la_web.md` | Generado por `scripts/matrix_in_web.py`: qué punto de la matriz se ve en la web |
 | `como_ejecutar.md` | Instrucciones de instalación en el PC |
