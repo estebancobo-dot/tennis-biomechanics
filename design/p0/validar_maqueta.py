@@ -84,10 +84,10 @@ def key_hits(keys: list[str], checks: dict[str, str]) -> list[str]:
     return sorted(set(out))
 
 
-def by_words(text: str, states: dict[str, str], share: float = 0.6) -> str | None:
-    """The first screen holding most of the text's significant words (None when there are fewer than 2)."""
+def by_words(text: str, states: dict[str, str], share: float = 0.6, least: int = 2) -> str | None:
+    """The first screen holding most of the text's significant words (None when there are fewer than `least`)."""
     ws = set(words(text))
-    if len(ws) < 2:
+    if len(ws) < least:
         return None
     for name, t in states.items():
         nt = norm(t)
@@ -126,7 +126,8 @@ def check_matrix(rows: list[dict], states: dict[str, str], checks: dict[str, str
         src = "lista15" if r["seccion"] == "6" else "taxonomia"
         res = {"id": f"M{r['seccion']}.{len(out) + 1}", "fuente": src, "texto": r["elemento"], "estado_medida": r["estado"]}
         if r["estado"] == "✘":
-            said = by_words(r["elemento"], {"no medible": not_tv}, 0.34) or by_words(
+            # in the list of what TV cannot measure one word is enough («Mirada»): that list is only of such things
+            said = by_words(r["elemento"], {"no medible": not_tv}, 0.34, least=1) or by_words(
                 r["elemento"], {k: v for k, v in states.items() if re.search("no medible|la tele no", v, re.I)}, 0.75)
             res.update(resultado="dicho" if said else "falta", donde=said or "",
                        nota="no medible desde la tele: la aplicación lo dice" if said else "no medible y no lo dice")

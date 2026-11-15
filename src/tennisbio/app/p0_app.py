@@ -133,7 +133,41 @@ def datos_beta(report: Path, audit: Path, estado: Path, matches: Path) -> dict:
     for m in d["matches"]:
         m.setdefault("personas", [p for p in (d["player"]["name"], m.get("rival")) if p])
     d["grip"] = _first_text(report_data(report), "Empuñadura:")         # explain.grip_compatible, as the report says it
+    d["not_tv"] = list(d.get("not_tv") or []) + no_medible((ROOT / "docs" / "matriz_cobertura.md").read_text(encoding="utf-8"),
+                                                           d.get("not_tv") or [])
     return d
+
+
+def _words(text: str) -> set[str]:
+    import re
+    import unicodedata
+    t = unicodedata.normalize("NFKD", text.lower()).encode("ascii", "ignore").decode()
+    return {w for w in re.findall(r"[a-z]{4,}", t)}
+
+
+def no_medible(matrix_md: str, said: list) -> list[list[str]]:
+    """Design change 9 (docs/p0_diseno.md §10): every row the coverage matrix marks ✘ (not measurable from TV) with its
+    reason and source, after the report's own list; a row whose words the report's list already says is not repeated."""
+    import re
+    have = [_words(" ".join(x) if isinstance(x, (list, tuple)) else str(x)) for x in said]
+    out, seen = [], set()
+    for line in matrix_md.splitlines():
+        if not line.startswith("| ") or line.startswith("|---"):
+            continue
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        if len(cells) < 3 or not cells[2].startswith("✘") or cells[0] in seen:
+            continue
+        seen.add(cells[0])
+        ws = _words(cells[0])
+        if ws and any(len(ws & h) / len(ws) >= 0.5 for h in have):
+            continue
+        why = re.sub(r"`[^`]*`|\*\*", "", cells[3] if len(cells) > 3 else "")         # no code names, no markdown
+        why = re.sub(r"\(\s*[,;]\s*", "(", why)
+        why = re.sub(r"\s*\(\s*[,;]?\s*\)", "", why).strip(" ;:,")
+        src = cells[1] if cells[1] not in ("", "—", "Matriz del usuario") else ""          # her own list: no source
+        out.append([cells[0], (why[:1].upper() + why[1:] if why else "Fuera de la cinemática 2D desde una cámara")
+                    + (f" ({src})" if src else "") + "."])
+    return out
 
 
 def _first_text(o, prefix: str) -> str | None:

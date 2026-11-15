@@ -99,7 +99,7 @@ desde el 15-11 exige un vídeo o un dibujo de verdad en pantalla para el vídeo 
 | Entrenadores | 65 % | 35 % | **82 %** | **88 %** |
 | Ivanovic | 58 % | 47 % | **79 %** | **89 %** |
 | Lista de 15 puntos (por su medida) | 56 % | 76 % | **78 %** | 78 % |
-| Taxonomía (por su medida) | 35 % | 46 % | **52 %** | 52 % |
+| Taxonomía (por su medida) | 35 % | 46 % | **52 %** | **56 %** (cambio 9) |
 
 La lista de 15 puntos y la taxonomía no suben con pantallas: lo que les falta son medidas que el análisis aún no calcula (paquetes M). Sin errores ni desbordes en escritorio. Lo que falta en las dos es lo mismo: el vídeo real con sus capas, la
 estroboscópica y la tira de contactos, que necesitan los fotogramas del PC (P0.5e). Después, el resto de la taxonomía

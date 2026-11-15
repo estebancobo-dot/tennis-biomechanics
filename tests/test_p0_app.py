@@ -251,3 +251,16 @@ def test_the_return_says_how_it_is_found_and_its_variants():
     assert "icono de saque del marcador" in text and "El saque que recibe" in text and "Tipo de resto" in text
     assert "4 restos de derecha" in text.replace("\n", " ") or "4\nrestos de derecha" in text
     assert "pocos" in text            # 4 returns: below the minimum, no median of where she waits
+
+
+def test_everything_the_matrix_marks_not_measurable_is_said():
+    """Design change 9 (docs/p0_diseno.md §10): each row the coverage matrix marks ✘ is in «Lo que la tele no mide», with
+    its reason and source, without repeating what the report's own list says, and without code names or markdown."""
+    md = (ROOT / "docs" / "matriz_cobertura.md").read_text(encoding="utf-8")
+    rows = p0_app.no_medible(md, [])
+    names = [r[0] for r in rows]
+    assert "Mirada" in names and "Empuñadura (bisel)" in names and "Fuerzas, momentos articulares" in names
+    assert all("`" not in t and "**" not in t and "()" not in t for _, t in rows)
+    assert dict(rows)["Empuñadura (bisel)"] == "Mano de 20-40 px (Yandell; Elliott 1997)."
+    again = p0_app.no_medible(md, [["Fuerzas y momentos articulares", "solo cinemática"]])
+    assert "Fuerzas, momentos articulares" not in [r[0] for r in again] and len(again) == len(rows) - 1

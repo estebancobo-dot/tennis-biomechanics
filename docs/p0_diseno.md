@@ -385,6 +385,9 @@ Cambios del diseño, por orden:
 8. **Junto a cada medida, cómo se mide y su fiabilidad** (hoy, cómo se mide solo está en «Lo que la tele no mide»).
 9. **Lo no medible completo:** cada fila ✘ de la matriz dicha en «Lo que la tele no mide» (faltan, por ejemplo, la
    mirada, las fuerzas y el bisel de la empuñadura).
+   - **Hecho (15-11 23:59):** la aplicación añade a la lista del informe cada fila ✘ de `matriz_cobertura.md` con su
+     motivo y su fuente (`p0_app.no_medible`; 29 filas, sin repetir lo que el informe ya dice). El validador acepta una
+     fila de una sola palabra («Mirada») dentro de esa lista. Taxonomía 52 → 56 %.
 
 Lo medible que aún no se calcula (◐ y ✘ medibles de la matriz) es trabajo de los paquetes de medidas M, no del diseño.
 
