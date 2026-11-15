@@ -175,3 +175,32 @@ def test_the_wizard_asks_the_pc_for_each_step_with_her_yes_to_the_preparation():
     assert ficha["jugadora"] == "Jugadora de ejemplo" and ficha["rival"] == "Rival de ejemplo" and ficha["torneo"] == "Torneo"
     assert by["clic"] == ["jugadora-rival-torneo", 12.5, True, "clothes"]
     assert by["aprobar"][0] == "jugadora-rival-torneo" and by["aprobar"][1]["coste_eur"] == 0
+
+
+def test_the_measures_explorer_lists_every_measure_with_its_strokes():
+    """Design change 1 (docs/p0_diseno.md §10): every measure by family, with how many strokes have it and her typical
+    value; a measure opens its spread and its extreme strokes (with their video panel)."""
+    pytest.importorskip("playwright")
+    from playwright.sync_api import sync_playwright
+    d = p0_app.ejemplo()
+    with sync_playwright() as pw:
+        b, p = _page(pw, fake=False)
+        p.evaluate("() => location.hash = 'visor'")
+        p.wait_for_timeout(200)
+        p.click('[data-tab="mas"]')
+        p.click('[data-sub="medidas"]')
+        p.wait_for_timeout(150)
+        rows = p.evaluate("() => [...document.querySelectorAll('tr[data-medida]')].map(r => r.dataset.medida)")
+        key = f"{d['phases'][2]['id']}.medida_1"
+        p.click(f'tr[data-medida="{key}"]')
+        p.wait_for_timeout(100)
+        detail = p.inner_text("[data-medida-detalle]")
+        extremes = p.evaluate("() => document.querySelectorAll('[data-medida-golpe]').length")
+        p.click('[data-fam="contexto"]')
+        p.wait_for_timeout(100)
+        ctx = p.evaluate("() => [...document.querySelectorAll('tr[data-medida]')].map(r => r.dataset.medida)")
+        b.close()
+    checks = [c["key"] for f in d["phases"] for c in f["checks"]]
+    assert set(checks) <= set(rows) and {"sh", "xf"} <= set(rows)
+    assert "12 golpes" in detail and extremes == 6
+    assert ctx and all(k.startswith("ctx.") for k in ctx)

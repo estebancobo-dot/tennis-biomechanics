@@ -84,6 +84,7 @@ export interface Golpe {
   quality?: number; repr?: number; height?: string; intent?: string; pressure?: boolean;
   fast?: boolean; wide?: boolean; short?: boolean;
   m: Record<string, number | null>;
+  lv?: Record<string, number | boolean | string | null>;   // change 1: the lesson's checkpoints, stroke by stroke
   [extra: string]: unknown;
 }
 

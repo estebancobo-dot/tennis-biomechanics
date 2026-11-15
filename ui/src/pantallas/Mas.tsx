@@ -7,12 +7,13 @@ import type { Datos, Golpe } from "../contrato";
 import { esN, fmt } from "../datos";
 import { SITUACION } from "../situaciones";
 import { FichaGolpe, tituloGolpe } from "./Golpe";
+import { Explorador } from "./Medidas";
 
 type AnyRec = Record<string, any>; // eslint-disable-line @typescript-eslint/no-explicit-any
 const MIN_N = 10;
 const sgn = (v: number, d = 0) => (v > 0 ? "+" : v < 0 ? "−" : "") + fmt(Math.abs(v), d);
 const pct = (n: number, de: number) => (de >= MIN_N ? `${fmt((100 * n) / de)} %` : `${n} de ${de} (pocos golpes)`);
-export const MAS: [string, string][] = [["comparar", "Comparar"], ["conclusiones", "Conclusiones"], ["situaciones", "Situaciones"], ["tactica", "Táctica"],
+export const MAS: [string, string][] = [["medidas", "Medidas"], ["comparar", "Comparar"], ["conclusiones", "Conclusiones"], ["situaciones", "Situaciones"], ["tactica", "Táctica"],
   ["pista", "Pista"], ["tabla", "Tabla de golpes"], ["lateral", "Vista lateral (entreno)"], ["fiabilidad", "Fiabilidad"], ["datos", "Datos"], ["exportar", "Exportar"]];
 
 function Rel({ d, k }: { d: Datos; k: string }) {
@@ -192,6 +193,7 @@ export function Mas({ d, sit, onCelda }: { d: Datos; sit: string; onCelda: (sit:
   return (
     <>
       <div className="chips">{MAS.map(([k, t]) => <button className="chip" type="button" key={k} data-sub={k} aria-pressed={k === sub} onClick={() => setSub(k)}>{t}</button>)}</div>
+      {sub === "medidas" ? <Explorador d={d} a={a} /> : null}
       {sub === "comparar" ? <Comparar d={d} a={a} /> : null}
       {sub === "conclusiones" ? <Conclusiones d={d} /> : null}
       {sub === "situaciones" ? <Situaciones d={d} onCelda={onCelda} /> : null}

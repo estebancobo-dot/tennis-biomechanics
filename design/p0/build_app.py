@@ -158,7 +158,8 @@ def build(data: dict, audit: dict, estado_md: str, match_list: list) -> dict:
                 "game": s.get("game"), "x": s.get("x"), "y": s.get("y"), "shotX": s.get("shotX"), "shotY": s.get("shotY"),
                 "shotIn": s.get("shotIn"), "shotDir": s.get("shotDir"), "phases": s.get("phases"), "body": s.get("body"),
                 "feet": s.get("feet"), "ball": s.get("ballMoments"), "review": s.get("review") or [],
-                "m": {k: (s.get("m") or {}).get(k) for k in metrics}} for s in near]
+                "m": {k: (s.get("m") or {}).get(k) for k in metrics},
+                "lv": s.get("lv") or {}} for s in near]          # change 1 (§10): the checkpoints, stroke by stroke
     return {"generated": data.get("generated"), "player": data["player"], "stroke": data.get("stroke"),
             "known": data.get("known_differences") or [], "conclusions": data.get("conclusions") or [],
             "findings": data.get("findings") or [], "metrics": metrics, "situations": sits, "phases": phases,

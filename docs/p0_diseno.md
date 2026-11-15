@@ -339,6 +339,12 @@ Cambios del diseño, por orden:
 1. **Explorador de medidas por familia** (cuerpo, pies, raqueta, bola, contexto).
    - Cada medida de la taxonomía con su fiabilidad, cómo se mide, su reparto y sus golpes.
    - Hoy la maqueta solo enseña los 90 puntos de control de la lección y 26 medidas del informe.
+   - **Hecho en la aplicación (15-11 23:00, «Más → Medidas»):** las 107 medidas que da el análisis (los 90 puntos de
+     control golpe a golpe, que el informe ya guardaba en `lv` y la aplicación no recibía; las medidas del informe que no
+     son un punto de control; 8 del contexto), por familia (cuerpo 46, pies 26, raqueta 16, bola y ritmo 11, contexto 8)
+     y en la situación elegida: golpes con la medida, valor típico y la mitad de sus golpes, fiabilidad, cómo se mide; al
+     abrirla, su reparto y los 3 golpes más bajos y más altos con su vídeo. Con menos de 10 golpes lo dice. La cobertura
+     de la taxonomía no sube con esto (52 %): lo que falta son medidas que el análisis aún no calcula.
 2. **Táctica y partido.**
    - Bote: profundidad, anchura, dentro o fuera. Golpe angulado. Dirección y sus cambios. Secuencias de 2-3 golpes.
      Longitud del peloteo. Puntos en ataque y en defensa. «Cómo usa su derecha». Bajo presión, también dirección y

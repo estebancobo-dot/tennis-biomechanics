@@ -44,7 +44,9 @@ def ejemplo() -> dict:
     golpes = [{"id": f"g{i}", "match": i % 2, "rival": partidos[i % 2]["rival"], "set": 1 + i % 3, "score": "30-15",
                "bits": ["rápida" if i % 2 else "lenta", "bola media"], "outcome": "en juego", "stance": "abierto",
                "movement": "en carrera" if i % 3 else "parada", "finish": "sobre el hombro", "quality": (i * 37) % 100,
-               "repr": (i * 53) % 100, "fast": bool(i % 2), "m": {"sh": 60.0 + i, "xf": 15.0 + i % 5}} for i in range(12)]
+               "repr": (i * 53) % 100, "fast": bool(i % 2), "m": {"sh": 60.0 + i, "xf": 15.0 + i % 5},
+               "lv": {f"{f['id']}.medida_{k}": round(10 * k + (i * 7 + k * 3) % 11, 1) for f in fases for k in (1, 2, 3)}}
+              for i in range(12)]
     for g in golpes[:4]:
         g["trayectoria"] = _trayectoria_ejemplo()
     trabajos = [{"id": "prueba_ejemplo", "accion": "prueba", "partido": partidos[2]["id"], "estado": "en_marcha",
