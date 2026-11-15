@@ -101,7 +101,12 @@ def screens(walk: dict) -> dict[str, str]:
     opened («leccion/<section>»); every other screen with its collapsed parts opened (one click away)."""
     out, full, sight = {}, walk["estados"], walk["a_la_vista"]
     for k, v in full.items():
-        out[k] = sight.get(k, v) if k.startswith("leccion_fase") else v
+        if k.startswith("leccion_fase"):
+            # the phase with its own collapsed parts opened, up to the lesson's common sections (never the glossary)
+            cut = min([i for i in (v.find(h) for h in LESSON_SECTIONS) if i >= 0] or [len(v)])
+            out[k] = sight.get(k, "") + "\n" + v[:cut]      # on screen (the sections' titles too), plus the phase opened
+        else:
+            out[k] = v
     first = next((k for k in sorted(full) if k.startswith("leccion_fase")), None)
     if first:
         t = full[first]
