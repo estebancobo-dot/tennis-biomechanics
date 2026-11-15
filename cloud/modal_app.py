@@ -71,6 +71,7 @@ def _prepare() -> dict:
 
     import nube
     nube.use_volume_models(Path("/repo"), DATA)
+    nube.write_app_players(Path("/repo"), DATA)   # P0.5d: the people added in the application
     (DATA / "home").mkdir(parents=True, exist_ok=True)
     os.environ["HOME"] = str(DATA / "home")       # model downloads (rtmlib) kept on the volume, for the children too
     return nube.write_local_yaml(Path("/repo"), DATA)

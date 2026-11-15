@@ -75,6 +75,28 @@ def registry(pc: list[dict], app: list[dict] | None) -> list[dict]:
     return list(pc) + [m for m in (app or []) if isinstance(m, dict) and m.get("id") and str(m["id"]) not in have]
 
 
+def write_app_players(repo: Path, data: Path) -> list[str]:
+    """P0.5d: the people added in the application (app/personas.json, written by the queue) as config/players/<id>.yaml
+    of this session's checkout, for the ids the repository does not have (its own records always win)."""
+    import yaml
+
+    f = data / "app" / "personas.json"
+    try:
+        rows = json.loads(f.read_text(encoding="utf-8")) if f.exists() else []
+    except (ValueError, OSError):  # esperado: a damaged list never stops the analysis of the repository's players
+        rows = []
+    out = []
+    for r in rows if isinstance(rows, list) else []:
+        pid = str((r or {}).get("id") or "")
+        dst = repo / "config" / "players" / f"{pid}.yaml"
+        if not re.fullmatch(r"[a-z0-9]+", pid) or dst.exists():
+            continue
+        dst.write_text(yaml.safe_dump({k: r[k] for k in ("name", "hand", "backhand", "height_m") if k in r},
+                                      allow_unicode=True, sort_keys=False), encoding="utf-8")
+        out.append(pid)
+    return out
+
+
 def read_registry(data: Path) -> list[dict]:
     """The list as a cloud session reads it from the volume (mounted on Modal, brought to Kaggle)."""
     pc = json.loads((data / "pc" / "registro_partidos.json").read_text(encoding="utf-8"))

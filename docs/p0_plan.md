@@ -140,8 +140,10 @@ el adaptador local; (5) los botones de Gestión llamándolo (`ui/src/api.ts` y `
 el navegador, sin la ventana, salen desactivados con «Se hace en la aplicación del PC»). Las fotos del clic se hacen en
 Kaggle tras la parte con `identity` (`nube.CLICK_PHOTOS`, el código del PC). Las horas que se enseñan son solo las
 medidas (prueba de 10 min 0,45 h; partido 5-6,5 h): lo que gasta aparte la pasada hasta el clic no está medido aún y no
-se pone. Pendiente: la ficha de una persona nueva en el catálogo de la nube (la petición `persona` se guarda, la nube
-aún no la usa). **En el PC (P0.5e, con el usuario):** la ventana, la clave de Modal y la primera subida de verdad.
+se pone. **16-11 00:10:** el alta lleva el id de la ficha de la jugadora (`config/players/<id>.yaml`, buscada por su nombre;
+el catálogo de la nube carga la ficha por id) y la cola rechaza, con su motivo, un partido de alguien sin ficha; una
+persona añadida en la aplicación va a `/app/personas.json` y cada sesión de la nube la convierte en su ficha
+(`nube.write_app_players`, nunca encima de una del repositorio). **En el PC (P0.5e, con el usuario):** la ventana, la clave de Modal y la primera subida de verdad.
 
 ## 4. Métricas de aceptación (casillas del modelo de calidad que P0 debe llenar)
 - **Usabilidad:** cada tarea principal (añadir un partido, señalar a la jugadora, ver «cómo pega la derecha» en una

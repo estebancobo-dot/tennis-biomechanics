@@ -165,6 +165,7 @@ def prepare(repo: Path, data: Path, registry: list[dict], overrides: dict | None
     import yaml
 
     nube.use_volume_models(repo, data)
+    nube.write_app_players(repo, data)            # P0.5d: the people added in the application
     (data / "home").mkdir(parents=True, exist_ok=True)
     nube.write_local_yaml(repo, data, overrides)
     cat = nube.cloud_catalog(registry, data / "biblioteca")
@@ -330,10 +331,11 @@ def main(argv: list[str]) -> int:
             return research(job, run, vol, est, save)
         for d in ("/pc", "/biblioteca", "/home", "/models"):
             modal_get(d, data)
-        try:                                      # P0.5d: the matches added in the application (none yet: no folder)
-            modal_get("/app/registro_partidos.json", data / "app")
-        except subprocess.CalledProcessError:
-            print("sin partidos añadidos en la aplicación", flush=True)
+        for f in ("registro_partidos.json", "personas.json"):   # P0.5d: what was added in the application, if anything
+            try:
+                modal_get(f"/app/{f}", data / "app")
+            except subprocess.CalledProcessError:
+                print(f"sin {f} de la aplicación", flush=True)
         models = nube.unnested(data / "models")
         est["descarga_s"] = round(time.time() - t0)
         py = setup_env(REPO, scratch / "venv", gpu=not job.get("cpu"))

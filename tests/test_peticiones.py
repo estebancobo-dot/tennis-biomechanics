@@ -33,7 +33,8 @@ def test_an_added_match_is_prepared_and_waits_for_the_click_then_for_her_approva
     cortes, clic = out["trabajos"][1], out["trabajos"][2]
     assert cortes["cpu"] is True and cortes["etapas"] == pt.CPU_STAGES and clic["etapas"] == pt.CLICK_STAGES
     assert "cpu" not in clic and clic["tras"] == cortes["id"] and cortes["tras"] == f"app_prueba_{M}"
-    assert out["partidos"] == [{"id": M, "video": f"{M}.ts", "jugador": "Jugadora", "rival": "Rival", "desde": "aplicacion"}]
+    assert out["partidos"] == [{"id": M, "video": f"{M}.ts", "jugador": "jugadora", "jugadora": "Jugadora", "rival": "Rival",
+                                "desde": "aplicacion"}]
     assert "clic" in out["esperas"][M]
     out = pt.interpret([alta(), req("clic", 5, t=12.5, near_is_her=True)])
     assert f"app_{M}" not in ids(out) and "aprobación" in out["esperas"][M]
@@ -102,7 +103,7 @@ def test_a_cancellation_says_it_came_from_the_application():
 
 def test_a_person_needs_name_hand_and_backhand():
     out = pt.interpret([req("persona", 1, m=None, name="Nueva", hand="left", backhand="one_handed", height_m=1.7)])
-    assert out["personas"] == [{"name": "Nueva", "hand": "left", "backhand": "one_handed", "height_m": 1.7}]
+    assert out["personas"] == [{"id": "nueva", "name": "Nueva", "hand": "left", "backhand": "one_handed", "height_m": 1.7}]
 
 
 def test_request_names_sort_by_time():
@@ -119,7 +120,7 @@ def test_a_dry_pass_of_the_queue_takes_the_applications_requests(tmp_path):
     root = tmp_path / "volumen"
     folder = root / pt.FOLDER.strip("/")
     folder.mkdir(parents=True)
-    for name, r in [alta(), req("pausar", 2, m=None), ("3_roto.json", {"tipo": "alta"})]:
+    for name, r in [alta(jugadora="Elena Rybakina"), req("pausar", 2, m=None), ("3_roto.json", {"tipo": "alta"})]:
         (folder / name).write_text(json.dumps(r), encoding="utf-8")
     (folder / "4_no_json.json").write_text("{", encoding="utf-8")
     q = tmp_path / "cola.yaml"
@@ -133,3 +134,18 @@ def test_a_dry_pass_of_the_queue_takes_the_applications_requests(tmp_path):
     ans = json.loads((logs / "cola" / "app.json").read_text(encoding="utf-8"))
     assert ans["pausa"]["en_pausa"] and "clic" in ans["esperas"][M] and len(ans["errores"]) == 2
     assert ans["partidos"][0]["id"] == M and "app.json" in cola.QUEUE_FILES
+
+
+def test_a_match_names_its_players_record_and_is_refused_without_one():
+    """The cloud's catalogue loads config/players/<id>.yaml for the match's player: the request carries that id (or it
+    comes from her surname), and with the records known a match of a player without one is refused, with its reason;
+    a person added in the application counts."""
+    assert pt.player_id("Elena Rybakina") == "rybakina" and pt.player_id("Ñoño Pérez") == "perez"
+    out = pt.interpret([alta(jugadora="Elena Rybakina")], players={"rybakina"})
+    assert out["partidos"][0]["jugador"] == "rybakina" and ids(out)
+    out = pt.interpret([alta(jugadora="Otra Jugadora")], players={"rybakina"})
+    assert out["trabajos"] == [] and "no hay ficha" in out["errores"][0][1]
+    nueva = req("persona", -5, m=None, name="Otra Jugadora", hand="left", backhand="one_handed", height_m=1.75)
+    out = pt.interpret([nueva, alta(jugadora="Otra Jugadora")], players={"rybakina"})
+    assert out["personas"][0]["id"] == "jugadora" and out["partidos"][0]["jugador"] == "jugadora"
+    assert pt.interpret([alta(jugadora="X Y", jugadora_id="rybakina")], players={"rybakina"})["partidos"][0]["jugador"] == "rybakina"

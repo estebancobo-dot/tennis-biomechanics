@@ -138,3 +138,30 @@ def test_the_window_shows_the_photos_with_their_moments(tmp_path):
 def test_a_record_is_proposed_from_the_files_name():
     p = p0_api.proponer("C:/v/tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026.ts", "Elena Rybakina")
     assert p["jugadora"] == "Elena Rybakina" and p.get("fecha") == "2026-09-10"
+
+
+def test_the_match_names_her_record_by_its_name(tmp_path):
+    """The record's id is looked up by her name in config/players (the cloud's catalogue loads it by id)."""
+    d = tmp_path / "players"
+    d.mkdir()
+    (d / "ryba.yaml").write_text("name: Elena Rybakina\nhand: right\n", encoding="utf-8")
+    assert p0_api.player_record("elena rybakina", d) == "ryba"
+    assert p0_api.player_record("Otra Persona", d) == "persona"
+    assert p0_api.player_record("Elena Rybakina") == "rybakina"          # the repository's own record
+
+
+def test_people_added_in_the_application_become_records_in_the_cloud(tmp_path):
+    """The queue writes app/personas.json; a cloud session turns each new id into config/players/<id>.yaml of its
+    checkout, never over the repository's own record."""
+    repo, data = tmp_path / "repo", tmp_path / "data"
+    (repo / "config" / "players").mkdir(parents=True)
+    (repo / "config" / "players" / "rybakina.yaml").write_text("name: Elena Rybakina\n", encoding="utf-8")
+    (data / "app").mkdir(parents=True)
+    (data / "app" / "personas.json").write_text(json.dumps([
+        {"id": "nueva", "name": "Nueva Persona", "hand": "left", "backhand": "one_handed", "height_m": 1.7},
+        {"id": "rybakina", "name": "Otra"}, {"id": "../mal", "name": "x"}]), encoding="utf-8")
+    assert nube.write_app_players(repo, data) == ["nueva"]
+    import yaml
+    assert yaml.safe_load((repo / "config" / "players" / "nueva.yaml").read_text(encoding="utf-8"))["hand"] == "left"
+    assert "Elena" in (repo / "config" / "players" / "rybakina.yaml").read_text(encoding="utf-8")
+    assert nube.write_app_players(repo, tmp_path / "nada") == []

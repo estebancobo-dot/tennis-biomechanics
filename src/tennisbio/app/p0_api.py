@@ -33,6 +33,22 @@ def match_id(ficha: dict) -> str:
     return slug
 
 
+def player_record(name: str, players_dir: Path | None = None) -> str:
+    """The id of her record in config/players (by its name), else the id it will have (her surname): the queue refuses a
+    match whose player has no record, with its reason, rather than an analysis that cannot load her height and hand."""
+    import yaml
+
+    from ..config import CONFIG_DIR
+    d = Path(players_dir) if players_dir else CONFIG_DIR / "players"
+    for f in sorted(d.glob("*.yaml")):
+        try:
+            if str((yaml.safe_load(f.read_text(encoding="utf-8")) or {}).get("name", "")).strip().lower() == name.strip().lower():
+                return f.stem
+        except (OSError, yaml.YAMLError):  # esperado: a damaged record is not hers
+            continue
+    return pt.player_id(name)
+
+
 def video_minutes(video: Path) -> float | None:
     """The video's length (ffprobe), for the queue's forecast; None without ffprobe or when it cannot be read."""
     if not shutil.which("ffprobe"):
@@ -84,6 +100,7 @@ class Gestion:
         except ValueError as e:  # esperado: the record names no players: said on the screen, nothing uploaded
             return {"ok": False, "motivo": str(e)}
         data = {"video": video.name, "jugadora": str(ficha.get("jugadora") or ""), "rival": str(ficha.get("rival") or ""),
+                "jugadora_id": player_record(str(ficha.get("jugadora") or "")),
                 "preparar": preparar is True, "minutos_video": video_minutes(video)}
         why = pt.problem(pt.request("alta", self.now(), m, **data))
         if why:

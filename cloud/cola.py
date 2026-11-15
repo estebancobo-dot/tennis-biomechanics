@@ -494,10 +494,11 @@ def app_round(store, state: dict, jobs: list[dict], now: float, before: dict | N
     for name in store.list(pt.FOLDER):
         r = store.read_json(f"{pt.FOLDER}/{name}")
         reqs.append((name, r if isinstance(r, dict) else {"tipo": None}))
-    first = pt.interpret(reqs)
+    players = {f.stem for f in (Path(__file__).resolve().parents[1] / "config" / "players").glob("*.yaml")}
+    first = pt.interpret(reqs, players=players)
     analysed = {j["partido"] for j in first["trabajos"] if j["accion"] == "partido" and not j.get("etapas")
                 and state.get(j["id"], {}).get("estado") == "hecho"}
-    out = pt.interpret(reqs, analysed=analysed)
+    out = pt.interpret(reqs, analysed=analysed, players=players)
     have = {j["id"] for j in jobs}
     out["trabajos"] = [j for j in out["trabajos"] if j["id"] not in have]        # Claude's own jobs keep their ids
     gone = set((before or {}).get("borrados") or [])
@@ -691,11 +692,13 @@ def main(argv: list[str] | None = None) -> int:
     jobs = [j for j in jobs if j.get("id") and j["id"] not in bad_ids]
     by_id = {j["id"]: j for j in jobs}
     if not a.en_seco:
-        if app and app["partidos"]:                      # the application's matches, for the cloud's list (nube.registry)
-            f = d / "app_registro" / "registro_partidos.json"
-            f.parent.mkdir(exist_ok=True)
-            f.write_text(json.dumps(app["partidos"], ensure_ascii=False, indent=1), encoding="utf-8")
-            store.put_files([f], f.parent, "/app")
+        for name, rows in (("registro_partidos.json", (app or {}).get("partidos")),   # the application's matches and
+                           ("personas.json", (app or {}).get("personas"))):           # people, for the cloud (nube)
+            if rows:
+                f = d / "app_registro" / name
+                f.parent.mkdir(exist_ok=True)
+                f.write_text(json.dumps(rows, ensure_ascii=False, indent=1), encoding="utf-8")
+                store.put_files([f], f.parent, "/app")
         catalog = matches_on_volume(vol)                 # the matches the cloud knows, and which are analysed
         (d / "partidos.json").write_text(json.dumps(catalog, ensure_ascii=False, indent=1), encoding="utf-8")
         known = {m["id"] for m in catalog}

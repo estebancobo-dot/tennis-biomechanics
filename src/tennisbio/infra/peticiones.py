@@ -22,6 +22,7 @@ from __future__ import annotations
 
 import re
 import time
+import unicodedata
 from pathlib import PurePosixPath
 
 FOLDER = "/app/peticiones"
@@ -34,6 +35,16 @@ HANDS, BACKHANDS = ("right", "left"), ("one_handed", "two_handed")
 # on a GPU one; after the approval the whole match, which keeps what these did
 CPU_STAGES = ["probe", "scenes", "court", "audio"]
 CLICK_STAGES = ["players", "score", "identity"]
+
+
+APP_PLAYERS = "app/personas.json"          # the queue writes the people added in the application (the cloud reads it)
+
+
+def player_id(name: str) -> str:
+    """A player record's id from her name, as config/players names them (the surname, lower-case ASCII)."""
+    t = unicodedata.normalize("NFKD", str(name)).encode("ascii", "ignore").decode().lower()
+    words = re.findall(r"[a-z0-9]+", t)
+    return words[-1] if words else ""
 
 
 def file_name(kind: str, match: str | None, now: float) -> str:
@@ -74,10 +85,13 @@ def problem(r: dict) -> str | None:
     return None
 
 
-def interpret(requests: list[tuple[str, dict]], analysed: set[str] | None = None) -> dict:
+def interpret(requests: list[tuple[str, dict]], analysed: set[str] | None = None,
+              players: set[str] | None = None) -> dict:
     """{"trabajos", "cancelar", "pausa", "borrar", "partidos", "personas", "errores", "esperas"} from the requests
     (name, content), in the order of their names. `analysed`: the matches whose whole analysis finished (the only ones
-    whose video may go). Jobs carry the `app_` prefix: they never clash with Claude's."""
+    whose video may go). `players`: the ids of the player records there are (config/players); with it, a match whose
+    player has no record (there nor added in the application) is refused with its reason. Jobs carry the `app_` prefix:
+    they never clash with Claude's."""
     analysed = analysed or set()
     out: dict = {"trabajos": [], "cancelar": {}, "pausa": None, "borrar": [], "partidos": [], "personas": [],
                  "errores": [], "esperas": {}}
@@ -103,10 +117,16 @@ def interpret(requests: list[tuple[str, dict]], analysed: set[str] | None = None
         elif kind == "cancelar":
             out["cancelar"][str(r["trabajo"])] = f"cancelado desde la aplicación ({r.get('cuando', '')})"
         elif kind == "persona":
-            out["personas"].append({k: r[k] for k in ("name", "hand", "backhand", "height_m") if k in r})
+            out["personas"].append({"id": player_id(r["name"]),
+                                    **{k: r[k] for k in ("name", "hand", "backhand", "height_m") if k in r}})
+    known = None if players is None else set(players) | {p["id"] for p in out["personas"]}
     for m, r in alta.items():
         ext = PurePosixPath(str(r["video"])).suffix.lower()
-        out["partidos"].append({"id": m, "video": f"{m}{ext}", "jugador": r["jugadora"].strip(),
+        pid = str(r.get("jugadora_id") or player_id(r["jugadora"]))
+        if known is not None and pid not in known:     # the analysis loads config/players/<id>.yaml: never without it
+            out["errores"].append((f"alta {m}", f"no hay ficha de «{r['jugadora']}» ({pid}): añádela en Personas"))
+            continue
+        out["partidos"].append({"id": m, "video": f"{m}{ext}", "jugador": pid, "jugadora": r["jugadora"].strip(),
                                 "rival": r["rival"].strip(), "desde": "aplicacion"})
         prep = f"la preparación, aprobada al añadirlo ({r.get('cuando', '')})"     # #262: her yes on the alta screen
         out["trabajos"] += [
