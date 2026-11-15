@@ -379,3 +379,21 @@ de aceptación.**
 - Lo más importante no se puede validar en una maqueta: el vídeo primero con sus capas, la velocidad real de la
   interacción y si de verdad se aprende con ella.
 - El validador pasa a recorrer la aplicación real en cada versión: cada hueco sigue medido hasta cerrarse.
+
+## 11. La trayectoria del swing sobre su vídeo (15-11, #306)
+
+Del short que eligió el usuario (`aprendido_entrenadores.md` §7):
+- **Qué se dibuja:**
+  - sobre el vídeo real del golpe, toda la trayectoria a la vez en puntos: la de la mano (huecos, un color por fase:
+    preparación, bucle, caída, aceleración, terminación) y la de la punta de la raqueta (llenos);
+  - un recuadro en su zona de contacto.
+- **De dónde sale:** de la serie fotograma a fotograma de cada golpe, que ya existe en el PC: la muñeca de la pose y la
+  punta y la empuñadura de la raqueta (5 puntos), en píxeles del vídeo. Las fases salen de los momentos de cada golpe.
+- **Honestidad:**
+  - donde la raqueta sale borrosa (aceleración e impacto) los puntos van más tenues y dice «estimado»;
+  - un fotograma sin raqueta no se dibuja; nunca se inventa.
+- **Dónde va:**
+  - en el análisis de cada golpe, como su imagen estroboscópica;
+  - en la fase de la lección, sobre su golpe más representativo.
+- **Estado:** el dibujo ya está en la aplicación (`ui/src/pantallas/Trayectoria.tsx`), probado con datos de ejemplo. Los
+  datos reales entran con el reproductor en el PC (P0.5e).

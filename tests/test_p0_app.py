@@ -54,3 +54,27 @@ def test_the_example_is_walked_without_errors():
         assert all(f"mas_{s}" in names for s in walk.MORE + walk.OPTIONAL_MORE)
         assert "situacion_celda" in names and "apoyo" in r["estados"]["situacion_celda"]
         assert "Datos de ejemplo" in r["estados"]["inicio"]
+
+
+def test_the_swing_path_is_drawn_on_a_canvas():
+    """#306 (15-11): the swing's whole path over the stroke (the short the user chose) is a real drawing, not a word
+    beside a placeholder: the stroke's panel has a canvas with dots on it when the stroke has its path."""
+    pytest.importorskip("playwright")
+    from playwright.sync_api import sync_playwright
+    html = p0_app.pagina(p0_app.ejemplo())
+    with sync_playwright() as pw:
+        b = pw.chromium.launch()
+        p = b.new_page(viewport={"width": 1280, "height": 800})
+        p.set_content('<!doctype html><html><head><meta charset="utf-8"></head><body>' + html + "</body></html>")
+        p.evaluate("() => location.hash = 'visor'")
+        p.wait_for_timeout(200)
+        p.click('[data-tab="golpes"]')
+        p.wait_for_timeout(150)
+        ids = [s["id"] for s in p0_app.ejemplo()["strokes"] if s.get("trayectoria")]
+        p.click(f'[data-stroke="{ids[0]}"]')
+        p.wait_for_timeout(300)
+        drawn = p.evaluate("""() => { const c = document.querySelector('canvas[data-trayectoria]'); if (!c) return -1;
+            const d = c.getContext('2d').getImageData(0, 0, c.width, c.height).data; let n = 0;
+            for (let i = 3; i < d.length; i += 4) if (d[i] > 0) n++; return n; }""")
+        b.close()
+    assert drawn > 200, drawn

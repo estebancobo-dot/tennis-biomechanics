@@ -45,6 +45,8 @@ def ejemplo() -> dict:
                "bits": ["rápida" if i % 2 else "lenta", "bola media"], "outcome": "en juego", "stance": "abierto",
                "movement": "en carrera" if i % 3 else "parada", "finish": "sobre el hombro", "quality": (i * 37) % 100,
                "repr": (i * 53) % 100, "fast": bool(i % 2), "m": {"sh": 60.0 + i, "xf": 15.0 + i % 5}} for i in range(12)]
+    for g in golpes[:4]:
+        g["trayectoria"] = _trayectoria_ejemplo()
     trabajos = [{"id": "prueba_ejemplo", "accion": "prueba", "partido": partidos[2]["id"], "estado": "en_marcha",
                  "donde": "kaggle", "nota": "fine: 40 % (ejemplo)"},
                 {"id": "partido_ejemplo", "accion": "partido", "partido": partidos[2]["id"], "estado": "pendiente",
@@ -72,6 +74,24 @@ def ejemplo() -> dict:
                     "domains": {"Datos": {"score": 0.9}, "Pantallas": {"score": None}}},
         "run_info": {},
     }
+
+
+def _trayectoria_ejemplo() -> dict:
+    """A made-up swing path (1280x720 px) with the shape of a looped forehand seen from behind: up and back, over the
+    loop, down under the ball, up to contact and over the shoulder; the blurred stretch marked."""
+    import math
+
+    puntos = []
+    for i in range(40):
+        t = -1.0 + 1.6 * i / 39
+        a = math.pi * (0.15 + 1.75 * i / 39)              # around the body, as a lasso
+        hx, hy = 640 + 260 * math.cos(a), 360 - 150 * math.sin(a) + (60 if 0.9 < a < 2.2 else 0)
+        fase = ("takeback" if t < -0.7 else "loaded" if t < -0.35 else "acceleration" if t < -0.02 else
+                "impact" if t < 0.04 else "extension" if t < 0.2 else "finish")
+        puntos.append({"t": round(t, 3), "fase": fase, "mano": [round(hx, 1), round(hy, 1)],
+                       "punta": [round(640 + 380 * math.cos(a), 1), round(330 - 230 * math.sin(a), 1)],
+                       "borroso": fase in ("acceleration", "impact")})
+    return {"ancho": 1280, "alto": 720, "puntos": puntos, "contacto": [930, 330, 70, 60]}
 
 
 def datos_beta(report: Path, audit: Path, estado: Path, matches: Path) -> dict:

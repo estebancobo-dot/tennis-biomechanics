@@ -8,6 +8,7 @@ import { Panel, useApp } from "../App";
 import type { Datos, Golpe } from "../contrato";
 import { esN, fmt } from "../datos";
 import { SITUACION } from "../situaciones";
+import { TrayectoriaSwing, type Trayectoria } from "./Trayectoria";
 
 type AnyRec = Record<string, any>; // eslint-disable-line @typescript-eslint/no-explicit-any
 const sgn = (v: number, d = 0) => (v > 0 ? "+" : v < 0 ? "−" : "") + fmt(Math.abs(v), d);
@@ -135,8 +136,10 @@ export function FichaGolpe({ s }: { s: Golpe }) {
           ] as [string, string][]).map(([a, v]) => <tr key={a}><td>{a}</td><td><b>{v}</b></td></tr>)}</tbody></table></div>
       </div>
       <div className="grid2">
-        <div className="card"><h3>Imagen estroboscópica</h3><p className="sub">Sus esqueletos superpuestos a lo largo del golpe y la trayectoria de la muñeca.</p>
-          <p className="mock" style={{ marginTop: 8 }}>Se dibuja con la serie fotograma a fotograma del golpe, que llega con el reproductor (P0.5e).</p></div>
+        <div className="card"><h3>Imagen estroboscópica: la trayectoria del swing</h3>
+          {s.trayectoria ? <TrayectoriaSwing tr={s.trayectoria as Trayectoria} titulo={`Trayectoria del swing: ${tituloGolpe(s)}`} /> : <>
+            <p className="sub">Toda la trayectoria del golpe sobre su vídeo: la mano por fases y la punta de la raqueta, con su zona de contacto (#306).</p>
+            <p className="mock" style={{ marginTop: 8 }}>Se dibuja con la serie fotograma a fotograma del golpe, que llega con el reproductor (P0.5e).</p></>}</div>
         <div className="card"><h3>Tira de contactos</h3><p className="sub">Todos sus impactos en esta situación, uno junto a otro, y superpuestos en un fotograma.</p>
           <p className="mock" style={{ marginTop: 8 }}>Con los fotogramas de cada impacto, que llegan con el reproductor (P0.5e).</p></div>
       </div>

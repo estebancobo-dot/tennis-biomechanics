@@ -430,3 +430,28 @@ Non-Negotiable». **41 vídeos**: sus 14 semanales, 23 shorts y 4 largos.
    - un resumen final «lo que hace bien / dónde pierde» con las conclusiones que superan el error de medida.
 5. **Lecciones por etapas, empezando por la empuñadura:** las 5 etapas de Musetti coinciden con las fases de la
    lección; la empuñadura va antes (en espera y al golpear, si se ve: requisito 1).
+
+## 7. «Simona Halep's Forehand swing path» (15-11, petición #306)
+
+**Qué es.** Un short de 13 s (youtube.com/shorts/WfvYEYP-QWk, canal Tennis education, con un vídeo de Joel Myers). No
+tiene voz, solo música; lo que enseña está en el gráfico. El usuario: «los gráficos están muy bien». Llegó por Kaggle con
+un fotograma por segundo (`investigar_short_usuario_306`). Solo para aprender a explicar (requisito 6).
+
+**El gráfico:**
+- **Toda la trayectoria del golpe a la vez sobre el vídeo real**, en puntos, mientras el golpe se reproduce debajo a
+  velocidad real: se ve adónde va la raqueta antes de que llegue.
+- **Dos recorridos:**
+  - **por dentro, puntos huecos con un color por fase:** amarillo al preparar (hacia atrás y arriba), blanco en el bucle
+    por encima, verde en la caída por debajo de la bola y la subida hasta el contacto;
+  - **por fuera, puntos rojos llenos:** el arco grande de la cabeza de la raqueta, de atrás por arriba hasta la
+    terminación.
+- **Un recuadro verde fijo en la zona del contacto**, delante del cuerpo: la bola entra en él.
+- **Nada más:** el nombre arriba y «Forehand Swing path» abajo; ni números, ni flechas, ni texto encima del golpe.
+- **La cámara:** detrás y un poco de lado, casi la vista de la tele de la jugadora del lado cercano.
+
+**Qué toma la aplicación** (`p0_diseno.md` §11):
+- la trayectoria del swing de cada golpe sobre su vídeo, con la punta y la mano de la raqueta, que ya medimos en cada
+  fotograma (RacketVision y la pose), con un color por fase;
+- el recuadro de su zona de contacto, que sale de su punto de impacto medido;
+- el tramo de la aceleración y el impacto (raqueta borrosa en la tele), más tenue y marcado como estimado;
+- un solo gráfico, sin números encima: los números van al lado, como en los shorts de §5.
