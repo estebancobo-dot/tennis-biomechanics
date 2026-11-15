@@ -132,14 +132,17 @@
     },
     "medir_bola_totnet_gpu": {
      "estimado_h": 0.5
+    },
+    "prueba_gauff_v32_b": {
+     "estimado_h": 1.0
     }
    }
   }
  },
  "kaggle_real": {
-  "usadas_h": 25.08,
+  "usadas_h": 25.17,
   "total_h": 30.0,
   "renueva": "2026-11-21 00:00:00",
-  "ts": 1794780814.741231
+  "ts": 1794781126.1461022
  }
 }
