@@ -1,6 +1,6 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-15 01:10 UTC · Modal: quedan 0.53 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 4.1 h de GPU esta semana (tope 28 h; Kaggle dice 9.99 h usadas de 30.0, se renueva 2026-11-21 00:00)
+Última vuelta: 2026-11-15 01:11 UTC · Modal: quedan 0.53 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 4.1 h de GPU esta semana (tope 28 h; Kaggle dice 10.01 h usadas de 30.0, se renueva 2026-11-21 00:00)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
@@ -18,13 +18,14 @@
 | prueba_gauff_v21_calidad | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
 | comparar_gauff_v20_v21 | comparar |  | revisar | github | distinta; 7 etapas iguales; distintas: candidates, fine, fine_doubtful, identity, players, slowmo_fine, spotting, view_clips; strokes.json: 27 de 28/28 golpes emparejados, 3 distintos, medidas fuera de tolerancia: technique.pose.finish, racket_track, technique.pose.impact, technique.pose.acceleration; strokes_opponent.json: 0 de 0/0 golpes emparejados; strokes_doubtful.json: 1 de 1/1 golpes emparejados, medidas fuera de tolerancia: technique.phases.ready.hands_apart, technique.jitter.loaded.front_foot_angle_deg, technique.phases.ready.base_width, technique.phases.impact.hip_tilt |
 | comparar_gauff_v20_v21b | comparar |  | revisar | github | distinta; 7 etapas iguales; distintas: candidates, fine, fine_doubtful, identity, players, slowmo_fine, spotting, view_clips; strokes.json: 27 de 28/28 golpes emparejados, 3 distintos, medidas fuera de tolerancia: technique.pose.ready, technique.pose.impact, technique.pose.acceleration, technique.pose.loaded; strokes_opponent.json: 0 de 0/0 golpes emparejados; strokes_doubtful.json: 1 de 1/1 golpes emparejados, medidas fuera de tolerancia: technique.phases.ready.racket_head_vs_wrist, technique.jitter.ready.hip_turn, technique.jitter.ready.face_tilt, technique.jitter.impact.face_tilt |
+| comparar_gauff_v20_v21c | comparar |  | revisar | github | distinta; 7 etapas iguales; distintas: candidates, fine, fine_doubtful, identity, players, slowmo_fine, spotting, view_clips; strokes.json: 27 de 28/28 golpes emparejados, 3 distintos, medidas fuera de tolerancia: technique.pose.loaded, technique.pose.acceleration, technique.pose.impact, racket_track; strokes_opponent.json: 0 de 0/0 golpes emparejados; strokes_doubtful.json: 1 de 1/1 golpes emparejados, medidas fuera de tolerancia: technique.pose.loaded, technique.phases.loaded.x_factor, technique.jitter.ready.arm_extension, technique.phases.ready.base_width |
 | prueba_gauff | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | modal |  |
 | prueba_gauff_v16 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | error | kaggle | en cola de Kaggle más de 10 min sin arrancar (4 intentos) |
 | prueba_gauff_v16b | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
 | gauff | partido | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | error | kaggle | cancelado: R48: con la raqueta en la CPU su pasada fina gastaría ~6 h de más; se relanza como gauff_b con el arreglo cuando la v20 lo compruebe (su pasada barata, ya en Modal, se reutiliza) |
-| gauff_b | partido | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: running (01:10), intento 1 · scenes:  43 % (85174/200135 fotogramas) · 12 min · quedan ≈ 16 min (01:10:25; GPU 0 %·0 %, CPU 88 %, 2.2 GB) |
+| gauff_b | partido | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: running (01:11), intento 1 · scenes:  43 % (85174/200135 fotogramas) · 12 min · quedan ≈ 16 min (01:10:25; GPU 0 %·0 %, CPU 88 %, 2.2 GB) |
 | prueba_final | prueba | tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 | hecho | modal |  |
-| final | partido | tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: running (01:10), intento 1 · players:  15 % (4056/26328 fotogramas con jugadoras) · 4 min · quedan ≈ 22 min (01:10:10; GPU 71 %·0 %, CPU 98 %, 4.5 GB) |
+| final | partido | tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: running (01:11), intento 1 · players:  15 % (4056/26328 fotogramas con jugadoras) · 4 min · quedan ≈ 22 min (01:10:10; GPU 71 %·0 %, CPU 98 %, 4.5 GB) |
 | prueba_sinner | prueba | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | pendiente |  | espera a final (en_marcha) |
 | sinner | partido | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | pendiente |  | espera a prueba_sinner (pendiente) |
 | actualizar_osaka | partido | us-open-2026-r4-naomi-osaka-elena-rybakina | pendiente |  | espera a sinner (pendiente) |
