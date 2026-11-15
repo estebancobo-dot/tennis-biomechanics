@@ -15,7 +15,28 @@ se adelantan en la nube en paralelo con la Base; la construcción (P0.5) empieza
 - **Lo que sí sirve y se conserva:** el motor (etapas, pose, bola, medidas, estadística), el registro único y la cola
   (orquestador), el modelo de calidad, la auditoría y los datos por partido.
 
-## 2. Arquitectura propuesta (estado del arte para una aplicación local, sin nube ni pago)
+## 2 bis. Arquitectura para la web (15-11, #296: P0 se diseña ya como aplicación web y se construye una sola vez)
+
+La tabla de abajo era para una aplicación local (ventana de escritorio en el PC). Desde el 13-11 la aplicación va a la
+nube y desde el 15-11 P0 se diseña directamente como web. Lo que cambia y lo que se queda:
+
+| Capa | Web (vigente) | Por qué |
+|---|---|---|
+| Interfaz | **React + TypeScript + Vite**, una sola aplicación (aplicación + informe unidos), compilada a ficheros estáticos | Se queda: es lo más extendido, tipado, con componentes de calidad; los estáticos sirven igual en cualquier alojamiento |
+| Componentes y diseño | Sistema de diseño propio sobre Tailwind + componentes accesibles (Radix) | Se queda |
+| Gráficos | Apache ECharts (u Observable Plot donde baste) | Se queda (a confirmar en P0.3) |
+| Vídeo | Reproductor propio sobre `<video>` + capa canvas (esqueleto, raqueta, bola) con los recortes de cada golpe | Se queda; los recortes se sirven desde el almacenamiento privado |
+| Ventana | ~~pywebview~~ → **el navegador** (móvil y PC) | La aplicación es una web |
+| API | **FastAPI** dentro del alojamiento privado (`docs/n_web.md`: un Space privado de Hugging Face), con el contrato tipado; lee los resultados del conjunto de datos privado y recibe la subida, el clic y la aprobación | El contrato tipado se queda; ahora es el único camino entre la web y los datos |
+| Datos | Resultados por partido (JSON y recortes) en el almacenamiento privado; la cola de la nube (`config/cola_nube.yaml`, `nube-logs`) como estado de los trabajos | Una sola fuente de verdad, ya en la nube |
+| Trabajos | La cola de la nube (Kaggle, Modal), nunca el PC | #284 |
+| Pruebas | Playwright (recorridos), regresión visual por capturas, axe-core, presupuestos de rendimiento en el móvil | Se quedan; el móvil pasa a ser la pantalla principal |
+
+Las tareas P0.1-P0.4 (este plan, el modelo de calidad, la comparativa y el diseño) se hacen ya en la nube de Claude; la
+construcción (P0.5) cuando la Base cierre. La maqueta interactiva se publica como página privada para que el usuario la
+revise desde el móvil.
+
+## 2. Arquitectura propuesta (13-11, para una aplicación local: sustituida por la de arriba en lo que cambia)
 | Capa | Elección | Por qué |
 |---|---|---|
 | Interfaz | **Una sola aplicación** (aplicación + informe unidos), React + TypeScript, Vite | Lo más extendido y con más componentes de calidad; tipado; se compila a ficheros estáticos que funcionan sin conexión (también en el móvil, P6) |
