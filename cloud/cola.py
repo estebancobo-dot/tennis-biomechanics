@@ -33,7 +33,10 @@ CAP_USD = 29.5
 USD_PER_VIDEO_MIN = 0.065
 USD = {"prueba": 0.8, "informe": 0.15, "medir": 0.5}
 DEFAULT_VIDEO_MIN = 210                     # the longest of the six, when a job does not say its length
-ACTIONS = ("prueba", "partido", "informe", "medir", "comparar")
+ACTIONS = ("prueba", "partido", "informe", "medir", "comparar", "leer")
+# 15-11 (R52): «leer» copies small text files of the volume to nube-logs, for a diagnosis without GPU or Modal credit
+READ_EXT = (".json", ".txt", ".md", ".log")
+READ_MAX_BYTES = 512 * 1024
 KAGGLE_SESSIONS = 2            # T20 (14-11): Kaggle runs 2 batch GPU sessions at once; one notebook per job
 # Kaggle (paso 8b): ~30 GPU hours a week (the figure floats; the account shows it); the queue keeps 2 h of margin. One
 # notebook, so one Kaggle job at a time. Hours per job until measured: a test 1 h, a match 3 × its video.
@@ -215,6 +218,11 @@ def check_queue(jobs: list[dict]) -> list[str]:
             bad.append(f"{jid}: «config» es un diccionario de ajustes y solo vale para una prueba")
         if j.get("accion") == "comparar" and not (j.get("a") and j.get("b")):
             bad.append(f"{jid}: comparar necesita «a» y «b» (dos trabajos de la cola o dos carpetas del volumen)")
+        if j.get("accion") == "leer":
+            rutas = j.get("rutas")
+            if (not isinstance(rutas, list) or not rutas or not all(
+                    isinstance(r, str) and r.startswith("/") and ".." not in r and r.endswith(READ_EXT) for r in rutas)):
+                bad.append(f"{jid}: leer necesita «rutas»: ficheros del volumen ({', '.join(READ_EXT)}), rutas absolutas")
         if j.get("donde", "cualquiera") not in ("cualquiera", *SOURCES):
             bad.append(f"{jid}: donde {j.get('donde')!r}")
     for j in jobs:
@@ -303,6 +311,9 @@ def plan(jobs: list[dict], state: dict, spend: dict, sources: dict, now: float,
             if dep.get("estado") != "hecho":
                 out.append((j["id"], "", f"espera a {j['tras']} ({dep.get('estado', 'pendiente')})"))
                 continue
+        if j["accion"] == "leer":                      # R52: no GPU, no Modal credit: this pass reads the files
+            out.append((j["id"], "github", "se lee en esta vuelta"))
+            continue
         if j["accion"] == "comparar":                  # T9: no GPU, run by the queue itself in this pass
             waits = [x for x in (j.get("a"), j.get("b")) if not str(x).startswith("/")
                      and state.get(str(x), {}).get("estado") != "hecho"]
@@ -612,8 +623,8 @@ def main(argv: list[str] | None = None) -> int:
         if not src or a.en_seco:
             continue
         j = by_id[jid]
-        if src == "github":                              # T9: a comparison, here and now (no GPU)
-            compare_job(vol, j, state, d, now)
+        if src == "github":                              # T9: a comparison, here and now (no GPU); R52: a reading
+            (read_job if j["accion"] == "leer" else compare_job)(vol, j, state, d, now)
             continue
         if src == "kaggle":
             if kaggle_launch(j):
@@ -766,6 +777,29 @@ def _read_json(vol, path: str):
     if data is None:
         READ_ERRORS[path] = getattr(st, "last_error", "no es JSON")
     return data
+
+
+def read_job(vol, job: dict, state: dict, logs: Path, now: float) -> dict:
+    """R52 (15-11): job «leer» — small text files of the volume (`rutas`) copied to nube-logs
+    (cola/lecturas/<id>/<name>), so Claude can diagnose a run without Modal's keys; «hecho» when all were read."""
+    import almacen
+
+    store, dest = almacen.ModalStorage(vol, VOLUME), logs / "lecturas" / job["id"]
+    got, missing = [], []
+    for path in job["rutas"]:
+        data = store.read_bytes(path)
+        if data is None:
+            missing.append(f"{path}: {getattr(store, 'last_error', 'no está')}")
+            continue
+        dest.mkdir(parents=True, exist_ok=True)
+        name = path.strip("/").replace("/", "__")
+        (dest / name).write_bytes(data[:READ_MAX_BYTES])
+        got.append(name + (f" (cortado a {READ_MAX_BYTES // 1024} KB)" if len(data) > READ_MAX_BYTES else ""))
+    st = {"estado": "hecho" if got and not missing else "error", "accion": "leer", "donde": "github",
+          "fin": time.strftime("%Y-%m-%d %H:%M", time.gmtime(now)),
+          "resultado": {"nota": "; ".join(([f"leídos: {', '.join(got)}"] if got else []) + ([f"faltan: {'; '.join(missing)}"] if missing else []))}}
+    state[job["id"]] = st
+    return st
 
 
 def compare_job(vol, job: dict, state: dict, logs: Path, now: float) -> dict:

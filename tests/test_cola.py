@@ -520,3 +520,28 @@ def test_experiments_are_not_equivalence_checks(tmp_path):
     (root / "cola" / "comparaciones" / "q.json").write_text(json.dumps(
         {"veredicto": "idéntica", "ficheros_de_un_solo_lado": []}), encoding="utf-8")
     assert equivalence_item(root)["status"] == "ok"
+
+
+def test_a_reading_copies_small_volume_files_to_the_logs(tmp_path):
+    """R52 (15-11): Zheng's fine-pass errors live on the volume; «leer» copies small text files to nube-logs in the
+    queue's own pass (no GPU, no Modal credit)."""
+    files = {"output/z/strokes_errores.json": b'[{"t": 1}]'}
+
+    class Vol:
+        def read_file(self, path):
+            if path not in files:
+                raise FileNotFoundError(path)
+            yield files[path]
+
+    j = {"id": "leer_z", "accion": "leer", "rutas": ["/output/z/strokes_errores.json"]}
+    assert cola.check_queue([j]) == []
+    assert cola.check_queue([{**j, "rutas": ["/output/z/video.mp4"]}]) != []           # text files only
+    assert cola.check_queue([{**j, "rutas": ["output/../x.json"]}]) != []
+    on = {"kaggle": {"ok": True, "motivo": "", "libres": 2}, "pc": {"ok": False}}
+    assert cola.plan([j], {}, {}, on, DEC)[0][1] == "github"
+    state = {}
+    st = cola.read_job(Vol(), j, state, tmp_path, 0.0)
+    assert st["estado"] == "hecho" and state["leer_z"] is st
+    assert (tmp_path / "lecturas" / "leer_z" / "output__z__strokes_errores.json").read_bytes() == b'[{"t": 1}]'
+    st = cola.read_job(Vol(), {**j, "rutas": ["/output/z/otro.json"]}, {}, tmp_path, 0.0)
+    assert st["estado"] == "error" and "faltan" in st["resultado"]["nota"]

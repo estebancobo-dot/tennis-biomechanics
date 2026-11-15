@@ -42,6 +42,7 @@ SEGUIR»: la primera tarea no hecha cuyas dependencias estén hechas. **Después
 | Petición nueva del usuario | — | `peticiones_usuario.md` + un paquete de `plan_peticiones.yaml` + tarea en el PLAN ÚNICO |
 | «comparar» hecho (idéntica o equivalente) | Lo apunta y sigue lo que esperaba por él | Si comprobaba un cambio de código de la pasada fina: poner `comprobado: true` en su entrada de `config/codigo_equivalente.json` (con la comparación de `nube-logs/cola/comparaciones/`) y subirlo; así los partidos ya analizados no repiten la pasada fina |
 | «comparar» en «revisar» (distinta) | No sigue nada de lo que espera por él | Leer `nube-logs/cola/comparaciones/<id>.json` (qué etapas y qué medidas cambian); encontrar la causa; arreglar o, si el cambio es de verdad distinto, dejar la entrada sin comprobar: lo ya analizado se rehará con el código nuevo |
+| Hace falta un fichero del volumen para un diagnóstico (errores de un partido, su manifiesto) | Con un trabajo «leer» (`rutas`: ficheros de texto del volumen, ≤ 512 KB cada uno) lo copia en su vuelta a `nube-logs/cola/lecturas/<id>/`, sin GPU ni crédito de Modal (15-11, R52) | Añadir el trabajo a `config/cola_nube.yaml`, subirlo y leerlo cuando avise el buzón |
 
 ## 3. Cómo se valida y se acepta (el modelo de calidad del proyecto)
 

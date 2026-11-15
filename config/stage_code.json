@@ -40,7 +40,7 @@
  },
  "identity": {
   "version": "13",
-  "hash": "45f62086eac49510",
+  "hash": "afdcc9a291fac519",
   "modules": [
    "clothes",
    "court_metrics",
@@ -55,7 +55,7 @@
  },
  "spotting": {
   "version": "2",
-  "hash": "842288b999b60bf8",
+  "hash": "596a36c4faa58bb2",
   "modules": [
    "ball",
    "ball_features",
@@ -73,7 +73,7 @@
  },
  "candidates": {
   "version": "16",
-  "hash": "1a6a6218ea2b9754",
+  "hash": "2c547eb9f9833f5e",
   "modules": [
    "court_metrics",
    "identity",
@@ -88,7 +88,7 @@
  },
  "views": {
   "version": "6",
-  "hash": "feadbc39b2c23efc",
+  "hash": "cb265c9cc39b1bc5",
   "modules": [
    "court",
    "court_metrics",

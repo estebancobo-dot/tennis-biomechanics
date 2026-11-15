@@ -50,6 +50,9 @@ def stance(dom_foot: np.ndarray, non_foot: np.ndarray, stroke: str, dom_sign: in
 
 
 POS_MAX_OFFSET_S = 0.2      # her position on court from the nearest frame with feet, at most this far from contact
+# R54 (15-11): two feet less than this apart are one point seen twice (a collapsed pose: Gauff, a stroke captured at 5 %
+# gave a base of 0.0 m), not a base: no width and no stance from them (the audit's physical limit is the same)
+MIN_STANCE_WIDTH_M = 0.1
 
 
 def nearest_feet(img_kp: np.ndarray, frame: int, sk: Skeleton, H: np.ndarray, feet=None, max_offset: int = 0):
@@ -89,9 +92,11 @@ def court_metrics(img_kp: np.ndarray, sk: Skeleton, H: np.ndarray, stroke: str, 
     else:
         dom, non = f
         mid = (dom + non) / 2
-        kind, ang = stance(dom, non, stroke, sk.dom_sign)
-        out.update(court_pos_m=[round(float(v), 2) for v in mid], stance_width_m=round(float(np.linalg.norm(dom - non)), 2),
-                   stance=kind, stance_angle_deg=round(ang, 1))
+        out["court_pos_m"] = [round(float(v), 2) for v in mid]
+        width = float(np.linalg.norm(dom - non))
+        if width >= MIN_STANCE_WIDTH_M:
+            kind, ang = stance(dom, non, stroke, sk.dom_sign)
+            out.update(stance_width_m=round(width, 2), stance=kind, stance_angle_deg=round(ang, 1))
     g = feet_on_court(img_kp, opponent_hit, sk, H, fk)
     if g is not None:
         out["displacement_m"] = round(float(np.linalg.norm(mid - (g[0] + g[1]) / 2)), 2)

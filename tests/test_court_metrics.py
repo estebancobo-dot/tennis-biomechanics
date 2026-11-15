@@ -64,3 +64,14 @@ def test_position_from_the_nearest_frame_with_feet_when_contact_has_none():
     kp[:, sk["right_ankle"]], kp[:, sk["left_ankle"]] = [1.0, 2.0], [0.0, 2.0]
     m = court_metrics(kp, sk, np.eye(3), "forehand", impact=17, fps=25.0)     # feet at contact: nothing changes
     assert "court_pos_offset_s" not in m and m["stance"] == "abierto"
+
+
+def test_feet_on_one_point_are_no_base():
+    """R54 (15-11): a stroke captured at 5 % gave a base of 0.0 m (both feet on one point, a collapsed pose): its
+    position stays, its base width and stance are not given (the audit's physical limit is 0.1 m)."""
+    sk = Skeleton("coco17", "right")
+    kp = np.full((5, 17, 2), np.nan)
+    kp[:, sk["right_ankle"]] = [1.0, 0.0]
+    kp[:, sk["left_ankle"]] = [1.02, 0.0]
+    m = court_metrics(kp, sk, np.eye(3), "forehand", impact=4, opponent_hit=0)
+    assert m["court_pos_m"] == [1.01, 0.0] and "stance_width_m" not in m and "stance" not in m
