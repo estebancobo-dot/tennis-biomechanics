@@ -41,7 +41,8 @@ KAGGLE_CAP_H = 28.0
 KAGGLE_H = {"prueba": 1.0, "medir": 0.5}
 # 14-11 22:20: measured (prueba v19, Kaggle with both T4s: 2899 s for 10 min of video = 0.081 h per minute; it was
 # 0.05, a guess that would have let two matches start into a week without their hours)
-KAGGLE_H_PER_VIDEO_MIN = 0.085
+# 15-11 00:15: with the racket on the GPU (R48, prueba v20: 1372 s for 10 min = 0.038 h per minute), with margin
+KAGGLE_H_PER_VIDEO_MIN = 0.045
 # 14-11: a session that ends without its job done is launched again, up to KAGGLE_TRIES times; then the job is an error
 # with the reason. Queued in Kaggle (its free GPUs busy) it waits: relaunching every 10 minutes (13:48-14:32) sent it to
 # the back of Kaggle's queue each time and gave the job up after 4 tries; only after 45 minutes queued is it relaunched.
@@ -79,11 +80,44 @@ def estimate_h(job: dict) -> float:
     return KAGGLE_H.get(job["accion"], 1.0)
 
 
-def kaggle_room(spend: dict, now: float) -> float:
-    """Kaggle GPU hours left this week (real hours of the finished jobs, estimates of the running ones)."""
+def kaggle_room(spend: dict, now: float, state: dict | None = None) -> float:
+    """Kaggle GPU hours left this week. 15-11 (R49): from Kaggle's own counter when this pass read it (spend
+    «kaggle_real»: its used hours, by its own week, which starts on Saturday) minus what the running jobs may still
+    take (their estimate less the time they have run); else our own ledger (real hours of the finished jobs,
+    estimates of the running ones). The ledger alone had kept estimates of jobs that never ran and said 1.4 h left
+    when Kaggle had ~24."""
+    real = spend.get("kaggle_real") or {}
+    if real.get("usadas_h") is not None and state is not None and now - float(real.get("ts", 0)) < 3600:
+        est = {}
+        for w in spend.get("kaggle", {}).values():
+            for jid, r in (w.get("trabajos") or {}).items():
+                est[jid] = float(r.get("estimado_h", 0.0))
+        left = 0.0
+        for jid, st in state.items():
+            if isinstance(st, dict) and st.get("estado") == "en_marcha" and st.get("donde") == "kaggle":
+                ran = (now - float(st.get("lanzado_ts", now))) / 3600 if st.get("arranco") else 0.0
+                left += max(0.0, est.get(jid, 1.0) - ran)
+        cap = min(KAGGLE_CAP_H, float(real.get("total_h") or 30.0) - 2.0)
+        return round(cap - float(real["usadas_h"]) - left, 2)
     w = spend.get("kaggle", {}).get(week(now), {})
     used = sum(float(r.get("horas", r.get("estimado_h", 0.0))) for r in w.get("trabajos", {}).values())
     return round(KAGGLE_CAP_H - used, 2)
+
+
+def kaggle_quota() -> dict | None:
+    """Kaggle's own GPU quota counter (used, allowed, renewal), or None when it cannot be read."""
+    try:
+        from kaggle.api.kaggle_api_extended import KaggleApi
+
+        api = KaggleApi()
+        api.authenticate()
+        g = api.quota_view()
+        q = g.gpu_quota
+        return {"usadas_h": round(q.time_used.total_seconds() / 3600, 2),
+                "total_h": round(q.total_time_allowed.total_seconds() / 3600, 2), "renueva": str(g.quota_refresh_time)}
+    except Exception as e:  # noqa: BLE001 — the ledger is used instead, and said
+        print(f"cola: cuota real de Kaggle no leída ({type(e).__name__}: {str(e)[:120]})")
+        return None
 
 
 def fresh(result: dict | None, st: dict) -> bool:
@@ -217,8 +251,8 @@ def cancel(state: dict, tokens: list[str], reasons: dict, delete, spend: dict | 
             if spend is not None and now is not None:
                 for w in spend.get("kaggle", {}).values():
                     r = w.get("trabajos", {}).get(jid)
-                    if r is not None:
-                        r["horas"] = round((now - float(st.get("lanzado_ts", now))) / 3600, 2)
+                    if r is not None:          # one that never started used nothing
+                        r["horas"] = round((now - float(st.get("lanzado_ts", now))) / 3600, 2) if st.get("arranco") else 0.0
         state[jid] = {**st, "estado": "error", "resultado": {"nota": f"cancelado: {reasons.get(jid, '')}"}}
         done.append(jid)
     return done
@@ -245,7 +279,7 @@ def plan(jobs: list[dict], state: dict, spend: dict, sources: dict, now: float,
     say whether they can take work; Modal's room comes from the spend). Pending jobs in queue order; one whose «tras»
     is not done yet waits; a whole match needs `aprobado`; a launched job reserves its estimate at once, so two jobs
     never count the same dollars."""
-    out, room, kroom = [], modal_room(spend, now), kaggle_room(spend, now)
+    out, room, kroom = [], modal_room(spend, now), kaggle_room(spend, now, state)
     kaggle = dict(sources.get("kaggle", {}))
     for j in jobs:
         st = state.get(j["id"], {})
@@ -344,13 +378,18 @@ def record_result(state: dict, spend: dict, job_id: str, result: dict, now: floa
         r = w.get("trabajos", {}).get(job_id)
         if r is not None and result.get("horas_kaggle") is not None:
             r["horas"] = float(result["horas_kaggle"])
+        elif r is not None and st.get("donde") == "kaggle" and not st.get("arranco"):
+            r["horas"] = 0.0                 # R49: it ended (e.g. never started in Kaggle's queue) without running
 
 
 def summary(jobs: list[dict], state: dict, spend: dict, decisions: list, now: float) -> str:
     waits = {i: why for i, src, why in decisions if not src}
     rows = ["# Cola de la nube", "", f"Última vuelta: {time.strftime('%Y-%m-%d %H:%M UTC', time.gmtime(now))} · "
             f"Modal: quedan {modal_room(spend, now):.2f} $ de {CREDIT_USD:.0f} $ este mes (tope de la cola {CAP_USD} $) · "
-            f"Kaggle: quedan {kaggle_room(spend, now):.1f} h de GPU esta semana (tope {KAGGLE_CAP_H:.0f} h)", "",
+            f"Kaggle: quedan {kaggle_room(spend, now, state):.1f} h de GPU esta semana (tope {KAGGLE_CAP_H:.0f} h"
+            + (f"; Kaggle dice {spend['kaggle_real']['usadas_h']} h usadas de {spend['kaggle_real']['total_h']}, se "
+               f"renueva {spend['kaggle_real']['renueva'][:16]}" if (spend.get("kaggle_real") or {}).get("usadas_h")
+               is not None else "; cuenta propia") + ")", "",
             "| Trabajo | Acción | Partido | Estado | Dónde | Nota |", "|---|---|---|---|---|---|"]
     for j in jobs:
         st = state.get(j["id"], {})
@@ -548,6 +587,9 @@ def main(argv: list[str] | None = None) -> int:
                 print(f"{jid}: {res.get('estado')} ({res.get('coste_usd')} $, {res.get('horas_kaggle')} h de Kaggle)")
     if not a.en_seco:
         copy_poc_results(vol, state, d)
+        real = kaggle_quota() if queue.get("kaggle_activo") else None
+        if real:                                         # R49: Kaggle's own counter decides the room
+            spend["kaggle_real"] = {**real, "ts": now}
     decisions = plan(jobs, state, spend, _sources(Path.cwd(), queue, state), now, str(queue.get("partidos_en_espera") or ""))
     launched = 0
     for jid, src, why in decisions:

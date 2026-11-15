@@ -435,7 +435,28 @@ def test_a_cancelled_kaggle_job_counts_the_hours_it_ran():
     """14-11: a cancelled job's week counts the hours it really ran, not its estimate (11 h for Gauff would have held
     the quota)."""
     spend = {"kaggle": {cola.week(NOV): {"trabajos": {"g": {"estimado_h": 11.3}}}}}
-    state = {"g": {"estado": "en_marcha", "donde": "kaggle", "lanzado_ts": NOV}}
-    cola.cancel(state, ["g"], {"g": "R48"}, lambda slug: None, spend, NOV + 4680)
+    state = {"g": {"estado": "en_marcha", "donde": "kaggle", "lanzado_ts": NOV, "arranco": "2026-11-14 22:30"},
+             "q": {"estado": "en_marcha", "donde": "kaggle", "lanzado_ts": NOV}}
+    spend["kaggle"][cola.week(NOV)]["trabajos"]["q"] = {"estimado_h": 1.0}
+    cola.cancel(state, ["g", "q"], {"g": "R48", "q": "x"}, lambda slug: None, spend, NOV + 4680)
     assert spend["kaggle"][cola.week(NOV)]["trabajos"]["g"]["horas"] == 1.3
+    assert spend["kaggle"][cola.week(NOV)]["trabajos"]["q"]["horas"] == 0.0              # never started: nothing
+    del spend["kaggle"][cola.week(NOV)]["trabajos"]["q"]
     assert cola.kaggle_room(spend, NOV) == round(cola.KAGGLE_CAP_H - 1.3, 2)
+
+
+def test_kaggle_room_from_its_own_counter():
+    """R49 (15-11): the ledger had kept estimates of jobs that never ran (1.4 h left when Kaggle had ~24); with
+    Kaggle's own counter read this pass, the room is what Kaggle says minus what the running jobs may still take."""
+    spend = {"kaggle": {cola.week(NOV): {"trabajos": {"v16": {"estimado_h": 1.0}, "final": {"estimado_h": 8.0},
+                                                       "p": {"estimado_h": 1.0}}}},
+             "kaggle_real": {"usadas_h": 6.0, "total_h": 30.0, "renueva": "2026-11-21 00:00", "ts": NOV}}
+    state = {"final": {"estado": "en_marcha", "donde": "kaggle", "lanzado_ts": NOV - 3600, "arranco": "x"},
+             "p": {"estado": "en_marcha", "donde": "kaggle", "lanzado_ts": NOV}, "v16": {"estado": "error"}}
+    assert cola.kaggle_room(spend, NOV, state) == round(28.0 - 6.0 - (8.0 - 1.0) - 1.0, 2)      # 14.0
+    old = {**spend, "kaggle_real": {**spend["kaggle_real"], "ts": NOV - 7200}}                    # stale: the ledger
+    assert cola.kaggle_room(old, NOV, state) == round(28.0 - 10.0, 2)
+    st = {"x": {"estado": "en_marcha", "donde": "kaggle", "lanzado_ts": NOV}}
+    sp = {"kaggle": {cola.week(NOV): {"trabajos": {"x": {"estimado_h": 1.0}}}}}
+    cola.record_result(st, sp, "x", {"estado": "error", "nota": "nunca arrancó"}, NOV + 9000)
+    assert sp["kaggle"][cola.week(NOV)]["trabajos"]["x"]["horas"] == 0.0                         # never ran
