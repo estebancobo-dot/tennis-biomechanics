@@ -1,6 +1,6 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-15 00:45 UTC · Modal: quedan 0.53 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 1.7 h de GPU esta semana (tope 28 h; Kaggle dice 9.29 h usadas de 30.0, se renueva 2026-11-21 00:00)
+Última vuelta: 2026-11-15 00:50 UTC · Modal: quedan 0.53 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 10.1 h de GPU esta semana (tope 28 h; Kaggle dice 9.38 h usadas de 30.0, se renueva 2026-11-21 00:00)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
@@ -23,7 +23,7 @@
 | gauff | partido | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | error | kaggle | cancelado: R48: con la raqueta en la CPU su pasada fina gastaría ~6 h de más; se relanza como gauff_b con el arreglo cuando la v20 lo compruebe (su pasada barata, ya en Modal, se reutiliza) |
 | gauff_b | partido | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | pendiente |  | hasta decidir la calidad en la nube (prueba_gauff_v21_calidad frente a la v20; docs/herencia_pc.md) |
 | prueba_final | prueba | tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 | hecho | modal |  |
-| final | partido | tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: running (00:45), intento 1 · scenes:  89 % (281976/315668 fotogramas) · 42 min · quedan ≈ 5 min (00:44:35; GPU 0 %·0 %, CPU 89 %, 2.8 GB) |
+| final | partido | tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: running (00:50), intento 1 · scenes: 100 % (315668/315668 fotogramas) · 46 min · quedan ≈ 0 s (00:49:27; GPU 0 %·0 %, CPU 88 %, 2.8 GB) |
 | prueba_sinner | prueba | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | pendiente |  | espera a final (en_marcha) |
 | sinner | partido | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | pendiente |  | espera a prueba_sinner (pendiente) |
 | actualizar_osaka | partido | us-open-2026-r4-naomi-osaka-elena-rybakina | pendiente |  | espera a sinner (pendiente) |

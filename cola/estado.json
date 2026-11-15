@@ -310,10 +310,10 @@
   "ruta": "/runs/partido_tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5/estado.json",
   "salida": "/output/tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
   "cuaderno": "tennisbio-final",
-  "kaggle": "running (00:45)",
+  "kaggle": "running (00:50)",
   "arranco": "2026-11-14 23:59",
   "espera_min": 2,
-  "progreso": "scenes:  89 % (281976/315668 fotogramas) · 42 min · quedan ≈ 5 min (00:44:35; GPU 0 %·0 %, CPU 89 %, 2.8 GB)"
+  "progreso": "scenes: 100 % (315668/315668 fotogramas) · 46 min · quedan ≈ 0 s (00:49:27; GPU 0 %·0 %, CPU 88 %, 2.8 GB)"
  },
  "comparar_gauff_v19_v20": {
   "estado": "hecho",
