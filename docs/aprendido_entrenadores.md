@@ -328,3 +328,105 @@ juego de pies, revés y técnica general. Hay 1048 fotogramas en `pc-logs:invest
 3. **«Cuenta conmigo»:** un punto entero desde la cámara de la tele, con cada golpe suyo marcado con su apoyo, para ver
    el patrón de pies.
 4. **Contraste con el error típico de club** solo como texto (no hay vídeos de aficionados: requisito 6).
+
+## 6. The Tennis Mentor (15-11, petición #304)
+
+**Qué es.** The Tennis Mentor (youtube.com/@thetennismentor) es un entrenador británico. Graba con jugadores del
+circuito (Musetti, Berrettini, Nishikori, Muguruza, Paolini, Andreeva, Eala) y tiene una serie semanal, «Weekly Tennis
+Non-Negotiable». **41 vídeos**: sus 14 semanales, 23 shorts y 4 largos.
+
+**Cómo llegaron.** Sin el PC: una sesión de CPU de Kaggle (trabajos `investigar_tennis_mentor` y `…_voz`).
+- **Fotogramas:** 41 de 41.
+- **Texto:** 40 de 41 (15 con subtítulos de YouTube y 25 con la voz transcrita por Whisper). Falta «Where Power
+  ACTUALLY Comes From» (YouTube negó el audio, 403).
+- **Dónde están:** en `nube-logs`, `cola/investigacion/`.
+- Solo sirven para aprender a explicar (requisito 6).
+
+### Cómo enseña
+- **Una idea por vídeo.** Cada semanal empieza igual («one simple tip that can help you beat that player you've not
+  beaten before») y su título es una orden corta: *Find your contact point*, *Get wide*, *Beat the bounce*, *Beat the
+  hit*, *Where to recover to*, *Watch the ball*, *Use your weak hand*.
+- **Mismo orden siempre:** el error típico → por qué importa (la consecuencia física) → el modelo de un profesional →
+  qué hacer → un ejercicio → resumen en una frase.
+- **Pantalla:**
+  - subtítulos de una o dos palabras en mayúsculas en el centro;
+  - para la táctica, **dibujos con tiza en la arcilla**: la pista, las dos opciones del rival y el punto medio;
+  - para la técnica, él delante, de frente, enseñando la posición.
+- **Lecciones con jugadores del circuito:**
+  - la lección de revés de Musetti (17 min) sigue **5 etapas**: espera y cambio de empuñadura, preparación, apoyo,
+    contacto, terminación;
+  - antes, la empuñadura, «porque da forma a todo el golpe».
+- **Análisis de partido** (con SwingVision):
+  - la grabación con el marcador;
+  - un **mini-mapa de la pista con cada golpe** y el número del golpe en el punto;
+  - gráficos de reparto (derechas y reveses);
+  - al final, «lo que hicieron bien y lo que pueden mejorar».
+- **Datos de profesionales como prueba:** Musetti, 39 % de golpes «variados» (5.º del circuito); la «calidad de golpe»
+  del revés de Nishikori (7,5).
+
+### Lo que dice que sirve para nuestras medidas
+- **Ya medidas (solo cambia cómo se explican):**
+  - **Cabeza quieta en el contacto.** «Mira la bola hasta las cuerdas; la cabeza sigue ahí un instante después» (Federer).
+    Si la cabeza se mueve, se mueve el centro de gravedad y el golpe se «arrastra». Medida: estabilidad de la cabeza
+    ±50 ms del impacto.
+  - **Cadena cinética con «desconexión» entre segmentos.** Cadera, tronco y brazo no a la vez. La fuerza sale del
+    suelo, no de la muñeca. Medidas: orden de los picos y separación cadera-hombros.
+  - **Mano libre.**
+    - Prepara la raqueta, enrolla el tronco y da equilibrio y distancia a la bola.
+    - **Se lleva al pecho para empezar a desenrollar** (Musetti: «la mano izquierda tira de ti detrás de la raqueta»).
+    - La extensión en el armado ya se mide; el «tirón al pecho» no (hueco 1).
+  - **Base ancha:** equilibrio, transferir el peso y salir sin un paso de más. Medida: anchura de la base por momento.
+  - **Contacto delante del cuerpo y extensión del brazo:** «mal» desde la tele (profundidad); el lateral sí.
+  - **Split step:**
+    - el aficionado aterriza cuando golpea el rival;
+    - el avanzado despega justo antes y aterriza justo después;
+    - el profesional **aterriza primero con el pie contrario a donde va**.
+    - Medida: el aterrizaje respecto al golpe rival. El pie que aterriza primero, no (hueco 2).
+  - **Cinco fundamentos de pies:**
+    - primer paso explosivo tras el split;
+    - distancia a la bola (la que viene al cuerpo es la difícil);
+    - **frenada antes de la bola**;
+    - peso hacia delante al golpear;
+    - recuperación.
+    - Medidos todos menos la frenada (hueco 3).
+  - **«Beat the bounce»:** preparación terminada antes del bote. Medida: el armado frente al bote (con la bola).
+  - **«Beat the hit»:** de vuelta en posición antes de que golpee el rival. Medida: la recuperación frente al golpe
+    rival.
+- **Nuevas que la tele permite (huecos medibles, a la matriz):**
+  1. **Mano libre al pecho:** la muñeca no dominante se acerca al tronco al empezar la aceleración, antes del impacto.
+     Distancia muñeca–pecho y su instante respecto al giro de cadera.
+  2. **Pie de aterrizaje del split:** cuál toca primero el suelo y si es el contrario a la dirección de salida.
+     Tobillos fotograma a fotograma; solo del lado cercano.
+  3. **Frenada:** cómo cae la velocidad de la cadera en la pista en el último medio segundo antes del impacto.
+     Pies y homografía.
+  4. **Posición de recuperación según su golpe:**
+     - Su punto medio teórico es la bisectriz de las dos mejores opciones del rival: si manda la bola a un lado, se
+       recupera un poco hacia el otro.
+     - Se mide dónde se recupera frente a ese punto, con la dirección de su golpe (la bola) y la posición del rival.
+  5. **Altura del contacto frente a la red** (bola corta: por encima de la red se ataca; por debajo, cortado o
+     dejada). Es la altura del impacto en metros, desde la altura de la jugadora y su proporción, frente a 0,914 m.
+     Estimación marcada.
+  6. **Armado en el lado del golpe** (Andreeva): la raqueta no pasa por detrás de la espalda en el armado. Lado de la
+     muñeca respecto a la línea de los hombros, visto desde arriba.
+
+### Qué toma la aplicación (P0, lección y análisis de golpe)
+1. **Cada clave con un nombre corto en forma de orden**, como su serie:
+   - «Prepara antes del bote»;
+   - «Vuelve antes de su golpe»;
+   - «Cabeza quieta»;
+   - «Base ancha»;
+   - «Mano libre al pecho».
+   - Va encima de la forma de los shorts de §5: un vídeo real en bucle, un dibujo, una frase y el problema que resuelve.
+2. **El mismo orden en cada clave:**
+   - qué hace ella (medido, con su vídeo);
+   - por qué importa (la consecuencia física);
+   - el error típico, solo como texto (requisito 6);
+   - cómo se nota en sus golpes (comparación por situación).
+3. **Táctica con dibujos sobre la pista real**, como sus dibujos de tiza: en la vista de pista, las dos opciones del
+   rival, su punto de recuperación teórico y el real (hueco 4).
+4. **El análisis de un partido como el suyo:**
+   - un punto entero con el mini-mapa de golpes numerados;
+   - el reparto de golpes;
+   - un resumen final «lo que hace bien / dónde pierde» con las conclusiones que superan el error de medida.
+5. **Lecciones por etapas, empezando por la empuñadura:** las 5 etapas de Musetti coinciden con las fases de la
+   lección; la empuñadura va antes (en espera y al golpear, si se ve: requisito 1).

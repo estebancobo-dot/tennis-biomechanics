@@ -226,6 +226,15 @@ de TV detrás del fondo (necesita laboratorio, sensores o varias cámaras) y el 
 | Aerodinámica, altitud, temperatura, humedad | Matriz del usuario | ✘ | no hay datos de la retransmisión |
 
 ## Huecos medibles pendientes
+- **De The Tennis Mentor (15-11, #304, `docs/aprendido_entrenadores.md` §6):**
+  - mano libre al pecho al empezar a desenrollar: distancia muñeca no dominante–pecho e instante respecto al giro de
+    cadera;
+  - pie de aterrizaje del split step: el primero en tocar el suelo y si es el contrario a la dirección de salida (lado
+    cercano);
+  - frenada: caída de la velocidad de la cadera en la pista en el último medio segundo antes del impacto;
+  - posición de recuperación frente al punto medio de las dos opciones del rival, según la dirección de su golpe;
+  - altura del contacto frente a la altura de la red (estimación marcada);
+  - armado en el lado del golpe: la muñeca no pasa detrás de la línea de los hombros en el armado.
 - Final de la extensión: el avance horizontal de la muñeca va hacia la red (profundidad, invisible
   desde detrás); se mantiene +50 ms, como en la literatura (40-60 ms).
 
