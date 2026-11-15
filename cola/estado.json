@@ -715,7 +715,7 @@
   "ruta": "/runs/kaggle_prueba_gauff_v27_pose16/estado.json",
   "salida": "/kaggle_pruebas/prueba_gauff_v27_pose16/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cuaderno": "tennisbio-prueba-gauff-v27-pose16",
-  "kaggle": "queued (15:02)"
+  "kaggle": "queued (15:08)"
  },
  "prueba_gauff_v28_ocrgpu": {
   "estado": "en_marcha",
@@ -729,7 +729,7 @@
   "ruta": "/runs/kaggle_prueba_gauff_v28_ocrgpu/estado.json",
   "salida": "/kaggle_pruebas/prueba_gauff_v28_ocrgpu/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cuaderno": "tennisbio-prueba-gauff-v28-ocrgpu",
-  "kaggle": "queued (15:02)"
+  "kaggle": "queued (15:08)"
  },
  "investigar_tennis_mentor": {
   "estado": "en_marcha",
@@ -742,8 +742,9 @@
   "inicio": "2026-11-15 15:01",
   "ruta": "/runs/kaggle_investigar_tennis_mentor/estado.json",
   "cuaderno": "tennisbio-investigar-tennis-mentor",
-  "kaggle": "running (15:02)",
+  "kaggle": "running (15:08)",
   "arranco": "2026-11-15 15:02",
-  "espera_min": 2
+  "espera_min": 2,
+  "progreso": "5/41 Where To Recover To: Weekly Tennis Non-Negotiable #12 (15:07:00)"
  }
 }
