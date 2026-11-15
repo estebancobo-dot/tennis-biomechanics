@@ -39,3 +39,24 @@ def test_sandbox_paths_replace_the_users_without_touching_them(tmp_path, monkeyp
     assert cfg["paths"]["output"] == str(tmp_path / "out") and cfg["paths"]["library"] == str(tmp_path / "lib")
     monkeypatch.delenv("TENNISBIO_SANDBOX")
     assert (load_config().get("paths") or {}).get("output") != str(tmp_path / "out")
+
+
+def test_a_model_is_known_by_its_content_not_its_date(tmp_path):
+    """R55 (15-11): each cloud session downloads the models again (a new date); a model's fingerprint by its date made
+    every later session redo the stages with models. By its content: the same file with another date is the same model,
+    another file is another model."""
+    import os
+
+    from tennisbio.config import model_state
+    a = tmp_path / "m.onnx"
+    a.write_bytes(os.urandom(3 * (1 << 20)) + b"x")
+    first = model_state(a)
+    os.utime(a, (1_000_000_000, 1_000_000_000))
+    assert model_state(a) == first                                   # downloaded again: the same model
+    b = tmp_path / "copia" / "m.onnx"
+    b.parent.mkdir()
+    b.write_bytes(a.read_bytes())
+    assert model_state(b) == first                                   # the same bytes anywhere
+    a.write_bytes(a.read_bytes()[:-1] + b"y")
+    assert model_state(a) != first                                   # another model (its last byte)
+    assert model_state(tmp_path / "no_esta.onnx") is None

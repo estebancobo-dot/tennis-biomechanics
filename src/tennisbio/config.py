@@ -16,13 +16,29 @@ def resolve_path(p: str | Path | None) -> Path | None:
     return p if p.is_absolute() else ROOT / p
 
 
+_MODEL_SAMPLES: dict = {}
+
+
 def model_state(p: str | Path | None) -> str | None:
-    """Fingerprint of a model file (missing → None), so adding or replacing a model re-runs its stage."""
+    """Fingerprint of a model file (missing → None), so adding or replacing a model re-runs its stage. By its content
+    (size and 8 pieces of 1 MB spread over the file, as a video's identity), never its date: R55 (15-11), each cloud
+    session downloads the models again with a new date, so a later session redid every stage with a model (the parts of
+    a test, a match continued after 12 h). Kept per path, size and date, so a file is read once per process."""
+    import hashlib
+
     f = resolve_path(p)
     if f is None or not f.exists():
         return None
     st = f.stat()
-    return f"{st.st_size}-{int(st.st_mtime)}"
+    key = (str(f), st.st_size, st.st_mtime_ns)
+    if key not in _MODEL_SAMPLES:
+        n, size, h = st.st_size, 1 << 20, hashlib.sha1(str(st.st_size).encode())
+        with open(f, "rb") as fh:
+            for i in range(8):
+                fh.seek(max(0, (n - size) * i // 7))
+                h.update(fh.read(size))
+        _MODEL_SAMPLES[key] = f"{n}-{h.hexdigest()[:16]}"
+    return _MODEL_SAMPLES[key]
 
 
 def _merge(base: dict, override: dict) -> dict:

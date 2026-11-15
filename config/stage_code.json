@@ -9,7 +9,7 @@
  },
  "scenes": {
   "version": "3",
-  "hash": "db2e3928a5b0c575",
+  "hash": "fa13b78045da9150",
   "modules": [
    "config",
    "faults",
@@ -55,7 +55,7 @@
  },
  "spotting": {
   "version": "2",
-  "hash": "497bdcb315c8f5d8",
+  "hash": "906df94b10a08abd",
   "modules": [
    "ball",
    "ball_features",

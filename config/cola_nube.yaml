@@ -144,6 +144,12 @@ trabajos:
   # para su umbral, 30 de prueba), en una sesión de CPU (no gasta horas de GPU; ~3-4 h). Regla escrita antes de medir:
   # pasa a la prueba de golpes de F3Set si su F1 no es peor que el de TrackNetV3 en más de 0,02
   - {id: medir_bola_totnet, accion: medir, prueba: bola, donde: kaggle, cpu: true}
+  # 15-11 20:10 (R55): la v29 no valió (cada parte repetía las etapas con modelos: la huella de un modelo llevaba la fecha
+  # de su fichero y cada sesión lo baja de Modal de nuevo; arreglado: por su contenido). La misma prueba por partes otra vez
+  - {id: prueba_gauff_v30_a, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, cpu: true, etapas: [probe, scenes, court, audio]}
+  - {id: prueba_gauff_v30_b, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, tras: prueba_gauff_v30_a, junto_a: prueba_gauff_v30_a, etapas: [players, score, identity, spotting, candidates, fine, fine_opponent, fine_doubtful]}
+  - {id: prueba_gauff_v30_c, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, cpu: true, tras: prueba_gauff_v30_b, junto_a: prueba_gauff_v30_a, etapas: [views, views_link, view_clips, slowmo_fine]}
+  - {id: comparar_gauff_v26_v30, accion: comparar, a: prueba_gauff_v26, b: prueba_gauff_v30_c}
   # R52 (15-11): los errores de la pasada fina de Zheng (análisis del 13-11 en Modal), leídos sin GPU ni crédito
   - {id: leer_zheng_errores, accion: leer, rutas: [/output/zheng-qinwen-elena-rybakina/strokes_errores.json]}
   # lotes 3 y 4 (aprobados por el usuario el 13-11: Osaka; Pegula y Zheng; Gauff y la final; Zverev-Sinner), cada
