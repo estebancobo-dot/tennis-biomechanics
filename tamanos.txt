@@ -1,4 +1,4 @@
-fecha: 2026-11-15T11:41:49
+fecha: 2026-11-15T11:49:12
      265.6 MB  \output\analisis
        4.2 MB  \output\auditoria
        5.7 MB  \output\benchmark
@@ -21,6 +21,7 @@ fecha: 2026-11-15T11:41:49
        1.3 MB  \output\investigacion_16
        3.4 MB  \output\investigacion_17
        3.3 MB  \output\investigacion_25
+      13.8 MB  \output\investigacion_295
      145.5 MB  \output\movil_prueba
        6.4 MB  \output\recursos
     7650.8 MB  \output\tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5
