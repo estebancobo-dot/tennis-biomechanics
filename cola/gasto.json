@@ -134,15 +134,19 @@
      "estimado_h": 0.5
     },
     "prueba_gauff_v32_b": {
-     "estimado_h": 1.0
+     "estimado_h": 1.0,
+     "horas": 0.27
+    },
+    "medir_sapiens2": {
+     "estimado_h": 0.5
     }
    }
   }
  },
  "kaggle_real": {
-  "usadas_h": 25.71,
+  "usadas_h": 25.78,
   "total_h": 30.0,
   "renueva": "2026-11-21 00:00:00",
-  "ts": 1794782107.3485591
+  "ts": 1794782351.0261855
  }
 }
