@@ -58,7 +58,8 @@
      "horas": 1.47
     },
     "prueba_gauff_v20": {
-     "estimado_h": 1.0
+     "estimado_h": 1.0,
+     "horas": 0.41
     },
     "final": {
      "estimado_h": 17.85
