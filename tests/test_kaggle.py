@@ -281,6 +281,13 @@ def test_a_part_of_a_test_runs_its_stages():
     j = correr.parse_job('{"accion": "prueba", "partido": "g", "etapas": ["views", "view_clips"], "cpu": true}')
     assert correr.run_stages(j) == ["--stages", "views", "view_clips"]
     assert correr.run_stages(correr.parse_job('{"accion": "partido", "partido": "g"}')) == []
+    # v31_c (15-11): a later part runs its stages on what the earlier part made (the CPU part re-ran players)
+    later = correr.parse_job('{"accion": "prueba", "partido": "g", "etapas": ["views"], "sobre_lo_hecho": true}')
+    assert correr.run_stages(later) == ["--stages", "views", "--no-upstream"]
+    cli = (ROOT / "src" / "tennisbio" / "cli.py").read_text(encoding="utf-8")
+    assert '"--no-upstream"' in cli and "upstream=not args.no_upstream" in cli
+    nb = (ROOT / "cloud" / "kaggle" / "cuaderno.py").read_text(encoding="utf-8")
+    assert '"--sobre-lo-hecho"' in nb and 'job["sobre_lo_hecho"] = True' in nb
     src = (ROOT / "cloud" / "kaggle" / "correr.py").read_text(encoding="utf-8")
     assert 'setup_env(REPO, scratch / "venv", gpu=not job.get("cpu"))' in src and "    if gpu:\n" in src
     assert 'if job.get("previa"):' in src and '*run_stages(job)]' in src

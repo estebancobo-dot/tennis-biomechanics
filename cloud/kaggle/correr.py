@@ -213,10 +213,13 @@ def measure(job: dict, py: Path, models: Path, data: Path, run: Path, vol, est: 
 
 
 def run_stages(job: dict) -> list[str]:
-    """T24: the stages of this part of a test or a match (`tennisbio run --stages`); none: the whole analysis. The
-    stages it needs that an earlier part already made are up to date (their fingerprints hold no device), so they are
-    not run again."""
-    return ["--stages", *job["etapas"]] if job.get("etapas") else []
+    """T24: the stages of this part of a test or a match (`tennisbio run --stages`); none: the whole analysis. A part
+    that follows another (`sobre_lo_hecho`) runs only its stages, on what the earlier part made (`--no-upstream`):
+    v31_c (15-11) on the CPU saw the GPU part's stages as stale (the fp16 setting enters a fingerprint only on a GPU)
+    and ran them again; the earlier stages keep their own manifest entries."""
+    if not job.get("etapas"):
+        return []
+    return ["--stages", *job["etapas"], *(["--no-upstream"] if job.get("sobre_lo_hecho") else [])]
 
 
 def research_summary(index: list[dict]) -> dict:

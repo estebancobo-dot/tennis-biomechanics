@@ -594,6 +594,8 @@ def kaggle_launch(job: dict, slug: str | None = None) -> bool:
         extra += ["--config", json.dumps(job["config"], ensure_ascii=False)]
     if job.get("etapas"):                            # T24: one part of a test or a match
         extra += ["--etapas", ",".join(job["etapas"])]
+        if job.get("tras"):                  # v31_c: a later part runs its stages on what the earlier part made
+            extra += ["--sobre-lo-hecho"]
     if job.get("cpu") is True:
         extra += ["--cpu"]
     for args in (["clave"], ["lanzar", "--accion", job["accion"], "--partido", job.get("partido", ""),

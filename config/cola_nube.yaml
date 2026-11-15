@@ -163,6 +163,10 @@ trabajos:
   - {id: prueba_gauff_v31_b, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, tras: prueba_gauff_v31_a, junto_a: prueba_gauff_v31_a, etapas: [players, score, identity, spotting, candidates, fine, fine_opponent, fine_doubtful]}
   - {id: prueba_gauff_v31_c, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, cpu: true, tras: prueba_gauff_v31_b, junto_a: prueba_gauff_v31_a, etapas: [views, views_link, view_clips, slowmo_fine]}
   - {id: comparar_gauff_v26_v31, accion: comparar, a: prueba_gauff_v26, b: prueba_gauff_v31_c}
+  # 15-11 22:45: la v31_c repetía players en la CPU (la huella lleva fp16 solo en GPU); arreglado: una parte que sigue a
+  # otra ejecuta solo sus etapas sobre lo que hizo la anterior (--sobre-lo-hecho → tennisbio run --no-upstream). Solo la parte c
+  - {id: prueba_gauff_v31_c2, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, cpu: true, tras: prueba_gauff_v31_b, junto_a: prueba_gauff_v31_a, etapas: [views, views_link, view_clips, slowmo_fine]}
+  - {id: comparar_gauff_v26_v31c2, accion: comparar, a: prueba_gauff_v26, b: prueba_gauff_v31_c2}
   # R56: comprobar en su registro que la parte b no repitió las etapas de la a (las que reutiliza salen «al día»)
   - {id: leer_v31, accion: leer, tras: prueba_gauff_v31_b, rutas: [/runs/kaggle_prueba_gauff_v31_a/log.txt, /runs/kaggle_prueba_gauff_v31_b/log.txt]}
   # R52 (15-11): los errores de la pasada fina de Zheng (análisis del 13-11 en Modal), leídos sin GPU ni crédito

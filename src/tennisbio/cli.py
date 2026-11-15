@@ -205,6 +205,8 @@ def _main(argv=None):
     g.add_argument("--match", nargs="+")
     r.add_argument("--stages", nargs="+", choices=list(pipeline.STAGES))
     r.add_argument("--force", action="store_true", help="repetir aunque esté al día")
+    r.add_argument("--no-upstream", action="store_true",
+                   help="T24: solo estas etapas, sobre lo que ya hay de sus dependencias (una parte que sigue a otra)")
     s = sub.add_parser("status", help="estado de cada etapa por partido")
     s.add_argument("--match", nargs="+")
     rp = sub.add_parser("report", help="informe HTML con todos los partidos de un jugador")
@@ -326,7 +328,7 @@ def _main(argv=None):
                 st = pipeline.status(ctx)
                 print(f"{m.id:20} " + "  ".join(f"{k}:{v}" for k, v in st.items()))
             else:
-                done = pipeline.run(ctx, args.stages, force=args.force)
+                done = pipeline.run(ctx, args.stages, force=args.force, upstream=not args.no_upstream)
                 print(f"{m.id}: {'ejecutado ' + ', '.join(done) if done else 'al día'}")
         except pipeline.MissingVideo:
             print(f"{m.id}: el vídeo ya no está ({m.video}); se conservan sus resultados")

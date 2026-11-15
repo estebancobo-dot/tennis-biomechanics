@@ -649,6 +649,7 @@ def test_a_test_in_parts_cpu_gpu_cpu(monkeypatch):
         assert cola.kaggle_launch(j)
         L = calls[-1]
         assert ("--cpu" in L) is cpu and ("--previa" in L) is prev
+        assert ("--sobre-lo-hecho" in L) is prev          # v31_c: a later part never runs the earlier one's stages
         assert L[L.index("--etapas") + 1] == ",".join(j["etapas"])
         assert L[L.index("--output-remoto") + 1] == "/kaggle_pruebas/pa/output"
     assert cola.kaggle_launch(whole)

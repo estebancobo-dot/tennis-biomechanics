@@ -147,6 +147,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--cpu", action="store_true", help="una sesión sin GPU (investigar: no gasta horas de GPU)")
     ap.add_argument("--etapas", default="", help="T24: solo estas etapas (una parte de una prueba o de un partido)")
     ap.add_argument("--previa", action="store_true", help="T24: una prueba que sigue lo que dejó su parte anterior")
+    ap.add_argument("--sobre-lo-hecho", action="store_true",
+                    help="T24: una parte que sigue a otra: sus etapas sobre lo que hizo la anterior, sin repetirlo")
     ap.add_argument("--minutos", type=float, default=50)
     ap.add_argument("--max-cola", type=float, default=10, help="minutos en cola de Kaggle que se aceptan antes de fallar")
     ap.add_argument("--dir", type=Path, default=Path("kaggle-out"))
@@ -224,6 +226,8 @@ def main(argv: list[str] | None = None) -> int:
             job["cpu"] = True
         if a.previa:
             job["previa"] = True
+        if a.sobre_lo_hecho:
+            job["sobre_lo_hecho"] = True
         folder = write(Path("kaggle-push"), _user(), job, key=not a.sin_clave, slug=a.slug, gpu=not a.cpu)
         r = _kaggle("kernels", "push", "-p", str(folder))
         print(r.stdout, r.stderr)
