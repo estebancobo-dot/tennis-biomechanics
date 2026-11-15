@@ -86,15 +86,19 @@
      "estimado_h": 1.0
     },
     "prueba_gauff_rtmw": {
+     "estimado_h": 1.0,
+     "horas": 0.45
+    },
+    "prueba_sinner": {
      "estimado_h": 1.0
     }
    }
   }
  },
  "kaggle_real": {
-  "usadas_h": 21.37,
+  "usadas_h": 21.45,
   "total_h": 30.0,
   "renueva": "2026-11-21 00:00:00",
-  "ts": 1794725759.285569
+  "ts": 1794725916.907834
  }
 }
