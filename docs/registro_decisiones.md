@@ -58,3 +58,23 @@ Las pruebas cuestan horas de GPU (Kaggle: 30 a la semana, compartidas con los pa
   5. Lo demás.
 - Antes de cada prueba, comprobar que el candidato tiene pesos públicos, licencia válida y exportación a ONNX (o
   PyTorch en la nube).
+
+## Viabilidad de cada candidato (15-11 05:30: pesos y licencia; uso personal, no comercial)
+
+| Candidato | Pesos | Licencia | Para este proyecto |
+|---|---|---|---|
+| Sapiens2 (pose, Meta, ICLR 2026) | Públicos (Hugging Face, `facebook/sapiens2-pose-*`, hasta 5B) | Propia de Meta con restricciones (nada de vigilancia ni identificación biométrica); leer el LICENSE.md oficial | Probable; el 1B cabe en una T4. Puntos con pies (Sapiens v1: 308 con cuerpo, cara, manos y pies; en Sapiens2 por confirmar) |
+| RF-DETR Keypoint (Roboflow) | Públicos | Apache 2.0 | **17 puntos COCO, sin pies**: no sustituye la pose de la pasada fina; candidato para la pasada barata (personas) |
+| RTMW-x frente a RTMPose-x | En `models/` | Apache 2.0 | Elegido RTMPose-x **porque en el PC RTMW-x fue más lento** (B): se mide en la nube con un ajuste (`prueba_gauff_rtmw`) |
+| RTMPose-x en media precisión | — | — | Fijo en precisión completa porque en DirectML era más lento (B): falta un ajuste para probarlo |
+| F3ED (detector de golpes de los autores de F3Set) | Código en github.com/F3Set/F3Set; pesos por confirmar | Por confirmar | Si no hay pesos, entrenarlo en una GPU con F3Set (el artículo dice que es rápido) |
+| GVHMR / WHAM (cuerpo 3D) | Públicos | Investigación no comercial; **necesitan SMPL**, que exige registro personal en el Max Planck | Solo si el usuario se registra (no lo puede hacer Claude) |
+| TOTNet (bola con oclusión) | Repositorio público; pesos por confirmar | Por confirmar | Entrenado en tenis de mesa: habría que reentrenar |
+| WASB (bola) | Por buscar | Por buscar | — |
+
+Fuentes: [Sapiens2 en Hugging Face](https://huggingface.co/docs/transformers/model_doc/sapiens2),
+[artículo de Sapiens2](https://arxiv.org/abs/2604.21681), [RF-DETR Keypoint](https://blog.roboflow.com/launch-rf-detr-keypoint-in-roboflow/),
+[F3Set (ICLR 2025)](https://arxiv.org/html/2504.08222v2), [GVHMR](https://huggingface.co/ryanrudes/gvhmr),
+[WHAM](https://github.com/yohanshin/WHAM), [licencias de SMPL](https://meshcapade.notion.site/The-SMPL-Model-Licenses-2144560e54388085af5eff111fcdf266),
+[TOTNet](https://arxiv.org/html/2508.09650v1).
+
