@@ -37,8 +37,11 @@ TEST_PREFIX = nube.TEST_PREFIX
 # proofs of concept (#288, docs/nube_nativa.md): name → the module that measures it (in the analysis's own Python)
 POCS = {"raqueta": "tennisbio.infra.poc_raqueta", "video": "tennisbio.infra.poc_video",
         "youtube": "tennisbio.infra.poc_youtube",       # 15-11 (#304): can the cloud download from YouTube?
-        "bola": "tennisbio.infra.poc_bola"}             # 15-11 (T15): TOTNet against TrackNetV3 on RacketVision
+        "bola": "tennisbio.infra.poc_bola",             # 15-11 (T15): TOTNet against TrackNetV3 on RacketVision
+        "sapiens2": "tennisbio.infra.poc_sapiens"}      # 15-11 (#307): Sapiens2 against the fine pass's pose
 NEEDS_MATCH = ("video",)                 # proofs of concept measured on a match's broadcast (its video from Modal)
+NEEDS_RUN = ("sapiens2",)                # proofs of concept on a reference test's outputs (`base`, of `partido`)
+SAPIENS_TRANSFORMERS = "transformers==5.23.0"   # the first with Sapiens2ForPoseEstimation that was checked (15-11)
 
 
 def parse_job(arg: str) -> dict:
@@ -53,7 +56,7 @@ def parse_job(arg: str) -> dict:
         raise ValueError("falta el partido")
     if a == "medir" and job.get("prueba") not in POCS:
         raise ValueError(f"prueba de concepto {job.get('prueba')!r} (vale {', '.join(POCS)})")
-    if a == "medir" and job.get("prueba") in NEEDS_MATCH and not job.get("partido"):
+    if a == "medir" and job.get("prueba") in NEEDS_MATCH + NEEDS_RUN and not job.get("partido"):
         raise ValueError(f"la prueba de concepto {job['prueba']} necesita un partido")
     mid = job.get("partido", "")
     run_id = (TEST_PREFIX + mid) if a == "prueba" else mid
@@ -181,6 +184,8 @@ def poc_args(job: dict, models: Path, video: Path | None) -> list[str]:
         return ["--modelo", str(models / "racketpose.onnx")]
     if job["prueba"] == "youtube":
         return ["--urls", str(job.get("urls") or "")]
+    if job["prueba"] == "sapiens2":
+        return ["--previa", str(models.parent / "previa"), "--dispositivo", "cpu" if job.get("cpu") else "cuda"]
     if job["prueba"] == "bola":
         return ["--modelo", str(models / "balltrack.onnx"), "--totnet", str(models / "totnet_tennis.onnx"),
                 "--datos", str(models.parent / "datasets"), "--dispositivo", "cpu" if job.get("cpu") else "cuda"]
@@ -202,8 +207,15 @@ def measure(job: dict, py: Path, models: Path, data: Path, run: Path, vol, est: 
               "--repo", str(models.parent / "totnet")])
     if job["prueba"] == "youtube":                 # the newest yt-dlp, as the PC's fallback uses
         subprocess.run(["uv", "pip", "install", "-q", "--python", str(py), "-U", "yt-dlp[default]"])
+    runner = str(py)
+    if job["prueba"] == "sapiens2":                # #307: Kaggle's own Python (PyTorch with CUDA), transformers pinned
+        _run([sys.executable, "-m", "pip", "install", "-q", SAPIENS_TRANSFORMERS, "safetensors"])
+        base = f"/kaggle_pruebas/{job.get('base') or 'prueba_gauff_v26'}/output/{TEST_PREFIX}{job['partido']}"
+        modal_get(base, models.parent / "previa")          # its windows, series and strokes, as that test left them
+        runner = sys.executable
+        env = {**env, "PYTHONPATH": str(REPO / "src"), "HF_HOME": str(models.parent / "hf")}
     out = run / "poc.json"
-    p = subprocess.run([str(py), "-m", POCS[job["prueba"]], *poc_args(job, models, video), "--salida", str(out)],
+    p = subprocess.run([runner, "-m", POCS[job["prueba"]], *poc_args(job, models, video), "--salida", str(out)],
                        cwd=REPO, env=env, capture_output=True, text=True)
     print(p.stdout[-6000:], p.stderr[-3000:], flush=True)
     est["poc"] = json.loads(out.read_text(encoding="utf-8")) if out.exists() else {"error": p.stderr[-800:]}

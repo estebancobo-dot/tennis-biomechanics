@@ -593,6 +593,8 @@ def kaggle_launch(job: dict, slug: str | None = None) -> bool:
              if job["accion"] == "investigar" else [])
     if job.get("config"):                            # T5: a test of other settings (proof of concept on the whole clip)
         extra += ["--config", json.dumps(job["config"], ensure_ascii=False)]
+    if job.get("base") and job.get("accion") == "medir":    # #307: the reference test whose outputs it measures on
+        extra += ["--base", str(job["base"])]
     if job.get("etapas"):                            # T24: one part of a test or a match
         extra += ["--etapas", ",".join(job["etapas"])]
         if job.get("tras"):                  # v31_c: a later part runs its stages on what the earlier part made

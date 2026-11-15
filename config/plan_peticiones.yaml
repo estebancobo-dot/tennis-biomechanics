@@ -62,7 +62,7 @@ paquetes:
     # en paralelo, y es la que cierra B3 (mejores modelos medidos)
     nombre: "Nube nativa e híbrida · N infraestructuras por adaptadores y descubrimiento; cada pieza con su prueba de concepto"
     cierre: "La prueba de 10 min da lo mismo en el PC, Modal, Kaggle y la nube de Claude (CPU) con el mismo código; vídeo, ejecución de modelos y cada modelo decididos con su prueba de concepto medida (docs/nube_nativa.md)"
-    peticiones: [287, 288, 289, 292, 293, 294, 295]
+    peticiones: [287, 288, 289, 292, 293, 294, 295, 307]
     prueba: ["^Equivalencia entre infraestructuras", "^Prueba de concepto medida"]
   P0:
     # 11-11 (usuario): justo después de la Base y antes de las medidas

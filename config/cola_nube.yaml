@@ -149,6 +149,10 @@ trabajos:
   # para su umbral, 30 de prueba), en una sesión de CPU (no gasta horas de GPU; ~3-4 h). Regla escrita antes de medir:
   # pasa a la prueba de golpes de F3Set si su F1 no es peor que el de TrackNetV3 en más de 0,02
   - {id: medir_bola_totnet, accion: medir, prueba: bola, donde: kaggle, cpu: true}
+  # 15-11 23:50 (#307, el usuario permite Sapiens2): Sapiens2 0.4B y 1B frente a la pose de la pasada fina en los mismos
+  # recortes de la v26 (sus ventanas y recuadros), con la misma limpieza. Regla escrita antes de medir: pasa a la prueba
+  # integrada si tiembla al menos un 10 % menos en el cuerpo, no más en los pies y ve los pies al menos igual
+  - {id: medir_sapiens2, accion: medir, prueba: sapiens2, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, base: prueba_gauff_v26, donde: kaggle}
   # 15-11 23:20: la misma medida en GPU (en CPU serían ~20 h, más que las 12 h de una sesión); ~0,3-0,5 h de GPU
   - {id: medir_bola_totnet_gpu, accion: medir, prueba: bola, donde: kaggle}
   # 15-11 20:10 (R55): la v29 no valió (cada parte repetía las etapas con modelos: la huella de un modelo llevaba la fecha
