@@ -256,3 +256,75 @@ cara exacta en el impacto (las cifras de los entrenadores — 8°, 30°, "casi h
 contradicen entre sí), contacto delante (profundidad; como mucho una estimación 3D futura con
 `ball3d`/`racket3d`), velocidad y efecto absolutos, ejercicios de entrenamiento (vibración, coger la
 bola con la mano), que no son medidas de partido.
+
+---
+
+## 5. Joel Myers, shorts (15-11, petición #303)
+
+**Qué es.** Joel Myers es entrenador en San Diego (RSPA Elite Professional; canal youtube.com/@joelmyerstennis, 948
+vídeos). El PC descargó 52 shorts suyos (petición 295), elegidos por el título entre los 144 que lista el canal: derecha,
+juego de pies, revés y técnica general. Hay 1048 fotogramas en `pc-logs:investigacion_295`, y solo uno tiene subtítulos
+(Verdasco). Se miraron 16 shorts enteros en hojas de contacto.
+
+**Solo para aprender a explicar** (requisito 6): nada de estos vídeos va al informe.
+
+### Cómo enseña
+1. **Una sola idea por short,** de 30 a 60 s, ligada a un problema del que aprende:
+   - «si te cuesta liftar» (Verdasco, De Minaur);
+   - «prepárate antes» (Sabalenka);
+   - «el momento del split step»;
+   - «brazo recto o doblado».
+2. **Lo dice con frases cortas en pantalla, palabra a palabra,** con la palabra clave en color («THE **RESET** TAKE BACK»,
+   «**INSTEAD** OF TAKING», «HAVE **MORE TOPSPIN**»). El texto es la narración.
+3. **Un dibujo sobre el fotograma,** solo uno a la vez:
+   - la línea del brazo con un círculo en el codo (brazo recto);
+   - un rectángulo en la zona de contacto;
+   - flechas de la raqueta que baja y después sube;
+   - el recorrido de la cabeza de la raqueta trazado como una curva, con su punto más bajo marcado en rojo (la
+     preparación «reset»);
+   - un eje vertical por el cuerpo con el arco del giro y de la mano libre (Alcaraz);
+   - una barra horizontal a la altura de la muñeca para ver si la cabeza de la raqueta está por encima (De Minaur:
+     «la cabeza está por encima de la muñeca… déjala caer más»);
+   - una flecha roja desde la rodilla de delante («empuja desde la rodilla», revés en apoyo cerrado de Djokovic);
+   - flechas en el suelo para los pasos (pasos cruzados, base de Federer).
+4. **Congela la posición clave** y la enseña a velocidad real y a cámara lenta.
+5. **Contrastes:**
+   - dentro del mismo jugador: el resto de derecha frente a la derecha de peloteo (Rublev); la derecha frente a la
+     dejada disimulada (Paire);
+   - entre dos jugadores: brazo recto frente a doblado;
+   - del profesional frente al aficionado: «el aficionado sacrifica el punto de contacto por su preparación; el
+     profesional, no».
+6. **Desde detrás del fondo, como la tele,** para los apoyos y los pies. «Mira este punto de Rune (abajo) y cuenta
+   cuántas veces pega en apoyo abierto», con el entrenador en una esquina. Es nuestra cámara.
+7. **El split step se enseña con el golpe del rival marcado** (un punto verde en su contacto): «el pie baja primero
+   porque podemos ver…».
+
+### Lo que dice que sirve para nuestras medidas
+- **Cara de la raqueta (requisito 4):** cerrada ya en el giro y muy cerrada en la caída, con las cuerdas hacia el suelo.
+  La palma de la mano va con la cara («si la palma mira al suelo, las cuerdas también»). Así puede subir a la bola sin
+  que la cara se abra; con la cara abierta, la bola se va larga. Coincide con la pista de la palma que usa
+  `racket_face` (`hitting_face="palm"`) y con lo que medimos por fase.
+- **Caída por debajo de la muñeca y swing de abajo arriba:** cuánto baja la raqueta antes del contacto decide cuánto
+  liftado da (De Minaur, Nadal «alto-bajo-alto»). Ya lo medimos (`racket_head_vs_wrist`, `wrist_drop`,
+  `swing_low_to_high`).
+- **Mano libre y giro:** la mano libre prepara y enrolla el tronco (Alcaraz). Ya lo medimos (`hands_apart`,
+  `shoulder_turn`, `elbow_non`).
+- **Preparación «reset»:** la cabeza de la raqueta baja durante el giro y vuelve a subir. Es la clase de forma del armado
+  (Ivanovic, hueco 3), a medias.
+- **Split step:** el pie baja cuando golpea el rival, y el split es lateral cuando hay que moverse de lado. Ya lo
+  medimos (`split_landing_vs_opp_s`); el split lateral, no.
+- **Base ancha** para reaccionar antes (Federer): `base_width`.
+
+### Qué toma la aplicación (P0, lección y análisis de golpe)
+1. **Cada clave de la lección, como un short:**
+   - su vídeo real de esa fase en bucle, a velocidad real y lenta;
+   - **un solo dibujo automático** sacado de la medida (línea del brazo y círculo en el codo; recorrido de la raqueta con
+     su punto más bajo; barra a la altura de la muñeca; eje y arco del giro; flechas de los pasos en la pista; el golpe
+     de la rival marcado para el split step);
+   - **una frase** con la palabra clave en color;
+   - **el problema que resuelve** («si te cuesta liftar…»).
+2. **Contrastes con sus propios golpes** (requisito 6): resto frente a peloteo, bola rápida frente a lenta, apoyo abierto
+   frente a cerrado, lado a lado.
+3. **«Cuenta conmigo»:** un punto entero desde la cámara de la tele, con cada golpe suyo marcado con su apoyo, para ver
+   el patrón de pies.
+4. **Contraste con el error típico de club** solo como texto (no hay vídeos de aficionados: requisito 6).

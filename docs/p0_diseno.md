@@ -154,6 +154,15 @@ Al abrir un análisis, la zona central pasa al **visor del análisis**, con sus 
    - Glosario;
    - Fuentes.
 
+**Forma de cada clave (de los shorts de Joel Myers, `aprendido_entrenadores.md` §5):**
+- **un vídeo:** su fase en bucle, a velocidad real y lenta;
+- **un dibujo automático:** el que sale de la medida;
+- **una frase:** con la palabra clave en color;
+- **el problema que resuelve.**
+
+Contrastes con sus propios golpes, lado a lado. «Cuenta conmigo»: un punto desde la cámara de la tele con cada apoyo
+marcado.
+
 ### 5.2 Sus golpes (#33, #42, #65, #114-#117, #120, #121, #162, #55)
 - **Videoteca:** cuadrícula con avance al pasar el ratón.
   - Títulos legibles: «Frente a Osaka · 2.º set 5-5 30-30 · rápida, corta · abierto».

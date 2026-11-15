@@ -24,7 +24,7 @@ Conceptos (glosario en `CLAUDE.md`): **Plan** (corto / medio / largo) → **Paqu
 usuario pertenece a un paquete; un paquete está **aceptado** cuando su prueba principal pasa en las salidas reales
 (tabla «¿Cerrado?» de `estado_real_partidos.md`, calculada, no a mano).
 
-> **PC (15-11 10:40, #303):** el usuario lo encendió y dijo «usa el PC». Pausa quitada **solo** para la petición 295: 52 shorts de Joel Myers, que YouTube no deja descargar desde la nube, para aprender a explicar (requisito 6). Al subir sus resultados a `pc-logs` (`investigacion_295`), se vuelve a poner `pausa: si`. Los partidos siguen en la nube.
+> **PC (15-11, #303): hecho y otra vez en pausa.** La petición 295 bajó los 52 shorts de Joel Myers (1048 fotogramas en `pc-logs:investigacion_295`) y el PC volvió a `pausa: si` a las 12:10. Lo aprendido está en `aprendido_entrenadores.md` §5 y en la forma de cada clave de la lección (`p0_diseno.md` §5.1).
 
 **PLAN ÚNICO A SEGUIR (14-11 16:30; sustituye al orden de la tabla «DÓNDE ESTAMOS» de abajo, que queda como historia)**
 
