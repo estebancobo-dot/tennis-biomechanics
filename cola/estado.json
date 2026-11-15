@@ -672,10 +672,10 @@
   "inicio": "2026-11-15 12:33",
   "ruta": "/runs/kaggle_medir_youtube/estado.json",
   "cuaderno": "tennisbio-medir-youtube",
-  "kaggle": "queued (12:55)"
+  "kaggle": "queued (13:00)"
  },
  "prueba_gauff_v26": {
-  "estado": "en_marcha",
+  "estado": "hecho",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 1,
@@ -686,9 +686,20 @@
   "ruta": "/runs/kaggle_prueba_gauff_v26/estado.json",
   "salida": "/kaggle_pruebas/prueba_gauff_v26/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cuaderno": "tennisbio-prueba-gauff-v26",
-  "progreso": "fine:  68 % (19/28 golpes candidatos · 19 confirmados · 0 ventanas descartadas sin pose) · 5 min · quedan ≈ 3 min (12:55:05; GPU 63 %·0 %, CPU 85 %, 11.7 GB)",
-  "kaggle": "running (12:55)",
+  "progreso": "fine_doubtful terminada a las 13:00:39 en 40 s (12:59:24)",
+  "kaggle": "running (13:00)",
   "arranco": "2026-11-15 12:44",
-  "espera_min": 11
+  "espera_min": 11,
+  "fin": "2026-11-15 13:00",
+  "resultado": {
+   "estado": "hecho",
+   "coste_usd": 0.0,
+   "segundos": 1416,
+   "horas_kaggle": 0.45
+  }
+ },
+ "prueba_gauff_v27_pose16": {
+  "aviso": "Kaggle no lo aceptó: Kernel push error: Maximum batch GPU session count of 2 reached.",
+  "partido": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5"
  }
 }
