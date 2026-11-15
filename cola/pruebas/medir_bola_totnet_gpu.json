@@ -1,0 +1,118 @@
+{
+ "estado": "hecho",
+ "poc": {
+  "prueba": "bola",
+  "tolerancia_px": 10,
+  "dispositivo": "cuda",
+  "modelos": {
+   "tracknetv3": {
+    "val": {
+     "aciertos": 420,
+     "falsas": 13,
+     "falsas_sin_bola": 8,
+     "perdidas": 33,
+     "precision": 0.97,
+     "recall": 0.927,
+     "f1": 0.948
+    },
+    "test": {
+     "aciertos": 1226,
+     "falsas": 63,
+     "falsas_sin_bola": 18,
+     "perdidas": 177,
+     "precision": 0.951,
+     "recall": 0.874,
+     "f1": 0.911
+    },
+    "ms_por_fotograma": 56.9
+   },
+   "totnet": {
+    "val": {
+     "aciertos": 379,
+     "falsas": 59,
+     "falsas_sin_bola": 13,
+     "perdidas": 74,
+     "precision": 0.865,
+     "recall": 0.837,
+     "f1": 0.851
+    },
+    "test": {
+     "aciertos": 1090,
+     "falsas": 259,
+     "falsas_sin_bola": 55,
+     "perdidas": 313,
+     "precision": 0.808,
+     "recall": 0.777,
+     "f1": 0.792
+    },
+    "ms_por_fotograma": 518.1,
+    "umbral": 0.03
+   }
+  },
+  "clips": {
+   "val": [
+    "match138_000",
+    "match140_000",
+    "match143_000",
+    "match146_000",
+    "match149_000",
+    "match151_000",
+    "match154_000",
+    "match157_000",
+    "match16_000",
+    "match162_000"
+   ],
+   "test": [
+    "match1_000",
+    "match10_000",
+    "match100_000",
+    "match101_000",
+    "match102_000",
+    "match103_000",
+    "match104_000",
+    "match105_000",
+    "match106_000",
+    "match107_000",
+    "match108_000",
+    "match109_000",
+    "match11_000",
+    "match110_000",
+    "match111_000",
+    "match112_000",
+    "match113_000",
+    "match114_000",
+    "match115_000",
+    "match116_000",
+    "match117_000",
+    "match118_000",
+    "match119_000",
+    "match12_000",
+    "match120_000",
+    "match121_000",
+    "match122_000",
+    "match123_000",
+    "match124_000",
+    "match125_000"
+   ]
+  },
+  "sigue": false,
+  "conclusion": "TOTNet F1 0.792 frente a TrackNetV3 0.911 en 30 clips de prueba: se aparta (peor que TrackNetV3 más allá del margen)"
+ },
+ "kaggle": {
+  "python": "3.13.16",
+  "nucleos": 4,
+  "memoria_gib": {
+   "MemTotal": 31.3,
+   "MemAvailable": 30.1
+  },
+  "disco_libre_gib": {
+   "/tmp": 966.8,
+   "/kaggle/working": 19.5
+  },
+  "gpu": "Tesla T4, 15360 MiB\nTesla T4, 15360 MiB",
+  "ffmpeg": "/usr/bin/ffmpeg",
+  "clave_modal": true
+ },
+ "horas_kaggle": 0.65,
+ "nota": null
+}

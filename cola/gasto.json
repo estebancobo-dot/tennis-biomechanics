@@ -131,7 +131,8 @@
      "horas": 0.28
     },
     "medir_bola_totnet_gpu": {
-     "estimado_h": 0.5
+     "estimado_h": 0.5,
+     "horas": 0.65
     },
     "prueba_gauff_v32_b": {
      "estimado_h": 1.0,
@@ -148,6 +149,6 @@
   "usadas_h": 26.02,
   "total_h": 30.0,
   "renueva": "2026-11-21 00:00:00",
-  "ts": 1794782961.9832544
+  "ts": 1794783262.6611114
  }
 }

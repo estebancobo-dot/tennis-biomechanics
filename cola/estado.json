@@ -1172,7 +1172,7 @@
   }
  },
  "medir_bola_totnet_gpu": {
-  "estado": "en_marcha",
+  "estado": "hecho",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 1,
@@ -1182,9 +1182,14 @@
   "inicio": "2026-11-15 22:10",
   "ruta": "/runs/kaggle_medir_bola_totnet_gpu/estado.json",
   "cuaderno": "tennisbio-medir-bola-totnet-gpu",
-  "kaggle": "running (22:49)",
+  "kaggle": "complete (22:54)",
   "arranco": "2026-11-15 22:13",
-  "espera_min": 3
+  "espera_min": 3,
+  "fin": "2026-11-15 22:54",
+  "resultado": {
+   "estado": "hecho",
+   "horas_kaggle": 0.65
+  }
  },
  "prueba_gauff_v32_b": {
   "estado": "hecho",
@@ -1230,7 +1235,7 @@
   }
  },
  "prueba_gauff_v32_c": {
-  "estado": "en_marcha",
+  "estado": "hecho",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 1,
@@ -1242,9 +1247,28 @@
   "salida": "/kaggle_pruebas/prueba_gauff_v32_a/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cpu": true,
   "cuaderno": "tennisbio-prueba-gauff-v32-c",
-  "progreso": "view_clips:  44 % (20/45 recortes de repeticiones y otras cámaras) · 2 min · quedan ≈ 2 min (22:48:47; CPU 87 %, 2.9 GB)",
-  "kaggle": "running (22:49)",
+  "progreso": "slowmo_fine terminada a las 22:52:41 en 1.9 min (22:52:41)",
+  "kaggle": "complete (22:54)",
   "arranco": "2026-11-15 22:44",
-  "espera_min": 5
+  "espera_min": 5,
+  "fin": "2026-11-15 22:54",
+  "resultado": {
+   "estado": "hecho",
+   "coste_usd": 0.0,
+   "segundos": 669,
+   "horas_kaggle": 0.21
+  }
+ },
+ "comparar_gauff_v26_v32": {
+  "estado": "hecho",
+  "accion": "comparar",
+  "donde": "github",
+  "fin": "2026-11-15 22:54",
+  "resultado": {
+   "estado": "hecho",
+   "veredicto": "equivalente",
+   "nota": "equivalente; 13 etapas iguales; distintas: audio, slowmo_fine, views; strokes.json: 28 de 28/28 golpes emparejados; strokes_opponent.json: 0 de 0/0 golpes emparejados; strokes_doubtful.json: 1 de 1/1 golpes emparejados"
+  },
+  "partido": ""
  }
 }
