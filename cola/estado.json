@@ -994,6 +994,9 @@
   "ruta": "/runs/kaggle_prueba_gauff_v30_c/estado.json",
   "salida": "/kaggle_pruebas/prueba_gauff_v30_a/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cpu": true,
-  "cuaderno": "tennisbio-prueba-gauff-v30-c"
+  "cuaderno": "tennisbio-prueba-gauff-v30-c",
+  "kaggle": "running (19:55)",
+  "arranco": "2026-11-15 19:55",
+  "espera_min": 1
  }
 }
