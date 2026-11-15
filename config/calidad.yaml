@@ -23,7 +23,7 @@ caracteristicas:
   fiabilidad: "Fiabilidad y resiliencia (fallos, pausa, reanudacion)"
   usabilidad: "Usabilidad y aprendizaje del usuario"
   mantenibilidad: "Mantenibilidad (pruebas, nada fijo en el codigo)"
-  portabilidad: "Portabilidad (Windows, sin CUDA, movil)"
+  portabilidad: "Portabilidad (la aplicacion en Windows; el analisis en cada infraestructura de la nube; sin movil, #301)"
 
 capas:
   codigo: "Codigo y pruebas automaticas"
@@ -106,7 +106,7 @@ umbral_aceptacion: 0.95     # una casilla esta aceptada con >= 95 % de sus compr
 
 # P0.2 (15-11): cómo se medirá cada casilla que sigue sin medir (lo enseña `tennisbio calidad`)
 como_se_mide:
-  pantallas/rendimiento/pantallas: "P0.5: Playwright en cada pantalla de la aplicación web: primera pantalla < 2 s y cambio de pantalla < 300 ms en un móvil simulado (4× CPU más lenta, red 4G); vídeo con capas a 30 fps"
-  pantallas/portabilidad/pantallas: "P0.5: cada pantalla a 390 y 1280 px sin desbordes (anchura del documento = anchura de la ventana) y 0 errores graves de axe-core, en claro y oscuro"
+  pantallas/rendimiento/pantallas: "P0.5: Playwright en cada pantalla de la aplicación (escritorio, #301): primera pantalla < 2 s y cambio de pantalla < 300 ms con los datos de un partido completo; vídeo con capas a 30 fps"
+  pantallas/portabilidad/pantallas: "P0.5: cada pantalla a 1024, 1280 y 1920 px sin desbordes (anchura del documento = anchura de la ventana) y 0 errores graves de axe-core, en claro y oscuro; en Windows (WebView2) con la captura del PC"
   situaciones/exactitud/verdad: "F3Set: la dirección de su golpe (cruzada, paralela, al centro) y el tipo de contacto frente a las etiquetas anotadas de los mismos golpes; aceptada con ≥ 85 % de acierto (la dirección es la mejor anotada)"
   taxonomia/exactitud/verdad: "RacketVision: los 5 puntos de la raqueta frente a los anotados (error mediano en px, a escala de su altura) y la bola; las fases, frente a los instantes de golpe de F3Set (error ≤ 2 fotogramas)"

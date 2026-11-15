@@ -1,11 +1,10 @@
 <title>Su derecha · maqueta P0</title>
-<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&display=swap">
 <style>
-/* Layout: an app shell for the phone first. Player and situation stay on top, five sections in a bottom bar,
-   and each section answers one question with real frames and few numbers. Wider screens get a centred column. */
+/* Layout (15-11, #301): a desktop application for the PC, 1280-1920 px wide (1024 at least). Five sections in a
+   column on the left; player and situation on top; each section answers one question with real frames and few numbers. */
 :root {
   --bg: #eef2f6; --surface: #ffffff; --surface-2: #f6f8fb; --ink: #0f1e2e; --muted: #56677a; --line: #d5dde7;
   --court: #1d4f91; --court-soft: #dbe6f4; --court-2: #2f6b4e; --ball: #cfe02f; --ball-ink: #3b4300;
@@ -38,8 +37,9 @@ button { cursor: pointer }
 .num { font-variant-numeric: tabular-nums }
 
 .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--surface); border-bottom: 1px solid var(--line);
-  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 10px 8px }
-.top-inner, main, .tabs-inner { max-width: 760px; margin: 0 auto }
+  padding-left: 28px; padding-right: max(28px, env(safe-area-inset-right, 0px)); padding-block: 12px 10px }
+.col { min-width: 0 }
+.top-inner, main { max-width: 1320px; margin: 0 auto }
 .who { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap }
 .who h1 { font-family: var(--display); font-weight: 700; font-size: 26px; letter-spacing: .2px; margin: 0; line-height: 1.1 }
 .who .stroke { font-family: var(--display); font-weight: 600; font-size: 20px; color: var(--court) }
@@ -52,8 +52,7 @@ button { cursor: pointer }
 .chip[aria-pressed="true"] { background: var(--court); border-color: var(--court); color: var(--surface) }
 .chip[aria-pressed="true"] .c { color: var(--surface); opacity: .8 }
 
-main { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
-  padding-block: 14px calc(88px + env(safe-area-inset-bottom, 0px)) }
+main { padding-left: 28px; padding-right: max(28px, env(safe-area-inset-right, 0px)); padding-block: 20px 48px; width: 100% }
 section.view { display: grid; gap: 22px }
 h2 { font-family: var(--display); font-weight: 700; font-size: 22px; margin: 0; letter-spacing: .2px; text-wrap: balance }
 .sub { color: var(--muted); font-size: 13px; margin: 2px 0 0 }
@@ -76,8 +75,7 @@ details.beta ul { margin: 8px 0 2px; padding-left: 18px; font-size: 13px; displa
 .concl .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: 12.5px; color: var(--muted) }
 .link { background: none; border: 0; padding: 0; color: var(--court); font-weight: 600; font-size: 13px }
 
-.phases { display: grid; align-items: start; grid-auto-flow: column; grid-auto-columns: min(86%, 340px); gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory;
-  padding-bottom: 6px; margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); padding-inline: max(16px, env(safe-area-inset-left, 0px)) }
+.phases { display: grid; align-items: start; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px }
 .phase { scroll-snap-align: start; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; display: grid; align-content: start; min-width: 0 }
 .frame { position: relative; aspect-ratio: 4 / 3; max-width: 100%; background:
   linear-gradient(180deg, var(--frame-b) 0 22%, var(--frame-a) 22% 100%); display: grid; place-items: center; color: #e9f0f8 }
@@ -123,8 +121,8 @@ details.beta ul { margin: 8px 0 2px; padding-left: 18px; font-size: 13px; displa
 .tags .pill { background: var(--surface-2); color: var(--muted); font-weight: 500; border: 1px solid var(--line) }
 .more { justify-self: center; border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 7px 16px; font-weight: 600; font-size: 13px }
 
-.sheet { position: fixed; inset: 0; z-index: 20; background: rgb(5 12 20 / .5); display: grid; align-items: end }
-.sheet-inner { background: var(--bg); border-radius: 18px 18px 0 0; max-height: 92%; overflow-y: auto; width: 100%; max-width: 760px; margin: 0 auto;
+.sheet { position: fixed; inset: 0; z-index: 20; background: rgb(5 12 20 / .45); display: grid; justify-items: end }
+.sheet-inner { background: var(--bg); border-left: 1px solid var(--line); height: 100%; overflow-y: auto; width: min(760px, 92vw);
   padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 14px calc(20px + env(safe-area-inset-bottom, 0px)); display: flex; flex-direction: column; gap: 14px }
 .sheet-inner > * { flex: none }
 .sheet-head { display: flex; justify-content: space-between; align-items: center; gap: 10px }
@@ -133,6 +131,7 @@ details.beta ul { margin: 8px 0 2px; padding-left: 18px; font-size: 13px; displa
   linear-gradient(180deg, var(--frame-a) 0 55%, var(--frame-b) 55% 100%); color: #eef3f9; display: grid; place-items: center; text-align: center; padding: 16px; font-size: 13px }
 .controls { display: flex; gap: 6px; flex-wrap: wrap }
 .controls .chip { background: var(--surface) }
+.controls .chip[aria-pressed="true"] { background: var(--court); color: var(--surface) }
 
 .cmp { display: grid; gap: 0 }
 .cmp-row { display: grid; grid-template-columns: minmax(0, 1.4fr) repeat(2, minmax(0, .8fr)) minmax(0, 1fr); gap: 8px; padding: 9px 0; border-top: 1px solid var(--line); align-items: baseline; font-size: 13px }
@@ -144,7 +143,8 @@ details.beta ul { margin: 8px 0 2px; padding-left: 18px; font-size: 13px; displa
 .find b { font-size: 14px }
 .find span { color: var(--muted); font-size: 12.5px }
 
-.court-wrap { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 10px; display: grid; gap: 10px }
+.court-wrap { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 16px; display: grid; grid-template-columns: minmax(0, 420px) minmax(0, 1fr); gap: 22px; align-items: start }
+.court-wrap .stats { grid-template-columns: 1fr }
 .court { width: 100%; max-width: 420px; height: auto; justify-self: center; display: block }
 .court .surf { fill: var(--court) }
 .court .outer { fill: var(--court-2) }
@@ -167,20 +167,33 @@ details.beta ul { margin: 8px 0 2px; padding-left: 18px; font-size: 13px; displa
 .steps small { display: block; color: var(--muted); font-size: 12.5px }
 .mock-note { font-size: 12.5px; color: var(--muted); border-left: 3px solid var(--line); padding-left: 10px; margin: 0 }
 
-.tabs { position: fixed; inset: auto 0 0 0; z-index: 6; background: var(--surface); border-top: 1px solid var(--line);
-  padding-left: max(8px, env(safe-area-inset-left, 0px)); padding-right: max(8px, env(safe-area-inset-right, 0px)); padding-block: 6px calc(6px + env(safe-area-inset-bottom, 0px)) }
-.tabs-inner { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px }
-.tab { border: 0; background: none; display: grid; justify-items: center; gap: 2px; padding: 5px 2px; border-radius: 10px; font-size: 11.5px; color: var(--muted) }
-.tab svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round }
-.tab[aria-current="page"] { color: var(--court); font-weight: 600 }
+.shell { display: grid; grid-template-columns: 220px minmax(0, 1fr); min-height: 100% }
+.tabs { position: sticky; top: 0; align-self: start; height: 100vh; background: var(--surface); border-right: 1px solid var(--line);
+  padding-block: 18px; padding-left: max(14px, env(safe-area-inset-left, 0px)); padding-right: 14px; display: grid; align-content: start; gap: 18px }
+.brand { font-family: var(--display); font-weight: 700; font-size: 22px; letter-spacing: .3px; padding-left: 8px }
+.brand span { color: var(--court) }
+.tabs-inner { display: grid; gap: 2px }
+.tab { border: 0; background: none; display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 10px; font-size: 14px; color: var(--muted); text-align: left }
+.tab:hover { background: var(--surface-2) }
+.tab svg { width: 20px; height: 20px; flex: none; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round }
+.tab[aria-current="page"] { color: var(--court); background: var(--court-soft); font-weight: 600 }
+.side-more { display: grid; gap: 2px; border-top: 1px solid var(--line); padding-top: 12px }
+.side-more span { font-size: 13px; color: var(--muted); padding: 5px 10px }
 
-@media (min-width: 720px) {
-  .phases { grid-auto-flow: row; grid-template-columns: repeat(2, minmax(0, 1fr)); overflow: visible; margin-inline: 0; padding-inline: 0 }
-  .cards { grid-template-columns: repeat(2, minmax(0, 1fr)) }
-}
+.cards { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+.split { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 22px; align-items: start }
+@media (max-width: 1240px) { .phases { grid-template-columns: repeat(3, minmax(0, 1fr)) } }
+@media (max-width: 1080px) { .phases { grid-template-columns: repeat(2, minmax(0, 1fr)) } .split { grid-template-columns: 1fr } }
 @media (prefers-reduced-motion: no-preference) { .chip, .tab, .row-stroke { transition: background-color .15s, color .15s } }
 </style>
 
+<div class="shell">
+<nav class="tabs" aria-label="Secciones">
+  <div class="brand">Tennis<span>Bio</span></div>
+  <div class="tabs-inner" id="tabs"></div>
+  <div class="side-more"><span>Jugadoras</span><span>Fiabilidad y calidad</span><span>Vista lateral (entreno)</span><span>Exportar</span></div>
+</nav>
+<div class="col">
 <header class="top">
   <div class="top-inner">
     <div class="who">
@@ -204,17 +217,18 @@ details.beta ul { margin: 8px 0 2px; padding-left: 18px; font-size: 13px; displa
     <div class="block">
       <div><h2>Cómo la pega</h2><p class="sub" id="phase-sub"></p></div>
       <div class="phases" id="phases"></div>
-      <p class="mock-note">Maqueta: el recuadro de cada fase será el fotograma real de su golpe más representativo en esta situación, con el esqueleto y la medida dibujados encima.</p>
+      <p class="mock-note">Maqueta: el recuadro de cada fase será el fotograma real de su golpe más representativo en esta situación, con el esqueleto y la medida dibujados encima. Un clic en el fotograma abre su vídeo.</p>
     </div>
 
-    <div class="block">
-      <div><h2>Ritmo del golpe</h2><p class="sub" id="rhythm-sub"></p></div>
-      <div class="panel"><svg class="chart" id="rhythm" role="img" aria-label="Momento de cada fase respecto al impacto"></svg></div>
-    </div>
-
-    <div class="block">
-      <div><h2>Lo que puedes copiar</h2><p class="sub">Por orden: lo que corrigen primero los entrenadores. Cada punto lleva su medida en «Cómo la pega».</p></div>
-      <ol class="copy" id="copy"></ol>
+    <div class="split">
+      <div class="block">
+        <div><h2>Ritmo del golpe</h2><p class="sub" id="rhythm-sub"></p></div>
+        <div class="panel"><svg class="chart" id="rhythm" role="img" aria-label="Momento de cada fase respecto al impacto"></svg></div>
+      </div>
+      <div class="block">
+        <div><h2>Lo que puedes copiar</h2><p class="sub">Por orden: lo que corrigen primero los entrenadores. Cada punto lleva su medida en «Cómo la pega».</p></div>
+        <ol class="copy" id="copy"></ol>
+      </div>
     </div>
   </section>
 
@@ -253,14 +267,16 @@ details.beta ul { margin: 8px 0 2px; padding-left: 18px; font-size: 13px; displa
     <div class="panel block">
       <h2>Añadir un partido</h2>
       <ol class="steps">
-        <li><div>Sube el vídeo de la retransmisión<small>Desde el móvil o el PC. Se borra cuando el partido queda aceptado.</small></div></li>
-        <li><div>Señala cuál de las dos es ella<small>Un toque sobre un fotograma, una vez por partido.</small></div></li>
+        <li><div>Elige el vídeo de la retransmisión en el PC<small>Se sube a la nube por partes (si se corta, sigue donde iba) y se borra de allí cuando el partido queda aceptado.</small></div></li>
+        <li><div>Señala cuál de las dos es ella<small>Un clic sobre un fotograma del vídeo, una vez por partido.</small></div></li>
         <li><div>Aprueba el análisis<small>La aplicación dice cuánto tardará y cuánta cuota usará. Después avisa cuando termina.</small></div></li>
       </ol>
-      <p class="mock-note">Maqueta: la subida y el aviso llegan con el bloque N (alojamiento privado a 0 €).</p>
+      <p class="mock-note">Maqueta: la subida, la descarga de los resultados al PC y el aviso llegan con el bloque N (sin web: aplicación de escritorio).</p>
     </div>
   </section>
 </main>
+</div>
+</div>
 
 <div class="sheet" id="sheet" hidden>
   <div class="sheet-inner" role="dialog" aria-modal="true" aria-labelledby="sh-title">
@@ -272,9 +288,6 @@ details.beta ul { margin: 8px 0 2px; padding-left: 18px; font-size: 13px; displa
   </div>
 </div>
 
-<nav class="tabs" aria-label="Secciones">
-  <div class="tabs-inner" id="tabs"></div>
-</nav>
 
 <script>
 const D = /*DATA*/null;
@@ -341,7 +354,7 @@ function frameSvg(id) {
 }
 function phases() {
   const rh = RH(), s = sitOf(SIT);
-  $("phase-sub").textContent = `${s.label === "Todas" ? "Todas sus derechas" : s.label}: ${s.n} golpes del lado cercano. Desliza para ver las ${D.phases.length} partes del golpe.`;
+  $("phase-sub").textContent = `${s.label === "Todas" ? "Todas sus derechas" : s.label}: ${s.n} golpes del lado cercano. Las 8 partes del golpe y los pies.`;
   $("phases").innerHTML = D.phases.map((p, i) => {
     const e = rh[p.id === "feet" ? "" : p.id];
     const when = e ? (e.median === 0 ? "impacto" : `${sgn(e.median, 2)} s`) : "";

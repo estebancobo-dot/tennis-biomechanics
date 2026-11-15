@@ -15,6 +15,20 @@ se adelantan en la nube en paralelo con la Base; la construcción (P0.5) empieza
 - **Lo que sí sirve y se conserva:** el motor (etapas, pose, bola, medidas, estadística), el registro único y la cola
   (orquestador), el modelo de calidad, la auditoría y los datos por partido.
 
+## 2 ter. Aplicación de escritorio en el PC (15-11, #301: vigente; sustituye a la web de abajo en lo que cambia)
+
+El usuario sube los vídeos desde el PC y ve la aplicación en el PC. Nada de móvil. Lo que cambia frente a la versión web
+de abajo:
+
+| Capa | Escritorio (vigente) |
+|---|---|
+| Ventana | pywebview con WebView2 en el PC (como en la tabla del 13-11), con la misma interfaz React + TypeScript |
+| Datos | Los resultados de cada partido se descargan del volumen de Modal a `C:\tenis\output` y se leen de ahí. El vídeo de cada golpe es local |
+| API | La de Python dentro de la propia aplicación, con el contrato tipado; no hay servidor (el PC no es servidor, requisito 10) |
+| Subida, clic y aprobación | Desde la aplicación: el vídeo al volumen de Modal; el clic y la aprobación, a la cola de la nube |
+| Pantalla | **PC primero:** 1280-1920 px de ancho, con un mínimo de 1024; sin diseño para el móvil |
+| Pruebas | Las mismas (Playwright sobre la interfaz con datos de ejemplo, en la nube de Claude), a 1280 y 1920 px |
+
 ## 2 bis. Arquitectura para la web (15-11, #296: P0 se diseña ya como aplicación web y se construye una sola vez)
 
 La tabla de abajo era para una aplicación local (ventana de escritorio en el PC). Desde el 13-11 la aplicación va a la

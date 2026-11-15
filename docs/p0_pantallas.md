@@ -1,13 +1,14 @@
 # P0 · Mapa de pantallas, recorridos y sistema de diseño (P0.4, 15-11)
 
-La aplicación nueva junta la aplicación de hoy (10 pantallas) y el informe (11 pantallas) en **5 secciones** para el
-móvil. Cada una responde a una pregunta. Patrones de la comparativa: `docs/comparativa_completa.md`.
+La aplicación nueva junta la aplicación de hoy (10 pantallas) y el informe (11 pantallas) en **5 secciones**. Cada
+una responde a una pregunta. **15-11 (#301): aplicación de escritorio en el PC**, a 1280-1920 px de ancho y con un
+mínimo de 1024. Nada de móvil. La navegación va en una columna a la izquierda. Patrones de la comparativa: `docs/comparativa_completa.md`.
 
-**Maqueta para revisar:** página privada <https://claude.ai/artifact/Vi3ags11xK2ap6gSAJvt6N> (versión 1, 15-11). Lleva
+**Maqueta para revisar:** página privada <https://claude.ai/artifact/Vi3ags11xK2ap6gSAJvt6N> (versión 2, 15-11: de escritorio, #301; la 1 era para el móvil). Lleva
 los números reales del informe beta. Se rehace con `python design/p0/build_maqueta.py <informe> <salida>`; la
 plantilla, sin datos, está en `design/p0/maqueta.html`. El repositorio es público y no guarda la página con datos.
 
-## 1. Las 5 secciones (barra inferior en el móvil)
+## 1. Las 5 secciones (columna de navegación a la izquierda)
 
 | Sección | Pregunta | Qué junta de hoy | Contenido |
 |---|---|---|---|
@@ -31,7 +32,7 @@ todas las secciones. Cada botón lleva su número de golpes.
 | Ver cómo pega en una situación | 1 | Su derecha → la situación |
 | Ver un golpe en vídeo con sus medidas | 1-2 | Un dato o una conclusión → sus golpes → el golpe |
 | Comparar dos situaciones | 3 | Comparar → A → B |
-| Añadir un partido | 3 + la subida | Partidos → subir → el clic de identidad → aprobar |
+| Añadir un partido | 3 + la subida | Partidos → elegir el vídeo en el PC → el clic de identidad → aprobar |
 | Pausar la cola | 2 | Partidos → pausar |
 
 ## 3. Sistema de diseño (lo que fija la maqueta)
@@ -66,7 +67,7 @@ todas las secciones. Cada botón lleva su número de golpes.
 - **Ajuste por la bola y el partido en las medianas por situación:** la maqueta usa medianas simples; las conclusiones y
   «Lo que cambia, con ajuste» ya lo llevan.
 - **La medida dibujada sobre el fotograma** (arco del ángulo, regla de la base).
-- **Subida, aviso y cola reales:** llegan con N (`docs/n_web.md`).
+- **Subida, descarga de resultados y cola reales:** llegan con N (`docs/n_web.md`: escritorio, sin web).
 
 ## 5. Revisión del usuario (P0.4 se cierra con ella)
 

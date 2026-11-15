@@ -53,7 +53,7 @@ paquetes:
     # 13-11 tarde (#275): el PC se para y los 6 partidos se analizan ya en Modal, por lotes y tras una prueba corta
     # (#276, #277)
     nombre: "Nube · toda la aplicación en la nube (el usuario solo sube los partidos), 0 € al mes"
-    cierre: "La nube da lo mismo que el PC en F3Set y en los 6 partidos (N0-N1); un partido nuevo de principio a fin desde la web (subir, clic, aprobar); gasto del mes 0 € con el tope de la cuenta"
+    cierre: "La nube da lo mismo que el PC en F3Set y en los 6 partidos (N0-N1); un partido nuevo de principio a fin desde la aplicación del PC (subir, clic, aprobar; #301); gasto del mes 0 € con el tope de la cuenta"
     peticiones: [268, 271, 272, 273, 275, 276, 277, 278, 279, 280, 281, 282, 283, 284, 285, 286, 290, 291, 297]
   NN:
     # 14-11 (#287-#289): el código de la nube seguía decidido para el PC. Una sola aplicación sobre N infraestructuras
@@ -67,9 +67,10 @@ paquetes:
   P0:
     # 11-11 (usuario): justo después de la Base y antes de las medidas
     # 15-11 (#296): antes de la interfaz web de N; se diseña ya como aplicación web y se construye una sola vez
+    # 15-11 (#301): aplicación de escritorio en el PC (la interfaz React en una ventana), sin web ni móvil
     nombre: "Producto · rediseño completo de la aplicación (comparativa profesional, UX, aprendizaje, gestión, gráficos)"
     cierre: "Diseño desde la comparativa con las apps profesionales; capturas de cada pantalla comparadas con las de referencia, sin restos inútiles ni nada fijo en el código"
-    peticiones: [256, 257, 252, 258, 296, 298]
+    peticiones: [256, 257, 252, 258, 296, 298, 301]
     prueba: ["^Aplicación: rediseño "]
   M1:
     nombre: "Medidas · fases, cadena cinética y ritmo"
@@ -121,9 +122,11 @@ paquetes:
     cierre: "Cada escenario de docs/escenarios_producto.md con su prueba"
     peticiones: [78, 140, 156, 243]
   P6:
-    nombre: "Producto · móvil (al final)"
-    cierre: "Copia al móvil comprobada"
-    peticiones: [2, 154]
+    # 15-11 (#301, decisión del usuario): nada de móvil; la aplicación es de escritorio en el PC. Paquete descartado
+    # con su motivo; sus peticiones pasan a NO APLICA
+    nombre: "Producto · móvil (descartado 15-11, #301: la aplicación es de PC)"
+    cierre: "Descartado por decisión del usuario (#301)"
+    peticiones: []          # #2 y #154, NO APLICA desde el 15-11 (#301)
   D:
     nombre: "Documentación y reglas de trabajo"
     cierre: "Documentos al día con el código (prueba de enlaces y fechas)"

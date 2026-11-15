@@ -1,4 +1,39 @@
-# N · La aplicación en la web: alojamiento, vídeos y acceso privado a 0 € (15-11, #296-#298)
+# N · La aplicación sin web: subida desde el PC, análisis en la nube, resultados en el PC (15-11, #301)
+
+**Decisión vigente (15-11, #301, del usuario).** Los vídeos se suben desde el PC y la aplicación se ve en el PC. Nada
+de móvil. La aplicación puede ser de escritorio si es mejor, y lo es:
+
+| | Aplicación de escritorio en el PC (**elegida**) | Web privada (Hugging Face o Cloudflare) |
+|---|---|---|
+| Subir un vídeo de 5 GB | Desde el disco del PC al volumen de Modal, por partes y reanudable; ya funciona (`scripts/subir_nube.py` subió los 6 partidos) | Desde el navegador: frágil con 5 GB; a un sitio nuevo |
+| Ver el vídeo de cada golpe | Desde el disco del PC: avanzar fotograma a fotograma y la cámara lenta son inmediatos | Por internet desde el almacenamiento privado: cada salto espera a la red |
+| El clic de identidad | Sobre un fotograma del vídeo que ya está en el PC | Hay que extraer y subir el fotograma |
+| Privacidad y coste | Nada público ni alojado; 0 € | Alojamiento privado con su cuenta, su acceso y sus límites gratuitos (el espacio gratis de Hugging Face se duerme) |
+| Cuentas nuevas | Ninguna: la clave de Modal y la de GitHub ya están en el PC (`5_conectar_nube.bat`, `4_conectar_github.bat`) | Hugging Face (o Cloudflare) y su token |
+| Actualizaciones | Las del PC de hoy: `1_instalar.bat` y el ciclo automático traen el código nuevo | Inmediatas |
+
+**Cómo queda:**
+- **Interfaz:** la de P0 (React + TypeScript), compilada a ficheros estáticos y abierta en una ventana del PC (pywebview
+  con WebView2, ya instalado).
+- **Subir:** la aplicación sube el vídeo al volumen de Modal (lo de `subir_nube.py --que partidos`).
+- **Analizar:** la cola de la nube (Kaggle y Modal); el PC no analiza (`config/pausa_pc.txt`, #284) ni es servidor.
+- **Clic y aprobación:** se guardan como trabajos de la cola (`config/cola_nube.yaml`).
+- **Resultados:** la aplicación descarga los JSON y los recortes de vídeo del partido a `C:\tenis\output`.
+- **Borrado:** el vídeo se borra del volumen al aceptar el partido (T22).
+
+**Prueba de concepto (sustituye a la de abajo):**
+1. Subir un partido de 5 GB desde el PC con la aplicación: tiempo y reanudación si se corta.
+2. Que la cola lance la prueba de 10 min sola.
+3. Descargar los resultados de un partido ya analizado (los de la beta) y abrir sus golpes en la ventana: tiempo de la
+   descarga y del vídeo.
+4. Borrar el vídeo del volumen al aceptar.
+
+**Aceptación:** los 4 pasos a 0 €, y el usuario solo sube, hace el clic y aprueba.
+
+---
+
+**Histórico (15-11 mañana, antes de #301): la versión web, para subir y ver desde el móvil.** Queda como alternativa por
+si algún día hiciera falta verla fuera del PC; la interfaz sería la misma.
 
 Lo que no es interfaz (la interfaz es la de P0, diseñada ya como web y construida una sola vez, #296). Qué debe cumplir:
 - el usuario solo **sube el vídeo**, hace **el clic de identidad** y **aprueba**; ve los resultados en el móvil;
