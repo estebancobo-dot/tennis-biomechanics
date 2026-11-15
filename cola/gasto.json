@@ -93,6 +93,12 @@
     "prueba_sinner": {
      "estimado_h": 1.0,
      "horas": 0.31
+    },
+    "prueba_gauff_v24": {
+     "estimado_h": 1.0
+    },
+    "prueba_gauff_v25_calidad": {
+     "estimado_h": 1.0
     }
    }
   }
@@ -101,6 +107,6 @@
   "usadas_h": 21.76,
   "total_h": 30.0,
   "renueva": "2026-11-21 00:00:00",
-  "ts": 1794732181.5369182
+  "ts": 1794732967.7900736
  }
 }

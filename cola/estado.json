@@ -590,5 +590,31 @@
    "nota": "distinta; 7 etapas iguales; distintas: candidates, fine, fine_doubtful, identity, players, slowmo_fine, spotting, view_clips; strokes.json: 27 de 28/28 golpes emparejados, 3 distintos, medidas fuera de tolerancia: technique.pose.ready, technique.pose.extension, technique.pose.finish, racket_track; strokes.json: temblor de b frente a a ×1.00 (mediana de 5308 medidas; b tiembla menos en el 36 %); strokes_opponent.json: 0 de 0/0 golpes emparejados; strokes_doubtful.json: 1 de 1/1 golpes emparejados, medidas fuera de tolerancia: technique.phases.takeback.hip_turn, technique.curves.hand, technique."
   },
   "partido": ""
+ },
+ "prueba_gauff_v24": {
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1794732967.7900736,
+  "accion": "prueba",
+  "partido": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+  "inicio": "2026-11-15 08:56",
+  "ruta": "/runs/kaggle_prueba_gauff_v24/estado.json",
+  "salida": "/kaggle_pruebas/prueba_gauff_v24/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+  "cuaderno": "tennisbio-prueba-gauff-v24"
+ },
+ "prueba_gauff_v25_calidad": {
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1794732967.7900736,
+  "accion": "prueba",
+  "partido": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+  "inicio": "2026-11-15 08:56",
+  "ruta": "/runs/kaggle_prueba_gauff_v25_calidad/estado.json",
+  "salida": "/kaggle_pruebas/prueba_gauff_v25_calidad/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+  "cuaderno": "tennisbio-prueba-gauff-v25-calidad"
  }
 }
