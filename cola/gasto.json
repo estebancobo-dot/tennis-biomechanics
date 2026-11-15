@@ -11,6 +11,10 @@
      "estimado_usd": 0.8,
      "llamada": "fc-01M7CR8EB6R4WATHCD2BNGKR20",
      "coste_usd": 0.27
+    },
+    "informe_beta": {
+     "estimado_usd": 0.15,
+     "llamada": "fc-01M7EYCKP661WM6EKPP8Q2KE94"
     }
    },
    "base_usd": 28.08
@@ -62,7 +66,8 @@
      "horas": 0.41
     },
     "final": {
-     "estimado_h": 9.45
+     "estimado_h": 9.45,
+     "horas": 6.53
     },
     "prueba_gauff_v21_calidad": {
      "estimado_h": 1.0,
@@ -73,15 +78,22 @@
      "horas": 5.03
     },
     "prueba_gauff_v22": {
+     "estimado_h": 1.0,
+     "horas": 0.44
+    },
+    "prueba_gauff_v23_calidad": {
+     "estimado_h": 1.0
+    },
+    "prueba_gauff_rtmw": {
      "estimado_h": 1.0
     }
    }
   }
  },
  "kaggle_real": {
-  "usadas_h": 20.41,
+  "usadas_h": 20.51,
   "total_h": 30.0,
   "renueva": "2026-11-21 00:00:00",
-  "ts": 1794723895.1301014
+  "ts": 1794724201.7652655
  }
 }
