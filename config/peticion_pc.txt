@@ -1397,3 +1397,11 @@ script: subir_nube
 argumentos: --que partidos --sin-videos
 # 294 (13-11): la 293 subio los 6 videos (23 GB, 5 min) pero no el clic de identidad: en la biblioteca esta en
 # etapas/identidad_clic.json y se buscaba en la raiz. Solo las fichas (KB), sin repetir los videos
+---
+id: 295
+accion: youtube
+urls: https://youtu.be/fsnnnfV7jgs https://youtu.be/UMiIGKwOMmg https://youtu.be/E2oi4svVxcE https://youtu.be/StuYgHCMDKY https://youtu.be/sSarKBy9QQc https://youtu.be/vZdO0B6xdbQ https://youtu.be/V6xQKt8Y7fA https://youtu.be/-z8Y0aajRVU https://youtu.be/Hgu3R2mQKxQ https://youtu.be/gQvjhlCQUpY https://youtu.be/_huy4f7yZVU https://youtu.be/h8JNWMsYhuo https://youtu.be/IXhYu5dG5g4 https://youtu.be/l8p-GB4kElw https://youtu.be/F7CbXSS74Nw https://youtu.be/ofbKU1k7ntM https://youtu.be/47j4Z_aFj1A https://youtu.be/yXqJ6_0LSWw https://youtu.be/_59FWZWLcBc https://youtu.be/WZt5s1ht6io https://youtu.be/qxAcxJscP7M https://youtu.be/j7pHq11noCg https://youtu.be/XGHpHnYVzUQ https://youtu.be/op3EJh7fKl4 https://youtu.be/CJlE-wPyBeE https://youtu.be/kEZlMG_HZmE https://youtu.be/ekykjKpUTkc https://youtu.be/h5F-fCU_70U https://youtu.be/MPq5kjAfr8I https://youtu.be/Ne7Mhhl7z6U https://youtu.be/Ulw0onXy4l8 https://youtu.be/9dvdbXw0C1c https://youtu.be/Q83frdvZEig https://youtu.be/tQoatNJju9g https://youtu.be/-3tDPqVFOOo https://youtu.be/HYopbgxUwrw https://youtu.be/eq2hkrP-RpQ https://youtu.be/VTZeu3OFzy8 https://youtu.be/gUFQseVrovk https://youtu.be/swMzqeoLBs8 https://youtu.be/83XndlYbi1w https://youtu.be/t-jf9k6Kwp0 https://youtu.be/rtLtLeff8JM https://youtu.be/gl7bGFVVTCI https://youtu.be/_B_ZFUBUGVM https://youtu.be/DI5Qo_5UGTk https://youtu.be/sWx2oBYMBZ8 https://youtu.be/_lJ3vGTagbQ https://youtu.be/BtiYCq_3tdo https://youtu.be/VxaSjIxR5fE https://youtu.be/ugXxAVIMgHo https://youtu.be/DFbSMn5hN8U
+# 295 (15-11, #303, el usuario: "usa el pc"): 52 shorts de Joel Myers (entrenador; youtube.com/@joelmyerstennis)
+# de derecha, juego de pies, reves y tecnica general, elegidos por su titulo entre los 144 que lista su canal. Solo para
+# que Claude aprenda como explica un entrenador (requisito 6: nada va al informe). YouTube no deja descargarlos desde
+# la nube. Texto e imagenes pequenas en output\investigacion_295, que suben solas a pc-logs. Despues el PC vuelve a pausa

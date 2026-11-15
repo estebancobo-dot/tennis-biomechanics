@@ -1,7 +1,13 @@
 # Pausa total del PC pedida por el usuario (29-10, "no hagas nada mas en local hasta que yo te avise").
-# "pausa: si": el ciclo corta todo lo de este proyecto que este en marcha, apaga la tarea de Windows de cada 10 min y
+# "# 15-11 (#303, el usuario: "usa el pc, ya lo he encendido"): pausa quitada SOLO para la peticion 295 (los shorts de
+# Joel Myers, que YouTube no deja descargar desde la nube). Claude la vuelve a poner en cuanto la 295 suba sus
+# resultados a pc-logs; el analisis de los partidos sigue en la nube.
+pausa: no": el ciclo corta todo lo de este proyecto que este en marcha, apaga la tarea de Windows de cada 10 min y
 # el bucle de inicio de sesion no sigue. Solo Claude la quita ("pausa: no"), y solo cuando el usuario lo diga.
 # 13-11 (decision del usuario: "para todo el pc en local y replantea todo en modal con un gasto 0"): el PC ya subio a
 # Modal todo lo que solo el tenia (291: F3Set; 293: los 6 videos; 294: los clics de identidad). Desde aqui, nada en
 # local: el analisis va entero en la nube.
-pausa: si
+# 15-11 (#303, el usuario: "usa el pc, ya lo he encendido"): pausa quitada SOLO para la peticion 295 (los shorts de
+# Joel Myers, que YouTube no deja descargar desde la nube). Claude la vuelve a poner en cuanto la 295 suba sus
+# resultados a pc-logs; el analisis de los partidos sigue en la nube.
+pausa: no
