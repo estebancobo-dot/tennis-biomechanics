@@ -87,3 +87,14 @@ def test_a_stage_can_be_profiled_without_changing_it(tmp_path, monkeypatch):
     assert pipeline._profiled("x", c) == {"n": 499500}
     txt = (tmp_path / "perfil_x.txt").read_text(encoding="utf-8")
     assert "tottime" in txt and "cumulative" in txt and lines
+
+
+def test_angles_are_compared_on_the_circle():
+    """R50 (15-11): 340° and 29° are 49° apart, and 359.8° and 0.1° are the same; a face that turns 180° is still a
+    difference (the real R50)."""
+    assert eq._diff(340.0, 29.0, "stance_angle") == 49.0
+    assert eq._close(359.8, 0.1, "face.loaded.yaw_deg") and not eq._close(359.8, 0.1, "elbow_px")
+    assert eq._diff(10.0, 190.0, "face.finish.yaw_deg") == 180.0
+    a = [{"match_time_s": 1.0, "stroke": "forehand", "face": {"yaw_deg": 359.9}}]
+    b = [{"match_time_s": 1.0, "stroke": "forehand", "face": {"yaw_deg": 0.2}}]
+    assert eq.compare_strokes(a, b)["medidas_distintas"] == {}

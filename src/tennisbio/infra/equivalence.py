@@ -45,12 +45,27 @@ def _leaves(d, prefix=""):
         yield prefix, d
 
 
-def _close(a, b) -> bool:
+ANGLE_HINTS = ("_deg", "yaw", "tilt", "angle", "turn", "x_factor")
+
+
+def is_angle(key: str) -> bool:
+    """A measure in degrees, compared on the circle (R50, 15-11: a stance angle of 340° against 29° is 49° apart, not
+    311°)."""
+    k = key.lower()
+    return any(h in k for h in ANGLE_HINTS)
+
+
+def _diff(a: float, b: float, key: str = "") -> float:
+    d = abs(a - b)
+    return min(d, 360.0 - d % 360.0) if is_angle(key) and d > 180.0 else d
+
+
+def _close(a, b, key: str = "") -> bool:
     if isinstance(a, bool) or isinstance(b, bool) or not isinstance(a, (int, float)) or not isinstance(b, (int, float)):
         return a == b
     if math.isnan(a) or math.isnan(b):
         return math.isnan(a) and math.isnan(b)
-    return abs(a - b) <= max(ABS_TOL, REL_TOL * max(abs(a), abs(b)))
+    return _diff(a, b, key) <= max(ABS_TOL, REL_TOL * max(abs(a), abs(b)))
 
 
 def _as_list(x) -> list[dict]:
@@ -84,10 +99,10 @@ def compare_strokes(a: list[dict], b: list[dict], skip=("series", "window", "vie
             if k in TIME_KEYS:
                 continue
             va, vb = la.get(k), lb.get(k)
-            if not _close(va, vb):
+            if not _close(va, vb, k):
                 diffs[k] = diffs.get(k, 0) + 1
                 if isinstance(va, (int, float)) and isinstance(vb, (int, float)) and not isinstance(va, bool):
-                    worst[k] = max(worst.get(k, 0.0), abs(float(va) - float(vb)))
+                    worst[k] = max(worst.get(k, 0.0), _diff(float(va), float(vb), k))
     return {"a": len(a), "b": len(b), "pares": len(pairs), "solo_a": only_a[:20], "solo_b": only_b[:20],
             "tipo_distinto": kinds[:20], "medidas_distintas": dict(sorted(diffs.items(), key=lambda kv: -kv[1])[:20]),
             "mayor_diferencia": {k: round(v, 4) for k, v in sorted(worst.items(), key=lambda kv: -kv[1])[:20]}}
