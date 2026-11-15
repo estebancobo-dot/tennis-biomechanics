@@ -140,3 +140,45 @@ Fuentes: [RTMO](https://arxiv.org/pdf/2312.07526), [RTMPose](https://arxiv.org/p
 [ONNX frente a TensorRT](https://www.ultralytics.com/blog/onnx-vs-tensorrt),
 [TensorRT en ONNX Runtime](https://github.com/microsoft/onnxruntime/blob/717d1da14874cd8f6fd7ede97f4369510e2452ca/docs/execution_providers/TensorRT-ExecutionProvider.md),
 [F3Set con pocos ejemplos, 2026](https://arxiv.org/pdf/2604.22839), [UMEG-Net](https://arxiv.org/pdf/2511.14186).
+
+## Arquitectura de ejecución en la nube (T24, #293, 15-11)
+
+**Qué es del PC y qué no.** Las etapas (cortes, sonido, jugadoras, candidatos, identidad, pista, marcador, pasada fina…)
+son el análisis: no dependen de la máquina. Lo que se diseñó para el PC (fase 0, octubre) es **cómo** corren: un
+partido = un proceso en una máquina, etapas en serie, disco local. Al pasar a la nube (13-11) se movió tal cual; el plan
+de nube nativa comparó infraestructura y modelos, **no la arquitectura de ejecución**. Es un hueco: este apartado.
+
+**Lo que se queda (medido, no heredado):** las dos pasadas. Poner la pose solo en ±1 s alrededor de cada golpe (~10 % de
+los fotogramas) es ~10 veces menos cálculo en cualquier infraestructura, y en la nube cálculo = cuota. Y el grafo de
+etapas con huellas (cachés, recálculo incremental), el mismo patrón que Dagster (activos) o Hamilton.
+
+**Alternativas de ejecución (estado del arte):**
+- **Ray Data**: flujo por lotes en streaming, etapas de CPU (decodificar) y de GPU (modelos) escaladas por separado; la
+  opción más citada para inferencia por lotes con GPU y vídeo (el equipo de Ray mide 2,5-12× frente a lotes clásicos;
+  Anyscale, 2× frente a Spark en imágenes; datos del propio proveedor). Encaja dentro de una máquina; entre sesiones
+  de Kaggle no hay red, así que no forma un clúster.
+- **Modal `.map()`**: reparte un trabajo en N contenedores con GPU a la vez; un partido troceado acaba en minutos; el
+  coste en segundos de GPU es el mismo (el límite es el crédito de 30 $/mes).
+- **PySpark / Spark**: hecho para ETL de tablas en clústeres de la JVM; trata la GPU como añadido; sin clúster con GPU
+  gratis. **No encaja** con vídeo y modelos en GPU a 0 €. **Dask**: bueno para escalar pandas; flojo con GPU y actores.
+- **Vídeo nativo de GPU** (DeepStream/Savant, PyNvVideoCodec sin copias): lo más rápido, pero rehace el análisis;
+  candidato más adelante.
+
+**El límite real a 0 €:** las horas de GPU gratis (Kaggle 30 h por semana, 2 sesiones; Modal 30 $/mes). Repartir baja el
+tiempo de reloj y usa todos los proveedores a la vez, pero no crea horas; la eficiencia sí (R48 casi divide el tiempo
+por 2). Por eso, primero eficiencia y después reparto.
+
+**Propuesta, a decidir con pruebas de concepto (#288):**
+1. **Plano de datos repartido**: cada partido en unidades independientes (tramos de planos para la pasada barata,
+   grupos de ventanas para la fina) en una cola de tareas sobre el almacenamiento (el volumen de Modal); cualquier
+   trabajador (2 sesiones de Kaggle, contenedores de Modal, el PC si volviera) toma unidades por capacidad y el
+   resultado se junta siempre igual (comprobado con `comparar`). Generaliza T19. Prueba: la prueba de 10 min con 2
+   sesiones a la vez, el mismo resultado y su tiempo de reloj.
+2. **Dentro de cada máquina, en streaming**: decodificar en hilos de CPU mientras la GPU procesa lotes (Ray Data frente
+   a nuestro propio encadenado). Prueba: la pasada fina de la prueba de 10 min.
+3. Fuentes: [Ray Data, modelo de lotes en streaming](https://arxiv.org/html/2501.12407v5),
+   [Anyscale: Ray, Spark y SageMaker](https://www.anyscale.com/blog/offline-batch-inference-comparing-ray-apache-spark-and-sagemaker),
+   [Anyscale: CPU y GPU en streaming](https://www.anyscale.com/blog/streaming-distributed-execution-across-cpus-and-gpus),
+   [ByteDance con Ray Data](https://www.zenml.io/mlops-database/bytedance-large-scale-offline-inference-platform-ray-data-pipeline-parallel-offline-inference-for-multimodal-llm-embeddi),
+   [Modal](https://modal.com/?via=aigregator), [comparativa de cómputo distribuido](https://medium.com/@adnanmasood/scaling-ai-workloads-the-distributed-compute-choice-bb986c4ec0ee).
+
