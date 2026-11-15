@@ -869,7 +869,7 @@
   "ruta": "/runs/kaggle_medir_bola_totnet/estado.json",
   "cpu": true,
   "cuaderno": "tennisbio-medir-bola-totnet",
-  "kaggle": "running (22:03)",
+  "kaggle": "running (22:08)",
   "arranco": "2026-11-15 16:40",
   "espera_min": 5
  },
@@ -1156,8 +1156,9 @@
   "salida": "/kaggle_pruebas/prueba_gauff_v32_a/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cpu": true,
   "cuaderno": "tennisbio-prueba-gauff-v32-a",
-  "kaggle": "running (22:03)",
+  "kaggle": "running (22:08)",
   "arranco": "2026-11-15 22:03",
-  "espera_min": 2
+  "espera_min": 2,
+  "progreso": "scenes:  54 % (8118/15016 fotogramas) · 4 min · quedan ≈ 4 min (22:08:09; CPU 61 %, 2.5 GB)"
  }
 }

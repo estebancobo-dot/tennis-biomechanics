@@ -1,6 +1,6 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-15 22:03 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 3.0 h de GPU esta semana (tope 28 h; Kaggle dice 25.03 h usadas de 30.0, se renueva 2026-11-21 00:00)
+Última vuelta: 2026-11-15 22:08 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 3.0 h de GPU esta semana (tope 28 h; Kaggle dice 25.03 h usadas de 30.0, se renueva 2026-11-21 00:00)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
@@ -43,7 +43,7 @@
 | prueba_gauff_v29_b | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
 | prueba_gauff_v29_c | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | error | kaggle | cancelado: T24 (15-11 20:00): las partes no reutilizan lo de la anterior: la huella de un modelo lleva la fecha de su fichero y cada sesión lo baja de Modal con fecha nueva (v29_b repitió los cortes; v29_c los repetía otra vez y seguiría con lo de GPU en la CPU). Se arregla la huella (por contenido) y la prueba se repite como v30 |
 | comparar_gauff_v26_v29 | comparar |  | error |  | cancelado: sin la v29_c (ver arriba) |
-| medir_bola_totnet | medir |  | en_marcha | kaggle | Kaggle: running (22:03), intento 1 |
+| medir_bola_totnet | medir |  | en_marcha | kaggle | Kaggle: running (22:08), intento 1 |
 | prueba_gauff_v30_a | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
 | prueba_gauff_v30_b | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
 | prueba_gauff_v30_c | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | error | kaggle | cancelado: T24 (15-11 21:00): la v30_b también repitió los cortes (122 s, velocidad de GPU, frente a los 516 s de la v30_a en CPU): queda otra causa además de R55; la v30_c en la CPU repetiría lo de GPU. Se diagnostica con leer_v30 |
@@ -55,7 +55,7 @@
 | comparar_gauff_v26_v31 | comparar |  | error |  | cancelado: sin la v31_c (ver arriba); se compara con la parte c repetida |
 | prueba_gauff_v31_c2 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
 | comparar_gauff_v26_v31c2 | comparar |  | hecho | github | equivalente; 13 etapas iguales; distintas: audio, slowmo_fine, views; strokes.json: 28 de 28/28 golpes emparejados; strokes_opponent.json: 0 de 0/0 golpes emparejados; strokes_doubtful.json: 1 de 1/1 golpes emparejados |
-| prueba_gauff_v32_a | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: running (22:03), intento 1 |
+| prueba_gauff_v32_a | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: running (22:08), intento 1 · scenes:  54 % (8118/15016 fotogramas) · 4 min · quedan ≈ 4 min (22:08:09; CPU 61 %, 2.5 GB) |
 | prueba_gauff_v32_b | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | pendiente |  | espera a prueba_gauff_v32_a (en_marcha) |
 | prueba_gauff_v32_c | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | pendiente |  | espera a prueba_gauff_v32_b (pendiente) |
 | comparar_gauff_v26_v32 | comparar |  | pendiente |  | espera a prueba_gauff_v32_c |
