@@ -1,0 +1,317 @@
+{
+ "estado": "hecho",
+ "segundos": 1104,
+ "horas_kaggle": 0.33,
+ "coste_usd": 0.0,
+ "gpu": null,
+ "etapas": {
+  "probe": 0.9,
+  "scenes": 121.8,
+  "court": 61.7,
+  "audio": 29.1,
+  "score": 61.5,
+  "players": 72.4,
+  "identity": 39.7,
+  "spotting": 223.1,
+  "candidates": 1.2,
+  "fine": 505.6,
+  "fine_opponent": 0.0,
+  "fine_doubtful": 40.4
+ },
+ "recursos": {
+  "muestras": 18,
+  "gpu_pct": {
+   "media": 20.3,
+   "max": 86.0
+  },
+  "gpu_mem_gb": {
+   "media": 0.9,
+   "max": 3.2
+  },
+  "cpu_pct": {
+   "media": 71.9,
+   "max": 91.1
+  },
+  "ram_gb": {
+   "media": 6.6,
+   "max": 11.7
+  },
+  "gpu1_mem_gb": {
+   "media": 0.5,
+   "max": 1.6
+  },
+  "gpu1_pct": {
+   "media": 21.9,
+   "max": 82.0
+  }
+ },
+ "recursos_por_etapa": {
+  "probe": {
+   "s": 1,
+   "muestras": 0
+  },
+  "scenes": {
+   "s": 122,
+   "muestras": 2,
+   "gpu_pct": {
+    "media": 24.0,
+    "max": 48.0
+   },
+   "gpu_mem_gb": {
+    "media": 0.2,
+    "max": 0.2
+   },
+   "cpu_pct": {
+    "media": 86.3,
+    "max": 86.3
+   },
+   "ram_gb": {
+    "media": 2.3,
+    "max": 2.3
+   },
+   "gpu1_mem_gb": {
+    "media": 0.0,
+    "max": 0.0
+   },
+   "gpu1_pct": {
+    "media": 0.0,
+    "max": 0.0
+   }
+  },
+  "court": {
+   "s": 62,
+   "muestras": 1,
+   "gpu_pct": {
+    "media": 0.0,
+    "max": 0.0
+   },
+   "gpu_mem_gb": {
+    "media": 0.2,
+    "max": 0.2
+   },
+   "cpu_pct": {
+    "media": 88.9,
+    "max": 88.9
+   },
+   "ram_gb": {
+    "media": 3.1,
+    "max": 3.1
+   },
+   "gpu1_mem_gb": {
+    "media": 0.0,
+    "max": 0.0
+   },
+   "gpu1_pct": {
+    "media": 0.0,
+    "max": 0.0
+   }
+  },
+  "audio": {
+   "s": 29,
+   "muestras": 0
+  },
+  "score": {
+   "s": 62,
+   "muestras": 1,
+   "gpu_pct": {
+    "media": 75.0,
+    "max": 75.0
+   },
+   "gpu_mem_gb": {
+    "media": 1.6,
+    "max": 1.6
+   },
+   "cpu_pct": {
+    "media": 91.1,
+    "max": 91.1
+   },
+   "ram_gb": {
+    "media": 3.5,
+    "max": 3.5
+   },
+   "gpu1_mem_gb": {
+    "media": 0.0,
+    "max": 0.0
+   },
+   "gpu1_pct": {
+    "media": 0.0,
+    "max": 0.0
+   }
+  },
+  "players": {
+   "s": 72,
+   "muestras": 1,
+   "gpu_pct": {
+    "media": 75.0,
+    "max": 75.0
+   },
+   "gpu_mem_gb": {
+    "media": 1.6,
+    "max": 1.6
+   },
+   "cpu_pct": {
+    "media": 91.1,
+    "max": 91.1
+   },
+   "ram_gb": {
+    "media": 3.5,
+    "max": 3.5
+   },
+   "gpu1_mem_gb": {
+    "media": 0.0,
+    "max": 0.0
+   },
+   "gpu1_pct": {
+    "media": 0.0,
+    "max": 0.0
+   }
+  },
+  "identity": {
+   "s": 40,
+   "muestras": 1,
+   "gpu_pct": {
+    "media": 0.0,
+    "max": 0.0
+   },
+   "gpu_mem_gb": {
+    "media": 0.3,
+    "max": 0.3
+   },
+   "cpu_pct": {
+    "media": 58.3,
+    "max": 58.3
+   },
+   "ram_gb": {
+    "media": 3.9,
+    "max": 3.9
+   },
+   "gpu1_mem_gb": {
+    "media": 0.0,
+    "max": 0.0
+   },
+   "gpu1_pct": {
+    "media": 0.0,
+    "max": 0.0
+   }
+  },
+  "spotting": {
+   "s": 223,
+   "muestras": 4,
+   "gpu_pct": {
+    "media": 11.0,
+    "max": 44.0
+   },
+   "gpu_mem_gb": {
+    "media": 0.3,
+    "max": 0.3
+   },
+   "cpu_pct": {
+    "media": 45.3,
+    "max": 69.2
+   },
+   "ram_gb": {
+    "media": 3.8,
+    "max": 3.9
+   },
+   "gpu1_mem_gb": {
+    "media": 0.0,
+    "max": 0.0
+   },
+   "gpu1_pct": {
+    "media": 0.0,
+    "max": 0.0
+   }
+  },
+  "candidates": {
+   "s": 1,
+   "muestras": 0
+  },
+  "fine": {
+   "s": 506,
+   "muestras": 8,
+   "gpu_pct": {
+    "media": 14.0,
+    "max": 45.0
+   },
+   "gpu_mem_gb": {
+    "media": 1.5,
+    "max": 3.2
+   },
+   "cpu_pct": {
+    "media": 81.8,
+    "max": 86.6
+   },
+   "ram_gb": {
+    "media": 10.5,
+    "max": 11.7
+   },
+   "gpu1_mem_gb": {
+    "media": 1.2,
+    "max": 1.6
+   },
+   "gpu1_pct": {
+    "media": 49.2,
+    "max": 82.0
+   }
+  },
+  "fine_opponent": {
+   "s": 0,
+   "muestras": 0
+  },
+  "fine_doubtful": {
+   "s": 40,
+   "muestras": 1,
+   "gpu_pct": {
+    "media": 86.0,
+    "max": 86.0
+   },
+   "gpu_mem_gb": {
+    "media": 1.0,
+    "max": 1.0
+   },
+   "cpu_pct": {
+    "media": 61.3,
+    "max": 61.3
+   },
+   "ram_gb": {
+    "media": 4.3,
+    "max": 4.3
+   },
+   "gpu1_mem_gb": {
+    "media": 0.0,
+    "max": 0.0
+   },
+   "gpu1_pct": {
+    "media": 0.0,
+    "max": 0.0
+   }
+  }
+ },
+ "modelos_en_cpu": 0,
+ "fallos": {},
+ "sin_subir": [],
+ "config": {},
+ "config_local": {
+  "registry": {
+   "source": "yaml"
+  },
+  "device": "auto"
+ },
+ "kaggle": {
+  "python": "3.13.16",
+  "nucleos": 4,
+  "memoria_gib": {
+   "MemTotal": 31.3,
+   "MemAvailable": 30.0
+  },
+  "disco_libre_gib": {
+   "/tmp": 966.8,
+   "/kaggle/working": 19.5
+  },
+  "gpu": "Tesla T4, 15360 MiB\nTesla T4, 15360 MiB",
+  "ffmpeg": "/usr/bin/ffmpeg",
+  "clave_modal": true
+ },
+ "nota": null,
+ "modelos_en_cpu_registro": 0
+}

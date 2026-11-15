@@ -869,7 +869,7 @@
   "ruta": "/runs/kaggle_medir_bola_totnet/estado.json",
   "cpu": true,
   "cuaderno": "tennisbio-medir-bola-totnet",
-  "kaggle": "running (19:50)",
+  "kaggle": "running (19:55)",
   "arranco": "2026-11-15 16:40",
   "espera_min": 5
  },
@@ -959,7 +959,7 @@
   }
  },
  "prueba_gauff_v30_b": {
-  "estado": "en_marcha",
+  "estado": "hecho",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 1,
@@ -970,9 +970,30 @@
   "ruta": "/runs/kaggle_prueba_gauff_v30_b/estado.json",
   "salida": "/kaggle_pruebas/prueba_gauff_v30_a/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cuaderno": "tennisbio-prueba-gauff-v30-b",
-  "progreso": "fine:  14 % (4/28 golpes candidatos · 4 confirmados · 0 ventanas descartadas sin pose) · 40 s · quedan ≈ 4 min (19:48:09; GPU 4 %·29 %, CPU 81 %, 9.0 GB)",
-  "kaggle": "running (19:50)",
+  "progreso": "fine_doubtful terminada a las 19:55:09 en 40 s (19:55:04)",
+  "kaggle": "running (19:55)",
   "arranco": "2026-11-15 19:39",
-  "espera_min": 5
+  "espera_min": 5,
+  "fin": "2026-11-15 19:55",
+  "resultado": {
+   "estado": "hecho",
+   "coste_usd": 0.0,
+   "segundos": 1104,
+   "horas_kaggle": 0.33
+  }
+ },
+ "prueba_gauff_v30_c": {
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1794772518.1006413,
+  "accion": "prueba",
+  "partido": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+  "inicio": "2026-11-15 19:55",
+  "ruta": "/runs/kaggle_prueba_gauff_v30_c/estado.json",
+  "salida": "/kaggle_pruebas/prueba_gauff_v30_a/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+  "cpu": true,
+  "cuaderno": "tennisbio-prueba-gauff-v30-c"
  }
 }
