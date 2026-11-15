@@ -1,24 +1,287 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261113202255
+Start time: 20261115114110
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
-Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 7352
-PSVersion: 5.1.26100.9711
+Host Application: powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
+Process ID: 10464
+PSVersion: 5.1.26100.9818
 PSEdition: Desktop
-PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
-BuildVersion: 10.0.26100.9711
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9818
+BuildVersion: 10.0.26100.9818
 CLRVersion: 4.0.30319.42000
 WSManStackVersion: 3.0
 PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
-Registro enviado a Claude (no hace falta copiar nada).
-Empezado 2026-11-13 20:19:06 - terminado 2026-11-13 20:23:04 - duracion total 3 min 57 s
+
+==> [2026-11-15 11:41:10] Codigo nuevo (e733af9 -> 0b33182): 97 ficheros
+    .github/workflows/cola.yml
+    .github/workflows/nube.yml
+    CLAUDE.md
+    cloud/almacen.py
+    cloud/arranque/nube_gpu.py
+    cloud/cola.py
+    cloud/kaggle/correr.py
+    cloud/kaggle/cuaderno.py
+    cloud/kaggle/diagnostico.py
+    cloud/lanzar.py
+    cloud/modal_app.py
+    cloud/nube.py
+    cloud/resumen.py
+    config/calidad.yaml
+    config/codigo_equivalente.json
+    config/cola_nube.yaml
+    config/default.yaml
+    config/pausa_pc.txt
+    config/peticion_pc.txt
+    config/plan_peticiones.yaml
+    config/referencias.yaml
+    config/stage_code.json
+    design/p0/build_maqueta.py
+    design/p0/maqueta.html
+    docs/README.md
+    docs/capacidad_nube.md
+    docs/comparativa_completa.md
+    docs/estado_del_arte_nube.md
+    docs/estado_proyecto.md
+    docs/estado_real_peticiones.md
+    docs/herencia_pc.md
+    docs/kaggle.md
+    docs/n_web.md
+    docs/nube_nativa.md
+    docs/operacion_nube.md
+    docs/p0_cobertura_listas.md
+    docs/p0_diseno.md
+    docs/p0_estado_del_arte.md
+    docs/p0_inventario.md
+    docs/p0_pantallas.md
+    docs/p0_plan.md
+    docs/peticiones_usuario.md
+    docs/registro_decisiones.md
+    docs/trazabilidad_nube.md
+    scripts/informe_real.py
+    scripts/subir_nube.py
+    src/tennisbio/audit.py
+    src/tennisbio/ball3d.py
+    src/tennisbio/candidates/bounce_ctb.py
+    src/tennisbio/clothes.py
+    src/tennisbio/config.py
+    src/tennisbio/court_metrics.py
+    src/tennisbio/face_evidence.py
+    src/tennisbio/fine_ahead.py
+    src/tennisbio/infra/__init__.py
+    src/tennisbio/infra/devices.py
+    src/tennisbio/infra/discovery.py
+    src/tennisbio/infra/equivalence.py
+    src/tennisbio/infra/poc_raqueta.py
+    src/tennisbio/infra/poc_video.py
+    src/tennisbio/infra/storage.py
+    src/tennisbio/learn.py
+    src/tennisbio/learn_check.py
+    src/tennisbio/limits.py
+    src/tennisbio/pipeline.py
+    src/tennisbio/pose/backend.py
+    src/tennisbio/pose/estimator.py
+    src/tennisbio/pose/wholebody3d.py
+    src/tennisbio/pose/yolo.py
+    src/tennisbio/quality_model.py
+    src/tennisbio/racket3d.py
+    src/tennisbio/racket_face.py
+    src/tennisbio/racket_orientation.py
+    src/tennisbio/report.py
+    src/tennisbio/report_template.html
+    src/tennisbio/scoreboard.py
+    src/tennisbio/stages.py
+    src/tennisbio/validation/face_rules.py
+    tests/test_ball3d.py
+    tests/test_cloud_checks.py
+    tests/test_cola.py
+    tests/test_court_metrics.py
+    tests/test_discovery.py
+    tests/test_equivalence.py
+    tests/test_face_evidence.py
+    tests/test_face_memo.py
+    tests/test_fine_ahead.py
+    tests/test_fine_parallel.py
+    tests/test_fine_speed.py
+    tests/test_identity_photos_check.py
+    tests/test_informe_real.py
+    tests/test_kaggle.py
+    tests/test_learn_web.py
+    tests/test_nube.py
+    tests/test_racket3d.py
+    tests/test_scoreboard.py
+    tests/test_storage.py
+Updating e733af9..0b33182
+Fast-forward
+ .github/workflows/cola.yml             | 131 +++++
+ .github/workflows/nube.yml             |  93 +++-
+ CLAUDE.md                              |  20 +-
+ cloud/almacen.py                       |  43 ++
+ cloud/arranque/nube_gpu.py             |  46 +-
+ cloud/cola.py                          | 854 +++++++++++++++++++++++++++++++++
+ cloud/kaggle/correr.py                 | 377 +++++++++++++++
+ cloud/kaggle/cuaderno.py               | 242 ++++++++++
+ cloud/kaggle/diagnostico.py            |  57 +++
+ cloud/lanzar.py                        |  24 +-
+ cloud/modal_app.py                     | 223 ++++++++-
+ cloud/nube.py                          | 209 +++++++-
+ cloud/resumen.py                       |  32 ++
+ config/calidad.yaml                    |  21 +-
+ config/codigo_equivalente.json         |  78 +++
+ config/cola_nube.yaml                  | 138 ++++++
+ config/default.yaml                    |  10 +
+ config/pausa_pc.txt                    |  10 +-
+ config/peticion_pc.txt                 |   8 +
+ config/plan_peticiones.yaml            |  48 +-
+ config/referencias.yaml                | 241 ++++++++++
+ config/stage_code.json                 |  26 +-
+ design/p0/build_maqueta.py             | 131 +++++
+ design/p0/maqueta.html                 | 541 +++++++++++++++++++++
+ docs/README.md                         |  15 +
+ docs/capacidad_nube.md                 |  67 +++
+ docs/comparativa_completa.md           |  68 +++
+ docs/estado_del_arte_nube.md           | 161 +++++++
+ docs/estado_proyecto.md                | 103 +++-
+ docs/estado_real_peticiones.md         | 314 +++++++-----
+ docs/herencia_pc.md                    |  57 +++
+ docs/kaggle.md                         |  84 ++++
+ docs/n_web.md                          |  77 +++
+ docs/nube_nativa.md                    | 184 +++++++
+ docs/operacion_nube.md                 |  75 +++
+ docs/p0_cobertura_listas.md            |  88 ++++
+ docs/p0_diseno.md                      | 275 +++++++++++
+ docs/p0_estado_del_arte.md             | 117 +++++
+ docs/p0_inventario.md                  | 173 +++++++
+ docs/p0_pantallas.md                   |  77 +++
+ docs/p0_plan.md                        |  41 +-
+ docs/peticiones_usuario.md             |  40 +-
+ docs/registro_decisiones.md            |  80 +++
+ docs/trazabilidad_nube.md              |  63 +++
+ scripts/informe_real.py                |  80 +++
+ scripts/subir_nube.py                  |   5 +-
+ src/tennisbio/audit.py                 | 213 +++++++-
+ src/tennisbio/ball3d.py                |   4 +-
+ src/tennisbio/candidates/bounce_ctb.py |   4 +-
+ src/tennisbio/clothes.py               |  19 +-
+ src/tennisbio/config.py                |   4 +
+ src/tennisbio/court_metrics.py         |  11 +-
+ src/tennisbio/face_evidence.py         |  36 ++
+ src/tennisbio/fine_ahead.py            |  10 +-
+ src/tennisbio/infra/__init__.py        |   2 +
+ src/tennisbio/infra/devices.py         |  85 ++++
+ src/tennisbio/infra/discovery.py       | 158 ++++++
+ src/tennisbio/infra/equivalence.py     | 218 +++++++++
+ src/tennisbio/infra/poc_raqueta.py     | 105 ++++
+ src/tennisbio/infra/poc_video.py       | 130 +++++
+ src/tennisbio/infra/storage.py         |  89 ++++
+ src/tennisbio/learn.py                 |  38 +-
+ src/tennisbio/learn_check.py           |   5 +-
+ src/tennisbio/limits.py                |   3 +
+ src/tennisbio/pipeline.py              |  55 ++-
+ src/tennisbio/pose/backend.py          |   7 +-
+ src/tennisbio/pose/estimator.py        |  34 +-
+ src/tennisbio/pose/wholebody3d.py      |   3 +-
+ src/tennisbio/pose/yolo.py             |  13 +-
+ src/tennisbio/quality_model.py         |   6 +
+ src/tennisbio/racket3d.py              |  18 +-
+ src/tennisbio/racket_face.py           |   2 +
+ src/tennisbio/racket_orientation.py    |  35 ++
+ src/tennisbio/report.py                |   6 +
+ src/tennisbio/report_template.html     |  33 +-
+ src/tennisbio/scoreboard.py            |  11 +-
+ src/tennisbio/stages.py                |  56 ++-
+ src/tennisbio/validation/face_rules.py |  88 ++++
+ tests/test_ball3d.py                   |  15 +
+ tests/test_cloud_checks.py             | 125 +++++
+ tests/test_cola.py                     | 547 +++++++++++++++++++++
+ tests/test_court_metrics.py            |  11 +
+ tests/test_discovery.py                | 158 ++++++
+ tests/test_equivalence.py              | 125 +++++
+ tests/test_face_evidence.py            |  39 ++
+ tests/test_face_memo.py                |  43 ++
+ tests/test_fine_ahead.py               |  10 +-
+ tests/test_fine_parallel.py            |  31 +-
+ tests/test_fine_speed.py               |  17 +-
+ tests/test_identity_photos_check.py    |  11 +
+ tests/test_informe_real.py             |  54 +++
+ tests/test_kaggle.py                   | 236 +++++++++
+ tests/test_learn_web.py                |  53 +-
+ tests/test_nube.py                     | 222 ++++++++-
+ tests/test_racket3d.py                 |  28 ++
+ tests/test_scoreboard.py               |  31 +-
+ tests/test_storage.py                  |  56 +++
+ 97 files changed, 8885 insertions(+), 275 deletions(-)
+ create mode 100644 .github/workflows/cola.yml
+ create mode 100644 cloud/almacen.py
+ create mode 100644 cloud/cola.py
+ create mode 100644 cloud/kaggle/correr.py
+ create mode 100644 cloud/kaggle/cuaderno.py
+ create mode 100644 cloud/kaggle/diagnostico.py
+ create mode 100644 cloud/resumen.py
+ create mode 100644 config/codigo_equivalente.json
+ create mode 100644 config/cola_nube.yaml
+ create mode 100644 config/referencias.yaml
+ create mode 100644 design/p0/build_maqueta.py
+ create mode 100644 design/p0/maqueta.html
+ create mode 100644 docs/capacidad_nube.md
+ create mode 100644 docs/comparativa_completa.md
+ create mode 100644 docs/estado_del_arte_nube.md
+ create mode 100644 docs/herencia_pc.md
+ create mode 100644 docs/kaggle.md
+ create mode 100644 docs/n_web.md
+ create mode 100644 docs/nube_nativa.md
+ create mode 100644 docs/operacion_nube.md
+ create mode 100644 docs/p0_cobertura_listas.md
+ create mode 100644 docs/p0_diseno.md
+ create mode 100644 docs/p0_estado_del_arte.md
+ create mode 100644 docs/p0_inventario.md
+ create mode 100644 docs/p0_pantallas.md
+ create mode 100644 docs/registro_decisiones.md
+ create mode 100644 docs/trazabilidad_nube.md
+ create mode 100644 scripts/informe_real.py
+ create mode 100644 src/tennisbio/face_evidence.py
+ create mode 100644 src/tennisbio/infra/__init__.py
+ create mode 100644 src/tennisbio/infra/devices.py
+ create mode 100644 src/tennisbio/infra/discovery.py
+ create mode 100644 src/tennisbio/infra/equivalence.py
+ create mode 100644 src/tennisbio/infra/poc_raqueta.py
+ create mode 100644 src/tennisbio/infra/poc_video.py
+ create mode 100644 src/tennisbio/infra/storage.py
+ create mode 100644 src/tennisbio/validation/face_rules.py
+ create mode 100644 tests/test_cloud_checks.py
+ create mode 100644 tests/test_cola.py
+ create mode 100644 tests/test_discovery.py
+ create mode 100644 tests/test_equivalence.py
+ create mode 100644 tests/test_face_evidence.py
+ create mode 100644 tests/test_informe_real.py
+ create mode 100644 tests/test_kaggle.py
+ create mode 100644 tests/test_storage.py
+Resolved 126 packages in 1ms
+Checked 91 packages in 16ms
+balltrack.onnx     OK 45 MB
+racketpose.onnx    OK 53 MB
+transnetv2.onnx    OK 31 MB
+rtmw3d-x.onnx      OK 369 MB
+rtmw-x_384x288.onnx OK 229 MB
+court_tcd.onnx     OK 42 MB
+motionagformer_xs.onnx OK 9 MB
+yolo11m-pose_640.onnx OK 84 MB
+yolo11m-pose_960.onnx OK 84 MB
+yolo11m-pose_1280.onnx OK 85 MB
+yolo11m-pose_1920.onnx OK 86 MB
+Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (ya estaba)
+el ejecutor se reinicia al acabar el trabajo en curso
+    (paso terminado en 25 s)
+
+==> [2026-11-15 11:41:35] Que hace falta: nada
+Ciclo automatico terminado (nada).
+    (paso terminado en 0 s)
+Empezado 2026-11-15 11:40:54 - terminado 2026-11-15 11:41:35 - duracion total 41 s
 **********************
 Windows PowerShell transcript end
-End time: 20261113202304
+End time: 20261115114135
 **********************
