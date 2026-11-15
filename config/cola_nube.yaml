@@ -40,6 +40,8 @@ cancelar:
   gauff: "R48: con la raqueta en la CPU su pasada fina gastaría ~6 h de más; se relanza como gauff_b con el arreglo cuando la v20 lo compruebe (su pasada barata, ya en Modal, se reutiliza)"
   comparar_gauff_v16b_v18: "sin la v18 (ver arriba)"
   prueba_sinner: "#295: la prueba corta de un partido espera con su partido a la nube nativa (comprueba el código con el que se analizará); se repite entonces como prueba_sinner_b"
+  prueba_gauff_v29_c: "T24 (15-11 20:00): las partes no reutilizan lo de la anterior: la huella de un modelo lleva la fecha de su fichero y cada sesión lo baja de Modal con fecha nueva (v29_b repitió los cortes; v29_c los repetía otra vez y seguiría con lo de GPU en la CPU). Se arregla la huella (por contenido) y la prueba se repite como v30"
+  comparar_gauff_v26_v29: "sin la v29_c (ver arriba)"
 # #291 (14-11): el PR buzón (nunca se fusiona): la cola comenta en él solo cuando algo necesita a Claude, y su
 # actividad despierta la sesión al momento (sin sondeos ni tokens mientras no pasa nada)
 avisos_pr: 1
