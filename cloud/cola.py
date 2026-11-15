@@ -38,6 +38,16 @@ ACTIONS = ("prueba", "partido", "informe", "medir", "comparar", "leer", "investi
 # it refuses this cloud): no GPU hours, none of the 2 GPU sessions; its texts and frames come to nube-logs
 # (cola/investigacion/<id>/), as the PC's come to pc-logs
 RESEARCH_EXT = (".json", ".txt", ".jpg")
+# 15-11 (T24): a test or a match may run in parts, each a job of its own: `etapas` (the stages it runs), `cpu: true` (a
+# Kaggle CPU session: no GPU hours, none of the 2 GPU sessions) and, for a test, `junto_a` (the job whose output folder
+# it carries on). Measured on the final and Gauff (14-11): ~39 % of a GPU session went to stages with the GPU idle
+# (scenes, court, audio at the start; views and the clips at the end)
+STAGE_NAME = re.compile(r"[a-z_]+")
+
+
+def cpu_job(job: dict) -> bool:
+    """A job for a Kaggle CPU session (#304, T24): no GPU hours, none of the GPU sessions."""
+    return job.get("accion") == "investigar" or job.get("cpu") is True
 # 15-11 (R52): «leer» copies small text files of the volume to nube-logs, for a diagnosis without GPU or Modal credit
 READ_EXT = (".json", ".txt", ".md", ".log")
 READ_MAX_BYTES = 512 * 1024
@@ -82,7 +92,7 @@ def week(now: float) -> str:
 
 def estimate_h(job: dict) -> float:
     """Kaggle GPU hours a job may take (an upper estimate until measured); a CPU session takes none (#304)."""
-    if job["accion"] == "investigar":
+    if cpu_job(job):
         return 0.0
     if job["accion"] == "partido":
         return round(KAGGLE_H_PER_VIDEO_MIN * float(job.get("minutos_video") or DEFAULT_VIDEO_MIN), 2)
@@ -104,7 +114,7 @@ def kaggle_room(spend: dict, now: float, state: dict | None = None) -> float:
         left = 0.0
         for jid, st in state.items():
             if isinstance(st, dict) and st.get("estado") == "en_marcha" and st.get("donde") == "kaggle" \
-                    and st.get("accion") != "investigar":                  # a CPU session: no GPU hours
+                    and not cpu_job(st):                                   # a CPU session: no GPU hours
                 ran = (now - float(st.get("lanzado_ts", now))) / 3600 if st.get("arranco") else 0.0
                 left += max(0.0, est.get(jid, 1.0) - ran)
         cap = min(KAGGLE_CAP_H, float(real.get("total_h") or 30.0) - 2.0)
@@ -177,7 +187,7 @@ def run_path(job: dict, source: str = "modal") -> str:
     """Where the job's estado.json goes on the volume (cloud/modal_app.py; a Kaggle test keeps its own folder, so it
     never writes over a test made by Modal: cloud/kaggle/correr.py with --salida-remota)."""
     a = job["accion"]
-    if (source == "kaggle" and a == "prueba") or a in ("medir", "investigar"):
+    if (source == "kaggle" and (a == "prueba" or job.get("etapas"))) or a in ("medir", "investigar"):
         return f"/runs/kaggle_{job['id']}/estado.json"
     if a == "partido":
         return f"/runs/partido_{job['partido']}/estado.json"
@@ -194,7 +204,7 @@ def output_root(job: dict, source: str) -> str:
     (/kaggle_pruebas/<id>/output), so a test with new code never writes over the one it is compared with; before,
     all of them shared /kaggle_pruebas/output."""
     if job["accion"] == "prueba" and source == "kaggle":
-        return f"/kaggle_pruebas/{job['id']}/output"
+        return f"/kaggle_pruebas/{job.get('junto_a') or job['id']}/output"     # T24: a part goes on in the first's
     return "/output"
 
 
@@ -235,6 +245,19 @@ def check_queue(jobs: list[dict]) -> list[str]:
             bad.append(f"{jid}: investigar necesita «urls» (los vídeos) y va en Kaggle")
         if j.get("donde", "cualquiera") not in ("cualquiera", *SOURCES):
             bad.append(f"{jid}: donde {j.get('donde')!r}")
+        if "etapas" in j and (j.get("accion") not in ("prueba", "partido") or not isinstance(j["etapas"], list)
+                              or not j["etapas"] or not all(isinstance(e, str) and STAGE_NAME.fullmatch(e)
+                                                            for e in j["etapas"])):
+            bad.append(f"{jid}: «etapas» es una lista de etapas y solo vale para una prueba o un partido")
+        if j.get("cpu") is True and (j.get("accion") not in ("prueba", "partido") or not j.get("etapas")):
+            bad.append(f"{jid}: «cpu» solo vale para una parte (con «etapas») de una prueba o un partido")
+        if j.get("junto_a") and (j.get("accion") != "prueba" or not j.get("etapas") or not j.get("tras")):
+            bad.append(f"{jid}: «junto_a» solo vale para una parte (con «etapas» y «tras») de una prueba")
+    by = {j.get("id"): j for j in jobs}
+    for j in jobs:
+        o = by.get(j.get("junto_a")) if j.get("junto_a") else None
+        if j.get("junto_a") and (o is None or o.get("partido") != j.get("partido") or o.get("junto_a")):
+            bad.append(f"{j.get('id')}: «junto_a» {j['junto_a']} no es la primera parte de la misma prueba")
     for j in jobs:
         if j.get("tras") and j["tras"] not in ids:
             bad.append(f"{j.get('id')}: «tras» {j['tras']} no está en la cola")
@@ -345,8 +368,9 @@ def plan(jobs: list[dict], state: dict, spend: dict, sources: dict, now: float,
         for src in SOURCES:
             if where not in ("cualquiera", src):
                 continue
-            if src == "modal" and (j["accion"] == "medir" or j.get("config")):
-                why.append("Modal: las pruebas de concepto van en Kaggle por ahora")
+            if src == "modal" and (j["accion"] == "medir" or j.get("config") or j.get("etapas")):
+                why.append("Modal: las partes de un trabajo (etapas) van en Kaggle" if j.get("etapas") else
+                           "Modal: las pruebas de concepto van en Kaggle por ahora")
                 continue
             if src == "modal":
                 need = estimate_usd(j)
@@ -357,7 +381,13 @@ def plan(jobs: list[dict], state: dict, spend: dict, sources: dict, now: float,
                 why.append(f"Modal: quedan {room:.2f} $ este mes y necesita {need:.2f} $")
             elif src == "kaggle":
                 need = estimate_h(j)
-                if j["accion"] == "informe":
+                if cpu_job(j):                         # T24: a CPU part, apart from the GPU's hours and sessions
+                    kc = sources.get("kaggle_cpu") or {}
+                    if kc.get("ok"):
+                        out.append((j["id"], "kaggle", "sesión de CPU: no gasta horas de GPU"))
+                        break
+                    why.append(f"kaggle: {kc.get('motivo', 'no disponible')}")
+                elif j["accion"] == "informe":
                     why.append("kaggle: el informe va en Modal")
                 elif not kaggle.get("ok"):
                     why.append(f"kaggle: {kaggle.get('motivo', 'no disponible')}")
@@ -389,7 +419,9 @@ def record_launch(state: dict, spend: dict, job: dict, source: str, call: str, n
                         "ruta": run_path(job, source)}
     if job.get("partido"):                        # T9: where its outputs are, for «comparar»
         state[job["id"]]["salida"] = output_of(job, source)
-    if source == "kaggle" and job["accion"] != "investigar":          # #304: a CPU session books no GPU hours
+    if cpu_job(job):
+        state[job["id"]]["cpu"] = True
+    if source == "kaggle" and not cpu_job(job):                       # #304: a CPU session books no GPU hours
         w = spend.setdefault("kaggle", {}).setdefault(week(now), {"trabajos": {}})
         w.setdefault("trabajos", {}).setdefault(job["id"], {"estimado_h": estimate_h(job)})
     if source == "modal":
@@ -479,7 +511,7 @@ def _sources(repo: Path, queue: dict | None = None, state: dict | None = None) -
     the PC: never (#284)."""
     queue, state = queue or {}, state or {}
     busy = [i for i, st in state.items() if st.get("estado") == "en_marcha" and st.get("donde") == "kaggle"
-            and st.get("accion") != "investigar"]           # #304: a CPU session holds none of the GPU's
+            and not cpu_job(st)]                            # #304: a CPU session holds none of the GPU's
     cpu = {"ok": True, "motivo": ""}
     if not (os.environ.get("KAGGLE_API_TOKEN") and os.environ.get("KAGGLE_USERNAME")):
         k = cpu = {"ok": False, "motivo": "sin sus claves en GitHub"}
@@ -503,7 +535,10 @@ def kaggle_launch(job: dict, slug: str | None = None) -> bool:
     """The Modal key into the private dataset, then the notebook with this job (cloud/kaggle/cuaderno.py). A test keeps
     its results apart (/kaggle_pruebas), never over a test made by Modal."""
     extra = (["--salida-remota", run_path(job, "kaggle").rsplit("/", 1)[0], "--output-remoto", output_root(job, "kaggle")]
+             + (["--previa"] if job.get("junto_a") else [])
              if job["accion"] == "prueba" else
+             ["--salida-remota", run_path(job, "kaggle").rsplit("/", 1)[0]]
+             if job["accion"] == "partido" and job.get("etapas") else
              (["--salida-remota", run_path(job, "kaggle").rsplit("/", 1)[0], "--prueba", job.get("prueba", "")]
               + (["--urls", str(job["urls"])] if job.get("urls") else []))
              if job["accion"] == "medir" else
@@ -511,6 +546,10 @@ def kaggle_launch(job: dict, slug: str | None = None) -> bool:
              if job["accion"] == "investigar" else [])
     if job.get("config"):                            # T5: a test of other settings (proof of concept on the whole clip)
         extra += ["--config", json.dumps(job["config"], ensure_ascii=False)]
+    if job.get("etapas"):                            # T24: one part of a test or a match
+        extra += ["--etapas", ",".join(job["etapas"])]
+    if job.get("cpu") is True:
+        extra += ["--cpu"]
     for args in (["clave"], ["lanzar", "--accion", job["accion"], "--partido", job.get("partido", ""),
                              "--commit", os.environ.get("GITHUB_SHA", ""), "--slug", slug or notebook_slug(job["id"]), *extra]):
         r = _kaggle(args)

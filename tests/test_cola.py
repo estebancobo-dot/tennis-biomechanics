@@ -602,3 +602,55 @@ def test_coach_videos_on_a_kaggle_cpu_session(monkeypatch, tmp_path):
     assert sorted(p.name for p in (out / "AAAAAAAAAAA").iterdir()) == ["dicho.txt", "f_001.jpg", "info.json"]
     assert (out / "indice.json").exists()
     assert cola.copy_research(None, done, tmp_path, store) == [] and len(store.got) == 1     # once
+
+
+def test_a_test_in_parts_cpu_gpu_cpu(monkeypatch):
+    """T24 (15-11): ~39 % of a GPU session went to stages with the GPU idle. A test runs in parts, each a job: the CPU
+    parts take no GPU hours nor GPU sessions; the later parts carry on in the first part's output folder."""
+    g = "gauff"
+    a = {"id": "pa", "accion": "prueba", "partido": g, "cpu": True, "etapas": ["probe", "scenes", "court", "audio"]}
+    b = {"id": "pb", "accion": "prueba", "partido": g, "tras": "pa", "junto_a": "pa", "etapas": ["players", "fine"]}
+    c = {"id": "pc", "accion": "prueba", "partido": g, "cpu": True, "tras": "pb", "junto_a": "pa",
+         "etapas": ["views", "view_clips"]}
+    assert not cola.check_queue([a, b, c])
+    assert "solo vale para una parte" in cola.check_queue([{**a, "etapas": None, "cpu": True}])[-1]
+    assert "lista de etapas" in cola.check_queue([{**a, "etapas": "probe"}])[0]
+    assert "lista de etapas" in cola.check_queue([{"id": "x", "accion": "medir", "prueba": "raqueta", "etapas": ["a"]}])[0]
+    assert "no es la primera parte" in cola.check_queue([a, {**b, "partido": "otro"}])[0]
+    assert "no es la primera parte" in cola.check_queue([a, b, {**c, "junto_a": "pb"}])[0]
+    assert "«junto_a» solo vale" in cola.check_queue([a, {**b, "tras": None}])[0]
+    assert cola.cpu_job(a) and not cola.cpu_job(b) and cola.estimate_h(a) == 0.0
+    assert cola.output_of(c, "kaggle") == cola.output_of(a, "kaggle") == f"/kaggle_pruebas/pa/output/{nube.TEST_PREFIX}{g}"
+    assert cola.run_path(c, "kaggle") == "/runs/kaggle_pc/estado.json"
+    whole = {"id": "gx", "accion": "partido", "partido": g, "etapas": ["view_clips"], "cpu": True, "aprobado": True}
+    assert cola.run_path(whole, "kaggle") == "/runs/kaggle_gx/estado.json"      # never over the match's own run folder
+    monkeypatch.setenv("KAGGLE_API_TOKEN", "t")
+    monkeypatch.setenv("KAGGLE_USERNAME", "u")
+    busy = {"g1": {"estado": "en_marcha", "donde": "kaggle"}, "g2": {"estado": "en_marcha", "donde": "kaggle"}}
+    src = cola._sources(ROOT, {"kaggle_activo": True}, busy)
+    got = dict((i, (s, w)) for i, s, w in cola.plan([a, b, c], {}, {"modal": {}}, src, NOV))
+    assert got["pa"][0] == "kaggle" and got["pb"][0] == "" and "espera a pa" in got["pb"][1]
+    got = dict((i, (s, w)) for i, s, w in cola.plan([a, b, c], {"pa": {"estado": "hecho"}}, {"modal": {}}, src, NOV))
+    assert got["pb"][0] == "" and got["pb"][1].startswith("sin capacidad: kaggle: ocupado con g1, g2; Modal: las partes")
+    got = dict((i, (s, w)) for i, s, w in cola.plan([a, b, c], {"pa": {"estado": "hecho"}, "pb": {"estado": "hecho"}},
+                                                     {"modal": {}}, src, NOV))
+    assert got["pc"][0] == "kaggle"
+    assert cola.plan([{**a, "donde": "modal"}], {}, {"modal": {}}, {}, NOV)[0][1] == ""
+    state, spend = {}, {}
+    cola.record_launch(state, spend, a, "kaggle", "kaggle", NOV)
+    assert state["pa"]["cpu"] is True and not spend.get("kaggle")
+    assert cola._sources(ROOT, {"kaggle_activo": True}, {**busy, "g2": {}, **state})["kaggle"]["libres"] == 1
+    calls = []
+
+    class R:
+        returncode, stdout, stderr = 0, "ok", ""
+    monkeypatch.setattr(cola, "_kaggle", lambda args: calls.append(args) or R())
+    for j, cpu, prev in ((a, True, False), (b, False, True), (c, True, True)):
+        assert cola.kaggle_launch(j)
+        L = calls[-1]
+        assert ("--cpu" in L) is cpu and ("--previa" in L) is prev
+        assert L[L.index("--etapas") + 1] == ",".join(j["etapas"])
+        assert L[L.index("--output-remoto") + 1] == "/kaggle_pruebas/pa/output"
+    assert cola.kaggle_launch(whole)
+    L = calls[-1]
+    assert L[L.index("--salida-remota") + 1] == "/runs/kaggle_gx" and "--cpu" in L

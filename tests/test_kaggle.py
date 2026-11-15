@@ -270,3 +270,22 @@ def test_whisper_text_has_the_subtitles_form():
     assert yr.segments_to_text([S(3.4, " Turn the shoulders. "), S(65.0, "  "), S(75.9, "Then the hips.")]) == \
         "[0:03] Turn the shoulders.\n[1:15] Then the hips."
     assert yr.stamp(3599.9) == "59:59"
+
+
+def test_a_part_of_a_test_runs_its_stages():
+    """T24 (15-11): a part of a test or a match runs only its stages (`tennisbio run --stages`); a CPU part keeps the
+    locked ONNX Runtime for the CPU; a later part of a test first takes what the earlier one left on Modal."""
+    j = correr.parse_job('{"accion": "prueba", "partido": "g", "etapas": ["views", "view_clips"], "cpu": true}')
+    assert correr.run_stages(j) == ["--stages", "views", "view_clips"]
+    assert correr.run_stages(correr.parse_job('{"accion": "partido", "partido": "g"}')) == []
+    src = (ROOT / "cloud" / "kaggle" / "correr.py").read_text(encoding="utf-8")
+    assert 'setup_env(REPO, scratch / "venv", gpu=not job.get("cpu"))' in src and "    if gpu:\n" in src
+    assert 'if job.get("previa"):' in src and '*run_stages(job)]' in src
+    from tennisbio import pipeline, stages  # noqa: F401 — the stage names the queue file names
+    head, mid, tail = (["probe", "scenes", "court", "audio"],
+                       ["players", "score", "identity", "spotting", "candidates", "fine", "fine_opponent", "fine_doubtful"],
+                       ["views", "views_link", "view_clips", "slowmo_fine"])
+    assert sorted(head + mid + tail) == sorted(pipeline.STAGES)          # every stage in exactly one part
+    for part, before in ((mid, head), (tail, head + mid)):
+        for n in part:                                                   # a part needs only what earlier parts made
+            assert set(pipeline.order([n])) - {n} <= set(before) | set(part), n

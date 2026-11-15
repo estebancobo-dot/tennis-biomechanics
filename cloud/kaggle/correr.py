@@ -128,9 +128,10 @@ def modal_put(vol, files: list[Path], local_root: Path, remote_root: str):
     almacen.ModalStorage(vol, VOLUME).put_files(files, local_root, remote_root)
 
 
-def setup_env(repo: Path, venv: Path) -> Path:
+def setup_env(repo: Path, venv: Path, gpu: bool = True) -> Path:
     """Python 3.11 with the repository's locked dependencies, ONNX Runtime for CUDA and the GPU hook, as Modal's image
-    (cloud/modal_app.py). Returns the venv's python."""
+    (cloud/modal_app.py). Returns the venv's python. `gpu` False (T24, a CPU part): the locked ONNX Runtime for the CPU
+    stays, as on any machine without a GPU."""
     t0 = time.time()
     _run([sys.executable, "-m", "pip", "install", "-q", "uv"])
     req = venv.parent / "requirements.txt"
@@ -139,8 +140,9 @@ def setup_env(repo: Path, venv: Path) -> Path:
     _run(["uv", "venv", "-q", "--python", "3.11", str(venv)])
     py = venv / "bin" / "python"
     _run(["uv", "pip", "install", "-q", "--python", str(py), "-r", str(req), "onnx"])
-    _run(["uv", "pip", "uninstall", "-q", "--python", str(py), "onnxruntime"])
-    _run(["uv", "pip", "install", "-q", "--python", str(py), f"onnxruntime-gpu[cuda,cudnn]=={ORT_GPU}"])
+    if gpu:
+        _run(["uv", "pip", "uninstall", "-q", "--python", str(py), "onnxruntime"])
+        _run(["uv", "pip", "install", "-q", "--python", str(py), f"onnxruntime-gpu[cuda,cudnn]=={ORT_GPU}"])
     site = subprocess.run([str(py), "-c", "import site; print(site.getsitepackages()[0])"], capture_output=True,
                           text=True, check=True).stdout.strip()
     Path(site, "tennisbio_nube.pth").write_text(nube.pth_text(str(repo)), encoding="utf-8")
@@ -200,6 +202,13 @@ def measure(job: dict, py: Path, models: Path, data: Path, run: Path, vol, est: 
     if out.exists():
         modal_put(vol, [out], run, job["salida"])
     return p.returncode
+
+
+def run_stages(job: dict) -> list[str]:
+    """T24: the stages of this part of a test or a match (`tennisbio run --stages`); none: the whole analysis. The
+    stages it needs that an earlier part already made are up to date (their fingerprints hold no device), so they are
+    not run again."""
+    return ["--stages", *job["etapas"]] if job.get("etapas") else []
 
 
 def research_summary(index: list[dict]) -> dict:
@@ -311,7 +320,7 @@ def main(argv: list[str]) -> int:
             modal_get(d, data)
         models = nube.unnested(data / "models")
         est["descarga_s"] = round(time.time() - t0)
-        py = setup_env(REPO, scratch / "venv")
+        py = setup_env(REPO, scratch / "venv", gpu=not job.get("cpu"))
         est["entorno_s"] = round(time.time() - t0) - est["descarga_s"]
         registry = json.loads((data / "pc" / "registro_partidos.json").read_text(encoding="utf-8"))
         prepare(REPO, data, registry, job.get("config"))
@@ -359,6 +368,12 @@ def main(argv: list[str]) -> int:
             _run(["ffmpeg", "-v", "error", "-y", "-ss", str(job.get("inicio_s", 600)), "-i", str(video), "-t",
                   str(job.get("duracion_s", 600)), "-map", "0:v:0", "-map", "0:a?", "-c", "copy", str(clip)])
             prepare(REPO, data, registry, job.get("config"))
+            if job.get("previa"):                         # T24: what this test's earlier part left (same clip, cut again)
+                try:
+                    modal_get(f"{job['output_remoto'].rstrip('/')}/{job['run_id']}", data / "output")
+                except subprocess.CalledProcessError:
+                    est.update(estado="error", nota="no está lo que dejó la parte anterior de esta prueba")
+                    return 1
         else:
             try:                                          # what an earlier session (or Modal) already made
                 modal_get(f"{job['output_remoto'].rstrip('/')}/{job['run_id']}", data / "output")
@@ -366,7 +381,7 @@ def main(argv: list[str]) -> int:
                 print("sin resultados anteriores: desde cero", flush=True)
         out_dir, seen, stop, lock = data / "output" / job["run_id"], {}, threading.Event(), threading.Lock()
         remote = f"{job['output_remoto'].rstrip('/')}/{job['run_id']}"
-        if job["accion"] == "partido":
+        if job["accion"] == "partido" or job.get("previa"):
             changed(out_dir, seen)                        # what came from Modal is not sent back
 
         def syncer():
@@ -393,7 +408,7 @@ def main(argv: list[str]) -> int:
         threading.Thread(target=sampler, daemon=True).start()
         t1, last_save = time.time(), time.time()
         with open(run / "log.txt", "a", encoding="utf-8") as lg:
-            p = subprocess.Popen([str(py), "-m", "tennisbio.cli", "run", "--match", job["run_id"]], cwd=REPO,
+            p = subprocess.Popen([str(py), "-m", "tennisbio.cli", "run", "--match", job["run_id"], *run_stages(job)], cwd=REPO,
                                  env=env_for(data), stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
             for line in p.stdout:
                 lg.write(line)
