@@ -14,7 +14,8 @@
     },
     "informe_beta": {
      "estimado_usd": 0.15,
-     "llamada": "fc-01M7EYCKP661WM6EKPP8Q2KE94"
+     "llamada": "fc-01M7EYCKP661WM6EKPP8Q2KE94",
+     "coste_usd": 0.09
     }
    },
    "base_usd": 28.08
@@ -91,9 +92,9 @@
   }
  },
  "kaggle_real": {
-  "usadas_h": 21.02,
+  "usadas_h": 21.19,
   "total_h": 30.0,
   "renueva": "2026-11-21 00:00:00",
-  "ts": 1794725117.4997904
+  "ts": 1794725425.7638857
  }
 }
