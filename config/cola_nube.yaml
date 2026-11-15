@@ -161,6 +161,8 @@ trabajos:
   - {id: prueba_gauff_v31_b, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, tras: prueba_gauff_v31_a, junto_a: prueba_gauff_v31_a, etapas: [players, score, identity, spotting, candidates, fine, fine_opponent, fine_doubtful]}
   - {id: prueba_gauff_v31_c, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, cpu: true, tras: prueba_gauff_v31_b, junto_a: prueba_gauff_v31_a, etapas: [views, views_link, view_clips, slowmo_fine]}
   - {id: comparar_gauff_v26_v31, accion: comparar, a: prueba_gauff_v26, b: prueba_gauff_v31_c}
+  # R56: comprobar en su registro que la parte b no repitió las etapas de la a (las que reutiliza salen «al día»)
+  - {id: leer_v31, accion: leer, tras: prueba_gauff_v31_b, rutas: [/runs/kaggle_prueba_gauff_v31_a/log.txt, /runs/kaggle_prueba_gauff_v31_b/log.txt]}
   # R52 (15-11): los errores de la pasada fina de Zheng (análisis del 13-11 en Modal), leídos sin GPU ni crédito
   - {id: leer_zheng_errores, accion: leer, rutas: [/output/zheng-qinwen-elena-rybakina/strokes_errores.json]}
   # lotes 3 y 4 (aprobados por el usuario el 13-11: Osaka; Pegula y Zheng; Gauff y la final; Zverev-Sinner), cada
