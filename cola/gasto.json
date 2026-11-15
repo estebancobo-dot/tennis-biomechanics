@@ -101,6 +101,12 @@
     "prueba_gauff_v25_calidad": {
      "estimado_h": 1.0,
      "horas": 0.49
+    },
+    "medir_youtube": {
+     "estimado_h": 0.5
+    },
+    "prueba_gauff_v26": {
+     "estimado_h": 1.0
     }
    }
   }
@@ -109,6 +115,6 @@
   "usadas_h": 22.68,
   "total_h": 30.0,
   "renueva": "2026-11-21 00:00:00",
-  "ts": 1794745629.7798316
+  "ts": 1794745999.5847654
  }
 }
