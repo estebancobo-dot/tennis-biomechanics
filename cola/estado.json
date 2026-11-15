@@ -869,7 +869,7 @@
   "ruta": "/runs/kaggle_medir_bola_totnet/estado.json",
   "cpu": true,
   "cuaderno": "tennisbio-medir-bola-totnet",
-  "kaggle": "running (21:32)",
+  "kaggle": "running (21:36)",
   "arranco": "2026-11-15 16:40",
   "espera_min": 5
  },
@@ -1069,7 +1069,7 @@
   }
  },
  "prueba_gauff_v31_c": {
-  "estado": "en_marcha",
+  "estado": "error",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 1,
@@ -1084,7 +1084,10 @@
   "progreso": "players:  25 % (364/1430 fotogramas con jugadoras) · 8 min · quedan ≈ 24 min (21:32:37; CPU 53 %, 2.4 GB)",
   "kaggle": "running (21:32)",
   "arranco": "2026-11-15 21:27",
-  "espera_min": 5
+  "espera_min": 5,
+  "resultado": {
+   "nota": "cancelado: T24 (15-11 22:35): la parte c (CPU) repetía players en la CPU: la huella de players y de la pasada fina lleva fp16 solo en GPU (uses_fp16), así que en CPU no coincidía con lo de la parte b. Se cancela antes de que suba un players de CPU; se arregla (una parte usa lo que hizo la anterior) y se repite solo la parte c"
+  }
  },
  "leer_v31": {
   "estado": "hecho",
@@ -1093,6 +1096,13 @@
   "fin": "2026-11-15 21:22",
   "resultado": {
    "nota": "leídos: runs__kaggle_prueba_gauff_v31_a__log.txt, runs__kaggle_prueba_gauff_v31_b__log.txt"
+  },
+  "partido": ""
+ },
+ "comparar_gauff_v26_v31": {
+  "estado": "error",
+  "resultado": {
+   "nota": "cancelado: sin la v31_c (ver arriba); se compara con la parte c repetida"
   },
   "partido": ""
  }
