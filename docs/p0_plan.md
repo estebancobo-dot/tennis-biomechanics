@@ -83,26 +83,27 @@ datos de ejemplo), la validación de `validar_maqueta.py` (su cobertura nunca ba
 | Paso | Qué | Dónde |
 |---|---|---|
 | P0.5a | **Hecho (15-11 17:50).** **Esqueleto:** `ui/` (React + TypeScript + Vite + Tailwind), compilada a `src/tennisbio/app/p0/` (los estáticos van al repositorio: el PC no tiene Node); el contrato de datos tipado (`ui/src/contrato.ts`) y su adaptador en Python (`tennisbio.app.p0_datos`, de `design/p0/build_app.py`); datos de ejemplo sin nada real; el recorrido y la validación como prueba | nube |
-| P0.5b | **Visor:** Lección (fases con su vídeo y sus capas en canvas: esqueleto, raqueta, bola), Sus golpes (galería ordenada) y el análisis de cada golpe (8 fotogramas, la bola y ella, bajar y subir, base, tronco, «Cuenta conmigo», avisos, estroboscópica, tira de contactos) | nube |
-| P0.5c | **Más:** explorador de medidas (cambio 1 de `p0_diseno.md` §10), táctica y partido (2), resto (3), situaciones completas (4), comparar, pista, fiabilidad, vista lateral, datos, exportar | nube |
+| P0.5b | **Hecho salvo el reproductor (15-11 19:40).** **Visor:** Lección (fases con su vídeo y sus capas en canvas: esqueleto, raqueta, bola), Sus golpes (galería ordenada) y el análisis de cada golpe (8 fotogramas, la bola y ella, bajar y subir, base, tronco, «Cuenta conmigo», avisos, estroboscópica, tira de contactos) | nube |
+| P0.5c | **Hecho en lo que dan los datos (15-11 19:40): Táctica con dirección, profundidad, dentro o fuera, presión y cambios de dirección.** **Más:** explorador de medidas (cambio 1 de `p0_diseno.md` §10), táctica y partido (2), resto (3), situaciones completas (4), comparar, pista, fiabilidad, vista lateral, datos, exportar | nube |
 | P0.5d | **Gestión:** Inicio, Partidos (añadir: subida al volumen de Modal, el clic y la aprobación como trabajos de la cola), Personas, Cola, Calidad, Almacenamiento, Ajustes | nube |
 | P0.5e | **En el PC:** la ventana (pywebview), la descarga de los resultados de Modal y la prueba de concepto de N (subir, descargar, borrar) | PC (con el usuario) |
 
-**Punto de partida de la aplicación real (P0.5a, con los datos de la beta, validada como la maqueta):**
+**La aplicación real frente a la maqueta** (los datos de la beta; validación de `design/p0/validar_maqueta.py`, que
+desde el 15-11 exige un vídeo o un dibujo de verdad en pantalla para el vídeo con capas, la estroboscópica y la tira):
 
-| Fuente | Maqueta | Aplicación (P0.5a) |
-|---|---|---|
-| Requisitos | 89 % | 47 % |
-| Usabilidad | 94 % | 53 % |
-| Patrones | 9 de 10 | 0 |
-| Entrenadores | 11 de 17 | 6 de 17 |
-| Ivanovic | 11 de 19 | 9 de 19 |
-| Lista de 15 puntos (por su medida) | 33 de 59 | 45 de 59 |
-| Taxonomía (por su medida) | 38 de 110 | 51 de 110 |
+| Fuente | Maqueta | P0.5a | P0.5c (15-11 19:40) |
+|---|---|---|---|
+| Requisitos | 89 % | 47 % | **96 %** |
+| Usabilidad | 94 % | 53 % | **100 %** |
+| Patrones | 9 de 10 | 0 | 9 de 10 |
+| Entrenadores | 65 % | 35 % | **82 %** |
+| Ivanovic | 58 % | 47 % | **79 %** |
+| Lista de 15 puntos (por su medida) | 56 % | 76 % | **78 %** |
+| Taxonomía (por su medida) | 35 % | 46 % | **52 %** |
 
-Sin errores y sin desbordes en escritorio. Las cifras de la lista y de la taxonomía ya suben: cada fase enseña todos sus
-puntos de control. Lo demás llega con P0.5b-c: la lección, el panel del golpe y «Más». La aceptación de P0.5 pide
-superar a la maqueta en todas las fuentes.
+Sin errores ni desbordes en escritorio. Lo que falta en las dos es lo mismo: el vídeo real con sus capas, la
+estroboscópica y la tira de contactos, que necesitan los fotogramas del PC (P0.5e). Después, el resto de la taxonomía
+(cambio 1, explorador) y de la táctica (cambio 2: secuencias, peloteo, el punto con mini-mapa, la recuperación).
 
 ## 4. Métricas de aceptación (casillas del modelo de calidad que P0 debe llenar)
 - **Usabilidad:** cada tarea principal (añadir un partido, señalar a la jugadora, ver «cómo pega la derecha» en una

@@ -15,13 +15,14 @@ from pathlib import Path
 
 MANAGEMENT = ("inicio", "analisis", "partidos", "personas", "cola", "calidad", "almacen", "ajustes")
 MORE = ("comparar", "conclusiones", "situaciones", "pista", "tabla", "lateral", "fiabilidad", "datos", "exportar")
+OPTIONAL_MORE = ("tactica",)                  # P0.5c (design change 2)
 WIDTHS = ((1920, 1080), (1280, 800), (1024, 768), (390, 844))
 
 
 def walk(html: str, width: int, height: int) -> dict:
     from playwright.sync_api import sync_playwright
 
-    out = {"estados": {}, "a_la_vista": {}, "errores": [], "desborde": {}}
+    out = {"estados": {}, "a_la_vista": {}, "errores": [], "desborde": {}, "medios": {}}
     with sync_playwright() as pw:
         b = pw.chromium.launch()
         p = b.new_page(viewport={"width": width, "height": height})
@@ -35,6 +36,8 @@ def walk(html: str, width: int, height: int) -> dict:
             o = p.evaluate("() => document.documentElement.scrollWidth - innerWidth")
             if o > 0:
                 out["desborde"][name] = o
+            # real media on the screen (a video or a drawn canvas), not a marked placeholder
+            out["medios"][name] = p.evaluate("() => document.querySelectorAll('video, canvas').length")
             # what is on screen as it opens, and what is one click away (every collapsed section opened)
             out["a_la_vista"][name] = p.evaluate("() => document.body.innerText")
             out["estados"][name] = p.evaluate(
@@ -84,6 +87,10 @@ def walk(html: str, width: int, height: int) -> dict:
         if click('[data-tab="mas"]'):
             for sb in MORE:
                 if click(f'[data-sub="{sb}"]'):
+                    keep(f"mas_{sb}")
+            for sb in OPTIONAL_MORE:                  # sections the mockup did not have (no error when absent)
+                if p.locator(f'[data-sub="{sb}"]').count():
+                    click(f'[data-sub="{sb}"]')
                     keep(f"mas_{sb}")
             if click('[data-sub="situaciones"]') and click("[data-cell]"):
                 keep("situacion_celda")

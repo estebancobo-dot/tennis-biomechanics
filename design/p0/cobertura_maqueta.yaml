@@ -49,8 +49,8 @@ items:
   - {id: V.tronco, fuente: requisitos, texto: "Tronco al terminar: hacia dónde mira", busca: ["de frente a la red|mirando a la valla|hacia el lado del revés|Tronco al terminar"], en: [golpe]}
   # --- Informe y salida visual
   - {id: I.ocho_fotogramas, fuente: requisitos, texto: "Secuencia de 8 fotogramas clave por golpe con esqueleto y valores", busca: ["Recuperación", "Extensión", "Terminación"], todos: true, en: [golpe]}
-  - {id: I.estroboscopica, fuente: requisitos, texto: "Imagen estroboscópica (esqueletos superpuestos y trayectoria de la muñeca)", busca: ["estrobosc|trayectoria de la muñeca"]}
-  - {id: I.tira_contactos, fuente: requisitos, texto: "Tira de contactos", busca: ["tira de contactos|todos sus impactos en"]}
+  - {id: I.estroboscopica, medio: true, fuente: requisitos, texto: "Imagen estroboscópica (esqueletos superpuestos y trayectoria de la muñeca)", busca: ["estrobosc|trayectoria de la muñeca"]}
+  - {id: I.tira_contactos, medio: true, fuente: requisitos, texto: "Tira de contactos", busca: ["tira de contactos|todos sus impactos en"]}
   - {id: I.galerias, fuente: requisitos, texto: "Galerías por golpe y situación ordenadas por calidad de captura, representatividad y resultado", busca: ["representativ", "calidad"], todos: true, en: [golpes]}
   - {id: I.sin_puntuacion, fuente: requisitos, texto: "Sin puntuación de «mejor técnica»", busca: ["puntuación|nota de técnica"], niega: true}
   - {id: I.mapa_pista, fuente: requisitos, texto: "Mapa de pista (impactos, botes, destino)", busca: ["bote|destino|impacto"], en: [mas_pista]}
@@ -99,7 +99,7 @@ items:
   - {id: E3.lento, fuente: entrenadores, texto: "Cámara lenta y fotograma a fotograma", busca: ["¼", "fotograma a fotograma"], todos: true, en: [leccion, golpe]}
   - {id: E3.lineas, fuente: entrenadores, texto: "Líneas dibujadas (hombros, punta, bajo la raqueta, cadera)", busca: ["dibujo|línea"], en: [leccion]}
   - {id: E3.pared, fuente: entrenadores, texto: "Plano vertical junto al cuerpo («a wall here»)", busca: ["plano vertical|pared"], tipo: hueco, paquete: "M (no medible de frente; vista lateral)"}
-  - {id: E3.contactos_superpuestos, fuente: entrenadores, texto: "Todos sus impactos superpuestos en un fotograma", busca: ["impactos superpuestos|superpone sus impactos|todos sus impactos en"]}
+  - {id: E3.contactos_superpuestos, medio: true, fuente: entrenadores, texto: "Todos sus impactos superpuestos en un fotograma", busca: ["impactos superpuestos|superpone sus impactos|todos sus impactos en"]}
   - {id: E5.short, fuente: entrenadores, texto: "Clave en forma de short: bucle real, un dibujo, una frase, el problema que resuelve", busca: ["El dibujo sale de la medida", "Si te pasa"], todos: true, en: [leccion]}
   - {id: E5.contrastes, fuente: entrenadores, texto: "Contrastes con sus propios golpes (resto/peloteo, rápida/lenta, abierto/cerrado)", busca: ["Otro golpe suyo|lado a lado"], en: [leccion, mas_comparar]}
   - {id: E5.cuenta_conmigo, fuente: entrenadores, texto: "«Cuenta conmigo»: un punto entero con cada golpe y su apoyo", busca: ["punto entero|Cuenta conmigo"]}
@@ -111,7 +111,7 @@ items:
   - {id: E6.cabeza_quieta, fuente: entrenadores, texto: "Cabeza quieta en el contacto", busca: ["cabeza (quieta|estable)|estabilidad de la cabeza|la cabeza se mueve"], en: [leccion_fase_4, golpe]}
   - {id: E6.antes_del_bote, fuente: entrenadores, texto: "«Prepara antes del bote» y «vuelve antes de su golpe»", busca: ["antes del bote|Bote = armado"], en: [leccion_fase]}
   # --- Patrones del estado del arte que no salen solos de su texto (config/referencias.yaml)
-  - {id: P.video_capas, fuente: patrones, texto: "Vídeo con capas (esqueleto, raqueta, bola)", busca: ["esqueleto"], en: [leccion_fase, golpe, mas_comparar]}
+  - {id: P.video_capas, medio: true, fuente: patrones, texto: "Vídeo con capas (esqueleto, raqueta, bola)", busca: ["capas|esqueleto"], en: [leccion_fase, golpe, mas_comparar]}
   - {id: P.fotogramas_clave, fuente: patrones, texto: "Fotogramas clave por fase", busca: ["· [−-]?\\d+,\\d+ s"], en: [leccion]}
   - {id: P.lado_a_lado, fuente: patrones, texto: "Dos golpes lado a lado, sincronizados por el impacto", busca: ["lado a lado", "impacto"], todos: true, en: [mas_comparar]}
   - {id: P.angulo_dibujado, fuente: patrones, texto: "La medida dibujada sobre el fotograma", busca: ["El dibujo sale de la medida"], en: [leccion]}

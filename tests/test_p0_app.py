@@ -9,8 +9,8 @@ import pytest
 from tennisbio.app import p0_app
 
 ROOT = Path(__file__).resolve().parents[1]
-# pieces of the walk that later steps bring (docs/p0_plan.md §3 bis): the situations' table cells come with P0.5c
-PENDING = {"no está: [data-cell]"}
+# pieces of the walk that later steps bring (docs/p0_plan.md §3 bis); none left since P0.5c
+PENDING: set = set()
 
 
 def _load(name, path):
@@ -51,5 +51,6 @@ def test_the_example_is_walked_without_errors():
         for s in walk.MANAGEMENT + ("partido_ficha", "anadir_1", "anadir_5", "golpes", "golpe"):
             assert s in names, s
         assert sum(n.startswith("leccion_fase_") for n in names) == 9
-        assert all(f"mas_{s}" in names for s in walk.MORE)
+        assert all(f"mas_{s}" in names for s in walk.MORE + walk.OPTIONAL_MORE)
+        assert "situacion_celda" in names and "apoyo" in r["estados"]["situacion_celda"]
         assert "Datos de ejemplo" in r["estados"]["inicio"]

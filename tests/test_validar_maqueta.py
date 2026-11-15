@@ -55,3 +55,12 @@ def test_the_real_checklist_and_catalogue_agree():
     assert len(ids) == len(set(ids)) and all(i["fuente"] in cfg["fuentes"] or i["fuente"] == "patrones" for i in cfg["items"])
     assert vm.check_patterns(refs, cfg["items"]) == []          # every adopted or planned pattern is looked for
     assert len(refs["referencias"]) >= 15 and all(p in refs["patrones"] for r in refs["referencias"] for p in r["patrones"])
+
+
+def test_a_placeholder_is_not_the_media_it_announces():
+    """15-11: «esqueleto» beside a marked placeholder counted as the video with its layers; an item that is media needs
+    a real video or canvas on the screen where it is found."""
+    st = {"golpe": "Vídeo real del golpe con capas · Capas: Cuerpo Raqueta Bola"}
+    it = [{"id": "P.video_capas", "fuente": "patrones", "texto": "", "busca": ["capas"], "en": ["golpe"], "medio": True}]
+    assert vm.check_items(it, st, {"golpe": 0})[0]["resultado"] == "falta"
+    assert vm.check_items(it, st, {"golpe": 1})[0]["resultado"] == "en_maqueta"

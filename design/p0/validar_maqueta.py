@@ -144,11 +144,15 @@ def check_matrix(rows: list[dict], states: dict[str, str], checks: dict[str, str
     return out
 
 
-def check_items(items: list[dict], states: dict[str, str]) -> list[dict]:
+def check_items(items: list[dict], states: dict[str, str], media: dict[str, int] | None = None) -> list[dict]:
+    """media: real video or canvas elements per screen; an item with `medio: true` needs them where it is found (its
+    words beside a marked placeholder are not the thing)."""
     out = []
     for it in items:
         pats = [re.compile(p, re.I) for p in it["busca"]]
         where = [k for k in states if not it.get("en") or any(k.startswith(e) for e in it["en"])]
+        if it.get("medio"):
+            where = [k for k in where if (media or {}).get(k.split("/")[0], 0) > 0]
         found = [k for k in where if (all if it.get("todos") else any)(p.search(states[k]) for p in pats)]
         if it.get("niega"):
             ok = not found
@@ -262,7 +266,7 @@ def validate(html: str, walk: dict) -> tuple[list[dict], list[str]]:
     refs = yaml.safe_load((ROOT / "config" / "referencias.yaml").read_text(encoding="utf-8"))
     feet = ((data.get("strokes") or [{}])[0].get("feet") or {})
     stroke_keys = {k: "golpe" for k in feet} if "Sus pies" in states.get("golpe", "") else {}
-    results = (check_matrix(rows, states, checks_of(data), not_tv, stroke_keys) + check_items(cfg["items"], states)
+    results = (check_matrix(rows, states, checks_of(data), not_tv, stroke_keys) + check_items(cfg["items"], states, walk["1920"].get("medios"))
                + check_walk(walk))
     VALIDATE_REFS[:] = by_reference(refs, results)
     return results, check_patterns(refs, cfg["items"])
