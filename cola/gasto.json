@@ -67,14 +67,17 @@
     "prueba_gauff_v21_calidad": {
      "estimado_h": 1.0,
      "horas": 0.64
+    },
+    "gauff_b": {
+     "estimado_h": 5.98
     }
    }
   }
  },
  "kaggle_real": {
-  "usadas_h": 9.38,
+  "usadas_h": 9.45,
   "total_h": 30.0,
   "renueva": "2026-11-21 00:00:00",
-  "ts": 1794703824.340346
+  "ts": 1794704073.2473955
  }
 }

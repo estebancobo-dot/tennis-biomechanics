@@ -310,10 +310,10 @@
   "ruta": "/runs/partido_tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5/estado.json",
   "salida": "/output/tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
   "cuaderno": "tennisbio-final",
-  "kaggle": "running (00:50)",
+  "kaggle": "running (00:54)",
   "arranco": "2026-11-14 23:59",
   "espera_min": 2,
-  "progreso": "scenes: 100 % (315668/315668 fotogramas) · 46 min · quedan ≈ 0 s (00:49:27; GPU 0 %·0 %, CPU 88 %, 2.8 GB)"
+  "progreso": "court:  32 % (576/1814 fotogramas) · 4 min · quedan ≈ 8 min (00:54:00; GPU 0 %·0 %, CPU 96 %, 3.4 GB)"
  },
  "comparar_gauff_v19_v20": {
   "estado": "hecho",
@@ -362,5 +362,18 @@
    "nota": "distinta; 7 etapas iguales; distintas: candidates, fine, fine_doubtful, identity, players, slowmo_fine, spotting, view_clips; strokes.json: 27 de 28/28 golpes emparejados, 3 distintos, medidas fuera de tolerancia: technique.pose.finish, racket_track, technique.pose.impact, technique.pose.acceleration; strokes_opponent.json: 0 de 0/0 golpes emparejados; strokes_doubtful.json: 1 de 1/1 golpes emparejados, medidas fuera de tolerancia: technique.phases.ready.hands_apart, technique.jitter.loaded.front_foot_angle_deg, technique.phases.ready.base_width, technique.phases.impact.hip_tilt"
   },
   "partido": ""
+ },
+ "gauff_b": {
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1794704073.2473955,
+  "accion": "partido",
+  "partido": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+  "inicio": "2026-11-15 00:54",
+  "ruta": "/runs/partido_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5/estado.json",
+  "salida": "/output/tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+  "cuaderno": "tennisbio-gauff-b"
  }
 }
