@@ -176,7 +176,7 @@ def test_score_stage_samples_the_same_times_with_one_sequential_read(tmp_path, m
     monkeypatch.setitem(sys.modules, "rapidocr_onnxruntime", types.SimpleNamespace(RapidOCR=OCR))
     import tennisbio.scoreboard as sb
     asked = []                                   # 14-11: the opponent is read from the scoreboard first
-    monkeypatch.setattr(sb, "discover_opponent", lambda frames, me: asked.append(me) or "Rival")
+    monkeypatch.setattr(sb, "discover_opponent", lambda frames, me, **kw: asked.append(me) or "Rival")
     ctx = pipeline.Context(Match("m", video, Player("p", "Ana Player"), opponent="Rival"),
                            {"score": {"every_s": 5.0}}, tmp_path / "out", log=lambda *_: None)
     ctx.dir.mkdir()
@@ -233,3 +233,15 @@ def test_the_opponent_is_looked_for_as_the_scoreboard_writes_it():
     assert _is_name("ZHENG", "Qinwen|Zheng") and _is_name("Q. ZHENG", "Qinwen|Zheng")
     assert _is_name("ZVEREV", "Alexander|Zverev") and not _is_name("SINNER", "Alexander|Zverev")
     assert not _is_name("ZHENG", "Qinwen")                       # the single last word missed it
+
+
+def test_the_ocr_runs_on_the_gpu_only_when_asked(monkeypatch):
+    """T23 (15-11): the scoreboard's OCR stayed on the CPU since the PC; `score.ocr_gpu` asks for CUDA. The engine is
+    the same; only its three models' device changes."""
+    import rapidocr_onnxruntime
+    from tennisbio import scoreboard
+    made = []
+    monkeypatch.setattr(rapidocr_onnxruntime, "RapidOCR", lambda **kw: made.append(kw) or object())
+    scoreboard.make_ocr()
+    scoreboard.make_ocr(gpu=True)
+    assert made == [{}, {"det_use_cuda": True, "cls_use_cuda": True, "rec_use_cuda": True}]

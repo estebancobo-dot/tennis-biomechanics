@@ -29,7 +29,7 @@
  },
  "players": {
   "version": "7",
-  "hash": "bc99313e5bc6e12b",
+  "hash": "315de3be6167072a",
   "modules": [
    "infra.devices",
    "io.video",
@@ -55,7 +55,7 @@
  },
  "spotting": {
   "version": "2",
-  "hash": "596a36c4faa58bb2",
+  "hash": "497bdcb315c8f5d8",
   "modules": [
    "ball",
    "ball_features",
@@ -122,9 +122,10 @@
  },
  "score": {
   "version": "16",
-  "hash": "9d6f97f990ba8ae7",
+  "hash": "ead57e8afa76ec58",
   "modules": [
    "faults",
+   "infra.devices",
    "io.video",
    "pipeline",
    "scoreboard"

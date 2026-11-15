@@ -17,7 +17,7 @@ from pathlib import Path
 import numpy as np
 
 from .impacts import audio_onsets, swing_peaks
-from .infra.devices import gpu_slots, is_gpu
+from .infra.devices import NVIDIA_DEVICES, gpu_slots, is_gpu
 from .io.video import frames_at, keyframe_times, keyframes_at, probe, read_ahead, read_frames
 from .kinematics import body_height, clean, speed, to_body_frame
 from .config import model_state, resolve_path
@@ -1465,11 +1465,13 @@ def st_score(ctx: Context):
     sc = _read(ctx.path("scenes.json"))
     fps, every = sc["fps"], (ctx.cfg.get("score") or {}).get("every_s", 5.0)
     try:
-        from .scoreboard import ScoreReader, discover_opponent, learn_server
+        from .scoreboard import ScoreReader, discover_opponent, learn_server, make_ocr
     except ImportError as e:
         _write(ctx.path("score.json"), {"readings": [], "note": "uv sync --extra ocr"})
         fault("modelo.ocr_falta", "uv sync --extra ocr", exc=e)
         return {"readings": 0, "note": "sin OCR instalado"}
+    # T23 (15-11): the OCR on an NVIDIA GPU with `score.ocr_gpu: true` (the same models; on the CPU by default)
+    ocr = make_ocr(bool((ctx.cfg.get("score") or {}).get("ocr_gpu", False)) and ctx.cfg.get("device") in NVIDIA_DEVICES)
     mains = [s for s in sc["shots"] if s["main_camera"]]
     court = _read(ctx.path("court.json")) if ctx.path("court.json").exists() else {}
     # the opponent's name is looked for during match play (court found): before the match a
@@ -1479,7 +1481,7 @@ def st_score(ctx: Context):
     if play:                         # 14-11: always read it from the scoreboard first (its own spelling)
         times = [((s["start"] + s["end"]) / 2) / fps for s in play[:: max(1, len(play) // 60)]]
         read = discover_opponent((f for f in (grab_frame(ctx.video, t) for t in times) if f is not None),
-                                 _surname(ctx.match.player.name))
+                                 _surname(ctx.match.player.name), ocr=ocr)
     opponent = _opponent_on_scoreboard(ctx.match.opponent, read)
     ctx.log(f"  rival en el marcador: «{read or '—'}» (en el catálogo: «{ctx.match.opponent or '—'}»; se busca «{opponent}»)")
     names = (_surname(ctx.match.player.name), opponent)
@@ -1487,7 +1489,7 @@ def st_score(ctx: Context):
         _write(ctx.path("score.json"), {"readings": [], "note": "no se encontró el nombre del rival en el marcador"})
         return {"readings": 0}
     # OCR of the scoreboard region is repeated at least every 30 s even when its pixels look unchanged
-    reader = ScoreReader(*names, max_reuse=max(0, int(30.0 / every + 1e-9) - 1))
+    reader = ScoreReader(*names, max_reuse=max(0, int(30.0 / every + 1e-9) - 1), ocr=ocr)
     out, shots, samples, by_shot, profiles = [], [], [], {}, []
     # only match play is sampled (main camera with the court found, as the players stage): in the rest
     # of the "main camera" (close-ups, crowd, graphics) there is often no scoreboard, and every miss

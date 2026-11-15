@@ -270,3 +270,14 @@ def test_the_queue_takes_a_lower_priority_after_what_was_asked(tmp_path, monkeyp
     c = O.submit(db, "comando", args=["audit"], source="t")
     order = [r["id"] for r in db.q("SELECT id FROM jobs WHERE state='pendiente' ORDER BY priority, id")]
     assert order == [a, c, b]
+
+
+def test_a_paused_pc_keeps_listening_for_the_unpause():
+    """15-11 (#304): in pause the loop used to exit, and leaving the pause needed a double-click at the PC (the user
+    may not be there). Now it does no work but checks GitHub every 10 minutes, and lets the PC sleep meanwhile."""
+    from pathlib import Path
+    ps1 = (Path(__file__).resolve().parents[1] / "scripts" / "windows" / "ciclo_bucle.ps1").read_text(encoding="utf-8")
+    assert ps1.isascii()
+    loop = ps1[ps1.index("while ($true)"):]
+    assert "exit 0" not in loop and "Pausa-Quitada-En-GitHub" in loop and "continue" in loop
+    assert 'FETCH_HEAD:config/pausa_pc.txt' in ps1 and '"0x80000000"' in loop

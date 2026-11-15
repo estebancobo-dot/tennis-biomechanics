@@ -109,6 +109,16 @@ trabajos:
   - {id: prueba_gauff_v24, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle}
   - {id: prueba_gauff_v25_calidad, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, config: {fp16: false, ball: {fp16: false}, racket_face: {fp16: false, hand3d_step: 1}}}
   - {id: comparar_gauff_v24_v25, accion: comparar, experimento: true, a: prueba_gauff_v24, b: prueba_gauff_v25_calidad}
+  # 15-11 13:20 (#304, el usuario: «sigue con todo lo posible en paralelo en las nubes»; cuota de Kaggle 22:40 de 30 h):
+  # 1) ¿deja YouTube descargar desde Kaggle? (2 shorts de The Tennis Mentor; si sí, la investigación ya no necesita el PC)
+  - {id: medir_youtube, accion: medir, prueba: youtube, donde: kaggle, urls: "https://youtu.be/2RGdS8xxYIg https://youtu.be/8JuM_Kaxz1I"}
+  # 2) T23, lo heredado del PC que falta medir en la nube: RTMPose-x en media precisión (más lento en DirectML, B) y el
+  # marcador con CUDA (solo CPU desde el PC). La v26 es la referencia con el código de hoy (R50b, R54)
+  - {id: prueba_gauff_v26, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle}
+  - {id: prueba_gauff_v27_pose16, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, config: {fine_pass: {refine_fp16: true}}}
+  - {id: prueba_gauff_v28_ocrgpu, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, config: {score: {ocr_gpu: true}}}
+  - {id: comparar_gauff_v26_v27, accion: comparar, experimento: true, a: prueba_gauff_v26, b: prueba_gauff_v27_pose16}
+  - {id: comparar_gauff_v26_v28, accion: comparar, experimento: true, a: prueba_gauff_v26, b: prueba_gauff_v28_ocrgpu}
   # R52 (15-11): los errores de la pasada fina de Zheng (análisis del 13-11 en Modal), leídos sin GPU ni crédito
   - {id: leer_zheng_errores, accion: leer, rutas: [/output/zheng-qinwen-elena-rybakina/strokes_errores.json]}
   # lotes 3 y 4 (aprobados por el usuario el 13-11: Osaka; Pegula y Zheng; Gauff y la final; Zverev-Sinner), cada

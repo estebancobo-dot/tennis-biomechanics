@@ -107,15 +107,25 @@ class HybridPose:
 
 
 @lru_cache(maxsize=4)
-def _rtmpose(url: str, input_size: tuple, device: str):
-    """RTMPose-x Halpe26 in full precision (fp16 is slower on DirectML), loaded once per device."""
-    from .estimator import PoseEstimator
+def _rtmpose(url: str, input_size: tuple, device: str, fp16: bool = False):
+    """RTMPose-x Halpe26, loaded once per device. Full precision by default: half precision was slower on the PC's
+    DirectML (B, docs/registro_decisiones.md); `fine_pass.refine_fp16: true` tries it on a GPU (15-11, T23)."""
+    from .estimator import PoseEstimator, _ort_session, is_gpu
+    from .variants import to_fp16
 
-    return PoseEstimator(url, input_size, device)
+    est = PoseEstimator(url, input_size, device)
+    if fp16 and is_gpu(device):
+        est.model.session = _ort_session(str(to_fp16(est.model.onnx_model)), device)
+    return est
 
 
 REFINERS = ("rtmpose-x", "rtmw-x")
 RTMW_ONNX = Path(__file__).resolve().parents[3] / "models" / "rtmw-x_384x288.onnx"
+
+
+def refine_fp16(cfg: dict | None) -> bool:
+    """`fine_pass.refine_fp16`: RTMPose-x in half precision (only on a GPU; T23, 15-11). Off by default."""
+    return bool(((cfg or {}).get("fine_pass") or {}).get("refine_fp16", False))
 
 
 def refiner(cfg: dict | None) -> str:
@@ -142,11 +152,11 @@ def _rtmw(device: str):
 
 @lru_cache(maxsize=4)
 def _cached(yolo_name: str, imgsz: int, device: str, url: str, input_size: tuple, min_rel: float,
-            refine: str = "rtmpose-x") -> HybridPose:
+            refine: str = "rtmpose-x", half: bool = False) -> HybridPose:
     from .backend import pose_model
 
     yolo = pose_model(yolo_name, imgsz, device)
-    rtm = _rtmw(device) if refine == "rtmw-x" else _rtmpose(url, input_size, device)
+    rtm = _rtmw(device) if refine == "rtmw-x" else _rtmpose(url, input_size, device, half)
     return HybridPose(yolo, rtm, min_rel)
 
 
@@ -161,7 +171,7 @@ def hybrid_model(yolo_name: str = "yolo11m-pose", imgsz: int = 960, device: str 
         cfg = load_config()
     pose = cfg["models"]["poses"][(cfg.get("fine_pass") or {}).get("pose", "performance")]
     return _cached(Path(str(yolo_name)).stem, int(imgsz), device or DEFAULT_DEVICE, pose["url"],
-                   tuple(int(v) for v in pose["input_size"]), MIN_REL_HEIGHT, refiner(cfg))
+                   tuple(int(v) for v in pose["input_size"]), MIN_REL_HEIGHT, refiner(cfg), refine_fp16(cfg))
 
 
 def fine_pose_model(cfg: dict | None = None) -> str:
@@ -183,7 +193,8 @@ def pose_cache_tag(cfg: dict) -> list:
     if fine_pose_model(cfg) == "yolo":
         return []
     # the refining model is part of the window caches: RTMW-x does not reuse RTMPose-x's (03-11)
-    return ["hybrid"] + (["rtmw-x"] if refiner(cfg) == "rtmw-x" else [])
+    return (["hybrid"] + (["rtmw-x"] if refiner(cfg) == "rtmw-x" else [])
+            + (["refine-fp16"] if refine_fp16(cfg) and refiner(cfg) == "rtmpose-x" else []))
 
 
 def extract_hybrid(video: str | Path, out: str | Path, pose_model="yolo11m-pose.pt", imgsz=960, every=1,

@@ -198,7 +198,7 @@ def test_model_loaded_once(monkeypatch):
     hybrid._cached.cache_clear()
     loads = []
     monkeypatch.setattr(backend, "pose_model", lambda n, s, d: loads.append(("yolo", n, s, d)) or FakeYolo())
-    monkeypatch.setattr(hybrid, "_rtmpose", lambda u, s, d: loads.append(("rtm", u, s, d)) or FakeRtm())
+    monkeypatch.setattr(hybrid, "_rtmpose", lambda u, s, d, half=False: loads.append(("rtm", u, s, d)) or FakeRtm())
     cfg = {"fine_pass": {"pose": "performance"}, "models": {"poses": {"performance": {"url": "u", "input_size": [288, 384]}}}}
     try:
         a = hybrid.hybrid_model(device="cpu", cfg=cfg)
@@ -319,3 +319,13 @@ def test_run_clip_hands_its_config_to_the_pose(monkeypatch, tmp_path):
         clip_pipeline.run_clip(tmp_path / "v.mp4", tmp_path / "c.npz", pose_model="hybrid", log=lambda *_: None,
                                pose_cfg=cfg)
     assert e.value.args[0] == cfg
+
+
+def test_refiner_half_precision_is_a_setting_with_its_own_caches():
+    """T23 (15-11): RTMPose-x in half precision was ruled out on the PC's DirectML only (slower there); the cloud tries
+    it with `fine_pass.refine_fp16`. Off by default, so nothing changes; on, the window caches are its own."""
+    from tennisbio.pose import hybrid
+    cfg = {"fine_pass": {"pose_model": "hybrid", "refine": "rtmpose-x"}}
+    assert hybrid.refine_fp16(cfg) is False and hybrid.pose_cache_tag(cfg) == ["hybrid"]
+    on = {"fine_pass": {"pose_model": "hybrid", "refine": "rtmpose-x", "refine_fp16": True}}
+    assert hybrid.refine_fp16(on) is True and hybrid.pose_cache_tag(on) == ["hybrid", "refine-fp16"]

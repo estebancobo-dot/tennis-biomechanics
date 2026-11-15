@@ -138,6 +138,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--output-remoto", default="", help="dónde van sus resultados en Modal (por defecto /output)")
     ap.add_argument("--commit", default="")
     ap.add_argument("--config", default="", help="T5: ajustes de prueba (JSON) sobre los del PC, solo para este trabajo")
+    ap.add_argument("--urls", default="", help="medir youtube: los vídeos que se prueban (15-11, #304)")
     ap.add_argument("--minutos", type=float, default=50)
     ap.add_argument("--max-cola", type=float, default=10, help="minutos en cola de Kaggle que se aceptan antes de fallar")
     ap.add_argument("--dir", type=Path, default=Path("kaggle-out"))
@@ -199,6 +200,8 @@ def main(argv: list[str] | None = None) -> int:
             job["partido"] = a.partido
         if a.prueba:
             job["prueba"] = a.prueba
+        if a.urls:
+            job["urls"] = a.urls
         if a.salida_remota:
             job["salida"] = a.salida_remota
         if a.output_remoto:

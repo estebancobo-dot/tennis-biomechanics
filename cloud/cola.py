@@ -487,7 +487,8 @@ def kaggle_launch(job: dict, slug: str | None = None) -> bool:
     its results apart (/kaggle_pruebas), never over a test made by Modal."""
     extra = (["--salida-remota", run_path(job, "kaggle").rsplit("/", 1)[0], "--output-remoto", output_root(job, "kaggle")]
              if job["accion"] == "prueba" else
-             ["--salida-remota", run_path(job, "kaggle").rsplit("/", 1)[0], "--prueba", job.get("prueba", "")]
+             (["--salida-remota", run_path(job, "kaggle").rsplit("/", 1)[0], "--prueba", job.get("prueba", "")]
+              + (["--urls", str(job["urls"])] if job.get("urls") else []))
              if job["accion"] == "medir" else [])
     if job.get("config"):                            # T5: a test of other settings (proof of concept on the whole clip)
         extra += ["--config", json.dumps(job["config"], ensure_ascii=False)]

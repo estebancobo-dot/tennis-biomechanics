@@ -10,10 +10,30 @@ try {
     Add-Type -Namespace Win32 -Name Power -MemberDefinition '[DllImport("kernel32.dll")] public static extern uint SetThreadExecutionState(uint esFlags);' -ErrorAction SilentlyContinue
     [Win32.Power]::SetThreadExecutionState([uint32]"0x80000001") | Out-Null
 } catch {}
-$pausa = Join-Path (Split-Path (Split-Path $PSScriptRoot)) "config\pausa_pc.txt"
+$repo = Split-Path (Split-Path $PSScriptRoot)
+$pausa = Join-Path $repo "config\pausa_pc.txt"
+# 15-11 (#304): en pausa el bucle ya no termina: no hace ningun trabajo, pero cada 10 minutos mira en GitHub si Claude
+# quito la pausa ("pausa: no"); si es asi, lanza el ciclo, que trae el codigo y sigue. Antes, para salir de la pausa
+# hacia falta un doble clic en el PC (y el usuario puede no estar delante)
+function Pausa-Quitada-En-GitHub {
+    try {
+        $rama = (git -C $repo rev-parse --abbrev-ref HEAD 2>$null | Select-Object -First 1)
+        if (-not $rama) { return $false }
+        git -C $repo fetch -q origin $rama 2>$null
+        if ($LASTEXITCODE -ne 0) { return $false }
+        $txt = (git -C $repo show "FETCH_HEAD:config/pausa_pc.txt" 2>$null) -join "`n"
+        return ($txt -and ($txt -notmatch '(?m)^pausa:\s*si\b'))
+    } catch { return $false }
+}
 while ($true) {
-    # pausa total pedida por el usuario (config/pausa_pc.txt, "pausa: si"): el bucle no sigue (29-10)
-    if ((Get-Content $pausa -ErrorAction SilentlyContinue) -match '^pausa:\s*si\b') { exit 0 }
+    # pausa total pedida por el usuario (config/pausa_pc.txt, "pausa: si"): ningun trabajo; solo se escucha (29-10, 15-11)
+    if (((Get-Content $pausa -ErrorAction SilentlyContinue) -match '^pausa:\s*si\b') -and -not (Pausa-Quitada-En-GitHub)) {
+        # en pausa el equipo puede suspenderse como siempre (solo se escucha mientras esta despierto)
+        try { [Win32.Power]::SetThreadExecutionState([uint32]"0x80000000") | Out-Null } catch {}
+        Start-Sleep -Seconds 600
+        continue
+    }
+    try { [Win32.Power]::SetThreadExecutionState([uint32]"0x80000001") | Out-Null } catch {}
     try {
         # sin ventana ni parpadeo (oculto.vbs); si faltara, como antes
         if (Test-Path $vbs) { Start-Process wscript.exe -Wait -ArgumentList @("//B", "`"$vbs`"", "`"$ps1`"") }

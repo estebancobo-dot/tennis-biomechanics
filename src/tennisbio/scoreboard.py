@@ -448,6 +448,15 @@ def crop_changed(a: np.ndarray | None, b: np.ndarray | None, thresh: float = 20.
     return float(cv2.blur(d, (k, k)).max()) > thresh
 
 
+def make_ocr(gpu: bool = False):
+    """The scoreboard's OCR engine. T23 (15-11): on the CPU since the PC (its iGPU had no CUDA; the DirectML path was
+    never measured faster), `score.ocr_gpu: true` runs its three models with CUDA where there is an NVIDIA GPU (the
+    engine falls back to the CPU by itself, with a message, where there is none)."""
+    from rapidocr_onnxruntime import RapidOCR
+
+    return RapidOCR(det_use_cuda=True, cls_use_cuda=True, rec_use_cuda=True) if gpu else RapidOCR()
+
+
 class ScoreReader:
     """Reads the scoreboard of one match; finds it on the first frames where both names appear.
 
@@ -457,11 +466,7 @@ class ScoreReader:
     (the serve marker is looked for in the new crop)."""
 
     def __init__(self, player_surname: str, opponent_surname: str, relocate_after=6, max_reuse=5, ocr=None):
-        if ocr is None:
-            from rapidocr_onnxruntime import RapidOCR
-
-            ocr = RapidOCR()
-        self.ocr = ocr
+        self.ocr = ocr if ocr is not None else make_ocr()
         self.names = (player_surname, opponent_surname)
         self.roi = None
         self.misses = 0                 # consecutive reads without the names in the region
@@ -569,13 +574,11 @@ def opponent_from_items(items: list, player_surname: str) -> str | None:
     return best[1].capitalize() if best else None
 
 
-def discover_opponent(frames, player_surname: str, need=3) -> str | None:
+def discover_opponent(frames, player_surname: str, need=3, ocr=None) -> str | None:
     """Opponent's surname read from the scoreboard over several frames (majority of readings)."""
     from collections import Counter
 
-    from rapidocr_onnxruntime import RapidOCR
-
-    ocr, votes = RapidOCR(), Counter()
+    ocr, votes = (ocr if ocr is not None else make_ocr()), Counter()
     for frame in frames:
         res, _ = ocr(frame)
         name = opponent_from_items(res or [], player_surname)

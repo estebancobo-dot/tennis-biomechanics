@@ -35,7 +35,8 @@ SCRATCH = ("/kaggle/temp", "/kaggle/tmp", "/tmp")
 SYNC_S = 600                             # results to Modal every 10 minutes
 TEST_PREFIX = nube.TEST_PREFIX
 # proofs of concept (#288, docs/nube_nativa.md): name → the module that measures it (in the analysis's own Python)
-POCS = {"raqueta": "tennisbio.infra.poc_raqueta", "video": "tennisbio.infra.poc_video"}
+POCS = {"raqueta": "tennisbio.infra.poc_raqueta", "video": "tennisbio.infra.poc_video",
+        "youtube": "tennisbio.infra.poc_youtube"}       # 15-11 (#304): can the cloud download from YouTube?
 NEEDS_MATCH = ("video",)                 # proofs of concept measured on a match's broadcast (its video from Modal)
 
 
@@ -172,6 +173,8 @@ def poc_args(job: dict, models: Path, video: Path | None) -> list[str]:
     """The measuring module's arguments: the model it times, or the broadcast it decodes."""
     if job["prueba"] == "raqueta":
         return ["--modelo", str(models / "racketpose.onnx")]
+    if job["prueba"] == "youtube":
+        return ["--urls", str(job.get("urls") or "")]
     return ["--video", str(video)]
 
 
@@ -184,6 +187,8 @@ def measure(job: dict, py: Path, models: Path, data: Path, run: Path, vol, est: 
         libs = subprocess.run([str(py), "-c", "import tensorrt_libs, os; print(os.path.dirname(tensorrt_libs.__file__))"],
                               capture_output=True, text=True).stdout.strip()
         env["LD_LIBRARY_PATH"] = ":".join(x for x in (libs, env.get("LD_LIBRARY_PATH", "")) if x)
+    if job["prueba"] == "youtube":                 # the newest yt-dlp, as the PC's fallback uses
+        subprocess.run(["uv", "pip", "install", "-q", "--python", str(py), "-U", "yt-dlp[default]"])
     out = run / "poc.json"
     p = subprocess.run([str(py), "-m", POCS[job["prueba"]], *poc_args(job, models, video), "--salida", str(out)],
                        cwd=REPO, env=env, capture_output=True, text=True)
