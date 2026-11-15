@@ -715,8 +715,8 @@
   "ruta": "/runs/kaggle_prueba_gauff_v27_pose16/estado.json",
   "salida": "/kaggle_pruebas/prueba_gauff_v27_pose16/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cuaderno": "tennisbio-prueba-gauff-v27-pose16",
-  "kaggle": "running (15:49)",
-  "progreso": "identity terminada a las 15:47:14 en 39 s (15:47:24; GPU 0 %·0 %, CPU 68 %, 3.7 GB)",
+  "kaggle": "running (15:54)",
+  "progreso": "fine:   4 % (1/28 golpes candidatos · 1 confirmados · 0 ventanas descartadas sin pose) · 0 s · quedan ≈ 0 s (15:53:04; GPU 0 %·0 %, CPU 96 %, 6.3 GB)",
   "arranco": "2026-11-15 15:44",
   "espera_min": 158
  },
@@ -732,7 +732,7 @@
   "ruta": "/runs/kaggle_prueba_gauff_v28_ocrgpu/estado.json",
   "salida": "/kaggle_pruebas/prueba_gauff_v28_ocrgpu/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cuaderno": "tennisbio-prueba-gauff-v28-ocrgpu",
-  "kaggle": "queued (15:49)"
+  "kaggle": "queued (15:54)"
  },
  "investigar_tennis_mentor": {
   "estado": "hecho",
@@ -793,9 +793,9 @@
   "ruta": "/runs/kaggle_investigar_tennis_mentor_voz/estado.json",
   "cpu": true,
   "cuaderno": "tennisbio-investigar-tennis-mentor-voz",
-  "kaggle": "running (15:49)",
+  "kaggle": "running (15:54)",
   "arranco": "2026-11-15 15:33",
   "espera_min": 1,
-  "progreso": "15/26 Describe Our Forehands With ONE WORD (15:48:22)"
+  "progreso": "21/26 Your GRIP Shapes Your Technique… (15:53:14)"
  }
 }
