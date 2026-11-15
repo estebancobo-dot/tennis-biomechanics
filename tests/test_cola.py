@@ -485,5 +485,25 @@ def test_a_reports_audit_reaches_the_logs(tmp_path):
     state = {"informe_beta": {"accion": "informe", "estado": "hecho", "ruta": "/runs/informe_beta/estado.json"}}
     assert cola.copy_poc_results(Vol(), state, tmp_path) == ["informe_beta"]
     d = tmp_path / "informes" / "informe_beta"
-    assert (d / "auditoria.md").read_bytes() == b"# Auditoria" and (d / "informe.html").exists()
+    assert (d / "auditoria.md").read_bytes() == b"# Auditoria"
+    assert not (d / "informe.html").exists()            # 15-11: the page stays on the private volume
     assert cola.copy_poc_results(Vol(), state, tmp_path) == []
+
+
+def test_experiments_are_not_equivalence_checks(tmp_path):
+    """R51 (15-11): quality and model experiments compare different settings on purpose; their comparisons say so and
+    the audit's equivalence check skips them."""
+    d = tmp_path / "comparaciones"
+    d.mkdir()
+    (d / "x.json").write_text(json.dumps({"veredicto": "distinta"}), encoding="utf-8")
+    assert cola.mark_experiments(tmp_path, ["x", "nada"]) == ["x"]
+    assert json.loads((d / "x.json").read_text(encoding="utf-8"))["experimento"] is True
+    assert cola.mark_experiments(tmp_path, ["x"]) == []
+    from tennisbio.audit import equivalence_item
+    root = tmp_path / "vol"
+    (root / "cola" / "comparaciones").mkdir(parents=True)
+    (root / "cola" / "comparaciones" / "e.json").write_text(json.dumps(
+        {"veredicto": "distinta", "ficheros_de_un_solo_lado": [], "experimento": True}), encoding="utf-8")
+    (root / "cola" / "comparaciones" / "q.json").write_text(json.dumps(
+        {"veredicto": "idéntica", "ficheros_de_un_solo_lado": []}), encoding="utf-8")
+    assert equivalence_item(root)["status"] == "ok"

@@ -2546,6 +2546,8 @@ def equivalence_item(root: Path | None) -> dict:
             continue
         if "ficheros_de_un_solo_lado" not in d:     # made before 14-11 20:15 (stroke time key, unread files): void
             continue
+        if d.get("experimento"):                    # R51: different settings or models on purpose, not equivalence
+            continue
         rows.append((f.stem, d.get("veredicto")))
     if not rows:
         return _item(9, "Nube", EQUIV_ITEM, "aviso", "ninguna comparación todavía (acción «comparar» de la cola)")

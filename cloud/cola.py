@@ -595,6 +595,7 @@ def main(argv: list[str] | None = None) -> int:
             if res and res.get("estado") in FINAL:
                 record_result(state, spend, jid, res, now)
                 print(f"{jid}: {res.get('estado')} ({res.get('coste_usd')} $, {res.get('horas_kaggle')} h de Kaggle)")
+    mark_experiments(d, queue.get("experimentos") or [])
     if not a.en_seco:
         copy_poc_results(vol, state, d)
         refresh_estimates(state, spend, by_id)          # R49: reservations with today's measured rate
@@ -680,6 +681,22 @@ QUEUE_FILES = ("estado.json", "gasto.json", "vuelta.json", "estado.md")
 REPORT_LOG_MAX = 15 * 1024 * 1024        # a report page larger than this stays only on the volume
 
 
+def mark_experiments(logs: Path, ids: list[str]) -> list[str]:
+    """R51 (15-11): comparisons of different settings or models on purpose (quality and model experiments) are not
+    equivalence checks: their files say «experimento» and the audit's «Equivalencia entre infraestructuras» skips
+    them (queue key `experimentos`, for the ones made before the job field existed)."""
+    done = []
+    for jid in ids:
+        f = logs / "comparaciones" / f"{jid}.json"
+        if f.exists():
+            d = json.loads(f.read_text(encoding="utf-8"))
+            if not d.get("experimento"):
+                d["experimento"] = True
+                f.write_text(json.dumps(d, ensure_ascii=False, indent=1), encoding="utf-8")
+                done.append(jid)
+    return done
+
+
 def copy_poc_results(vol, state: dict, logs: Path) -> list[str]:
     """14-11: every finished proof of concept's measurement («poc» of its estado.json on the volume) also in nube-logs
     (cola/pruebas/<id>.json), and every finished test's and match's time and resources by stage
@@ -692,7 +709,8 @@ def copy_poc_results(vol, state: dict, logs: Path) -> list[str]:
                 import almacen
 
                 store, base = almacen.ModalStorage(vol, VOLUME), st["ruta"].rsplit("/", 1)[0]
-                for name, limit in (("auditoria.md", None), ("auditoria.json", None), ("informe.html", REPORT_LOG_MAX)):
+                # 15-11: the report page stays on the private volume (the repository is public); only the audit here
+                for name, limit in (("auditoria.md", None), ("auditoria.json", None)):
                     data = store.read_bytes(f"{base}/{name}")
                     if data is not None and (limit is None or len(data) <= limit):
                         dest.mkdir(parents=True, exist_ok=True)
@@ -772,7 +790,8 @@ def compare_job(vol, job: dict, state: dict, logs: Path, now: float) -> dict:
             (logs / "comparaciones").mkdir(parents=True, exist_ok=True)
             unread = {p: e for p, e in READ_ERRORS.items() if p.startswith((fa, fb))}
             (logs / "comparaciones" / f"{job['id']}.json").write_text(
-                json.dumps({"a": fa, "b": fb, **res, "no_leidos": unread}, ensure_ascii=False, indent=1), encoding="utf-8")
+                json.dumps({"a": fa, "b": fb, **res, "no_leidos": unread, "experimento": bool(job.get("experimento"))},
+                           ensure_ascii=False, indent=1), encoding="utf-8")
             st["estado"] = "hecho" if res["veredicto"] in SAME else "revisar"
             st["resultado"] = {"estado": st["estado"], "veredicto": res["veredicto"], "nota": eq_summary(res)[:600]}
     state[job["id"]] = st
