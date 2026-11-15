@@ -1,6 +1,6 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-15 18:27 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 3.9 h de GPU esta semana (tope 28 h; Kaggle dice 24.08 h usadas de 30.0, se renueva 2026-11-21 00:00)
+Última vuelta: 2026-11-15 18:32 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 3.8 h de GPU esta semana (tope 28 h; Kaggle dice 24.17 h usadas de 30.0, se renueva 2026-11-21 00:00)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
@@ -39,10 +39,10 @@
 | investigar_tennis_mentor | investigar |  | hecho | kaggle |  |
 | investigar_tennis_mentor_voz | investigar |  | hecho | kaggle |  |
 | prueba_gauff_v29_a | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
-| prueba_gauff_v29_b | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: running (18:27), intento 1 |
+| prueba_gauff_v29_b | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: running (18:32), intento 1 · players:  77 % (1104/1430 fotogramas con jugadoras) · 60 s · quedan ≈ 18 s (18:31:50; GPU 0 %·0 %, CPU 96 %, 3.2 GB) |
 | prueba_gauff_v29_c | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | pendiente |  | espera a prueba_gauff_v29_b (en_marcha) |
 | comparar_gauff_v26_v29 | comparar |  | pendiente |  | espera a prueba_gauff_v29_c |
-| medir_bola_totnet | medir |  | en_marcha | kaggle | Kaggle: running (18:27), intento 1 |
+| medir_bola_totnet | medir |  | en_marcha | kaggle | Kaggle: running (18:32), intento 1 |
 | leer_zheng_errores | leer |  | hecho | github | leídos: output__zheng-qinwen-elena-rybakina__strokes_errores.json |
 | prueba_gauff | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | modal |  |
 | prueba_gauff_v16 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | error | kaggle | en cola de Kaggle más de 10 min sin arrancar (4 intentos) |
