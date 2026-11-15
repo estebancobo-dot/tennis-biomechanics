@@ -270,6 +270,9 @@ def test_whisper_text_has_the_subtitles_form():
     assert yr.segments_to_text([S(3.4, " Turn the shoulders. "), S(65.0, "  "), S(75.9, "Then the hips.")]) == \
         "[0:03] Turn the shoulders.\n[1:15] Then the hips."
     assert yr.stamp(3599.9) == "59:59"
+    src = (ROOT / "scripts" / "youtube_research.py").read_text(encoding="utf-8")
+    # 15-11: faster-whisper's own PyAV call failed on Kaggle for all 26 videos; the audio is decoded by ffmpeg
+    assert '"f32le"' in src and "transcribe(audio, vad_filter=True)" in src
 
 
 def test_a_part_of_a_test_runs_its_stages():

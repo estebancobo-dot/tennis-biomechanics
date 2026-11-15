@@ -105,10 +105,18 @@ def transcribe(url: str, vid: str, tmp: Path) -> tuple[str, str]:
     if not got:
         return "", "audio: " + (r.stderr or "").strip()[-200:]
     try:
+        import numpy as np
+        # 15-11: the audio decoded by ffmpeg, not by faster-whisper's own PyAV call (Kaggle's newest PyAV refused its
+        # «metadata_errors» argument for all 26 videos without subtitles)
+        pcm = subprocess.run(["ffmpeg", "-v", "error", "-i", str(got[0]), "-f", "f32le", "-ac", "1", "-ar", "16000", "-"],
+                             capture_output=True, timeout=900).stdout
+        audio = np.frombuffer(pcm, np.float32)
+        if not audio.size:
+            return "", "audio: ffmpeg no lo pudo leer"
         if "m" not in _WHISPER:
             from faster_whisper import WhisperModel
             _WHISPER["m"] = WhisperModel(WHISPER_MODEL, device="cpu", compute_type="int8")
-        segments, info = _WHISPER["m"].transcribe(str(got[0]), vad_filter=True)
+        segments, info = _WHISPER["m"].transcribe(audio, vad_filter=True)
         text = segments_to_text(segments)
         return (f"(idioma {info.language})\n{text}" if text else ""), ("" if text else "sin voz")
     except Exception as e:  # esperado: no faster-whisper, or an audio it cannot read: said in the video's info
