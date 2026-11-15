@@ -1,0 +1,551 @@
+<title>TennisBio · maqueta P0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Desktop application for the PC (#301): navigation in a left column (Ver, Gestionar, Sistema); an analysis opens its
+   viewer (Lección, Sus golpes, Más). Built from docs/p0_diseno.md and the inventory of every request. */
+:root {
+  --bg: #eef2f6; --surface: #ffffff; --surface-2: #f5f7fa; --ink: #0f1e2e; --muted: #57687b; --line: #d6dee8;
+  --court: #1d4f91; --court-soft: #dbe6f4; --court-2: #2f6b4e; --ball: #cfe02f; --ball-ink: #3b4300;
+  --good: #2b7a4b; --good-soft: #def0e5; --warn: #9a6614; --warn-soft: #f6ead3; --crit: #a83434; --crit-soft: #f6dddd;
+  --frame-a: #234f86; --frame-b: #3c7a5e; --draw: #7cf06a; --draw-2: #ff5a4f;
+  --display: "Barlow Condensed", "Arial Narrow", sans-serif; --body: "Inter", system-ui, "Segoe UI", sans-serif; --r: 12px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0b1520; --surface: #13212f; --surface-2: #182a3b; --ink: #e5edf5; --muted: #9aabbd; --line: #26394d;
+  --court: #6b9be0; --court-soft: #1c3350; --court-2: #5aa57f; --ball: #d6e64a; --ball-ink: #2a3000;
+  --good: #6cc08f; --good-soft: #17352a; --warn: #e2b061; --warn-soft: #3a2e17; --crit: #ec8a8a; --crit-soft: #3d1f22;
+  --frame-a: #1a3b66; --frame-b: #24543f; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0b1520; --surface: #13212f; --surface-2: #182a3b; --ink: #e5edf5; --muted: #9aabbd; --line: #26394d;
+  --court: #6b9be0; --court-soft: #1c3350; --court-2: #5aa57f; --ball: #d6e64a; --ball-ink: #2a3000;
+  --good: #6cc08f; --good-soft: #17352a; --warn: #e2b061; --warn-soft: #3a2e17; --crit: #ec8a8a; --crit-soft: #3d1f22;
+  --frame-a: #1a3b66; --frame-b: #24543f; color-scheme: dark }
+* { box-sizing: border-box }
+[hidden] { display: none !important }
+html, body { height: 100% }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 14px/1.5 var(--body); -webkit-font-smoothing: antialiased }
+button, select, input { font: inherit; color: inherit }
+button { cursor: pointer }
+:focus-visible { outline: 2px solid var(--court); outline-offset: 2px; border-radius: 6px }
+.num { font-variant-numeric: tabular-nums }
+h1, h2, h3 { font-family: var(--display); font-weight: 700; margin: 0; letter-spacing: .2px; text-wrap: balance }
+h1 { font-size: 28px } h2 { font-size: 21px } h3 { font-size: 17px }
+.sub { color: var(--muted); margin: 2px 0 0; font-size: 13px }
+.eyebrow { text-transform: uppercase; letter-spacing: .08em; font-size: 11px; font-weight: 600; color: var(--muted) }
+
+.shell { display: grid; grid-template-columns: 228px minmax(0, 1fr); min-height: 100% }
+nav.side { position: sticky; top: 0; height: 100vh; overflow-y: auto; background: var(--surface); border-right: 1px solid var(--line); padding: 16px 12px; display: grid; align-content: start; gap: 14px }
+.brand { font-family: var(--display); font-weight: 700; font-size: 23px; padding-left: 8px } .brand span { color: var(--court) }
+.group { display: grid; gap: 2px } .group .eyebrow { padding: 0 10px 4px }
+.nav { border: 0; background: none; display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 9px; color: var(--muted); text-align: left; width: 100% }
+.nav:hover { background: var(--surface-2) }
+.nav[aria-current="page"] { background: var(--court-soft); color: var(--court); font-weight: 600 }
+.nav svg { width: 19px; height: 19px; flex: none; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round }
+.nav .count { margin-left: auto; font-size: 11px; background: var(--surface-2); border-radius: 99px; padding: 0 7px; color: var(--muted) }
+.side-note { font-size: 11.5px; color: var(--muted); border-top: 1px solid var(--line); padding: 10px 10px 0 }
+
+main { min-width: 0 }
+.top { position: sticky; top: 0; z-index: 5; background: var(--surface); border-bottom: 1px solid var(--line); padding: 14px 28px 12px; display: grid; gap: 8px }
+.top-row { display: flex; align-items: flex-end; gap: 14px; flex-wrap: wrap }
+.top-row .grow { flex: 1; min-width: 0 }
+.content { padding: 22px 28px 60px; display: grid; gap: 24px; max-width: 1400px }
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: 9px; padding: 7px 13px; font-weight: 600; font-size: 13px }
+.btn.primary { background: var(--court); color: var(--surface); border-color: var(--court) }
+.btn:hover { border-color: var(--court) }
+.chips { display: flex; gap: 6px; flex-wrap: wrap }
+.chip { border: 1px solid var(--line); background: var(--surface-2); border-radius: 99px; padding: 4px 11px; font-size: 12.5px; white-space: nowrap }
+.chip .c { color: var(--muted); margin-left: 4px }
+.chip[aria-pressed="true"] { background: var(--court); border-color: var(--court); color: var(--surface) }
+.chip[aria-pressed="true"] .c { color: var(--surface); opacity: .8 }
+.tabs { display: flex; gap: 2px; border-bottom: 1px solid var(--line); margin-bottom: -13px }
+.tab { border: 0; background: none; padding: 8px 14px 10px; font-weight: 600; color: var(--muted); border-bottom: 2px solid transparent }
+.tab[aria-current="page"] { color: var(--court); border-bottom-color: var(--court) }
+.pill { display: inline-flex; align-items: center; border-radius: 99px; padding: 1px 8px; font-size: 11.5px; font-weight: 600; white-space: nowrap }
+.pill.good { background: var(--good-soft); color: var(--good) } .pill.warn { background: var(--warn-soft); color: var(--warn) }
+.pill.crit { background: var(--crit-soft); color: var(--crit) } .pill.est { background: var(--court-soft); color: var(--court) }
+.pill.mute { background: var(--surface-2); color: var(--muted); border: 1px solid var(--line) }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 16px; min-width: 0 }
+.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px }
+.grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px }
+.grid4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px }
+.stat b { display: block; font-family: var(--display); font-size: 30px; font-weight: 700; line-height: 1.05 }
+.stat span { color: var(--muted); font-size: 12.5px }
+.list { display: grid; gap: 0 }
+.row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 14px; padding: 11px 2px; border-top: 1px solid var(--line); align-items: center }
+.row:first-child { border-top: 0 }
+.row .t { font-weight: 600 } .row .s { color: var(--muted); font-size: 12.5px }
+.clickable { cursor: pointer } .clickable:hover { background: var(--surface-2) }
+.mock { font-size: 12px; color: var(--muted); border-left: 3px solid var(--line); padding-left: 10px; margin: 0 }
+.bar { height: 8px; background: var(--surface-2); border-radius: 99px; overflow: hidden }
+.bar i { display: block; height: 100%; background: var(--court); border-radius: 99px }
+.bar.warn i { background: var(--warn) } .bar.crit i { background: var(--crit) }
+table.t { width: 100%; border-collapse: collapse; font-size: 13px }
+table.t th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 600; padding: 6px 8px; border-bottom: 1px solid var(--line) }
+table.t td { padding: 8px; border-bottom: 1px solid var(--line); vertical-align: top }
+.scroll { overflow-x: auto }
+.avatar { width: 34px; height: 34px; border-radius: 50%; background: var(--court-soft); color: var(--court); display: grid; place-items: center; font-weight: 700; font-size: 12px; flex: none }
+.avatars { display: flex; gap: 6px; align-items: center }
+
+/* frame placeholder with one automatic drawing */
+.frame { position: relative; aspect-ratio: 16 / 10; border-radius: 10px; overflow: hidden; background: linear-gradient(180deg, var(--frame-b) 0 20%, var(--frame-a) 20% 100%) }
+.frame svg { position: absolute; inset: 0; width: 100%; height: 100% }
+.frame .tag { position: absolute; left: 10px; top: 10px; background: rgb(8 18 30 / .6); color: #f1f5fa; font-size: 11px; border-radius: 6px; padding: 3px 8px }
+.frame .cap { position: absolute; left: 0; right: 0; bottom: 12px; text-align: center; font-family: var(--display); font-weight: 700; font-size: 22px; color: #fff; text-shadow: 0 2px 6px rgb(0 0 0 / .6); padding: 0 16px }
+.frame .cap em { font-style: normal; color: var(--ball) }
+.controls { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px }
+
+/* lesson */
+.strip { display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); gap: 8px }
+.ph { border: 1px solid var(--line); background: var(--surface); border-radius: 10px; padding: 0; overflow: hidden; text-align: left; position: relative }
+.ph .mini { aspect-ratio: 4/3; background: linear-gradient(180deg, var(--frame-b) 0 22%, var(--frame-a) 22% 100%) }
+.ph .nm { padding: 6px 8px; font-size: 12px; font-weight: 600; line-height: 1.25 }
+.ph[aria-current="page"] { border-color: var(--court); box-shadow: 0 0 0 2px var(--court) inset }
+.ph .start { position: absolute; top: 6px; right: 6px; background: var(--ball); color: var(--ball-ink); font-size: 10px; font-weight: 700; border-radius: 6px; padding: 1px 6px }
+.lesson { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 22px; align-items: start }
+.focus { font-family: var(--display); font-size: 24px; font-weight: 600; line-height: 1.2 }
+.focus em { font-style: normal; color: var(--court) }
+.key { border-top: 1px solid var(--line); padding-top: 12px; display: grid; gap: 6px }
+.key-h { display: flex; gap: 10px; align-items: baseline; justify-content: space-between }
+.key .v { font-family: var(--display); font-size: 28px; font-weight: 700; line-height: 1 }
+.key .v small { font-size: 14px; color: var(--muted); margin-left: 2px }
+.key .how { margin: 0 }
+.key .pb { margin: 0; font-size: 13px; color: var(--muted) }
+.practice { background: var(--surface-2); border-radius: 10px; padding: 12px 14px; display: grid; gap: 8px }
+details.fold { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 0 14px }
+details.fold > summary { cursor: pointer; padding: 11px 0; font-weight: 600 }
+details.fold > div { padding: 0 0 14px }
+.chart { width: 100%; height: auto; display: block }
+.chart text { fill: var(--muted); font-size: 11px; font-family: var(--body) }
+.chart .lab { fill: var(--ink); font-size: 12px }
+.chart .grid { stroke: var(--line) } .chart .bar { fill: var(--court-soft) } .chart .dot { fill: var(--court) }
+.chart .imp { fill: var(--ball); stroke: var(--ball-ink); stroke-width: 1.2 }
+
+/* strokes */
+.vgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px }
+.vcard { border: 1px solid var(--line); border-radius: 10px; background: var(--surface); overflow: hidden; text-align: left; padding: 0 }
+.vcard .frame { border-radius: 0 }
+.vcard .meta { padding: 9px 11px; display: grid; gap: 4px }
+.vcard .meta b { font-size: 13.5px }
+.vcard .meta span { font-size: 12px; color: var(--muted) }
+.drawer { position: fixed; inset: 0; z-index: 30; background: rgb(5 12 20 / .45); display: grid; justify-items: end }
+.drawer > div { background: var(--bg); height: 100%; overflow-y: auto; width: min(980px, 94vw); padding: 20px 26px 40px; display: grid; gap: 18px; align-content: start; border-left: 1px solid var(--line) }
+.drawer-h { display: flex; justify-content: space-between; align-items: center; gap: 12px }
+.moments { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px }
+.moment .frame { aspect-ratio: 4/3 }
+.moment b { display: block; font-size: 13px; margin-top: 6px } .moment span { color: var(--muted); font-size: 12px }
+.hbar { display: grid; grid-template-columns: 150px minmax(0, 1fr) 70px; gap: 10px; align-items: center; font-size: 13px }
+.hbar .track { height: 12px; background: var(--surface-2); border-radius: 99px; position: relative }
+.hbar .track i { position: absolute; top: 0; bottom: 0; background: var(--court); border-radius: 99px }
+.hbar .track i.up { background: var(--good) }
+.steps { counter-reset: s; list-style: none; padding: 0; margin: 0; display: grid; gap: 10px }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 30px 1fr; gap: 10px }
+.steps li::before { content: counter(s); width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: var(--court-soft); color: var(--court); font-weight: 700; font-size: 12.5px }
+.stepper { display: flex; gap: 6px; flex-wrap: wrap }
+.stepper .chip[aria-current="step"] { background: var(--court); color: var(--surface); border-color: var(--court) }
+.court svg { width: 100%; max-width: 380px; display: block; margin: 0 auto }
+.court .surf { fill: var(--court) } .court .outer { fill: var(--court-2) } .court .ln { stroke: #f4f7fb; stroke-width: .06; fill: none }
+.court .net { stroke: #f4f7fb; stroke-width: .12 } .court .p { fill: var(--ball); stroke: var(--ball-ink); stroke-width: .05 } .court .p.out { fill: var(--crit) }
+.matrix td.cell { text-align: center; cursor: pointer; font-variant-numeric: tabular-nums }
+.matrix td.cell:hover { outline: 2px solid var(--court); outline-offset: -2px }
+@media (max-width: 1150px) { .strip { grid-template-columns: repeat(5, minmax(0, 1fr)) } .lesson { grid-template-columns: 1fr } .grid4 { grid-template-columns: repeat(2, minmax(0, 1fr)) } }
+@media (prefers-reduced-motion: no-preference) { .nav, .chip, .tab, .vcard, .ph { transition: background-color .15s, border-color .15s } }
+</style>
+
+<div class="shell">
+  <nav class="side" aria-label="Secciones">
+    <div class="brand">Tennis<span>Bio</span></div>
+    <div class="group"><span class="eyebrow">Ver</span><div id="nav-ver"></div></div>
+    <div class="group"><span class="eyebrow">Gestionar</span><div id="nav-gest"></div></div>
+    <div class="group"><span class="eyebrow">Sistema</span><div id="nav-sis"></div></div>
+    <p class="side-note">Maqueta de P0 con los datos reales de la beta (15-11). Los vídeos y fotos son recuadros marcados; la aplicación los saca del PC.</p>
+  </nav>
+  <main>
+    <header class="top" id="top"></header>
+    <section class="content" id="content"></section>
+  </main>
+</div>
+<div class="drawer" id="drawer" hidden><div id="drawer-in" role="dialog" aria-modal="true"></div></div>
+
+<script>
+const D = /*DATA*/null;
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const isN = v => typeof v === "number" && isFinite(v);
+const fmt = (v, d = 0) => isN(v) ? v.toLocaleString("es-ES", { minimumFractionDigits: d, maximumFractionDigits: d }) : "—";
+const sgn = (v, d = 0) => (v > 0 ? "+" : v < 0 ? "−" : "") + fmt(Math.abs(v), d);
+const P = D.player, PNAME = P.name, STROKE_ES = { forehand: "Derecha", backhand: "Revés", serve: "Saque" }[D.stroke] || D.stroke;
+const MET = D.metrics, dec = k => (MET[k] && isN(MET[k].dec)) ? MET[k].dec : 0, unit = k => (MET[k] || {}).unit || "";
+const relPill = k => { const m = MET[k] || {}; if (m.est) return `<span class="pill est">estimada</span>`; return m.rel >= 3 ? `<span class="pill good">fiable</span>` : m.rel === 2 ? `<span class="pill warn">media</span>` : `<span class="pill crit">baja</span>`; };
+const verdictPill = v => !v ? "" : /fiable/.test(v) ? `<span class="pill good">${esc(v)}</span>` : /ruid|sesgo|no fiable/.test(v) ? `<span class="pill crit">${esc(v)}</span>` : `<span class="pill warn">${esc(v)}</span>`;
+const CONF = c => /fiable|real/.test(c) ? "good" : /estimada|baja/.test(c) ? "est" : "warn";
+const initials = n => String(n || "?").split(/\s+/).map(w => w[0]).slice(0, 2).join("").toUpperCase();
+const store = { get(k, d) { try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch { return d; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} } };
+const matchLabel = m => [m.torneo, m.ronda].filter(Boolean).join(" · ") || "Torneo sin leer del nombre";
+const MATCHES = D.matches;
+const playerOf = id => D.players.find(p => p.id === id);
+
+// ---------------- icons and navigation
+const IC = {
+  inicio: '<path d="M4 11 12 4l8 7v9H4z"/>', analisis: '<path d="M5 19c3-1 4-4 5-7s3-6 7-7"/><circle cx="17.5" cy="5.5" r="2.5"/>',
+  partidos: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3z"/>', personas: '<circle cx="9" cy="8" r="3.2"/><path d="M3 19c.8-3.4 3-5 6-5s5.2 1.6 6 5"/><circle cx="17" cy="9" r="2.4"/>',
+  cola: '<path d="M4 6h16M4 12h16M4 18h10"/>', calidad: '<path d="M12 3 4 6v6c0 4.5 3.4 8 8 9 4.6-1 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/>',
+  almacen: '<ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/>',
+  ajustes: '<circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1.2l2-1.5-2-3.4-2.3.9a7 7 0 0 0-2-1.2L14 3h-4l-.6 2.6a7 7 0 0 0-2 1.2l-2.3-.9-2 3.4 2 1.5A7 7 0 0 0 5 12c0 .4 0 .8.1 1.2l-2 1.5 2 3.4 2.3-.9a7 7 0 0 0 2 1.2L10 21h4l.6-2.6a7 7 0 0 0 2-1.2l2.3.9 2-3.4-2-1.5c.1-.4.1-.8.1-1.2z"/>'
+};
+const SCREENS = { ver: [["inicio", "Inicio"], ["analisis", "Análisis"]], gest: [["partidos", "Partidos"], ["personas", "Personas"]], sis: [["cola", "Cola de la nube"], ["calidad", "Calidad"], ["almacen", "Almacenamiento"], ["ajustes", "Ajustes"]] };
+let SCREEN = "inicio";
+function navHtml(list) { return list.map(([k, t]) => `<button class="nav" type="button" data-go="${k}"><svg viewBox="0 0 24 24" aria-hidden="true">${IC[k]}</svg>${t}${k === "cola" ? `<span class="count num">${D.queue.jobs.filter(j => j.estado === "en_marcha").length}</span>` : ""}</button>`).join(""); }
+$("nav-ver").innerHTML = navHtml(SCREENS.ver); $("nav-gest").innerHTML = navHtml(SCREENS.gest); $("nav-sis").innerHTML = navHtml(SCREENS.sis);
+document.querySelector("nav.side").addEventListener("click", e => { const b = e.target.closest("[data-go]"); if (b) go(b.dataset.go); });
+function go(s) { if (location.hash !== "#" + s) location.hash = s; else show(s); }
+window.addEventListener("hashchange", () => show(location.hash.slice(1)));
+function show(s) {
+  SCREEN = s || "inicio";
+  document.querySelectorAll(".nav").forEach(b => b.toggleAttribute("aria-current", b.dataset.go === SCREEN || (SCREEN === "visor" && b.dataset.go === "analisis")));
+  document.querySelectorAll(".nav[aria-current]").forEach(b => b.setAttribute("aria-current", "page"));
+  closeDrawer();
+  (RENDER[SCREEN] || RENDER.inicio)();
+  window.scrollTo(0, 0);
+}
+const top_ = (title, sub, actions = "", extra = "") => { $("top").innerHTML = `<div class="top-row"><div class="grow"><h1>${title}</h1>${sub ? `<p class="sub">${sub}</p>` : ""}</div>${actions}</div>${extra}`; };
+
+// ---------------- management screens
+const RENDER = {};
+const running = () => D.queue.jobs.filter(j => j.estado === "en_marcha");
+function jobLabel(j) {
+  const m = MATCHES.find(x => x.id === j.partido), who = m ? `${matchLabel(m)} (${people(m).join(" – ")})` : "";
+  const kind = { partido: "Análisis del partido", prueba: "Prueba de 10 min", informe: "Informe", comparar: "Comparación", medir: "Prueba de concepto", leer: "Lectura de diagnóstico" }[j.accion] || j.accion;
+  return `${kind}${who ? " · " + who : ""}`;
+}
+const pending = () => D.queue.jobs.filter(j => j.estado === "pendiente");
+RENDER.inicio = () => {
+  top_("Inicio", "Lo que pasa ahora, lo que necesita algo de ti y lo último terminado.", `<button class="btn primary" type="button" data-add>Añadir partidos</button>`);
+  const k = D.queue.kaggle, run = running();
+  $("content").innerHTML = `
+  <div class="grid3">
+    <div class="card"><span class="eyebrow">Ahora en la nube</span>
+      ${run.length ? run.map(j => `<div class="row"><div><div class="t">${esc(jobLabel(j))}</div><div class="s">${esc(j.id)}</div><div class="s">${esc(j.nota)}</div></div><span class="pill est">${esc(j.donde)}</span></div>`).join("") : `<p class="sub">Nada en marcha.</p>`}
+    </div>
+    <div class="card"><span class="eyebrow">Necesita algo de ti</span>
+      <div class="row"><div><div class="t">Clic de identidad</div><div class="s">Ningún partido nuevo lo espera.</div></div><span class="pill good">nada</span></div>
+      <div class="row"><div><div class="t">Aprobar análisis</div><div class="s">Sinner y poner al día Osaka, Pegula y Zheng: esperan a acabar la nube nativa. Se pedirá con el tiempo y la cuota previstos.</div></div><span class="pill warn">más adelante</span></div>
+    </div>
+    <div class="card"><span class="eyebrow">Cuota</span>
+      ${k ? `<div class="stat"><b class="num">${fmt(k.total - k.used, 1)} h</b><span>de GPU en Kaggle esta semana (${fmt(k.used, 1)} de ${fmt(k.total, 0)} usadas)</span></div><div class="bar ${k.used / k.total > .8 ? "warn" : ""}" style="margin-top:8px"><i style="width:${100 * k.used / k.total}%"></i></div>` : ""}
+      ${D.queue.modal ? `<p class="sub" style="margin-top:10px">Modal: quedan ${fmt(D.queue.modal.left, 2)} $ de ${fmt(D.queue.modal.total, 0)} $ este mes.</p>` : ""}
+    </div>
+  </div>
+  <div><div style="display:flex;justify-content:space-between;align-items:end"><h2>Tus análisis</h2><button class="btn" type="button" data-go2="analisis">Ver todos</button></div>
+    <div class="grid3" style="margin-top:10px">${analysisCard()}</div></div>
+  <div class="card"><span class="eyebrow">Lo último terminado</span>
+    ${D.queue.jobs.filter(j => j.estado === "hecho").slice(-6).reverse().map(j => `<div class="row"><div><div class="t">${esc(jobLabel(j))}</div><div class="s">${esc(j.id)}${j.nota ? " · " + esc(j.nota) : ""}</div></div><span class="pill good">hecho</span></div>`).join("")}
+  </div>`;
+};
+function analysisCard() {
+  return `<button class="card clickable" type="button" data-open style="text-align:left;display:grid;gap:8px">
+    <div class="avatars"><div class="avatar">${initials(PNAME)}</div><div><h3>${STROKE_ES} de ${esc(PNAME)}</h3><span class="sub">${D.n_near} golpes cercanos · ${D.n_far} lejanos · ${MATCHES.filter(m => m.analysed).length} partidos</span></div></div>
+    <div class="chips"><span class="pill warn">beta · ${D.known.length} diferencias conocidas</span><span class="pill good">auditoría ${fmt(100 * D.quality.total.score)} %</span></div></button>`;
+}
+RENDER.analisis = () => {
+  top_("Análisis", "Uno por persona y golpe, con todos sus partidos.", `<button class="btn" type="button" data-also>Analizar también…</button>`);
+  const others = [];
+  for (const p of D.players) for (const st of ["Derecha", "Revés", "Saque"]) if (!(p.name === PNAME && st === STROKE_ES)) others.push([p, st]);
+  $("content").innerHTML = `<div class="grid3">${analysisCard()}</div>
+  <div class="card"><h2>Se puede analizar</h2><p class="sub">Otro golpe de una persona ya analizada sale en minutos (la pasada barata ya registró todos sus impactos). Otra persona de un partido subido, unas 3 h.</p>
+    <div class="list" style="margin-top:8px">${others.map(([p, st]) => { const inM = MATCHES.filter(m => (m.id.includes(p.id) || (p.id === "sabalenka" && m.id.includes("sobolenko")))); return `<div class="row"><div class="avatars"><div class="avatar">${initials(p.name)}</div><div><div class="t">${st} de ${esc(p.name)}</div><div class="s">${inM.length} partido${inM.length === 1 ? "" : "s"} en el catálogo${inM.some(m => !m.analysed) ? " · uno sin analizar" : ""}</div></div></div><button class="btn" type="button" data-also>Analizar</button></div>`; }).join("")}</div>
+    <p class="mock" style="margin-top:10px">Volea, remate y cortado aparecen cuando tengan casos suficientes (hoy 0-6), con su número; no se esconden.</p></div>`;
+};
+RENDER.partidos = () => {
+  top_("Partidos", `${MATCHES.length} partidos en el catálogo · ${MATCHES.filter(m => m.analysed).length} analizados`, `<button class="btn primary" type="button" data-add>Añadir partidos</button>`);
+  $("content").innerHTML = `<div class="card scroll"><table class="t"><thead><tr><th>Partido</th><th>Personas</th><th>Fecha</th><th>Superficie</th><th>Golpes de ella</th><th>Estado</th></tr></thead><tbody>
+  ${MATCHES.map((m, i) => `<tr class="clickable" data-match="${i}"><td><b>${esc(matchLabel(m))}</b><div class="sub">${esc(m.id)}</div></td>
+    <td><div class="avatars">${people(m).map(n => `<div class="avatar" title="${esc(n)}">${initials(n)}</div>`).join("")}<span class="sub">${people(m).map(esc).join(" – ")}</span></div></td>
+    <td class="num">${esc(m.fecha || "—")}</td><td>${esc(m.surf && m.surf !== "—" ? m.surf : "—")}</td>
+    <td class="num">${m.analysed ? `${m.near} cerca · ${m.far} lejos` : "—"}</td>
+    <td>${m.analysed ? `<span class="pill good">analizado</span>` : `<span class="pill warn">en espera</span>`}</td></tr>`).join("")}</tbody></table>
+  <p class="mock" style="margin-top:10px">Torneo, ronda y fecha salen del nombre del fichero (sin la ficha pública aún, #258); las fotos, del propio vídeo en la aplicación.</p></div>`;
+};
+function people(m) {
+  if (m.id.startsWith("zverev")) return ["Alexander Zverev", "Jannik Sinner"];
+  return [PNAME, m.rival || "—"];
+}
+RENDER.personas = () => {
+  top_("Personas", "Fichas creadas desde el partido; hombres y mujeres igual.");
+  const rivals = [...new Set(MATCHES.flatMap(m => people(m)))].filter(n => !D.players.some(p => p.name === n || (p.id === "sabalenka" && /Sobolenko/.test(n))));
+  $("content").innerHTML = `<div class="grid3">${D.players.map(p => `<div class="card"><div class="avatars"><div class="avatar">${initials(p.name)}</div><div><h3>${esc(p.name)}</h3><span class="sub">${p.hand === "left" ? "zurdo/a" : "diestro/a"} · revés a ${p.backhand === "one_handed" ? "una mano" : "dos manos"} · ${fmt(p.height_m, 2)} m</span></div></div>
+    <p class="sub" style="margin-top:8px">${p.name === PNAME ? `Analizado: ${STROKE_ES.toLowerCase()} (${D.n_near} golpes cercanos).` : "Sin análisis todavía."}</p></div>`).join("")}</div>
+  <div class="card"><h2>En los partidos, sin ficha todavía</h2><p class="sub">Se crean solas al analizarlas (nombre del marcador y ficha pública); la altura, si falta, 1,80 m marcada.</p>
+    <div class="list" style="margin-top:6px">${rivals.map(n => `<div class="row"><div class="avatars"><div class="avatar">${initials(n)}</div><div class="t">${esc(n)}</div></div><button class="btn" type="button" data-also>Analizar a ${esc(n.split(" ")[0])}</button></div>`).join("")}</div></div>`;
+};
+RENDER.cola = () => {
+  const q = D.queue, by = st => q.jobs.filter(j => j.estado === st);
+  top_("Cola de la nube", esc(q.head), `<button class="btn" type="button">Pausar</button>`);
+  const sec = (t, st, pill) => { const j = by(st); return j.length ? `<div class="card"><h2>${t} <span class="sub">(${j.length})</span></h2><div class="list" style="margin-top:6px">${j.map(x => `<div class="row"><div><div class="t">${esc(jobLabel(x))} <span class="pill mute">${esc(x.id)}</span></div><div class="s">${esc(x.nota || x.partido || "")}</div></div><span class="pill ${pill}">${esc(x.donde || st)}</span></div>`).join("")}</div></div>` : ""; };
+  $("content").innerHTML = sec("En marcha", "en_marcha", "est") + sec("Pendientes", "pendiente", "warn") + sec("Para mirar", "revisar", "warn") + sec("Con error", "error", "crit") +
+    `<details class="fold"><summary>Hechos (${by("hecho").length})</summary><div class="list">${by("hecho").map(x => `<div class="row"><div><div class="t">${esc(x.id)}</div><div class="s">${esc(x.nota || x.partido || "")}</div></div><span class="pill good">${esc(x.donde)}</span></div>`).join("")}</div></details>`;
+};
+RENDER.calidad = () => {
+  const Q = D.quality, t = Q.total;
+  top_("Calidad", `Modelo de calidad (#256) sobre la auditoría de la beta: ${t.ok} de ${t.n} comprobaciones cumplidas.`);
+  const doms = Object.entries(Q.domains).sort((a, b) => (a[1].score ?? 0) - (b[1].score ?? 0));
+  $("content").innerHTML = `<div class="grid4">
+    <div class="card stat"><b class="num">${fmt(100 * t.score)} %</b><span>comprobaciones cumplidas</span></div>
+    <div class="card stat"><b class="num">${t.accepted} / ${t.cells}</b><span>casillas aceptadas (≥ ${fmt(100 * Q.threshold)} %)</span></div>
+    <div class="card stat"><b class="num">${t.unmeasured}</b><span>casillas sin medir</span></div>
+    <div class="card stat"><b class="num">${Q.counts.falta || 0}</b><span>que fallan (de ${Object.values(Q.counts).reduce((a, b) => a + b, 0)})</span></div></div>
+  <div class="grid2"><div class="card"><h2>Por dominio</h2>${doms.map(([d, v]) => `<div class="hbar" style="margin-top:8px"><span>${esc(d)}</span><div class="track"><i style="left:0;width:${100 * (v.score ?? 0)}%"></i></div><span class="num">${v.score == null ? "sin medir" : fmt(100 * v.score) + " %"}</span></div>`).join("")}</div>
+  <div class="card"><h2>Lo que falta medir y cómo se medirá</h2>${Q.cells.filter(c => c.unmeasured).map(c => `<div class="row"><div><div class="t">${esc(c.d)} · ${esc(c.c)}</div><div class="s">${esc(c.how || "métrica sin escribir todavía")}</div></div><span class="pill mute">${esc(c.l)}</span></div>`).join("")}</div></div>
+  <div class="card"><h2>Lo que falla</h2><div class="list">${Q.fails.map(f => `<div class="row"><div><div class="t">${esc(f.name)}</div><div class="s">${esc(f.detail)}</div></div><span class="pill crit">${esc(f.area)}</span></div>`).join("")}</div></div>`;
+};
+RENDER.almacen = () => {
+  top_("Almacenamiento", "Espacio en el PC y en la nube.");
+  $("content").innerHTML = `<div class="grid3">${[["Imprescindible", "fichas, clics de identidad, resultados por golpe", "good"], ["Regenerable", "recortes de vídeo y cachés: se rehacen solos", "warn"], ["Temporal", "lo que se borra al terminar un trabajo", "mute"]].map(([t, s, c]) => `<div class="card"><span class="pill ${c}">${t}</span><p class="sub" style="margin-top:8px">${s}</p><div class="bar" style="margin-top:10px"><i style="width:0%"></i></div><p class="mock" style="margin-top:8px">Medido por la aplicación en el PC.</p></div>`).join("")}</div>
+  <div class="card"><h2>Vídeos en la nube</h2><p class="sub">Cada vídeo se borra del volumen de Modal cuando su partido queda aceptado (T22). Hoy están los ${MATCHES.length} del catálogo.</p></div>`;
+};
+RENDER.ajustes = () => {
+  top_("Ajustes", "Casi todo es automático; aquí solo lo que es tuyo.");
+  $("content").innerHTML = `<div class="grid2"><div class="card"><h2>Tu altura</h2><p class="sub">Para traducir sus medidas a tus centímetros en la lección.</p><input id="my-h" type="number" step="0.01" min="1.2" max="2.2" value="${store.get("tb-h", 1.78)}" style="margin-top:8px;padding:6px 10px;border:1px solid var(--line);border-radius:8px;width:120px"> m</div>
+  <div class="card"><h2>Avisos de Windows</h2><p class="sub">Al terminar un análisis, al fallar algo o con poco disco.</p></div>
+  <div class="card"><h2>Carpetas</h2><p class="sub">Vídeos y resultados en el PC (config/local.yaml).</p></div>
+  <div class="card"><h2>Claves</h2><p class="sub">Modal y GitHub, guardadas en el PC. Aquí solo se ve si están puestas, nunca su valor.</p></div></div>`;
+  $("my-h").onchange = e => store.set("tb-h", +e.target.value);
+};
+
+// ---------------- add a match (flow) and "analyse also"
+function openAdd() {
+  const ex = MATCHES[2];
+  const steps = ["Elegir vídeos", "Datos del partido", "Subida", "¿Quién es ella?", "Aprobar"];
+  let k = 0;
+  const body = () => {
+    const sp = `<div class="stepper">${steps.map((s, i) => `<span class="chip" ${i === k ? 'aria-current="step"' : ""}>${i + 1}. ${s}</span>`).join("")}</div>`;
+    const v = [
+      `<div class="card"><h2>Elige uno o varios vídeos del PC</h2><p class="sub">Arrastra los ficheros aquí o elígelos. Cada vídeo es un partido; se reconoce por su contenido (renombrarlo no rompe nada).</p><div class="frame" style="aspect-ratio:auto;height:140px;margin-top:12px;display:grid;place-items:center;color:#eaf1f8">Arrastra aquí los vídeos (.mp4, .mkv, .ts)</div></div>`,
+      `<div class="card"><h2>Propuesta de datos</h2><p class="sub">Del nombre del fichero, la ficha pública y el marcador. Corrige solo si algo está mal.</p><table class="t" style="margin-top:8px"><tr><th>Dato</th><th>Propuesto</th><th>De dónde sale</th></tr>
+        <tr><td>Fichero</td><td>${esc(ex.id)}</td><td>—</td></tr><tr><td>Torneo</td><td>${esc(ex.torneo || "—")}</td><td>nombre del fichero</td></tr><tr><td>Ronda</td><td>${esc(ex.ronda || "—")}</td><td>nombre del fichero</td></tr><tr><td>Fecha</td><td>${esc(ex.fecha || "—")}</td><td>nombre del fichero</td></tr><tr><td>Personas</td><td>${people(ex).map(esc).join(" – ")}</td><td>nombre del fichero y marcador</td></tr><tr><td>Superficie</td><td>—</td><td>ficha pública del torneo (#258)</td></tr></table></div>`,
+      `<div class="card"><h2>Subiendo a la nube</h2><p class="sub">Por partes: si se corta, sigue donde iba. El vídeo se queda en el PC para verlo.</p><div class="bar" style="margin-top:12px"><i style="width:42%"></i></div><p class="mock" style="margin-top:8px">Maqueta: la subida real llega con N (scripts/subir_nube.py ya sube al volumen de Modal).</p></div>`,
+      `<div class="card"><h2>¿Cuál es ella?</h2><p class="sub">Un clic en su foto, una vez por partido. Las fotos salen del propio vídeo.</p><div class="grid2" style="margin-top:10px">${people(ex).map(n => `<button class="card clickable" type="button" style="display:grid;gap:8px;justify-items:center"><div class="frame" style="width:100%;aspect-ratio:3/4"><span class="tag">Fotograma real</span></div><b>${esc(n)}</b></button>`).join("")}</div></div>`,
+      `<div class="card"><h2>Aprobar el análisis</h2><p class="sub">Primero una prueba corta de 10 min en la nube; después, con tu visto bueno, el partido entero.</p><div class="grid2" style="margin-top:10px"><div class="stat"><b>5-6,5 h</b><span>de GPU de Kaggle (medido: Gauff 5,0 h, la final 6,5 h)</span></div><div class="stat"><b class="num">${D.queue.kaggle ? fmt(D.queue.kaggle.total - D.queue.kaggle.used, 1) + " h" : "—"}</b><span>quedan esta semana</span></div></div><button class="btn primary" type="button" style="margin-top:12px">Aprobar</button></div>`][k];
+    return `<div class="drawer-h"><h2>Añadir partidos</h2><button class="btn" type="button" data-close>Cerrar</button></div>${sp}${v}<div style="display:flex;gap:8px;justify-content:flex-end"><button class="btn" type="button" data-step="-1" ${k === 0 ? "disabled" : ""}>Atrás</button><button class="btn primary" type="button" data-step="1" ${k === steps.length - 1 ? "disabled" : ""}>Siguiente</button></div>`;
+  };
+  openDrawer(body());
+  $("drawer-in").onclick = e => { const b = e.target.closest("[data-step]"); if (b) { k = Math.max(0, Math.min(steps.length - 1, k + +b.dataset.step)); $("drawer-in").innerHTML = body(); } };
+}
+function openMatch(i) {
+  const m = MATCHES[i];
+  openDrawer(`<div class="drawer-h"><div><h2>${esc(matchLabel(m))}</h2><p class="sub">${esc(m.id)}</p></div><button class="btn" type="button" data-close>Cerrar</button></div>
+  <div class="grid2">${people(m).map(n => `<div class="card avatars"><div class="avatar">${initials(n)}</div><div style="flex:1"><b>${esc(n)}</b><div class="sub">${n === PNAME ? `${m.near} golpes cerca · ${m.far} lejos` : "sin analizar"}</div></div>${n === PNAME ? `<button class="btn" type="button" data-open>Ver</button>` : `<button class="btn" type="button" data-also>Analizar a…</button>`}</div>`).join("")}</div>
+  <div class="card"><h2>Datos</h2><table class="t"><tr><td>Torneo</td><td>${esc(m.torneo || "—")}</td><td class="sub">nombre del fichero</td></tr><tr><td>Ronda</td><td>${esc(m.ronda || "—")}</td><td class="sub">nombre del fichero</td></tr><tr><td>Fecha</td><td>${esc(m.fecha || "—")}</td><td class="sub">nombre del fichero</td></tr><tr><td>Superficie</td><td>${esc(m.surf && m.surf !== "—" ? m.surf : "—")}</td><td class="sub">catálogo</td></tr></table></div>
+  <div class="card"><h2>Estado</h2><p class="sub">${m.analysed ? "Analizado en la nube. Las etapas, una por una, y sus fallos por niveles (#265) se ven aquí en la aplicación." : "Espera a acabar la nube nativa (#295); después, prueba de 10 min y tu aprobación."}</p>
+  <div style="display:flex;gap:8px;margin-top:10px"><button class="btn" type="button">Reanalizar con la versión nueva</button><button class="btn" type="button">Cambiar el clic de identidad</button><button class="btn" type="button">Archivar</button></div></div>`);
+}
+
+// ---------------- the viewer of an analysis
+let TAB = "leccion", SUB = "comparar", SIT = "todas", PH = 0, ONLY = null, ORDER = "captura", SHOWN = 24;
+const sitOf = id => D.situations.find(s => s.id === id);
+const keep = {
+  todas: () => true, rapida: s => s.fast === true, lenta: s => s.fast === false, alta: s => s.height === "alta", baja: s => s.height === "baja",
+  abierta: s => s.wide === true, corta: s => s.short === true, carrera: s => s.movement === "en carrera", parada: s => s.movement === "parada",
+  ataque: s => s.intent === "ataque", defensa: s => s.intent === "defensa"
+};
+RENDER.visor = () => {
+  const s = sitOf(SIT);
+  top_(`${STROKE_ES} de ${esc(PNAME)}`, `${s.n} golpes cercanos${SIT !== "todas" ? ` · ${esc(s.label.toLowerCase())}` : ""} · ${MATCHES.filter(m => m.analysed).length} partidos · beta`,
+    `<button class="btn" type="button" data-go2="analisis">‹ Análisis</button>`,
+    `<div class="chips" id="sits">${D.situations.map(x => `<button class="chip" type="button" data-sit="${x.id}" aria-pressed="${x.id === SIT}">${esc(x.label)}<span class="c num">${x.n}</span></button>`).join("")}</div>
+     <div class="tabs">${[["leccion", "Lección"], ["golpes", "Sus golpes"], ["mas", "Más"]].map(([k, t]) => `<button class="tab" type="button" data-tab="${k}" ${k === TAB ? 'aria-current="page"' : ""}>${t}</button>`).join("")}</div>`);
+  ({ leccion: lesson, golpes: videoteca, mas: more })[TAB]();
+};
+$("top").addEventListener("click", e => {
+  const s = e.target.closest("[data-sit]"); if (s) { SIT = s.dataset.sit; RENDER.visor(); return; }
+  const t = e.target.closest("[data-tab]"); if (t) { TAB = t.dataset.tab; RENDER.visor(); }
+});
+
+// automatic drawing per phase (one at a time, from its measure; the real frame goes underneath)
+function drawing(id) {
+  const g = "var(--draw)", r = "var(--draw-2)";
+  const base = `<g fill="none" stroke="#f3f7fb" stroke-opacity=".45" stroke-width=".4"><path d="M28 18 L72 18 L94 70 L6 70 Z"/><path d="M34 18 L24 70 M66 18 L76 70 M31 34 L69 34 M50 34 L50 70"/><path d="M25 40 L75 40" stroke-width=".9" stroke-opacity=".7"/></g>`;
+  const fig = `<g stroke="#fff" stroke-width="1.6" stroke-linecap="round" fill="none" opacity=".92"><circle cx="50" cy="46" r="2.6" fill="#fff"/><path d="M50 49 L50 58 M45 51 L55 51 M50 58 L46 66 M50 58 L55 66"/></g>`;
+  const d = {
+    ready: `<circle cx="50" cy="22" r="1.8" fill="${g}"/><text x="53" y="23" fill="#fff" font-size="3">golpea la rival</text><path d="M44 66 L47 63 M56 66 L53 63" stroke="${g}" stroke-width="1.4"/>`,
+    takeback: `<path d="M41 50 Q50 43 60 49" stroke="${g}" stroke-width="1.4" fill="none" marker-end="url(#ar)"/>`,
+    loaded: `<line x1="50" y1="38" x2="50" y2="69" stroke="#fff" stroke-width=".7" stroke-dasharray="1.5 1"/><path d="M42 47 Q50 40 58 47" stroke="${g}" stroke-width="1.4" fill="none" marker-end="url(#ar)"/>`,
+    acceleration: `<path d="M60 44 Q66 60 56 62 Q46 62 44 50" stroke="#fff" stroke-width="1" fill="none"/><circle cx="56" cy="62" r="1.6" fill="${r}"/>`,
+    impact: `<path d="M50 51 L58 52 L64 48" stroke="${g}" stroke-width="1.4" fill="none"/><circle cx="58" cy="52" r="2" stroke="${g}" fill="none"/><rect x="62" y="44" width="8" height="7" stroke="${g}" fill="none" stroke-width=".8"/>`,
+    extension: `<path d="M56 50 L70 44" stroke="${g}" stroke-width="1.4" marker-end="url(#ar)"/>`,
+    finish: `<line x1="38" y1="47" x2="64" y2="47" stroke="${g}" stroke-width="1"/><circle cx="44" cy="43" r="1.6" fill="${g}"/>`,
+    recovery: `<path d="M56 66 Q50 60 44 64" stroke="${g}" stroke-width="1.4" fill="none" marker-end="url(#ar)"/>`,
+    feet: `<g fill="${g}" font-size="3"><circle cx="40" cy="64" r="1.6"/><circle cx="47" cy="62" r="1.6"/><circle cx="54" cy="64" r="1.6"/><text x="39" y="61" fill="#fff">1</text><text x="46" y="59" fill="#fff">2</text><text x="53" y="61" fill="#fff">3</text></g>`
+  }[id] || "";
+  return `<svg viewBox="0 0 100 75" preserveAspectRatio="none" aria-hidden="true"><defs><marker id="ar" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="4" markerHeight="4" orient="auto"><path d="M0 0 6 3 0 6z" fill="${g}"/></marker></defs>${base}${fig}${d}</svg>`;
+}
+const RH = () => Object.fromEntries((D.rhythm.events || []).map(e => [e.k, e]));
+const planKeys = new Set((D.plan || []).slice(0, 3).map(p => p.key));
+function keyValue(c) {
+  if (c.m && MET[c.m]) { const st = sitOf(SIT).m[c.m], all = sitOf("todas").m[c.m]; if (st && isN(st.med)) {
+    let diff = ""; if (SIT !== "todas" && all && isN(all.med)) { const dv = st.med - all.med; diff = Math.abs(dv) > (MET[c.m].noise || 0) ? `<span class="pill est">cambia con la bola: ${sgn(dv, dec(c.m))} ${esc(unit(c.m))}</span>` : `<span class="pill mute">igual que siempre</span>`; }
+    return { v: `${fmt(st.med, dec(c.m))}<small>${esc(unit(c.m))}</small>`, n: st.n, pill: relPill(c.m), diff, range: `la mitad de sus golpes entre ${fmt(st.p25, dec(c.m))} y ${fmt(st.p75, dec(c.m))} ${esc(unit(c.m))}` }; } }
+  const rel = D.reliability[c.key];
+  return { v: "", n: rel ? rel.n : null, pill: verdictPill(rel && rel.verdict), diff: "", range: "valor de su serie fotograma a fotograma (en la aplicación)" };
+}
+function lesson() {
+  const phs = D.phases, p = phs[PH], rh = RH()[p.id];
+  const ks = p.checks.filter(c => c.m && MET[c.m]).concat(p.checks.filter(c => !(c.m && MET[c.m]))).slice(0, 3);
+  const firstQuote = (p.focus || "").match(/«([^»]+)»/);
+  const focus = esc(p.focus || p.when || "").replace(firstQuote ? esc(firstQuote[0]) : "\u0000", firstQuote ? `<em>${esc(firstQuote[0])}</em>` : "");
+  const face = { loaded: "rFaceArm", impact: "rFaceImp", finish: "rFaceFin" }[p.id];
+  const fs = face && sitOf(SIT).m[face];
+  const done = store.get("tb-done", {});
+  const c0 = p.checks.find(c => c.drill) || {};
+  $("content").innerHTML = `
+  <div class="strip" role="tablist">${phs.map((x, i) => `<button class="ph" type="button" data-ph="${i}" ${i === PH ? 'aria-current="page"' : ""}><div class="mini" style="position:relative">${drawing(x.id)}</div><div class="nm">${esc(x.title)}</div>${x.checks.some(c => planKeys.has(c.key)) ? `<span class="start">empieza aquí</span>` : ""}${done[x.id] ? `<span class="start" style="left:6px;right:auto;background:var(--good);color:#fff">✓</span>` : ""}</button>`).join("")}</div>
+  <div class="lesson">
+    <div><div class="frame">${drawing(p.id)}<span class="tag">Su golpe más representativo en esta situación · fotograma real en la aplicación</span><span class="cap">${esc((p.title.split("·")[1] || p.title).trim())}${rh && isN(rh.median) ? ` · <em>${rh.median === 0 ? "impacto" : sgn(rh.median, 2) + " s"}</em>` : ""}</span></div>
+      <div class="controls"><button class="chip" type="button" aria-pressed="true">Velocidad real</button><button class="chip" type="button">¼</button><button class="chip" type="button">Otro golpe suyo</button><button class="chip" type="button">El golpe entero</button></div>
+      <p class="mock" style="margin-top:10px">El dibujo sale de la medida de la fase (como en los shorts de Joel Myers): uno solo cada vez.</p></div>
+    <div style="display:grid;gap:14px">
+      <div><span class="eyebrow">Foco</span><div class="focus">${focus}</div></div>
+      ${ks.map(c => { const v = keyValue(c); return `<div class="key"><div class="key-h"><div><b>${esc(c.label)}</b>${v.n ? ` <span class="sub">· ${v.n} golpes</span>` : ""}</div>${v.v ? `<span class="v num">${v.v}</span>` : ""}</div>
+        <p class="how">${esc(c.cue || "")}</p>${c.mistake ? `<p class="pb"><b>Si te pasa:</b> ${esc(c.mistake)}</p>` : ""}<div class="chips">${v.pill}${v.diff}<span class="sub">${v.range}</span></div></div>`; }).join("")}
+      <div class="key"><b>Cuerdas en esta fase</b><p class="how">${fs && isN(fs.med) ? `Cara ${fs.med >= 0 ? "cerrada" : "abierta"} ${fmt(Math.abs(fs.med))}° (mediana de ${fs.n} golpes con la mano en 3D)` : face ? "Pocos golpes con la mano en 3D para decirlo en esta situación." : "No medible desde la tele en esta fase (sin la mano en 3D)."} ${face ? relPill(face) : ""}</p></div>
+      <div class="practice"><b>Practica</b><span>${esc(c0.drill || "—")}</span><span class="sub">Criterio: 8 de 10 bien = conseguido.</span><div><button class="btn ${done[p.id] ? "" : "primary"}" type="button" data-done="${p.id}">${done[p.id] ? "Conseguido ✓" : "Conseguido"}</button></div></div>
+      <div style="display:flex;justify-content:space-between"><button class="btn" type="button" data-ph="${Math.max(0, PH - 1)}">‹ Fase anterior</button><button class="btn" type="button" data-ph="${Math.min(phs.length - 1, PH + 1)}">Fase siguiente ›</button></div>
+    </div>
+  </div>
+  ${folds()}`;
+  drawRhythm();
+}
+function folds() {
+  const F = D.findings || [];
+  return `<div style="display:grid;gap:10px">
+  <details class="fold"><summary>Lo esencial: conclusiones medidas (${D.conclusions.length})</summary><div class="list">${D.conclusions.map(c => `<div class="row"><div>${esc(c.text)}</div><span class="pill ${CONF(c.conf)}">${esc(c.conf)}</span></div>`).join("")}</div></details>
+  <details class="fold"><summary>Su ritmo y su cadena cinética</summary><div><svg class="chart" id="rhythm"></svg></div></details>
+  <details class="fold"><summary>Qué cambia según la bola (con ajuste por la bola y el partido)</summary><div class="list">${F.map(f => `<div class="row"><div><div class="t">${esc(f.t)}</div><div class="s">${esc(f.c)}</div></div><span class="pill ${(f.v || [])[0] === "good" ? "good" : /ruido/i.test((f.v || [])[1]) ? "warn" : "crit"}">${esc((f.v || [])[1] || "")}</span></div>`).join("")}</div></details>
+  <details class="fold"><summary>Tu plan completo</summary><div><ol class="steps">${D.plan.map(p => `<li><div><b>${esc(p.title)}</b><div class="sub">${esc(p.why)}</div></div></li>`).join("")}</ol></div></details>
+  <details class="fold"><summary>Si te pasa…</summary><div class="list">${D.symptoms.map(s => `<div class="row"><div><div class="t">${esc(s.s)}</div><div class="s">${esc(s.why)}</div></div></div>`).join("")}</div></details>
+  <details class="fold"><summary>Lo que la tele no mide</summary><div class="list">${D.not_tv.map(([a, b]) => `<div class="row"><div><div class="t">${esc(a)}</div><div class="s">${esc(b)}</div></div><span class="pill mute">no medible desde la tele</span></div>`).join("")}</div></details>
+  <details class="fold"><summary>Todas las medidas</summary><div class="scroll"><table class="t"><tr><th>Medida</th><th>Mediana</th><th>Mitad central</th><th>Golpes</th><th>Fiabilidad</th></tr>${Object.keys(MET).map(k => { const st = sitOf(SIT).m[k]; return `<tr><td>${esc(MET[k].name)}<div class="sub">${esc(MET[k].sub || "")}</div></td><td class="num">${st && isN(st.med) ? fmt(st.med, dec(k)) + " " + esc(unit(k)) : "—"}</td><td class="num">${st && isN(st.med) ? fmt(st.p25, dec(k)) + " – " + fmt(st.p75, dec(k)) : "—"}</td><td class="num">${st ? st.n : 0}</td><td>${relPill(k)}</td></tr>`; }).join("")}</table></div></details>
+  <details class="fold"><summary>Glosario (${D.glossary.length} términos)</summary><div class="list">${D.glossary.map(([a, b]) => `<div class="row"><div><div class="t">${esc(a)}</div><div class="s">${esc(b)}</div></div></div>`).join("")}</div></details>
+  </div>`;
+}
+function drawRhythm() {
+  const svg = $("rhythm"); if (!svg) return;
+  const ev = (D.rhythm.events || []).concat((D.rhythm.chain || []).map(c => ({ ...c, label: "Pico: " + c.label })));
+  const W = 900, L = 200, R = 20, row = 26, top = 20, H = top + row * ev.length + 26, lo = -1.6, hi = .7, X = t => L + (t - lo) / (hi - lo) * (W - L - R);
+  let g = ""; for (let t = -1.5; t <= .51; t += .5) g += `<line class="grid" x1="${X(t)}" x2="${X(t)}" y1="${top - 6}" y2="${H - 22}"/><text x="${X(t)}" y="${H - 6}" text-anchor="middle">${Math.abs(t) < 1e-9 ? "impacto" : sgn(t, 1) + " s"}</text>`;
+  ev.forEach((e, i) => { const y = top + i * row + row / 2; g += `<text class="lab" x="${L - 10}" y="${y + 4}" text-anchor="end">${esc(e.label)}</text>`; if (isN(e.p25) && isN(e.p75) && e.p75 > e.p25) g += `<rect class="bar" x="${X(e.p25)}" y="${y - 6}" width="${X(e.p75) - X(e.p25)}" height="12" rx="6"/>`; if (isN(e.median)) g += e.k === "impact" ? `<circle class="imp" cx="${X(0)}" cy="${y}" r="6"/>` : `<circle class="dot" cx="${X(e.median)}" cy="${y}" r="5"/>`; });
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`); svg.innerHTML = g;
+}
+$("content").addEventListener("click", e => {
+  const ph = e.target.closest("[data-ph]"); if (ph) { PH = +ph.dataset.ph; lesson(); return; }
+  const dn = e.target.closest("[data-done]"); if (dn) { const d = store.get("tb-done", {}); d[dn.dataset.done] = !d[dn.dataset.done]; store.set("tb-done", d); lesson(); return; }
+  const st = e.target.closest("[data-stroke]"); if (st) { openStroke(st.dataset.stroke); return; }
+  const or = e.target.closest("[data-order]"); if (or) { ORDER = or.dataset.order; SHOWN = 24; videoteca(); return; }
+  const mo = e.target.closest("[data-more]"); if (mo) { SHOWN += 24; videoteca(); return; }
+  const sb = e.target.closest("[data-sub]"); if (sb) { SUB = sb.dataset.sub; more(); return; }
+  const cell = e.target.closest("[data-cell]"); if (cell) { const [sid, stc] = cell.dataset.cell.split("|"); SIT = sid; ONLY = { stance: stc }; TAB = "golpes"; RENDER.visor(); return; }
+  const mt = e.target.closest("[data-match]"); if (mt) { openMatch(+mt.dataset.match); return; }
+});
+document.addEventListener("click", e => {
+  if (e.target.closest("[data-add]")) { openAdd(); return; }
+  if (e.target.closest("[data-also]")) { openAlso(); return; }
+  if (e.target.closest("[data-open]")) { TAB = "leccion"; go("visor"); return; }
+  const g2 = e.target.closest("[data-go2]"); if (g2) { go(g2.dataset.go2); return; }
+  if (e.target.closest("[data-close]") || e.target === $("drawer")) closeDrawer();
+});
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeDrawer(); });
+function openDrawer(html) { $("drawer-in").innerHTML = html; $("drawer").hidden = false; $("drawer-in").onclick = null; }
+function closeDrawer() { $("drawer").hidden = true; }
+function openAlso() {
+  openDrawer(`<div class="drawer-h"><h2>Analizar también…</h2><button class="btn" type="button" data-close>Cerrar</button></div>
+  <div class="card"><h2>Otro golpe de ${esc(PNAME)}</h2><p class="sub">Sus golpes ya están detectados y clasificados en sus partidos: el informe de otro golpe sale en minutos.</p><div class="chips" style="margin-top:8px"><button class="chip" type="button">Revés</button><button class="chip" type="button">Saque</button><button class="chip" type="button" disabled>Volea (pocos casos)</button></div></div>
+  <div class="card"><h2>La otra persona de un partido</h2><p class="sub">Reutiliza la pasada barata ya hecha: unas 3 h por partido. Se aprueba con el tiempo y la cuota previstos.</p></div>`);
+}
+
+// strokes: video library, a stroke's analysis
+function title(s) { return `Frente a ${s.rival || "—"}${s.set ? ` · ${s.set}.º set ${s.score || ""}` : ""}`; }
+function strokesNow() {
+  let a = D.strokes.filter(keep[SIT]);
+  if (ONLY && ONLY.stance) a = a.filter(s => s.stance === ONLY.stance);
+  const by = { captura: (x, y) => (y.quality ?? -1) - (x.quality ?? -1), representativo: (x, y) => (x.repr ?? 9) - (y.repr ?? 9),
+    resultado: (x, y) => ["ganador", "error", "sigue"].indexOf(x.outcome) - ["ganador", "error", "sigue"].indexOf(y.outcome), tiempo: (x, y) => (x.tAvail ?? 9) - (y.tAvail ?? 9) };
+  return a.sort(by[ORDER]);
+}
+function videoteca() {
+  const a = strokesNow();
+  $("content").innerHTML = `<div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap"><b>${a.length} golpes</b>${ONLY ? `<span class="pill est">apoyo ${esc(ONLY.stance)}</span><button class="btn" type="button" id="clr">Quitar filtro</button>` : ""}<span class="sub" style="margin-left:auto">Orden:</span>
+    <div class="chips">${[["captura", "Mejor captados"], ["representativo", "Más representativos"], ["resultado", "Por resultado"], ["tiempo", "Menos tiempo"]].map(([k, t]) => `<button class="chip" type="button" data-order="${k}" aria-pressed="${k === ORDER}">${t}</button>`).join("")}</div><button class="btn primary" type="button">Reproducir todos</button></div>
+  <div class="vgrid">${a.slice(0, SHOWN).map(s => `<button class="vcard" type="button" data-stroke="${esc(s.id)}"><div class="frame" style="aspect-ratio:16/10">${drawing("")}<span class="tag">vídeo · captura ${fmt(100 * (s.quality ?? 0))} %</span></div><div class="meta"><b>${esc(title(s))}</b><span>${[...s.bits, s.stance && "apoyo " + s.stance, s.outcome === "error" ? "error" : null].filter(Boolean).map(esc).join(" · ") || "—"}</span></div></button>`).join("")}</div>
+  ${a.length > SHOWN ? `<button class="btn" type="button" data-more style="justify-self:center">Ver más</button>` : ""}`;
+  if ($("clr")) $("clr").onclick = () => { ONLY = null; videoteca(); };
+}
+function openStroke(id) {
+  const s = D.strokes.find(x => x.id === id); if (!s) return;
+  const ph = s.phases || {}, b = s.body || {}, f = s.feet || {};
+  const same = D.strokes.filter(x => x.match === s.match && x.set === s.set && x.game === s.game && x.id !== s.id);
+  const mrow = ["sh", "xf", "elbow", "contactH", "lat", "baseM", "head", "finishH", "split", "disp", "recov"].filter(k => MET[k]).map(k => {
+    const v = s.m[k], all = sitOf("todas").m[k]; if (!isN(v)) return ""; const dv = all && isN(all.med) ? v - all.med : null;
+    return `<tr><td>${esc(MET[k].name)}</td><td class="num">${fmt(v, dec(k))} ${esc(unit(k))}</td><td class="num">${all && isN(all.med) ? fmt(all.med, dec(k)) : "—"}</td><td>${dv === null ? "—" : Math.abs(dv) > (MET[k].noise || 0) ? `<b style="color:var(--court)">${sgn(dv, dec(k))}</b>` : `<span class="sub">dentro del error</span>`}</td><td>${relPill(k)}</td></tr>`; }).join("");
+  const order = ["ready", "takeback", "loaded", "acceleration", "impact", "extension", "finish", "recovery"];
+  openDrawer(`<div class="drawer-h"><div><h2>${esc(title(s))}</h2><p class="sub">${[...s.bits, s.stance && "apoyo " + s.stance, s.movement, s.finish && "terminación " + s.finish].filter(Boolean).map(esc).join(" · ")}</p></div><button class="btn" type="button" data-close>Cerrar</button></div>
+  <div><div class="frame">${drawing("impact")}<span class="tag">Vídeo real del golpe con capas · captura ${fmt(100 * (s.quality ?? 0))} %</span></div>
+    <div class="controls">${["Velocidad real", "½", "¼", "⅛", "Fotograma a fotograma", "Pantalla completa"].map((t, i) => `<button class="chip" type="button" aria-pressed="${i === 0}">${t}</button>`).join("")}<span class="sub" style="margin-left:8px">Capas:</span>${["Cuerpo", "Raqueta", "Bola", "Medidas"].map((t, i) => `<button class="chip" type="button" aria-pressed="${i === 0}">${t}</button>`).join("")}</div></div>
+  <div class="card"><h3>Sus 8 fases</h3><div class="chips" style="margin-top:8px">${order.map(k => `<span class="chip">${esc((D.phases.find(p => p.id === k) || {}).title || k)}${isN(ph[k]) ? ` <span class="c num">${ph[k] === 0 ? "impacto" : sgn(ph[k], 2) + " s"}</span>` : ""}</span>`).join("")}</div></div>
+  ${(s.ball || []).length ? `<div class="card"><h3>La bola y ella</h3><div class="moments" style="margin-top:8px">${s.ball.map(m => `<div class="moment"><div class="frame"><span class="tag">${m.t === 0 ? "impacto" : sgn(m.t, 2) + " s"}</span></div><b>${esc(m.title)}</b><span>${esc(m.text)}</span></div>`).join("")}</div></div>` : ""}
+  <div class="grid2">
+    <div class="card"><h3>Bajar y subir</h3>${isN(b.drop) ? `<div class="hbar" style="margin-top:8px"><span>Baja (espera → más bajo)</span><div class="track"><i style="left:0;width:${Math.min(100, 2.5 * b.drop)}%"></i></div><span class="num">${fmt(b.drop)} cm</span></div><div class="hbar" style="margin-top:6px"><span>Sube (más bajo → más alto)</span><div class="track"><i class="up" style="left:0;width:${Math.min(100, 2.5 * b.rise)}%"></i></div><span class="num">${fmt(b.rise)} cm</span></div>` : `<p class="sub">Sin medida en este golpe.</p>`}
+      <h3 style="margin-top:14px">Base (m entre los pies)</h3>${b.base ? Object.entries(b.base).map(([k, v]) => `<div class="hbar" style="margin-top:6px"><span>${{ loaded: "Armado", impact: "Impacto", finish: "Terminación" }[k] || k}</span><div class="track"><i style="left:0;width:${Math.min(100, 60 * v)}%"></i></div><span class="num">${fmt(v, 2)} m</span></div>`).join("") : `<p class="sub">Sin medida.</p>`}
+      <p class="sub" style="margin-top:10px">Tronco al terminar: <b>${esc(b.trunk || "—")}</b></p></div>
+    <div class="card"><h3>Sus pies</h3><table class="t">${[["Recorrido hasta la bola", isN(f.path_m) ? fmt(f.path_m, 1) + " m" : "—"], ["Velocidad máxima", isN(f.peak_speed_mps) ? fmt(f.peak_speed_mps, 1) + " m/s" : "—"], ["Hacia dónde", f.move_direction || "—"], ["Talón de atrás arriba", f.back_heel_lift ? `sí, ${fmt(f.back_heel_lift_s, 2)} s tras el impacto` : "—"], ["Vuelve hacia el centro", isN(f.recovery_to_centre_m) ? fmt(f.recovery_to_centre_m, 1) + " m en 1 s" : "—"], ["Papel del apoyo", f.stance_role || "—"]].map(([a, v]) => `<tr><td>${a}</td><td><b>${esc(v)}</b></td></tr>`).join("")}</table><p class="mock" style="margin-top:8px">Las huellas numeradas sobre la pista (#236), en la aplicación.</p></div>
+  </div>
+  <div class="card scroll"><h3>Frente a lo habitual en ella</h3><table class="t"><tr><th>Medida</th><th>Este golpe</th><th>Lo habitual</th><th>Diferencia</th><th>Fiabilidad</th></tr>${mrow}</table></div>
+  <div class="card"><h3>El punto</h3><p class="sub">${same.length ? `Sus otros golpes del mismo juego (${s.set}.º set):` : "Ningún otro golpe suyo de este juego."}</p><div class="chips" style="margin-top:6px">${same.slice(0, 12).map(x => `<button class="chip" type="button" data-s2="${esc(x.id)}">${esc(x.score || "—")}${x.stance ? " · " + esc(x.stance) : ""}</button>`).join("")}</div></div>`);
+  $("drawer-in").onclick = e => { const x = e.target.closest("[data-s2]"); if (x) openStroke(x.dataset.s2); };
+}
+
+// "Más"
+function more() {
+  const subs = [["comparar", "Comparar"], ["conclusiones", "Conclusiones"], ["situaciones", "Situaciones"], ["pista", "Pista"], ["tabla", "Tabla de golpes"], ["lateral", "Vista lateral (entreno)"], ["fiabilidad", "Fiabilidad"], ["datos", "Datos"], ["exportar", "Exportar"]];
+  $("content").innerHTML = `<div class="chips">${subs.map(([k, t]) => `<button class="chip" type="button" data-sub="${k}" aria-pressed="${k === SUB}">${t}</button>`).join("")}</div><div id="sub"></div>`;
+  ({ comparar, conclusiones, situaciones, pista, tabla, lateral, fiabilidad, datos, exportar })[SUB]();
+}
+function comparar() {
+  const a = strokesNow(), A = a[0], B = a.find(s => s.stance !== A?.stance) || a[1];
+  const keys = ["sh", "xf", "elbow", "contactH", "lat", "baseM", "head", "finishH"].filter(k => MET[k]);
+  $("sub").innerHTML = `<div class="grid2" style="margin-top:12px">${[A, B].map((s, i) => s ? `<div class="card"><div class="frame">${drawing("impact")}<span class="tag">${i ? "B" : "A"} · ${esc(title(s))}</span></div><div class="controls"><button class="chip" type="button" aria-pressed="true">Lado a lado</button><button class="chip" type="button">Uno encima del otro</button><button class="chip" type="button">Superpuestos</button><button class="chip" type="button" aria-pressed="true">Enlazados en el impacto</button></div></div>` : "").join("")}</div>
+  <div class="card"><h3>Lo que cambia (solo por encima del error)</h3><div class="list">${keys.map(k => { const va = A && A.m[k], vb = B && B.m[k]; if (!isN(va) || !isN(vb)) return ""; const dv = vb - va; return Math.abs(dv) > (MET[k].noise || 0) ? `<div class="row"><div>${esc(MET[k].name)}: B ${sgn(dv, dec(k))} ${esc(unit(k))} frente a A (${fmt(va, dec(k))} → ${fmt(vb, dec(k))})</div>${relPill(k)}</div>` : ""; }).join("") || `<p class="sub">Nada supera el error de medida entre estos dos golpes.</p>`}</div></div>`;
+}
+function conclusiones() {
+  const F = D.findings || [], real = F.filter(f => (f.v || [])[0] === "good"), rest = F.filter(f => (f.v || [])[0] !== "good");
+  $("sub").innerHTML = `<div class="card" style="margin-top:12px"><h3>Diferencias reales (ajustadas por la bola y el partido)</h3><div class="list">${real.map(f => `<div class="row"><div><div class="t">${esc(f.t)}</div><div class="s">${esc(f.c)} · ${f.e ? sgn(f.e.d, 1) : ""} (${f.e ? f.e.na + " frente a " + f.e.nb : ""} golpes)</div></div><span class="pill good">diferencia real</span></div>`).join("") || `<p class="sub">Ninguna.</p>`}</div></div>
+  <details class="fold"><summary>No concluyentes o dentro del ruido (${rest.length})</summary><div class="list">${rest.map(f => `<div class="row"><div><div class="t">${esc(f.t)}</div><div class="s">${esc(f.c)}</div></div><span class="pill warn">${esc((f.v || [])[1] || "")}</span></div>`).join("")}</div></details>`;
+}
+function situaciones() {
+  const cls = ["abierto", "semiabierto", "neutro", "cerrado"];
+  $("sub").innerHTML = `<div class="card scroll" style="margin-top:12px"><h3>Apoyo en el impacto según la situación</h3><p class="sub">Cada celda abre sus golpes (como la matriz de Sportscode).</p><table class="t matrix"><tr><th>Situación</th>${cls.map(c => `<th>${c}</th>`).join("")}<th>Total</th></tr>
+  ${D.situations.map(s => { const g = D.strokes.filter(keep[s.id]); return `<tr><td><b>${esc(s.label)}</b></td>${cls.map(c => { const n = g.filter(x => x.stance === c).length; return `<td class="cell" data-cell="${s.id}|${c}">${n}<div class="sub">${g.length ? fmt(100 * n / g.length) + " %" : ""}</div></td>`; }).join("")}<td class="num">${g.length}</td></tr>`; }).join("")}</table></div>`;
+}
+function pista() {
+  const a = D.strokes.filter(keep[SIT]), HL = 11.885, SW = 4.115, DW = 5.485, SL = 6.4;
+  let g = `<rect class="outer" x="-6.5" y="-13.5" width="13" height="31"/><rect class="surf" x="${-DW}" y="${-HL}" width="${2 * DW}" height="${2 * HL}"/><rect class="ln" x="${-DW}" y="${-HL}" width="${2 * DW}" height="${2 * HL}"/><line class="ln" x1="${-SW}" x2="${-SW}" y1="${-HL}" y2="${HL}"/><line class="ln" x1="${SW}" x2="${SW}" y1="${-HL}" y2="${HL}"/><line class="ln" x1="${-SW}" x2="${SW}" y1="${-SL}" y2="${-SL}"/><line class="ln" x1="${-SW}" x2="${SW}" y1="${SL}" y2="${SL}"/><line class="ln" x1="0" x2="0" y1="${-SL}" y2="${SL}"/><line class="net" x1="-6.2" x2="6.2" y1="0" y2="0"/>`;
+  g += a.filter(s => isN(s.x) && isN(s.y)).map(s => `<circle class="p" cx="${s.x.toFixed(2)}" cy="${s.y.toFixed(2)}" r=".2"/>`).join("");
+  g += a.filter(s => isN(s.shotX) && isN(s.shotY)).map(s => `<circle class="p${s.shotIn === false ? " out" : ""}" cx="${s.shotX.toFixed(2)}" cy="${(-(s.shotY - HL)).toFixed(2)}" r=".2"/>`).join("");
+  const pos = a.filter(s => isN(s.y)), shots = a.filter(s => isN(s.shotY));
+  $("sub").innerHTML = `<div class="grid2" style="margin-top:12px"><div class="card court"><svg viewBox="-6.5 -13.5 13 31" role="img" aria-label="Pista">${g}</svg></div>
+  <div class="card"><h3>En la pista</h3><div class="grid2" style="margin-top:8px"><div class="stat"><b class="num">${fmt(100 * pos.filter(s => s.y > HL).length / Math.max(1, pos.length))} %</b><span>golpea detrás de la línea de fondo</span></div><div class="stat"><b class="num">${fmt(100 * pos.filter(s => s.x > 0).length / Math.max(1, pos.length))} %</b><span>en la mitad de su derecha</span></div><div class="stat"><b class="num">${shots.length}</b><span>golpes con bote visto</span></div><div class="stat"><b class="num">${fmt(100 * shots.filter(s => s.shotIn === false).length / Math.max(1, shots.length))} %</b><span>fuera</span></div></div><p class="sub" style="margin-top:10px">Abajo, dónde golpea; arriba, dónde bota su golpe (rojo: fuera).</p></div></div>`;
+}
+function tabla() {
+  const a = strokesNow().slice(0, 60);
+  $("sub").innerHTML = `<div class="card scroll" style="margin-top:12px"><table class="t"><tr><th>Golpe</th><th>Apoyo</th><th>Cómo llega</th><th>Bola</th><th>Resultado</th><th>Captura</th></tr>${a.map(s => `<tr class="clickable" data-stroke="${esc(s.id)}"><td>${esc(title(s))}</td><td>${esc(s.stance || "—")}</td><td>${esc(s.movement || "—")}</td><td>${s.bits.map(esc).join(", ") || "—"}</td><td>${esc(s.detail || s.outcome || "—")}</td><td class="num">${fmt(100 * (s.quality ?? 0))} %</td></tr>`).join("")}</table><p class="mock" style="margin-top:8px">Los 60 primeros con el orden de Sus golpes; la aplicación los pagina.</p></div>`;
+}
+function lateral() { $("sub").innerHTML = `<div class="card" style="margin-top:12px"><h3>Vista lateral (entreno)</h3><p class="sub">Apartado aparte y marcado (requisito 6): vídeos de entrenamiento de la propia jugadora filmados de lado, solo para lo que la tele no ve (impacto por delante de la cadera, ángulo del swing). Nunca se mezcla con los datos de partido.</p></div>`; }
+function fiabilidad() {
+  const R = Object.entries(D.reliability);
+  $("sub").innerHTML = `<div class="card scroll" style="margin-top:12px"><h3>Fiabilidad de cada medida</h3><p class="sub">Ruido de medida frente a la dispersión de sus golpes; una diferencia solo se enseña si supera el ruido.</p><table class="t"><tr><th>Medida</th><th>Golpes</th><th>Ruido</th><th>Dispersión</th><th>Veredicto</th></tr>${R.map(([k, v]) => `<tr><td>${esc(k)}</td><td class="num">${v.n ?? "—"}</td><td class="num">${isN(v.noise) ? fmt(v.noise, 2) : "—"}</td><td class="num">${isN(v.spread) ? fmt(v.spread, 2) : "—"}</td><td>${verdictPill(v.verdict)}</td></tr>`).join("")}</table></div>`;
+}
+function datos() { const r = D.run_info || {}; $("sub").innerHTML = `<div class="grid2" style="margin-top:12px"><div class="card"><h3>Diferencias conocidas de la beta</h3><ul>${D.known.map(t => `<li>${esc(t)}</li>`).join("")}</ul></div><div class="card"><h3>El análisis</h3><table class="t"><tr><td>Vídeo analizado</td><td class="num">${fmt(r.video_min)} min</td></tr><tr><td>Tiempo de análisis</td><td class="num">${fmt(r.analysis_min)} min</td></tr><tr><td>Generado</td><td>${esc(D.generated || "—")}</td></tr></table></div></div>`; }
+function exportar() { $("sub").innerHTML = `<div class="card" style="margin-top:12px"><h3>Exportar</h3><p class="sub">Un PDF corto con lo esencial y los MP4 de los golpes o de una lista de reproducción (#41, #46).</p><div style="display:flex;gap:8px;margin-top:10px"><button class="btn" type="button">PDF corto</button><button class="btn" type="button">MP4 de esta selección</button></div><p class="mock" style="margin-top:10px">Maqueta: la exportación existe hoy en el PC; en la aplicación se guarda en la carpeta que elijas.</p></div>`; }
+
+show(location.hash.slice(1) || "inicio");
+</script>

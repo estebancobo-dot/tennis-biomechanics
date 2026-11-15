@@ -273,6 +273,30 @@ nueva. Cada uno tiene su estado visible en la ficha del partido.
   - portabilidad: Windows (WebView2).
 - **Nada fijo:** con un catálogo de prueba de otras personas y golpes, todas las pantallas funcionan igual.
 
+## 9 bis. La maqueta (15-11, versión 3)
+
+Maqueta navegable de todas las pantallas: <https://claude.ai/artifact/Vi3ags11xK2ap6gSAJvt6N> (privada). Se rehace con
+`python design/p0/build_app.py <informe> <auditoría> <cola_estado.md> <partidos.json> <salida>`, con la plantilla
+`design/p0/aplicacion.html`, sin datos.
+
+**Lleva los datos reales:**
+- el catálogo: 3 fichas, los rivales sin ficha y los 6 partidos;
+- la cola de la nube del momento;
+- el modelo de calidad sobre la auditoría beta;
+- la lección con sus 9 fases y todas sus claves, consignas, errores típicos y ejercicios;
+- las medianas por situación;
+- los 387 golpes con su cuerpo, sus pies y la bola y ella;
+- las conclusiones;
+- el ritmo, la cadena, el glosario, «Si te pasa…» y lo que la tele no mide.
+
+**Recuadros marcados:**
+- los fotogramas y los vídeos;
+- las fotos;
+- la subida;
+- el uso del disco.
+
+Las versiones 1 y 2 (`maqueta.html`, `build_maqueta.py`) quedan como histórico.
+
 ## 9. Lo que sigue
 
 1. Maqueta navegable de **todas** las pantallas de las secciones 4-6. Tiene que enseñar el contenido de
