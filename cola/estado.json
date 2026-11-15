@@ -858,7 +858,7 @@
   }
  },
  "medir_bola_totnet": {
-  "estado": "en_marcha",
+  "estado": "error",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 1,
@@ -871,7 +871,10 @@
   "cuaderno": "tennisbio-medir-bola-totnet",
   "kaggle": "running (22:09)",
   "arranco": "2026-11-15 16:40",
-  "espera_min": 5
+  "espera_min": 5,
+  "resultado": {
+   "nota": "cancelado: T15 (15-11 23:20): en CPU no cabe en las 12 h de una sesión de Kaggle: cada clip de RacketVision tiene 600 fotogramas a 60 fps (300 ventanas de TOTNet) y cada ventana tarda unos 6 s en la CPU, unas 20 h para los 40 clips (calculé mal 3-5 h); se cortaría sin resultado. Se repite en GPU (medir_bola_totnet_gpu), con la misma regla"
+  }
  },
  "comparar_gauff_v26_v28": {
   "estado": "hecho",
@@ -1156,9 +1159,21 @@
   "salida": "/kaggle_pruebas/prueba_gauff_v32_a/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cpu": true,
   "cuaderno": "tennisbio-prueba-gauff-v32-a",
-  "kaggle": "running (22:09)",
+  "kaggle": "running (22:10)",
   "arranco": "2026-11-15 22:03",
   "espera_min": 2,
-  "progreso": "scenes:  54 % (8118/15016 fotogramas) · 4 min · quedan ≈ 4 min (22:08:09; CPU 61 %, 2.5 GB)"
+  "progreso": "scenes:  80 % (12026/15016 fotogramas) · 6 min · quedan ≈ 2 min (22:10:15; CPU 62 %, 2.5 GB)"
+ },
+ "medir_bola_totnet_gpu": {
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1794780626.659677,
+  "accion": "medir",
+  "partido": "",
+  "inicio": "2026-11-15 22:10",
+  "ruta": "/runs/kaggle_medir_bola_totnet_gpu/estado.json",
+  "cuaderno": "tennisbio-medir-bola-totnet-gpu"
  }
 }

@@ -129,6 +129,9 @@
     "prueba_gauff_v31_b": {
      "estimado_h": 1.0,
      "horas": 0.28
+    },
+    "medir_bola_totnet_gpu": {
+     "estimado_h": 0.5
     }
    }
   }
@@ -137,6 +140,6 @@
   "usadas_h": 25.03,
   "total_h": 30.0,
   "renueva": "2026-11-21 00:00:00",
-  "ts": 1794780565.1977024
+  "ts": 1794780626.659677
  }
 }
