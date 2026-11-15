@@ -39,6 +39,7 @@ cancelar:
   prueba_gauff_v18: "la v19 comprueba lo mismo (el dispositivo y la subida) y además las 2 T4: 0,9 h de cuota ahorradas y una plaza libre; si la v19 sale distinta, se repite para aislar la causa"
   gauff: "R48: con la raqueta en la CPU su pasada fina gastaría ~6 h de más; se relanza como gauff_b con el arreglo cuando la v20 lo compruebe (su pasada barata, ya en Modal, se reutiliza)"
   comparar_gauff_v16b_v18: "sin la v18 (ver arriba)"
+  prueba_sinner: "#295: la prueba corta de un partido espera con su partido a la nube nativa (comprueba el código con el que se analizará); se repite entonces como prueba_sinner_b"
 # #291 (14-11): el PR buzón (nunca se fusiona): la cola comenta en él solo cuando algo necesita a Claude, y su
 # actividad despierta la sesión al momento (sin sondeos ni tokens mientras no pasa nada)
 avisos_pr: 1
@@ -99,6 +100,10 @@ trabajos:
   # tiempo y cambios frente a la v22 (mismo código, otro modelo); la calidad se decide después con F3Set
   - {id: prueba_gauff_rtmw, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, config: {fine_pass: {refine: rtmw-x}}}
   - {id: comparar_gauff_v22_rtmw, accion: comparar, experimento: true, a: prueba_gauff_v22, b: prueba_gauff_rtmw}
+  # 15-11 07:20: las dos de arriba otra vez, ahora con el temblor de cada lado (la medida con la que RTMPose-x ganó en
+  # el PC): sin GPU, en GitHub
+  - {id: comparar_gauff_v22_rtmw_b, accion: comparar, experimento: true, a: prueba_gauff_v22, b: prueba_gauff_rtmw}
+  - {id: comparar_gauff_v22_v23_b, accion: comparar, experimento: true, a: prueba_gauff_v22, b: prueba_gauff_v23_calidad}
   # lotes 3 y 4 (aprobados por el usuario el 13-11: Osaka; Pegula y Zheng; Gauff y la final; Zverev-Sinner), cada
   # partido tras su prueba corta de 10 minutos (#277); el informe y la auditoría de la Base al final
   - {id: prueba_gauff, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5}
@@ -112,7 +117,9 @@ trabajos:
   - {id: prueba_final, accion: prueba, partido: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5}
   - {id: final, accion: partido, partido: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5, tras: prueba_final, aprobado: true}
   - {id: prueba_sinner, accion: prueba, partido: zverev-alexander-sinner-jannik-indian-wells-2026-semi-final, tras: final}
-  - {id: sinner, accion: partido, partido: zverev-alexander-sinner-jannik-indian-wells-2026-semi-final, tras: prueba_sinner, aprobado: true}
+  # 15-11 (#295): la prueba de Sinner espera con su partido a la nube nativa (la de arriba, lanzada antes, se canceló)
+  - {id: prueba_sinner_b, accion: prueba, partido: zverev-alexander-sinner-jannik-indian-wells-2026-semi-final, tras: final}
+  - {id: sinner, accion: partido, partido: zverev-alexander-sinner-jannik-indian-wells-2026-semi-final, tras: prueba_sinner_b, aprobado: true}
   # paso 10: Osaka, Pegula y Zheng al día con el código final (marcador v16, R36, R37): solo lo que cambió, desde lo
   # guardado en Modal (las ventanas no se repiten); aprobado en el plan (paso 10 de docs/estado_proyecto.md)
   - {id: actualizar_osaka, accion: partido, partido: us-open-2026-r4-naomi-osaka-elena-rybakina, tras: sinner, aprobado: true, minutos_video: 70}

@@ -108,3 +108,18 @@ def test_jumps_are_listed_with_their_ambiguity():
     assert g["golpes_con_saltos"] == 1
     assert g["saltos"] == [{"t": 5.0, "medida": "face.loaded.yaw_deg", "a": 10.0, "b": 189.0,
                             "ambigua_a": True, "ambigua_b": False, "mano_a": None, "mano_b": None}]
+
+
+def test_two_models_are_compared_by_their_shake():
+    """T25 (15-11, RTMW-x against RTMPose-x): the frame-to-frame shake of the same measures of the same strokes, the
+    racket face left out (its sign flips, R50, are not shake)."""
+    def stroke(t, knee, hip, face):
+        return {"match_time_s": t, "stroke": "forehand",
+                "technique": {"jitter": {"loaded.knee_dom": knee, "impact.hip_turn": hip, "impact.face_tilt": face}}}
+    a = [stroke(1.0, 4.0, 2.0, 1.0), stroke(2.0, 6.0, 0.0, 1.0)]
+    b = [stroke(1.0, 2.0, 1.0, 90.0), stroke(2.0, 3.0, 5.0, 90.0)]
+    sh = eq.compare_strokes(a, b)["temblor"]
+    assert sh == {"n": 3, "cociente_mediano_b_a": 0.5, "b_tiembla_menos": 1.0, "b_tiembla_mas": 0.0}
+    assert eq.compare_strokes(a, a)["temblor"]["cociente_mediano_b_a"] == 1.0
+    assert eq.shake_summary([]) == {"n": 0}
+    assert "temblor de b frente a a ×0.50" in eq.summary(eq.compare({}, {}, {"strokes.json": a}, {"strokes.json": b}))

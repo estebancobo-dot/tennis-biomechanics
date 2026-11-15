@@ -55,10 +55,10 @@ la auditoría las marcará «sin comprobación automática asignada».
 |---|---|
 | HECHO | 122 |
 | PARCIAL | 144 |
-| FALTA | 21 |
+| FALTA | 23 |
 | NO MEDIBLE | 3 |
 | NO APLICA | 8 |
-| **Total** | **298** |
+| **Total** | **300** |
 
 **27-10:** filas 220-245 nuevas: todo lo pedido en el chat del 19-10 al 27-10 (releídos los mensajes) y lo que
 salió en la prueba de valor; ninguna fila borrada.
@@ -385,6 +385,8 @@ lateral (entreno)» · ≥12 = solo se muestra con 12 golpes o más (`model.MIN_
 | 296 | «¿El rediseño de la app no iría antes de la app web en la nube, para no tirar trabajo?» (Chat, 15-11) | PARCIAL | Aceptado: P0 se diseña como aplicación web y se construye una sola vez; de N avanza en paralelo solo lo que no es interfaz (alojamiento a 0 €, subida y borrado de vídeos, acceso privado). `CLAUDE.md` (cambio 15-11) | — | — | Lo cierra: la interfaz web es la de P0, sin una versión intermedia |
 | 297 | «Del plan Base, con los partidos analizados estos días, ¿se puede hacer en la nube el resto de tareas en un alcance beta, con la nube de Claude o sin consumir ni tardar mucho en Kaggle?» (Chat, 15-11) | PARCIAL | Sí: informe y auditoría de los 5 partidos ya analizados en Modal (CPU, ~0,15 $; `informe_beta`), con R50 aplicado al leer (`tennisbio.face_evidence`: la cara solo con la mano en 3D) y las diferencias conocidas en la primera pantalla (`informe.diferencias_conocidas`); la exportación de vídeos (CPU) y los fallos por niveles (ya registrados) sin GPU | — | `tests/test_face_evidence.py` | Lo cierra: el informe y la auditoría beta publicados y vistos por el usuario |
 | 298 | «¿Se puede empezar P0 y N en la nube de Claude si lo del punto 1 se puede hacer?» (Chat, 15-11) | PARCIAL | Sí, en paralelo y sin GPU: P0 diseñado como web (comparativa, modelo de calidad, mapa de pantallas, sistema de diseño, maqueta interactiva publicada para que el usuario la revise) y de N lo que no es interfaz (alojamiento a 0 € con datos privados, subida y borrado de vídeos), con pruebas de concepto | — | — | Lo cierra: la maqueta revisada por el usuario y la prueba de concepto de N medida |
+| 299 | Preguntar en lenguaje natural sobre su derecha y sus partidos («¿por qué falla más la derecha con bola rápida?»), respondido solo con sus datos medidos y sus vídeos (hueco de la comparativa #257: IBM Match Chat en el US Open 2026, SportAI) (Comparativa, 15-11) | FALTA | — | — | — | Paquete P4. Sin inventar (requisito 3): cada respuesta cita sus golpes y su confianza; lo que no se mide dice «no medible desde la tele» |
+| 300 | Muñeco 3D del golpe que se gira para verlo desde cualquier lado (hueco de la comparativa #257: Sportsbox AI), marcado como estimación (2D desde una cámara) (Comparativa, 15-11) | FALTA | `pose/wholebody3d.py` (RTMW3D, ya calculado) | — | — | Paquete P4. Solo con el 3D que ya se calcula y su fiabilidad a la vista; nunca como medida |
 | 269 | Estado y progreso: cuánto falta para lanzar los 6 partidos, qué hay en marcha y pendiente en la nube y en el PC (en serie o en paralelo), qué queda para cerrar la Base, por qué seguimos así y qué falló por la noche (Chat, 13-11) | HECHO | respuesta en el chat; `docs/estado_proyecto.md`, «Resumen de la noche (12-11 → 13-11)» y la tabla de tareas | — | — | Como #266, el estado vive en la tabla de tareas. |
 
 ## Lo más grave que falta (por impacto en «copiar su derecha»)

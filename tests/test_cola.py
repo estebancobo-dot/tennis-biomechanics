@@ -238,6 +238,19 @@ def test_whole_matches_can_wait_and_a_job_can_start_again():
     assert d["final"] == ("", "después de la fase B") and d["t"][0] == "kaggle"
 
 
+def test_a_match_test_waits_with_its_match():
+    """15-11 (#295): the queue launched Sinner's 10-min test while its match waited for the cloud-native phase; a
+    match's test checks the code the match will run with, so it waits too. Tests of no match (experiments) do not."""
+    on = {"kaggle": {"ok": True, "motivo": "", "libres": 2}, "pc": {"ok": False}}
+    jobs = [{"id": "prueba_s", "accion": "prueba", "partido": "s", "donde": "kaggle"},
+            {"id": "s", "accion": "partido", "partido": "s", "tras": "prueba_s", "aprobado": True},
+            {"id": "prueba_x", "accion": "prueba", "partido": "g", "donde": "kaggle"}]
+    d = {i: (src, why) for i, src, why in cola.plan(jobs, {}, {}, on, DEC, "hasta la nube nativa")}
+    assert d["prueba_s"] == ("", "hasta la nube nativa") and d["prueba_x"][0] == "kaggle"
+    d = {i: (src, why) for i, src, why in cola.plan(jobs, {}, {}, on, DEC)}
+    assert d["prueba_s"][0] == "kaggle"                                   # nothing held: as before
+
+
 def test_a_refused_kaggle_push_is_not_a_launch():
     """14-11: Kaggle refused every push for two hours («Maximum batch GPU session count of 2 reached») with exit code 0,
     and the queue counted them as launches."""

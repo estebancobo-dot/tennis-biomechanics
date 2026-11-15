@@ -291,6 +291,9 @@ def plan(jobs: list[dict], state: dict, spend: dict, sources: dict, now: float,
     never count the same dollars."""
     out, room, kroom = [], modal_room(spend, now), kaggle_room(spend, now, state)
     kaggle = dict(sources.get("kaggle", {}))
+    # 15-11: a match's 10-min test checks the code that match will run with, so it waits with its match (a test run
+    # now would be repeated after the change it waits for); tests of no match (experiments) are not held
+    match_tests = {j["tras"] for j in jobs if j["accion"] == "partido" and j.get("tras")}
     for j in jobs:
         st = state.get(j["id"], {})
         if st.get("estado") in ("en_marcha", "revisar", *FINAL):
@@ -308,7 +311,7 @@ def plan(jobs: list[dict], state: dict, spend: dict, sources: dict, now: float,
         if j["accion"] == "partido" and not j.get("aprobado"):
             out.append((j["id"], "", "falta la aprobación del usuario (#262)"))
             continue
-        if j["accion"] == "partido" and hold_matches:
+        if hold_matches and (j["accion"] == "partido" or (j["accion"] == "prueba" and j["id"] in match_tests)):
             out.append((j["id"], "", hold_matches))
             continue
         where = j.get("donde", "cualquiera")

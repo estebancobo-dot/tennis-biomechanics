@@ -115,7 +115,7 @@ paquetes:
   P4:
     nombre: "Producto · comparación con las apps profesionales"
     cierre: "Cada diferencia con su decisión y su prueba"
-    peticiones: [74, 142, 240]
+    peticiones: [74, 142, 240, 299, 300]
   P5:
     nombre: "Producto · escenarios y genericidad"
     cierre: "Cada escenario de docs/escenarios_producto.md con su prueba"

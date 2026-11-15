@@ -1,0 +1,241 @@
+# Catálogo de referencias para el rediseño (P0.3, petición #257; 15-11)
+#
+# Una entrada por producto, sistema o fuente que enseña o mide golpes. Sirve para diseñar las pantallas de P0
+# (`docs/p0_pantallas.md`) con patrones probados y para ver los huecos. Lo resume `docs/comparativa_completa.md`.
+#
+# Campos:
+#   tipo: profesional | retransmision | aficionado | entrenador (herramienta de vídeo) | laboratorio | github | youtube
+#   fuente: de dónde salen sus datos; mide: qué mide; ensena: cómo lo explica; graficos; plataforma; precio
+#   patrones: claves de `patrones` (abajo) que usa
+#   casillas: 0-3 en cada criterio (abajo); evidencia: ficha (su descripción pública o prensa) | visto (capturas o
+#     fotogramas analizados) | probado (usado). Ninguna entrada está «probada»: las notas son de su descripción.
+#   fuentes: enlaces consultados (fecha de la consulta en `consulta`)
+#
+# Criterios (salen de los requisitos 2 y 3 de CLAUDE.md):
+#   video: el vídeo real es la prueba de cada dato
+#   fases: el golpe dividido en fases, cada una con su fotograma
+#   pocos_numeros: pocos números bien elegidos, cada uno explicado
+#   comparar: dos golpes lado a lado o superpuestos, sincronizados
+#   explica: dice qué hacer y cómo (consigna, error típico, ejercicio)
+#   fiabilidad: enseña la incertidumbre o lo que no puede medir
+#   movil: hecho para el móvil
+#   automatico: sin anotar ni marcar nada a mano
+
+consulta: "2026-11-15"
+
+criterios: [video, fases, pocos_numeros, comparar, explica, fiabilidad, movil, automatico]
+
+patrones:
+  video_capas: {nombre: "Vídeo con capas (esqueleto, raqueta, bola) sobre la imagen real", adopta: si}
+  fotogramas_clave: {nombre: "Fotogramas clave por fase (las «posiciones» del golf, P1-P10)", adopta: si}
+  lado_a_lado: {nombre: "Dos golpes lado a lado, sincronizados por el impacto", adopta: si}
+  angulo_dibujado: {nombre: "La medida dibujada sobre el fotograma donde se mide (arco del ángulo, regla)", adopta: si}
+  cadena_cinetica: {nombre: "Gráfico de la cadena cinética: el pico de cada segmento en el tiempo", adopta: si, nota: "el orden de los picos es fiable; sus valores, no (CLAUDE.md, fiabilidad)"}
+  mapa_pista: {nombre: "Mapa de pista con botes e impactos", adopta: si}
+  resumen_tarjetas: {nombre: "Resumen del partido en tarjetas cortas (frase + dato + vídeo)", adopta: si}
+  circulo_y_frase: {nombre: "Un círculo sobre lo que importa y una frase corta sobre el vídeo", adopta: si}
+  real_y_lento: {nombre: "Primero a velocidad real, después a cámara lenta y fotograma a fotograma", adopta: si}
+  lo_que_copiar: {nombre: "Cierre en 3-4 puntos «lo que puedes copiar»", adopta: si}
+  puntuacion_unica: {nombre: "Una puntuación única del golpe (0-10, 0-100, parecido a un profesional)", adopta: "no", motivo: "no está validada para vídeo de TV (CLAUDE.md, galerías: no hay puntuación de «mejor técnica»); una nota inventaría precisión"}
+  comparar_con_profesional: {nombre: "Tu golpe comparado con el de un profesional", adopta: "no", motivo: "aquí la profesional es la analizada y no se usan vídeos del usuario (requisito 6)"}
+  dibujo_y_voz: {nombre: "El entrenador dibuja y graba su voz sobre el vídeo", adopta: "no", motivo: "100 % automático: nadie anota (requisito 5)"}
+  chat: {nombre: "Preguntar en lenguaje natural sobre el análisis", adopta: hueco, peticion: 299}
+  avatar_3d: {nombre: "Muñeco 3D del golpe que se gira para verlo desde cualquier lado", adopta: hueco, peticion: 300, nota: "solo como estimación marcada (2D desde una cámara)"}
+  realidad_aumentada: {nombre: "Gráficos en directo sobre la retransmisión", adopta: "no", motivo: "se analiza después, no en directo"}
+
+referencias:
+  - id: hawkeye_skeletrack
+    nombre: Hawk-Eye SkeleTRACK
+    tipo: profesional
+    fuente: varias cámaras fijas del estadio (esqueleto 3D de los jugadores)
+    mide: esqueleto 3D, raqueta y bola en el estadio; usado en la Laver Cup 2024
+    ensena: datos para equipos y entrenadores; no es una aplicación para el aficionado
+    graficos: no publicados
+    plataforma: sistema del estadio
+    precio: contrato
+    patrones: []
+    casillas: {video: 1, fases: 0, pocos_numeros: 1, comparar: 0, explica: 0, fiabilidad: 0, movil: 0, automatico: 3}
+    evidencia: ficha
+    fuentes: ["https://fortune.com/2026/09/12/ibm-launched-limb-tracking-at-this-years-u-s-open-and-its-scoring-every-tennis-players-serve-for-fans-to-see/"]
+  - id: ibm_serve_quality
+    nombre: IBM Serve Quality y Match Chat (aplicación del US Open 2026)
+    tipo: retransmision
+    fuente: cámaras de la pista; 21 puntos del cuerpo y la raqueta a 50 por segundo
+    mide: una nota de 0 a 100 de cada saque (rodilla, muñeca, codo, lanzamiento, regularidad), tras el partido
+    ensena: la nota en el resumen del partido y un chat que responde cómo influyó el saque; derecha y revés anunciados para años siguientes
+    graficos: tarjetas del resumen del partido
+    plataforma: aplicación del US Open (móvil y web)
+    precio: gratis
+    patrones: [puntuacion_unica, resumen_tarjetas, chat]
+    casillas: {video: 1, fases: 0, pocos_numeros: 2, comparar: 0, explica: 1, fiabilidad: 0, movil: 3, automatico: 3}
+    evidencia: ficha
+    fuentes: ["https://newsroom.ibm.com/2026-08-24-ibm-and-the-usta-introduce-new-ai-powered-fan-experiences-for-2026-us-open", "https://fortune.com/2026/09/12/ibm-launched-limb-tracking-at-this-years-u-s-open-and-its-scoring-every-tennis-players-serve-for-fans-to-see/"]
+  - id: tennisviz
+    nombre: TennisViz (Ellipse) · Shot Quality en ATP y Tennis Data Innovations
+    tipo: retransmision
+    fuente: seguimiento de bola y jugadores (Hawk-Eye) y datos del juez de silla
+    mide: calidad de cada golpe de 0 a 10 (velocidad, efecto, profundidad, anchura, efecto en el rival)
+    ensena: rótulos en la retransmisión y artículos «Insights»
+    graficos: rótulos, mapas de pista, barras por golpe
+    plataforma: televisión y web de la ATP
+    precio: contrato
+    patrones: [puntuacion_unica, mapa_pista]
+    casillas: {video: 1, fases: 0, pocos_numeros: 3, comparar: 1, explica: 1, fiabilidad: 0, movil: 2, automatico: 3}
+    evidencia: ficha
+    fuentes: ["https://www.atptour.com/en/news/insights-introduction"]
+  - id: hawkar
+    nombre: HawkAR (Hawk-Eye) y rótulos ATP Media + Deltatre 2026
+    tipo: retransmision
+    fuente: seguimiento de Hawk-Eye
+    mide: velocidad, aceleración, potencia del golpe, posición de los jugadores
+    ensena: gráficos en directo sobre la imagen; frases generadas por IA sobre el rendimiento en ciertos golpes
+    graficos: realidad aumentada en la retransmisión
+    plataforma: televisión
+    precio: contrato
+    patrones: [realidad_aumentada, video_capas]
+    casillas: {video: 3, fases: 0, pocos_numeros: 2, comparar: 0, explica: 1, fiabilidad: 0, movil: 0, automatico: 3}
+    evidencia: ficha
+    fuentes: ["https://www.hawkeyeinnovations.com/hawkar", "https://broadcastnow.co.uk/tech-innovation/how-atp-media-and-deltatre-modernised-the-atp-tours-graphics/5182522.article"]
+  - id: swingvision
+    nombre: SwingVision
+    tipo: aficionado
+    fuente: el móvil del jugador grabando su partido
+    mide: golpes, velocidad, profundidad, precisión, largo del intercambio, botes (cantar bolas)
+    ensena: estadísticas, momentos destacados, consejos y objetivos semanales
+    graficos: mapa de pista, vídeos cortados por punto y por golpe
+    plataforma: iOS (funciona sin conexión salvo el directo)
+    precio: de 95,99 a 299,99 $ al año (según su ficha)
+    patrones: [mapa_pista, resumen_tarjetas]
+    casillas: {video: 3, fases: 0, pocos_numeros: 2, comparar: 1, explica: 1, fiabilidad: 0, movil: 3, automatico: 3}
+    evidencia: ficha
+    fuentes: ["https://apps.apple.com/US/app/id989461317", "https://wearecollegetennis.com/swingvision/"]
+  - id: sportai
+    nombre: SportAI (tenis y pádel)
+    tipo: aficionado
+    fuente: vídeo 2D del jugador, convertido en pose 3D
+    mide: cadena cinética (pico de velocidad y momento de cada segmento), curva del golpe
+    ensena: informes por jugador, curva comparada con un profesional, detección de mejoras, chat
+    graficos: curva del golpe, cadena cinética, comparación
+    plataforma: web y API
+    precio: por consultar
+    patrones: [cadena_cinetica, comparar_con_profesional, chat]
+    casillas: {video: 2, fases: 1, pocos_numeros: 2, comparar: 2, explica: 2, fiabilidad: 0, movil: 2, automatico: 3}
+    evidencia: ficha
+    fuentes: ["https://sportai.com/platform", "https://api-docs.sportai.com/api-reference/technique-analysis/", "https://www.computerweekly.com/feature/Serving-up-tennis-improvements-through-AI"]
+  - id: sevensix
+    nombre: sevensix (entrenador de tenis con IA)
+    tipo: aficionado
+    fuente: el móvil del jugador
+    mide: movimiento del cuerpo, curva del golpe, ritmo (cadena cinética), punto de impacto
+    ensena: nota de parecido con un profesional
+    graficos: curva y nota
+    plataforma: iOS
+    precio: por consultar
+    patrones: [puntuacion_unica, comparar_con_profesional, cadena_cinetica]
+    casillas: {video: 2, fases: 1, pocos_numeros: 2, comparar: 2, explica: 1, fiabilidad: 0, movil: 3, automatico: 3}
+    evidencia: ficha
+    fuentes: ["https://apps.apple.com/us/app/sevensix-tennis-ai-coach/id1505604446"]
+  - id: sportsbox
+    nombre: Sportsbox AI (golf; tenis sin confirmar)
+    tipo: aficionado
+    fuente: un vídeo del móvil a cámara lenta, sin marcadores
+    mide: muñeco 3D del swing, posiciones clave, detección automática del golpe
+    ensena: el swing visto desde 6 ángulos (de frente, en la línea, detrás, desde el objetivo, arriba, abajo)
+    graficos: muñeco 3D girable, posiciones clave
+    plataforma: iOS
+    precio: suscripción
+    patrones: [avatar_3d, fotogramas_clave]
+    casillas: {video: 2, fases: 3, pocos_numeros: 2, comparar: 2, explica: 1, fiabilidad: 0, movil: 3, automatico: 3}
+    evidencia: ficha
+    fuentes: ["https://apps.apple.com/us/app/-/id1578921026", "https://sportsbox-ai.web.app/about"]
+  - id: onform
+    nombre: OnForm
+    tipo: entrenador
+    fuente: vídeos del alumno
+    mide: lo que marca el entrenador (ángulos, líneas)
+    ensena: el entrenador dibuja y graba su voz; el alumno lo ve en el móvil
+    graficos: dibujo, lado a lado, cámara lenta, varias cámaras; 3D en golf (versión Pro)
+    plataforma: iOS, Android
+    precio: 29,99-59,99 $ al mes (fuentes contradictorias)
+    patrones: [dibujo_y_voz, lado_a_lado, real_y_lento]
+    casillas: {video: 3, fases: 1, pocos_numeros: 1, comparar: 3, explica: 2, fiabilidad: 0, movil: 3, automatico: 0}
+    evidencia: ficha
+    fuentes: ["https://www.trustradius.com/compare-products/dartfish-vs-onform"]
+  - id: dartfish
+    nombre: Dartfish
+    tipo: entrenador
+    fuente: vídeos propios
+    mide: lo que marca el analista (etiquetas, ángulos, tiempos)
+    ensena: dibujo profesional, etiquetas de acciones, datos superpuestos
+    graficos: lado a lado, superposición, estroboscopia
+    plataforma: escritorio, móvil, web
+    precio: por consultar
+    patrones: [lado_a_lado, angulo_dibujado, video_capas, dibujo_y_voz]
+    casillas: {video: 3, fases: 2, pocos_numeros: 1, comparar: 3, explica: 1, fiabilidad: 0, movil: 1, automatico: 0}
+    evidencia: ficha
+    fuentes: ["https://www.folio3.ai/blog/top-8-sports-video-analysis-software-solutions-for-coaches"]
+  - id: kinovea
+    nombre: Kinovea
+    tipo: entrenador
+    fuente: vídeos propios
+    mide: ángulos, distancias, trayectorias, cronómetros (a mano)
+    ensena: no explica: es una herramienta de medida
+    graficos: ángulos y trayectorias dibujados sobre el vídeo, lado a lado
+    plataforma: Windows, gratis y libre
+    precio: gratis
+    patrones: [angulo_dibujado, lado_a_lado]
+    casillas: {video: 3, fases: 1, pocos_numeros: 1, comparar: 3, explica: 0, fiabilidad: 0, movil: 0, automatico: 1}
+    evidencia: ficha
+    fuentes: ["https://coachway.io/articles/coachs-eye-alternatives/"]
+  - id: hudl_technique
+    nombre: Hudl Technique
+    tipo: entrenador
+    fuente: vídeos propios
+    mide: nada automático
+    ensena: cámara lenta y lado a lado
+    graficos: dibujo, lado a lado
+    plataforma: iOS, Android
+    precio: gratis
+    patrones: [lado_a_lado, real_y_lento]
+    casillas: {video: 3, fases: 0, pocos_numeros: 0, comparar: 3, explica: 0, fiabilidad: 0, movil: 3, automatico: 0}
+    evidencia: ficha
+    fuentes: ["https://coachway.io/articles/coachs-eye-alternatives/"]
+  - id: github_tennis_analysis
+    nombre: Proyectos de GitHub de análisis de tenis (abdullahtarek/tennis_analysis y sus copias, Sh-31, sportiq)
+    tipo: github
+    fuente: vídeo de partido
+    mide: jugadores y bola detectados, puntos de la pista, velocidad de jugadores y de la bola, número de golpes
+    ensena: un vídeo con cajas y un minimapa
+    graficos: cajas, minimapa, números sobre el vídeo
+    plataforma: Python
+    precio: gratis
+    patrones: [video_capas, mapa_pista]
+    casillas: {video: 3, fases: 0, pocos_numeros: 1, comparar: 0, explica: 0, fiabilidad: 0, movil: 0, automatico: 3}
+    evidencia: ficha
+    fuentes: ["https://docsearch.algolia.com/mcp/docs/repo/abdullahtarek/tennis_analysis", "https://www.github.com/Sh-31/Tennis-Analysis-System"]
+  - id: laboratorio
+    nombre: Laboratorio (Theia3D sin marcadores; Vicon y Qualisys con marcadores)
+    tipo: laboratorio
+    fuente: varias cámaras calibradas
+    mide: ángulos y velocidades angulares 3D de cada articulación (validado frente a marcadores en el saque)
+    ensena: informes para el entrenador o el investigador
+    graficos: curvas por articulación, secuencia cinemática (picos de pelvis, tronco, brazo, mano)
+    plataforma: laboratorio
+    precio: alto
+    patrones: [cadena_cinetica]
+    casillas: {video: 1, fases: 2, pocos_numeros: 1, comparar: 2, explica: 1, fiabilidad: 2, movil: 0, automatico: 2}
+    evidencia: ficha
+    fuentes: ["https://digitalcommons.wku.edu/ijesab/vol14/iss4/143", "https://web.stanford.edu/group/biomotion/tennis.html"]
+  - id: youtube_entrenadores
+    nombre: Entrenadores en YouTube (Meike Babel, Intuitive Tennis, TennisUnleashed)
+    tipo: youtube
+    fuente: retransmisiones y entrenamientos
+    mide: a ojo
+    ensena: orden contexto → empuñadura → preparación → armado → carga → aceleración → impacto → terminación → variantes → «lo que puedes copiar»
+    graficos: secuencias de 3-4 fotos reales, lado a lado, fotograma a fotograma, un círculo y una frase; sin esqueletos ni gráficas
+    plataforma: YouTube
+    precio: gratis
+    patrones: [fotogramas_clave, lado_a_lado, circulo_y_frase, real_y_lento, lo_que_copiar, mapa_pista]
+    casillas: {video: 3, fases: 3, pocos_numeros: 3, comparar: 3, explica: 3, fiabilidad: 0, movil: 2, automatico: 0}
+    evidencia: visto
+    fuentes: ["docs/investigacion_youtube_usuario.md"]

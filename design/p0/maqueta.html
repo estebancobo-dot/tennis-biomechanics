@@ -1,0 +1,523 @@
+<title>Su derecha · maqueta P0</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: an app shell for the phone first. Player and situation stay on top, five sections in a bottom bar,
+   and each section answers one question with real frames and few numbers. Wider screens get a centred column. */
+:root {
+  --bg: #eef2f6; --surface: #ffffff; --surface-2: #f6f8fb; --ink: #0f1e2e; --muted: #56677a; --line: #d5dde7;
+  --court: #1d4f91; --court-soft: #dbe6f4; --court-2: #2f6b4e; --ball: #cfe02f; --ball-ink: #3b4300;
+  --good: #2b7a4b; --good-soft: #def0e5; --warn: #9a6614; --warn-soft: #f6ead3; --crit: #a83434; --crit-soft: #f6dddd;
+  --frame-a: #234f86; --frame-b: #3c7a5e;
+  --display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --r: 14px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0b1520; --surface: #13212f; --surface-2: #182a3b; --ink: #e5edf5; --muted: #98a9bb; --line: #26394d;
+  --court: #6b9be0; --court-soft: #1c3350; --court-2: #5aa57f; --ball: #d6e64a; --ball-ink: #2a3000;
+  --good: #6cc08f; --good-soft: #17352a; --warn: #e2b061; --warn-soft: #3a2e17; --crit: #ec8a8a; --crit-soft: #3d1f22;
+  --frame-a: #1a3b66; --frame-b: #24543f; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0b1520; --surface: #13212f; --surface-2: #182a3b; --ink: #e5edf5; --muted: #98a9bb; --line: #26394d;
+  --court: #6b9be0; --court-soft: #1c3350; --court-2: #5aa57f; --ball: #d6e64a; --ball-ink: #2a3000;
+  --good: #6cc08f; --good-soft: #17352a; --warn: #e2b061; --warn-soft: #3a2e17; --crit: #ec8a8a; --crit-soft: #3d1f22;
+  --frame-a: #1a3b66; --frame-b: #24543f; color-scheme: dark }
+
+* { box-sizing: border-box }
+html, body { height: 100% }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.5;
+  -webkit-font-smoothing: antialiased }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--surface) }
+button, select { font: inherit; color: inherit }
+button { cursor: pointer }
+:focus-visible { outline: 2px solid var(--court); outline-offset: 2px; border-radius: 6px }
+.num { font-variant-numeric: tabular-nums }
+
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--surface); border-bottom: 1px solid var(--line);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 10px 8px }
+.top-inner, main, .tabs-inner { max-width: 760px; margin: 0 auto }
+.who { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap }
+.who h1 { font-family: var(--display); font-weight: 700; font-size: 26px; letter-spacing: .2px; margin: 0; line-height: 1.1 }
+.who .stroke { font-family: var(--display); font-weight: 600; font-size: 20px; color: var(--court) }
+.who .meta { color: var(--muted); font-size: 13px }
+.chips { display: flex; gap: 6px; overflow-x: auto; padding-block: 8px 2px; scrollbar-width: none; margin-inline: -4px; padding-inline: 4px }
+.chips::-webkit-scrollbar { display: none }
+.chip { flex: none; border: 1px solid var(--line); background: var(--surface-2); border-radius: 999px; padding: 5px 11px; font-size: 13px; white-space: nowrap }
+.chip b { font-weight: 600 }
+.chip .c { color: var(--muted); margin-left: 4px }
+.chip[aria-pressed="true"] { background: var(--court); border-color: var(--court); color: var(--surface) }
+.chip[aria-pressed="true"] .c { color: var(--surface); opacity: .8 }
+
+main { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 14px calc(88px + env(safe-area-inset-bottom, 0px)) }
+section.view { display: grid; gap: 22px }
+h2 { font-family: var(--display); font-weight: 700; font-size: 22px; margin: 0; letter-spacing: .2px; text-wrap: balance }
+.sub { color: var(--muted); font-size: 13px; margin: 2px 0 0 }
+.block { display: grid; gap: 10px }
+.eyebrow { text-transform: uppercase; letter-spacing: .08em; font-size: 11px; font-weight: 600; color: var(--muted) }
+
+details.beta { background: var(--warn-soft); border: 1px solid color-mix(in srgb, var(--warn) 35%, transparent); border-radius: var(--r); padding: 10px 14px }
+details.beta summary { cursor: pointer; font-weight: 600; color: var(--warn); font-size: 14px }
+details.beta ul { margin: 8px 0 2px; padding-left: 18px; font-size: 13px; display: grid; gap: 4px }
+
+.pill { display: inline-flex; align-items: center; gap: 4px; border-radius: 999px; padding: 1px 8px; font-size: 11.5px; font-weight: 600; white-space: nowrap }
+.pill.good { background: var(--good-soft); color: var(--good) }
+.pill.warn { background: var(--warn-soft); color: var(--warn) }
+.pill.crit { background: var(--crit-soft); color: var(--crit) }
+.pill.est { background: var(--court-soft); color: var(--court) }
+
+.cards { display: grid; gap: 8px }
+.concl { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 12px 14px; display: grid; gap: 6px }
+.concl p { margin: 0; font-size: 14.5px }
+.concl .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: 12.5px; color: var(--muted) }
+.link { background: none; border: 0; padding: 0; color: var(--court); font-weight: 600; font-size: 13px }
+
+.phases { display: grid; grid-auto-flow: column; grid-auto-columns: min(86%, 340px); gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory;
+  padding-bottom: 6px; margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); padding-inline: max(16px, env(safe-area-inset-left, 0px)) }
+.phase { scroll-snap-align: start; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; display: grid; align-content: start; min-width: 0 }
+.frame { position: relative; aspect-ratio: 4 / 3; max-width: 100%; background:
+  linear-gradient(180deg, var(--frame-a) 0 58%, var(--frame-b) 58% 100%); display: grid; place-items: center; color: #e9f0f8 }
+.frame svg { position: absolute; inset: 0; width: 100%; height: 100% }
+.frame .tag { position: absolute; left: 10px; top: 10px; background: rgb(8 18 30 / .55); color: #f1f5fa; font-size: 11px; border-radius: 6px; padding: 3px 7px }
+.frame .when { position: absolute; right: 10px; bottom: 10px; background: rgb(8 18 30 / .62); color: #f1f5fa; font-family: var(--display); font-size: 17px; font-weight: 600; border-radius: 6px; padding: 1px 8px }
+.phase-body { padding: 12px 14px 14px; display: grid; gap: 10px }
+.phase h3 { margin: 0; font-family: var(--display); font-weight: 700; font-size: 19px; line-height: 1.15 }
+.phase .focus { margin: 0; font-size: 13.5px; color: var(--muted) }
+.measures { display: grid; gap: 8px }
+.m { display: grid; grid-template-columns: 1fr auto; gap: 2px 10px; align-items: baseline; border-top: 1px solid var(--line); padding-top: 8px }
+.m .name { font-size: 13px; font-weight: 500; min-width: 0 }
+.m .val { font-family: var(--display); font-weight: 700; font-size: 24px; line-height: 1 }
+.m .val small { font-size: 14px; font-weight: 600; color: var(--muted); margin-left: 2px }
+.m .rng { grid-column: 1 / -1; font-size: 12px; color: var(--muted); display: flex; gap: 6px; flex-wrap: wrap; align-items: center }
+.m .diff { font-weight: 600 }
+.m .diff.up, .m .diff.down { color: var(--court) }
+.coach { display: grid; gap: 6px; font-size: 13px; background: var(--surface-2); border-radius: 10px; padding: 10px 12px }
+.coach div { display: grid; grid-template-columns: 74px 1fr; gap: 8px }
+.coach span { color: var(--muted); font-size: 11.5px; text-transform: uppercase; letter-spacing: .06em; padding-top: 2px }
+.none { font-size: 12.5px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 8px; margin: 0 }
+
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 14px; min-width: 0 }
+.chart { width: 100%; height: auto; display: block }
+.chart text { fill: var(--muted); font-family: var(--body); font-size: 11px }
+.chart .lab { fill: var(--ink); font-size: 12px }
+.chart .grid { stroke: var(--line); stroke-width: 1 }
+.chart .bar { fill: var(--court-soft) }
+.chart .dot { fill: var(--court) }
+.chart .imp { fill: var(--ball); stroke: var(--ball-ink); stroke-width: 1.2 }
+.copy { display: grid; gap: 8px; counter-reset: c; padding: 0; margin: 0; list-style: none }
+.copy li { counter-increment: c; display: grid; grid-template-columns: 30px 1fr; gap: 10px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 12px 14px }
+.copy li::before { content: counter(c); font-family: var(--display); font-weight: 700; font-size: 26px; color: var(--court); line-height: 1 }
+.copy b { display: block; font-size: 14.5px }
+.copy span { color: var(--muted); font-size: 13px }
+
+.list { display: grid; gap: 6px }
+.row-stroke { display: grid; grid-template-columns: 1fr auto; gap: 2px 10px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; text-align: left; width: 100% }
+.row-stroke .t { font-weight: 600; font-size: 14px; min-width: 0 }
+.row-stroke .s { color: var(--muted); font-size: 12.5px; min-width: 0 }
+.row-stroke .q { font-family: var(--display); font-weight: 600; font-size: 18px; align-self: center; grid-row: 1 / 3; grid-column: 2 }
+.tags { display: flex; gap: 4px; flex-wrap: wrap; grid-column: 1 / -1; margin-top: 4px }
+.tags .pill { background: var(--surface-2); color: var(--muted); font-weight: 500; border: 1px solid var(--line) }
+.more { justify-self: center; border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 7px 16px; font-weight: 600; font-size: 13px }
+
+.sheet { position: fixed; inset: 0; z-index: 20; background: rgb(5 12 20 / .5); display: grid; align-items: end }
+.sheet-inner { background: var(--bg); border-radius: 18px 18px 0 0; max-height: 92%; overflow-y: auto; width: 100%; max-width: 760px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 14px calc(20px + env(safe-area-inset-bottom, 0px)); display: grid; gap: 14px }
+.sheet-head { display: flex; justify-content: space-between; align-items: center; gap: 10px }
+.close { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 6px 14px; font-weight: 600 }
+.video { aspect-ratio: 16 / 9; max-width: 100%; border-radius: 12px; overflow: hidden; position: relative; background:
+  linear-gradient(180deg, var(--frame-a) 0 55%, var(--frame-b) 55% 100%); color: #eef3f9; display: grid; place-items: center; text-align: center; padding: 16px; font-size: 13px }
+.controls { display: flex; gap: 6px; flex-wrap: wrap }
+.controls .chip { background: var(--surface) }
+
+.cmp { display: grid; gap: 0 }
+.cmp-row { display: grid; grid-template-columns: minmax(0, 1.4fr) repeat(2, minmax(0, .8fr)) minmax(0, 1fr); gap: 8px; padding: 9px 0; border-top: 1px solid var(--line); align-items: baseline; font-size: 13px }
+.cmp-row.h { border-top: 0; color: var(--muted); font-size: 11.5px; text-transform: uppercase; letter-spacing: .06em }
+.cmp-row .v { font-family: var(--display); font-weight: 600; font-size: 18px }
+.selects { display: grid; grid-template-columns: 1fr auto 1fr; gap: 8px; align-items: center }
+.selects select { width: 100%; border: 1px solid var(--line); background: var(--surface); border-radius: 10px; padding: 8px 10px }
+.find { display: grid; gap: 4px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px }
+.find b { font-size: 14px }
+.find span { color: var(--muted); font-size: 12.5px }
+
+.court-wrap { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 10px; display: grid; gap: 10px }
+.court { width: 100%; max-width: 420px; height: auto; justify-self: center; display: block }
+.court .surf { fill: var(--court) }
+.court .outer { fill: var(--court-2) }
+.court .ln { stroke: #f4f7fb; stroke-width: .06; fill: none }
+.court .net { stroke: #f4f7fb; stroke-width: .12 }
+.court .p { fill: var(--ball); stroke: var(--ball-ink); stroke-width: .05 }
+.court .p.out { fill: var(--crit) }
+.court text { fill: #e8eef6; font-size: .55px; font-family: var(--body) }
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px }
+.stat { background: var(--surface-2); border-radius: 10px; padding: 8px 10px; min-width: 0 }
+.stat b { display: block; font-family: var(--display); font-size: 22px; font-weight: 700; line-height: 1.1 }
+.stat span { color: var(--muted); font-size: 12px }
+
+.match { display: grid; grid-template-columns: 1fr auto; gap: 2px 10px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px }
+.match b { font-size: 14.5px }
+.match span { color: var(--muted); font-size: 12.5px }
+.steps { display: grid; gap: 8px; counter-reset: s; list-style: none; padding: 0; margin: 0 }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 28px 1fr; gap: 10px; align-items: start; font-size: 14px }
+.steps li::before { content: counter(s); display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--court-soft); color: var(--court); font-weight: 700; font-size: 13px }
+.steps small { display: block; color: var(--muted); font-size: 12.5px }
+.mock-note { font-size: 12.5px; color: var(--muted); border-left: 3px solid var(--line); padding-left: 10px; margin: 0 }
+
+.tabs { position: fixed; inset: auto 0 0 0; z-index: 6; background: var(--surface); border-top: 1px solid var(--line);
+  padding-left: max(8px, env(safe-area-inset-left, 0px)); padding-right: max(8px, env(safe-area-inset-right, 0px)); padding-block: 6px calc(6px + env(safe-area-inset-bottom, 0px)) }
+.tabs-inner { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px }
+.tab { border: 0; background: none; display: grid; justify-items: center; gap: 2px; padding: 5px 2px; border-radius: 10px; font-size: 11.5px; color: var(--muted) }
+.tab svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round }
+.tab[aria-current="page"] { color: var(--court); font-weight: 600 }
+
+@media (min-width: 720px) {
+  .phases { grid-auto-flow: row; grid-template-columns: repeat(2, minmax(0, 1fr)); overflow: visible; margin-inline: 0; padding-inline: 0 }
+  .cards { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+}
+@media (prefers-reduced-motion: no-preference) { .chip, .tab, .row-stroke { transition: background-color .15s, color .15s } }
+</style>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="who">
+      <h1 id="player">—</h1><span class="stroke" id="stroke">—</span>
+      <span class="meta" id="meta"></span>
+    </div>
+    <div class="chips" id="sits" role="group" aria-label="Situación del golpe"></div>
+  </div>
+</header>
+
+<main>
+  <section class="view" id="v-derecha" aria-labelledby="h-derecha">
+    <details class="beta" id="beta"><summary id="beta-title">Versión beta</summary><ul id="beta-list"></ul></details>
+
+    <div class="block">
+      <div><h2 id="h-derecha">Lo esencial</h2><p class="sub">Conclusiones medidas en sus golpes, con su confianza. Cada una abre sus vídeos.</p></div>
+      <div class="cards" id="concl"></div>
+      <button class="link" id="concl-more" type="button"></button>
+    </div>
+
+    <div class="block">
+      <div><h2>Cómo la pega</h2><p class="sub" id="phase-sub"></p></div>
+      <div class="phases" id="phases"></div>
+      <p class="mock-note">Maqueta: el recuadro de cada fase será el fotograma real de su golpe más representativo en esta situación, con el esqueleto y la medida dibujados encima.</p>
+    </div>
+
+    <div class="block">
+      <div><h2>Ritmo del golpe</h2><p class="sub" id="rhythm-sub"></p></div>
+      <div class="panel"><svg class="chart" id="rhythm" role="img" aria-label="Momento de cada fase respecto al impacto"></svg></div>
+    </div>
+
+    <div class="block">
+      <div><h2>Lo que puedes copiar</h2><p class="sub">Por orden: lo que corrigen primero los entrenadores. Cada punto lleva su medida en «Cómo la pega».</p></div>
+      <ol class="copy" id="copy"></ol>
+    </div>
+  </section>
+
+  <section class="view" id="v-golpes" hidden aria-labelledby="h-golpes">
+    <div><h2 id="h-golpes">Sus golpes</h2><p class="sub" id="golpes-sub"></p></div>
+    <div class="chips" id="g-sort" role="group" aria-label="Orden"></div>
+    <div class="list" id="g-list"></div>
+    <button class="more" id="g-more" type="button">Ver más</button>
+  </section>
+
+  <section class="view" id="v-comparar" hidden aria-labelledby="h-comparar">
+    <div><h2 id="h-comparar">Comparar situaciones</h2><p class="sub">Medianas de cada situación. Una diferencia solo se marca si supera el error de medida.</p></div>
+    <div class="selects">
+      <select id="cmp-a" aria-label="Situación A"></select><span class="eyebrow">frente a</span><select id="cmp-b" aria-label="Situación B"></select>
+    </div>
+    <div class="panel cmp" id="cmp"></div>
+    <p class="mock-note">Maqueta: medianas sin ajustar. La aplicación usará el ajuste por la bola recibida y el partido, como las conclusiones de abajo, y el vídeo de los dos golpes más representativos lado a lado, con el impacto alineado.</p>
+    <div class="block">
+      <div><h2>Lo que cambia, con ajuste</h2><p class="sub">Diferencias ajustadas por la bola recibida y el partido. Solo es real la que sale «Diferencia real».</p></div>
+      <div class="cards" id="findings"></div>
+    </div>
+  </section>
+
+  <section class="view" id="v-pista" hidden aria-labelledby="h-pista">
+    <div><h2 id="h-pista">En la pista</h2><p class="sub" id="pista-sub"></p></div>
+    <div class="chips" id="p-mode" role="group" aria-label="Qué se ve"></div>
+    <div class="court-wrap">
+      <svg class="court" id="court" viewBox="-6.5 -13.5 13 31" role="img" aria-label="Pista con sus golpes"></svg>
+      <div class="stats" id="p-stats"></div>
+    </div>
+  </section>
+
+  <section class="view" id="v-partidos" hidden aria-labelledby="h-partidos">
+    <div><h2 id="h-partidos">Partidos</h2><p class="sub">Lo analizado y lo que falta.</p></div>
+    <div class="list" id="matches"></div>
+    <div class="panel block">
+      <h2>Añadir un partido</h2>
+      <ol class="steps">
+        <li><div>Sube el vídeo de la retransmisión<small>Desde el móvil o el PC. Se borra cuando el partido queda aceptado.</small></div></li>
+        <li><div>Señala cuál de las dos es ella<small>Un toque sobre un fotograma, una vez por partido.</small></div></li>
+        <li><div>Aprueba el análisis<small>La aplicación dice cuánto tardará y cuánta cuota usará. Después avisa cuando termina.</small></div></li>
+      </ol>
+      <p class="mock-note">Maqueta: la subida y el aviso llegan con el bloque N (alojamiento privado a 0 €).</p>
+    </div>
+  </section>
+</main>
+
+<div class="sheet" id="sheet" hidden>
+  <div class="sheet-inner" role="dialog" aria-modal="true" aria-labelledby="sh-title">
+    <div class="sheet-head"><h2 id="sh-title">Golpe</h2><button class="close" id="sh-close" type="button">Cerrar</button></div>
+    <div class="video" id="sh-video"></div>
+    <div class="controls" id="sh-controls"></div>
+    <div class="panel"><svg class="chart" id="sh-rhythm" role="img" aria-label="Fases de este golpe"></svg></div>
+    <div class="panel measures" id="sh-measures"></div>
+  </div>
+</div>
+
+<nav class="tabs" aria-label="Secciones">
+  <div class="tabs-inner" id="tabs"></div>
+</nav>
+
+<script>
+const D = /*DATA*/null;
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const isN = v => typeof v === "number" && isFinite(v);
+const fmt = (v, d = 0) => isN(v) ? v.toLocaleString("es-ES", { minimumFractionDigits: d, maximumFractionDigits: d }) : "—";
+const sgn = (v, d = 0) => (v > 0 ? "+" : v < 0 ? "−" : "") + fmt(Math.abs(v), d);
+const decOf = k => { const m = D.metrics[k]; if (!m) return 0; return isN(m.dec) ? m.dec : (m.unit === "m" || m.unit === "s" ? 2 : 0); };
+const unitOf = k => (D.metrics[k] || {}).unit || "";
+const REL = r => r >= 3 ? ["good", "fiable"] : r === 2 ? ["warn", "media"] : ["crit", "baja"];
+const relPill = k => { const m = D.metrics[k] || {}; if (m.est) return `<span class="pill est">estimada</span>`; const [c, t] = REL(m.rel); return `<span class="pill ${c}">${t}</span>`; };
+const CONF = c => /fiable|real/.test(c) ? "good" : /estimada|baja/.test(c) ? "est" : "warn";
+
+let SIT = "todas";
+const sitOf = id => D.situations.find(s => s.id === id);
+const keepSit = {
+  todas: () => true, rapida: s => s.fast === true, lenta: s => s.fast === false, abierta: s => s.wide === true,
+  corta: s => s.short === true, baja: s => s.height === "baja", alta: s => s.height === "alta",
+  carrera: s => s.movement === "en carrera", parada: s => s.movement === "parada"
+};
+
+function header() {
+  $("player").textContent = D.player;
+  $("stroke").textContent = D.stroke;
+  $("meta").textContent = `${D.n_near} derechas del lado cercano en ${D.matches.length} partidos · ${D.n_far} del lejano (detalle reducido)`;
+  $("sits").innerHTML = D.situations.map(s => `<button class="chip" type="button" data-sit="${s.id}" aria-pressed="${s.id === SIT}"><b>${esc(s.label)}</b><span class="c num">${s.n}</span></button>`).join("");
+  $("sits").onclick = e => { const b = e.target.closest("[data-sit]"); if (!b) return; SIT = b.dataset.sit; renderAll(); };
+}
+
+function beta() {
+  $("beta-title").textContent = `Versión beta · ${D.known.length} diferencias conocidas`;
+  $("beta-list").innerHTML = D.known.map(t => `<li>${esc(t)}</li>`).join("");
+}
+
+let conclAll = false;
+function conclusions() {
+  const list = conclAll ? D.conclusions : D.conclusions.slice(0, 4);
+  $("concl").innerHTML = list.map(c => `<article class="concl"><p>${esc(c.text)}</p><div class="row"><span class="pill ${CONF(c.conf)}">${esc(c.conf)}</span>${(c.ids || []).length ? `<button class="link" type="button" data-ids="${esc((c.ids || []).join(","))}">Ver sus ${c.ids.length} golpes</button>` : ""}</div></article>`).join("");
+  $("concl-more").textContent = conclAll ? "Ver menos" : `Ver las ${D.conclusions.length} conclusiones`;
+}
+$("concl-more").onclick = () => { conclAll = !conclAll; conclusions(); };
+$("concl").onclick = e => { const b = e.target.closest("[data-ids]"); if (!b) return; ONLY = new Set(b.dataset.ids.split(",")); go("golpes"); };
+
+function measureRow(k) {
+  const m = D.metrics[k]; if (!m) return "";
+  const st = sitOf(SIT).stats[k], all = sitOf("todas").stats[k], d = decOf(k), u = unitOf(k);
+  if (!st || !isN(st.med)) return `<div class="m"><span class="name">${esc(m.name)}</span><span class="val">—</span><div class="rng">${st ? `${st.n} golpes: pocos para dar una mediana` : "sin medida en esta situación"}</div></div>`;
+  let diff = "";
+  if (SIT !== "todas" && all && isN(all.med)) {
+    const dv = st.med - all.med;
+    diff = Math.abs(dv) > (m.noise || 0) ? `<span class="diff ${dv > 0 ? "up" : "down"}">${sgn(dv, d)} ${u} frente al total</span>` : `<span>igual que en el total (dentro del error)</span>`;
+  }
+  return `<div class="m"><span class="name">${esc(m.name)}<br><span class="sub">${esc(m.sub || "")}</span></span><span class="val num">${fmt(st.med, d)}<small>${esc(u)}</small></span>
+    <div class="rng">${relPill(k)}<span class="num">la mitad de sus golpes entre ${fmt(st.p25, d)} y ${fmt(st.p75, d)} ${esc(u)} · ${st.n} golpes</span>${diff}</div></div>`;
+}
+
+const RH = () => Object.fromEntries(D.rhythm.events.map(e => [e.k, e]));
+function frameSvg(id) {
+  // a schematic marker of what the real frame will show; no measure is drawn from it
+  if (id === "impact") return `<svg viewBox="0 0 100 75" aria-hidden="true"><circle cx="62" cy="34" r="3.4" fill="var(--ball)" stroke="var(--ball-ink)" stroke-width=".6"/></svg>`;
+  return "";
+}
+function phases() {
+  const rh = RH(), s = sitOf(SIT);
+  $("phase-sub").textContent = `${s.label === "Todas" ? "Todas sus derechas" : s.label}: ${s.n} golpes del lado cercano. Desliza para ver las ${D.phases.length} partes del golpe.`;
+  $("phases").innerHTML = D.phases.map((p, i) => {
+    const e = rh[p.id === "feet" ? "" : p.id];
+    const when = e ? (e.median === 0 ? "impacto" : `${sgn(e.median, 2)} s`) : "";
+    const ms = p.keys.map(measureRow).join("");
+    const c = (p.checks || [])[0];
+    const extra = p.id === "impact" && s.stance.length ? `<div class="m"><span class="name">Apoyo en el impacto</span><span class="val num">${esc(s.stance[0][0])}</span><div class="rng">${s.stance.slice(0, 3).map(([k, n]) => `${esc(k)} ${fmt(100 * n / s.n)} %`).join(" · ")}</div></div>`
+      : p.id === "finish" && s.finish.length ? `<div class="m"><span class="name">Tipo de terminación</span><span class="val" style="font-size:18px">${esc(s.finish[0][0])}</span><div class="rng">${s.finish.slice(0, 3).map(([k, n]) => `${esc(k)} ${fmt(100 * n / s.n)} %`).join(" · ")}</div></div>`
+      : p.id === "feet" && s.movement.length ? `<div class="m"><span class="name">Cómo llega</span><span class="val" style="font-size:18px">${esc(s.movement[0][0])}</span><div class="rng">${s.movement.slice(0, 3).map(([k, n]) => `${esc(k)} ${fmt(100 * n / s.n)} %`).join(" · ")}</div></div>` : "";
+    return `<article class="phase" aria-label="${esc(p.title)}">
+      <div class="frame">${frameSvg(p.id)}<span class="tag">Fotograma real · fase ${p.id === "feet" ? "pies" : i + 1}</span>${when ? `<span class="when num">${when}</span>` : ""}</div>
+      <div class="phase-body">
+        <h3>${esc(p.title)}</h3>
+        <p class="focus">${esc(p.focus || p.when || "")}</p>
+        <div class="measures">${ms}${extra}${!ms && !extra ? `<p class="none">En la beta no hay una medida propia de esta fase; la consigna sale de su vídeo.</p>` : ""}</div>
+        ${c ? `<div class="coach"><div><span>Clave</span><p style="margin:0">${esc(c.cue)}</p></div><div><span>Error típico</span><p style="margin:0">${esc(c.mistake)}</p></div><div><span>Ejercicio</span><p style="margin:0">${esc(c.drill)}</p></div></div>` : ""}
+      </div></article>`;
+  }).join("");
+}
+
+function rhythmChart(svg, events, mark) {
+  const W = 640, L = 150, R = 20, rowH = 26, top = 24, H = top + rowH * events.length + 26;
+  const lo = -1.6, hi = 0.7, X = t => L + (t - lo) / (hi - lo) * (W - L - R);
+  let g = "";
+  for (let t = -1.5; t <= 0.51; t += 0.5) g += `<line class="grid" x1="${X(t)}" x2="${X(t)}" y1="${top - 8}" y2="${H - 22}"/><text x="${X(t)}" y="${H - 6}" text-anchor="middle">${t === 0 ? "impacto" : sgn(t, 1) + " s"}</text>`;
+  events.forEach((e, i) => {
+    const y = top + i * rowH + rowH / 2;
+    g += `<text class="lab" x="${L - 10}" y="${y + 4}" text-anchor="end">${esc(e.label)}</text>`;
+    if (isN(e.p25) && isN(e.p75) && e.p75 > e.p25) g += `<rect class="bar" x="${X(e.p25)}" y="${y - 6}" width="${X(e.p75) - X(e.p25)}" height="12" rx="6"/>`;
+    if (isN(e.median)) g += e.k === "impact" ? `<circle class="imp" cx="${X(0)}" cy="${y}" r="6"/>` : `<circle class="dot" cx="${X(e.median)}" cy="${y}" r="5"/>`;
+    if (mark && isN(mark[e.k])) g += `<circle cx="${X(mark[e.k])}" cy="${y}" r="4" fill="none" stroke="var(--ink)" stroke-width="1.6"/>`;
+  });
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  svg.innerHTML = g;
+}
+function rhythm() {
+  const r = D.rhythm;
+  $("rhythm-sub").textContent = `Mediana de cada momento respecto al impacto (punto) y la mitad central de sus golpes (barra), ${r.n} golpes. La cadena cinética va en orden (cadera → tronco → brazo) en el ${fmt(r.chain_in_order)} %.`;
+  rhythmChart($("rhythm"), r.events.concat((r.chain || []).map(c => ({ ...c, label: "Pico: " + c.label }))));
+}
+
+function copy() {
+  $("copy").innerHTML = D.plan.slice(0, 4).map(p => `<li><div><b>${esc(p.title)}</b><span>${esc(p.why)}</span></div></li>`).join("");
+}
+
+// strokes
+let ONLY = null, SORT = "calidad", SHOWN = 30;
+const MATCH = i => D.matches[i] || {};
+const OUT = { sigue: "sigue el punto", error: "error", ganador: "no devuelta" };
+function strokesNow() {
+  let a = D.strokes.filter(keepSit[SIT]);
+  if (ONLY) a = a.filter(s => ONLY.has(s.id));
+  const by = { calidad: (x, y) => (y.quality ?? -1) - (x.quality ?? -1), tiempo: (x, y) => (x.tAvail ?? 9) - (y.tAvail ?? 9), partido: (x, y) => (x.match - y.match) || ((x.set ?? 0) - (y.set ?? 0)) };
+  return a.sort(by[SORT]);
+}
+function golpes() {
+  const a = strokesNow();
+  $("golpes-sub").innerHTML = `${a.length} golpes${ONLY ? ` de una conclusión · <button class="link" type="button" id="g-all">ver todos</button>` : ` · ${esc(sitOf(SIT).label.toLowerCase())}`}. Los mejor captados primero: es donde mejor se ve la técnica.`;
+  if ($("g-all")) $("g-all").onclick = () => { ONLY = null; golpes(); };
+  $("g-sort").innerHTML = [["calidad", "Mejor captados"], ["tiempo", "Menos tiempo"], ["partido", "Por partido"]].map(([k, t]) => `<button class="chip" type="button" data-sort="${k}" aria-pressed="${k === SORT}">${t}</button>`).join("");
+  $("g-list").innerHTML = a.slice(0, SHOWN).map(s => {
+    const m = MATCH(s.match);
+    const tags = [s.stance, s.movement, s.fast ? "bola rápida" : s.fast === false ? "bola lenta" : null, s.height && `bola ${s.height}`, s.wide ? "abierta" : null, OUT[s.outcome]].filter(Boolean);
+    return `<button class="row-stroke" type="button" data-id="${esc(s.id)}"><span class="t">Frente a ${esc(m.rival || "—")}</span><span class="q num">${fmt(100 * (s.quality ?? 0))}<small style="font-size:11px;color:var(--muted)"> %</small></span>
+      <span class="s num">${s.set ? `Set ${s.set} · ${esc(s.score || "")}` : "sin marcador"}${isN(s.tAvail) ? ` · ${fmt(s.tAvail, 2)} s de tiempo` : ""}</span>
+      <span class="tags">${tags.map(t => `<span class="pill">${esc(t)}</span>`).join("")}</span></button>`;
+  }).join("");
+  $("g-more").hidden = a.length <= SHOWN;
+}
+$("g-sort").onclick = e => { const b = e.target.closest("[data-sort]"); if (!b) return; SORT = b.dataset.sort; golpes(); };
+$("g-more").onclick = () => { SHOWN += 30; golpes(); };
+$("g-list").onclick = e => { const b = e.target.closest("[data-id]"); if (b) openStroke(b.dataset.id); };
+
+function openStroke(id) {
+  const s = D.strokes.find(x => x.id === id); if (!s) return;
+  const m = MATCH(s.match);
+  $("sh-title").textContent = `Frente a ${m.rival || "—"}${s.set ? ` · set ${s.set}, ${s.score}` : ""}`;
+  $("sh-video").innerHTML = `<div><b>Vídeo real del golpe</b><br>a velocidad real, con el esqueleto, la raqueta y la bola encima<br><span style="opacity:.8">captura ${fmt(100 * (s.quality ?? 0))} % · ${esc(s.id)}</span></div>`;
+  $("sh-controls").innerHTML = ["Velocidad real", "Lento ×4", "Fotograma a fotograma", "Capas", "Lado a lado"].map((t, i) => `<button class="chip" type="button" aria-pressed="${i === 0}">${t}</button>`).join("");
+  const ph = s.phases || {}, rh = D.rhythm.events.filter(e => e.k !== "opp");
+  rhythmChart($("sh-rhythm"), rh, ph);
+  const keys = ["sh", "xf", "contactH", "lat", "elbow", "baseM", "head", "finishH", "split", "disp", "recov"];
+  $("sh-measures").innerHTML = `<p class="sub" style="margin:0">Círculo vacío: este golpe. Punto y barra: lo habitual en ella.</p>` + keys.map(k => {
+    const v = s.m[k], md = D.metrics[k], all = sitOf("todas").stats[k]; if (!md) return "";
+    const d = decOf(k), u = unitOf(k);
+    const dv = isN(v) && all && isN(all.med) ? v - all.med : null;
+    const note = dv === null ? "" : Math.abs(dv) > (md.noise || 0) ? `<span class="diff up">${sgn(dv, d)} ${esc(u)} frente a lo habitual</span>` : `<span>como siempre (dentro del error)</span>`;
+    return `<div class="m"><span class="name">${esc(md.name)}</span><span class="val num">${fmt(v, d)}<small>${esc(u)}</small></span><div class="rng">${relPill(k)}${note}</div></div>`;
+  }).join("");
+  $("sheet").hidden = false;
+  $("sh-close").focus();
+}
+$("sh-close").onclick = () => { $("sheet").hidden = true; };
+$("sheet").onclick = e => { if (e.target === $("sheet")) $("sheet").hidden = true; };
+document.addEventListener("keydown", e => { if (e.key === "Escape") $("sheet").hidden = true; });
+$("sh-controls").onclick = e => { const b = e.target.closest(".chip"); if (!b) return; [...$("sh-controls").children].forEach(c => c.setAttribute("aria-pressed", String(c === b))); };
+
+// compare
+function compare() {
+  const opts = D.situations.map(s => `<option value="${s.id}">${esc(s.label)} (${s.n})</option>`).join("");
+  if (!$("cmp-a").options.length) { $("cmp-a").innerHTML = opts; $("cmp-b").innerHTML = opts; $("cmp-a").value = "rapida"; $("cmp-b").value = "lenta"; }
+  const A = sitOf($("cmp-a").value), B = sitOf($("cmp-b").value);
+  const keys = Object.keys(D.metrics).filter(k => (A.stats[k] && isN(A.stats[k].med)) || (B.stats[k] && isN(B.stats[k].med)));
+  $("cmp").innerHTML = `<div class="cmp-row h"><span>Medida</span><span>${esc(A.label)}</span><span>${esc(B.label)}</span><span>Diferencia</span></div>` + keys.map(k => {
+    const m = D.metrics[k], a = A.stats[k], b = B.stats[k], d = decOf(k), u = unitOf(k);
+    const va = a && isN(a.med) ? a.med : null, vb = b && isN(b.med) ? b.med : null;
+    let verdict = "—";
+    if (va !== null && vb !== null) verdict = Math.abs(va - vb) > (m.noise || 0) ? `<b style="color:var(--court)">${sgn(va - vb, d)} ${esc(u)}</b>` : `<span style="color:var(--muted)">dentro del error</span>`;
+    return `<div class="cmp-row"><span>${esc(m.name)} ${relPill(k)}</span><span class="v num">${fmt(va, d)}</span><span class="v num">${fmt(vb, d)}</span><span>${verdict}</span></div>`;
+  }).join("");
+  $("findings").innerHTML = D.findings.map(f => {
+    const m = D.metrics[f.k] || {}, d = decOf(f.k), u = m.unit || "";
+    const lvl = f.level === "good" ? "good" : /ruido/i.test(f.verdict || "") ? "warn" : "crit";
+    return `<div class="find"><b>${esc(f.t)}</b><span>${esc(f.c)}</span><span class="num"><span class="pill ${lvl}">${esc(f.verdict || "")}</span> ${sgn(f.d, d)} ${esc(u)} (de ${fmt(f.lo, d)} a ${fmt(f.hi, d)}) · ${f.na} frente a ${f.nb} golpes</span></div>`;
+  }).join("");
+}
+$("cmp-a").onchange = compare; $("cmp-b").onchange = compare;
+
+// court
+let PMODE = "impacto";
+function court() {
+  const a = D.strokes.filter(keepSit[SIT]);
+  $("pista-sub").textContent = `${sitOf(SIT).label === "Todas" ? "Todas sus derechas" : sitOf(SIT).label} del lado cercano. Su mitad abajo, vista desde detrás de ella, como en la tele.`;
+  $("p-mode").innerHTML = [["impacto", "Dónde golpea"], ["bote", "Dónde bota su golpe"]].map(([k, t]) => `<button class="chip" type="button" data-mode="${k}" aria-pressed="${k === PMODE}">${t}</button>`).join("");
+  const HL = 11.885, SW = 4.115, DW = 5.485, SL = 6.4;
+  let g = `<rect class="outer" x="-6.5" y="-13.5" width="13" height="31"/><rect class="surf" x="${-DW}" y="${-HL}" width="${2 * DW}" height="${2 * HL}"/>`;
+  g += `<rect class="ln" x="${-DW}" y="${-HL}" width="${2 * DW}" height="${2 * HL}"/><line class="ln" x1="${-SW}" x2="${-SW}" y1="${-HL}" y2="${HL}"/><line class="ln" x1="${SW}" x2="${SW}" y1="${-HL}" y2="${HL}"/>`;
+  g += `<line class="ln" x1="${-SW}" x2="${SW}" y1="${-SL}" y2="${-SL}"/><line class="ln" x1="${-SW}" x2="${SW}" y1="${SL}" y2="${SL}"/><line class="ln" x1="0" x2="0" y1="${-SL}" y2="${SL}"/>`;
+  g += `<line class="net" x1="-6.2" x2="6.2" y1="0" y2="0"/><text x="-6.2" y="${HL + 1.1}">su lado</text><text x="-6.2" y="${-HL - .5}">rival</text>`;
+  let pts;
+  if (PMODE === "impacto") pts = a.filter(s => isN(s.x) && isN(s.y)).map(s => `<circle class="p" cx="${s.x.toFixed(2)}" cy="${s.y.toFixed(2)}" r=".2"/>`);
+  else pts = a.filter(s => isN(s.shotX) && isN(s.shotY)).map(s => `<circle class="p${s.shotIn === false ? " out" : ""}" cx="${s.shotX.toFixed(2)}" cy="${(-(s.shotY - HL)).toFixed(2)}" r=".2"/>`);
+  $("court").innerHTML = g + pts.join("");
+  const pos = a.filter(s => isN(s.y)), pct = (arr, f) => arr.length ? 100 * arr.filter(f).length / arr.length : NaN;
+  const shots = a.filter(s => isN(s.shotY));
+  $("p-stats").innerHTML = PMODE === "impacto"
+    ? `<div class="stat"><b class="num">${fmt(pct(pos, s => s.y > HL))} %</b><span>detrás de la línea de fondo</span></div><div class="stat"><b class="num">${fmt(pct(pos, s => s.x > 0))} %</b><span>en la mitad de su derecha</span></div><div class="stat"><b class="num">${pos.length}</b><span>golpes con posición</span></div>`
+    : `<div class="stat"><b class="num">${fmt(pct(shots.filter(s => s.shotIn !== undefined && s.shotIn !== null), s => s.shotIn === false))} %</b><span>fuera</span></div><div class="stat"><b class="num">${fmt(pct(shots, s => 23.77 - s.shotY <= 2))} %</b><span>a menos de 2 m del fondo rival</span></div><div class="stat"><b class="num">${shots.length}</b><span>golpes con bote</span></div>`;
+}
+$("p-mode").onclick = e => { const b = e.target.closest("[data-mode]"); if (!b) return; PMODE = b.dataset.mode; court(); };
+
+function partidos() {
+  $("matches").innerHTML = D.matches.map(m => `<div class="match"><b>Frente a ${esc(m.rival || "—")}</b><span class="pill good" style="grid-row:1/3;grid-column:2;align-self:center">analizado</span><span class="num">${m.near} derechas cerca · ${m.far} lejos${m.surf && m.surf !== "—" ? ` · pista ${esc(m.surf)}` : ""}</span></div>`).join("")
+    + `<div class="match"><b>6.º partido</b><span class="pill warn" style="grid-row:1/3;grid-column:2;align-self:center">en espera</span><span>Se analiza con la versión final de la nube.</span></div>`;
+}
+
+// navigation
+const TABS = [
+  ["derecha", "Su derecha", '<path d="M5 19c3-1 4-4 5-7s3-6 7-7"/><circle cx="17.5" cy="5.5" r="2.5"/>'],
+  ["golpes", "Golpes", '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3z"/>'],
+  ["comparar", "Comparar", '<rect x="3" y="5" width="8" height="14" rx="1.5"/><rect x="13" y="5" width="8" height="14" rx="1.5"/>'],
+  ["pista", "Pista", '<rect x="5" y="3" width="14" height="18" rx="1"/><path d="M5 12h14M9 3v18M15 3v18"/>'],
+  ["partidos", "Partidos", '<path d="M4 6h16M4 12h16M4 18h10"/>']
+];
+$("tabs").innerHTML = TABS.map(([k, t, ic]) => `<button class="tab" type="button" data-tab="${k}"><svg viewBox="0 0 24 24" aria-hidden="true">${ic}</svg>${t}</button>`).join("");
+$("tabs").onclick = e => { const b = e.target.closest("[data-tab]"); if (b) go(b.dataset.tab); };
+let VIEW = "derecha";
+function go(v) { if (location.hash !== "#" + v) location.hash = v; else show(v); }
+function show(v) {
+  VIEW = TABS.some(t => t[0] === v) ? v : "derecha";
+  TABS.forEach(([k]) => { $("v-" + k).hidden = k !== VIEW; });
+  [...$("tabs").children].forEach(b => b.toggleAttribute("aria-current", b.dataset.tab === VIEW) || b.removeAttribute("aria-current"));
+  [...$("tabs").children].forEach(b => { if (b.dataset.tab === VIEW) b.setAttribute("aria-current", "page"); });
+  renderView();
+  window.scrollTo(0, 0);
+}
+window.addEventListener("hashchange", () => show(location.hash.slice(1)));
+
+function renderView() {
+  if (VIEW === "derecha") { phases(); }
+  if (VIEW === "golpes") { SHOWN = 30; golpes(); }
+  if (VIEW === "comparar") compare();
+  if (VIEW === "pista") court();
+  if (VIEW === "partidos") partidos();
+}
+function renderAll() {
+  [...$("sits").children].forEach(b => b.setAttribute("aria-pressed", String(b.dataset.sit === SIT)));
+  renderView();
+}
+
+header(); beta(); conclusions(); rhythm(); copy();
+show(location.hash.slice(1) || "derecha");
+</script>

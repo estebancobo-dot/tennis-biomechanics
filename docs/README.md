@@ -40,6 +40,7 @@ Cada documento tiene **un solo papel**. Si dos dicen cosas distintas, manda el *
 | `herencia_pc.md` (14-11) | Lo que la nube hereda del PC (código, ajustes, ficheros, documentos) y qué se hace con cada cosa: mantenido con una medida en la nube, cambiado o por medir (T23, #292) |
 | `registro_decisiones.md` (15-11) | Cada decisión técnica por componente: en qué se basó (calidad con datos anotados, límite del PC o sin medir), qué se descartó y por qué, y qué se reabre o se mide en la nube (T25, #294) |
 | `n_web.md` (15-11) | N: dónde vive la aplicación web a 0 € con los datos privados, cómo se suben y borran los vídeos; opciones, propuesta (Hugging Face) y su prueba de concepto |
+| `comparativa_completa.md` (15-11) | P0.3: el catálogo de referencias (`config/referencias.yaml`) resumido: notas por criterio, patrones que se adoptan y cuáles no (con su motivo), huecos (#299, #300) |
 | `maqueta-informe.html`, `maqueta_leccion_armado.html`, `maqueta_aplicacion.html` | Maquetas de diseño (datos inventados) |
 | `matriz_en_la_web.md` | Generado por `scripts/matrix_in_web.py`: qué punto de la matriz se ve en la web |
 | `como_ejecutar.md` | Instrucciones de instalación en el PC |

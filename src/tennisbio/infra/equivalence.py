@@ -94,9 +94,11 @@ def compare_strokes(a: list[dict], b: list[dict], skip=("series", "window", "vie
     diffs: dict[str, int] = {}
     worst: dict[str, float] = {}
     jumps: list = []
+    shake: list[tuple[float, float]] = []
     for s, x in pairs:
         la = dict(_leaves({k: v for k, v in s.items() if k not in skip}))
         lb = dict(_leaves({k: v for k, v in x.items() if k not in skip}))
+        shake += _shake_pairs(la, lb)
         for k in set(la) | set(lb):
             if k in TIME_KEYS:
                 continue
@@ -115,7 +117,37 @@ def compare_strokes(a: list[dict], b: list[dict], skip=("series", "window", "vie
     return {"a": len(a), "b": len(b), "pares": len(pairs), "solo_a": only_a[:20], "solo_b": only_b[:20],
             "tipo_distinto": kinds[:20], "medidas_distintas": dict(sorted(diffs.items(), key=lambda kv: -kv[1])[:20]),
             "saltos": jumps[:400], "golpes_con_saltos": len({j["t"] for j in jumps}),
-            "mayor_diferencia": {k: round(v, 4) for k, v in sorted(worst.items(), key=lambda kv: -kv[1])[:20]}}
+            "mayor_diferencia": {k: round(v, 4) for k, v in sorted(worst.items(), key=lambda kv: -kv[1])[:20]},
+            "temblor": shake_summary(shake)}
+
+
+SHAKE_PREFIX = "technique.jitter."
+
+
+def _shake_pairs(la: dict, lb: dict) -> list[tuple[float, float]]:
+    """15-11 (T25, a model against another): the frame-to-frame shake of each measure on both sides, the same measure
+    of the same stroke. The racket face is left out: its sign flips (R50) would be counted as shake."""
+    out = []
+    for k in la.keys() & lb.keys():
+        va, vb = la[k], lb[k]
+        if (k.startswith(SHAKE_PREFIX) and "face" not in k and isinstance(va, (int, float))
+                and isinstance(vb, (int, float)) and not isinstance(va, bool) and not isinstance(vb, bool)):
+            out.append((abs(float(va)), abs(float(vb))))
+    return out
+
+
+def shake_summary(shake: list[tuple[float, float]]) -> dict:
+    """The shake of b against a over the same measures: the median ratio and how often b shakes less (a model that
+    measures better shakes less on the same strokes; −35 % was how RTMPose-x won in the PC, with 13 strokes)."""
+    both = [(a, b) for a, b in shake if a > 0]
+    if not both:
+        return {"n": 0}
+    ratios = sorted(b / a for a, b in both)
+    mid = len(ratios) // 2
+    med = ratios[mid] if len(ratios) % 2 else (ratios[mid - 1] + ratios[mid]) / 2
+    return {"n": len(both), "cociente_mediano_b_a": round(med, 3),
+            "b_tiembla_menos": round(sum(b < a for a, b in both) / len(both), 3),
+            "b_tiembla_mas": round(sum(b > a for a, b in both) / len(both), 3)}
 
 
 def compare(man_a: dict, man_b: dict, strokes_a: dict[str, list], strokes_b: dict[str, list]) -> dict:
@@ -161,6 +193,10 @@ def summary(c: dict) -> str:
                      + (f", {bad} distintos" if bad else "")
                      + (f", medidas fuera de tolerancia: {', '.join(list(g['medidas_distintas'])[:4])}"
                         if g["medidas_distintas"] else ""))
+        sh = g.get("temblor") or {}
+        if sh.get("n") and g["medidas_distintas"]:
+            parts.append(f"{f}: temblor de b frente a a ×{sh['cociente_mediano_b_a']:.2f} (mediana de {sh['n']} medidas;"
+                         f" b tiembla menos en el {100 * sh['b_tiembla_menos']:.0f} %)")
     return "; ".join(parts)
 
 
