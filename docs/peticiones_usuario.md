@@ -54,11 +54,11 @@ la auditoría las marcará «sin comprobación automática asignada».
 | Estado | Nº |
 |---|---|
 | HECHO | 122 |
-| PARCIAL | 140 |
+| PARCIAL | 142 |
 | FALTA | 21 |
 | NO MEDIBLE | 3 |
 | NO APLICA | 8 |
-| **Total** | **294** |
+| **Total** | **296** |
 
 **27-10:** filas 220-245 nuevas: todo lo pedido en el chat del 19-10 al 27-10 (releídos los mensajes) y lo que
 salió en la prueba de valor; ninguna fila borrada.
@@ -381,6 +381,8 @@ lateral (entreno)» · ≥12 = solo se muestra con 12 golpes o más (`model.MIN_
 | 292 | «¿Tienes claro que todo el código usado no tiene condicionales del PC como lo que has visto? ¿Las últimas POCs de hoy han sido 100 % desde cero? No quiero que hayas desechado opciones por información antigua del PC o código del PC» (Chat, 14-11) | PARCIAL | Revisión hecha: en el código, lo que frenaba la nube ya está cambiado (T4, T8, R48); las pruebas de hoy partían de cero en sus resultados pero con la carpeta de modelos y los ajustes del PC. Inventario y plan en `docs/herencia_pc.md` (T23); cada ejecución guarda los ajustes que usó; primera medida: la calidad completa en la nube (v21) | — | — | Lo cierra: cada fila de `docs/herencia_pc.md` mantenida con una medida en la nube, cambiada o medida |
 | 293 | «¿Las fases y etapas del análisis de un partido no cambian? Se han hecho sobre un PC con Windows 11. ¿Es el mejor diseño y arquitectura para la nube o hay otras mejores y más modernas? ¿Cómo se tomó esa opción? ¿Python en la nube, procesamiento distribuido, PySpark, otros?» (Chat, 15-11) | PARCIAL | Análisis en `docs/nube_nativa.md` §Arquitectura de ejecución: las etapas son el análisis y se quedan; cómo corren se diseñó para el PC y no se había comparado (hueco); alternativas (Ray Data, Modal `.map`, PySpark/Dask descartados con su motivo, vídeo nativo de GPU); propuesta T24 | — | — | Lo cierra: T24 decidido con su prueba de concepto (el mismo resultado y su tiempo de reloj) |
 | 294 | «¿Todo el estado del arte que hemos visto no lo tienes que repetir desde 0? ¿Realmente lo seleccionado es lo mejor? ¿Cómo lo puedes asegurar? ¿Has desechado opciones que a lo mejor valen, antiguas y nuevas?» (Chat, 15-11) | PARCIAL | `docs/registro_decisiones.md` (T25): «lo mejor» en absoluto no se asegura; sí que nada esté descartado por el PC y que cada elección tenga una medida en la nube con datos anotados. Encontradas opciones descartadas por el PC (Sapiens2, RF-DETR/DEIMv2, GVHMR/WHAM, SAM 3D Body, TOTNet, RTMPose FP16) y la pose elegida con 13 golpes: se reabren | — | — | Lo cierra: cada fila del registro con evidencia A medida en la nube, o descartada con un motivo que no sea del PC |
+| 295 | «¿La nube nativa no iría antes que el resto de partidos? Dejar los 2 de ahora avanzar y acabar, pero no hacer el resto» (Chat, 15-11) | PARCIAL | Aceptado: los partidos que faltan esperan a la nube nativa entera (`partidos_en_espera`), para analizar cada uno una sola vez con los modelos elegidos; Gauff y la final terminan | — | — | Lo cierra: la nube nativa cerrada (fase C medida) antes del primero de los partidos que faltan |
+| 296 | «¿El rediseño de la app no iría antes de la app web en la nube, para no tirar trabajo?» (Chat, 15-11) | PARCIAL | Aceptado: P0 se diseña como aplicación web y se construye una sola vez; de N avanza en paralelo solo lo que no es interfaz (alojamiento a 0 €, subida y borrado de vídeos, acceso privado). `CLAUDE.md` (cambio 15-11) | — | — | Lo cierra: la interfaz web es la de P0, sin una versión intermedia |
 | 269 | Estado y progreso: cuánto falta para lanzar los 6 partidos, qué hay en marcha y pendiente en la nube y en el PC (en serie o en paralelo), qué queda para cerrar la Base, por qué seguimos así y qué falló por la noche (Chat, 13-11) | HECHO | respuesta en el chat; `docs/estado_proyecto.md`, «Resumen de la noche (12-11 → 13-11)» y la tabla de tareas | — | — | Como #266, el estado vive en la tabla de tareas. |
 
 ## Lo más grave que falta (por impacto en «copiar su derecha»)

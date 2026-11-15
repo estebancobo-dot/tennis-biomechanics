@@ -62,13 +62,14 @@ paquetes:
     # en paralelo, y es la que cierra B3 (mejores modelos medidos)
     nombre: "Nube nativa e híbrida · N infraestructuras por adaptadores y descubrimiento; cada pieza con su prueba de concepto"
     cierre: "La prueba de 10 min da lo mismo en el PC, Modal, Kaggle y la nube de Claude (CPU) con el mismo código; vídeo, ejecución de modelos y cada modelo decididos con su prueba de concepto medida (docs/nube_nativa.md)"
-    peticiones: [287, 288, 289, 292, 293, 294]
+    peticiones: [287, 288, 289, 292, 293, 294, 295]
     prueba: ["^Equivalencia entre infraestructuras", "^Prueba de concepto medida"]
   P0:
     # 11-11 (usuario): justo después de la Base y antes de las medidas
+    # 15-11 (#296): antes de la interfaz web de N; se diseña ya como aplicación web y se construye una sola vez
     nombre: "Producto · rediseño completo de la aplicación (comparativa profesional, UX, aprendizaje, gestión, gráficos)"
     cierre: "Diseño desde la comparativa con las apps profesionales; capturas de cada pantalla comparadas con las de referencia, sin restos inútiles ni nada fijo en el código"
-    peticiones: [256, 257, 252, 258]
+    peticiones: [256, 257, 252, 258, 296]
     prueba: ["^Aplicación: rediseño "]
   M1:
     nombre: "Medidas · fases, cadena cinética y ritmo"

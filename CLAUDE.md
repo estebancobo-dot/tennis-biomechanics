@@ -46,6 +46,11 @@ Después: revés, saque, volea y otros jugadores.
     **Cambio (13-11 tarde, #275-#277):** el PC se para (`config/pausa_pc.txt`) y **los 6 partidos se analizan ya en
     Modal** (`cloud/`, flujo «Nube» de GitHub Actions), por lotes, cada uno tras una prueba corta de 10 min; R22 va
     como diferencia conocida y escrita. El PC solo vuelve si el usuario lo pide.
+    **Cambio (15-11, #295-#296):** (1) la nube nativa entera (también sus modelos medidos en la nube) va **antes** de los
+    partidos que faltan: así cada partido se analiza una sola vez con lo elegido (Gauff y la final, ya en marcha,
+    terminan). (2) El rediseño de la aplicación (P0) va **antes** de su interfaz web: P0 se diseña ya como aplicación
+    web y se construye una sola vez; de N avanza en paralelo solo lo que no es interfaz (alojamiento a 0 €, subida y
+    borrado de vídeos, acceso privado).
 
 **Referencia de completitud:** `docs/matriz_cobertura.md` (taxonomía de la derecha con fuentes:
 ITF/Elliott-Reid-Crespo, Landlinger, Knudson, Tennis Australia, estudios de pies, sistemas
