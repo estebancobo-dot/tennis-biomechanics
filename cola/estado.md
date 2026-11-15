@@ -49,8 +49,8 @@
 | prueba_gauff_v30_c | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | error | kaggle | cancelado: T24 (15-11 21:00): la v30_b también repitió los cortes (122 s, velocidad de GPU, frente a los 516 s de la v30_a en CPU): queda otra causa además de R55; la v30_c en la CPU repetiría lo de GPU. Se diagnostica con leer_v30 |
 | comparar_gauff_v26_v30 | comparar |  | error |  | cancelado: sin la v30_c (ver arriba) |
 | leer_v30 | leer |  | hecho | github | leídos: runs__kaggle_prueba_gauff_v30_a__log.txt, runs__kaggle_prueba_gauff_v30_b__log.txt, kaggle_pruebas__prueba_gauff_v30_a__output___prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5__video.json, kaggle_pruebas__prueba_gauff_v30_a__output___prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5__manifest.json, kaggle_pruebas__prueba_gauff_v30_a__output___prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5__probe.json |
-| prueba_gauff_v31_a | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle |  |
-| prueba_gauff_v31_b | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | pendiente |  | espera a prueba_gauff_v31_a (pendiente) |
+| prueba_gauff_v31_a | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: running (20:46), intento 1 |
+| prueba_gauff_v31_b | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | pendiente |  | espera a prueba_gauff_v31_a (en_marcha) |
 | prueba_gauff_v31_c | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | pendiente |  | espera a prueba_gauff_v31_b (pendiente) |
 | comparar_gauff_v26_v31 | comparar |  | pendiente |  | espera a prueba_gauff_v31_c |
 | leer_zheng_errores | leer |  | hecho | github | leídos: output__zheng-qinwen-elena-rybakina__strokes_errores.json |
