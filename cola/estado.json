@@ -836,5 +836,18 @@
   "salida": "/kaggle_pruebas/prueba_gauff_v29_a/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cuaderno": "tennisbio-prueba-gauff-v29-b",
   "kaggle": "queued (16:35)"
+ },
+ "medir_bola_totnet": {
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1794760548.5542498,
+  "accion": "medir",
+  "partido": "",
+  "inicio": "2026-11-15 16:35",
+  "ruta": "/runs/kaggle_medir_bola_totnet/estado.json",
+  "cpu": true,
+  "cuaderno": "tennisbio-medir-bola-totnet"
  }
 }
