@@ -604,7 +604,7 @@
   "salida": "/kaggle_pruebas/prueba_gauff_v24/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cuaderno": "tennisbio-prueba-gauff-v24",
   "progreso": "fine:   4 % (1/28 golpes candidatos · 1 confirmados · 0 ventanas descartadas sin pose) · 0 s · quedan ≈ 0 s (09:10:36; GPU 53 %·6 %, CPU 76 %, 7.4 GB)",
-  "kaggle": "running (09:12)",
+  "kaggle": "running (09:13)",
   "arranco": "2026-11-15 09:06",
   "espera_min": 11
  },
@@ -620,6 +620,16 @@
   "ruta": "/runs/kaggle_prueba_gauff_v25_calidad/estado.json",
   "salida": "/kaggle_pruebas/prueba_gauff_v25_calidad/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cuaderno": "tennisbio-prueba-gauff-v25-calidad",
-  "kaggle": "queued (09:12)"
+  "kaggle": "queued (09:13)"
+ },
+ "leer_zheng_errores": {
+  "estado": "hecho",
+  "accion": "leer",
+  "donde": "github",
+  "fin": "2026-11-15 09:13",
+  "resultado": {
+   "nota": "leídos: output__zheng-qinwen-elena-rybakina__strokes_errores.json"
+  },
+  "partido": ""
  }
 }

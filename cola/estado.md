@@ -1,6 +1,6 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-15 09:12 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 4.2 h de GPU esta semana (tope 28 h; Kaggle dice 22.03 h usadas de 30.0, se renueva 2026-11-21 00:00)
+Última vuelta: 2026-11-15 09:13 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 4.2 h de GPU esta semana (tope 28 h; Kaggle dice 22.04 h usadas de 30.0, se renueva 2026-11-21 00:00)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
@@ -27,9 +27,10 @@
 | comparar_gauff_v22_rtmw | comparar |  | revisar | github | distinta; 12 etapas iguales; distintas: fine, fine_doubtful, slowmo_fine, view_clips; strokes.json: 27 de 28/28 golpes emparejados, 2 distintos, medidas fuera de tolerancia: technique.phases.loaded.head_vs_hips, technique.phases.acceleration.x_factor, technique.phases.extension.hip_turn, phases.extension.confidence; strokes_opponent.json: 0 de 0/0 golpes emparejados; strokes_doubtful.json: 1 de 1/1 golpes emparejados, medidas fuera de tolerancia: technique.phases.loaded.head_vs_hips, technique.jitter.footwork.back_heel_lift, face.finish.observed, technique.jitter.takeback.knee_non |
 | comparar_gauff_v22_rtmw_b | comparar |  | revisar | github | distinta; 12 etapas iguales; distintas: fine, fine_doubtful, slowmo_fine, view_clips; strokes.json: 27 de 28/28 golpes emparejados, 2 distintos, medidas fuera de tolerancia: metrics.non_elbow_impact_deg, technique.pose.ready, technique.phases.acceleration.wrist_dom_height, technique.phases.acceleration.x_factor; strokes.json: temblor de b frente a a ×0.99 (mediana de 4944 medidas; b tiembla menos en el 50 %); strokes_opponent.json: 0 de 0/0 golpes emparejados; strokes_doubtful.json: 1 de 1/1 golpes emparejados, medidas fuera de tolerancia: face.extension.yaw_deg, technique.phases.acceleration. |
 | comparar_gauff_v22_v23_b | comparar |  | revisar | github | distinta; 7 etapas iguales; distintas: candidates, fine, fine_doubtful, identity, players, slowmo_fine, spotting, view_clips; strokes.json: 27 de 28/28 golpes emparejados, 3 distintos, medidas fuera de tolerancia: technique.pose.ready, technique.pose.extension, technique.pose.finish, racket_track; strokes.json: temblor de b frente a a ×1.00 (mediana de 5308 medidas; b tiembla menos en el 36 %); strokes_opponent.json: 0 de 0/0 golpes emparejados; strokes_doubtful.json: 1 de 1/1 golpes emparejados, medidas fuera de tolerancia: technique.phases.takeback.hip_turn, technique.curves.hand, technique. |
-| prueba_gauff_v24 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: running (09:12), intento 1 · fine:   4 % (1/28 golpes candidatos · 1 confirmados · 0 ventanas descartadas sin pose) · 0 s · quedan ≈ 0 s (09:10:36; GPU 53 %·6 %, CPU 76 %, 7.4 GB) |
-| prueba_gauff_v25_calidad | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: queued (09:12), intento 1 |
+| prueba_gauff_v24 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: running (09:13), intento 1 · fine:   4 % (1/28 golpes candidatos · 1 confirmados · 0 ventanas descartadas sin pose) · 0 s · quedan ≈ 0 s (09:10:36; GPU 53 %·6 %, CPU 76 %, 7.4 GB) |
+| prueba_gauff_v25_calidad | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: queued (09:13), intento 1 |
 | comparar_gauff_v24_v25 | comparar |  | pendiente |  | espera a prueba_gauff_v24, prueba_gauff_v25_calidad |
+| leer_zheng_errores | leer |  | hecho | github | leídos: output__zheng-qinwen-elena-rybakina__strokes_errores.json |
 | prueba_gauff | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | modal |  |
 | prueba_gauff_v16 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | error | kaggle | en cola de Kaggle más de 10 min sin arrancar (4 intentos) |
 | prueba_gauff_v16b | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
