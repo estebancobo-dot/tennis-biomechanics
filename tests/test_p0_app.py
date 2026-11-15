@@ -28,6 +28,22 @@ def test_the_built_page_is_the_one_of_its_sources():
     assert stamp == build.fingerprint(), "ui/ cambió sin volver a construir: python scripts/construir_ui.py"
 
 
+def test_no_source_of_the_interface_is_left_out_of_the_repository():
+    """15-11: «*.ts» in .gitignore (the broadcasts' video type) had left the TypeScript sources out of the repository:
+    the build there could not be made again from it."""
+    import shutil
+    import subprocess
+
+    if not shutil.which("git") or not (ROOT / ".git").exists():
+        pytest.skip("sin git")
+    build = _load("construir_ui", ROOT / "scripts" / "construir_ui.py")
+    files = [f"ui/{f}" for f in build.SOURCES] + sorted(p.relative_to(ROOT).as_posix()
+                                                         for p in (ROOT / "ui" / "src").rglob("*") if p.is_file())
+    r = subprocess.run(["git", "check-ignore", "--no-index", *files], cwd=ROOT, capture_output=True, text=True)
+    assert r.stdout.split() == [], f"fuentes de ui/ que git no guarda: {r.stdout.split()}"
+    assert "ui/src/contrato.ts" in files and "ui/vite.config.ts" in files
+
+
 def test_the_data_go_into_the_page_safely():
     d = p0_app.ejemplo()
     d["known"] = ["</script><script>alert(1)</script>"]

@@ -2,6 +2,8 @@
 *.mp4
 *.mkv
 *.ts
+# (TypeScript sources of the application are code, not videos: 15-11, they had been left out)
+!ui/**/*.ts
 *.mov
 *.avi
 *.webm
