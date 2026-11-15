@@ -545,3 +545,60 @@ def test_a_reading_copies_small_volume_files_to_the_logs(tmp_path):
     assert (tmp_path / "lecturas" / "leer_z" / "output__z__strokes_errores.json").read_bytes() == b'[{"t": 1}]'
     st = cola.read_job(Vol(), {**j, "rutas": ["/output/z/otro.json"]}, {}, tmp_path, 0.0)
     assert st["estado"] == "error" and "faltan" in st["resultado"]["nota"]
+
+
+def test_coach_videos_on_a_kaggle_cpu_session(monkeypatch, tmp_path):
+    """#304 (15-11): «investigar» runs the coaches' videos on a Kaggle CPU session: it needs its videos and Kaggle, it
+    takes none of the 2 GPU sessions and books no GPU hours, and its folder comes to nube-logs once."""
+    j = {"id": "inv", "accion": "investigar", "urls": "https://youtu.be/AAAAAAAAAAA"}
+    assert not cola.check_queue([j])
+    assert "necesita «urls»" in cola.check_queue([{**j, "urls": " "}])[0]
+    assert "va en Kaggle" in cola.check_queue([{**j, "donde": "modal"}])[0]
+    assert cola.estimate_h(j) == 0.0 and cola.run_path(j, "kaggle") == "/runs/kaggle_inv/estado.json"
+    monkeypatch.setenv("KAGGLE_API_TOKEN", "t")
+    monkeypatch.setenv("KAGGLE_USERNAME", "u")
+    busy = {"g": {"estado": "en_marcha", "donde": "kaggle"}, "h": {"estado": "en_marcha", "donde": "kaggle"}}
+    src = cola._sources(ROOT, {"kaggle_activo": True}, {**busy, "inv0": {"estado": "en_marcha", "donde": "kaggle",
+                                                                          "accion": "investigar"}})
+    assert src["kaggle"]["motivo"] == "ocupado con g, h" and src["kaggle_cpu"]["ok"] is True
+    got = cola.plan([j, {"id": "p", "accion": "prueba", "partido": "m"}], {}, {"modal": {}}, src, NOV)
+    assert got[0] == ("inv", "kaggle", "sesión de CPU: no gasta horas de GPU") and got[1][1] != "kaggle"
+    off = cola._sources(ROOT, {"kaggle_activo": False})
+    assert cola.plan([j], {}, {}, off, NOV)[0][1] == ""
+    spend: dict = {}
+    cola.record_launch({}, spend, j, "kaggle", "kaggle", NOV)
+    assert not spend.get("kaggle")                                        # no GPU hours booked
+    state = {"inv": {"estado": "en_marcha", "donde": "kaggle", "accion": "investigar", "lanzado_ts": NOV - 7200,
+                     "arranco": "x"}}
+    real = {"kaggle_real": {"usadas_h": 10.0, "total_h": 30.0, "ts": NOV}}
+    assert cola.kaggle_room(real, NOV, state) == cola.kaggle_room(real, NOV, {})
+    calls = []
+
+    class R:
+        returncode, stdout, stderr = 0, "ok", ""
+    monkeypatch.setattr(cola, "_kaggle", lambda args: calls.append(args) or R())
+    assert cola.kaggle_launch(j)
+    launch = calls[-1]
+    assert "--cpu" in launch and launch[launch.index("--urls") + 1] == j["urls"]
+    assert launch[launch.index("--salida-remota") + 1] == "/runs/kaggle_inv"
+
+    class Store:
+        def __init__(self):
+            self.got = []
+
+        def get(self, remote, local_dir):
+            self.got.append(remote)
+            d = Path(local_dir) / "investigacion" / "AAAAAAAAAAA"
+            d.mkdir(parents=True)
+            for n in ("info.json", "dicho.txt", "f_001.jpg", "x.webm"):
+                (d / n).write_text("x", encoding="utf-8")
+            (Path(local_dir) / "investigacion" / "indice.json").write_text("[]", encoding="utf-8")
+    store = Store()
+    done = {"inv": {"estado": "hecho", "accion": "investigar", "ruta": "/runs/kaggle_inv/estado.json"},
+            "otro": {"estado": "en_marcha", "accion": "investigar", "ruta": "/runs/kaggle_otro/estado.json"}}
+    assert cola.copy_research(None, done, tmp_path, store) == ["inv"]
+    assert store.got == ["/runs/kaggle_inv/investigacion"]
+    out = tmp_path / "investigacion" / "inv"
+    assert sorted(p.name for p in (out / "AAAAAAAAAAA").iterdir()) == ["dicho.txt", "f_001.jpg", "info.json"]
+    assert (out / "indice.json").exists()
+    assert cola.copy_research(None, done, tmp_path, store) == [] and len(store.got) == 1     # once

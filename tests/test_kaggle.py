@@ -234,3 +234,39 @@ def test_a_file_is_marked_sent_only_after_its_upload(tmp_path):
     assert correr.changed(tmp_path, seen, mark=False) == []
     src = (ROOT / "cloud" / "kaggle" / "correr.py").read_text(encoding="utf-8")
     assert "uploader.join(" in src and "sync(vol, out_dir, seen, remote, lock)" in src
+
+
+def test_coach_videos_job_on_the_cpu():
+    """#304 (15-11): «investigar» runs on a CPU notebook (no GPU, no machine shape) and needs its videos; its summary
+    says how many videos gave text (and from where) and frames."""
+    j = correr.parse_job('{"accion": "investigar", "urls": "https://youtu.be/AAAAAAAAAAA"}')
+    assert j["salida"] == "/runs/kaggle_investigar"
+    with pytest.raises(ValueError, match="necesita los vídeos"):
+        correr.parse_job('{"accion": "investigar"}')
+    m = klanzar.metadata("u", slug="tennisbio-inv", gpu=False)
+    assert m["enable_gpu"] is False and "machine_shape" not in m and m["enable_internet"] is True
+    assert klanzar.metadata("u")["enable_gpu"] is True and klanzar.metadata("u")["machine_shape"] == "NvidiaTeslaT4"
+    s = correr.research_summary([
+        {"id": "a", "subtitles": True, "text_source": "subtitulos", "frames": 20},
+        {"id": "b", "subtitles": True, "text_source": "voz transcrita (Whisper small)", "frames": 12},
+        {"id": "c", "subtitles": False, "frames": 0, "video_error": "HTTP Error 403"}])
+    assert s["videos"] == 3 and s["con_texto"] == 2 and s["con_fotogramas"] == 2
+    assert s["texto_de"] == {"subtitulos": 1, "voz transcrita (Whisper small)": 1}
+    assert s["fallan"] == [{"id": "c", "error": "HTTP Error 403"}]
+    src = (ROOT / "cloud" / "kaggle" / "correr.py").read_text(encoding="utf-8")
+    assert '"--transcribir"' in src and '"faster-whisper"' in src
+
+
+def test_whisper_text_has_the_subtitles_form():
+    """#304: the transcribed speech is written as the subtitles' text is (one line per sentence, with its minute)."""
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("yr", ROOT / "scripts" / "youtube_research.py")
+    yr = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(yr)
+
+    class S:
+        def __init__(self, start, text):
+            self.start, self.text = start, text
+    assert yr.segments_to_text([S(3.4, " Turn the shoulders. "), S(65.0, "  "), S(75.9, "Then the hips.")]) == \
+        "[0:03] Turn the shoulders.\n[1:15] Then the hips."
+    assert yr.stamp(3599.9) == "59:59"

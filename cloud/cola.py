@@ -33,7 +33,11 @@ CAP_USD = 29.5
 USD_PER_VIDEO_MIN = 0.065
 USD = {"prueba": 0.8, "informe": 0.15, "medir": 0.5}
 DEFAULT_VIDEO_MIN = 210                     # the longest of the six, when a job does not say its length
-ACTIONS = ("prueba", "partido", "informe", "medir", "comparar", "leer")
+ACTIONS = ("prueba", "partido", "informe", "medir", "comparar", "leer", "investigar")
+# 15-11 (#304): «investigar» runs scripts/youtube_research.py on a Kaggle CPU session (YouTube lets Kaggle download;
+# it refuses this cloud): no GPU hours, none of the 2 GPU sessions; its texts and frames come to nube-logs
+# (cola/investigacion/<id>/), as the PC's come to pc-logs
+RESEARCH_EXT = (".json", ".txt", ".jpg")
 # 15-11 (R52): «leer» copies small text files of the volume to nube-logs, for a diagnosis without GPU or Modal credit
 READ_EXT = (".json", ".txt", ".md", ".log")
 READ_MAX_BYTES = 512 * 1024
@@ -77,7 +81,9 @@ def week(now: float) -> str:
 
 
 def estimate_h(job: dict) -> float:
-    """Kaggle GPU hours a job may take (an upper estimate until measured)."""
+    """Kaggle GPU hours a job may take (an upper estimate until measured); a CPU session takes none (#304)."""
+    if job["accion"] == "investigar":
+        return 0.0
     if job["accion"] == "partido":
         return round(KAGGLE_H_PER_VIDEO_MIN * float(job.get("minutos_video") or DEFAULT_VIDEO_MIN), 2)
     return KAGGLE_H.get(job["accion"], 1.0)
@@ -97,7 +103,8 @@ def kaggle_room(spend: dict, now: float, state: dict | None = None) -> float:
                 est[jid] = float(r.get("estimado_h", 0.0))
         left = 0.0
         for jid, st in state.items():
-            if isinstance(st, dict) and st.get("estado") == "en_marcha" and st.get("donde") == "kaggle":
+            if isinstance(st, dict) and st.get("estado") == "en_marcha" and st.get("donde") == "kaggle" \
+                    and st.get("accion") != "investigar":                  # a CPU session: no GPU hours
                 ran = (now - float(st.get("lanzado_ts", now))) / 3600 if st.get("arranco") else 0.0
                 left += max(0.0, est.get(jid, 1.0) - ran)
         cap = min(KAGGLE_CAP_H, float(real.get("total_h") or 30.0) - 2.0)
@@ -170,7 +177,7 @@ def run_path(job: dict, source: str = "modal") -> str:
     """Where the job's estado.json goes on the volume (cloud/modal_app.py; a Kaggle test keeps its own folder, so it
     never writes over a test made by Modal: cloud/kaggle/correr.py with --salida-remota)."""
     a = job["accion"]
-    if (source == "kaggle" and a == "prueba") or a == "medir":
+    if (source == "kaggle" and a == "prueba") or a in ("medir", "investigar"):
         return f"/runs/kaggle_{job['id']}/estado.json"
     if a == "partido":
         return f"/runs/partido_{job['partido']}/estado.json"
@@ -223,6 +230,9 @@ def check_queue(jobs: list[dict]) -> list[str]:
             if (not isinstance(rutas, list) or not rutas or not all(
                     isinstance(r, str) and r.startswith("/") and ".." not in r and r.endswith(READ_EXT) for r in rutas)):
                 bad.append(f"{jid}: leer necesita «rutas»: ficheros del volumen ({', '.join(READ_EXT)}), rutas absolutas")
+        if j.get("accion") == "investigar" and (not str(j.get("urls") or "").strip()
+                                                or j.get("donde", "cualquiera") not in ("cualquiera", "kaggle")):
+            bad.append(f"{jid}: investigar necesita «urls» (los vídeos) y va en Kaggle")
         if j.get("donde", "cualquiera") not in ("cualquiera", *SOURCES):
             bad.append(f"{jid}: donde {j.get('donde')!r}")
     for j in jobs:
@@ -319,6 +329,11 @@ def plan(jobs: list[dict], state: dict, spend: dict, sources: dict, now: float,
                      and state.get(str(x), {}).get("estado") != "hecho"]
             out.append((j["id"], "", f"espera a {', '.join(waits)}") if waits else (j["id"], "github", "se compara en esta vuelta"))
             continue
+        if j["accion"] == "investigar":                 # #304: a CPU session, apart from the GPU's hours and sessions
+            k = sources.get("kaggle_cpu") or {}
+            out.append((j["id"], "kaggle", "sesión de CPU: no gasta horas de GPU") if k.get("ok") else
+                       (j["id"], "", f"sin capacidad: kaggle: {k.get('motivo', 'no disponible')}"))
+            continue
         if j["accion"] == "partido" and not j.get("aprobado"):
             out.append((j["id"], "", "falta la aprobación del usuario (#262)"))
             continue
@@ -374,7 +389,7 @@ def record_launch(state: dict, spend: dict, job: dict, source: str, call: str, n
                         "ruta": run_path(job, source)}
     if job.get("partido"):                        # T9: where its outputs are, for «comparar»
         state[job["id"]]["salida"] = output_of(job, source)
-    if source == "kaggle":
+    if source == "kaggle" and job["accion"] != "investigar":          # #304: a CPU session books no GPU hours
         w = spend.setdefault("kaggle", {}).setdefault(week(now), {"trabajos": {}})
         w.setdefault("trabajos", {}).setdefault(job["id"], {"estimado_h": estimate_h(job)})
     if source == "modal":
@@ -463,16 +478,18 @@ def _sources(repo: Path, queue: dict | None = None, state: dict | None = None) -
     (`kaggle_activo`, after its 10-minute test gave the same as Modal's) and a free session of its KAGGLE_SESSIONS;
     the PC: never (#284)."""
     queue, state = queue or {}, state or {}
-    busy = [i for i, st in state.items() if st.get("estado") == "en_marcha" and st.get("donde") == "kaggle"]
+    busy = [i for i, st in state.items() if st.get("estado") == "en_marcha" and st.get("donde") == "kaggle"
+            and st.get("accion") != "investigar"]           # #304: a CPU session holds none of the GPU's
+    cpu = {"ok": True, "motivo": ""}
     if not (os.environ.get("KAGGLE_API_TOKEN") and os.environ.get("KAGGLE_USERNAME")):
-        k = {"ok": False, "motivo": "sin sus claves en GitHub"}
+        k = cpu = {"ok": False, "motivo": "sin sus claves en GitHub"}
     elif not queue.get("kaggle_activo"):
-        k = {"ok": False, "motivo": "aún no activado en la cola (antes, su prueba de 10 min frente a la de Modal)"}
+        k = cpu = {"ok": False, "motivo": "aún no activado en la cola (antes, su prueba de 10 min frente a la de Modal)"}
     elif len(busy) >= KAGGLE_SESSIONS:
         k = {"ok": False, "motivo": f"ocupado con {', '.join(busy)}"}
     else:
         k = {"ok": True, "motivo": "", "libres": KAGGLE_SESSIONS - len(busy)}
-    return {"kaggle": k, "pc": {"ok": False, "motivo": "no se usa (decisión del usuario, 14-11, #284)"}}
+    return {"kaggle": k, "kaggle_cpu": cpu, "pc": {"ok": False, "motivo": "no se usa (decisión del usuario, 14-11, #284)"}}
 
 
 def _kaggle(args: list[str]) -> subprocess.CompletedProcess:
@@ -489,7 +506,9 @@ def kaggle_launch(job: dict, slug: str | None = None) -> bool:
              if job["accion"] == "prueba" else
              (["--salida-remota", run_path(job, "kaggle").rsplit("/", 1)[0], "--prueba", job.get("prueba", "")]
               + (["--urls", str(job["urls"])] if job.get("urls") else []))
-             if job["accion"] == "medir" else [])
+             if job["accion"] == "medir" else
+             ["--salida-remota", run_path(job, "kaggle").rsplit("/", 1)[0], "--urls", str(job.get("urls") or ""), "--cpu"]
+             if job["accion"] == "investigar" else [])
     if job.get("config"):                            # T5: a test of other settings (proof of concept on the whole clip)
         extra += ["--config", json.dumps(job["config"], ensure_ascii=False)]
     for args in (["clave"], ["lanzar", "--accion", job["accion"], "--partido", job.get("partido", ""),
@@ -613,6 +632,7 @@ def main(argv: list[str] | None = None) -> int:
     mark_experiments(d, queue.get("experimentos") or [])
     if not a.en_seco:
         copy_poc_results(vol, state, d)
+        copy_research(vol, state, d)
         refresh_estimates(state, spend, by_id)          # R49: reservations with today's measured rate
         real = kaggle_quota() if queue.get("kaggle_activo") else None
         if real:                                         # R49: Kaggle's own counter decides the room
@@ -733,10 +753,10 @@ def copy_poc_results(vol, state: dict, logs: Path) -> list[str]:
                 if dest.exists():
                     out.append(jid)
     for jid, st in state.items():
-        if not isinstance(st, dict) or st.get("accion") not in ("medir", "prueba", "partido") \
+        if not isinstance(st, dict) or st.get("accion") not in ("medir", "prueba", "partido", "investigar") \
                 or st.get("estado") not in (*FINAL, "revisar") or not st.get("ruta"):
             continue
-        f = logs / ("pruebas" if st["accion"] == "medir" else "ejecuciones") / f"{jid}.json"
+        f = logs / ("pruebas" if st["accion"] in ("medir", "investigar") else "ejecuciones") / f"{jid}.json"
         if f.exists():
             continue
         res = _read_json(vol, st["ruta"])
@@ -744,11 +764,12 @@ def copy_poc_results(vol, state: dict, logs: Path) -> list[str]:
             continue
         f.parent.mkdir(parents=True, exist_ok=True)
         keep = (("estado", "poc", "kaggle", "horas_kaggle", "nota") if st["accion"] == "medir" else
+                ("estado", "investigacion", "kaggle", "horas_kaggle", "nota") if st["accion"] == "investigar" else
                 # phase A (#287): where each second and each resource went, for every test and match
                 ("estado", "segundos", "horas_kaggle", "coste_usd", "gpu", "etapas", "recursos", "recursos_por_etapa",
                  "modelos_en_cpu", "fallos", "sin_subir", "config", "config_local", "kaggle", "nota"))
         row = {k: res.get(k) for k in keep}
-        if st["accion"] != "medir":                       # R47: models on the CPU without an error, from its log
+        if st["accion"] not in ("medir", "investigar"):   # R47: models on the CPU without an error, from its log
             import almacen
             import nube
 
@@ -762,6 +783,39 @@ def copy_poc_results(vol, state: dict, logs: Path) -> list[str]:
         f.write_text(json.dumps(row, ensure_ascii=False, indent=1), encoding="utf-8")
         out.append(jid)
     return out
+def copy_research(vol, state: dict, logs: Path, store=None) -> list[str]:
+    """#304: a finished «investigar» job's folder (/runs/kaggle_<id>/investigacion: per video its info.json, what is
+    said in dicho.txt and small frames) into nube-logs (cola/investigacion/<id>/), once; only texts and frames."""
+    import shutil
+    import tempfile
+
+    import almacen
+
+    out = []
+    for jid, st in state.items():
+        if not isinstance(st, dict) or st.get("accion") != "investigar" or st.get("estado") != "hecho" \
+                or not st.get("ruta"):
+            continue
+        dest = logs / "investigacion" / jid
+        if dest.exists():
+            continue
+        s = store or almacen.ModalStorage(vol, VOLUME)
+        with tempfile.TemporaryDirectory() as t:
+            try:
+                s.get(st["ruta"].rsplit("/", 1)[0] + "/investigacion", Path(t))
+            except Exception as e:  # noqa: BLE001 — said in the state; the next pass tries again
+                st["aviso"] = f"no se pudo copiar su carpeta: {type(e).__name__}: {str(e)[:200]}"
+                continue
+            src = Path(t) / "investigacion"
+            for f in sorted(src.rglob("*")) if src.exists() else []:
+                if f.is_file() and f.suffix.lower() in RESEARCH_EXT:
+                    (dest / f.relative_to(src)).parent.mkdir(parents=True, exist_ok=True)
+                    shutil.copy(f, dest / f.relative_to(src))
+        if dest.exists():
+            out.append(jid)
+    return out
+
+
 SAME = ("idéntica", "equivalente")
 
 

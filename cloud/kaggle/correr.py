@@ -44,8 +44,10 @@ def parse_job(arg: str) -> dict:
     """The job as the notebook passes it; defaults: the run folder and the outputs where Modal's would go."""
     job = json.loads(arg)
     a = job.get("accion")
-    if a not in ("comprobar", "prueba", "partido", "medir"):
+    if a not in ("comprobar", "prueba", "partido", "medir", "investigar"):
         raise ValueError(f"acción {a!r}")
+    if a == "investigar" and not str(job.get("urls") or "").strip():
+        raise ValueError("investigar necesita los vídeos («urls»)")
     if a in ("prueba", "partido") and not job.get("partido"):
         raise ValueError("falta el partido")
     if a == "medir" and job.get("prueba") not in POCS:
@@ -54,8 +56,8 @@ def parse_job(arg: str) -> dict:
         raise ValueError(f"la prueba de concepto {job['prueba']} necesita un partido")
     mid = job.get("partido", "")
     run_id = (TEST_PREFIX + mid) if a == "prueba" else mid
-    job.setdefault("salida", {"comprobar": "/runs/kaggle_comprobar", "medir": f"/runs/kaggle_medir_{job.get('prueba')}"}
-                   .get(a, f"/runs/partido_{run_id}"))
+    job.setdefault("salida", {"comprobar": "/runs/kaggle_comprobar", "medir": f"/runs/kaggle_medir_{job.get('prueba')}",
+                              "investigar": "/runs/kaggle_investigar"}.get(a, f"/runs/partido_{run_id}"))
     job.setdefault("output_remoto", "/output")
     job["run_id"] = run_id
     return job
@@ -200,6 +202,62 @@ def measure(job: dict, py: Path, models: Path, data: Path, run: Path, vol, est: 
     return p.returncode
 
 
+def research_summary(index: list[dict]) -> dict:
+    """What the coaches' videos gave (#304): how many have text (and from where) and frames, and which failed."""
+    src: dict = {}
+    for v in index:
+        if v.get("subtitles"):
+            k = v.get("text_source", "subtitulos")
+            src[k] = src.get(k, 0) + 1
+    return {"videos": len(index), "con_texto": sum(1 for v in index if v.get("subtitles")), "texto_de": src,
+            "con_fotogramas": sum(1 for v in index if v.get("frames")),
+            "fallan": [{"id": v.get("id"), "error": str(v.get("video_error") or v.get("error") or "")[:200]}
+                       for v in index if not v.get("frames")][:20]}
+
+
+def research(job: dict, run: Path, vol, est: dict, save) -> int:
+    """#304: the coaches' videos (scripts/youtube_research.py, the PC's own script) on this CPU session, with the
+    speech transcribed when YouTube refuses the subtitles (429 from Kaggle, 15-11); the folder goes to Modal (the queue
+    copies it to nube-logs). No models, no GPU: nothing else of the volume is needed."""
+    _run([sys.executable, "-m", "pip", "install", "-q", "-U", "yt-dlp[default]", "uv", "faster-whisper"])
+    if not shutil.which("ffmpeg"):
+        _run(["bash", "-c", "apt-get update -qq && apt-get install -y -qq ffmpeg"])
+    out = run / "investigacion"
+    t1, last = time.time(), time.time()
+    with open(run / "log.txt", "a", encoding="utf-8") as lg:
+        p = subprocess.Popen([sys.executable, str(REPO / "scripts" / "youtube_research.py"), "--out", str(out),
+                              "--urls", str(job["urls"]), "--transcribir"], cwd=REPO, stdout=subprocess.PIPE,
+                             stderr=subprocess.STDOUT, text=True, env={**os.environ, "PYTHONUNBUFFERED": "1"})
+        for line in p.stdout:
+            lg.write(line)
+            lg.flush()
+            print(line, end="", flush=True)
+            if line.strip()[:1].isdigit() and "/" in line.split()[0]:
+                est["progreso"] = line.strip()[:120]
+            if time.time() - last > nube.PROGRESS_S:
+                est["actualizado"] = time.strftime("%H:%M:%S")
+                save()
+                last = time.time()
+        rc = p.wait()
+    idx = out / "indice.json"
+    index = json.loads(idx.read_text(encoding="utf-8")) if idx.exists() else []
+    files = [f for f in sorted(out.rglob("*")) if f.is_file()] if out.exists() else []
+    for attempt in range(3):
+        try:
+            modal_put(vol, files, run, job["salida"])
+            break
+        except Exception as e:  # noqa: BLE001 — retried; the third failure is raised (the job ends in error)
+            print(f"AVISO: subida a Modal, intento {attempt + 1} ({e})", flush=True)
+            if attempt == 2:
+                raise
+            time.sleep(30)
+    modal_put(vol, [run / "log.txt"], run, job["salida"])
+    est.update(estado="hecho" if rc == 0 and idx.exists() else "error", codigo=rc, segundos=round(time.time() - t1),
+               investigacion=research_summary(index), ficheros=len(files))
+    est.pop("progreso", None)
+    return rc
+
+
 def info() -> dict:
     """What the session has: CPU, memory, disks, GPU, ffmpeg, the Modal key."""
     mem = {}
@@ -247,6 +305,8 @@ def main(argv: list[str]) -> int:
 
     save()
     try:
+        if job["accion"] == "investigar":          # #304: a CPU session that needs nothing of the volume
+            return research(job, run, vol, est, save)
         for d in ("/pc", "/biblioteca", "/home", "/models"):
             modal_get(d, data)
         models = nube.unnested(data / "models")

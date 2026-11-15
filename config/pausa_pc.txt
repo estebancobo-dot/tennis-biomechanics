@@ -1,17 +1,13 @@
 # Pausa total del PC pedida por el usuario (29-10, "no hagas nada mas en local hasta que yo te avise").
-# "# 15-11 (#303, el usuario: "usa el pc, ya lo he encendido"): pausa quitada SOLO para la peticion 295 (los shorts de
-# Joel Myers, que YouTube no deja descargar desde la nube). Claude la vuelve a poner en cuanto la 295 suba sus
-# resultados a pc-logs; el analisis de los partidos sigue en la nube.
-# 15-11 12:10: la 295 termino (52 shorts, 1048 fotogramas en pc-logs:investigacion_295): pausa otra vez.
-pausa: si": el ciclo corta todo lo de este proyecto que este en marcha, apaga la tarea de Windows de cada 10 min y
-# el bucle de inicio de sesion no sigue. Solo Claude la quita ("# 15-11 12:10: la 295 termino (52 shorts, 1048 fotogramas en pc-logs:investigacion_295): pausa otra vez.
-pausa: si"), y solo cuando el usuario lo diga.
+# Con la linea de pausa en "si": el ciclo corta todo lo de este proyecto que este en marcha, apaga la tarea de Windows
+# de cada 10 min y el bucle de inicio de sesion solo escucha. Solo Claude la pone en "no", y solo cuando el usuario
+# lo diga. Una sola linea empieza por la palabra pausa (el PC lee cualquier linea que empiece asi).
 # 13-11 (decision del usuario: "para todo el pc en local y replantea todo en modal con un gasto 0"): el PC ya subio a
 # Modal todo lo que solo el tenia (291: F3Set; 293: los 6 videos; 294: los clics de identidad). Desde aqui, nada en
 # local: el analisis va entero en la nube.
 # 15-11 (#303, el usuario: "usa el pc, ya lo he encendido"): pausa quitada SOLO para la peticion 295 (los shorts de
-# Joel Myers, que YouTube no deja descargar desde la nube). Claude la vuelve a poner en cuanto la 295 suba sus
-# resultados a pc-logs; el analisis de los partidos sigue en la nube.
-# 15-11 12:10: la 295 termino (52 shorts, 1048 fotogramas en pc-logs:investigacion_295): pausa otra vez.
-# 15-11 12:40 (#304): pausa quitada otra vez SOLO para la peticion 296 (The Tennis Mentor); vuelve al acabar.
-pausa: no
+# Joel Myers). 15-11 12:10: la 295 termino (52 shorts, 1048 fotogramas en pc-logs:investigacion_295).
+# 15-11 12:40 (#304): quitada para la 296 (The Tennis Mentor), pero dos comentarios de este fichero empezaban por la
+# linea de pausa en "si" (una edicion anterior los rompio): el PC la leia en pausa igual. 15-11 15:30: la 296 ya no
+# hace falta (YouTube deja descargar desde Kaggle: la cola de la nube la hace, trabajo investigar_tennis_mentor).
+pausa: si

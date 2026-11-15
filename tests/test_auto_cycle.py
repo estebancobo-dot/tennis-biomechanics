@@ -281,3 +281,12 @@ def test_a_paused_pc_keeps_listening_for_the_unpause():
     loop = ps1[ps1.index("while ($true)"):]
     assert "exit 0" not in loop and "Pausa-Quitada-En-GitHub" in loop and "continue" in loop
     assert 'FETCH_HEAD:config/pausa_pc.txt' in ps1 and '"0x80000000"' in loop
+
+
+def test_the_pause_file_has_one_pause_line():
+    """15-11: an earlier edit left two comment lines starting with «pausa: si» in config/pausa_pc.txt, so the PC read it
+    as paused although its last line said «pausa: no» (the PC's regex takes any line that starts so)."""
+    import re
+    txt = (Path(__file__).resolve().parents[1] / "config" / "pausa_pc.txt").read_text(encoding="ascii")
+    lines = [l for l in txt.splitlines() if re.match(r"^pausa:", l)]
+    assert len(lines) == 1 and re.fullmatch(r"pausa:\s*(si|no)", lines[0].strip())

@@ -1407,7 +1407,9 @@ urls: https://youtu.be/fsnnnfV7jgs https://youtu.be/UMiIGKwOMmg https://youtu.be
 # la nube. Texto e imagenes pequenas en output\investigacion_295, que suben solas a pc-logs. Despues el PC vuelve a pausa
 ---
 id: 296
-accion: youtube
+accion: ninguna
+# 15-11 15:30: ya no hace falta en el PC: YouTube deja descargar desde Kaggle (prueba medir_youtube); la hace la
+# cola de la nube en una sesion de CPU (trabajo investigar_tennis_mentor). El PC vuelve a pausa
 urls: https://youtu.be/8JuM_Kaxz1I https://youtu.be/w8TD0IT9ENE https://youtu.be/6FrriAMfYJ0 https://youtu.be/cu9hTN5OZgU https://youtu.be/GxAWNMkYFEY https://youtu.be/uHlETNUebPg https://youtu.be/L6kvry9-S48 https://youtu.be/F3YhQY4gS1E https://youtu.be/xzRukoW1cKc https://youtu.be/mMOh5B3XMfU https://youtu.be/2RGdS8xxYIg https://youtu.be/Pm3LJp0vEmo https://youtu.be/BeQtrfbGR-w https://youtu.be/HpMzIsRwbi0 https://youtu.be/g6nwBjMaTl0 https://youtu.be/PxaWwqpa1BQ https://youtu.be/I3gjHEKn4RA https://youtu.be/8UZsaCaaraM https://youtu.be/FrT6ZH7xGbY https://youtu.be/kXBNFMjgTgA https://youtu.be/8EFyYlWnY3Y https://youtu.be/-ErqBvN4Uks https://youtu.be/VIjEQpTcpM4 https://youtu.be/ee79NaEMiuk https://youtu.be/4Jz7pC7SgIk https://youtu.be/Tri8ArCCMS0 https://youtu.be/4tPinxg9TB0 https://youtu.be/fjnBI_yzXF0 https://youtu.be/OnX3EV7nojs https://youtu.be/SPaU5d-LNVU https://youtu.be/N7EaAwAfvps https://youtu.be/P-asfA6ib3U https://youtu.be/VjYbgMj96fU https://youtu.be/zvG2n3sjMA0 https://youtu.be/hGz8ZklNFUk https://youtu.be/pDCdBMiV5qY https://youtu.be/r71g4FZKrNk https://youtu.be/UjRv-SbO6K8 https://youtu.be/AobpD0jbuJU https://youtu.be/HI8QUSL-jJQ https://youtu.be/upHPbkjeM9I
 # 296 (15-11, #304, el usuario: "haz lo mismo con este otro canal"): 41 videos de The Tennis Mentor
 # (youtube.com/@thetennismentor): sus 14 "Weekly Tennis Non-Negotiable", 23 shorts de tecnica, pies y como explica, y

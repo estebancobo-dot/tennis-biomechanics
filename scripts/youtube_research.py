@@ -3,9 +3,11 @@
 application is missing. Only for improving the application: nothing from these videos is ever used
 as data of the player or shown in her report (requirement 6).
 
-Runs on the user's PC (YouTube blocks downloads from the cloud), once, from the quick test. For
-each video: its title, channel and length, what is said (automatic subtitles as plain text) and a
-few small frames (one every few seconds) to see the graphics. The video itself is deleted.
+Runs on the user's PC (YouTube blocks downloads from Claude's cloud), once, from the quick test, or on a
+Kaggle CPU session (15-11, #304: queue job «investigar»; YouTube lets Kaggle download). For each video: its
+title, channel and length, what is said (automatic subtitles as plain text; with --transcribir, when YouTube
+refuses them, the speech transcribed from the audio by Whisper) and a few small frames (one every few
+seconds) to see the graphics. The video itself is deleted.
 
     python scripts/youtube_research.py --out C:/tenis/output/investigacion [--max 24]
     python scripts/youtube_research.py --out C:/tenis/output/investigacion_14 --urls "https://youtu.be/A5jgd_CPohM ..."
@@ -26,6 +28,7 @@ QUERIES = [
     "forehand footwork split step analysis", "forehand racket face lag analysis",
 ]
 MAX_MIN = 25          # longer videos are interviews or whole matches
+WHISPER_MODEL = "small"   # multilingual (coaches in English or Spanish); int8 on the CPU
 
 
 YTDLP = [sys.executable, "-m", "yt_dlp"]
@@ -81,6 +84,37 @@ def vtt_to_text(vtt: str) -> str:
     return "\n".join(out)
 
 
+def stamp(seconds: float) -> str:
+    t = int(seconds)
+    return f"{t // 60}:{t % 60:02d}"
+
+
+def segments_to_text(segments) -> str:
+    """Whisper's segments in the same form as the subtitles' text: one line per sentence, with its minute."""
+    return "\n".join(f"[{stamp(s.start)}] {s.text.strip()}" for s in segments if s.text.strip())
+
+
+_WHISPER: dict = {}
+
+
+def transcribe(url: str, vid: str, tmp: Path) -> tuple[str, str]:
+    """The speech of a video whose subtitles YouTube refused (429 from Kaggle, 15-11): its audio, transcribed by
+    faster-whisper on the CPU. Returns (text, why it failed)."""
+    r = ytdlp("-f", "ba/b", "-o", str(tmp / "%(id)s.audio.%(ext)s"), url, timeout=900)
+    got = sorted(f for f in tmp.glob(f"{vid}.audio.*") if not f.name.endswith(".part"))
+    if not got:
+        return "", "audio: " + (r.stderr or "").strip()[-200:]
+    try:
+        if "m" not in _WHISPER:
+            from faster_whisper import WhisperModel
+            _WHISPER["m"] = WhisperModel(WHISPER_MODEL, device="cpu", compute_type="int8")
+        segments, info = _WHISPER["m"].transcribe(str(got[0]), vad_filter=True)
+        text = segments_to_text(segments)
+        return (f"(idioma {info.language})\n{text}" if text else ""), ("" if text else "sin voz")
+    except Exception as e:  # esperado: no faster-whisper, or an audio it cannot read: said in the video's info
+        return "", f"transcripción: {type(e).__name__}: {str(e)[:200]}"
+
+
 def video_id(s: str) -> str | None:
     m = re.search(r"(?:youtu\.be/|v=|shorts/)([\w-]{11})", s) or re.fullmatch(r"([\w-]{11})", s.strip())
     return m.group(1) if m else None
@@ -101,7 +135,7 @@ def chosen(urls: str) -> list[dict]:
     return out
 
 
-def one(v: dict, dest: Path, tmp: Path) -> dict:
+def one(v: dict, dest: Path, tmp: Path, transcribe_speech: bool = False) -> dict:
     d = dest / v["id"]
     d.mkdir(parents=True, exist_ok=True)
     url = f"https://www.youtube.com/watch?v={v['id']}"
@@ -115,7 +149,15 @@ def one(v: dict, dest: Path, tmp: Path) -> dict:
     subs = sorted(tmp.glob(f"{v['id']}*.vtt"))
     if subs:
         (d / "dicho.txt").write_text(vtt_to_text(subs[0].read_text(encoding="utf-8", errors="replace")), encoding="utf-8")
-    v["subtitles"] = bool(subs)
+        v["text_source"] = "subtitulos"
+    elif transcribe_speech:
+        text, why = transcribe(url, v["id"], tmp)
+        if text:
+            (d / "dicho.txt").write_text(text, encoding="utf-8")
+            v["text_source"] = f"voz transcrita (Whisper {WHISPER_MODEL})"
+        else:
+            v["transcription_error"] = why
+    v["subtitles"] = (d / "dicho.txt").exists()
     # sort instead of filter: the smallest stream near 360p of whatever YouTube offers (video only is enough for
     # frames); a filter such as «worst[ext=mp4]» fails outright when YouTube offers only other containers
     vid_args = ("-f", "bv*/b", "-S", "res:360,+size", "-o", str(tmp / "%(id)s.video.%(ext)s"), url)
@@ -149,6 +191,7 @@ def main():
     ap.add_argument("--max", type=int, default=24)
     ap.add_argument("--per-query", type=int, default=6)
     ap.add_argument("--urls", default="", help="videos chosen by the user (YouTube links or ids, separated by spaces or commas)")
+    ap.add_argument("--transcribir", action="store_true", help="no subtitles: transcribe the speech (faster-whisper)")
     args = ap.parse_args()
     dest = Path(args.out)
     dest.mkdir(parents=True, exist_ok=True)
@@ -166,8 +209,8 @@ def main():
         for i, v in enumerate(vids, 1):
             print(f"  {i}/{len(vids)} {v['title'][:70]}", flush=True)
             try:
-                done.append(one(v, dest, Path(t)))
-            except Exception as e:                  # one video never stops the others
+                done.append(one(v, dest, Path(t), args.transcribir))
+            except Exception as e:                  # esperado: one video never stops the others
                 v["error"] = str(e)[:300]
                 done.append(v)
     (dest / "indice.json").write_text(json.dumps(done, ensure_ascii=False, indent=1), encoding="utf-8")
