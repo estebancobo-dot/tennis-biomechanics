@@ -1282,6 +1282,9 @@
   "inicio": "2026-11-20 21:28",
   "ruta": "/runs/kaggle_medir_sapiens2_b/estado.json",
   "salida": "/output/tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
-  "cuaderno": "tennisbio-medir-sapiens2-b"
+  "cuaderno": "tennisbio-medir-sapiens2-b",
+  "kaggle": "running (21:39)",
+  "arranco": "2026-11-20 21:39",
+  "espera_min": 11
  }
 }
