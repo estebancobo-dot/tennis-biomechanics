@@ -264,3 +264,21 @@ def test_everything_the_matrix_marks_not_measurable_is_said():
     assert dict(rows)["Empuñadura (bisel)"] == "Mano de 20-40 px (Yandell; Elliott 1997)."
     again = p0_app.no_medible(md, [["Fuerzas y momentos articulares", "solo cinemática"]])
     assert "Fuerzas, momentos articulares" not in [r[0] for r in again] and len(again) == len(rows) - 1
+
+
+def test_the_buttons_come_alive_when_the_windows_api_arrives_after_the_page():
+    """P0.5e: pywebview gives window.pywebview.api a moment after the page loads (event pywebviewready); the screen
+    already drawn must enable its management buttons then, without moving to another screen."""
+    pytest.importorskip("playwright")
+    from playwright.sync_api import sync_playwright
+    with sync_playwright() as pw:
+        b, p = _page(pw, fake=False)
+        p.evaluate("() => location.hash = 'cola'")
+        p.wait_for_timeout(150)
+        before = p.is_disabled('[data-pc="pausar"]')
+        p.evaluate(FAKE_PC)
+        p.evaluate("() => window.dispatchEvent(new Event('pywebviewready'))")
+        p.wait_for_timeout(150)
+        after = p.is_disabled('[data-pc="pausar"]')
+        b.close()
+    assert before is True and after is False

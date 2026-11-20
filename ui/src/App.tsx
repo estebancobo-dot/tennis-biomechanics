@@ -66,6 +66,14 @@ export default function App({ d }: { d: Datos }) {
   const leer = () => (location.hash.slice(1) in PANTALLAS ? location.hash.slice(1) : "inicio");
   const [pantalla, setPantalla] = useState(leer);
   const [panel, setPanel] = useState<ReactNode>(null);
+  // P0.5e: the PC's window gives its API a moment after the page loads (pywebviewready): drawn again then, so the
+  // management buttons of the screen already open come alive
+  const [, setVentana] = useState(0);
+  useEffect(() => {
+    const lista = () => setVentana((n) => n + 1);
+    window.addEventListener("pywebviewready", lista);
+    return () => window.removeEventListener("pywebviewready", lista);
+  }, []);
   const cerrar = useCallback(() => setPanel(null), []);
   const ir = useCallback((p: string) => {
     if (location.hash !== "#" + p) location.hash = p;

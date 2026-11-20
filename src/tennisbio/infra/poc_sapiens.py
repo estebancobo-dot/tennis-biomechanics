@@ -117,9 +117,12 @@ def window_frames(clip: Path, first: int, n: int) -> list[np.ndarray]:
 
 
 class Sapiens2:
-    """The model on this device in half precision (a T4 has no bfloat16), with its own crop and post-processing."""
+    """The model on this device in half precision (a T4 has no bfloat16), with its own crop and post-processing.
 
-    def __init__(self, name: str, device: str = "cuda", batch: int = 16):
+    medir_sapiens2 (15-11) ran out of the T4's memory with 16 crops at once (attention over 3072 tokens per crop asked
+    for 9 GB): batches of 4, and a batch that still does not fit is halved and tried again (down to one crop)."""
+
+    def __init__(self, name: str, device: str = "cuda", batch: int = 4):
         import torch
         from transformers import AutoImageProcessor, Sapiens2ForPoseEstimation
         self.torch, self.batch = torch, batch
@@ -129,38 +132,55 @@ class Sapiens2:
         if self.dev == "cuda":
             self.model = self.model.half()
         self.t_model = self.t_all = 0.0
-        self.crops = self.nan_batches = 0
+        self.crops = self.nan_batches = self.oom = 0
 
     def pose(self, frames: list[np.ndarray], boxes: list[list[float]]) -> tuple[np.ndarray, np.ndarray]:
         """(len, 308, 2), (len, 308) for each BGR frame and its box (x1, y1, x2, y2)."""
+        kps, scs = [], []
+        s = 0
+        while s < len(frames):
+            n = self.batch
+            try:
+                k, c = self._batch(frames[s:s + n], boxes[s:s + n])
+            except Exception as e:  # esperado: out of the GPU's memory: the batch halved and tried again, counted
+                if "OutOfMemory" not in type(e).__name__ or n == 1:
+                    raise
+                self.batch, self.oom = max(1, n // 2), self.oom + 1
+                if self.dev == "cuda":
+                    self.torch.cuda.empty_cache()
+                continue
+            kps += k
+            scs += c
+            s += n
+        return np.array(kps), np.array(scs)
+
+    def _batch(self, fr: list[np.ndarray], bx: list[list[float]]) -> tuple[list, list]:
         torch = self.torch
         kps, scs = [], []
-        for s in range(0, len(frames), self.batch):
-            fr, bx = frames[s:s + self.batch], boxes[s:s + self.batch]
-            t0 = time.perf_counter()
-            xywh = [[[b[0], b[1], b[2] - b[0], b[3] - b[1]]] for b in bx]
-            inp = self.proc(images=[f[:, :, ::-1].copy() for f in fr], boxes=xywh, return_tensors="pt")
-            x = inp["pixel_values"].to(self.dev)
-            if self.dev == "cuda":
-                x = x.half()
-                torch.cuda.synchronize()
-            t1 = time.perf_counter()
-            with torch.no_grad():
-                out = self.model(pixel_values=x)
-                if not torch.isfinite(out.heatmaps).all():          # half precision overflowed: this batch in full
-                    self.nan_batches += 1
-                    out = self.model.float()(pixel_values=x.float())
-                    self.model.half()
-            if self.dev == "cuda":
-                torch.cuda.synchronize()
-            self.t_model += time.perf_counter() - t1
-            res = self.proc.post_process_pose_estimation(out, boxes=xywh)
-            for r in res:
-                kps.append(r[0]["keypoints"].float().cpu().numpy())
-                scs.append(r[0]["scores"].float().cpu().numpy())
-            self.t_all += time.perf_counter() - t0
-            self.crops += len(fr)
-        return np.array(kps), np.array(scs)
+        t0 = time.perf_counter()
+        xywh = [[[b[0], b[1], b[2] - b[0], b[3] - b[1]]] for b in bx]
+        inp = self.proc(images=[f[:, :, ::-1].copy() for f in fr], boxes=xywh, return_tensors="pt")
+        x = inp["pixel_values"].to(self.dev)
+        if self.dev == "cuda":
+            x = x.half()
+            torch.cuda.synchronize()
+        t1 = time.perf_counter()
+        with torch.no_grad():
+            out = self.model(pixel_values=x)
+            if not torch.isfinite(out.heatmaps).all():          # half precision overflowed: this batch in full
+                self.nan_batches += 1
+                out = self.model.float()(pixel_values=x.float())
+                self.model.half()
+        if self.dev == "cuda":
+            torch.cuda.synchronize()
+        self.t_model += time.perf_counter() - t1
+        res = self.proc.post_process_pose_estimation(out, boxes=xywh)
+        for r in res:
+            kps.append(r[0]["keypoints"].float().cpu().numpy())
+            scs.append(r[0]["scores"].float().cpu().numpy())
+        self.t_all += time.perf_counter() - t0
+        self.crops += len(fr)
+        return kps, scs
 
 
 def compare(series_dir: Path, windows_dir: Path, models: dict, max_strokes: int = 0, log=print) -> dict:
@@ -211,6 +231,7 @@ def compare(series_dir: Path, windows_dir: Path, models: dict, max_strokes: int 
         r["ms_por_recorte_modelo"] = round(1000 * m.t_model / max(1, m.crops), 1)
         r["ms_por_recorte_total"] = round(1000 * m.t_all / max(1, m.crops), 1)
         r["recortes"], r["lotes_en_precision_completa"] = m.crops, m.nan_batches
+        r["lote_final"], r["lotes_partidos_por_memoria"] = m.batch, m.oom
         h = out["hibrido"]
         r["sigue"] = bool(r["body"] is not None and h["body"] and r["body"] <= MARGIN_BODY * h["body"]
                           and (h["feet"] is None or (r["feet"] is not None and r["feet"] <= h["feet"]))

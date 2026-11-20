@@ -82,3 +82,28 @@ def test_the_rule_is_written_before_measuring():
     assert "#307" in doc and ps.MARGIN_BODY == 0.9
     assert "10 %" in (ps.__doc__ or "")
     json.dumps({"ok": True})
+
+
+def test_a_batch_that_does_not_fit_the_gpu_is_halved_and_tried_again():
+    """medir_sapiens2 (15-11) ran out of the T4's memory with 16 crops at once: batches of 4, halved on running out."""
+    class OutOfMemoryError(RuntimeError):
+        pass
+
+    m = object.__new__(ps.Sapiens2)
+    m.batch, m.oom, m.dev, seen = 4, 0, "cpu", []
+
+    def fake(fr, bx):
+        if len(fr) > 2:
+            raise OutOfMemoryError("CUDA out of memory")
+        seen.append(len(fr))
+        return [np.zeros((308, 2))] * len(fr), [np.ones(308)] * len(fr)
+    m._batch = fake
+    kp, sc = m.pose([np.zeros((4, 4, 3))] * 7, [[0, 0, 1, 1]] * 7)
+    assert kp.shape == (7, 308, 2) and m.batch == 2 and m.oom == 1 and seen == [2, 2, 2, 1]
+    m.batch = 1
+    m._batch = lambda fr, bx: (_ for _ in ()).throw(OutOfMemoryError("x"))
+    with pytest.raises(OutOfMemoryError):
+        m.pose([np.zeros((4, 4, 3))], [[0, 0, 1, 1]])
+    m._batch = lambda fr, bx: (_ for _ in ()).throw(ValueError("other"))
+    with pytest.raises(ValueError):
+        m.pose([np.zeros((4, 4, 3))], [[0, 0, 1, 1]])

@@ -177,26 +177,27 @@ def proponer(ruta: str, jugadora: str = "") -> dict:
 
 class ApiVentana:
     """What the interface calls (ui/src/api.ts, by the same names), in the PC's window: pywebview's js_api object
-    (P0.5e). `choose`: the window's file dialog (returns a path or None)."""
+    (P0.5e). `choose`: the window's file dialog (returns a path or None). Its own state is private (pywebview exposes an
+    object's public attributes to the page too); each call is written to the window's log."""
 
     def __init__(self, gestion: Gestion, jugadora: str, choose=lambda: None):
-        self.g, self.jugadora, self._choose = gestion, jugadora, choose
+        self._g, self._jugadora, self._choose = gestion, jugadora, choose
 
     def elegir_video(self) -> str | None:
         return self._choose()
 
     def proponer(self, ruta: str) -> dict:
-        return proponer(ruta, self.jugadora)
+        return proponer(ruta, self._jugadora)
 
     def alta(self, ruta: str, ficha: dict, preparar: bool) -> dict:
-        return self.g.alta(ruta, ficha, preparar)
+        return self._g.alta(ruta, ficha, preparar)
 
     def fotos(self, partido: str) -> list[dict]:
         """The click's photos as images the page shows (data URLs), each with its moment and how it was grouped."""
         import base64
 
-        dest = self.g.work / "fotos" / partido
-        files = self.g.fotos(partido, dest)
+        dest = self._g.work / "fotos" / partido
+        files = self._g.fotos(partido, dest)
         meta_f = dest / "identidad_fotos" / "fotos.json"
         try:
             meta = json.loads(meta_f.read_text(encoding="utf-8")) if meta_f.exists() else {}
@@ -213,19 +214,34 @@ class ApiVentana:
         return out
 
     def clic(self, partido: str, t: float, near_is_her: bool = True, by: str | None = None) -> dict:
-        return self.g.clic(partido, t, near_is_her, by)
+        return self._g.clic(partido, t, near_is_her, by)
 
     def aprobar(self, partido: str, previsto: dict) -> dict:
-        return self.g.aprobar(partido, previsto)
+        return self._g.aprobar(partido, previsto)
 
     def pausar(self) -> dict:
-        return self.g.pausar()
+        return self._g.pausar()
 
     def reanudar(self) -> dict:
-        return self.g.reanudar()
+        return self._g.reanudar()
 
     def cancelar(self, trabajo: str) -> dict:
-        return self.g.cancelar(trabajo)
+        return self._g.cancelar(trabajo)
 
     def borrar_video(self, partido: str) -> dict:
-        return self.g.borrar_video(partido)
+        return self._g.borrar_video(partido)
+
+
+class SinNube:
+    """The window's API without the cloud (no Modal key or client): every action says why instead of failing."""
+
+    def __init__(self, why: str):
+        self._why = why
+
+    def _no(self, *_a, **_k) -> dict:
+        return {"ok": False, "motivo": self._why}
+
+    elegir_video = staticmethod(lambda: None)
+    proponer = staticmethod(lambda ruta: {})
+    fotos = staticmethod(lambda partido: [])
+    alta = clic = aprobar = pausar = reanudar = cancelar = borrar_video = _no

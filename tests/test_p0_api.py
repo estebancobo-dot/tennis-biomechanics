@@ -166,3 +166,41 @@ def test_people_added_in_the_application_become_records_in_the_cloud(tmp_path):
     assert yaml.safe_load((repo / "config" / "players" / "nueva.yaml").read_text(encoding="utf-8"))["hand"] == "left"
     assert "Elena" in (repo / "config" / "players" / "rybakina.yaml").read_text(encoding="utf-8")
     assert nube.write_app_players(repo, tmp_path / "nada") == []
+
+
+def test_without_the_cloud_every_action_says_why():
+    """P0.5e: without the Modal key the window opens all the same and each button says what is missing."""
+    api = p0_api.SinNube("falta la clave de Modal: doble clic en 5_conectar_nube.bat")
+    assert api.elegir_video() is None and api.fotos("m") == [] and api.proponer("x.mp4") == {}
+    for name in ("alta", "clic", "aprobar", "pausar", "reanudar", "cancelar", "borrar_video"):
+        r = getattr(api, name)("a", "b", "c") if name in ("alta", "clic") else getattr(api, name)("a")
+        assert r == {"ok": False, "motivo": "falta la clave de Modal: doble clic en 5_conectar_nube.bat"}, name
+    names = {n for n in dir(p0_api.ApiVentana) if not n.startswith("_")}
+    assert names <= {n for n in dir(api) if not n.startswith("_")}
+
+
+def test_the_window_builds_its_data_from_the_pcs_report_or_says_it_is_the_example(tmp_path):
+    from tennisbio.app import p0_ventana
+    d, src = p0_ventana.build_data(tmp_path / "salida", None, tmp_path / "trabajo")
+    assert d["ejemplo"] is True and src.startswith("ejemplo (no hay informe")
+    sys.path.insert(0, str(ROOT / "scripts"))
+    import aplicacion_nueva
+    store, why = aplicacion_nueva.storage(tmp_path / "nada" / "salida")
+    assert store is None and "5_conectar_nube.bat" in why
+    ps1 = (ROOT / "scripts" / "windows" / "aplicacion_nueva.ps1").read_text(encoding="ascii")
+    assert "scripts/aplicacion_nueva.py" in ps1 and "Subir-Registros" in ps1
+    assert "aplicacion_nueva.ps1" in (ROOT / "6_aplicacion_nueva.bat").read_text(encoding="ascii")
+
+
+def test_the_window_reads_the_clouds_matches_as_the_queue_does(tmp_path):
+    from tennisbio.app import p0_ventana
+    store = LocalStorage(tmp_path / "v")
+    (tmp_path / "v" / "pc").mkdir(parents=True)
+    (tmp_path / "v" / "pc" / "registro_partidos.json").write_text(json.dumps([{"id": "a", "rival": "R"}]), encoding="utf-8")
+    (tmp_path / "v" / "app").mkdir()
+    (tmp_path / "v" / "app" / "registro_partidos.json").write_text(json.dumps([{"id": "b", "rival": "S"}, {"id": "a"}]),
+                                                                   encoding="utf-8")
+    (tmp_path / "v" / "output" / "a").mkdir(parents=True)
+    (tmp_path / "v" / "output" / "a" / "manifest.json").write_text(json.dumps({"fine": {}}), encoding="utf-8")
+    assert p0_ventana.cloud_matches(store) == [{"id": "a", "rival": "R", "analizado": True},
+                                               {"id": "b", "rival": "S", "analizado": False}]

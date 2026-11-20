@@ -213,7 +213,8 @@ def measure(job: dict, py: Path, models: Path, data: Path, run: Path, vol, est: 
         base = f"/kaggle_pruebas/{job.get('base') or 'prueba_gauff_v26'}/output/{TEST_PREFIX}{job['partido']}"
         modal_get(base, models.parent / "previa")          # its windows, series and strokes, as that test left them
         runner = sys.executable
-        env = {**env, "PYTHONPATH": str(REPO / "src"), "HF_HOME": str(models.parent / "hf")}
+        env = {**env, "PYTHONPATH": str(REPO / "src"), "HF_HOME": str(models.parent / "hf"),
+               "PYTORCH_CUDA_ALLOC_CONF": "expandable_segments:True"}     # 15-11: it ran out of the T4's memory
     out = run / "poc.json"
     p = subprocess.run([runner, "-m", POCS[job["prueba"]], *poc_args(job, models, video), "--salida", str(out)],
                        cwd=REPO, env=env, capture_output=True, text=True)
