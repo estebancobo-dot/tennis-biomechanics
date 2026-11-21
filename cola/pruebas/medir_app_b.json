@@ -1,0 +1,308 @@
+{
+ "estado": "hecho",
+ "poc": {
+  "prueba": "app",
+  "origen": "el informe de la nube (hecho el 2026-11-21 08:08 UTC)",
+  "golpes_con_video": 387,
+  "golpes": 387,
+  "medios": "../nube/informe_derecha/",
+  "probados": 24,
+  "con_video": 24,
+  "cuerpo_en_sus_puntos": 24,
+  "parte_con_video": 1.0,
+  "parte_dibujada": 1.0,
+  "errores_pagina": 0,
+  "estroboscopica": 24,
+  "parte_estroboscopica": 1.0,
+  "estroboscopica_con_raqueta": 24,
+  "puntos_raqueta_mediana": 18,
+  "regla": {
+   "pasa": true,
+   "motivo": "vídeo 100%, cuerpo en sus puntos 100% y estroboscópica 100% (mínimo 95% cada uno), 0 errores de la página"
+  },
+  "filas": [
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "estrobo": "listo",
+    "estrobo_siluetas": 4,
+    "estrobo_puntos": 11,
+    "error": null,
+    "s": 2.1
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "estrobo": "listo",
+    "estrobo_siluetas": 4,
+    "estrobo_puntos": 12,
+    "error": null,
+    "s": 2.3
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "estrobo": "listo",
+    "estrobo_siluetas": 4,
+    "estrobo_puntos": 13,
+    "error": null,
+    "s": 2.1
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "estrobo": "listo",
+    "estrobo_siluetas": 4,
+    "estrobo_puntos": 11,
+    "error": null,
+    "s": 2.3
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "estrobo": "listo",
+    "estrobo_siluetas": 4,
+    "estrobo_puntos": 17,
+    "error": null,
+    "s": 2.3
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "estrobo": "listo",
+    "estrobo_siluetas": 4,
+    "estrobo_puntos": 19,
+    "error": null,
+    "s": 2.6
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "estrobo": "listo",
+    "estrobo_siluetas": 4,
+    "estrobo_puntos": 18,
+    "error": null,
+    "s": 2.4
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "estrobo": "listo",
+    "estrobo_siluetas": 4,
+    "estrobo_puntos": 20,
+    "error": null,
+    "s": 2.6
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "estrobo": "listo",
+    "estrobo_siluetas": 4,
+    "estrobo_puntos": 22,
+    "error": null,
+    "s": 2.6
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "estrobo": "listo",
+    "estrobo_siluetas": 4,
+    "estrobo_puntos": 20,
+    "error": null,
+    "s": 3.2
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "estrobo": "listo",
+    "estrobo_siluetas": 4,
+    "estrobo_puntos": 12,
+    "error": null,
+    "s": 2.4
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "estrobo": "listo",
+    "estrobo_siluetas": 4,
+    "estrobo_puntos": 19,
+    "error": null,
+    "s": 1.9
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "estrobo": "listo",
+    "estrobo_siluetas": 4,
+    "estrobo_puntos": 13,
+    "error": null,
+    "s": 2.0
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "estrobo": "listo",
+    "estrobo_siluetas": 4,
+    "estrobo_puntos": 18,
+    "error": null,
+    "s": 2.5
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "estrobo": "listo",
+    "estrobo_siluetas": 4,
+    "estrobo_puntos": 16,
+    "error": null,
+    "s": 2.3
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "estrobo": "listo",
+    "estrobo_siluetas": 4,
+    "estrobo_puntos": 14,
+    "error": null,
+    "s": 1.8
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "estrobo": "listo",
+    "estrobo_siluetas": 4,
+    "estrobo_puntos": 11,
+    "error": null,
+    "s": 1.9
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "estrobo": "listo",
+    "estrobo_siluetas": 4,
+    "estrobo_puntos": 12,
+    "error": null,
+    "s": 2.0
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "estrobo": "listo",
+    "estrobo_siluetas": 4,
+    "estrobo_puntos": 12,
+    "error": null,
+    "s": 2.2
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "estrobo": "listo",
+    "estrobo_siluetas": 4,
+    "estrobo_puntos": 22,
+    "error": null,
+    "s": 2.5
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "estrobo": "listo",
+    "estrobo_siluetas": 4,
+    "estrobo_puntos": 18,
+    "error": null,
+    "s": 1.9
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "estrobo": "listo",
+    "estrobo_siluetas": 4,
+    "estrobo_puntos": 19,
+    "error": null,
+    "s": 2.2
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "estrobo": "listo",
+    "estrobo_siluetas": 4,
+    "estrobo_puntos": 21,
+    "error": null,
+    "s": 2.4
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "estrobo": "listo",
+    "estrobo_siluetas": 4,
+    "estrobo_puntos": 21,
+    "error": null,
+    "s": 2.0
+   }
+  ],
+  "errores": []
+ },
+ "kaggle": {
+  "python": "3.13.18",
+  "nucleos": 4,
+  "memoria_gib": {
+   "MemTotal": 31.3,
+   "MemAvailable": 30.2
+  },
+  "disco_libre_gib": {
+   "/tmp": 2514.5,
+   "/kaggle/working": 19.5
+  },
+  "gpu": "",
+  "ffmpeg": "/usr/bin/ffmpeg",
+  "clave_modal": true
+ },
+ "horas_kaggle": 0.14,
+ "nota": null
+}

@@ -1885,7 +1885,9 @@
   "ruta": "/runs/kaggle_prueba_gauff_v38_b2/estado.json",
   "salida": "/kaggle_pruebas/prueba_gauff_v38_a/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cuaderno": "tennisbio-prueba-gauff-v38-b2-2",
-  "nota": "en cola de Kaggle más de 45 min mientras otro trabajo lanzado después ya arrancó (cuaderno atascado)"
+  "nota": "en cola de Kaggle más de 45 min mientras otro trabajo lanzado después ya arrancó (cuaderno atascado)",
+  "kaggle": "queued (21:42)",
+  "kaggle_detalle": "queued | estebancoboc/tennisbio-prueba-gauff-v38-b2-2 has status \"KernelWorkerStatus.QUEUED\""
  },
  "prueba_sinner_b": {
   "estado": "en_marcha",
@@ -1899,11 +1901,11 @@
   "ruta": "/runs/kaggle_prueba_sinner_b/estado.json",
   "salida": "/kaggle_pruebas/prueba_sinner_b/output/_prueba_zverev-alexander-sinner-jannik-indian-wells-2026-semi-final",
   "cuaderno": "tennisbio-prueba-sinner-b",
-  "kaggle": "queued (21:39)",
+  "kaggle": "queued (21:42)",
   "kaggle_detalle": "queued | estebancoboc/tennisbio-prueba-sinner-b has status \"KernelWorkerStatus.QUEUED\""
  },
  "medir_app_b": {
-  "estado": "en_marcha",
+  "estado": "hecho",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 1,
@@ -1914,8 +1916,26 @@
   "ruta": "/runs/kaggle_medir_app_b/estado.json",
   "cpu": true,
   "cuaderno": "tennisbio-medir-app-b",
-  "kaggle": "running (21:39)",
+  "kaggle": "complete (21:42)",
   "arranco": "2026-11-21 21:34",
-  "espera_min": 2
+  "espera_min": 2,
+  "fin": "2026-11-21 21:42",
+  "resultado": {
+   "estado": "hecho",
+   "horas_kaggle": 0.14
+  }
+ },
+ "informe_beta4": {
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1795297323.3859148,
+  "accion": "informe",
+  "partido": "",
+  "inicio": "2026-11-21 21:42",
+  "ruta": "/runs/informe_beta4/estado.json",
+  "cpu": true,
+  "cuaderno": "tennisbio-informe-beta4"
  }
 }
