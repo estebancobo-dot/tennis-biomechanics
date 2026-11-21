@@ -1738,6 +1738,9 @@
   "partido": "",
   "inicio": "2026-11-21 11:02",
   "ruta": "/runs/kaggle_medir_3d_metrabs/estado.json",
-  "cuaderno": "tennisbio-medir-3d-metrabs"
+  "cuaderno": "tennisbio-medir-3d-metrabs",
+  "kaggle": "running (11:02)",
+  "arranco": "2026-11-21 11:02",
+  "espera_min": 0
  }
 }
