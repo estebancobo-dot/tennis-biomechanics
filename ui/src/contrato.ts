@@ -112,6 +112,7 @@ export interface Datos {
   quality: Calidad;
   run_info?: Record<string, unknown>;
   ejemplo?: boolean; // made-up data (tests and the repository's preview), said on screen
+  origen?: string; // P0.5e (21-11): where the data come from (the cloud's results brought to the PC, or the PC's report)
   grip?: string | null; // what the TV allows to say of her grip (tennisbio.explain.grip_compatible)
   [k: string]: unknown;
 }

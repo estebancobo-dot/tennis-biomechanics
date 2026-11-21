@@ -49,7 +49,7 @@ STAGE_NAME = re.compile(r"[a-z_]+")
 
 def cpu_job(job: dict) -> bool:
     """A job for a Kaggle CPU session (#304, T24): no GPU hours, none of the GPU sessions."""
-    return job.get("accion") == "investigar" or job.get("cpu") is True
+    return job.get("accion") in ("investigar", "informe") or job.get("cpu") is True
 # 15-11 (R52): «leer» copies small text files of the volume to nube-logs, for a diagnosis without GPU or Modal credit
 READ_EXT = (".json", ".txt", ".md", ".log")
 READ_MAX_BYTES = 512 * 1024
@@ -390,8 +390,6 @@ def plan(jobs: list[dict], state: dict, spend: dict, sources: dict, now: float,
                         out.append((j["id"], "kaggle", "sesión de CPU: no gasta horas de GPU"))
                         break
                     why.append(f"kaggle: {kc.get('motivo', 'no disponible')}")
-                elif j["accion"] == "informe":
-                    why.append("kaggle: el informe va en Modal")
                 elif not kaggle.get("ok"):
                     why.append(f"kaggle: {kaggle.get('motivo', 'no disponible')}")
                 elif need > kroom:
@@ -590,7 +588,9 @@ def kaggle_launch(job: dict, slug: str | None = None) -> bool:
              if job["accion"] == "medir" else
              ["--salida-remota", run_path(job, "kaggle").rsplit("/", 1)[0], "--urls", str(job.get("urls") or ""), "--cpu"]
              + (["--cada", str(job["cada"])] if job.get("cada") else [])
-             if job["accion"] == "investigar" else [])
+             if job["accion"] == "investigar" else
+             ["--salida-remota", run_path(job, "kaggle").rsplit("/", 1)[0], "--cpu"]    # 21-11 (P0.5e): CPU only
+             if job["accion"] == "informe" else [])
     if job.get("config"):                            # T5: a test of other settings (proof of concept on the whole clip)
         extra += ["--config", json.dumps(job["config"], ensure_ascii=False)]
     if job.get("base") and job.get("accion") == "medir":    # #307: the reference test whose outputs it measures on

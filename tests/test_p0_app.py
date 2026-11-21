@@ -134,6 +134,31 @@ def test_management_works_only_in_the_pcs_window_and_says_so():
     assert "falta el clic" in inicio
 
 
+def test_the_home_screen_says_where_its_data_come_from_and_brings_the_clouds_results():
+    """P0.5e (21-11, #301): the home screen says where its data come from and, in the PC's window, its button asks
+    the PC to bring the cloud's latest results (in a browser it is disabled and says where it works)."""
+    pytest.importorskip("playwright")
+    from playwright.sync_api import sync_playwright
+    with sync_playwright() as pw:
+        b, p = _page(pw, fake=False)
+        p.evaluate("() => location.hash = 'inicio'")
+        p.wait_for_timeout(150)
+        off = p.evaluate("() => { const x = document.querySelector('[data-pc=\"traer\"]'); return [x.disabled, x.title]; }")
+        card = p.inner_text("[data-resultados]")
+        p.evaluate(FAKE_PC)
+        p.evaluate("() => location.hash = 'cola'")
+        p.wait_for_timeout(100)
+        p.evaluate("() => location.hash = 'inicio'")
+        p.wait_for_timeout(150)
+        p.click('[data-pc="traer"]')
+        p.wait_for_timeout(150)
+        after = p.inner_text("[data-resultados]")
+        calls = p.evaluate("() => window.__calls")
+        b.close()
+    assert off[0] is True and "aplicación del PC" in off[1] and "Datos de ejemplo" in card
+    assert calls == [["traer_resultados", []]] and "ya tenías los últimos resultados" in after
+
+
 def test_the_wizard_asks_the_pc_for_each_step_with_her_yes_to_the_preparation():
     """P0.5d: with the PC's window, the wizard chooses the video, fills its record, uploads it only with her yes to the
     preparation, sends her click on a photo and her approval; the queue's pause goes the same way."""

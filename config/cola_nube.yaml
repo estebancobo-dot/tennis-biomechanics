@@ -271,4 +271,8 @@ trabajos:
   # 15-11 (#297): la Base en beta con los 5 partidos ya analizados (Osaka, Pegula, Zheng, Gauff, la final): el informe y
   # la auditoría en Modal (CPU, ~0,15 $), con sus diferencias conocidas en la primera pantalla
   - {id: informe_beta, accion: informe, tras: final}
+  # 21-11 07:40 (P0.5e, #301; el usuario: «sí»): el informe y la auditoría en una sesión de CPU de Kaggle (Modal, sin
+  # crédito hasta el 1-12): los partidos ya analizados, la página con sus vídeos y la auditoría en el volumen, y la lista
+  # de ficheros que la aplicación del PC baja (/output/resultados_app.json). Comprueba que todo llega entero
+  - {id: informe_beta2, accion: informe, donde: kaggle}
   - {id: informe_6, accion: informe, tras: actualizar_zheng}

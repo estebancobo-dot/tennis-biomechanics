@@ -50,7 +50,7 @@ def parse_job(arg: str) -> dict:
     """The job as the notebook passes it; defaults: the run folder and the outputs where Modal's would go."""
     job = json.loads(arg)
     a = job.get("accion")
-    if a not in ("comprobar", "prueba", "partido", "medir", "investigar"):
+    if a not in ("comprobar", "prueba", "partido", "medir", "investigar", "informe"):
         raise ValueError(f"acción {a!r}")
     if a == "investigar" and not str(job.get("urls") or "").strip():
         raise ValueError("investigar necesita los vídeos («urls»)")
@@ -63,7 +63,8 @@ def parse_job(arg: str) -> dict:
     mid = job.get("partido", "")
     run_id = (TEST_PREFIX + mid) if a == "prueba" else mid
     job.setdefault("salida", {"comprobar": "/runs/kaggle_comprobar", "medir": f"/runs/kaggle_medir_{job.get('prueba')}",
-                              "investigar": "/runs/kaggle_investigar"}.get(a, f"/runs/partido_{run_id}"))
+                              "investigar": "/runs/kaggle_investigar", "informe": "/runs/informe"}.get(
+        a, f"/runs/partido_{run_id}"))
     job.setdefault("output_remoto", "/output")
     job["run_id"] = run_id
     return job
@@ -288,6 +289,71 @@ def run_stages(job: dict) -> list[str]:
     return ["--stages", *job["etapas"], *(["--no-upstream"] if job.get("sobre_lo_hecho") else [])]
 
 
+REPORT_PAGE_MAX = 15 * 1024 * 1024          # nube.PAGE_MAX_BYTES: a larger page stays only on the volume
+APP_MANIFEST = "resultados_app.json"        # tennisbio.app.p0_nube.MANIFEST (/output/…): what the PC's application brings
+
+
+def report_files(out: Path) -> list[Path]:
+    """The report's folders (each «informe*» of the outputs with its index.html) and the audit's, every file in them."""
+    dirs = [d for d in sorted(out.glob("informe*")) if d.is_dir() and (d / "index.html").exists()]
+    dirs += [out / "auditoria"] if (out / "auditoria").is_dir() else []
+    return [f for d in dirs for f in sorted(d.rglob("*")) if f.is_file()]
+
+
+def report(job: dict, py: Path, data: Path, run: Path, vol, est: dict, registry: list[dict]) -> int:
+    """21-11 (P0.5e, #301; the user: «sí»): the report of the player's forehand and the Base audit on a Kaggle CPU
+    session, as cloud/modal_app.informe does on Modal (out of credit until the month turns): the analysed matches'
+    outputs from the volume (never a 10-minute test), `tennisbio report` and `tennisbio audit`, and the report's
+    folders with their videos and the audit back to the volume (/output/...), where the PC's application downloads
+    them; the audit (and the page, when small) also in the run's folder, for the queue's nube-logs."""
+    import yaml
+
+    cat = nube.cloud_catalog(registry, data / "biblioteca")
+    for m in cat["matches"]:
+        try:
+            modal_get(f"/output/{m['id']}", data / "output")
+        except subprocess.CalledProcessError:
+            print(f"{m['id']}: sin resultados en el volumen", flush=True)
+    done = nube.analysed_matches(cat["matches"], data / "output")
+    (REPO / "config" / "matches.yaml").write_text(yaml.safe_dump({"matches": done}, allow_unicode=True, sort_keys=False),
+                                                  encoding="utf-8")
+    root = data / "partidos"
+    shutil.rmtree(root, ignore_errors=True)
+    root.mkdir(parents=True)
+    for m in done:
+        (root / m["id"]).symlink_to(data / "output" / m["id"], target_is_directory=True)
+    est["partidos"] = [m["id"] for m in done]
+    t0, rc = time.time(), {}
+    with open(run / "log.txt", "a", encoding="utf-8") as lg:
+        for name, args in (("informe", ["report"]),
+                           ("auditoria", ["audit", "--root", str(root), "--out", str(data / "output" / "auditoria")])):
+            p = subprocess.run([str(py), "-m", "tennisbio.cli", *args], cwd=REPO, env=env_for(data), capture_output=True,
+                               text=True, encoding="utf-8", errors="replace")
+            lg.write(f"===== {name} (código {p.returncode})\n{p.stdout}\n{p.stderr[-4000:]}\n")
+            rc[name] = p.returncode
+    files = report_files(data / "output")
+    modal_put(vol, files, data / "output", "/output")
+    if files and not any(rc.values()):           # the list last: the application sees it only with every file up
+        man = data / "output" / APP_MANIFEST
+        man.write_text(json.dumps({"generado": time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime()), "partidos":
+                                   est["partidos"], "ficheros": {f.relative_to(data / "output").as_posix(): f.stat().st_size
+                                                                 for f in files}}, ensure_ascii=False, indent=1),
+                       encoding="utf-8")
+        modal_put(vol, [man], data / "output", "/output")
+    aud = data / "output" / "auditoria"
+    for f in ("auditoria.md", "auditoria.json"):
+        if (aud / f).exists():
+            shutil.copy(aud / f, run / f)
+    pages = [d / "index.html" for d in sorted((data / "output").glob("informe*")) if (d / "index.html").exists()]
+    if pages and pages[0].stat().st_size < REPORT_PAGE_MAX:
+        shutil.copy(pages[0], run / "informe.html")
+    modal_put(vol, [f for f in run.iterdir() if f.is_file()], run, job["salida"])
+    est.update(estado="hecho" if not any(rc.values()) and files else "error", codigos=rc,
+               segundos=round(time.time() - t0), ficheros=len(files),
+               subido_mb=round(sum(f.stat().st_size for f in files) / 2 ** 20, 1), coste_usd=0.0)
+    return 0 if est["estado"] == "hecho" else 1
+
+
 def research_summary(index: list[dict]) -> dict:
     """What the coaches' videos gave (#304): how many have text (and from where) and frames, and which failed."""
     src: dict = {}
@@ -394,7 +460,7 @@ def main(argv: list[str]) -> int:
     try:
         if job["accion"] == "investigar":          # #304: a CPU session that needs nothing of the volume
             return research(job, run, vol, est, save)
-        for d in ("/pc", "/biblioteca", "/home", "/models"):
+        for d in ("/pc", "/biblioteca", "/home") + (() if job["accion"] == "informe" else ("/models",)):
             modal_get(d, data)
         for f in ("registro_partidos.json", "personas.json"):   # P0.5d: what was added in the application, if anything
             try:
@@ -414,6 +480,8 @@ def main(argv: list[str]) -> int:
             est["config_local"] = {k: v for k, v in eff.items() if k not in ("paths",)}
         except Exception as e:  # noqa: BLE001 — said in the state; the run goes on
             est["config_local"] = {"error": str(e)[:200]}
+        if job["accion"] == "informe":             # 21-11 (P0.5e): the report and the audit, CPU only
+            return report(job, py, data, run, vol, est, registry)
         if job["accion"] == "medir":               # a proof of concept: the GPU and the models (and a broadcast)
             video = None
             if job["prueba"] in NEEDS_MATCH:

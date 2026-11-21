@@ -257,6 +257,60 @@ def test_coach_videos_job_on_the_cpu():
     assert '"--transcribir"' in src and '"faster-whisper"' in src
 
 
+def test_the_report_on_a_kaggle_cpu_session(monkeypatch, tmp_path):
+    """21-11 (P0.5e, #301; Modal out of credit): the report and the Base audit on a Kaggle CPU session, as Modal's: only
+    the analysed matches (never a 10-minute test), their folders back on the volume for the PC's application, and the
+    audit in the run's folder for nube-logs."""
+    import json as _json
+    import subprocess as sp
+    j = correr.parse_job('{"accion": "informe"}')
+    assert j["salida"] == "/runs/informe"
+    data, run, repo = tmp_path / "data", tmp_path / "run", tmp_path / "repo"
+    run.mkdir()
+    (repo / "config").mkdir(parents=True)
+    for mid, man in (("m1", {"fine": {}}), ("m2", {"scenes": {}}), ("_prueba_m1", {"fine": {}})):
+        (data / "output" / mid).mkdir(parents=True)
+        (data / "output" / mid / "manifest.json").write_text(_json.dumps(man), encoding="utf-8")
+    monkeypatch.setattr(correr, "REPO", repo)
+    monkeypatch.setattr(correr.nube, "cloud_catalog",
+                        lambda reg, lib: {"matches": [{"id": "m1"}, {"id": "m2"}, {"id": "_prueba_m1"}]})
+    got, put, ran = [], [], []
+    monkeypatch.setattr(correr, "modal_get", lambda remote, local: got.append(remote))
+    monkeypatch.setattr(correr, "modal_put", lambda vol, files, root, remote: put.append((sorted(
+        str(f.relative_to(root)) for f in files), remote)))
+
+    class R:
+        returncode, stdout, stderr = 0, "ok", ""
+
+    def fake_run(cmd, **kw):
+        ran.append(cmd[3])
+        out = data / "output"
+        if cmd[3] == "report":
+            (out / "informe_derecha" / "videos").mkdir(parents=True)
+            (out / "informe_derecha" / "index.html").write_text("<html></html>")
+            (out / "informe_derecha" / "videos" / "g1.mp4").write_bytes(b"v")
+        else:
+            (out / "auditoria").mkdir(parents=True)
+            (out / "auditoria" / "auditoria.json").write_text("{}")
+            (out / "auditoria" / "auditoria.md").write_text("# a")
+        return R()
+    monkeypatch.setattr(sp, "run", fake_run)
+    est = {}
+    assert correr.report(j, Path("py"), data, run, None, est, []) == 0
+    assert ran == ["report", "audit"] and est["partidos"] == ["m1"] and est["estado"] == "hecho"
+    assert "/output/m1" in got and "/output/_prueba_m1" in got                  # read, but only m1 is analysed
+    assert put[0] == (["auditoria/auditoria.json", "auditoria/auditoria.md", "informe_derecha/index.html",
+                       "informe_derecha/videos/g1.mp4"], "/output")
+    assert put[1] == (["resultados_app.json"], "/output")                  # the application's list, last
+    man = _json.loads((data / "output" / "resultados_app.json").read_text(encoding="utf-8"))
+    assert man["partidos"] == ["m1"] and man["ficheros"]["informe_derecha/videos/g1.mp4"] == 1
+    assert put[2][1] == "/runs/informe" and "auditoria.json" in put[2][0] and "informe.html" in put[2][0]
+    assert "m1" in (repo / "config" / "matches.yaml").read_text(encoding="utf-8")
+    assert "_prueba" not in (repo / "config" / "matches.yaml").read_text(encoding="utf-8")
+    src = (ROOT / "cloud" / "kaggle" / "correr.py").read_text(encoding="utf-8")
+    assert 'if job["accion"] == "informe":' in src and '(() if job["accion"] == "informe" else ("/models",))' in src
+
+
 def test_whisper_text_has_the_subtitles_form():
     """#304: the transcribed speech is written as the subtitles' text is (one line per sentence, with its minute)."""
     import importlib.util

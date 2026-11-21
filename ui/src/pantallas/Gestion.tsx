@@ -53,6 +53,32 @@ function TarjetaAnalisis() {
   );
 }
 
+// P0.5e (21-11, #301): the analysis lives in the cloud; the PC brings its results (only what changed) and shows them
+function Resultados() {
+  const { d } = useApp();
+  const pc = api();
+  const [resp, setResp] = useState<Respuesta | null>(null);
+  const [trayendo, setTrayendo] = useState(false);
+  const traer = async () => {
+    if (!pc) return;
+    setTrayendo(true);
+    try {
+      const r = await pc.traer_resultados();
+      if (r.recargar) { window.location.reload(); return; }
+      setResp(r.ok ? { ok: true, motivo: r.bajados ? `${r.bajados} ficheros nuevos` : "ya tenías los últimos resultados" } : r);
+    } catch (e) { setResp({ ok: false, motivo: String(e) }); }
+    setTrayendo(false);
+  };
+  return (
+    <div className="card" data-resultados><span className="eyebrow">Resultados</span>
+      <p className="sub" style={{ marginTop: 4 }}>Datos de {d.origen || (d.ejemplo ? "ejemplo" : "este PC")}.</p>
+      <button className="btn" type="button" data-pc="traer" style={{ marginTop: 8 }} disabled={!pc || trayendo}
+        title={pc ? undefined : SOLO_PC} onClick={traer}>{trayendo ? "Trayendo…" : "Traer resultados de la nube"}</button>
+      {resp ? <p className={`pill ${resp.ok ? "good" : "crit"}`} role="status" style={{ marginTop: 8 }}>{resp.motivo}</p> : null}
+    </div>
+  );
+}
+
 export function Inicio() {
   const { d, abrir } = useApp();
   const q = d.queue, k = q.kaggle;
@@ -87,6 +113,7 @@ export function Inicio() {
             {q.modal ? <p className="sub" style={{ marginTop: 10 }}>Modal: quedan {fmt(q.modal.left, 2)} $ de {fmt(q.modal.total, 0)} $ este mes.</p> : null}
           </div>
         </div>
+        <Resultados />
         <div>
           <h2>Tus análisis</h2>
           <div className="grid3" style={{ marginTop: 10 }}><TarjetaAnalisis /></div>

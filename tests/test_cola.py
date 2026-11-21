@@ -630,6 +630,29 @@ def test_coach_videos_on_a_kaggle_cpu_session(monkeypatch, tmp_path):
     assert cola.copy_research(None, done, tmp_path, store) == [] and len(store.got) == 1     # once
 
 
+def test_the_report_goes_to_a_kaggle_cpu_session(monkeypatch):
+    """21-11 (P0.5e): the report and audit, CPU only, run on a Kaggle CPU session when Modal cannot (out of credit) or
+    when the job says so: no GPU hours, none of the GPU sessions; the notebook is told it is a CPU job."""
+    j = {"id": "informe_beta2", "accion": "informe", "donde": "kaggle"}
+    assert not cola.check_queue([j]) and cola.cpu_job(j) and cola.estimate_h(j) == 0.0
+    assert cola.run_path(j, "kaggle") == "/runs/informe_beta2/estado.json"
+    monkeypatch.setenv("KAGGLE_API_TOKEN", "t")
+    monkeypatch.setenv("KAGGLE_USERNAME", "u")
+    busy = {"g": {"estado": "en_marcha", "donde": "kaggle"}, "h": {"estado": "en_marcha", "donde": "kaggle"}}
+    src = cola._sources(ROOT, {"kaggle_activo": True}, busy)
+    assert cola.plan([j], {}, {"modal": {}}, src, NOV)[0] == ("informe_beta2", "kaggle",
+                                                               "sesión de CPU: no gasta horas de GPU")
+    calls = []
+
+    class R:
+        returncode, stdout, stderr = 0, "", ""
+    monkeypatch.setattr(cola, "_kaggle", lambda a: calls.append(a) or R())
+    assert cola.kaggle_launch(j)
+    launch = calls[-1]
+    assert launch[launch.index("--accion") + 1] == "informe" and "--cpu" in launch
+    assert launch[launch.index("--salida-remota") + 1] == "/runs/informe_beta2"
+
+
 def test_a_test_in_parts_cpu_gpu_cpu(monkeypatch):
     """T24 (15-11): ~39 % of a GPU session went to stages with the GPU idle. A test runs in parts, each a job: the CPU
     parts take no GPU hours nor GPU sessions; the later parts carry on in the first part's output folder."""

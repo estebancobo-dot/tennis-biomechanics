@@ -180,8 +180,15 @@ class ApiVentana:
     (P0.5e). `choose`: the window's file dialog (returns a path or None). Its own state is private (pywebview exposes an
     object's public attributes to the page too); each call is written to the window's log."""
 
-    def __init__(self, gestion: Gestion, jugadora: str, choose=lambda: None):
-        self._g, self._jugadora, self._choose = gestion, jugadora, choose
+    def __init__(self, gestion: Gestion, jugadora: str, choose=lambda: None, traer=None):
+        self._g, self._jugadora, self._choose, self._traer = gestion, jugadora, choose, traer
+
+    def traer_resultados(self) -> dict:
+        """21-11 (P0.5e): the cloud's latest results to the PC (tennisbio.app.p0_nube.pull) and the page made again with
+        them; {"recargar": True} tells the page to load itself again."""
+        if self._traer is None:
+            return {"ok": False, "motivo": "esta ventana no sabe traer resultados"}
+        return self._traer()
 
     def elegir_video(self) -> str | None:
         return self._choose()
@@ -244,4 +251,4 @@ class SinNube:
     elegir_video = staticmethod(lambda: None)
     proponer = staticmethod(lambda ruta: {})
     fotos = staticmethod(lambda partido: [])
-    alta = clic = aprobar = pausar = reanudar = cancelar = borrar_video = _no
+    alta = clic = aprobar = pausar = reanudar = cancelar = borrar_video = traer_resultados = _no
