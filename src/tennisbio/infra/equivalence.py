@@ -17,6 +17,8 @@ import json
 import math
 from pathlib import Path
 
+import numpy as np
+
 TIME_TOL_S = 0.05                 # one frame at 25 fps, two at 50
 REL_TOL = 0.01                    # a measure may differ by 1 % of its value …
 ABS_TOL = 0.5                     # … or by half a unit (degrees, cm, px), whichever is larger
@@ -122,7 +124,8 @@ def compare_strokes(a: list[dict], b: list[dict], skip=("series", "window", "vie
             "saltos": jumps[:400], "golpes_con_saltos": len({j["t"] for j in jumps}),
             "mayor_diferencia": {k: round(v, 4) for k, v in sorted(worst.items(), key=lambda kv: -kv[1])[:20]},
             "temblor": shake_summary(shake),
-            "temblor_por_familia": {f: shake_summary(v) for f, v in sorted(by_family.items())}}
+            "temblor_por_familia": {f: shake_summary(v) for f, v in sorted(by_family.items())},
+            "tronco_3d": {"a": trunk3d_summary(a), "b": trunk3d_summary(b)}}
 
 
 SHAKE_PREFIX = "technique.jitter."
@@ -154,6 +157,21 @@ def _shake_items(la: dict, lb: dict) -> list[tuple[str, float, float]]:
 
 def _shake_pairs(la: dict, lb: dict) -> list[tuple[float, float]]:
     return [(a, b) for _, a, b in _shake_items(la, lb)]
+
+
+TRUNK3D_KEYS = ("x_factor_3d_deg", "shoulder_turn_3d_deg", "hip_turn_3d_deg")
+
+
+def trunk3d_summary(strokes: list[dict]) -> dict:
+    """21-11 (#309, a 3D model against another on the same strokes): how many strokes have each trunk 3D value and their
+    spread across strokes (median absolute deviation, deg): with the same strokes, more values and less spread is a
+    reading with less noise (there is no 3D reference from the TV's view)."""
+    out = {}
+    for k in TRUNK3D_KEYS:
+        v = np.array([float((s.get("metrics") or {}).get(k)) for s in strokes
+                      if isinstance((s.get("metrics") or {}).get(k), (int, float))], float)
+        out[k] = {"golpes": int(len(v)), "mad": round(float(np.median(np.abs(v - np.median(v)))), 2) if len(v) else None}
+    return out
 
 
 def shake_summary(shake: list[tuple[float, float]]) -> dict:

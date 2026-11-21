@@ -84,3 +84,52 @@ def test_kaggle_installs_tensorflow_and_measures(tmp_path, monkeypatch):
     out = tmp_path / "p.json"
     assert poc_3d.main(["--datos", str(tmp_path), "--salida", str(out)]) == 0
     assert json.loads(out.read_text(encoding="utf-8"))["regla"]["pasa"] is True
+
+
+def test_the_fine_pass_reads_the_trunk_with_metrabs_around_the_loaded_frame(tmp_path):
+    """#309 (21-11): trunk3d.model: metrabs reads the trunk's 3D with MeTRAbs on the frames around the loaded one, in the
+    camera's frame with the focal from the court's homography, and gives the same metrics as the lifter (trunk_at)."""
+    import cv2
+    from tennisbio import trunk3d as T3
+    v = tmp_path / "w.mp4"
+    w = cv2.VideoWriter(str(v), cv2.VideoWriter_fourcc(*"mp4v"), 25, (64, 48))
+    for _ in range(30):
+        w.write(np.zeros((48, 64, 3), np.uint8))
+    w.release()
+    seen = []
+
+    class M:
+        def trunk(self, frame, box, K):
+            seen.append(round(float(K[0, 0]), 1))
+            # shoulders and hips square to the net, 40 cm and 30 cm wide, 5 m in front of the camera
+            return np.array([[-200, -400, 5000], [200, -400, 5000], [-150, 0, 5000], [150, 0, 5000]], float)
+    boxes = [[0, 0, 10, 20]] * 30
+    boxes[10] = None
+    H = np.array([[100.0, 0, 32], [0, -40, 40], [0, -2, 1]])        # a plane seen from above and behind
+    m, rot = T3.trunk_metrabs(M(), v, boxes, (48, 64), H, 20.0, "right", 12, 3)
+    assert set(rot) == {9, 11, 12, 13, 14, 15} and len(seen) == 6               # frame 10 has no box: skipped
+    assert m["trunk3d_model"] == "metrabs" and abs(m["shoulder_turn_3d_deg"]) < 1 and abs(m["x_factor_3d_deg"]) < 1
+    assert T3.trunk_metrabs(M(), v, boxes, (48, 64), H, 20.0, "right", None, 3) == ({}, {})
+    assert T3.model_name({}) == "motionagformer" and T3.model_name({"trunk3d": {"model": "MeTRAbs"}}) == "metrabs"
+    src = (ROOT / "src" / "tennisbio" / "stages.py").read_text(encoding="utf-8")
+    assert 'if T3.model_name(ctx.cfg) == "metrabs":' in src and "T3.trunk_metrabs(T3.metrabs()" in src
+
+
+def test_the_comparison_says_how_many_strokes_have_a_3d_trunk_and_its_spread():
+    from tennisbio.infra import equivalence as eq
+    a = [{"match_time_s": t, "stroke": "forehand", "metrics": {"x_factor_3d_deg": x}} for t, x in ((1, 10), (2, 30), (3, 50))]
+    b = [{"match_time_s": t, "stroke": "forehand", "metrics": {"x_factor_3d_deg": x}} for t, x in ((1, 20), (2, 25), (3, 30))]
+    b.append({"match_time_s": 4, "stroke": "forehand", "metrics": {}})
+    g = eq.compare_strokes(a, b)["tronco_3d"]
+    assert g["a"]["x_factor_3d_deg"] == {"golpes": 3, "mad": 20.0} and g["b"]["x_factor_3d_deg"] == {"golpes": 3, "mad": 5.0}
+    assert g["b"]["hip_turn_3d_deg"] == {"golpes": 0, "mad": None}
+
+
+def test_kaggle_installs_tensorflow_for_a_test_that_asks_for_metrabs():
+    sys.path.insert(0, str(ROOT / "cloud" / "kaggle"))
+    sys.path.insert(0, str(ROOT / "cloud"))
+    import correr
+    assert correr.wants_metrabs({"config": {"trunk3d": {"model": "metrabs"}}})
+    assert not correr.wants_metrabs({"config": {"fine_pass": {"refine": "sapiens2"}}}) and not correr.wants_metrabs({})
+    src = (ROOT / "cloud" / "kaggle" / "correr.py").read_text(encoding="utf-8")
+    assert "if wants_metrabs(job):" in src and 'os.environ["TFHUB_CACHE_DIR"]' in src

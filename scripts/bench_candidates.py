@@ -879,7 +879,7 @@ def rtmw3d_yaw(video: Path, boxes: list, cam, pelvis: np.ndarray, wb3d) -> tuple
 
 
 def metrabs_model():
-    """MeTRAbs (candidates.metrabs3d, TensorFlow Hub): for bench_mag3d's `extra` (21-11, #309)."""
+    """MeTRAbs (tennisbio.pose.metrabs3d, TensorFlow Hub): for bench_mag3d's `extra` (21-11, #309)."""
     from tennisbio.candidates.metrabs3d import Metrabs
     return Metrabs()
 

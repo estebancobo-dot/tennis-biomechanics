@@ -2763,7 +2763,29 @@ def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets
         # reading (RTMW3D) stays when its model file is missing
         from . import trunk3d as T3
         tpath = T3.model_path(ctx.cfg)
-        if tpath is not None:
+        if T3.model_name(ctx.cfg) == "metrabs":
+            # 21-11 (#309): MeTRAbs, one calibrated view (the focal from the court's homography), around the loaded
+            # frame; on CalTennis 77.8 % within 15° against MotionAGFormer's 36.8 %. Without the court, the former one
+            if H_img is not None and pitch is not None:
+                try:
+                    import cv2
+                    cap = cv2.VideoCapture(str(clip))
+                    shape = (int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)), int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)))
+                    cap.release()
+                    tm, trot = T3.trunk_metrabs(T3.metrabs(), clip, run.boxes, shape, H_img, pitch, p.hand,
+                                                (r.phases.get("loaded") or {}).get("frame"), 3 * max(1, step3d))
+                    for k in [k for k in d["metrics"] if k.startswith(("shoulder_turn_3d", "hip_turn_3d", "x_factor_3d",
+                                                                         "trunk3d_"))]:
+                        d["metrics"].pop(k)
+                    d["metrics"].update(tm)
+                    ser["face"]["rot3d"] = {str(f): [round(v, 1) for v in rt[:2]] + [round(v, 3) for v in rt[2:]]
+                                            for f, rt in trot.items()}
+                except faults.CriticalFault:
+                    raise
+                except Exception as e:  # noqa: BLE001 — the former reading stays; said in the log
+                    ctx.log(f"  giro 3D del tronco (MeTRAbs) no disponible en {clip.name}: {e}")
+                    fault("golpe.giro3d", clip.name, exc=e)
+        elif tpath is not None:
             try:
                 import cv2
                 cap = cv2.VideoCapture(str(clip))

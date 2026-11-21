@@ -180,6 +180,11 @@ def bring_results(vol, dest: Path) -> dict:
     return r
 
 
+def wants_metrabs(job: dict) -> bool:
+    """21-11 (#309): a test or match whose settings read the trunk's 3D with MeTRAbs (trunk3d.model: metrabs)."""
+    return str(((job.get("config") or {}).get("trunk3d") or {}).get("model") or "").lower() == "metrabs"
+
+
 def wants_rfdetr(job: dict) -> bool:
     """21-11 (T25): a test or match whose settings find the far player with RF-DETR (fine_pass.far_detector)."""
     return str(((job.get("config") or {}).get("fine_pass") or {}).get("far_detector") or "").lower() == "rfdetr"
@@ -571,6 +576,12 @@ def main(argv: list[str]) -> int:
         ensure_sapiens2(py, data, models, vol, est)        # #307: only when the settings ask for it
         if wants_rfdetr(job):                              # T25: the far player by RF-DETR
             ensure_rfdetr(data, models, vol, est)
+        if wants_metrabs(job):                             # #309: MeTRAbs runs on TensorFlow, in the analysis's Python
+            _run(["uv", "pip", "install", "-q", "--python", str(py), *METRABS_TF])
+            # its 708 MB once, before the fine pass's 2 processes would fetch it at the same time
+            os.environ["TFHUB_CACHE_DIR"] = str(data / "tfhub")
+            _run([str(py), "-c", "import tensorflow_hub as h; from tennisbio.pose.metrabs3d import URL; h.load(URL)"],
+                 env=env_for(data), cwd=REPO)
         src = matches.get(job["partido"])
         if src is None:
             est.update(estado="error", nota=f"{job['partido']} no está en la lista de partidos del PC")
