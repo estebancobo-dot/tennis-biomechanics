@@ -192,6 +192,9 @@
     "medir_raqueta_p100": {
      "estimado_h": 0.5,
      "horas": 0.06
+    },
+    "medir_3d_metrabs_c": {
+     "estimado_h": 2.0
     }
    }
   }
@@ -200,7 +203,6 @@
   "usadas_h": 2.69,
   "total_h": 30.0,
   "renueva": "2026-11-28 00:00:00",
-  "ts": 1795267544.6572025
- },
- "aviso_ocioso_ts": 1795267238.0314262
+  "ts": 1795267744.696984
+ }
 }
