@@ -167,16 +167,20 @@
      "horas": 0.47
     },
     "medir_lejana_rfdetr": {
-     "estimado_h": 0.5
+     "estimado_h": 0.5,
+     "horas": 0.18
+    },
+    "prueba_gauff_v36_b": {
+     "estimado_h": 1.0
     }
    }
   }
  },
  "kaggle_real": {
-  "usadas_h": 1.97,
+  "usadas_h": 1.98,
   "total_h": 30.0,
   "renueva": "2026-11-28 00:00:00",
-  "ts": 1795242867.1095757
+  "ts": 1795243199.014253
  },
  "aviso_ocioso_ts": 1795242233.8995059
 }

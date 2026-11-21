@@ -1,0 +1,51 @@
+{
+ "estado": "hecho",
+ "poc": {
+  "prueba": "lejana",
+  "dispositivo": "cuda",
+  "imagenes": 300,
+  "baseline": "YOLO11m-pose en la mitad lejana",
+  "candidate": "RF-DETR Medium 1152",
+  "per_model": {
+   "ours (YOLO11m-pose, mitad lejana)": {
+    "far_found": 0.903,
+    "fps": 1.1
+   },
+   "rfdetr": {
+    "far_found": 1.0,
+    "fps": 3.3
+   }
+  },
+  "far_rackets": 360,
+  "accuracy": "jugadora lejana hallada 1.0 / 0.903",
+  "speed": "3.3 / 1.1 fotogramas/s",
+  "verdict": {
+   "adopt": true,
+   "reason": "lejana hallada 1.0 frente a 0.903 (igual o mejor); fotogramas/s 3.3 frente a 1.1 (no más lento)"
+  },
+  "notes": [
+   "Referencia: la raqueta anotada del jugador lejano en los fotogramas de prueba de RacketVision (la persona hallada la contiene, con un margen de media caja)."
+  ],
+  "regla": {
+   "pasa": true,
+   "motivo": "lejana hallada 1.0 frente a 0.903 (regla: ≥ 0.953)"
+  }
+ },
+ "kaggle": {
+  "python": "3.13.16",
+  "nucleos": 4,
+  "memoria_gib": {
+   "MemTotal": 31.3,
+   "MemAvailable": 30.1
+  },
+  "disco_libre_gib": {
+   "/tmp": 2514.5,
+   "/kaggle/working": 19.5
+  },
+  "gpu": "Tesla T4, 15360 MiB\nTesla T4, 15360 MiB",
+  "ffmpeg": "/usr/bin/ffmpeg",
+  "clave_modal": true
+ },
+ "horas_kaggle": 0.18,
+ "nota": null
+}
