@@ -1886,7 +1886,7 @@
   "salida": "/kaggle_pruebas/prueba_gauff_v38_a/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cuaderno": "tennisbio-prueba-gauff-v38-b2-2",
   "nota": "en cola de Kaggle más de 45 min mientras otro trabajo lanzado después ya arrancó (cuaderno atascado)",
-  "kaggle": "queued (22:04)",
+  "kaggle": "queued (22:06)",
   "kaggle_detalle": "queued | estebancoboc/tennisbio-prueba-gauff-v38-b2-2 has status \"KernelWorkerStatus.QUEUED\""
  },
  "prueba_sinner_b": {
@@ -1902,7 +1902,7 @@
   "salida": "/kaggle_pruebas/prueba_sinner_b/output/_prueba_zverev-alexander-sinner-jannik-indian-wells-2026-semi-final",
   "cuaderno": "tennisbio-prueba-sinner-b-2",
   "nota": "en cola de Kaggle más de 45 min mientras otro trabajo lanzado después ya arrancó (cuaderno atascado)",
-  "kaggle": "queued (22:04)",
+  "kaggle": "queued (22:06)",
   "kaggle_detalle": "queued | estebancoboc/tennisbio-prueba-sinner-b-2 has status \"KernelWorkerStatus.QUEUED\""
  },
  "medir_app_b": {
@@ -1953,5 +1953,19 @@
    },
    "horas_kaggle": 0.27
   }
+ },
+ "sinner_a": {
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1795298802.9581254,
+  "accion": "partido",
+  "partido": "zverev-alexander-sinner-jannik-indian-wells-2026-semi-final",
+  "inicio": "2026-11-21 22:06",
+  "ruta": "/runs/kaggle_sinner_a/estado.json",
+  "salida": "/output/zverev-alexander-sinner-jannik-indian-wells-2026-semi-final",
+  "cpu": true,
+  "cuaderno": "tennisbio-sinner-a"
  }
 }

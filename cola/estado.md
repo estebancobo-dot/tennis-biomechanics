@@ -1,6 +1,6 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-21 22:04 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 18.6 h de GPU esta semana (tope 28 h; Kaggle dice 7.35 h usadas de 30.0, se renueva 2026-11-28 00:00)
+Última vuelta: 2026-11-21 22:06 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 18.6 h de GPU esta semana (tope 28 h; Kaggle dice 7.35 h usadas de 30.0, se renueva 2026-11-28 00:00)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
@@ -91,9 +91,9 @@
 | prueba_final | prueba | tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 | hecho | modal |  |
 | final | partido | tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 | hecho | kaggle |  |
 | prueba_sinner | prueba | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | error | kaggle | cancelado: #295: la prueba corta de un partido espera con su partido a la nube nativa (comprueba el código con el que se analizará); se repite entonces como prueba_sinner_b |
-| prueba_sinner_b | prueba | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | en_marcha | kaggle | Kaggle: queued (22:04), intento 2; en cola de Kaggle más de 45 min mientras otro trabajo lanzado después ya arrancó (cuaderno atascado) |
-| sinner_a | partido | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | pendiente |  | espera a prueba_sinner_b (en_marcha) |
-| sinner_b | partido | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | pendiente |  | espera a sinner_a (pendiente) |
+| prueba_sinner_b | prueba | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | en_marcha | kaggle | Kaggle: queued (22:06), intento 2; en cola de Kaggle más de 45 min mientras otro trabajo lanzado después ya arrancó (cuaderno atascado) |
+| sinner_a | partido | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | en_marcha | kaggle |  |
+| sinner_b | partido | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | pendiente |  | espera a sinner_a (pendiente), prueba_sinner_b (en_marcha) |
 | sinner | partido | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | pendiente |  | espera a sinner_b (pendiente) |
 | actualizar_osaka_a | partido | us-open-2026-r4-naomi-osaka-elena-rybakina | pendiente |  | espera a sinner (pendiente) |
 | actualizar_osaka_b | partido | us-open-2026-r4-naomi-osaka-elena-rybakina | pendiente |  | espera a actualizar_osaka_a (pendiente) |
@@ -119,7 +119,7 @@
 | medir_f3set_hoy_c | medir |  | pendiente |  | espera a prueba_gauff_v38_c (pendiente) |
 | prueba_gauff_v38_a | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
 | prueba_gauff_v38_b | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | error | kaggle | cancelado: 21-11 20:45: sus 2 cuadernos, en cola de Kaggle desde las 15:36 sin arrancar (desde las 19:20 sin nada más en marcha): otra vez como prueba_gauff_v38_b2 |
-| prueba_gauff_v38_b2 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: queued (22:04), intento 2; en cola de Kaggle más de 45 min mientras otro trabajo lanzado después ya arrancó (cuaderno atascado) |
+| prueba_gauff_v38_b2 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: queued (22:06), intento 2; en cola de Kaggle más de 45 min mientras otro trabajo lanzado después ya arrancó (cuaderno atascado) |
 | prueba_gauff_v38_c | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | pendiente |  | espera a prueba_gauff_v38_b2 (en_marcha) |
 | comparar_gauff_v36_v38 | comparar |  | pendiente |  | espera a prueba_gauff_v38_c |
 | informe_6 | informe |  | pendiente |  | espera a actualizar_zheng (pendiente) |
