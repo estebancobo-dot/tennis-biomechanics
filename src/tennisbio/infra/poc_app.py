@@ -6,7 +6,10 @@ body layer must be drawn on her points at the impact (their pixels on the layers
 session (the repository and nube-logs are public: no frame of the player).
 
 Rule written before measuring: accepted if, of the strokes probed (the gallery's first ones, up to --golpes), at least
-95 % open their video and at least 95 % of those draw the body on her points, with no error of the page.
+95 % open their video and at least 95 % of those draw the body on her points, with no error of the page. 21-11 (the strobe
+image from each stroke's series, ui/src/pantallas/Estroboscopica.tsx), rule written before measuring it: at least 95 % of
+the strokes with their video draw it (its silhouettes on her impact frame); its racket points are counted, not required
+(the racket model does not see the racket in every frame).
 
     python -m tennisbio.infra.poc_app --raiz <dir with nube/> --salida poc.json [--golpes 24]
 """
@@ -24,8 +27,11 @@ MIN_SHARE = 0.95
 PROBE = """() => {
   const R = document.querySelector('[data-reproductor]'), V = R && R.querySelector('video'),
         C = R && R.querySelector('canvas[data-capas]');
+  const E = document.querySelector('[data-estrobo]');
   const out = {estado: R ? R.dataset.reproductor : null, ancho: V ? V.videoWidth : 0, listo: V ? V.readyState : 0,
-               error: V && V.error ? String(V.error.code) : null, dibujados: 0, puntos: 0};
+               error: V && V.error ? String(V.error.code) : null, dibujados: 0, puntos: 0,
+               estrobo: E ? E.dataset.estrobo : null, estrobo_siluetas: E ? +(E.dataset.siluetas || 0) : 0,
+               estrobo_puntos: E ? +(E.dataset.puntos || 0) : 0};
   const S = window.SERIES || {}, id = R ? R.dataset.golpe : null;
   const ser = id ? S[id] : null;
   if (!ser || !C || !C.width) return out;
@@ -79,6 +85,12 @@ def probe(page: Path, n: int, channel: str = "chrome") -> dict:
                                     " return R && R.dataset.reproductor !== 'cargando' &&"
                                     " (R.dataset.reproductor === 'sin-video' || R.querySelector('video').readyState >= 2"
                                     " || R.querySelector('video').error); }", timeout=15000)
+                try:                                  # the strobe image draws once its own video is at the impact
+                    p.wait_for_function("() => { const E = document.querySelector('[data-estrobo]');"
+                                        " return !E || E.dataset.estrobo !== 'cargando' && +(E.dataset.siluetas || 0) > 0"
+                                        " || E.dataset.estrobo === 'sin-serie'; }", timeout=8000)
+                except Exception:  # esperado: counted below as a strobe not drawn (noqa: BLE001)
+                    pass
                 if p.query_selector("[data-impacto]:not([disabled])"):
                     p.click("[data-impacto]")
                     p.wait_for_timeout(500)
@@ -98,11 +110,17 @@ def summarise(rows: list[dict], errors: list[str]) -> dict:
     drawn = [r for r in with_video if r.get("puntos") and r.get("dibujados", 0) * 3 >= 2 * r["puntos"]]
     v_share = len(with_video) / len(rows) if rows else 0.0
     d_share = len(drawn) / len(with_video) if with_video else 0.0
-    ok = bool(rows) and v_share >= MIN_SHARE and d_share >= MIN_SHARE and not errors
+    strobe = [r for r in with_video if r.get("estrobo") == "listo" and (r.get("estrobo_siluetas") or 0) > 0]
+    s_share = len(strobe) / len(with_video) if with_video else 0.0
+    ok = bool(rows) and v_share >= MIN_SHARE and d_share >= MIN_SHARE and s_share >= MIN_SHARE and not errors
+    tips = [r.get("estrobo_puntos") or 0 for r in strobe]
     return {"probados": len(rows), "con_video": len(with_video), "cuerpo_en_sus_puntos": len(drawn),
             "parte_con_video": round(v_share, 3), "parte_dibujada": round(d_share, 3), "errores_pagina": len(errors),
-            "regla": {"pasa": ok, "motivo": f"vídeo {v_share:.0%} y cuerpo en sus puntos {d_share:.0%} (mínimo "
-                                            f"{MIN_SHARE:.0%} cada uno), {len(errors)} errores de la página"}}
+            "estroboscopica": len(strobe), "parte_estroboscopica": round(s_share, 3),
+            "estroboscopica_con_raqueta": sum(1 for t in tips if t > 0),
+            "puntos_raqueta_mediana": sorted(tips)[len(tips) // 2] if tips else None,
+            "regla": {"pasa": ok, "motivo": f"vídeo {v_share:.0%}, cuerpo en sus puntos {d_share:.0%} y estroboscópica "
+                                            f"{s_share:.0%} (mínimo {MIN_SHARE:.0%} cada uno), {len(errors)} errores de la página"}}
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -115,7 +133,8 @@ def main(argv: list[str] | None = None) -> int:
     page, info = make_page(a.raiz)
     res = probe(page, a.golpes, a.canal)
     out = {"prueba": "app", **info, **summarise(res["filas"], res["errores_pagina"]),
-           "filas": [{k: r.get(k) for k in ("estado", "ancho", "puntos", "dibujados", "error", "s")} for r in res["filas"]],
+           "filas": [{k: r.get(k) for k in ("estado", "ancho", "puntos", "dibujados", "estrobo", "estrobo_siluetas",
+                                            "estrobo_puntos", "error", "s")} for r in res["filas"]],
            "errores": res["errores_pagina"]}
     a.salida.write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
     print(json.dumps({k: v for k, v in out.items() if k not in ("filas",)}, ensure_ascii=False)[:2000])

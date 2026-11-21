@@ -9,6 +9,7 @@ import type { Datos, Golpe } from "../contrato";
 import { esN, fmt } from "../datos";
 import { SITUACION } from "../situaciones";
 import { Fotograma, Reproductor } from "./Reproductor";
+import { Estroboscopica } from "./Estroboscopica";
 import { TrayectoriaSwing, type Trayectoria } from "./Trayectoria";
 
 type AnyRec = Record<string, any>; // eslint-disable-line @typescript-eslint/no-explicit-any
@@ -140,7 +141,7 @@ export function FichaGolpe({ s, sit = "todas" }: { s: Golpe; sit?: string }) {
         <div className="card"><h3>Imagen estroboscópica: la trayectoria del swing</h3>
           {s.trayectoria ? <TrayectoriaSwing tr={s.trayectoria as Trayectoria} titulo={`Trayectoria del swing: ${tituloGolpe(s)}`} /> : <>
             <p className="sub">Toda la trayectoria del golpe sobre su vídeo: la mano por fases y la punta de la raqueta, con su zona de contacto (#306).</p>
-            <p className="mock" style={{ marginTop: 8 }}>Se dibuja con la serie fotograma a fotograma del golpe, que llega con el reproductor (P0.5e).</p></>}</div>
+            <div style={{ marginTop: 8 }}><Estroboscopica s={s} medios={d.medios} zurda={d.player.hand === "left"} /></div></>}</div>
         <div className="card" data-tira><h3>Tira de contactos</h3><p className="sub">Sus impactos en esta situación, uno junto a otro (los mejor captados).</p>
           {contactos.length ? <div className="moments" style={{ marginTop: 8 }}>{contactos.map((x) => (
             <div className="moment" key={x.id}><Fotograma s={x} medios={d.medios} t={0} zurda={d.player.hand === "left"}

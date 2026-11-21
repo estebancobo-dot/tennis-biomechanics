@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import type { Golpe } from "../contrato";
 import { fmt } from "../datos";
 
-type Serie = {
+export type Serie = {
   fps: number; first: number; impact: number; n: number;
   kp: (number | null)[][]; conf?: (number | null)[][]; box?: (number[] | null)[];
   ball?: ([number | null, number | null] | null)[] | null;
@@ -17,7 +17,7 @@ type Serie = {
 declare global { interface Window { SERIES?: Record<string, Serie> } }
 
 // COCO17 pairs (the series' «kp»: 17 points, x y each); the dominant arm brighter (config/players: hand)
-const HUESOS: [number, number][] = [[5, 7], [7, 9], [6, 8], [8, 10], [5, 6], [5, 11], [6, 12], [11, 12], [11, 13], [13, 15],
+export const HUESOS: [number, number][] = [[5, 7], [7, 9], [6, 8], [8, 10], [5, 6], [5, 11], [6, 12], [11, 12], [11, 13], [13, 15],
   [12, 14], [14, 16], [0, 1], [0, 2], [1, 3], [2, 4]];
 const RAQUETA: [number, number][] = [[0, 3], [3, 1], [1, 4], [4, 0], [1, 2]];
 const VELOCIDADES: [string, number][] = [["Velocidad real", 1], ["½", 0.5], ["¼", 0.25], ["⅛", 0.125]];
@@ -35,7 +35,7 @@ export function cargarSerie(id: string, src: string): Promise<Serie | null> {
   });
 }
 
-const punto = (k: (number | null)[] | undefined, i: number): [number, number] | null =>
+export const punto = (k: (number | null)[] | undefined, i: number): [number, number] | null =>
   k && k[2 * i] !== null && k[2 * i] !== undefined && k[2 * i + 1] !== null ? [k[2 * i] as number, k[2 * i + 1] as number] : null;
 
 export function dibujar(cx: CanvasRenderingContext2D, ser: Serie, f: number, capas: Record<string, boolean>, zurda: boolean, vk = 1) {

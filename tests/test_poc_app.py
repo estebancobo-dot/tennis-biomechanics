@@ -15,13 +15,16 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_the_rule_counts_videos_and_bodies_on_her_points():
-    ok = {"ancho": 1280, "puntos": 3, "dibujados": 3}
-    rows = [ok] * 19 + [{"ancho": 1280, "puntos": 3, "dibujados": 1}]
+    ok = {"ancho": 1280, "puntos": 3, "dibujados": 3, "estrobo": "listo", "estrobo_siluetas": 4, "estrobo_puntos": 20}
+    rows = [ok] * 19 + [{"ancho": 1280, "puntos": 3, "dibujados": 1, "estrobo": "listo", "estrobo_siluetas": 4}]
     s = poc_app.summarise(rows, [])
     assert s["con_video"] == 20 and s["cuerpo_en_sus_puntos"] == 19 and s["regla"]["pasa"] is True   # 95 %
     assert poc_app.summarise(rows[:18] + [{"ancho": 0}, {"error": "4"}], [])["regla"]["pasa"] is False
     assert poc_app.summarise([ok], ["TypeError: x"])["regla"]["pasa"] is False                       # a page error
     assert poc_app.summarise([], [])["regla"]["pasa"] is False
+    no_strobe = [ok] * 18 + [{**ok, "estrobo": "sin-fases", "estrobo_siluetas": 0}] * 2                # 90 %: not accepted
+    s = poc_app.summarise(no_strobe, [])
+    assert s["regla"]["pasa"] is False and s["estroboscopica"] == 18 and s["puntos_raqueta_mediana"] == 20
 
 
 def test_a_real_browser_finds_her_body_drawn_on_her_points(tmp_path):
@@ -34,17 +37,25 @@ def test_a_real_browser_finds_her_body_drawn_on_her_points(tmp_path):
                     "-c:v", "libvpx", "-b:v", "200k", str(media / "clip.webm")], check=True)
     pts = [160, 40, 155, 35, 165, 35, 150, 38, 170, 38, 140, 70, 180, 70, 130, 100, 190, 100, 125, 130, 195, 130,
            145, 140, 175, 140, 140, 180, 180, 180, 138, 220, 182, 220]
-    ser = {"fps": 25, "first": 0, "impact": 25, "n": 75, "kp": [pts] * 75}
+    # the racket's 5 points (tip first) in each frame, rising then falling, for the strobe image
+    face = {str(f): [[200 + 2 * f, 60 + abs(f - 20) * 3], [195, 120], [190, 150], [185, 80], [215, 80]] for f in range(75)}
+    ser = {"fps": 25, "first": 0, "impact": 25, "n": 75, "kp": [pts] * 75, "face": {"keypoints": face}}
     (media / "series" / "s1.js").write_text(f'window.SERIES["s1"]={json.dumps(ser)};', encoding="utf-8")
     d = p0_app.ejemplo()
     d["medios"] = "nube/informe_derecha/"
-    d["strokes"][0].update(id="s1", video="clip.webm", series="series/s1.js", vImpact=1.0, quality=1.0)
+    d["strokes"][0].update(id="s1", video="clip.webm", series="series/s1.js", vImpact=1.0, quality=1.0,
+                           phases={"takeback": -0.6, "loaded": -0.4, "acceleration": -0.12, "impact": 0.0,
+                                   "extension": 0.05, "finish": 0.4})
+    d["strokes"][0].pop("trayectoria", None)                # the example's drawn path: this one from its series
     page = tmp_path / "app.html"
     page.write_text('<!doctype html><html><head><meta charset="utf-8"></head><body>' + p0_app.pagina(d) + "</body></html>",
                     encoding="utf-8")
     res = poc_app.probe(page, 200, channel="")
     rows = {r["id"]: r for r in res["filas"]}
     assert rows["s1"]["ancho"] == 320 and rows["s1"]["puntos"] == 3 and rows["s1"]["dibujados"] == 3, rows["s1"]
+    # the strobe image from its series: the 4 silhouettes and the racket tip from takeback (-0.6 s) to finish (+0.4 s)
+    assert rows["s1"]["estrobo"] == "listo" and rows["s1"]["estrobo_siluetas"] == 4, rows["s1"]
+    assert rows["s1"]["estrobo_puntos"] == 26, rows["s1"]
     assert not res["errores_pagina"]
     others = [r for k, r in rows.items() if k != "s1"]
     assert others and all(r["estado"] == "sin-video" for r in others)          # the example's strokes have no video
