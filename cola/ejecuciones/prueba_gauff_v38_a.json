@@ -1,0 +1,100 @@
+{
+ "estado": "hecho",
+ "segundos": 632,
+ "horas_kaggle": 0.31,
+ "coste_usd": 0.0,
+ "gpu": null,
+ "etapas": {
+  "probe": 1.1,
+  "scenes": 477.6,
+  "court": 109.8,
+  "audio": 38.4
+ },
+ "recursos": {
+  "muestras": 10,
+  "cpu_pct": {
+   "media": 64.8,
+   "max": 79.9
+  },
+  "ram_gb": {
+   "media": 2.7,
+   "max": 4.6
+  }
+ },
+ "recursos_por_etapa": {
+  "probe": {
+   "s": 1,
+   "muestras": 0
+  },
+  "scenes": {
+   "s": 478,
+   "muestras": 8,
+   "cpu_pct": {
+    "media": 62.5,
+    "max": 64.3
+   },
+   "ram_gb": {
+    "media": 2.8,
+    "max": 4.6
+   }
+  },
+  "court": {
+   "s": 110,
+   "muestras": 1,
+   "cpu_pct": {
+    "media": 66.0,
+    "max": 66.0
+   },
+   "ram_gb": {
+    "media": 2.5,
+    "max": 2.5
+   }
+  },
+  "audio": {
+   "s": 38,
+   "muestras": 1,
+   "cpu_pct": {
+    "media": 79.9,
+    "max": 79.9
+   },
+   "ram_gb": {
+    "media": 2.2,
+    "max": 2.2
+   }
+  }
+ },
+ "modelos_en_cpu": 0,
+ "fallos": {},
+ "sin_subir": [],
+ "config": {
+  "trunk3d": {
+   "model": "metrabs"
+  }
+ },
+ "config_local": {
+  "registry": {
+   "source": "yaml"
+  },
+  "device": "auto",
+  "trunk3d": {
+   "model": "metrabs"
+  }
+ },
+ "kaggle": {
+  "python": "3.13.18",
+  "nucleos": 4,
+  "memoria_gib": {
+   "MemTotal": 31.3,
+   "MemAvailable": 30.2
+  },
+  "disco_libre_gib": {
+   "/tmp": 2514.5,
+   "/kaggle/working": 19.5
+  },
+  "gpu": "",
+  "ffmpeg": "/usr/bin/ffmpeg",
+  "clave_modal": true
+ },
+ "nota": null,
+ "modelos_en_cpu_registro": 0
+}

@@ -200,15 +200,17 @@
     },
     "medir_f3set_hoy_b": {
      "estimado_h": 5.0
+    },
+    "prueba_gauff_v38_b": {
+     "estimado_h": 1.0
     }
    }
   }
  },
  "kaggle_real": {
-  "usadas_h": 3.52,
+  "usadas_h": 3.61,
   "total_h": 30.0,
   "renueva": "2026-11-28 00:00:00",
-  "ts": 1795275046.471266
- },
- "aviso_ocioso_ts": 1795270607.247826
+  "ts": 1795275353.9464707
+ }
 }

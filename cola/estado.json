@@ -1820,12 +1820,12 @@
   "ruta": "/runs/kaggle_medir_f3set_hoy_b/estado.json",
   "cuaderno": "tennisbio-medir-f3set-hoy-b-2",
   "nota": "en cola de Kaggle más de 45 min mientras otro trabajo lanzado después ya arrancó (cuaderno atascado)",
-  "kaggle": "running (15:30)",
+  "kaggle": "running (15:35)",
   "arranco": "2026-11-21 15:30",
   "espera_min": 5
  },
  "prueba_gauff_v38_a": {
-  "estado": "en_marcha",
+  "estado": "hecho",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 1,
@@ -1837,9 +1837,29 @@
   "salida": "/kaggle_pruebas/prueba_gauff_v38_a/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cpu": true,
   "cuaderno": "tennisbio-prueba-gauff-v38-a",
-  "kaggle": "running (15:30)",
+  "kaggle": "complete (15:35)",
   "arranco": "2026-11-21 15:20",
   "espera_min": 5,
-  "progreso": "scenes:  53 % (8015/15016 fotogramas) · 4 min · quedan ≈ 4 min (15:28:45; CPU 62 %, 2.6 GB)"
+  "progreso": "audio terminada a las 15:34:54 en 38 s (15:33:33)",
+  "fin": "2026-11-21 15:35",
+  "resultado": {
+   "estado": "hecho",
+   "coste_usd": 0.0,
+   "segundos": 632,
+   "horas_kaggle": 0.31
+  }
+ },
+ "prueba_gauff_v38_b": {
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1795275353.9464707,
+  "accion": "prueba",
+  "partido": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+  "inicio": "2026-11-21 15:35",
+  "ruta": "/runs/kaggle_prueba_gauff_v38_b/estado.json",
+  "salida": "/kaggle_pruebas/prueba_gauff_v38_a/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+  "cuaderno": "tennisbio-prueba-gauff-v38-b"
  }
 }
