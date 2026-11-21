@@ -1,6 +1,6 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-21 14:21 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 19.6 h de GPU esta semana (tope 28 h; Kaggle dice 3.44 h usadas de 30.0, se renueva 2026-11-28 00:00)
+Última vuelta: 2026-11-21 14:27 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 19.6 h de GPU esta semana (tope 28 h; Kaggle dice 3.44 h usadas de 30.0, se renueva 2026-11-28 00:00)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
@@ -113,5 +113,5 @@
 | medir_3d_metrabs_b | medir |  | error | kaggle | cancelado: 21-11 13:10: 2 h en cola de Kaggle sin GPU libre (no empezó): su plaza, para comprobar la P100 (medir_raqueta_p100); se lanza otra vez en la GPU que sirva |
 | medir_raqueta_p100 | medir |  | hecho | kaggle |  |
 | medir_3d_metrabs_c | medir |  | hecho | kaggle |  |
-| medir_f3set_hoy_b | medir |  | en_marcha | kaggle | Kaggle: queued (14:21), intento 1 |
+| medir_f3set_hoy_b | medir |  | en_marcha | kaggle | Kaggle: queued (14:27), intento 1 |
 | informe_6 | informe |  | pendiente |  | espera a actualizar_zheng (pendiente) |
