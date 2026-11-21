@@ -165,6 +165,9 @@
     "prueba_gauff_v35_sapiens2": {
      "estimado_h": 1.0,
      "horas": 0.47
+    },
+    "medir_lejana_rfdetr": {
+     "estimado_h": 0.5
     }
    }
   }
@@ -173,6 +176,7 @@
   "usadas_h": 1.79,
   "total_h": 30.0,
   "renueva": "2026-11-28 00:00:00",
-  "ts": 1795242209.857361
- }
+  "ts": 1795242233.8995059
+ },
+ "aviso_ocioso_ts": 1795242233.8995059
 }

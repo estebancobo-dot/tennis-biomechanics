@@ -1447,5 +1447,31 @@
    "nota": "distinta; 12 etapas iguales; distintas: fine, fine_doubtful, slowmo_fine, view_clips; strokes.json: 27 de 28/28 golpes emparejados, 2 distintos, medidas fuera de tolerancia: technique.pose.impact, technique.pose.extension, technique.pose.loaded, technique.pose.finish; strokes.json: temblor de b frente a a ×1.00 (mediana de 4930 medidas; b tiembla menos en el 50 %); strokes.json: temblor por familias: brazos ×0.95, muñecas ×0.98, otras ×1.00, piernas ×0.93, pies ×1.00, raqueta ×0.98, tronco ×0.98; strokes_opponent.json: 0 de 0/0 golpes emparejados; strokes_doubtful.json: 1 de 1/1 golpes emparej"
   },
   "partido": ""
+ },
+ "medir_lejana_rfdetr": {
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1795242233.8995059,
+  "accion": "medir",
+  "partido": "",
+  "inicio": "2026-11-21 06:23",
+  "ruta": "/runs/kaggle_medir_lejana_rfdetr/estado.json",
+  "cuaderno": "tennisbio-medir-lejana-rfdetr"
+ },
+ "prueba_gauff_v36_a": {
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1795242233.8995059,
+  "accion": "prueba",
+  "partido": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+  "inicio": "2026-11-21 06:23",
+  "ruta": "/runs/kaggle_prueba_gauff_v36_a/estado.json",
+  "salida": "/kaggle_pruebas/prueba_gauff_v36_a/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+  "cpu": true,
+  "cuaderno": "tennisbio-prueba-gauff-v36-a"
  }
 }
