@@ -1705,6 +1705,9 @@
   "inicio": "2026-11-21 08:10",
   "ruta": "/runs/kaggle_medir_app/estado.json",
   "cpu": true,
-  "cuaderno": "tennisbio-medir-app"
+  "cuaderno": "tennisbio-medir-app",
+  "kaggle": "running (08:21)",
+  "arranco": "2026-11-21 08:21",
+  "espera_min": 11
  }
 }
