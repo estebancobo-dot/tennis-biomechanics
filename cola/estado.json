@@ -1714,5 +1714,17 @@
    "estado": "hecho",
    "horas_kaggle": 0.44
   }
+ },
+ "medir_f3set_hoy": {
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1795256196.098918,
+  "accion": "medir",
+  "partido": "",
+  "inicio": "2026-11-21 10:16",
+  "ruta": "/runs/kaggle_medir_f3set_hoy/estado.json",
+  "cuaderno": "tennisbio-medir-f3set-hoy"
  }
 }
