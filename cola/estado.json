@@ -1809,7 +1809,7 @@
   }
  },
  "medir_f3set_hoy_b": {
-  "estado": "en_marcha",
+  "estado": "hecho",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 2,
@@ -1820,9 +1820,14 @@
   "ruta": "/runs/kaggle_medir_f3set_hoy_b/estado.json",
   "cuaderno": "tennisbio-medir-f3set-hoy-b-2",
   "nota": "en cola de Kaggle más de 45 min mientras otro trabajo lanzado después ya arrancó (cuaderno atascado)",
-  "kaggle": "running (19:15)",
+  "kaggle": "complete (19:20)",
   "arranco": "2026-11-21 15:30",
-  "espera_min": 5
+  "espera_min": 5,
+  "fin": "2026-11-21 19:20",
+  "resultado": {
+   "estado": "hecho",
+   "horas_kaggle": 3.91
+  }
  },
  "prueba_gauff_v38_a": {
   "estado": "hecho",
@@ -1862,7 +1867,7 @@
   "salida": "/kaggle_pruebas/prueba_gauff_v38_a/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cuaderno": "tennisbio-prueba-gauff-v38-b-2",
   "nota": "en cola de Kaggle más de 180 min sin arrancar",
-  "kaggle": "queued (19:15)",
+  "kaggle": "queued (19:20)",
   "kaggle_detalle": "queued | estebancoboc/tennisbio-prueba-gauff-v38-b-2 has status \"KernelWorkerStatus.QUEUED\""
  }
 }
