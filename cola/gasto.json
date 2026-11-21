@@ -175,16 +175,17 @@
      "horas": 0.28
     },
     "prueba_gauff_v37_b": {
-     "estimado_h": 1.0
+     "estimado_h": 1.0,
+     "horas": 0.31
     }
    }
   }
  },
  "kaggle_real": {
-  "usadas_h": 2.52,
+  "usadas_h": 2.58,
   "total_h": 30.0,
   "renueva": "2026-11-28 00:00:00",
-  "ts": 1795246384.8107376
+  "ts": 1795246682.7233157
  },
  "aviso_ocioso_ts": 1795246333.0151253
 }
