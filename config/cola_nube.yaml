@@ -29,7 +29,9 @@ kaggle_activo: true
 # saltan 180°, se arregla aparte: rehace solo las medidas desde las cachés de las ventanas)
 # 15-11 05:45 (#295, decisión del usuario): los partidos que faltan esperan a la nube nativa entera (fase C: cada modelo
 # medido en la nube), para analizar cada uno una sola vez con lo elegido; Gauff y la final, en marcha, terminan
-partidos_en_espera: "hasta acabar la nube nativa (modelos medidos en la nube; #295)"
+# 21-11 21:10 (#310, el usuario: «Sí. Y avanza en paralelo»): los partidos ya, sin esperar al 3D ni a F3Set (si MeTRAbs
+# gana, solo se recalcula el giro 3D desde la pose guardada; si F3Set señala una causa, se arregla antes de los siguientes)
+partidos_en_espera: ""
 # trabajos que empiezan de nuevo, una vez cada «id#n»: la final se lanzó en Kaggle a las 14:32 y Kaggle no la arrancó
 reiniciar: ["final#1"]
 # trabajos cancelados (su sesión de Kaggle se libera; acaban en «error» con el motivo). 14-11 21:10: la fase A midió la
