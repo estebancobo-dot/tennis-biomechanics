@@ -28,7 +28,8 @@ UPLOAD = re.compile(r"[\"']POST[\"']|requests\.(post|put)\(|\.upload_file\(|put_
 FREE_HOSTS = {"huggingface.co", "github.com", "raw.githubusercontent.com", "codeload.github.com", "api.github.com",
               "www.modelscope.cn", "download.openmmlab.com", "drive.google.com", "drive.usercontent.google.com",
               "storage.googleapis.com", "files.pythonhosted.org", "fonts.googleapis.com", "fonts.gstatic.com",
-              "astral.sh", "www.youtube.com", "youtube.com", "youtu.be"}
+              "astral.sh", "www.youtube.com", "youtube.com", "youtu.be",
+              "omnomnom.vision.rwth-aachen.de"}      # 21-11 (#309): MeTRAbs' weights, the authors' public download (RWTH)
 # 15-11 (P0.5a): text inside the new application's built interface, never fetched: the SVG namespace and the link React
 # writes into its error messages
 BUNDLE_TEXT = {"www.w3.org", "reactjs.org"}

@@ -878,7 +878,36 @@ def rtmw3d_yaw(video: Path, boxes: list, cam, pelvis: np.ndarray, wb3d) -> tuple
     return out, ms
 
 
-def bench_mag3d(root: Path, device: str, cfg: dict, n_pairs: int, n_segments: int, seg_s: float) -> dict:
+def metrabs_model():
+    """MeTRAbs (candidates.metrabs3d, TensorFlow Hub): for bench_mag3d's `extra` (21-11, #309)."""
+    from tennisbio.candidates.metrabs3d import Metrabs
+    return Metrabs()
+
+
+def mono3d_yaw(video: Path, boxes: list, cam, model) -> tuple[np.ndarray, list]:
+    """(T, 2) shoulder/hip directions in the world from a model that gives the trunk's 4 points in the camera's frame
+    from one calibrated view (model.trunk(frame, box, K): MeTRAbs, 21-11), and the ms of each call."""
+    from tennisbio.candidates.caltennis import trunk_yaw_from_world
+    from tennisbio.io.video import open_capture
+
+    out, ms = np.full((len(boxes), 2), np.nan), []
+    cap = open_capture(video)
+    for f in range(len(boxes)):
+        ok, fr = cap.read()
+        if not ok:
+            break
+        if boxes[f] is None:
+            continue
+        t0 = time.perf_counter()
+        pc = model.trunk(fr, np.asarray(boxes[f], float), cam.K)
+        ms.append(1000 * (time.perf_counter() - t0))
+        out[f] = trunk_yaw_from_world((np.asarray(pc, float) @ cam.R_c2w.T)[None])[0]
+    cap.release()
+    return out, ms
+
+
+def bench_mag3d(root: Path, device: str, cfg: dict, n_pairs: int, n_segments: int, seg_s: float,
+                extra: dict | None = None, lifter_names: tuple = ("mag3d", "mag3d-s")) -> dict:
     from tennisbio.candidates import caltennis as C
     from tennisbio.candidates.motionagformer import (H36M_L_HIP, H36M_L_SH, H36M_R_HIP, H36M_R_SH, MotionAGFormerLifter,
                                                      line_yaw_world)
@@ -893,14 +922,15 @@ def bench_mag3d(root: Path, device: str, cfg: dict, n_pairs: int, n_segments: in
     if hp is None or not hp.exists():
         raise FileNotFoundError(f"falta nuestro modelo 3D ({hp}): ejecuta scripts/setup_models.py")
     wb3d = WholeBody3D(str(hp), device, fp16=bool(fcfg.get("fp16", True)) and device != "cpu")
-    lifters = {"mag3d-xs": MotionAGFormerLifter(ensure_model("mag3d"), device),
-               "mag3d-s": MotionAGFormerLifter(ensure_model("mag3d-s"), device)}
+    names = {"mag3d": "mag3d-xs", "mag3d-s": "mag3d-s"}
+    lifters = {names[n]: MotionAGFormerLifter(ensure_model(n), device) for n in lifter_names}
+    extra = extra or {}                    # 21-11 (#309): models with the trunk in the camera's frame (MeTRAbs)
     base = "ours (RTMW3D)"
     pose2d = pose_model("hybrid-x", device)
     prs = C.pairs(root, C.metadata(root))[:n_pairs]
     if not prs:
         raise RuntimeError("CalTennis: ningún par de vistas calibradas del mismo lado de la pista")
-    mono = {k: [] for k in (base, *lifters)}
+    mono = {k: [] for k in (base, *lifters, *extra)}
     refs = {k: [] for k in mono}
     ms = {k: [] for k in mono}
     used, notes = [], []
@@ -947,6 +977,11 @@ def bench_mag3d(root: Path, device: str, cfg: dict, n_pairs: int, n_segments: in
                     yl[~(s1[:, [5, 6, 11, 12]] >= 0.5).all(1)] = np.nan
                     mono[name].append(yl)
                     refs[name].append(ref)
+                for name, md in extra.items():
+                    ye, e_ms = mono3d_yaw(vids[v], b1, c1, md)
+                    mono[name].append(ye)
+                    refs[name].append(ref)
+                    ms[name] += e_ms
             used.append({"session": p["session"], "segment": k, "angle": p["angle"], "sync_s": round(off, 3),
                          "sync_px": round(err, 2)})
             print(f"  3D {p['session']} tramo {k}: desfase {off:+.3f} s, {err:.1f} px", flush=True)

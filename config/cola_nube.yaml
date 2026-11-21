@@ -288,4 +288,9 @@ trabajos:
   # 14-11: 469 de 517, precisión 0,94), con el mismo script. Regla escrita antes (tennisbio.infra.poc_f3set): no peor en
   # más de 2 golpes encontrados ni 0,005 de precisión; mejor se dice. ~4,5 h de GPU
   - {id: medir_f3set_hoy, accion: medir, prueba: f3set, donde: kaggle, horas: 5}
+  # 21-11 11:00 (#309, el usuario: «sí, haz eso»): el giro del tronco en 3D, lo que la tele en 2D lee peor. MeTRAbs (una
+  # vista calibrada, sin registro; licencia no comercial) frente a MotionAGFormer xs (en uso) en CalTennis, con la medida
+  # del PC (bench_mag3d). Regla escrita antes (tennisbio.infra.poc_3d): pasa a la prueba integrada si acierta (≤ 15°) al
+  # menos 5 puntos más y el error del X-factor no es mayor. SAM 3D Body espera al acceso del usuario en Hugging Face
+  - {id: medir_3d_metrabs, accion: medir, prueba: 3d, donde: kaggle, horas: 2}
   - {id: informe_6, accion: informe, tras: actualizar_zheng}

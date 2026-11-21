@@ -10,6 +10,7 @@ least as accurate and not slower, and then as a change of its own.
     court14   14 court points (TennisCourtDetector)             against tennisbio.court.fit_court (lines)
     rfdetr    person detector (RF-DETR Medium)                  against the far-player search (YOLO11m-pose)
     f3ed      hit spotter (F3ED, F3Set)                         against tennisbio.spotting (stage `spotting`)
+    metrabs3d 3D trunk from one calibrated view (MeTRAbs, 21-11)   against MotionAGFormer, on CalTennis (bench_mag3d)
 
 Paso 2.5 (the rest of B3):
 

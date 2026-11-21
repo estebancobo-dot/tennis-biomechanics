@@ -42,9 +42,11 @@ POCS = {"raqueta": "tennisbio.infra.poc_raqueta", "video": "tennisbio.infra.poc_
         "sapiens2_rapido": "tennisbio.infra.poc_sapiens",  # 21-11: the 0.4B with smaller inputs (its speed)
         "lejana": "tennisbio.infra.poc_lejana",         # 21-11 (T25): RF-DETR for the far player, on the GPU
         "app": "tennisbio.infra.poc_app",               # 21-11 (P0.5e-D): the PC's application with the real results
-        "f3set": "tennisbio.infra.poc_f3set"}           # 21-11 (#295): F3Set with today's code against nube2
+        "f3set": "tennisbio.infra.poc_f3set",           # 21-11 (#295): F3Set with today's code against nube2
+        "3d": "tennisbio.infra.poc_3d"}                 # 21-11 (#309): MeTRAbs against MotionAGFormer on CalTennis
+METRABS_TF = ("tensorflow[and-cuda]==2.18.0", "tensorflow-hub==0.16.1", "tf-keras==2.18.0")
 F3SET_REFERENCE = "recall_validation_detector_nube2.json"   # the cloud's reference run (14-11, Modal: 469 of 517)
-STREAMED = ("f3set",)                     # long measures: their output goes to the log while they run
+STREAMED = ("f3set", "3d")                     # long measures: their output goes to the log while they run
 NEEDS_MATCH = ("video",)                 # proofs of concept measured on a match's broadcast (its video from Modal)
 NEEDS_RUN = ("sapiens2", "sapiens2_rapido")   # proofs of concept on a reference test's outputs (`base`, of `partido`)
 SAPIENS_TRANSFORMERS = "transformers==5.23.0"   # the first with Sapiens2ForPoseEstimation that was checked (15-11)
@@ -255,6 +257,8 @@ def poc_args(job: dict, models: Path, video: Path | None) -> list[str]:
         return ["--datos", str(models.parent / "datasets"), "--dispositivo", "cpu" if job.get("cpu") else "cuda"]
     if job["prueba"] == "app":
         return ["--raiz", str(models.parent / "app")]
+    if job["prueba"] == "3d":
+        return ["--datos", str(models.parent / "datasets"), "--dispositivo", "cpu" if job.get("cpu") else "cuda"]
     if job["prueba"] == "f3set":
         return ["--raiz", str(models.parent / "datasets"), "--referencia", str(models.parent / "referencia" / F3SET_REFERENCE),
                 "--tag", str(job.get("tag") or "kaggle_f3")]
@@ -279,6 +283,8 @@ def measure(job: dict, py: Path, models: Path, data: Path, run: Path, vol, est: 
               "--repo", str(models.parent / "totnet")])
     if job["prueba"] == "lejana":
         ensure_rfdetr(data, models, vol, est)
+    if job["prueba"] == "3d":                      # #309: MeTRAbs runs on TensorFlow, in the analysis's own Python
+        _run(["uv", "pip", "install", "-q", "--python", str(py), *METRABS_TF])
     if job["prueba"] == "f3set":                   # the clips of her matches and the reference report, from the volume
         modal_get("/datasets/f3set/recall/videos", models.parent / "datasets" / "f3set" / "recall")
         modal_get(f"/datasets/reports/{F3SET_REFERENCE}", models.parent / "referencia")
