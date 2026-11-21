@@ -1678,6 +1678,9 @@
   "inicio": "2026-11-21 07:58",
   "ruta": "/runs/informe_beta3/estado.json",
   "cpu": true,
-  "cuaderno": "tennisbio-informe-beta3"
+  "cuaderno": "tennisbio-informe-beta3",
+  "kaggle": "running (08:04)",
+  "arranco": "2026-11-21 08:04",
+  "espera_min": 6
  }
 }
