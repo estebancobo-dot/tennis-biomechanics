@@ -30,6 +30,11 @@ fine_pass:
   # takes position, displacement and contact height from a second far pose that searches her again (cache _f2m);
   # which strokes exist, their contact, type and confirmation never change
   far_measure_refind: true
+  # far end (21-11, T25): who finds her at the start of each far window, by measure: RF-DETR Medium on the whole frame
+  # (medir_lejana_rfdetr on a T4: found in 100 % of 360 annotated cases against YOLO's 90.3 %; prueba_gauff_v37 against
+  # v36: the same 28 strokes, +9.2 % of GPU session); «yolo»: YOLO11m-pose on the far half, as before. Without
+  # models/rfdetr_medium_1152.onnx it falls back to YOLO, said once
+  far_detector: rfdetr
   window_s: 1.0
   # velocidad (10-11): con max_fps > 0, las ventanas de un video de 50-60 fps (o entrelazado a 50 campos) se cortan
   # a la mitad de fotogramas (60 -> 30, 50 -> 25), como ya son las emisiones de 25-30 fps. 0 = como siempre.
