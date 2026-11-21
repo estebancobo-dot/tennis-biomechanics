@@ -95,10 +95,13 @@ def compare_strokes(a: list[dict], b: list[dict], skip=("series", "window", "vie
     worst: dict[str, float] = {}
     jumps: list = []
     shake: list[tuple[float, float]] = []
+    by_family: dict[str, list[tuple[float, float]]] = {}
     for s, x in pairs:
         la = dict(_leaves({k: v for k, v in s.items() if k not in skip}))
         lb = dict(_leaves({k: v for k, v in x.items() if k not in skip}))
-        shake += _shake_pairs(la, lb)
+        for k, va, vb in _shake_items(la, lb):
+            shake.append((va, vb))
+            by_family.setdefault(shake_family(k), []).append((va, vb))
         for k in set(la) | set(lb):
             if k in TIME_KEYS:
                 continue
@@ -118,22 +121,39 @@ def compare_strokes(a: list[dict], b: list[dict], skip=("series", "window", "vie
             "tipo_distinto": kinds[:20], "medidas_distintas": dict(sorted(diffs.items(), key=lambda kv: -kv[1])[:20]),
             "saltos": jumps[:400], "golpes_con_saltos": len({j["t"] for j in jumps}),
             "mayor_diferencia": {k: round(v, 4) for k, v in sorted(worst.items(), key=lambda kv: -kv[1])[:20]},
-            "temblor": shake_summary(shake)}
+            "temblor": shake_summary(shake),
+            "temblor_por_familia": {f: shake_summary(v) for f, v in sorted(by_family.items())}}
 
 
 SHAKE_PREFIX = "technique.jitter."
 
 
-def _shake_pairs(la: dict, lb: dict) -> list[tuple[float, float]]:
+# 21-11 (#307, Sapiens2 in the fine pass: −36 % on the body's points, ×1.00 over all measures): the shake also by
+# family of measure, by its name (in this order: «racket_tip_height» is the racket's, «wrist_dom_height» the wrists')
+SHAKE_FAMILIES = [("raqueta", ("racket",)), ("pies", ("base_width", "foot", "heel", "toe", "com_over_feet")),
+                  ("muñecas", ("wrist", "hands_apart")), ("brazos", ("elbow", "shoulder_abd", "arm_extension")),
+                  ("tronco", ("turn", "x_factor", "tilt", "head")), ("piernas", ("knee", "height"))]
+
+
+def shake_family(key: str) -> str:
+    m = key.rsplit(".", 1)[-1]
+    return next((f for f, toks in SHAKE_FAMILIES if any(t in m for t in toks)), "otras")
+
+
+def _shake_items(la: dict, lb: dict) -> list[tuple[str, float, float]]:
     """15-11 (T25, a model against another): the frame-to-frame shake of each measure on both sides, the same measure
-    of the same stroke. The racket face is left out: its sign flips (R50) would be counted as shake."""
+    of the same stroke, with its key. The racket face is left out: its sign flips (R50) would be counted as shake."""
     out = []
     for k in la.keys() & lb.keys():
         va, vb = la[k], lb[k]
         if (k.startswith(SHAKE_PREFIX) and "face" not in k and isinstance(va, (int, float))
                 and isinstance(vb, (int, float)) and not isinstance(va, bool) and not isinstance(vb, bool)):
-            out.append((abs(float(va)), abs(float(vb))))
+            out.append((k, abs(float(va)), abs(float(vb))))
     return out
+
+
+def _shake_pairs(la: dict, lb: dict) -> list[tuple[float, float]]:
+    return [(a, b) for _, a, b in _shake_items(la, lb)]
 
 
 def shake_summary(shake: list[tuple[float, float]]) -> dict:
@@ -197,6 +217,10 @@ def summary(c: dict) -> str:
         if sh.get("n") and g["medidas_distintas"]:
             parts.append(f"{f}: temblor de b frente a a ×{sh['cociente_mediano_b_a']:.2f} (mediana de {sh['n']} medidas;"
                          f" b tiembla menos en el {100 * sh['b_tiembla_menos']:.0f} %)")
+            fam = {k: v for k, v in (g.get("temblor_por_familia") or {}).items() if v.get("n")}
+            if fam:
+                parts.append(f"{f}: temblor por familias: " + ", ".join(
+                    f"{k} ×{v['cociente_mediano_b_a']:.2f}" for k, v in fam.items()))
     return "; ".join(parts)
 
 

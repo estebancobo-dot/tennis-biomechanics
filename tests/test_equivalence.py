@@ -123,3 +123,24 @@ def test_two_models_are_compared_by_their_shake():
     assert eq.compare_strokes(a, a)["temblor"]["cociente_mediano_b_a"] == 1.0
     assert eq.shake_summary([]) == {"n": 0}
     assert "temblor de b frente a a ×0.50" in eq.summary(eq.compare({}, {}, {"strokes.json": a}, {"strokes.json": b}))
+
+
+def test_the_shake_is_also_given_by_family_of_measure():
+    """21-11 (#307): Sapiens2 shook 36 % less on the body's points and ×1.00 over all the measures of the strokes: the
+    shake by family (racket, feet, wrists, arms, trunk, legs) says where a pose model changes it."""
+    assert [eq.shake_family(k) for k in ("impact.racket_tip_height", "loaded.wrist_dom_height", "ready.base_width",
+                                         "loaded.front_foot_angle_deg", "impact.elbow_dom", "loaded.x_factor",
+                                         "ready.head_over_base", "ready.knee_dom", "impact.hip_height",
+                                         "stroke.tempo_ratio")] == \
+        ["raqueta", "muñecas", "pies", "pies", "brazos", "tronco", "tronco", "piernas", "piernas", "otras"]
+
+    def stroke(t, knee, racket):
+        return {"match_time_s": t, "stroke": "forehand",
+                "technique": {"jitter": {"loaded.knee_dom": knee, "impact.racket_tip_height": racket}}}
+    a = [stroke(1.0, 4.0, 2.0), stroke(2.0, 6.0, 2.0)]
+    b = [stroke(1.0, 2.0, 2.0), stroke(2.0, 3.0, 2.0)]
+    g = eq.compare_strokes(a, b)
+    assert g["temblor_por_familia"]["piernas"]["cociente_mediano_b_a"] == 0.5
+    assert g["temblor_por_familia"]["raqueta"]["cociente_mediano_b_a"] == 1.0
+    assert "temblor por familias: piernas ×0.50, raqueta ×1.00" in \
+        eq.summary(eq.compare({}, {}, {"strokes.json": a}, {"strokes.json": b}))
