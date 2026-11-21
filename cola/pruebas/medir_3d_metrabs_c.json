@@ -1,0 +1,156 @@
+{
+ "estado": "hecho",
+ "poc": {
+  "prueba": "3d",
+  "dispositivo": "cuda",
+  "baseline": "RTMW3D (tennisbio.pose.wholebody3d)",
+  "candidate": "MotionAGFormer (mag3d-xs)",
+  "per_model": {
+   "ours (RTMW3D)": {
+    "frames": 5104,
+    "median_err_deg": 40.522,
+    "within_15deg": 0.134,
+    "xfactor_median_err_deg": 10.223,
+    "ms_per_frame": 22.52,
+    "fps": 44.4
+   },
+   "mag3d-xs": {
+    "frames": 5104,
+    "median_err_deg": 19.574,
+    "within_15deg": 0.368,
+    "xfactor_median_err_deg": 14.385,
+    "ms_per_frame": 0.46,
+    "fps": 2173.9
+   },
+   "metrabs": {
+    "frames": 5104,
+    "median_err_deg": 7.025,
+    "within_15deg": 0.778,
+    "xfactor_median_err_deg": 7.328,
+    "ms_per_frame": 84.29,
+    "fps": 11.9
+   }
+  },
+  "segments": [
+   {
+    "session": "01_28_2026_16_30_ath",
+    "segment": 0,
+    "angle": 82.5,
+    "sync_s": -0.691,
+    "sync_px": 1.51
+   },
+   {
+    "session": "01_28_2026_16_30_ath",
+    "segment": 1,
+    "angle": 82.5,
+    "sync_s": -0.391,
+    "sync_px": 2.65
+   },
+   {
+    "session": "01_28_2026_16_30_ath",
+    "segment": 2,
+    "angle": 82.5,
+    "sync_s": 0.36,
+    "sync_px": 2.54
+   },
+   {
+    "session": "01_28_2026_16_30_ath",
+    "segment": 3,
+    "angle": 82.5,
+    "sync_s": -1.408,
+    "sync_px": 1.18
+   },
+   {
+    "session": "01_28_2026_16_30_ath",
+    "segment": 4,
+    "angle": 82.5,
+    "sync_s": -0.708,
+    "sync_px": 1.94
+   },
+   {
+    "session": "01_23_2026_17_00_court2",
+    "segment": 0,
+    "angle": 80.3,
+    "sync_s": -0.283,
+    "sync_px": 0.61
+   },
+   {
+    "session": "01_23_2026_17_00_court2",
+    "segment": 4,
+    "angle": 80.3,
+    "sync_s": 1.493,
+    "sync_px": 7.56
+   },
+   {
+    "session": "01_28_2026_19_00_ath",
+    "segment": 0,
+    "angle": 76.8,
+    "sync_s": -1.5,
+    "sync_px": 3.17
+   },
+   {
+    "session": "01_28_2026_19_00_ath",
+    "segment": 1,
+    "angle": 76.8,
+    "sync_s": -1.5,
+    "sync_px": 3.02
+   },
+   {
+    "session": "01_28_2026_19_00_ath",
+    "segment": 2,
+    "angle": 76.8,
+    "sync_s": -1.5,
+    "sync_px": 1.68
+   },
+   {
+    "session": "01_28_2026_19_00_ath",
+    "segment": 3,
+    "angle": 76.8,
+    "sync_s": -1.458,
+    "sync_px": 1.45
+   },
+   {
+    "session": "01_28_2026_19_00_ath",
+    "segment": 4,
+    "angle": 76.8,
+    "sync_s": -1.5,
+    "sync_px": 1.38
+   }
+  ],
+  "accuracy": "a ≤15° 0.368 / 0.134; mediana 19.574 / 40.522°; X-factor 14.385 / 10.223°",
+  "speed": "2173.9 / 44.4 fotogramas/s (el candidato usa la pose 2D que ya tiene la pasada fina)",
+  "verdict": {
+   "adopt": true,
+   "reason": "giro del tronco a ≤15° de la referencia 0.368 frente a 0.134 (igual o mejor); fotogramas/s 2173.9 frente a 44.4 (no más lento)"
+  },
+  "notes": [
+   "01_23_2026_17_00_court2 tramo 1: la misma persona no se encuentra en las dos vistas",
+   "01_23_2026_17_00_court2 tramo 2: la misma persona no se encuentra en las dos vistas",
+   "01_23_2026_17_00_court2 tramo 3: la misma persona no se encuentra en las dos vistas",
+   "Referencia: la línea de hombros y la de caderas triangulada desde dos vistas calibradas y sincronizadas de CalTennis (nuestra pose 2D en las dos; no depende de ninguna profundidad estimada). Cada modelo 3D se lee en una sola vista; error = diferencia de su dirección alrededor de la vertical.",
+   "Las cámaras de CalTennis están a ~1,7 m de altura, a un lado o detrás de la pista; la de la tele está más alta. Un modelo que falla aquí no sirve; uno que acierta aquí no queda probado para la vista de la tele (allí RTMW3D aplanaba la profundidad: tennisbio.reliability).",
+   "RTMW3D se sitúa a la profundidad real de la pelvis (sacada de la referencia): es su mejor caso."
+  ],
+  "regla": {
+   "pasa": true,
+   "motivo": "a ≤ 15°: 0.778 frente a 0.368 (regla ≥ 0.418); error del X-factor 7.328° frente a 14.385° (regla: no mayor)"
+  }
+ },
+ "kaggle": {
+  "python": "3.13.16",
+  "nucleos": 4,
+  "memoria_gib": {
+   "MemTotal": 31.3,
+   "MemAvailable": 30.0
+  },
+  "disco_libre_gib": {
+   "/tmp": 2514.5,
+   "/kaggle/working": 19.5
+  },
+  "gpu": "Tesla T4, 15360 MiB\nTesla T4, 15360 MiB",
+  "ffmpeg": "/usr/bin/ffmpeg",
+  "clave_modal": true
+ },
+ "horas_kaggle": 0.74,
+ "nota": null
+}

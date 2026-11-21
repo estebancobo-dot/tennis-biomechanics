@@ -194,15 +194,17 @@
      "horas": 0.06
     },
     "medir_3d_metrabs_c": {
-     "estimado_h": 2.0
+     "estimado_h": 2.0,
+     "horas": 0.74
     }
    }
   }
  },
  "kaggle_real": {
-  "usadas_h": 3.4,
+  "usadas_h": 3.44,
   "total_h": 30.0,
   "renueva": "2026-11-28 00:00:00",
-  "ts": 1795270301.801542
- }
+  "ts": 1795270607.247826
+ },
+ "aviso_ocioso_ts": 1795270607.247826
 }

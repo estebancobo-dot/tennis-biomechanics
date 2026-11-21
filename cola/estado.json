@@ -1727,7 +1727,7 @@
   "ruta": "/runs/kaggle_medir_f3set_hoy/estado.json",
   "cuaderno": "tennisbio-medir-f3set-hoy-3",
   "nota": "en cola de Kaggle más de 45 min mientras otro trabajo lanzado después ya arrancó (cuaderno atascado)",
-  "kaggle": "queued (14:11)"
+  "kaggle": "queued (14:16)"
  },
  "medir_3d_metrabs": {
   "estado": "error",
@@ -1786,7 +1786,7 @@
   }
  },
  "medir_3d_metrabs_c": {
-  "estado": "en_marcha",
+  "estado": "hecho",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 1,
@@ -1796,8 +1796,13 @@
   "inicio": "2026-11-21 13:29",
   "ruta": "/runs/kaggle_medir_3d_metrabs_c/estado.json",
   "cuaderno": "tennisbio-medir-3d-metrabs-c",
-  "kaggle": "running (14:11)",
+  "kaggle": "complete (14:16)",
   "arranco": "2026-11-21 13:30",
-  "espera_min": 2
+  "espera_min": 2,
+  "fin": "2026-11-21 14:16",
+  "resultado": {
+   "estado": "hecho",
+   "horas_kaggle": 0.74
+  }
  }
 }
