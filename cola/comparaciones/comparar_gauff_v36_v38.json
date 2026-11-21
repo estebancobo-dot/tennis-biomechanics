@@ -1,0 +1,391 @@
+{
+ "a": "/kaggle_pruebas/prueba_gauff_v36_a/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+ "b": "/kaggle_pruebas/prueba_gauff_v38_a/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+ "veredicto": "distinta",
+ "etapas_iguales": [
+  "court",
+  "fine_opponent",
+  "probe",
+  "scenes",
+  "score",
+  "slowmo_fine",
+  "views_link"
+ ],
+ "etapas_distintas": [
+  "candidates",
+  "fine",
+  "fine_doubtful",
+  "identity",
+  "players",
+  "spotting",
+  "view_clips",
+  "views"
+ ],
+ "etapas_sin_comparar": [
+  "audio"
+ ],
+ "golpes": {
+  "strokes.json": {
+   "a": 28,
+   "b": 28,
+   "pares": 28,
+   "solo_a": [],
+   "solo_b": [],
+   "tipo_distinto": [],
+   "medidas_distintas": {
+    "metrics.trunk3d_model": 22,
+    "metrics.trunk3d_readings": 19,
+    "metrics.shoulder_turn_3d_deg": 19,
+    "metrics.hip_turn_3d_deg": 19,
+    "metrics.x_factor_3d_deg": 19,
+    "racket_track": 19,
+    "metrics.trunk3d_rigid": 16,
+    "metrics.trunk3d_unobservable": 15,
+    "technique.curves.racket": 15,
+    "technique.pose.ready": 15,
+    "face.extension.yaw_deg": 13,
+    "technique.pose.impact": 12,
+    "technique.jitter.impact.face_yaw": 12,
+    "face.extension.tilt_deg": 12,
+    "technique.phases.impact.face_yaw": 12,
+    "face.impact.yaw_deg": 12,
+    "technique.pose.extension": 12,
+    "face.recovery.yaw_deg": 11,
+    "face.acceleration.yaw_deg": 11,
+    "face.impact.tilt_deg": 11
+   },
+   "saltos": [
+    {
+     "t": 438.33,
+     "medida": "technique.phases.ball_bounce.face_yaw",
+     "a": -83.6,
+     "b": 73.0,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 484.06,
+     "medida": "face.ready.yaw_deg",
+     "a": -24.0,
+     "b": 94.1,
+     "ambigua_a": true,
+     "ambigua_b": true,
+     "mano_a": true,
+     "mano_b": true
+    },
+    {
+     "t": 484.06,
+     "medida": "technique.phases.ready.face_yaw",
+     "a": -24.0,
+     "b": 94.1,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 501.56,
+     "medida": "face.recovery.yaw_deg",
+     "a": -171.0,
+     "b": 20.2,
+     "ambigua_a": false,
+     "ambigua_b": false,
+     "mano_a": false,
+     "mano_b": false
+    },
+    {
+     "t": 501.56,
+     "medida": "technique.jitter.recovery.face_yaw",
+     "a": 206.9,
+     "b": 19.3,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 501.56,
+     "medida": "technique.phases.recovery.face_yaw",
+     "a": -171.0,
+     "b": 20.2,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    }
+   ],
+   "golpes_con_saltos": 3,
+   "mayor_diferencia": {
+    "technique.jitter.recovery.face_yaw": 172.35,
+    "face.recovery.yaw_deg": 168.8,
+    "technique.phases.recovery.face_yaw": 168.8,
+    "technique.phases.ball_bounce.face_yaw": 156.6,
+    "face.ready.yaw_deg": 118.1,
+    "technique.phases.ready.face_yaw": 118.1,
+    "height_scale.px": 105.6,
+    "technique.phases.ready.racket_angle": 73.5,
+    "face.finish.yaw_deg": 72.5,
+    "technique.phases.finish.face_yaw": 72.5,
+    "metrics.shoulder_turn_3d_deg": 70.1,
+    "face.takeback.yaw_deg": 60.8,
+    "face.acceleration.tilt_deg": 58.6,
+    "technique.phases.ready.elbow_dom": 54.9,
+    "face.ready.tilt_deg": 54.6,
+    "face.extension.tilt_deg": 48.7,
+    "technique.phases.loaded.face_tilt": 48.4,
+    "face.loaded.tilt_deg": 48.4,
+    "technique.jitter.ready.racket_forearm": 47.3,
+    "technique.phases.ready.racket_head_lateral": 46.1
+   },
+   "temblor": {
+    "n": 5327,
+    "cociente_mediano_b_a": 1.0,
+    "b_tiembla_menos": 0.12,
+    "b_tiembla_mas": 0.121
+   },
+   "temblor_por_familia": {
+    "brazos": {
+     "n": 818,
+     "cociente_mediano_b_a": 1.0,
+     "b_tiembla_menos": 0.153,
+     "b_tiembla_mas": 0.133
+    },
+    "muñecas": {
+     "n": 1216,
+     "cociente_mediano_b_a": 1.0,
+     "b_tiembla_menos": 0.124,
+     "b_tiembla_mas": 0.114
+    },
+    "otras": {
+     "n": 582,
+     "cociente_mediano_b_a": 1.0,
+     "b_tiembla_menos": 0.031,
+     "b_tiembla_mas": 0.024
+    },
+    "piernas": {
+     "n": 577,
+     "cociente_mediano_b_a": 1.0,
+     "b_tiembla_menos": 0.13,
+     "b_tiembla_mas": 0.139
+    },
+    "pies": {
+     "n": 380,
+     "cociente_mediano_b_a": 1.0,
+     "b_tiembla_menos": 0.047,
+     "b_tiembla_mas": 0.084
+    },
+    "raqueta": {
+     "n": 637,
+     "cociente_mediano_b_a": 1.0,
+     "b_tiembla_menos": 0.138,
+     "b_tiembla_mas": 0.135
+    },
+    "tronco": {
+     "n": 1117,
+     "cociente_mediano_b_a": 1.0,
+     "b_tiembla_menos": 0.149,
+     "b_tiembla_mas": 0.163
+    }
+   },
+   "tronco_3d": {
+    "a": {
+     "x_factor_3d_deg": {
+      "golpes": 7,
+      "mad": 5.6
+     },
+     "shoulder_turn_3d_deg": {
+      "golpes": 7,
+      "mad": 23.2
+     },
+     "hip_turn_3d_deg": {
+      "golpes": 7,
+      "mad": 20.2
+     }
+    },
+    "b": {
+     "x_factor_3d_deg": {
+      "golpes": 15,
+      "mad": 5.2
+     },
+     "shoulder_turn_3d_deg": {
+      "golpes": 15,
+      "mad": 18.5
+     },
+     "hip_turn_3d_deg": {
+      "golpes": 15,
+      "mad": 20.7
+     }
+    }
+   }
+  },
+  "strokes_opponent.json": {
+   "a": 0,
+   "b": 0,
+   "pares": 0,
+   "solo_a": [],
+   "solo_b": [],
+   "tipo_distinto": [],
+   "medidas_distintas": {},
+   "saltos": [],
+   "golpes_con_saltos": 0,
+   "mayor_diferencia": {},
+   "temblor": {
+    "n": 0
+   },
+   "temblor_por_familia": {},
+   "tronco_3d": {
+    "a": {
+     "x_factor_3d_deg": {
+      "golpes": 0,
+      "mad": null
+     },
+     "shoulder_turn_3d_deg": {
+      "golpes": 0,
+      "mad": null
+     },
+     "hip_turn_3d_deg": {
+      "golpes": 0,
+      "mad": null
+     }
+    },
+    "b": {
+     "x_factor_3d_deg": {
+      "golpes": 0,
+      "mad": null
+     },
+     "shoulder_turn_3d_deg": {
+      "golpes": 0,
+      "mad": null
+     },
+     "hip_turn_3d_deg": {
+      "golpes": 0,
+      "mad": null
+     }
+    }
+   }
+  },
+  "strokes_doubtful.json": {
+   "a": 1,
+   "b": 1,
+   "pares": 1,
+   "solo_a": [],
+   "solo_b": [],
+   "tipo_distinto": [],
+   "medidas_distintas": {
+    "technique.pose.acceleration": 1,
+    "racket_track": 1,
+    "metrics.trunk3d_readings": 1,
+    "technique.curves.hand": 1,
+    "technique.stroke.swing_low_to_high": 1,
+    "technique.pose.impact": 1,
+    "metrics.trunk3d_model": 1,
+    "metrics.shoulder_turn_3d_deg": 1,
+    "metrics.trunk3d_unobservable": 1,
+    "technique.phases.ready.hip_turn": 1,
+    "technique.curves.racket": 1,
+    "metrics.hip_turn_3d_deg": 1,
+    "technique.curves.hip": 1,
+    "stroke_id": 1,
+    "technique.stroke.shoulder_brake": 1,
+    "technique.pose.ready": 1,
+    "technique.pose.loaded": 1,
+    "technique.pose.takeback": 1,
+    "metrics.trunk3d_rigid": 1,
+    "technique.curves.head": 1
+   },
+   "saltos": [],
+   "golpes_con_saltos": 0,
+   "mayor_diferencia": {
+    "technique.stroke.shoulder_brake": 3.0,
+    "technique.stroke.swing_low_to_high": 1.0,
+    "technique.phases.ready.hip_turn": 1.0,
+    "face.acceleration.tilt_deg": 0.6
+   },
+   "temblor": {
+    "n": 198,
+    "cociente_mediano_b_a": 1.0,
+    "b_tiembla_menos": 0.227,
+    "b_tiembla_mas": 0.232
+   },
+   "temblor_por_familia": {
+    "brazos": {
+     "n": 39,
+     "cociente_mediano_b_a": 1.0,
+     "b_tiembla_menos": 0.128,
+     "b_tiembla_mas": 0.359
+    },
+    "muñecas": {
+     "n": 43,
+     "cociente_mediano_b_a": 1.0,
+     "b_tiembla_menos": 0.256,
+     "b_tiembla_mas": 0.233
+    },
+    "otras": {
+     "n": 17,
+     "cociente_mediano_b_a": 1.0,
+     "b_tiembla_menos": 0.118,
+     "b_tiembla_mas": 0.059
+    },
+    "piernas": {
+     "n": 24,
+     "cociente_mediano_b_a": 1.0,
+     "b_tiembla_menos": 0.375,
+     "b_tiembla_mas": 0.208
+    },
+    "pies": {
+     "n": 15,
+     "cociente_mediano_b_a": 1.0,
+     "b_tiembla_menos": 0.067,
+     "b_tiembla_mas": 0.067
+    },
+    "raqueta": {
+     "n": 20,
+     "cociente_mediano_b_a": 1.0,
+     "b_tiembla_menos": 0.25,
+     "b_tiembla_mas": 0.25
+    },
+    "tronco": {
+     "n": 40,
+     "cociente_mediano_b_a": 1.0,
+     "b_tiembla_menos": 0.3,
+     "b_tiembla_mas": 0.25
+    }
+   },
+   "tronco_3d": {
+    "a": {
+     "x_factor_3d_deg": {
+      "golpes": 0,
+      "mad": null
+     },
+     "shoulder_turn_3d_deg": {
+      "golpes": 0,
+      "mad": null
+     },
+     "hip_turn_3d_deg": {
+      "golpes": 0,
+      "mad": null
+     }
+    },
+    "b": {
+     "x_factor_3d_deg": {
+      "golpes": 1,
+      "mad": 0.0
+     },
+     "shoulder_turn_3d_deg": {
+      "golpes": 1,
+      "mad": 0.0
+     },
+     "hip_turn_3d_deg": {
+      "golpes": 1,
+      "mad": 0.0
+     }
+    }
+   }
+  }
+ },
+ "ficheros_de_un_solo_lado": [],
+ "no_leidos": {},
+ "experimento": true
+}

@@ -213,14 +213,20 @@
     "prueba_sinner_b": {
      "estimado_h": 1.0,
      "horas": 0.44
+    },
+    "sinner_b": {
+     "estimado_h": 9.45
+    },
+    "medir_f3set_hoy_c": {
+     "estimado_h": 5.0
     }
    }
   }
  },
  "kaggle_real": {
-  "usadas_h": 8.21,
+  "usadas_h": 9.99,
   "total_h": 30.0,
   "renueva": "2026-11-28 00:00:00",
-  "ts": 1795301757.4485502
+  "ts": 1795305421.7687137
  }
 }

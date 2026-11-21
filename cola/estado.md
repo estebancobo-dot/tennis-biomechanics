@@ -1,6 +1,6 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-21 22:55 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 19.8 h de GPU esta semana (tope 28 h; Kaggle dice 8.21 h usadas de 30.0, se renueva 2026-11-28 00:00)
+Última vuelta: 2026-11-21 23:57 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 3.6 h de GPU esta semana (tope 28 h; Kaggle dice 9.99 h usadas de 30.0, se renueva 2026-11-28 00:00)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
@@ -92,8 +92,8 @@
 | final | partido | tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 | hecho | kaggle |  |
 | prueba_sinner | prueba | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | error | kaggle | cancelado: #295: la prueba corta de un partido espera con su partido a la nube nativa (comprueba el código con el que se analizará); se repite entonces como prueba_sinner_b |
 | prueba_sinner_b | prueba | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | hecho | kaggle |  |
-| sinner_a | partido | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | en_marcha | kaggle | Kaggle: running (22:55), intento 1 · scenes:  70 % (74990/106507 fotogramas) · 45 min · quedan ≈ 19 min (22:54:57; CPU 63 %, 2.5 GB) |
-| sinner_b | partido | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | pendiente |  | espera a sinner_a (en_marcha) |
+| sinner_a | partido | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | hecho | kaggle |  |
+| sinner_b | partido | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | en_marcha | kaggle |  |
 | sinner | partido | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | pendiente |  | espera a sinner_b (pendiente) |
 | actualizar_osaka_a | partido | us-open-2026-r4-naomi-osaka-elena-rybakina | pendiente |  | espera a sinner (pendiente) |
 | actualizar_osaka_b | partido | us-open-2026-r4-naomi-osaka-elena-rybakina | pendiente |  | espera a actualizar_osaka_a (pendiente) |
@@ -117,10 +117,10 @@
 | medir_raqueta_p100 | medir |  | hecho | kaggle |  |
 | medir_3d_metrabs_c | medir |  | hecho | kaggle |  |
 | medir_f3set_hoy_b | medir |  | hecho | kaggle |  |
-| medir_f3set_hoy_c | medir |  | pendiente |  | espera a prueba_gauff_v38_c (en_marcha) |
+| medir_f3set_hoy_c | medir |  | en_marcha | kaggle |  |
 | prueba_gauff_v38_a | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
 | prueba_gauff_v38_b | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | error | kaggle | cancelado: 21-11 20:45: sus 2 cuadernos, en cola de Kaggle desde las 15:36 sin arrancar (desde las 19:20 sin nada más en marcha): otra vez como prueba_gauff_v38_b2 |
 | prueba_gauff_v38_b2 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
-| prueba_gauff_v38_c | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: running (22:55), intento 1 · views:  46 % (68/147 fotogramas de otras tomas) · 2 min · quedan ≈ 2 min (22:54:02; CPU 53 %, 3.6 GB) |
-| comparar_gauff_v36_v38 | comparar |  | pendiente |  | espera a prueba_gauff_v38_c |
+| prueba_gauff_v38_c | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
+| comparar_gauff_v36_v38 | comparar |  | revisar | github | distinta; 7 etapas iguales; distintas: candidates, fine, fine_doubtful, identity, players, spotting, view_clips, views; strokes.json: 28 de 28/28 golpes emparejados, medidas fuera de tolerancia: metrics.trunk3d_model, metrics.trunk3d_readings, metrics.shoulder_turn_3d_deg, metrics.hip_turn_3d_deg; strokes.json: temblor de b frente a a ×1.00 (mediana de 5327 medidas; b tiembla menos en el 12 %); strokes.json: temblor por familias: brazos ×1.00, muñecas ×1.00, otras ×1.00, piernas ×1.00, pies ×1.00, raqueta ×1.00, tronco ×1.00; strokes_opponent.json: 0 de 0/0 golpes emparejados; strokes_doubtful |
 | informe_6 | informe |  | pendiente |  | espera a actualizar_zheng (pendiente) |

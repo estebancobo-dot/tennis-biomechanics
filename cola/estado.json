@@ -1975,7 +1975,7 @@
   }
  },
  "sinner_a": {
-  "estado": "en_marcha",
+  "estado": "hecho",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 1,
@@ -1987,10 +1987,17 @@
   "salida": "/output/zverev-alexander-sinner-jannik-indian-wells-2026-semi-final",
   "cpu": true,
   "cuaderno": "tennisbio-sinner-a",
-  "kaggle": "running (22:55)",
+  "kaggle": "complete (23:57)",
   "arranco": "2026-11-21 22:07",
   "espera_min": 1,
-  "progreso": "scenes:  70 % (74990/106507 fotogramas) · 45 min · quedan ≈ 19 min (22:54:57; CPU 63 %, 2.5 GB)"
+  "progreso": "audio terminada a las 23:28:41 en 1.3 min (23:27:21)",
+  "fin": "2026-11-21 23:57",
+  "resultado": {
+   "estado": "hecho",
+   "coste_usd": 0.0,
+   "segundos": 4745,
+   "horas_kaggle": 1.35
+  }
  },
  "leer_exportacion": {
   "estado": "error",
@@ -2003,7 +2010,7 @@
   "partido": ""
  },
  "prueba_gauff_v38_c": {
-  "estado": "en_marcha",
+  "estado": "hecho",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 1,
@@ -2015,9 +2022,55 @@
   "salida": "/kaggle_pruebas/prueba_gauff_v38_a/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cpu": true,
   "cuaderno": "tennisbio-prueba-gauff-v38-c",
-  "kaggle": "running (22:55)",
+  "kaggle": "complete (23:57)",
   "arranco": "2026-11-21 22:50",
   "espera_min": 5,
-  "progreso": "views:  46 % (68/147 fotogramas de otras tomas) · 2 min · quedan ≈ 2 min (22:54:02; CPU 53 %, 3.6 GB)"
+  "progreso": "slowmo_fine terminada a las 22:59:35 en 1.5 min (22:59:35)",
+  "fin": "2026-11-21 23:57",
+  "resultado": {
+   "estado": "hecho",
+   "coste_usd": 0.0,
+   "segundos": 471,
+   "horas_kaggle": 0.22
+  }
+ },
+ "sinner_b": {
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1795301757.4485502,
+  "accion": "partido",
+  "partido": "zverev-alexander-sinner-jannik-indian-wells-2026-semi-final",
+  "inicio": "2026-11-21 22:55",
+  "ruta": "/runs/kaggle_sinner_b/estado.json",
+  "salida": "/output/zverev-alexander-sinner-jannik-indian-wells-2026-semi-final",
+  "cuaderno": "tennisbio-sinner-b",
+  "adoptado": "ya estaba en Kaggle («error»): una vuelta anterior lo lanzó sin guardar su estado"
+ },
+ "medir_f3set_hoy_c": {
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1795301757.4485502,
+  "accion": "medir",
+  "partido": "",
+  "inicio": "2026-11-21 22:55",
+  "ruta": "/runs/kaggle_medir_f3set_hoy_c/estado.json",
+  "cuaderno": "tennisbio-medir-f3set-hoy-c",
+  "adoptado": "ya estaba en Kaggle («running»): una vuelta anterior lo lanzó sin guardar su estado"
+ },
+ "comparar_gauff_v36_v38": {
+  "estado": "revisar",
+  "accion": "comparar",
+  "donde": "github",
+  "fin": "2026-11-21 23:57",
+  "resultado": {
+   "estado": "revisar",
+   "veredicto": "distinta",
+   "nota": "distinta; 7 etapas iguales; distintas: candidates, fine, fine_doubtful, identity, players, spotting, view_clips, views; strokes.json: 28 de 28/28 golpes emparejados, medidas fuera de tolerancia: metrics.trunk3d_model, metrics.trunk3d_readings, metrics.shoulder_turn_3d_deg, metrics.hip_turn_3d_deg; strokes.json: temblor de b frente a a ×1.00 (mediana de 5327 medidas; b tiembla menos en el 12 %); strokes.json: temblor por familias: brazos ×1.00, muñecas ×1.00, otras ×1.00, piernas ×1.00, pies ×1.00, raqueta ×1.00, tronco ×1.00; strokes_opponent.json: 0 de 0/0 golpes emparejados; strokes_doubtful"
+  },
+  "partido": ""
  }
 }
