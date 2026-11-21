@@ -1886,7 +1886,7 @@
   "salida": "/kaggle_pruebas/prueba_gauff_v38_a/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cuaderno": "tennisbio-prueba-gauff-v38-b2-2",
   "nota": "en cola de Kaggle más de 45 min mientras otro trabajo lanzado después ya arrancó (cuaderno atascado)",
-  "kaggle": "queued (22:10)",
+  "kaggle": "queued (22:15)",
   "kaggle_detalle": "queued | estebancoboc/tennisbio-prueba-gauff-v38-b2-2 has status \"KernelWorkerStatus.QUEUED\""
  },
  "prueba_sinner_b": {
@@ -1902,7 +1902,7 @@
   "salida": "/kaggle_pruebas/prueba_sinner_b/output/_prueba_zverev-alexander-sinner-jannik-indian-wells-2026-semi-final",
   "cuaderno": "tennisbio-prueba-sinner-b-2",
   "nota": "en cola de Kaggle más de 45 min mientras otro trabajo lanzado después ya arrancó (cuaderno atascado)",
-  "kaggle": "queued (22:10)",
+  "kaggle": "queued (22:15)",
   "kaggle_detalle": "queued | estebancoboc/tennisbio-prueba-sinner-b-2 has status \"KernelWorkerStatus.QUEUED\""
  },
  "medir_app_b": {
@@ -1967,9 +1967,10 @@
   "salida": "/output/zverev-alexander-sinner-jannik-indian-wells-2026-semi-final",
   "cpu": true,
   "cuaderno": "tennisbio-sinner-a",
-  "kaggle": "running (22:10)",
+  "kaggle": "running (22:15)",
   "arranco": "2026-11-21 22:07",
-  "espera_min": 1
+  "espera_min": 1,
+  "progreso": "scenes:   6 % (6826/106507 fotogramas) · 4 min · quedan ≈ 62 min (22:14:01; CPU 63 %, 2.6 GB)"
  },
  "leer_exportacion": {
   "estado": "error",
