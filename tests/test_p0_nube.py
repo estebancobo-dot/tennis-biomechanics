@@ -51,7 +51,7 @@ def test_nothing_is_brought_without_the_list_or_with_bad_paths(tmp_path):
     store = _cloud(tmp_path / "falta", {"informe_derecha/index.html": b"x", "auditoria/auditoria.json": b"{}"})
     (store.root / "output" / "auditoria" / "auditoria.json").unlink()
     r = p0_nube.pull(store, tmp_path / "pc2", log=lambda m: None)
-    assert not r["ok"] and "no se pudo bajar auditoria/auditoria.json" in r["motivo"]
+    assert not r["ok"] and "no se pudo bajar auditoria/auditoria.json" in r["motivo"] and r["bajados"] == 1
     assert p0_nube.local_results(tmp_path / "pc2") is None                     # no list written: not shown as done
 
 
@@ -114,3 +114,27 @@ def test_the_window_opens_at_once_and_brings_the_results_behind_it(tmp_path, mon
     assert p0_ventana.main(store, out_root=out) == 0
     assert events == [("ventana", "index.html"), ("arranca", True), ("trae",), ("recarga", "index.html")], events
     assert (out / "nube" / "informe_derecha" / "index.html").exists()
+
+
+def test_many_files_are_brought_at_once(tmp_path):
+    """21-11 (the user: «va super lenta»): 1759 files one after another, ~0.7 s each, took 22 min: several at once."""
+    import threading
+    import time as _t
+    files = {f"informe_derecha/series/s{i}.js": b"x" * i for i in range(1, 41)}
+    store = _cloud(tmp_path, files)
+    seen, lock = [0, 0], threading.Lock()
+    real = store.read_bytes
+
+    def slow(path):
+        with lock:
+            seen[0] += 1
+            seen[1] = max(seen[1], seen[0])
+        _t.sleep(0.05)
+        with lock:
+            seen[0] -= 1
+        return real(path)
+    store.read_bytes = slow
+    t0 = _t.time()
+    r = p0_nube.pull(store, tmp_path / "pc", log=lambda m: None)
+    assert r["ok"] and r["bajados"] == 40 and seen[1] > 1 and _t.time() - t0 < 40 * 0.05
+    assert (tmp_path / "pc" / "informe_derecha" / "series" / "s40.js").read_bytes() == b"x" * 40

@@ -12,6 +12,7 @@ from pathlib import Path, PurePosixPath
 
 MANIFEST = "/output/resultados_app.json"      # cloud/kaggle/correr.py APP_MANIFEST (tests/test_p0_nube.py keeps them equal)
 LOCAL = "resultados_app.json"
+WORKERS = 8                                   # files brought at once
 
 
 def _safe(rel: str) -> bool:
@@ -30,20 +31,32 @@ def pull(store, dest: Path, log=print) -> dict:
     if len(files) != len(man["ficheros"]):
         return {"ok": False, "motivo": "la lista de resultados de la nube tiene rutas no válidas: no se baja nada"}
     todo = [k for k, size in sorted(files.items()) if not (dest / k).is_file() or (dest / k).stat().st_size != size]
-    got = 0
-    for i, rel in enumerate(todo, 1):
+
+    def one(rel: str) -> int | None:
         data = store.read_bytes(f"/output/{rel}")
         if data is None:
-            return {"ok": False, "motivo": f"no se pudo bajar {rel} ({i - 1} de {len(todo)} bajados)",
-                    "bajados": i - 1}
+            return None
         f = dest / rel
         f.parent.mkdir(parents=True, exist_ok=True)
         tmp = f.with_name(f.name + ".part")
         tmp.write_bytes(data)
         tmp.replace(f)
-        got += len(data)
-        if i % 50 == 0:
-            log(f"resultados de la nube: {i} de {len(todo)} ficheros")
+        return len(data)
+
+    # 21-11: one file after another waited ~0.7 s each for the cloud (1759 files, 22 min the first time): WORKERS at once
+    from concurrent.futures import ThreadPoolExecutor
+    got, done, missing = 0, 0, []
+    with ThreadPoolExecutor(max_workers=WORKERS) as pool:
+        for rel, n in zip(todo, pool.map(one, todo)):
+            if n is None:
+                missing.append(rel)
+                continue
+            got, done = got + n, done + 1
+            if done % 50 == 0:
+                log(f"resultados de la nube: {done} de {len(todo)} ficheros")
+    if missing:
+        return {"ok": False, "motivo": f"no se pudo bajar {missing[0]} ({done} de {len(todo)} bajados; se sigue la próxima "
+                                       "vez por lo que falta)", "bajados": done}
     dest.mkdir(parents=True, exist_ok=True)
     (dest / LOCAL).write_text(json.dumps(man, ensure_ascii=False, indent=1), encoding="utf-8")
     return {"ok": True, "bajados": len(todo), "mb": round(got / 2 ** 20, 1), "generado": str(man.get("generado", "")),
