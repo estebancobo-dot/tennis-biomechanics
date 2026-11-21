@@ -1,0 +1,93 @@
+{
+ "estado": "hecho",
+ "segundos": 4745,
+ "horas_kaggle": 1.35,
+ "coste_usd": 0.0,
+ "gpu": null,
+ "etapas": {
+  "probe": 4.3,
+  "scenes": 3850.8,
+  "court": 802.7,
+  "audio": 80.1
+ },
+ "recursos": {
+  "muestras": 79,
+  "cpu_pct": {
+   "media": 65.3,
+   "max": 99.3
+  },
+  "ram_gb": {
+   "media": 2.8,
+   "max": 16.1
+  }
+ },
+ "recursos_por_etapa": {
+  "probe": {
+   "s": 4,
+   "muestras": 0
+  },
+  "scenes": {
+   "s": 3851,
+   "muestras": 64,
+   "cpu_pct": {
+    "media": 63.2,
+    "max": 66.2
+   },
+   "ram_gb": {
+    "media": 2.7,
+    "max": 10.6
+   }
+  },
+  "court": {
+   "s": 803,
+   "muestras": 13,
+   "cpu_pct": {
+    "media": 76.8,
+    "max": 99.3
+   },
+   "ram_gb": {
+    "media": 3.4,
+    "max": 16.1
+   }
+  },
+  "audio": {
+   "s": 80,
+   "muestras": 2,
+   "cpu_pct": {
+    "media": 56.8,
+    "max": 78.6
+   },
+   "ram_gb": {
+    "media": 2.2,
+    "max": 2.2
+   }
+  }
+ },
+ "modelos_en_cpu": 0,
+ "fallos": {},
+ "sin_subir": [],
+ "config": {},
+ "config_local": {
+  "registry": {
+   "source": "yaml"
+  },
+  "device": "auto"
+ },
+ "kaggle": {
+  "python": "3.13.18",
+  "nucleos": 4,
+  "memoria_gib": {
+   "MemTotal": 31.3,
+   "MemAvailable": 30.2
+  },
+  "disco_libre_gib": {
+   "/tmp": 2514.5,
+   "/kaggle/working": 19.5
+  },
+  "gpu": "",
+  "ffmpeg": "/usr/bin/ffmpeg",
+  "clave_modal": true
+ },
+ "nota": null,
+ "modelos_en_cpu_registro": 0
+}
