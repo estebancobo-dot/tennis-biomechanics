@@ -1987,10 +1987,10 @@
   "salida": "/output/zverev-alexander-sinner-jannik-indian-wells-2026-semi-final",
   "cpu": true,
   "cuaderno": "tennisbio-sinner-a",
-  "kaggle": "running (22:50)",
+  "kaggle": "running (22:55)",
   "arranco": "2026-11-21 22:07",
   "espera_min": 1,
-  "progreso": "scenes:  64 % (67826/106507 fotogramas) · 41 min · quedan ≈ 23 min (22:50:36; CPU 63 %, 2.5 GB)"
+  "progreso": "scenes:  70 % (74990/106507 fotogramas) · 45 min · quedan ≈ 19 min (22:54:57; CPU 63 %, 2.5 GB)"
  },
  "leer_exportacion": {
   "estado": "error",
@@ -2015,8 +2015,9 @@
   "salida": "/kaggle_pruebas/prueba_gauff_v38_a/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cpu": true,
   "cuaderno": "tennisbio-prueba-gauff-v38-c",
-  "kaggle": "running (22:50)",
+  "kaggle": "running (22:55)",
   "arranco": "2026-11-21 22:50",
-  "espera_min": 5
+  "espera_min": 5,
+  "progreso": "views:  46 % (68/147 fotogramas de otras tomas) · 2 min · quedan ≈ 2 min (22:54:02; CPU 53 %, 3.6 GB)"
  }
 }
