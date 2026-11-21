@@ -294,18 +294,27 @@ def test_the_report_on_a_kaggle_cpu_session(monkeypatch, tmp_path):
                 '<script>const D = {"strokes": [{"id": "a", "video": "../m1/windows/w1.mp4"}, '
                 '{"id": "b", "video": "../m1/windows/falta.mp4"}, {"id": "c", "video": "../../fuera.mp4"}]}</script>')
             (out / "informe_derecha" / "videos" / "g1.mp4").write_bytes(b"v")
+        elif cmd[3] == "export":                       # the short PDF, a montage, and its working files (not kept)
+            (out / "exportar_derecha" / "montajes" / "_tmp").mkdir(parents=True)
+            (out / "exportar_derecha" / "resumen.pdf").write_bytes(b"%PDF")
+            (out / "exportar_derecha" / "montajes" / "01_x.mp4").write_bytes(b"mm")
+            (out / "exportar_derecha" / "montajes" / "_tmp" / "card_01.mp4").write_bytes(b"c")
+            (out / "exportar_derecha" / "pila.txt").write_text("x")
+            R.returncode = fail_export
         else:
             (out / "auditoria").mkdir(parents=True)
             (out / "auditoria" / "auditoria.json").write_text("{}")
             (out / "auditoria" / "auditoria.md").write_text("# a")
         return R()
     monkeypatch.setattr(sp, "run", fake_run)
+    fail_export = 0
     est = {}
     assert correr.report(j, Path("py"), data, run, None, est, []) == 0
-    assert ran == ["report", "audit"] and est["partidos"] == ["m1"] and est["estado"] == "hecho"
+    assert ran == ["report", "audit", "export"] and est["partidos"] == ["m1"] and est["estado"] == "hecho"
+    assert est["exportar"] == "hecha"
     assert "/output/m1" in got and "/output/_prueba_m1" in got                  # read, but only m1 is analysed
-    assert put[0] == (["auditoria/auditoria.json", "auditoria/auditoria.md", "informe_derecha/index.html",
-                       "informe_derecha/videos/g1.mp4"], "/output")
+    assert put[0] == (["auditoria/auditoria.json", "auditoria/auditoria.md", "exportar_derecha/montajes/01_x.mp4",
+                       "exportar_derecha/resumen.pdf", "informe_derecha/index.html", "informe_derecha/videos/g1.mp4"], "/output")
     assert put[1] == (["resultados_app.json"], "/output")                  # the application's list, last
     man = _json.loads((data / "output" / "resultados_app.json").read_text(encoding="utf-8"))
     assert man["partidos"] == ["m1"] and man["ficheros"]["informe_derecha/videos/g1.mp4"] == 1
@@ -314,6 +323,15 @@ def test_the_report_on_a_kaggle_cpu_session(monkeypatch, tmp_path):
     assert put[2][1] == "/runs/informe" and "auditoria.json" in put[2][0] and "informe.html" in put[2][0]
     assert "m1" in (repo / "config" / "matches.yaml").read_text(encoding="utf-8")
     assert "_prueba" not in (repo / "config" / "matches.yaml").read_text(encoding="utf-8")
+    assert man["ficheros"]["exportar_derecha/resumen.pdf"] == 4                  # the export reaches the application
+    # an export that fails is said, and the report and its list still go
+    import shutil as _sh
+    for d in ("informe_derecha", "auditoria", "exportar_derecha"):
+        _sh.rmtree(data / "output" / d)
+    _sh.rmtree(data / "output" / "m1" / "windows")
+    fail_export, est, put[:] = 1, {}, []
+    assert correr.report(j, Path("py"), data, run, None, est, []) == 0
+    assert est["estado"] == "hecho" and est["exportar"].startswith("falló (código 1)") and put[1][0] == ["resultados_app.json"]
     src = (ROOT / "cloud" / "kaggle" / "correr.py").read_text(encoding="utf-8")
     assert 'if job["accion"] == "informe":' in src and '(() if job["accion"] == "informe" else ("/models",))' in src
 

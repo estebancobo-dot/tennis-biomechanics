@@ -21,6 +21,8 @@ export interface ApiPC {
   traer_resultados(): Promise<Respuesta & { bajados?: number; mb?: number; generado?: string; recargar?: boolean }>;
   // 21-11 (#310): the window's own check of its videos and series on this PC (ui/src/autocomprobacion.ts)
   autocomprobacion(r: Record<string, unknown>): Promise<Respuesta>;
+  // 21-11 (P0.5e): a result brought from the cloud (the export's PDF, a montage, its folder) with the PC's own program
+  abrir(ruta: string): Promise<Respuesta>;
 }
 
 export const SOLO_PC = "Se hace en la aplicación del PC (aquí, solo para mirar)";

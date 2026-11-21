@@ -80,7 +80,7 @@ def test_the_button_brings_them_and_without_the_cloud_says_why():
     assert not p0_api.ApiVentana(None, "X").traer_resultados()["ok"]
     assert p0_api.SinNube("sin la clave").traer_resultados() == {"ok": False, "motivo": "sin la clave"}
     src = (ROOT / "src" / "tennisbio" / "app" / "p0_ventana.py").read_text(encoding="utf-8")
-    assert "ApiVentana(p0_api.Gestion(store, work / \"subida\"), datos[\"player\"][\"name\"], choose, traer)" in src
+    assert "ApiVentana(p0_api.Gestion(store, work / \"subida\"), datos[\"player\"][\"name\"], choose, traer, abrir)" in src
 
 
 def test_the_cloud_writes_the_list_the_application_reads():
@@ -138,3 +138,34 @@ def test_many_files_are_brought_at_once(tmp_path):
     r = p0_nube.pull(store, tmp_path / "pc", log=lambda m: None)
     assert r["ok"] and r["bajados"] == 40 and seen[1] > 1 and _t.time() - t0 < 40 * 0.05
     assert (tmp_path / "pc" / "informe_derecha" / "series" / "s40.js").read_bytes() == b"x" * 40
+
+
+def test_the_export_comes_with_the_results_and_opens_with_the_pcs_program(tmp_path, monkeypatch):
+    """21-11 (P0.5e): the cloud's export (the short PDF, the montages) is listed in the window and each file opens with
+    the PC's own program; nothing outside the results' folder; the disk's room and what the results take, said."""
+    from tennisbio.app import p0_app
+    monkeypatch.setattr(p0_app, "datos_beta", lambda report, audit, est, m: {"player": {"name": "X"}, "strokes": []})
+    out = tmp_path / "salida"
+    store = _cloud(tmp_path, {"informe_derecha/index.html": b"<html>nube</html>", "auditoria/auditoria.json": b"{}",
+                              "exportar_derecha/resumen.pdf": b"%PDF" * 10, "exportar_derecha/montajes/01_a.mp4": b"m",
+                              "exportar_derecha/golpes/g1.mp4": b"g",
+                              "exportar_derecha/exportacion.json": json.dumps({"titles": {"01_a.mp4": "Bola rápida"}}).encode()})
+    assert p0_nube.pull(store, out / "nube", log=lambda m: None)["ok"]
+    d, _ = p0_ventana.build_data(out, None, tmp_path / "trabajo", out / "nube")
+    assert [(e["tipo"], e["ruta"]) for e in d["exportados"]] == [
+        ("golpe", "exportar_derecha/golpes/g1.mp4"), ("montaje", "exportar_derecha/montajes/01_a.mp4"),
+        ("pdf", "exportar_derecha/resumen.pdf")]
+    assert d["exportados"][1]["titulo"] == "Bola rápida"                     # the montage's own title, with its accent
+    assert d["disco"]["resultados_gb"] >= 0 and d["disco"]["libre_gb"] > 0 and d["disco"]["poco"] in (True, False)
+    seen = []
+    assert p0_nube.open_result(out / "nube", "exportar_derecha/resumen.pdf", seen.append) == {"ok": True}
+    assert p0_nube.open_result(out / "nube", "exportar_derecha/montajes", seen.append)["ok"]       # its folder
+    assert seen == [str((out / "nube" / "exportar_derecha" / "resumen.pdf").resolve()),
+                    str((out / "nube" / "exportar_derecha" / "montajes").resolve())]
+    for bad in ("../fuera.pdf", "/etc/passwd", "C:/x.pdf", "a\\..\\b"):
+        assert not p0_nube.open_result(out / "nube", bad, seen.append)["ok"]
+    assert "no está en el PC" in p0_nube.open_result(out / "nube", "exportar_derecha/otro.pdf", seen.append)["motivo"]
+    assert len(seen) == 2
+    api = p0_api.ApiVentana(None, "X", abrir=lambda r: {"ok": True, "r": r})
+    assert api.abrir("exportar_derecha/resumen.pdf")["r"] == "exportar_derecha/resumen.pdf"
+    assert not p0_api.ApiVentana(None, "X").abrir("x")["ok"] and not p0_api.SinNube("sin clave").abrir("x")["ok"]

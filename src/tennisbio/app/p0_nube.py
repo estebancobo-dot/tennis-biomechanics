@@ -78,3 +78,55 @@ def local_results(dest: Path) -> tuple[Path, Path, dict] | None:
         return None
     main = next((p for p in pages if p.parent.name == "informe_derecha"), pages[0])
     return main, audit, man
+
+
+def exports(dest: Path) -> list[dict]:
+    """21-11 (P0.5e): what the cloud exported with the report (cloud/kaggle/correr.py, `tennisbio export`) and the PC
+    brought: the short PDF, the conclusions' montages and the strokes' MP4s, each with its path inside dest (what
+    open_result opens) and its size."""
+    out = []
+    for d in sorted(p for p in dest.glob("exportar*") if p.is_dir()):
+        try:                                 # the export's end record: each montage's own title (tennisbio.export)
+            titles = json.loads((d / "exportacion.json").read_text(encoding="utf-8")).get("titles") or {}
+        except (OSError, ValueError, AttributeError):  # esperado: an older export without it: the file's name is shown
+            titles = {}
+        for f in sorted(d.rglob("*")):
+            if not f.is_file() or f.suffix.lower() not in (".pdf", ".mp4"):
+                continue
+            kind = "pdf" if f.suffix.lower() == ".pdf" else "montaje" if f.parent.name == "montajes" else "golpe"
+            out.append({"nombre": f.name, "tipo": kind, "ruta": f.relative_to(dest).as_posix(),
+                        "mb": round(f.stat().st_size / 2 ** 20, 1), **({"titulo": str(titles[f.name])}
+                                                                        if kind == "montaje" and f.name in titles else {})})
+    return out
+
+
+def disk(dest: Path, base: Path) -> dict:
+    """21-11 (P0.5e): the room on the PC's disk and what the cloud's results take there."""
+    import shutil
+    used = sum(f.stat().st_size for f in dest.rglob("*") if f.is_file()) if dest.exists() else 0
+    probe = base if base.exists() else Path(base.anchor or ".")
+    free = shutil.disk_usage(probe).free
+    return {"libre_gb": round(free / 1e9, 1), "resultados_gb": round(used / 1e9, 2), "poco": free < LOW_DISK_GB * 1e9}
+
+
+LOW_DISK_GB = 10                              # under this, the application warns (Ajustes and Inicio)
+
+
+def open_result(dest: Path, rel: str, opener=None) -> dict:
+    """A file or folder of the results brought (dest) opened with the PC's own program (the PDF reader, the video
+    player, the file explorer). Only inside dest: the path comes from the page."""
+    import os
+    import sys
+    if not _safe(rel):
+        return {"ok": False, "motivo": "ruta no válida"}
+    f = (dest / rel).resolve()
+    if not f.is_relative_to(dest.resolve()) or not f.exists():
+        return {"ok": False, "motivo": f"no está en el PC: {rel} («Traer resultados de la nube» en Inicio)"}
+    if opener is None:
+        if sys.platform == "win32":
+            opener = os.startfile          # noqa: S606 — the user's own file, with its own program
+        else:
+            import webbrowser
+            opener = lambda p: webbrowser.open(Path(p).as_uri())    # noqa: E731
+    opener(str(f))
+    return {"ok": True}

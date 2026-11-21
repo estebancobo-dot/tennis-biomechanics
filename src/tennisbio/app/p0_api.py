@@ -183,8 +183,15 @@ class ApiVentana:
     (P0.5e). `choose`: the window's file dialog (returns a path or None). Its own state is private (pywebview exposes an
     object's public attributes to the page too); each call is written to the window's log."""
 
-    def __init__(self, gestion: Gestion, jugadora: str, choose=lambda: None, traer=None):
-        self._g, self._jugadora, self._choose, self._traer = gestion, jugadora, choose, traer
+    def __init__(self, gestion: Gestion, jugadora: str, choose=lambda: None, traer=None, abrir=None):
+        self._g, self._jugadora, self._choose, self._traer, self._abrir = gestion, jugadora, choose, traer, abrir
+
+    def abrir(self, ruta: str) -> dict:
+        """21-11 (P0.5e): a result brought from the cloud (the export's PDF, a montage, its folder) opened with the PC's
+        own program (tennisbio.app.p0_nube.open_result, only inside the results' folder)."""
+        if self._abrir is None:
+            return {"ok": False, "motivo": "esta ventana no sabe abrir ficheros"}
+        return self._abrir(ruta)
 
     def autocomprobacion(self, r: dict) -> dict:
         """21-11 (#310): the window's own check of its videos and series on this PC (ui/src/autocomprobacion.ts), said in
@@ -266,4 +273,4 @@ class SinNube:
     elegir_video = staticmethod(lambda: None)
     proponer = staticmethod(lambda ruta: {})
     fotos = staticmethod(lambda partido: [])
-    alta = clic = aprobar = pausar = reanudar = cancelar = borrar_video = traer_resultados = autocomprobacion = _no
+    alta = clic = aprobar = pausar = reanudar = cancelar = borrar_video = traer_resultados = autocomprobacion = abrir = _no

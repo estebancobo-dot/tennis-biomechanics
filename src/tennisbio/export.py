@@ -905,6 +905,8 @@ def _export(matches, out_root: Path, dest: Path, stroke, player_id, reel_max, st
     log(f"Resumen: {pdf}")
     (dest / END_RECORD).write_text(json.dumps(
         {"stroke": stroke, "ended": time.strftime("%Y-%m-%d %H:%M:%S"), "seconds": round(time.time() - t0, 1),
-         "strokes": len(need), "encoded": done, "videos": len(paths), "failed": failed, "reels": len(reel_names)},
+         "strokes": len(need), "encoded": done, "videos": len(paths), "failed": failed, "reels": len(reel_names),
+         # 21-11 (P0.5e): each montage's own title (its file name lost the accents), for the application's list
+         "titles": {name: text for text, name in reel_names.items()}},
         ensure_ascii=False, indent=1), encoding="utf-8")
     return dest

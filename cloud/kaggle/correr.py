@@ -346,11 +346,19 @@ REPORT_PAGE_MAX = 15 * 1024 * 1024          # nube.PAGE_MAX_BYTES: a larger page
 APP_MANIFEST = "resultados_app.json"        # tennisbio.app.p0_nube.MANIFEST (/output/…): what the PC's application brings
 
 
+EXPORT_KEEP = (".pdf", ".mp4", ".json")      # of an export folder: the short PDF, its videos and its end record
+
+
 def report_files(out: Path) -> list[Path]:
-    """The report's folders (each «informe*» of the outputs with its index.html) and the audit's, every file in them."""
+    """The report's folders (each «informe*» of the outputs with its index.html) and the audit's, every file in them;
+    21-11: and the export's (each «exportar*»: the short PDF, the montages and strokes' MP4s, never its working files)."""
     dirs = [d for d in sorted(out.glob("informe*")) if d.is_dir() and (d / "index.html").exists()]
     dirs += [out / "auditoria"] if (out / "auditoria").is_dir() else []
-    return [f for d in dirs for f in sorted(d.rglob("*")) if f.is_file()]
+    files = [f for d in dirs for f in sorted(d.rglob("*")) if f.is_file()]
+    for d in sorted(out.glob("exportar*")):
+        files += [f for f in sorted(d.rglob("*")) if f.is_file() and f.suffix.lower() in EXPORT_KEEP
+                  and "_tmp" not in f.relative_to(d).parts]
+    return files
 
 
 def linked_videos(out: Path) -> list[Path]:
@@ -393,15 +401,20 @@ def report(job: dict, py: Path, data: Path, run: Path, vol, est: dict, registry:
     est["partidos"] = [m["id"] for m in done]
     t0, rc = time.time(), {}
     with open(run / "log.txt", "a", encoding="utf-8") as lg:
+        # 21-11 (P0.5e): the export (the short PDF and the conclusions' montages, `tennisbio export`) with the report, so
+        # the application brings it too; its failure is said but never holds the report back
         for name, args in (("informe", ["report"]),
-                           ("auditoria", ["audit", "--root", str(root), "--out", str(data / "output" / "auditoria")])):
+                           ("auditoria", ["audit", "--root", str(root), "--out", str(data / "output" / "auditoria")]),
+                           ("exportar", ["export", "--solo-montajes"])):
             p = subprocess.run([str(py), "-m", "tennisbio.cli", *args], cwd=REPO, env=env_for(data), capture_output=True,
                                text=True, encoding="utf-8", errors="replace")
             lg.write(f"===== {name} (código {p.returncode})\n{p.stdout}\n{p.stderr[-4000:]}\n")
             rc[name] = p.returncode
     files = report_files(data / "output")
     modal_put(vol, files, data / "output", "/output")
-    if files and not any(rc.values()):           # the list last: the application sees it only with every file up
+    ok = not any(v for k, v in rc.items() if k != "exportar")
+    est["exportar"] = "hecha" if rc.get("exportar") == 0 else f"falló (código {rc.get('exportar')}): ver log.txt"
+    if files and ok:                             # the list last: the application sees it only with every file up
         man = data / "output" / APP_MANIFEST
         out = (data / "output").resolve()
         listed = [f.resolve() for f in files] + linked_videos(data / "output")
@@ -419,7 +432,7 @@ def report(job: dict, py: Path, data: Path, run: Path, vol, est: dict, registry:
     if pages and pages[0].stat().st_size < REPORT_PAGE_MAX:
         shutil.copy(pages[0], run / "informe.html")
     modal_put(vol, [f for f in run.iterdir() if f.is_file()], run, job["salida"])
-    est.update(estado="hecho" if not any(rc.values()) and files else "error", codigos=rc,
+    est.update(estado="hecho" if ok and files else "error", codigos=rc,
                segundos=round(time.time() - t0), ficheros=len(files),
                subido_mb=round(sum(f.stat().st_size for f in files) / 2 ** 20, 1), coste_usd=0.0)
     return 0 if est["estado"] == "hecho" else 1

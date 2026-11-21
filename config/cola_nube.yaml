@@ -291,7 +291,10 @@ trabajos:
   # 21-11 21:50 (P0.5e, lo que quedaba de la estroboscópica): la imagen estroboscópica de cada golpe con vídeo, dibujada
   # con su serie (4 siluetas, el camino de la mano y la punta de la raqueta por tramos). La misma prueba en Chrome con los
   # resultados reales, con su regla escrita antes (tennisbio.infra.poc_app): además, ≥ 95 % de los golpes con vídeo la dibujan
-  - {id: medir_app_b, accion: medir, prueba: app, donde: kaggle, cpu: true}
+  # 21-11 (P0.5e, la exportación): el informe de los 5 partidos ya analizados otra vez, ahora con la exportación (PDF corto
+  # y un montaje por conclusión, `tennisbio export`), por primera vez en la nube; la aplicación la trae con los resultados
+  - {id: informe_beta4, accion: informe, donde: kaggle}
+  - {id: medir_app_b, accion: medir, prueba: app, donde: kaggle, cpu: true, tras: informe_beta4}
   # 21-11 10:10 (#295, cierre de la nube nativa; sirve con cualquier decisión pendiente del usuario): F3Set con el código de
   # hoy y todo lo adoptado (bola en un hilo, marcador con CUDA, jugadora lejana con RF-DETR…) frente a la nube2 (Modal,
   # 14-11: 469 de 517, precisión 0,94), con el mismo script. Regla escrita antes (tennisbio.infra.poc_f3set): no peor en

@@ -65,6 +65,12 @@ def build_data(out_root: Path, store, work: Path, cloud_dir: Path | None = None,
     if report.exists() and not d.get("ejemplo"):
         import os
         d["medios"] = Path(os.path.relpath(report.parent, page_dir or out_root / "aplicacion_nueva")).as_posix() + "/"
+    if cloud and cloud_dir:              # 21-11 (P0.5e): what the cloud exported with the report, brought to the PC
+        d["exportados"] = p0_nube.exports(cloud_dir)
+    try:
+        d["disco"] = p0_nube.disk(cloud_dir or out_root / "nube", out_root)
+    except OSError as e:  # esperado: a disk that cannot be read: not shown, logged
+        log(f"disco: no se pudo leer ({type(e).__name__}: {e})")
     if store:
         d.setdefault("queue", {})["app"] = store.read_json("/cola/app.json")
     return d, src
@@ -145,8 +151,13 @@ def main(store=None, why: str = "sin la nube", out_root: Path | None = None) -> 
                                                        "Todos los ficheros (*.*)"))
         return str(r[0]) if r else None
 
-    api = p0_api.ApiVentana(p0_api.Gestion(store, work / "subida"), datos["player"]["name"], choose, traer) if store \
-        else p0_api.SinNube(why)
+    def abrir(rel: str) -> dict:         # 21-11: a result brought (the export's PDF, a montage) with the PC's program
+        r = p0_nube.open_result(cloud_dir, rel)
+        log(f"abrir {rel}: {r}")
+        return r
+
+    api = p0_api.ApiVentana(p0_api.Gestion(store, work / "subida"), datos["player"]["name"], choose, traer, abrir) \
+        if store else p0_api.SinNube(why)
     try:
         holder["w"] = webview.create_window("TennisBio (nueva)", url=str(page), js_api=api, width=1440, height=900,
                                             min_size=(1000, 650))

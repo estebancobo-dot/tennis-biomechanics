@@ -116,6 +116,9 @@ export interface Datos {
   ejemplo?: boolean; // made-up data (tests and the repository's preview), said on screen
   origen?: string; // P0.5e (21-11): where the data come from (the cloud's results brought to the PC, or the PC's report)
   medios?: string | null; // P0.5e: the report page's folder from the application's page (its videos and series)
+  // P0.5e (21-11): what the cloud exported with the report and the PC brought (tennisbio.app.p0_nube.exports)
+  exportados?: { nombre: string; tipo: "pdf" | "montaje" | "golpe"; ruta: string; mb: number; titulo?: string }[];
+  disco?: { libre_gb: number; resultados_gb: number; poco: boolean }; // the PC's room and what the results take
   grip?: string | null; // what the TV allows to say of her grip (tennisbio.explain.grip_compatible)
   [k: string]: unknown;
 }

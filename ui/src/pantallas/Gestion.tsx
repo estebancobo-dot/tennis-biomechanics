@@ -448,10 +448,20 @@ export function Almacen() {
     <>
       <Cabecera titulo="Almacenamiento" sub="Espacio en el PC y en la nube." />
       <section className="content">
+        {/* 21-11 (P0.5e): what is measured on the PC (the results brought and the room left); the kinds of data say
+            where they live, without sizes nobody measured */}
+        <div className="card" data-disco><h2>En el PC</h2>
+          {d.disco ? <><p className="sub">Los resultados de la nube ocupan <b>{fmt(d.disco.resultados_gb, 1)} GB</b>; quedan libres <b>{fmt(d.disco.libre_gb, 0)} GB</b> en el disco.</p>
+            {d.disco.poco ? <p className="pill crit" style={{ marginTop: 8 }}>Queda poco disco: los resultados nuevos pueden no caber.</p> : null}
+            <button className="btn" type="button" data-abrir="." style={{ marginTop: 8 }} disabled={!pc} title={pc ? undefined : SOLO_PC}
+              onClick={() => pc && pc.abrir(".")}>Abrir la carpeta de los resultados</button></>
+            : <p className="sub">Se mide en la aplicación del PC.</p>}</div>
         <div className="grid3">
-          {[["Imprescindible", "fichas, clics de identidad, resultados por golpe", "good"], ["Regenerable", "recortes de vídeo y cachés: se rehacen solos", "warn"], ["Temporal", "lo que se borra al terminar un trabajo", "mute"]].map(([t, s, c]) => (
+          {[["Imprescindible", "fichas, clics de identidad, resultados por golpe", "good", "En la nube (el volumen) y, traídos, en el PC."],
+            ["Regenerable", "recortes de vídeo y cachés: se rehacen solos", "warn", "En la nube; si se pierden, se rehacen."],
+            ["Temporal", "lo que se borra al terminar un trabajo", "mute", "Se borra solo al terminar cada trabajo."]].map(([t, s, c, w]) => (
             <div className="card" key={t}><span className={`pill ${c}`}>{t}</span><p className="sub" style={{ marginTop: 8 }}>{s}</p>
-              <p className="mock" style={{ marginTop: 8 }}>Lo mide la aplicación en el PC (P0.5e).</p></div>
+              <p className="sub" style={{ marginTop: 8 }}>{w}</p></div>
           ))}
         </div>
         <div className="card"><h2>Vídeos en la nube</h2><p className="sub">Un vídeo se borra del volumen de Modal cuando su partido está analizado y sus resultados están en el PC (la cola lo comprueba; si no, lo dice y no borra nada).</p>

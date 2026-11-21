@@ -4,6 +4,7 @@
 import { useState } from "react";
 import { useApp } from "../App";
 import type { Datos, Golpe } from "../contrato";
+import { SOLO_PC, api, type Respuesta } from "../api";
 import { esN, fmt } from "../datos";
 import { SITUACION } from "../situaciones";
 import { FichaGolpe, tituloGolpe } from "./Golpe";
@@ -354,10 +355,39 @@ export function Mas({ d, sit, onCelda }: { d: Datos; sit: string; onCelda: (sit:
           <tr><td>Vídeo analizado</td><td className="num">{fmt(r.video_min)} min</td></tr>
           <tr><td>Tiempo de análisis</td><td className="num">{fmt(r.analysis_min)} min</td></tr>
           <tr><td>Generado</td><td>{d.generated || "—"}</td></tr></tbody></table></div></div> : null}
-      {sub === "exportar" ? <div className="card" style={{ marginTop: 12 }}><h3>Exportar</h3>
-        <p className="sub">Un PDF corto con lo esencial y los MP4 de los golpes o de una lista de reproducción (#41, #46).</p>
-        <div style={{ display: "flex", gap: 8, marginTop: 10 }}><button className="btn" type="button">PDF corto</button><button className="btn" type="button">MP4 de esta selección</button></div>
-        <p className="mock" style={{ marginTop: 10 }}>La exportación existe en el PC; aquí se conecta con P0.5e.</p></div> : null}
+      {sub === "exportar" ? <Exportar d={d} /> : null}
     </>
+  );
+}
+
+// P0.5e (21-11): the export (#41, #46) is made in the cloud with the report (the short PDF with the essentials and a
+// montage per conclusion, `tennisbio export`) and brought with the results; each file opens with the PC's own program.
+function Exportar({ d }: { d: Datos }) {
+  const pc = api();
+  const [resp, setResp] = useState<Respuesta | null>(null);
+  const ex = d.exportados || [];
+  const abrir = async (ruta: string) => {
+    if (!pc) return;
+    try { const r = await pc.abrir(ruta); setResp(r.ok ? null : r); } catch (e) { setResp({ ok: false, motivo: String(e) }); }
+  };
+  const boton = (ruta: string, txt = "Abrir") => <button className="btn" type="button" data-abrir={ruta} disabled={!pc}
+    title={pc ? undefined : SOLO_PC} onClick={() => abrir(ruta)}>{txt}</button>;
+  const pdf = ex.filter((e) => e.tipo === "pdf"), mont = ex.filter((e) => e.tipo === "montaje"), golpes = ex.filter((e) => e.tipo === "golpe");
+  const carpeta = (e: { ruta: string }) => e.ruta.split("/").slice(0, -1).join("/");
+  return (
+    <div className="card" style={{ marginTop: 12 }} data-exportar={ex.length}><h3>Exportar</h3>
+      <p className="sub">Un PDF corto con lo esencial y un vídeo por conclusión con sus golpes (#41, #46). Se hacen en la nube con el informe y llegan con los resultados.</p>
+      {ex.length ? <table className="t" style={{ marginTop: 10 }}><tbody>
+        {pdf.map((e) => <tr key={e.ruta}><td>Resumen en PDF</td><td className="num">{fmt(e.mb, 1)} MB</td><td>{boton(e.ruta)}</td></tr>)}
+        {mont.map((e) => <tr key={e.ruta}><td>{e.titulo || ((t) => t.charAt(0).toUpperCase() + t.slice(1))(e.nombre.replace(/^\d+_/, "").replace(/\.mp4$/, "").replace(/[-_]/g, " "))}</td>
+          <td className="num">{fmt(e.mb, 1)} MB</td><td>{boton(e.ruta)}</td></tr>)}
+        {golpes.length ? <tr><td>Los vídeos de cada golpe de los montajes ({golpes.length})</td><td className="num">{fmt(golpes.reduce((a, e) => a + e.mb, 0), 0)} MB</td>
+          <td>{boton(carpeta(golpes[0]), "Abrir la carpeta")}</td></tr> : null}
+        {mont.length ? <tr><td>Todos los montajes</td><td></td><td>{boton(carpeta(mont[0]), "Abrir la carpeta")}</td></tr> : null}
+      </tbody></table>
+        : <p className="sub" style={{ marginTop: 10 }}>{d.ejemplo ? "Con datos de ejemplo no hay nada que exportar." :
+          "Aún no hay exportación en el PC: se hace en la nube con el próximo informe y llega con «Traer resultados de la nube» (Inicio)."}</p>}
+      {resp ? <p className="pill crit" role="status" style={{ marginTop: 8 }}>{resp.motivo}</p> : null}
+    </div>
   );
 }
