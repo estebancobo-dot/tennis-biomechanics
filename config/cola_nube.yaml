@@ -293,4 +293,6 @@ trabajos:
   # del PC (bench_mag3d). Regla escrita antes (tennisbio.infra.poc_3d): pasa a la prueba integrada si acierta (≤ 15°) al
   # menos 5 puntos más y el error del X-factor no es mayor. SAM 3D Body espera al acceso del usuario en Hugging Face
   - {id: medir_3d_metrabs, accion: medir, prueba: 3d, donde: kaggle, horas: 2}
+  # 21-11 11:15: la de arriba se paró al cargar tensorflow_hub (le falta pkg_resources, de setuptools); arreglado
+  - {id: medir_3d_metrabs_b, accion: medir, prueba: 3d, donde: kaggle, horas: 2}
   - {id: informe_6, accion: informe, tras: actualizar_zheng}

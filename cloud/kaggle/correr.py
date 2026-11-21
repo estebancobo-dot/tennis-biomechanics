@@ -44,7 +44,8 @@ POCS = {"raqueta": "tennisbio.infra.poc_raqueta", "video": "tennisbio.infra.poc_
         "app": "tennisbio.infra.poc_app",               # 21-11 (P0.5e-D): the PC's application with the real results
         "f3set": "tennisbio.infra.poc_f3set",           # 21-11 (#295): F3Set with today's code against nube2
         "3d": "tennisbio.infra.poc_3d"}                 # 21-11 (#309): MeTRAbs against MotionAGFormer on CalTennis
-METRABS_TF = ("tensorflow[and-cuda]==2.18.0", "tensorflow-hub==0.16.1", "tf-keras==2.18.0")
+# 21-11: tensorflow_hub reads its version check from pkg_resources (setuptools; the analysis's Python has none)
+METRABS_TF = ("tensorflow[and-cuda]==2.18.0", "tensorflow-hub==0.16.1", "tf-keras==2.18.0", "setuptools<80")
 F3SET_REFERENCE = "recall_validation_detector_nube2.json"   # the cloud's reference run (14-11, Modal: 469 of 517)
 STREAMED = ("f3set", "3d")                     # long measures: their output goes to the log while they run
 NEEDS_MATCH = ("video",)                 # proofs of concept measured on a match's broadcast (its video from Modal)
