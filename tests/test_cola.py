@@ -371,6 +371,28 @@ def test_a_test_with_other_settings(monkeypatch):
     assert launch[launch.index("--config") + 1] == '{"hwaccel": "cuda"}'
 
 
+def test_a_free_kaggle_session_with_quota_left_wakes_claude(monkeypatch):
+    """21-11 (the user: «¿por qué has estado parado y no has encolado trabajos?»): the GPU sessions stood idle 1 h 40 min
+    with 26 h left. A free session with quota left is said in the mailbox, again every 2 h while it stays so; not when
+    both are busy (and then the next free one is said at once), nor with little quota, nor with the queue paused."""
+    monkeypatch.setattr(cola, "kaggle_room", lambda spend, now, state=None: 26.2)
+    free = {"kaggle": {"ok": True, "motivo": "", "libres": 2}}
+    spend = {}
+    line = cola.idle_notice({}, spend, free, NOV)
+    assert "2 de 2 sesiones de GPU libres" in line and "26.2 h" in line and spend["aviso_ocioso_ts"] == NOV
+    assert cola.idle_notice({}, spend, free, NOV + 3600) == ""                    # said an hour ago
+    assert cola.idle_notice({}, spend, free, NOV + 2 * 3600 + 1) != ""            # still idle: said again
+    busy = {"kaggle": {"ok": False, "motivo": "ocupado con a, b"}}
+    assert cola.idle_notice({}, spend, busy, NOV + 2 * 3600 + 60) == "" and "aviso_ocioso_ts" not in spend
+    assert cola.idle_notice({}, spend, {"kaggle": {"ok": True, "libres": 1}}, NOV + 2 * 3600 + 120).startswith(
+        "Kaggle: 1 de 2")
+    assert cola.idle_notice({}, {}, free, NOV, paused=True) == ""
+    monkeypatch.setattr(cola, "kaggle_room", lambda spend, now, state=None: 0.5)
+    assert cola.idle_notice({}, {}, free, NOV) == ""                              # the week is spent
+    src = (ROOT / "cloud" / "cola.py").read_text(encoding="utf-8")
+    assert "events(before, state) + ([idle] if idle else [])" in src
+
+
 def test_what_wakes_claude(tmp_path):
     """#291 (14-11): only what needs Claude wakes him (no polling): a job that has just finished, failed or stopped in
     «revisar», or a new Kaggle refusal; a pass where nothing changed posts nothing."""

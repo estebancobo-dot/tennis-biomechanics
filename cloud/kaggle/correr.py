@@ -39,7 +39,8 @@ POCS = {"raqueta": "tennisbio.infra.poc_raqueta", "video": "tennisbio.infra.poc_
         "youtube": "tennisbio.infra.poc_youtube",       # 15-11 (#304): can the cloud download from YouTube?
         "bola": "tennisbio.infra.poc_bola",             # 15-11 (T15): TOTNet against TrackNetV3 on RacketVision
         "sapiens2": "tennisbio.infra.poc_sapiens",      # 15-11 (#307): Sapiens2 against the fine pass's pose
-        "sapiens2_rapido": "tennisbio.infra.poc_sapiens"}  # 21-11: the 0.4B with smaller inputs (its speed)
+        "sapiens2_rapido": "tennisbio.infra.poc_sapiens",  # 21-11: the 0.4B with smaller inputs (its speed)
+        "lejana": "tennisbio.infra.poc_lejana"}         # 21-11 (T25): RF-DETR for the far player, on the GPU
 NEEDS_MATCH = ("video",)                 # proofs of concept measured on a match's broadcast (its video from Modal)
 NEEDS_RUN = ("sapiens2", "sapiens2_rapido")   # proofs of concept on a reference test's outputs (`base`, of `partido`)
 SAPIENS_TRANSFORMERS = "transformers==5.23.0"   # the first with Sapiens2ForPoseEstimation that was checked (15-11)
@@ -134,6 +135,7 @@ def modal_put(vol, files: list[Path], local_root: Path, remote_root: str):
 
 
 SAPIENS2_ONNX = "sapiens2_pose_0.4b_512x384.onnx"
+RFDETR_ONNX = "rfdetr_medium_1152.onnx"           # scripts/bench_candidates.py EXPORTS["rfdetr"]
 
 
 def ensure_sapiens2(py: Path, data: Path, models: Path, vol, est: dict) -> str:
@@ -214,6 +216,8 @@ def poc_args(job: dict, models: Path, video: Path | None) -> list[str]:
         fast = ["--modelos", "facebook/sapiens2-pose-0.4b", "--tamanos", "768x576,512x384"] \
             if job["prueba"] == "sapiens2_rapido" else []
         return ["--previa", str(models.parent / "previa"), "--dispositivo", "cpu" if job.get("cpu") else "cuda", *fast]
+    if job["prueba"] == "lejana":
+        return ["--datos", str(models.parent / "datasets"), "--dispositivo", "cpu" if job.get("cpu") else "cuda"]
     if job["prueba"] == "bola":
         return ["--modelo", str(models / "balltrack.onnx"), "--totnet", str(models / "totnet_tennis.onnx"),
                 "--datos", str(models.parent / "datasets"), "--dispositivo", "cpu" if job.get("cpu") else "cuda"]
@@ -233,6 +237,10 @@ def measure(job: dict, py: Path, models: Path, data: Path, run: Path, vol, est: 
         _run([sys.executable, "-m", "pip", "install", "-q", "einops", "onnx", "onnxruntime"])
         _run([sys.executable, str(REPO / "scripts" / "export_totnet.py"), "--salida", str(models / "totnet_tennis.onnx"),
               "--repo", str(models.parent / "totnet")])
+    if job["prueba"] == "lejana" and not (models / RFDETR_ONNX).exists():   # exported once, kept on the volume
+        _run(["uv", "run", "--with", "rfdetr==1.11.2", "python", str(REPO / "scripts" / "export_rfdetr.py"),
+              "--out", str(models / RFDETR_ONNX), "--ckpt", str(models.parent / "rf-detr-medium.pth")], cwd=REPO)
+        modal_put(vol, [models / RFDETR_ONNX], models, "/" + models.relative_to(data).as_posix())
     if job["prueba"] == "youtube":                 # the newest yt-dlp, as the PC's fallback uses
         subprocess.run(["uv", "pip", "install", "-q", "--python", str(py), "-U", "yt-dlp[default]"])
     runner = str(py)

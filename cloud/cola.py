@@ -790,6 +790,8 @@ def main(argv: list[str] | None = None) -> int:
     for jid, st in state.items():                         # T3: each job's match, for the audit's «Cola de la nube»
         if jid in by_id and isinstance(st, dict):
             st.setdefault("partido", by_id[jid].get("partido", ""))
+    idle = "" if a.en_seco else idle_notice(state, spend, _sources(Path.cwd(), queue, state), now,
+                                            bool((app or {}).get("pausa")))
     (d / "estado.json").write_text(json.dumps(state, ensure_ascii=False, indent=1), encoding="utf-8")
     (d / "gasto.json").write_text(json.dumps(spend, ensure_ascii=False, indent=1), encoding="utf-8")
     (d / "estado.md").write_text(summary(jobs, state, spend, decisions, now, (app or {}).get("pausa")), encoding="utf-8")
@@ -801,13 +803,36 @@ def main(argv: list[str] | None = None) -> int:
     if not a.en_seco:
         upload_state(vol, d)
     if a.avisos:
-        msg = wake_message(events(before, state), now)
+        msg = wake_message(events(before, state) + ([idle] if idle else []), now)
         a.avisos.write_text(msg, encoding="utf-8")
         print(f"cola: {'avisos para Claude' if msg else 'nada que avisar'}")
     return 0
 
 
 WAKE_STATES = ("hecho", "error", "revisar")
+# 21-11 (the user: «¿por qué has estado parado y no has encolado trabajos?»): Kaggle's GPU sessions stood idle 1 h 40 min
+# with 26 h of the week left, because Claude stopped after a result instead of queuing the plan's next task. The queue
+# now says so in the mailbox: a free GPU session with quota left wakes Claude, and again every IDLE_REMIND_S
+IDLE_REMIND_S = 2 * 3600
+IDLE_MIN_H = 1.0
+
+
+def idle_notice(state: dict, spend: dict, sources: dict, now: float, paused: bool = False) -> str:
+    """The mailbox line when a Kaggle GPU session is free and the week has at least IDLE_MIN_H left ('' otherwise, and
+    when the application paused the queue). Repeated every IDLE_REMIND_S while it stays so (spend['aviso_ocioso_ts'],
+    cleared when both sessions are busy, so the next free one is said at once)."""
+    k = sources.get("kaggle") or {}
+    if not k.get("ok"):
+        if str(k.get("motivo", "")).startswith("ocupado"):
+            spend.pop("aviso_ocioso_ts", None)
+        return ""
+    room = kaggle_room(spend, now, state)
+    if paused or room < IDLE_MIN_H or now - float(spend.get("aviso_ocioso_ts") or 0) < IDLE_REMIND_S:
+        return ""
+    spend["aviso_ocioso_ts"] = now
+    n = k.get("libres", KAGGLE_SESSIONS)
+    return (f"Kaggle: {n} de {KAGGLE_SESSIONS} sesiones de GPU libres y quedan {room:.1f} h esta semana: encolar la "
+            "tarea siguiente del plan (docs/estado_proyecto.md)")
 
 
 def events(before: dict, after: dict) -> list[str]:

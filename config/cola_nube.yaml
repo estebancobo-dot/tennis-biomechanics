@@ -185,6 +185,17 @@ trabajos:
   # 21-11 05:20: los ficheros llegan cortados (512 KB): la comparación da ahora el temblor por familias de medidas; otra vez
   - {id: comparar_gauff_v26_v35b, accion: comparar, a: prueba_gauff_v26, b: prueba_gauff_v35_sapiens2}
   - {id: leer_v26_v35, accion: leer, rutas: [/kaggle_pruebas/prueba_gauff_v26/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5/strokes.json, /kaggle_pruebas/prueba_gauff_v35_sapiens2/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5/strokes.json]}
+  # 21-11 06:40 (T25): RF-DETR para la jugadora lejana, otra vez en la T4 (en el PC: hallada en el 100 % frente al 90,3 %
+  # de YOLO, pero a 0,5 frente a 1,3 fotogramas/s). Regla escrita antes (tennisbio.infra.poc_lejana): pasa a la prueba
+  # integrada si en los mismos 300 fotogramas la halla al menos 5 puntos más que YOLO; su velocidad en la T4, para el coste
+  - {id: medir_lejana_rfdetr, accion: medir, prueba: lejana, donde: kaggle}
+  # 21-11 06:40 (T18): prueba de referencia con el código de hoy (las sesiones buscan los modelos de otra forma: nube.unnested)
+  # por partes, como irán los partidos, frente a la v32 (la referencia adoptada). Regla: idéntica o equivalente (los 28
+  # golpes con las mismas medidas); si no, se busca la causa antes de ningún partido
+  - {id: prueba_gauff_v36_a, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, cpu: true, etapas: [probe, scenes, court, audio]}
+  - {id: prueba_gauff_v36_b, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, tras: prueba_gauff_v36_a, junto_a: prueba_gauff_v36_a, etapas: [players, score, identity, spotting, candidates, fine, fine_opponent, fine_doubtful]}
+  - {id: prueba_gauff_v36_c, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, cpu: true, tras: prueba_gauff_v36_b, junto_a: prueba_gauff_v36_a, etapas: [views, views_link, view_clips, slowmo_fine]}
+  - {id: comparar_gauff_v32_v36, accion: comparar, a: prueba_gauff_v32_c, b: prueba_gauff_v36_c}
   # 15-11 23:20: la misma medida en GPU (en CPU serían ~20 h, más que las 12 h de una sesión); ~0,3-0,5 h de GPU
   - {id: medir_bola_totnet_gpu, accion: medir, prueba: bola, donde: kaggle}
   # 15-11 20:10 (R55): la v29 no valió (cada parte repetía las etapas con modelos: la huella de un modelo llevaba la fecha
