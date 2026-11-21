@@ -641,11 +641,15 @@ def notebook_slug(job_id: str, attempt: int = 1) -> str:
     return cuaderno.slug_for(job_id if attempt <= 1 else f"{job_id}-{attempt}")
 
 
+KAGGLE_RAW: dict[str, str] = {}             # 21-11: Kaggle's whole answer per job, kept in its state when queued
+
+
 def kaggle_status(job_id: str, slug: str | None = None) -> str:
     sys.path.insert(0, str(Path(__file__).resolve().parent / "kaggle"))
     import cuaderno
 
     r = _kaggle(["estado", "--slug", slug or notebook_slug(job_id)])
+    KAGGLE_RAW[job_id] = (r.stdout + r.stderr).strip()[-400:]
     return cuaderno.status_of(r.stdout + r.stderr)
 
 
@@ -736,6 +740,8 @@ def main(argv: list[str] | None = None) -> int:
             if st["donde"] == "kaggle" and jid in by_id:
                 kst = kaggle_status(jid, st.get("cuaderno"))
                 st["kaggle"] = f"{kst} ({time.strftime('%H:%M', time.gmtime(now))})"
+                if kst == "queued":              # 21-11: why it waits, in Kaggle's own words (F3Set queued for hours)
+                    st["kaggle_detalle"] = KAGGLE_RAW.get(jid, "")
                 note_start(st, kst, now)
                 print(f"{jid}: Kaggle dice «{kst}»; lanzado hace {(now - float(st.get('lanzado_ts', now))) / 60:.0f} min, "
                       f"intento {st.get('intentos', 1)}")
