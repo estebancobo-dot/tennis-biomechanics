@@ -1567,7 +1567,7 @@
   }
  },
  "prueba_gauff_v36_c": {
-  "estado": "en_marcha",
+  "estado": "hecho",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 1,
@@ -1579,10 +1579,17 @@
   "salida": "/kaggle_pruebas/prueba_gauff_v36_a/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cpu": true,
   "cuaderno": "tennisbio-prueba-gauff-v36-c",
-  "kaggle": "running (07:43)",
+  "kaggle": "complete (07:47)",
   "arranco": "2026-11-21 07:33",
   "espera_min": 1,
-  "progreso": "view_clips:  49 % (22/45 recortes de repeticiones y otras cámaras) · 2 min · quedan ≈ 2 min (07:40:54; CPU 85 %, 2.9 GB)"
+  "progreso": "slowmo_fine terminada a las 07:44:16 en 1.7 min (07:44:16)",
+  "fin": "2026-11-21 07:47",
+  "resultado": {
+   "estado": "hecho",
+   "coste_usd": 0.0,
+   "segundos": 603,
+   "horas_kaggle": 0.19
+  }
  },
  "prueba_gauff_v37_c": {
   "estado": "en_marcha",
@@ -1597,10 +1604,10 @@
   "salida": "/kaggle_pruebas/prueba_gauff_v37_a/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cpu": true,
   "cuaderno": "tennisbio-prueba-gauff-v37-c",
-  "kaggle": "running (07:43)",
+  "kaggle": "running (07:47)",
   "arranco": "2026-11-21 07:40",
   "espera_min": 2,
-  "progreso": "views:  27 % (39/147 fotogramas de otras tomas) · 2 min · quedan ≈ 6 min (07:42:15; CPU 83 %, 3.5 GB)"
+  "progreso": "view_clips:  36 % (16/45 recortes de repeticiones y otras cámaras) · 64 s · quedan ≈ 2 min (07:46:33; CPU 66 %, 2.7 GB)"
  },
  "informe_beta2": {
   "estado": "en_marcha",
@@ -1614,8 +1621,20 @@
   "ruta": "/runs/informe_beta2/estado.json",
   "cpu": true,
   "cuaderno": "tennisbio-informe-beta2",
-  "kaggle": "running (07:43)",
+  "kaggle": "running (07:47)",
   "arranco": "2026-11-21 07:43",
   "espera_min": 3
+ },
+ "comparar_gauff_v32_v36": {
+  "estado": "hecho",
+  "accion": "comparar",
+  "donde": "github",
+  "fin": "2026-11-21 07:47",
+  "resultado": {
+   "estado": "hecho",
+   "veredicto": "equivalente",
+   "nota": "equivalente; 15 etapas iguales; strokes.json: 28 de 28/28 golpes emparejados; strokes_opponent.json: 0 de 0/0 golpes emparejados; strokes_doubtful.json: 1 de 1/1 golpes emparejados"
+  },
+  "partido": ""
  }
 }
