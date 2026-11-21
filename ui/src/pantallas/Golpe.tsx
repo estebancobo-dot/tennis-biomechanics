@@ -8,7 +8,7 @@ import { Panel, useApp } from "../App";
 import type { Datos, Golpe } from "../contrato";
 import { esN, fmt } from "../datos";
 import { SITUACION } from "../situaciones";
-import { Reproductor } from "./Reproductor";
+import { Fotograma, Reproductor } from "./Reproductor";
 import { TrayectoriaSwing, type Trayectoria } from "./Trayectoria";
 
 type AnyRec = Record<string, any>; // eslint-disable-line @typescript-eslint/no-explicit-any
@@ -66,8 +66,11 @@ export function Galeria({ d, sit, soloApoyo, quitar }: { d: Datos; sit: string; 
       </div>
       <div className="vgrid">
         {a.slice(0, vistos).map((s) => (
-          <button className="vcard" type="button" key={s.id} data-stroke={s.id} onClick={() => abrir(<FichaGolpe s={s} />)}>
-            <div className="frame" style={{ aspectRatio: "16/10" }}><span className="tag">vídeo · captura {fmt(100 * (s.quality ?? 0))} %</span></div>
+          <button className="vcard" type="button" key={s.id} data-stroke={s.id} onClick={() => abrir(<FichaGolpe s={s} sit={sit} />)}>
+            <div className="frame" style={{ aspectRatio: "16/10" }}>
+              {d.medios && s.thumb ? <img src={d.medios + s.thumb} alt="" loading="lazy" data-miniatura
+                style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} /> : null}
+              <span className="tag">vídeo · captura {fmt(100 * (s.quality ?? 0))} %</span></div>
             <div className="meta"><b>{tituloGolpe(s)}</b>
               <span>{[...s.bits, s.stance && "apoyo " + s.stance, s.outcome === "error" ? "error" : null].filter(Boolean).join(" · ") || "—"}</span>
               {dudas(s).length ? <span className="pill warn">con dudas</span> : null}</div>
@@ -79,7 +82,7 @@ export function Galeria({ d, sit, soloApoyo, quitar }: { d: Datos; sit: string; 
   );
 }
 
-export function FichaGolpe({ s }: { s: Golpe }) {
+export function FichaGolpe({ s, sit = "todas" }: { s: Golpe; sit?: string }) {
   const { d, abrir } = useApp();
   const ph: AnyRec = (s.phases as AnyRec) || {}, b: AnyRec = (s.body as AnyRec) || {}, f: AnyRec = (s.feet as AnyRec) || {};
   const todas = d.situations.find((x) => x.id === "todas");
@@ -90,6 +93,9 @@ export function FichaGolpe({ s }: { s: Golpe }) {
     return { k, v, all, met, dv, fuera: dv !== null && Math.abs(dv) > (met.noise || 0) };
   });
   const avisos = filas.filter((r) => r.fuera);
+  // the contact strip: this stroke and the best captured of its situation, with their videos (P0.5e)
+  const contactos = d.medios && s.video ? [s, ...d.strokes.filter((x) => x.id !== s.id && x.video
+    && (SITUACION[sit] || SITUACION.todas)(x)).sort((x, y) => (y.quality ?? -1) - (x.quality ?? -1)).slice(0, 5)] : [];
   const dd = dudas(s);
   return (
     <Panel titulo={tituloGolpe(s)} sub={[...s.bits, s.stance && "apoyo " + s.stance, s.movement, s.finish && "terminación " + s.finish].filter(Boolean).join(" · ")}>
@@ -108,7 +114,8 @@ export function FichaGolpe({ s }: { s: Golpe }) {
       {((s.ball as AnyRec[]) || []).length ? (
         <div className="card"><h3>La bola y ella</h3>
           <div className="moments" style={{ marginTop: 8 }}>{(s.ball as AnyRec[]).map((m, i) => (
-            <div className="moment" key={i}><div className="frame"><span className="tag">{m.t === 0 ? "impacto" : sgn(m.t, 2) + " s"}</span></div><b>{m.title}</b><span>{m.text}</span></div>))}</div></div>
+            <div className="moment" key={i}><Fotograma s={s} medios={d.medios} t={m.t ?? 0} zurda={d.player.hand === "left"}
+              etiqueta={m.t === 0 ? "impacto" : sgn(m.t, 2) + " s"} /><b>{m.title}</b><span>{m.text}</span></div>))}</div></div>
       ) : null}
       <div className="grid2">
         <div className="card"><h3>Bajar y subir</h3>
@@ -134,8 +141,11 @@ export function FichaGolpe({ s }: { s: Golpe }) {
           {s.trayectoria ? <TrayectoriaSwing tr={s.trayectoria as Trayectoria} titulo={`Trayectoria del swing: ${tituloGolpe(s)}`} /> : <>
             <p className="sub">Toda la trayectoria del golpe sobre su vídeo: la mano por fases y la punta de la raqueta, con su zona de contacto (#306).</p>
             <p className="mock" style={{ marginTop: 8 }}>Se dibuja con la serie fotograma a fotograma del golpe, que llega con el reproductor (P0.5e).</p></>}</div>
-        <div className="card"><h3>Tira de contactos</h3><p className="sub">Todos sus impactos en esta situación, uno junto a otro, y superpuestos en un fotograma.</p>
-          <p className="mock" style={{ marginTop: 8 }}>Con los fotogramas de cada impacto, que llegan con el reproductor (P0.5e).</p></div>
+        <div className="card" data-tira><h3>Tira de contactos</h3><p className="sub">Sus impactos en esta situación, uno junto a otro (los mejor captados).</p>
+          {contactos.length ? <div className="moments" style={{ marginTop: 8 }}>{contactos.map((x) => (
+            <div className="moment" key={x.id}><Fotograma s={x} medios={d.medios} t={0} zurda={d.player.hand === "left"}
+              etiqueta={x.id === s.id ? "este golpe" : x.stance ? "apoyo " + x.stance : "impacto"} /><span>{tituloGolpe(x)}</span></div>))}</div>
+            : <p className="sub" style={{ marginTop: 8 }}>Los vídeos llegan con los resultados de la nube («Traer resultados de la nube» en Inicio).</p>}</div>
       </div>
       <div className="card scroll"><h3>Frente a lo habitual en ella</h3>
         <table className="t"><tbody><tr><th>Medida</th><th>Este golpe</th><th>Lo habitual</th><th>Diferencia</th><th>Fiabilidad</th></tr>

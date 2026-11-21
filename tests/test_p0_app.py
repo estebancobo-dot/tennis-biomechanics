@@ -117,8 +117,12 @@ def test_the_strokes_real_video_plays_with_its_layers(tmp_path):
     (media / "series" / "s1.js").write_text(f'window.SERIES["s1"]={json.dumps(ser)};', encoding="utf-8")
     d = p0_app.ejemplo()
     d["medios"] = "nube/informe_derecha/"
-    d["strokes"][0].update(id="s1", video="clip.webm", series="series/s1.js", vImpact=1.0)
+    d["strokes"][0].update(id="s1", video="clip.webm", series="series/s1.js", vImpact=1.0, thumb="t1.png", repr=0,
+                           ball=[{"t": -0.5, "title": "golpe de la rival", "text": "x"}, {"t": 0, "title": "su golpe", "text": "y"}])
     d["strokes"][1].update(video=None, series=None)
+    import base64
+    (media / "t1.png").write_bytes(base64.b64decode(
+        "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="))
     page = tmp_path / "app.html"
     page.write_text('<!doctype html><html><head><meta charset="utf-8"></head><body>' + p0_app.pagina(d) + "</body></html>",
                     encoding="utf-8")
@@ -129,14 +133,19 @@ def test_the_strokes_real_video_plays_with_its_layers(tmp_path):
         p = b.new_page(viewport={"width": 1280, "height": 800})
         p.goto(page.as_uri() + "#visor")
         p.wait_for_timeout(300)
+        lesson = p.evaluate("() => !!document.querySelector('[data-leccion-video] [data-reproductor]')")
         p.click('[data-tab="golpes"]')
         p.wait_for_timeout(150)
+        thumb = p.evaluate("() => { const i = document.querySelector('[data-stroke=\"s1\"] img[data-miniatura]');"
+                           " return i ? i.naturalWidth : -1; }")
         p.click('[data-stroke="s1"]')
         p.wait_for_function("() => document.querySelector('[data-reproductor=\"listo\"]') && "
                             "document.querySelector('canvas[data-capas]').width === 320", timeout=8000)
         p.click("[data-impacto]")
         p.wait_for_timeout(300)
         body, ball, empty = p.evaluate(probe, [160, 70]), p.evaluate(probe, [60, 60]), p.evaluate(probe, [300, 20])
+        frames = p.evaluate("() => document.querySelectorAll('[data-fotograma]').length")
+        strip = p.evaluate("() => document.querySelectorAll('[data-tira] [data-fotograma]').length")
         p.click('[data-capa="cuerpo"]')
         p.wait_for_timeout(200)
         body_off = p.evaluate(probe, [160, 70])
@@ -148,6 +157,8 @@ def test_the_strokes_real_video_plays_with_its_layers(tmp_path):
         none = p.inner_text('[data-reproductor="sin-video"]')
         b.close()
     assert body and ball and not empty and not body_off, (body, ball, empty, body_off)  # the shoulders' line, the ball
+    assert lesson and thumb == 1                       # the lesson's real stroke, the gallery's thumbnail
+    assert strip == 1 and frames == 3                  # this stroke in the contact strip; the ball and her: 2 frames
     assert "no tiene vídeo" in none
 
 

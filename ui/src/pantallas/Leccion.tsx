@@ -5,6 +5,9 @@
 import { useState } from "react";
 import type { Datos, PuntoDeControl } from "../contrato";
 import { esN, fmt } from "../datos";
+import { SITUACION } from "../situaciones";
+import { tituloGolpe } from "./Golpe";
+import { Reproductor } from "./Reproductor";
 
 type AnyRec = Record<string, any>; // eslint-disable-line @typescript-eslint/no-explicit-any
 
@@ -79,6 +82,11 @@ function leerHechas(): Record<string, boolean> {
 export function Leccion({ d, sit }: { d: Datos; sit: string }) {
   const [ph, setPh] = useState(0);
   const [hechas, setHechas] = useState(leerHechas);
+  const [k, setK] = useState(0);
+  // P0.5e (21-11): her real stroke in this situation, the most representative first (its video and layers)
+  const conVideo = d.medios ? d.strokes.filter((s) => s.video && (SITUACION[sit] || SITUACION.todas)(s))
+    .sort((x, y) => ((x.repr as number) ?? 9) - ((y.repr as number) ?? 9)) : [];
+  const real = conVideo.length ? conVideo[k % conVideo.length] : null;
   const fases = d.phases, p = fases[ph], i0 = ph;
   if (!p) return <p className="sub">Sin fases en este análisis.</p>;
   const plan = new Set(((d.plan as AnyRec[]) || []).slice(0, 3).map((x) => x.key));
@@ -109,18 +117,21 @@ export function Leccion({ d, sit }: { d: Datos; sit: string }) {
       </div>
       <div className="lesson">
         <div>
-          <div className="frame">
-            <Dibujo fase={p.id} />
-            <span className="tag">Su golpe más representativo en esta situación · fotograma real en la aplicación</span>
-            <span className="cap">{(p.title.split("·")[1] || p.title).trim()}{rh && esN(rh.median) ? <> · <em>{rh.median === 0 ? "impacto" : sgn(rh.median, 2) + " s"}</em></> : null}</span>
-          </div>
-          <div className="controls">
-            <button className="chip" type="button" aria-pressed="true">Velocidad real</button>
-            <button className="chip" type="button">¼</button>
-            <button className="chip" type="button">Otro golpe suyo</button>
-            <button className="chip" type="button">El golpe entero</button>
-          </div>
-          <p className="mock" style={{ marginTop: 10 }}>El dibujo sale de la medida de la fase (como en los shorts de los entrenadores): uno solo cada vez. El vídeo real y sus capas llegan con el reproductor.</p>
+          {real ? <div data-leccion-video>
+            <Reproductor key={`${real.id}-${p.id}`} s={real} medios={d.medios} zurda={d.player.hand === "left"}
+              t={esN(((real.phases as AnyRec) || {})[p.id]) ? ((real.phases as AnyRec)[p.id] as number) : null} />
+            <div className="controls">
+              <span className="sub">Su golpe más representativo en esta situación ({tituloGolpe(real)}), en el momento de «{(p.title.split("·")[1] || p.title).trim()}».</span>
+              {conVideo.length > 1 ? <button className="chip" type="button" data-otro onClick={() => setK((k + 1) % conVideo.length)}>Otro golpe suyo</button> : null}
+            </div>
+          </div> : <>
+            <div className="frame">
+              <Dibujo fase={p.id} />
+              <span className="tag">Su golpe más representativo en esta situación</span>
+              <span className="cap">{(p.title.split("·")[1] || p.title).trim()}{rh && esN(rh.median) ? <> · <em>{rh.median === 0 ? "impacto" : sgn(rh.median, 2) + " s"}</em></> : null}</span>
+            </div>
+            <p className="sub" style={{ marginTop: 10 }}>El dibujo sale de la medida de la fase (como en los shorts de los entrenadores). El vídeo real de su golpe llega con los resultados de la nube («Traer resultados de la nube» en Inicio).</p>
+          </>}
         </div>
         <div style={{ display: "grid", gap: 14 }}>
           <div><span className="eyebrow">Foco</span>

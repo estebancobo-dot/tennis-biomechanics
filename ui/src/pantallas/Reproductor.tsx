@@ -83,11 +83,11 @@ export function dibujar(cx: CanvasRenderingContext2D, ser: Serie, f: number, cap
   }
 }
 
-export function Reproductor({ s, medios, zurda }: { s: Golpe; medios?: string | null; zurda?: boolean }) {
+export function Reproductor({ s, medios, zurda, t }: { s: Golpe; medios?: string | null; zurda?: boolean; t?: number | null }) {
   const caja = useRef<HTMLDivElement>(null), vid = useRef<HTMLVideoElement>(null), lienzo = useRef<HTMLCanvasElement>(null);
   const [ser, setSer] = useState<Serie | null | undefined>(undefined);
   const [vel, setVel] = useState(1);
-  const [paso, setPaso] = useState(false);
+  const [paso, setPaso] = useState(t !== undefined && t !== null);       // from a phase's moment: paused there
   const [capas, setCapas] = useState<Record<string, boolean>>({ cuerpo: true, raqueta: true, bola: true, medidas: false });
   const [fallo, setFallo] = useState(false);
   const video = s.video as string | undefined, series = s.series as string | undefined;
@@ -135,7 +135,13 @@ export function Reproductor({ s, medios, zurda }: { s: Golpe; medios?: string | 
     <div data-reproductor={ser ? "listo" : ser === null ? "sin-serie" : "cargando"} data-golpe={s.id}>
       <div ref={caja} style={{ position: "relative", background: "#000", borderRadius: 8, overflow: "hidden" }}>
         <video ref={vid} src={medios + video} muted playsInline preload="auto" style={{ width: "100%", display: "block" }}
-          onLoadedMetadata={() => { const V = vid.current; if (V) { V.playbackRate = vel; if (vImpact !== null) V.currentTime = Math.max(0, vImpact - 1.2); V.play().catch(() => undefined); } }}
+          onLoadedMetadata={() => {
+            const V = vid.current;
+            if (!V) return;
+            V.playbackRate = vel;
+            if (vImpact !== null) V.currentTime = Math.max(0, vImpact + (t ?? -1.2));
+            if (t === undefined || t === null) V.play().catch(() => undefined);
+          }}
           onError={() => setFallo(true)} />
         <canvas ref={lienzo} data-capas style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none" }} />
       </div>
@@ -153,6 +159,44 @@ export function Reproductor({ s, medios, zurda }: { s: Golpe; medios?: string | 
         {CAPAS.map(([k, t]) => <button className="chip" type="button" key={k} data-capa={k} aria-pressed={capas[k]}
           onClick={() => setCapas({ ...capas, [k]: !capas[k] })}>{t}</button>)}
       </div>
+    </div>
+  );
+}
+
+// One still frame of a stroke's video at `t` seconds from its impact, with her body drawn on it (the ball and her, the
+// contact strip). Without the video, the placeholder frame with its label.
+export function Fotograma({ s, medios, t, etiqueta, zurda }: { s: Golpe; medios?: string | null; t: number; etiqueta?: string;
+  zurda?: boolean }) {
+  const vid = useRef<HTMLVideoElement>(null), lienzo = useRef<HTMLCanvasElement>(null);
+  const [ser, setSer] = useState<Serie | null>(null);
+  const video = s.video as string | undefined, series = s.series as string | undefined;
+  const vImpact = (s.vImpact as number | undefined) ?? null;
+  useEffect(() => {
+    let vivo = true;
+    if (medios && series) cargarSerie(s.id, medios + series).then((x) => vivo && setSer(x));
+    return () => { vivo = false; };
+  }, [s.id, medios, series]);
+  const pintar = () => {
+    const V = vid.current, C = lienzo.current;
+    if (!V || !C || !ser || !V.videoWidth) return;
+    C.width = V.videoWidth; C.height = V.videoHeight;
+    const cx = C.getContext("2d"), ti = vImpact ?? ser.impact / ser.fps;
+    if (cx) dibujar(cx, ser, Math.round((V.currentTime - ti) * ser.fps) + ser.impact - ser.first,
+      { cuerpo: true, raqueta: true, bola: true, medidas: false }, !!zurda, (s.vk as number) || 1);
+  };
+  useEffect(pintar, [ser]);                            // eslint-disable-line react-hooks/exhaustive-deps
+  if (!medios || !video || vImpact === null) {
+    return <div className="frame"><span className="tag">{etiqueta || "fotograma"}</span></div>;
+  }
+  return (
+    <div className="frame" data-fotograma style={{ background: "#000", aspectRatio: "16 / 9" }}>
+      <video ref={vid} src={medios + video} muted playsInline preload="auto"
+        style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }}
+        onLoadedMetadata={() => { if (vid.current) vid.current.currentTime = Math.max(0, vImpact + t); }}
+        onSeeked={pintar} />
+      <canvas ref={lienzo} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain",
+        pointerEvents: "none" }} />
+      {etiqueta ? <span className="tag">{etiqueta}</span> : null}
     </div>
   );
 }
