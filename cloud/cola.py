@@ -490,6 +490,9 @@ def summary(jobs: list[dict], state: dict, spend: dict, decisions: list, now: fl
     return "\n".join(rows) + "\n"
 
 
+SELF_CHECK = "/app/autocomprobacion.json"        # tennisbio.app.p0_api (tests/test_peticiones.py keeps them equal)
+
+
 def app_round(store, state: dict, jobs: list[dict], now: float, before: dict | None = None) -> dict:
     """P0.5d (docs/p0_plan.md §3 ter): the application's requests (/app/peticiones/ on the volume) read and turned into
     the queue's own jobs (tennisbio.infra.peticiones). A video goes only when its match's whole analysis is done and the
@@ -516,6 +519,11 @@ def app_round(store, state: dict, jobs: list[dict], now: float, before: dict | N
             gone.add(m)
     out["borrados"] = sorted(gone)
     out["hora"] = time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime(now))
+    # 21-11 (#310): the window's own check on the user's PC (tennisbio.app.p0_api.ApiVentana.autocomprobacion), so
+    # Claude reads in nube-logs whether the application works there, without asking anything (only counts, no images)
+    check = store.read_json(SELF_CHECK)
+    if isinstance(check, dict):
+        out["autocomprobacion"] = check
     return out
 
 

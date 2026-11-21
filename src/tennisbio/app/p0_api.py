@@ -175,6 +175,9 @@ def proponer(ruta: str, jugadora: str = "") -> dict:
                               ("ronda", p.get("round")), ("fecha", p.get("iso") or p.get("year"))) if v}
 
 
+SELF_CHECK = "/app/autocomprobacion.json"        # cloud/cola.py SELF_CHECK copies it to nube-logs (cola/app.json)
+
+
 class ApiVentana:
     """What the interface calls (ui/src/api.ts, by the same names), in the PC's window: pywebview's js_api object
     (P0.5e). `choose`: the window's file dialog (returns a path or None). Its own state is private (pywebview exposes an
@@ -186,12 +189,11 @@ class ApiVentana:
     def autocomprobacion(self, r: dict) -> dict:
         """21-11 (#310): the window's own check of its videos and series on this PC (ui/src/autocomprobacion.ts), said in
         its log and kept on the cloud's volume (/app/autocomprobacion.json), where Claude reads it."""
-        import time as _t
-        r = {**(r or {}), "cuando": _t.strftime("%Y-%m-%d %H:%M:%S")}
-        print(f"{_t.strftime('%H:%M:%S')} autocomprobación: {r.get('videos_ok')} de {r.get('probados')} vídeos se abren, "
+        r = {**(r or {}), "cuando": time.strftime("%Y-%m-%d %H:%M:%S")}
+        print(f"{time.strftime('%H:%M:%S')} autocomprobación: {r.get('videos_ok')} de {r.get('probados')} vídeos se abren, "
               f"{r.get('series_ok')} series ({r.get('origen')})", flush=True)
         try:
-            self._g._put_json("/app/autocomprobacion.json", r)
+            self._g._put_json(SELF_CHECK, r)
         except Exception as e:  # esperado: no connection: the log keeps it
             print(f"autocomprobación: no se pudo dejar en la nube ({type(e).__name__}: {e})", flush=True)
         return {"ok": True}

@@ -139,6 +139,13 @@ def test_a_dry_pass_of_the_queue_takes_the_applications_requests(tmp_path):
     ans = json.loads((logs / "cola" / "app.json").read_text(encoding="utf-8"))
     assert ans["pausa"]["en_pausa"] and "clic" in ans["esperas"][M] and len(ans["errores"]) == 2
     assert ans["partidos"][0]["id"] == M and "app.json" in cola.QUEUE_FILES
+    assert "autocomprobacion" not in ans                                   # the window has not checked itself yet
+    from tennisbio.app import p0_api
+    assert cola.SELF_CHECK == p0_api.SELF_CHECK
+    (root / "app" / "autocomprobacion.json").write_text(json.dumps({"probados": 3, "videos_ok": 3}), encoding="utf-8")
+    assert cola.main(["--cola", str(q), "--logs", str(logs), "--en-seco", "--peticiones", str(root)]) == 0
+    ans = json.loads((logs / "cola" / "app.json").read_text(encoding="utf-8"))
+    assert ans["autocomprobacion"] == {"probados": 3, "videos_ok": 3}      # in nube-logs, for Claude
 
 
 def test_a_match_names_its_players_record_and_is_refused_without_one():
