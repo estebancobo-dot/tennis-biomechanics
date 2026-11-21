@@ -387,6 +387,10 @@ def test_a_free_kaggle_session_with_quota_left_wakes_claude(monkeypatch):
     assert cola.idle_notice({}, spend, {"kaggle": {"ok": True, "libres": 1}}, NOV + 2 * 3600 + 120).startswith(
         "Kaggle: 1 de 2")
     assert cola.idle_notice({}, {}, free, NOV, paused=True) == ""
+    chain = [{"id": "t_a", "donde": "kaggle", "cpu": True}, {"id": "t_b", "donde": "kaggle", "tras": "t_a"}]
+    running_a = {"t_a": {"estado": "en_marcha", "donde": "kaggle", "cpu": True}}
+    assert cola.idle_notice(running_a, {}, free, NOV, jobs=chain) == ""          # t_b is about to take it
+    assert cola.idle_notice({"t_a": {"estado": "hecho"}, "t_b": {"estado": "hecho"}}, {}, free, NOV, jobs=chain) != ""
     monkeypatch.setattr(cola, "kaggle_room", lambda spend, now, state=None: 0.5)
     assert cola.idle_notice({}, {}, free, NOV) == ""                              # the week is spent
     src = (ROOT / "cloud" / "cola.py").read_text(encoding="utf-8")

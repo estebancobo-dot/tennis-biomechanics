@@ -791,7 +791,7 @@ def main(argv: list[str] | None = None) -> int:
         if jid in by_id and isinstance(st, dict):
             st.setdefault("partido", by_id[jid].get("partido", ""))
     idle = "" if a.en_seco else idle_notice(state, spend, _sources(Path.cwd(), queue, state), now,
-                                            bool((app or {}).get("pausa")))
+                                            bool((app or {}).get("pausa")), jobs)
     (d / "estado.json").write_text(json.dumps(state, ensure_ascii=False, indent=1), encoding="utf-8")
     (d / "gasto.json").write_text(json.dumps(spend, ensure_ascii=False, indent=1), encoding="utf-8")
     (d / "estado.md").write_text(summary(jobs, state, spend, decisions, now, (app or {}).get("pausa")), encoding="utf-8")
@@ -817,17 +817,30 @@ IDLE_REMIND_S = 2 * 3600
 IDLE_MIN_H = 1.0
 
 
-def idle_notice(state: dict, spend: dict, sources: dict, now: float, paused: bool = False) -> str:
-    """The mailbox line when a Kaggle GPU session is free and the week has at least IDLE_MIN_H left ('' otherwise, and
-    when the application paused the queue). Repeated every IDLE_REMIND_S while it stays so (spend['aviso_ocioso_ts'],
-    cleared when both sessions are busy, so the next free one is said at once)."""
+def _gpu_job_coming(jobs: list[dict], state: dict) -> bool:
+    """A Kaggle GPU job not started yet that waits only on a job now running (a test's GPU part after its CPU part):
+    the free session is about to be taken (21-11: the first notice came while v36_b waited for v36_a)."""
+    for j in jobs:
+        st = state.get(j.get("id")) or {}
+        if j.get("donde") == "kaggle" and not cpu_job(j) and st.get("estado", "pendiente") == "pendiente" \
+                and (state.get(j.get("tras") or "") or {}).get("estado") == "en_marcha":
+            return True
+    return False
+
+
+def idle_notice(state: dict, spend: dict, sources: dict, now: float, paused: bool = False,
+                jobs: list[dict] | None = None) -> str:
+    """The mailbox line when a Kaggle GPU session is free and the week has at least IDLE_MIN_H left ('' otherwise,
+    when the application paused the queue and when a GPU job is about to take it). Repeated every IDLE_REMIND_S while
+    it stays so (spend['aviso_ocioso_ts'], cleared when both sessions are busy, so the next free one is said at once)."""
     k = sources.get("kaggle") or {}
     if not k.get("ok"):
         if str(k.get("motivo", "")).startswith("ocupado"):
             spend.pop("aviso_ocioso_ts", None)
         return ""
     room = kaggle_room(spend, now, state)
-    if paused or room < IDLE_MIN_H or now - float(spend.get("aviso_ocioso_ts") or 0) < IDLE_REMIND_S:
+    if paused or room < IDLE_MIN_H or now - float(spend.get("aviso_ocioso_ts") or 0) < IDLE_REMIND_S \
+            or _gpu_job_coming(jobs or [], state):
         return ""
     spend["aviso_ocioso_ts"] = now
     n = k.get("libres", KAGGLE_SESSIONS)
