@@ -96,6 +96,8 @@ def estimate_h(job: dict) -> float:
     """Kaggle GPU hours a job may take (an upper estimate until measured); a CPU session takes none (#304)."""
     if cpu_job(job):
         return 0.0
+    if job.get("horas"):                         # 21-11: a job that says its own (F3Set: ~4.5 h on a T4)
+        return float(job["horas"])
     if job["accion"] == "partido":
         return round(KAGGLE_H_PER_VIDEO_MIN * float(job.get("minutos_video") or DEFAULT_VIDEO_MIN), 2)
     return KAGGLE_H.get(job["accion"], 1.0)

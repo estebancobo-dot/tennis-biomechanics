@@ -283,4 +283,9 @@ trabajos:
   # antes (tennisbio.infra.poc_app): al menos el 95 % abre su vídeo y el 95 % de esos dibuja el cuerpo en sus puntos, sin
   # errores de la página. Solo números salen de la sesión
   - {id: medir_app, accion: medir, prueba: app, donde: kaggle, cpu: true, tras: informe_beta3}
+  # 21-11 10:10 (#295, cierre de la nube nativa; sirve con cualquier decisión pendiente del usuario): F3Set con el código de
+  # hoy y todo lo adoptado (bola en un hilo, marcador con CUDA, jugadora lejana con RF-DETR…) frente a la nube2 (Modal,
+  # 14-11: 469 de 517, precisión 0,94), con el mismo script. Regla escrita antes (tennisbio.infra.poc_f3set): no peor en
+  # más de 2 golpes encontrados ni 0,005 de precisión; mejor se dice. ~4,5 h de GPU
+  - {id: medir_f3set_hoy, accion: medir, prueba: f3set, donde: kaggle, horas: 5}
   - {id: informe_6, accion: informe, tras: actualizar_zheng}
