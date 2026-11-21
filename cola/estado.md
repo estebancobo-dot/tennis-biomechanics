@@ -1,6 +1,6 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-21 03:54 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 25.7 h de GPU esta semana (tope 28 h; Kaggle dice 1.78 h usadas de 30.0, se renueva 2026-11-28 00:00)
+Última vuelta: 2026-11-21 03:59 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 26.2 h de GPU esta semana (tope 28 h; Kaggle dice 1.79 h usadas de 30.0, se renueva 2026-11-28 00:00)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
@@ -52,8 +52,8 @@
 | prueba_gauff_v34_sapiens2 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | error | kaggle |  |
 | comparar_gauff_v26_v34 | comparar |  | error |  | cancelado: sin la v34: se paró a los 5 min sin modelos (el ONNX de Sapiens2 se subió junto a /models/models/ y tapó los demás; arreglado); se compara con la v35 |
 | leer_v34 | leer |  | hecho | github | leídos: runs__kaggle_prueba_gauff_v34_sapiens2__log.txt |
-| prueba_gauff_v35_sapiens2 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: running (03:54), intento 1 · view_clips:  49 % (22/45 recortes de repeticiones y otras cámaras) · 2 min · quedan ≈ 2 min (03:51:53; GPU 0 %·0 %, CPU 81 %, 3.6 GB) |
-| comparar_gauff_v26_v35 | comparar |  | pendiente |  | espera a prueba_gauff_v35_sapiens2 |
+| prueba_gauff_v35_sapiens2 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
+| comparar_gauff_v26_v35 | comparar |  | revisar | github | distinta; 12 etapas iguales; distintas: fine, fine_doubtful, slowmo_fine, view_clips; strokes.json: 27 de 28/28 golpes emparejados, 2 distintos, medidas fuera de tolerancia: technique.pose.acceleration, technique.phases.acceleration.wrist_non_height, technique.pose.ready, racket_track; strokes.json: temblor de b frente a a ×1.00 (mediana de 4930 medidas; b tiembla menos en el 50 %); strokes_opponent.json: 0 de 0/0 golpes emparejados; strokes_doubtful.json: 1 de 1/1 golpes emparejados, medidas fuera de tolerancia: technique.phases.acceleration.shoulder_abd_non, technique.footwork.steps, techniq |
 | medir_bola_totnet_gpu | medir |  | hecho | kaggle |  |
 | prueba_gauff_v30_a | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
 | prueba_gauff_v30_b | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |

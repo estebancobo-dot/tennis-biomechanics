@@ -163,15 +163,16 @@
      "horas": 0.15
     },
     "prueba_gauff_v35_sapiens2": {
-     "estimado_h": 1.0
+     "estimado_h": 1.0,
+     "horas": 0.47
     }
    }
   }
  },
  "kaggle_real": {
-  "usadas_h": 1.78,
+  "usadas_h": 1.79,
   "total_h": 30.0,
   "renueva": "2026-11-28 00:00:00",
-  "ts": 1795233240.9041872
+  "ts": 1795233590.0014937
  }
 }
