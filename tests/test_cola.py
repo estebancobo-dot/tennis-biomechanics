@@ -738,3 +738,14 @@ def test_a_job_can_ask_for_kaggles_p100(monkeypatch):
     assert calls[-1][calls[-1].index("--maquina") + 1] == "p100"
     assert cola.kaggle_launch({"id": "m2", "accion": "medir", "prueba": "raqueta", "donde": "kaggle"})
     assert "--maquina" not in calls[-1]
+
+
+def test_a_notebook_stuck_in_kaggles_queue_is_relaunched_when_a_newer_one_started():
+    """21-11: two notebooks stayed «queued» for hours while a job launched after them started at once (Kaggle had free
+    GPUs): after 45 min, with a newer job started, the stuck one goes to a new notebook without waiting 3 h."""
+    st = {"lanzado_ts": NOV - 50 * 60, "intentos": 1}
+    assert cola.kaggle_step(st, "queued", None, NOV) == ("nada", "")                     # alone: Kaggle may be busy
+    act, why = cola.kaggle_step(st, "queued", None, NOV, newer_started=True)
+    assert act == "relanzar" and "atascado" in why
+    assert cola.kaggle_step({"lanzado_ts": NOV - 20 * 60}, "queued", None, NOV, True) == ("nada", "")
+    assert cola.kaggle_step({"lanzado_ts": NOV - 4 * 3600}, "queued", None, NOV)[0] == "relanzar"

@@ -80,7 +80,8 @@ def slug_for(job_id: str) -> str:
     return "tennisbio-" + (re.sub(r"[^a-z0-9]+", "-", str(job_id).lower()).strip("-") or "trabajo")
 
 
-# 21-11: Kaggle's free GPUs; the T4s were queued for hours (busy): a job may ask for the P100 (the same week's hours)
+# 21-11: Kaggle's free GPUs; a job may ask for the P100 (the same week's hours). Measured the same day: Kaggle answered
+# a P100 request (medir_raqueta_p100) with 2 T4s at once: the hours-long «queued» were stuck notebooks, not busy T4s
 MACHINES = {"t4": "NvidiaTeslaT4", "p100": "NvidiaTeslaP100"}
 
 

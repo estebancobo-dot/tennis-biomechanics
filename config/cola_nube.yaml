@@ -300,4 +300,7 @@ trabajos:
   # cuota)? Las librerías nuevas pueden no soportarla (calcularía en la CPU sin decirlo): la medida de inferencia de la
   # raqueta en la P100 dice si ONNX Runtime usa CUDA de verdad (T6: 10,5 ms por imagen en una T4; en la CPU, ~40)
   - {id: medir_raqueta_p100, accion: medir, prueba: raqueta, donde: kaggle, maquina: p100}
+  # 21-11 13:30: Kaggle dio 2 T4 al momento a la de arriba (no hizo caso a la P100): las T4 estaban libres y los cuadernos
+  # de F3Set y MeTRAbs, atascados en su cola (R45). MeTRAbs otra vez, en un cuaderno nuevo
+  - {id: medir_3d_metrabs_c, accion: medir, prueba: 3d, donde: kaggle, horas: 2}
   - {id: informe_6, accion: informe, tras: actualizar_zheng}

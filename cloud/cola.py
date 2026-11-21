@@ -166,7 +166,12 @@ def fresh(result: dict | None, st: dict) -> bool:
     return started >= float(st.get("lanzado_ts", 0.0)) - 300
 
 
-def kaggle_step(st: dict, kstatus: str, result: dict | None, now: float) -> tuple[str, str]:
+# 21-11: a notebook left «queued» for hours while a job launched after it started at once (medir_raqueta_p100, 13:11):
+# Kaggle had free GPUs and that notebook was stuck (R45); it is launched again in a new one without waiting 3 h
+STUCK_QUEUE_S = 45 * 60
+
+
+def kaggle_step(st: dict, kstatus: str, result: dict | None, now: float, newer_started: bool = False) -> tuple[str, str]:
     """What to do with a running Kaggle job: («recoger» | «relanzar» | «error» | «nada», reason). Its estado.json on
     Modal decides when it is final; else Kaggle's own status: queued too long, ended with an error, or ended (12 h at
     most) without the job done → launched again (it goes on from what it saved), up to KAGGLE_TRIES."""
@@ -174,6 +179,9 @@ def kaggle_step(st: dict, kstatus: str, result: dict | None, now: float) -> tupl
         return "recoger", ""
     if kstatus == "queued" and now - float(st.get("lanzado_ts", now)) > KAGGLE_QUEUE_MAX_S:
         why = f"en cola de Kaggle más de {KAGGLE_QUEUE_MAX_S // 60} min sin arrancar"
+    elif kstatus == "queued" and newer_started and now - float(st.get("lanzado_ts", now)) > STUCK_QUEUE_S:
+        why = (f"en cola de Kaggle más de {STUCK_QUEUE_S // 60} min mientras otro trabajo lanzado después ya arrancó "
+               "(cuaderno atascado)")
     elif kstatus == "desconocido" and now - float(st.get("lanzado_ts", now)) > 600:
         # 14-11: a launch Kaggle refused (or a notebook it does not know) left the job «running» with nothing behind it
         why = "Kaggle no tiene ninguna sesión de este trabajo"
@@ -731,7 +739,9 @@ def main(argv: list[str] | None = None) -> int:
                 note_start(st, kst, now)
                 print(f"{jid}: Kaggle dice «{kst}»; lanzado hace {(now - float(st.get('lanzado_ts', now))) / 60:.0f} min, "
                       f"intento {st.get('intentos', 1)}")
-                act, why = kaggle_step(st, kst, res, now)
+                newer = any(isinstance(o, dict) and o is not st and o.get("donde") == "kaggle" and o.get("arranco")
+                            and float(o.get("lanzado_ts", 0)) > float(st.get("lanzado_ts", 0)) for o in state.values())
+                act, why = kaggle_step(st, kst, res, now, newer)
                 if act == "relanzar":
                     print(f"{jid}: {why}: se lanza otra vez")
                     if kst == "queued":                  # #290: its stuck notebook is deleted first (frees its session)
