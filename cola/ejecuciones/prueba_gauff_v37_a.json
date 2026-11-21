@@ -1,0 +1,100 @@
+{
+ "estado": "hecho",
+ "segundos": 731,
+ "horas_kaggle": 0.23,
+ "coste_usd": 0.0,
+ "gpu": null,
+ "etapas": {
+  "probe": 1.2,
+  "scenes": 553.0,
+  "court": 126.7,
+  "audio": 40.9
+ },
+ "recursos": {
+  "muestras": 12,
+  "cpu_pct": {
+   "media": 63.9,
+   "max": 80.0
+  },
+  "ram_gb": {
+   "media": 2.5,
+   "max": 2.6
+  }
+ },
+ "recursos_por_etapa": {
+  "probe": {
+   "s": 1,
+   "muestras": 0
+  },
+  "scenes": {
+   "s": 553,
+   "muestras": 9,
+   "cpu_pct": {
+    "media": 62.7,
+    "max": 64.5
+   },
+   "ram_gb": {
+    "media": 2.6,
+    "max": 2.6
+   }
+  },
+  "court": {
+   "s": 127,
+   "muestras": 2,
+   "cpu_pct": {
+    "media": 72.0,
+    "max": 80.0
+   },
+   "ram_gb": {
+    "media": 2.4,
+    "max": 2.4
+   }
+  },
+  "audio": {
+   "s": 41,
+   "muestras": 1,
+   "cpu_pct": {
+    "media": 57.4,
+    "max": 57.4
+   },
+   "ram_gb": {
+    "media": 2.3,
+    "max": 2.3
+   }
+  }
+ },
+ "modelos_en_cpu": 0,
+ "fallos": {},
+ "sin_subir": [],
+ "config": {
+  "fine_pass": {
+   "far_detector": "rfdetr"
+  }
+ },
+ "config_local": {
+  "registry": {
+   "source": "yaml"
+  },
+  "device": "auto",
+  "fine_pass": {
+   "far_detector": "rfdetr"
+  }
+ },
+ "kaggle": {
+  "python": "3.13.18",
+  "nucleos": 4,
+  "memoria_gib": {
+   "MemTotal": 31.3,
+   "MemAvailable": 30.1
+  },
+  "disco_libre_gib": {
+   "/tmp": 2514.5,
+   "/kaggle/working": 19.5
+  },
+  "gpu": "",
+  "ffmpeg": "/usr/bin/ffmpeg",
+  "clave_modal": true
+ },
+ "nota": null,
+ "modelos_en_cpu_registro": 0
+}

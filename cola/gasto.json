@@ -172,15 +172,17 @@
     },
     "prueba_gauff_v36_b": {
      "estimado_h": 1.0
+    },
+    "prueba_gauff_v37_b": {
+     "estimado_h": 1.0
     }
    }
   }
  },
  "kaggle_real": {
-  "usadas_h": 1.98,
+  "usadas_h": 2.06,
   "total_h": 30.0,
   "renueva": "2026-11-28 00:00:00",
-  "ts": 1795245150.932623
- },
- "aviso_ocioso_ts": 1795242233.8995059
+  "ts": 1795245457.437732
+ }
 }
