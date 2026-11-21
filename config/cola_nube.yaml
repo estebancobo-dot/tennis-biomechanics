@@ -180,6 +180,9 @@ trabajos:
   # los modelos). La misma prueba que la v34 (con las normalizaciones reescaladas) y la misma regla escrita
   - {id: prueba_gauff_v35_sapiens2, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, config: {fine_pass: {refine: sapiens2}}}
   - {id: comparar_gauff_v26_v35, accion: comparar, a: prueba_gauff_v26, b: prueba_gauff_v35_sapiens2}
+  # 21-11 05:05: la v35 no pasa su regla (27 de 28, temblor ×1,00) aunque la PoC dio −36 % en los puntos del cuerpo: los
+  # golpes de ambas para ver el temblor por familias de medidas (cuerpo, pies, raqueta) y por qué no se nota
+  - {id: leer_v26_v35, accion: leer, rutas: [/kaggle_pruebas/prueba_gauff_v26/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5/strokes.json, /kaggle_pruebas/prueba_gauff_v35_sapiens2/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5/strokes.json]}
   # 15-11 23:20: la misma medida en GPU (en CPU serían ~20 h, más que las 12 h de una sesión); ~0,3-0,5 h de GPU
   - {id: medir_bola_totnet_gpu, accion: medir, prueba: bola, donde: kaggle}
   # 15-11 20:10 (R55): la v29 no valió (cada parte repetía las etapas con modelos: la huella de un modelo llevaba la fecha
