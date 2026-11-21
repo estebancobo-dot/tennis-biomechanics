@@ -1,6 +1,6 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-21 07:32 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 24.7 h de GPU esta semana (tope 28 h; Kaggle dice 2.51 h usadas de 30.0, se renueva 2026-11-28 00:00)
+Última vuelta: 2026-11-21 07:33 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 24.7 h de GPU esta semana (tope 28 h; Kaggle dice 2.52 h usadas de 30.0, se renueva 2026-11-28 00:00)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
@@ -59,10 +59,10 @@
 | medir_lejana_rfdetr | medir |  | hecho | kaggle |  |
 | prueba_gauff_v36_a | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
 | prueba_gauff_v36_b | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
-| prueba_gauff_v36_c | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle |  |
+| prueba_gauff_v36_c | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: running (07:33), intento 1 |
 | comparar_gauff_v32_v36 | comparar |  | pendiente |  | espera a prueba_gauff_v36_c |
 | prueba_gauff_v37_a | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
-| prueba_gauff_v37_b | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: running (07:32), intento 1 · fine:  25 % (7/28 golpes candidatos · 7 confirmados · 0 ventanas descartadas sin pose) · 2 min · quedan ≈ 5 min (07:30:57; GPU 0 %·0 %, CPU 86 %, 11.1 GB) |
+| prueba_gauff_v37_b | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: running (07:33), intento 1 · fine:  25 % (7/28 golpes candidatos · 7 confirmados · 0 ventanas descartadas sin pose) · 2 min · quedan ≈ 5 min (07:30:57; GPU 0 %·0 %, CPU 86 %, 11.1 GB) |
 | prueba_gauff_v37_c | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | pendiente |  | espera a prueba_gauff_v37_b (en_marcha) |
 | comparar_gauff_v36_v37 | comparar |  | pendiente |  | espera a prueba_gauff_v36_c, prueba_gauff_v37_c |
 | medir_bola_totnet_gpu | medir |  | hecho | kaggle |  |
