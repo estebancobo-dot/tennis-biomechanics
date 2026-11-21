@@ -1592,7 +1592,7 @@
   }
  },
  "prueba_gauff_v37_c": {
-  "estado": "en_marcha",
+  "estado": "hecho",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 1,
@@ -1604,13 +1604,20 @@
   "salida": "/kaggle_pruebas/prueba_gauff_v37_a/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cpu": true,
   "cuaderno": "tennisbio-prueba-gauff-v37-c",
-  "kaggle": "running (07:48)",
+  "kaggle": "complete (07:58)",
   "arranco": "2026-11-21 07:40",
   "espera_min": 2,
-  "progreso": "view_clips:  36 % (16/45 recortes de repeticiones y otras cámaras) · 64 s · quedan ≈ 2 min (07:46:33; CPU 66 %, 2.7 GB)"
+  "progreso": "slowmo_fine terminada a las 07:51:05 en 2.0 min (07:51:05)",
+  "fin": "2026-11-21 07:58",
+  "resultado": {
+   "estado": "hecho",
+   "coste_usd": 0.0,
+   "segundos": 671,
+   "horas_kaggle": 0.21
+  }
  },
  "informe_beta2": {
-  "estado": "en_marcha",
+  "estado": "hecho",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 1,
@@ -1621,9 +1628,20 @@
   "ruta": "/runs/informe_beta2/estado.json",
   "cpu": true,
   "cuaderno": "tennisbio-informe-beta2",
-  "kaggle": "running (07:48)",
+  "kaggle": "complete (07:58)",
   "arranco": "2026-11-21 07:43",
-  "espera_min": 3
+  "espera_min": 3,
+  "fin": "2026-11-21 07:58",
+  "resultado": {
+   "estado": "hecho",
+   "coste_usd": 0.0,
+   "segundos": 309,
+   "codigos": {
+    "informe": 0,
+    "auditoria": 0
+   },
+   "horas_kaggle": 0.17
+  }
  },
  "comparar_gauff_v32_v36": {
   "estado": "hecho",
@@ -1636,5 +1654,30 @@
    "nota": "equivalente; 15 etapas iguales; strokes.json: 28 de 28/28 golpes emparejados; strokes_opponent.json: 0 de 0/0 golpes emparejados; strokes_doubtful.json: 1 de 1/1 golpes emparejados"
   },
   "partido": ""
+ },
+ "comparar_gauff_v36_v37": {
+  "estado": "revisar",
+  "accion": "comparar",
+  "donde": "github",
+  "fin": "2026-11-21 07:58",
+  "resultado": {
+   "estado": "revisar",
+   "veredicto": "distinta",
+   "nota": "distinta; 14 etapas iguales; distintas: fine; strokes.json: 28 de 28/28 golpes emparejados, medidas fuera de tolerancia: height_scale.px; strokes.json: temblor de b frente a a ×1.00 (mediana de 5337 medidas; b tiembla menos en el 0 %); strokes.json: temblor por familias: brazos ×1.00, muñecas ×1.00, otras ×1.00, piernas ×1.00, pies ×1.00, raqueta ×1.00, tronco ×1.00; strokes_opponent.json: 0 de 0/0 golpes emparejados; strokes_doubtful.json: 1 de 1/1 golpes emparejados"
+  },
+  "partido": ""
+ },
+ "informe_beta3": {
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1795247924.579727,
+  "accion": "informe",
+  "partido": "",
+  "inicio": "2026-11-21 07:58",
+  "ruta": "/runs/informe_beta3/estado.json",
+  "cpu": true,
+  "cuaderno": "tennisbio-informe-beta3"
  }
 }

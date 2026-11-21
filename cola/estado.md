@@ -1,6 +1,6 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-21 07:48 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 25.4 h de GPU esta semana (tope 28 h; Kaggle dice 2.58 h usadas de 30.0, se renueva 2026-11-28 00:00)
+Última vuelta: 2026-11-21 07:58 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 25.4 h de GPU esta semana (tope 28 h; Kaggle dice 2.58 h usadas de 30.0, se renueva 2026-11-28 00:00)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
@@ -63,8 +63,8 @@
 | comparar_gauff_v32_v36 | comparar |  | hecho | github | equivalente; 15 etapas iguales; strokes.json: 28 de 28/28 golpes emparejados; strokes_opponent.json: 0 de 0/0 golpes emparejados; strokes_doubtful.json: 1 de 1/1 golpes emparejados |
 | prueba_gauff_v37_a | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
 | prueba_gauff_v37_b | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
-| prueba_gauff_v37_c | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: running (07:48), intento 1 · view_clips:  36 % (16/45 recortes de repeticiones y otras cámaras) · 64 s · quedan ≈ 2 min (07:46:33; CPU 66 %, 2.7 GB) |
-| comparar_gauff_v36_v37 | comparar |  | pendiente |  | espera a prueba_gauff_v37_c |
+| prueba_gauff_v37_c | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
+| comparar_gauff_v36_v37 | comparar |  | revisar | github | distinta; 14 etapas iguales; distintas: fine; strokes.json: 28 de 28/28 golpes emparejados, medidas fuera de tolerancia: height_scale.px; strokes.json: temblor de b frente a a ×1.00 (mediana de 5337 medidas; b tiembla menos en el 0 %); strokes.json: temblor por familias: brazos ×1.00, muñecas ×1.00, otras ×1.00, piernas ×1.00, pies ×1.00, raqueta ×1.00, tronco ×1.00; strokes_opponent.json: 0 de 0/0 golpes emparejados; strokes_doubtful.json: 1 de 1/1 golpes emparejados |
 | medir_bola_totnet_gpu | medir |  | hecho | kaggle |  |
 | prueba_gauff_v30_a | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
 | prueba_gauff_v30_b | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
@@ -105,6 +105,6 @@
 | actualizar_zheng_b | partido | zheng-qinwen-elena-rybakina | pendiente |  | espera a actualizar_zheng_a (pendiente) |
 | actualizar_zheng | partido | zheng-qinwen-elena-rybakina | pendiente |  | espera a actualizar_zheng_b (pendiente) |
 | informe_beta | informe |  | hecho | modal |  |
-| informe_beta2 | informe |  | en_marcha | kaggle | Kaggle: running (07:48), intento 1 |
-| informe_beta3 | informe |  | pendiente |  | espera a informe_beta2 (en_marcha) |
+| informe_beta2 | informe |  | hecho | kaggle |  |
+| informe_beta3 | informe |  | en_marcha | kaggle |  |
 | informe_6 | informe |  | pendiente |  | espera a actualizar_zheng (pendiente) |

@@ -1,0 +1,160 @@
+{
+ "estado": "hecho",
+ "segundos": 671,
+ "horas_kaggle": 0.21,
+ "coste_usd": 0.0,
+ "gpu": null,
+ "etapas": {
+  "probe": 1.2,
+  "scenes": 553.0,
+  "court": 126.7,
+  "audio": 40.9,
+  "score": 68.3,
+  "players": 78.1,
+  "identity": 44.4,
+  "spotting": 208.5,
+  "candidates": 1.3,
+  "fine": 569.1,
+  "fine_opponent": 0.0,
+  "fine_doubtful": 44.1,
+  "views": 327.8,
+  "views_link": 0.1,
+  "view_clips": 214.6,
+  "slowmo_fine": 121.9
+ },
+ "recursos": {
+  "muestras": 11,
+  "cpu_pct": {
+   "media": 67.5,
+   "max": 87.3
+  },
+  "ram_gb": {
+   "media": 3.3,
+   "max": 4.0
+  }
+ },
+ "recursos_por_etapa": {
+  "probe": {
+   "s": 1,
+   "muestras": 0
+  },
+  "scenes": {
+   "s": 553,
+   "muestras": 0
+  },
+  "court": {
+   "s": 127,
+   "muestras": 0
+  },
+  "audio": {
+   "s": 41,
+   "muestras": 0
+  },
+  "score": {
+   "s": 68,
+   "muestras": 0
+  },
+  "players": {
+   "s": 78,
+   "muestras": 0
+  },
+  "identity": {
+   "s": 44,
+   "muestras": 0
+  },
+  "spotting": {
+   "s": 208,
+   "muestras": 0
+  },
+  "candidates": {
+   "s": 1,
+   "muestras": 0
+  },
+  "fine": {
+   "s": 569,
+   "muestras": 0
+  },
+  "fine_opponent": {
+   "s": 0,
+   "muestras": 0
+  },
+  "fine_doubtful": {
+   "s": 44,
+   "muestras": 0
+  },
+  "views": {
+   "s": 328,
+   "muestras": 5,
+   "cpu_pct": {
+    "media": 59.2,
+    "max": 82.6
+   },
+   "ram_gb": {
+    "media": 3.7,
+    "max": 4.0
+   }
+  },
+  "views_link": {
+   "s": 0,
+   "muestras": 0
+  },
+  "view_clips": {
+   "s": 215,
+   "muestras": 4,
+   "cpu_pct": {
+    "media": 81.5,
+    "max": 87.3
+   },
+   "ram_gb": {
+    "media": 2.9,
+    "max": 2.9
+   }
+  },
+  "slowmo_fine": {
+   "s": 122,
+   "muestras": 2,
+   "cpu_pct": {
+    "media": 56.1,
+    "max": 57.3
+   },
+   "ram_gb": {
+    "media": 3.3,
+    "max": 3.3
+   }
+  }
+ },
+ "modelos_en_cpu": 0,
+ "fallos": {},
+ "sin_subir": [],
+ "config": {
+  "fine_pass": {
+   "far_detector": "rfdetr"
+  }
+ },
+ "config_local": {
+  "registry": {
+   "source": "yaml"
+  },
+  "device": "auto",
+  "fine_pass": {
+   "far_detector": "rfdetr"
+  }
+ },
+ "kaggle": {
+  "python": "3.13.18",
+  "nucleos": 4,
+  "memoria_gib": {
+   "MemTotal": 31.3,
+   "MemAvailable": 30.2
+  },
+  "disco_libre_gib": {
+   "/tmp": 2514.5,
+   "/kaggle/working": 19.5
+  },
+  "gpu": "",
+  "ffmpeg": "/usr/bin/ffmpeg",
+  "clave_modal": true
+ },
+ "nota": null,
+ "modelos_en_cpu_registro": 0
+}
