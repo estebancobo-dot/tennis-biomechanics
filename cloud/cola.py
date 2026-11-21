@@ -638,6 +638,30 @@ def kaggle_launch(job: dict, slug: str | None = None) -> bool:
     return True
 
 
+ADOPT = ("running", "queued", "complete", "error")
+
+
+def kaggle_start(job: dict, state: dict, spend: dict, now: float, since: float) -> str:
+    """Start a Kaggle job: «adoptado» | «lanzado» | «rechazado». 21-11 23:01: a pass pushed sinner_b and F3Set's notebooks
+    and then fell over (a comparison's import) before saving its state; the next passes did not know them and pushed
+    them again («Maximum batch GPU session count of 2 reached»): once they ended, the queue would have run them twice.
+    So a job never recorded whose notebook Kaggle already has is adopted, as launched by that pass (`since`, the last
+    pass that saved its state, so its estado.json is taken as this launch's: fresh); otherwise it is pushed."""
+    jid, slug = job["id"], notebook_slug(job["id"])
+    kst = kaggle_status(jid, slug)
+    if kst in ADOPT:
+        record_launch(state, spend, job, "kaggle", "kaggle", since)
+        state[jid].update(cuaderno=slug, adoptado=f"ya estaba en Kaggle («{kst}»): una vuelta anterior lo lanzó sin "
+                                                  "guardar su estado")
+        return "adoptado"
+    if kaggle_launch(job):
+        record_launch(state, spend, job, "kaggle", "kaggle", now)
+        state[jid]["cuaderno"] = slug
+        return "lanzado"
+    state.setdefault(jid, {})["aviso"] = f"Kaggle no lo aceptó: {LAST_REFUSAL['text']}"     # launched again next pass
+    return "rechazado"
+
+
 def push_refused(text: str) -> str:
     """Kaggle's refusal of a push, which its CLI prints with exit code 0 (14-11: «Kernel push error: Maximum batch GPU
     session count of 2 reached.» was taken for a launch for two hours)."""
@@ -683,6 +707,7 @@ def main(argv: list[str] | None = None) -> int:
     d = a.logs / "cola"
     d.mkdir(parents=True, exist_ok=True)
     state, spend = _load(d / "estado.json", {}), _load(d / "gasto.json", {})
+    since = float((_load(d / "vuelta.json", {}) or {}).get("ts") or now - 600)     # the last pass that saved its state
     before = json.loads(json.dumps(state))             # #291: what changed in this pass wakes Claude (avisos)
     set_base(spend, queue.get("gasto_modal_base") or {})
     done_f = d / "reinicios.json"
@@ -799,14 +824,15 @@ def main(argv: list[str] | None = None) -> int:
             continue
         j = by_id[jid]
         if src == "github":                              # T9: a comparison, here and now (no GPU); R52: a reading
-            (read_job if j["accion"] == "leer" else compare_job)(vol, j, state, d, now)
+            try:
+                (read_job if j["accion"] == "leer" else compare_job)(vol, j, state, d, now)
+            except Exception as e:  # noqa: BLE001 — 21-11 23:01: one comparison's failure lost the whole pass's state
+                print(f"{jid}: falló en la cola ({type(e).__name__}: {e}); se intenta otra vez en la próxima vuelta")
+                state.setdefault(jid, {})["aviso"] = f"falló en la cola: {type(e).__name__}: {str(e)[:200]}"
             continue
         if src == "kaggle":
-            if kaggle_launch(j):
-                record_launch(state, spend, j, "kaggle", "kaggle", now)
-                state[jid]["cuaderno"] = notebook_slug(jid)
-            else:                                        # said in the summary, launched again next pass
-                state.setdefault(jid, {})["aviso"] = f"Kaggle no lo aceptó: {LAST_REFUSAL['text']}"
+            r = kaggle_start(j, state, spend, now, since)
+            print(f"{jid}: {r}" + (f" ({state[jid].get('adoptado')})" if r == "adoptado" else ""))
             continue
         if src != "modal":
             continue

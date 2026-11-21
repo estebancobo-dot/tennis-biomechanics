@@ -776,3 +776,45 @@ def test_a_part_also_waits_for_another_job_without_running_on_it():
     q = yaml.safe_load((ROOT / "config" / "cola_nube.yaml").read_text(encoding="utf-8"))
     by = {j["id"]: j for j in q["trabajos"]}
     assert not by["sinner_a"].get("tras") and by["sinner_b"]["espera_tambien"] == ["prueba_sinner_b"]
+
+
+def test_a_notebook_already_in_kaggle_is_adopted_not_pushed_again(monkeypatch):
+    """21-11 23:01: a pass pushed sinner_b's notebook and fell over before saving its state; the next ones pushed it again
+    (refused: 2 sessions). A job never recorded whose notebook Kaggle has is adopted as launched by the last saved pass,
+    so its results are taken (fresh) and it is never run twice; without a notebook, it is pushed as before."""
+    job = {"id": "sinner_b", "accion": "partido", "partido": "s", "donde": "kaggle", "etapas": ["fine"], "aprobado": True}
+    pushed = []
+    monkeypatch.setattr(cola, "kaggle_launch", lambda j, slug=None: pushed.append(j["id"]) or True)
+    for kst in ("running", "queued", "complete"):
+        monkeypatch.setattr(cola, "kaggle_status", lambda jid, slug=None, k=kst: k)
+        state, spend = {}, {}
+        assert cola.kaggle_start(job, state, spend, NOV, NOV - 1800) == "adoptado"
+        st = state["sinner_b"]
+        assert st["estado"] == "en_marcha" and st["lanzado_ts"] == NOV - 1800 and st["cuaderno"] == cola.notebook_slug("sinner_b")
+        assert kst in st["adoptado"] and not pushed
+        res = {"estado": "hecho", "inicio": time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(NOV - 1500))}
+        assert cola.fresh(res, st)                                   # its own results are taken
+    monkeypatch.setattr(cola, "kaggle_status", lambda jid, slug=None: "desconocido")
+    state = {}
+    assert cola.kaggle_start(job, state, {}, NOV, NOV - 1800) == "lanzado" and pushed == ["sinner_b"]
+    assert state["sinner_b"]["lanzado_ts"] == NOV
+    monkeypatch.setattr(cola, "kaggle_launch", lambda j, slug=None: False)
+    cola.LAST_REFUSAL["text"] = "Maximum batch GPU session count of 2 reached."
+    state = {}
+    assert cola.kaggle_start(job, state, {}, NOV, NOV - 1800) == "rechazado" and "2 reached" in state["sinner_b"]["aviso"]
+
+
+def test_a_failing_comparison_does_not_lose_the_pass(tmp_path, monkeypatch):
+    """21-11 23:01: compare_job's import failed (numpy, not in the queue's runner) and the pass ended with no state
+    saved. Now it is said in the job's row and the pass goes on (and equivalence uses the standard library only)."""
+    src = (ROOT / "cloud" / "cola.py").read_text(encoding="utf-8")
+    assert "except Exception as e:  # noqa: BLE001 — 21-11 23:01" in src
+    import subprocess as sp
+    import sys as _sys
+    code = ("import sys\nclass B:\n def find_spec(self, n, p=None, t=None):\n  if n.split('.')[0] in ('numpy', 'pandas'):"
+            " raise ImportError(n)\nsys.meta_path.insert(0, B())\nsys.path.insert(0, 'src')\n"
+            "import tennisbio.infra.equivalence as e\nprint(e.trunk3d_summary([{'metrics': {'x_factor_3d_deg': 10}},"
+            " {'metrics': {'x_factor_3d_deg': 14}}])['x_factor_3d_deg'])")
+    r = sp.run([_sys.executable, "-c", code], cwd=ROOT, capture_output=True, text=True)
+    assert r.returncode == 0, r.stderr[-500:]
+    assert "'golpes': 2" in r.stdout and "'mad': 2.0" in r.stdout

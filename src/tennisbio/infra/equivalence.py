@@ -15,9 +15,8 @@ from __future__ import annotations
 
 import json
 import math
+import statistics
 from pathlib import Path
-
-import numpy as np
 
 TIME_TOL_S = 0.05                 # one frame at 25 fps, two at 50
 REL_TOL = 0.01                    # a measure may differ by 1 % of its value …
@@ -168,9 +167,10 @@ def trunk3d_summary(strokes: list[dict]) -> dict:
     reading with less noise (there is no 3D reference from the TV's view)."""
     out = {}
     for k in TRUNK3D_KEYS:
-        v = np.array([float((s.get("metrics") or {}).get(k)) for s in strokes
-                      if isinstance((s.get("metrics") or {}).get(k), (int, float))], float)
-        out[k] = {"golpes": int(len(v)), "mad": round(float(np.median(np.abs(v - np.median(v)))), 2) if len(v) else None}
+        v = [float((s.get("metrics") or {}).get(k)) for s in strokes
+             if isinstance((s.get("metrics") or {}).get(k), (int, float))]
+        md = statistics.median(v) if v else None
+        out[k] = {"golpes": len(v), "mad": round(statistics.median([abs(x - md) for x in v]), 2) if v else None}
     return out
 
 
