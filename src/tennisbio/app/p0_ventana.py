@@ -103,24 +103,37 @@ def main(store=None, why: str = "sin la nube", out_root: Path | None = None) -> 
         log(f"resultados de la nube: {r}")
         return r
 
-    def traer() -> dict:                 # the button «Traer resultados de la nube»
-        r = pull()
-        if r.get("ok") and r.get("bajados"):
-            make_page()
-            r["recargar"] = True
-        return r
+    import threading
+    busy = threading.Lock()
 
-    if store:                            # on opening, the latest results first
-        pull()
-    datos = make_page()
-    try:
+    def traer() -> dict:                 # the button «Traer resultados de la nube», and the opening's (below)
+        if not busy.acquire(blocking=False):
+            return {"ok": False, "motivo": "ya se están trayendo los resultados de la nube; la página se recarga al terminar"}
+        try:
+            r = pull()
+            if r.get("ok") and r.get("bajados"):
+                make_page()
+                r["recargar"] = True
+            return r
+        finally:
+            busy.release()
+
+    datos = make_page()                  # 21-11: the window opens at once with what the PC has (a first download of
+    try:                                 # the results, videos included, can take minutes)
         import webview
     except ImportError:  # esperado: without the window engine, the page opens in the browser (read-only)
         import webbrowser
+        if store:
+            traer()
         log("sin pywebview: se abre en el navegador, solo para mirar")
         webbrowser.open(page.as_uri())
         return 0
     holder: dict = {}
+
+    def opening() -> None:               # in pywebview's thread once the window is up: the latest results, then reload
+        r = traer()
+        if r.get("recargar") and holder.get("w"):
+            holder["w"].load_url(str(page))
 
     def choose():
         r = holder["w"].create_file_dialog(webview.OPEN_DIALOG, allow_multiple=False,
@@ -134,7 +147,7 @@ def main(store=None, why: str = "sin la nube", out_root: Path | None = None) -> 
         holder["w"] = webview.create_window("TennisBio (nueva)", url=str(page), js_api=api, width=1440, height=900,
                                             min_size=(1000, 650))
         log("ventana abierta")
-        webview.start()
+        webview.start(opening if store else None)
     except Exception as e:  # esperado: no window engine (WebView2): the page in the browser, read-only, logged
         import webbrowser
         log(f"la ventana no se pudo abrir ({type(e).__name__}: {e}); se abre en el navegador, solo para mirar")

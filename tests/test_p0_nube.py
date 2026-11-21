@@ -89,3 +89,28 @@ def test_the_cloud_writes_the_list_the_application_reads():
     import correr
     assert p0_nube.MANIFEST == "/output/" + correr.APP_MANIFEST
     assert "modal" not in (ROOT / "src" / "tennisbio" / "app" / "p0_nube.py").read_text(encoding="utf-8").split('"""', 2)[2]
+
+
+def test_the_window_opens_at_once_and_brings_the_results_behind_it(tmp_path, monkeypatch):
+    """21-11: a first download of the results (videos included) can take minutes: the window opens with what the PC
+    has, the results come in pywebview's thread once it is up, and the page is loaded again when they are in."""
+    import types
+    from tennisbio.app import p0_app
+    monkeypatch.setattr(p0_app, "datos_beta", lambda report, audit, est, m: {"player": {"name": "X"}, "strokes": []})
+    events = []
+
+    class W:
+        def load_url(self, url):
+            events.append(("recarga", Path(url).name))
+
+    fake = types.SimpleNamespace(OPEN_DIALOG=0,
+                                 create_window=lambda *a, **k: events.append(("ventana", Path(k["url"]).name)) or W(),
+                                 start=lambda func=None: events.append(("arranca", func is not None)) or (func and func()))
+    monkeypatch.setitem(sys.modules, "webview", fake)
+    store = _cloud(tmp_path, {"informe_derecha/index.html": b"<html>nube</html>", "auditoria/auditoria.json": b"{}"})
+    out = tmp_path / "salida"
+    real_pull = p0_nube.pull
+    monkeypatch.setattr(p0_nube, "pull", lambda *a, **k: events.append(("trae",)) or real_pull(*a, **k))
+    assert p0_ventana.main(store, out_root=out) == 0
+    assert events == [("ventana", "index.html"), ("arranca", True), ("trae",), ("recarga", "index.html")], events
+    assert (out / "nube" / "informe_derecha" / "index.html").exists()
