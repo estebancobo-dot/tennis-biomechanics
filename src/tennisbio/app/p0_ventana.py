@@ -133,7 +133,11 @@ def main(store=None, why: str = "sin la nube", out_root: Path | None = None) -> 
     def opening() -> None:               # in pywebview's thread once the window is up: the latest results, then reload
         r = traer()
         if r.get("recargar") and holder.get("w"):
-            holder["w"].load_url(str(page))
+            try:                         # 21-11: the page asks itself to load again (the same address), and it is said
+                holder["w"].evaluate_js("window.location.reload()")
+                log("página recargada con los resultados de la nube")
+            except Exception as e:  # esperado: a window that cannot run it: said, and opening it again shows them
+                log(f"no se pudo recargar la página ({type(e).__name__}: {e}); ciérrala y ábrela otra vez para verlos")
 
     def choose():
         r = holder["w"].create_file_dialog(webview.OPEN_DIALOG, allow_multiple=False,

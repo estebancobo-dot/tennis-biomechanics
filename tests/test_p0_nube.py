@@ -100,8 +100,8 @@ def test_the_window_opens_at_once_and_brings_the_results_behind_it(tmp_path, mon
     events = []
 
     class W:
-        def load_url(self, url):
-            events.append(("recarga", Path(url).name))
+        def evaluate_js(self, js):
+            events.append(("recarga", "index.html" if "reload" in js else js))
 
     fake = types.SimpleNamespace(OPEN_DIALOG=0,
                                  create_window=lambda *a, **k: events.append(("ventana", Path(k["url"]).name)) or W(),
