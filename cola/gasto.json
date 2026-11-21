@@ -190,15 +190,17 @@
      "horas": 0.0
     },
     "medir_raqueta_p100": {
-     "estimado_h": 0.5
+     "estimado_h": 0.5,
+     "horas": 0.06
     }
    }
   }
  },
  "kaggle_real": {
-  "usadas_h": 2.68,
+  "usadas_h": 2.69,
   "total_h": 30.0,
   "renueva": "2026-11-28 00:00:00",
-  "ts": 1795266934.9379888
- }
+  "ts": 1795267238.0314262
+ },
+ "aviso_ocioso_ts": 1795267238.0314262
 }
