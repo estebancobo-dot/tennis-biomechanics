@@ -48,6 +48,7 @@ cancelar:
   comparar_gauff_v26_v31: "sin la v31_c (ver arriba); se compara con la parte c repetida"
   comparar_gauff_v26_v34: "sin la v34: se paró a los 5 min sin modelos (el ONNX de Sapiens2 se subió junto a /models/models/ y tapó los demás; arreglado); se compara con la v35"
   medir_3d_metrabs_b: "21-11 13:10: 2 h en cola de Kaggle sin GPU libre (no empezó): su plaza, para comprobar la P100 (medir_raqueta_p100); se lanza otra vez en la GPU que sirva"
+  medir_f3set_hoy: "21-11 14:25: sus 3 cuadernos se quedaron «en cola» en Kaggle (desde las 10:16) mientras trabajos lanzados después arrancaban al momento; el mismo trabajo con otro nombre (medir_f3set_hoy_b) dice si es el cuaderno o el trabajo"
   medir_bola_totnet: "T15 (15-11 23:20): en CPU no cabe en las 12 h de una sesión de Kaggle: cada clip de RacketVision tiene 600 fotogramas a 60 fps (300 ventanas de TOTNet) y cada ventana tarda unos 6 s en la CPU, unas 20 h para los 40 clips (calculé mal 3-5 h); se cortaría sin resultado. Se repite en GPU (medir_bola_totnet_gpu), con la misma regla"
 # #291 (14-11): el PR buzón (nunca se fusiona): la cola comenta en él solo cuando algo necesita a Claude, y su
 # actividad despierta la sesión al momento (sin sondeos ni tokens mientras no pasa nada)
@@ -303,4 +304,6 @@ trabajos:
   # 21-11 13:30: Kaggle dio 2 T4 al momento a la de arriba (no hizo caso a la P100): las T4 estaban libres y los cuadernos
   # de F3Set y MeTRAbs, atascados en su cola (R45). MeTRAbs otra vez, en un cuaderno nuevo
   - {id: medir_3d_metrabs_c, accion: medir, prueba: 3d, donde: kaggle, horas: 2}
+  # 21-11 14:25: F3Set con el código de hoy otra vez, con otro nombre (sus 3 cuadernos se quedaron en la cola de Kaggle)
+  - {id: medir_f3set_hoy_b, accion: medir, prueba: f3set, donde: kaggle, horas: 5}
   - {id: informe_6, accion: informe, tras: actualizar_zheng}
