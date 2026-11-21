@@ -1382,5 +1382,25 @@
    "nota": "leídos: runs__kaggle_prueba_gauff_v34_sapiens2__log.txt"
   },
   "partido": ""
+ },
+ "comparar_gauff_v26_v34": {
+  "estado": "error",
+  "resultado": {
+   "nota": "cancelado: sin la v34: se paró a los 5 min sin modelos (el ONNX de Sapiens2 se subió junto a /models/models/ y tapó los demás; arreglado); se compara con la v35"
+  },
+  "partido": ""
+ },
+ "prueba_gauff_v35_sapiens2": {
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1795231551.8687289,
+  "accion": "prueba",
+  "partido": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+  "inicio": "2026-11-21 03:25",
+  "ruta": "/runs/kaggle_prueba_gauff_v35_sapiens2/estado.json",
+  "salida": "/kaggle_pruebas/prueba_gauff_v35_sapiens2/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+  "cuaderno": "tennisbio-prueba-gauff-v35-sapiens2"
  }
 }
