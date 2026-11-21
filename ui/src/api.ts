@@ -19,6 +19,8 @@ export interface ApiPC {
   borrar_video(partido: string): Promise<Respuesta>;
   // P0.5e (21-11): the cloud's latest results to the PC (tennisbio.app.p0_nube); «recargar»: the page was made again
   traer_resultados(): Promise<Respuesta & { bajados?: number; mb?: number; generado?: string; recargar?: boolean }>;
+  // 21-11 (#310): the window's own check of its videos and series on this PC (ui/src/autocomprobacion.ts)
+  autocomprobacion(r: Record<string, unknown>): Promise<Respuesta>;
 }
 
 export const SOLO_PC = "Se hace en la aplicación del PC (aquí, solo para mirar)";

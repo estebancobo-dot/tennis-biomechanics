@@ -60,7 +60,7 @@ def test_the_ball_job_runs_on_a_cpu_session():
     assert not cola.check_queue([j]) and cola.cpu_job(j) and cola.estimate_h(j) == 0.0
     args = correr.poc_args(correr.parse_job(json.dumps({"accion": "medir", "prueba": "bola", "cpu": True})),
                            Path("/d/models"), None)
-    assert args[args.index("--totnet") + 1] == "/d/models/totnet_tennis.onnx" and args[-1] == "cpu"
+    assert args[args.index("--totnet") + 1] == str(Path("/d/models/totnet_tennis.onnx")) and args[-1] == "cpu"
     src = (ROOT / "cloud" / "kaggle" / "correr.py").read_text(encoding="utf-8")
     assert '"export_totnet.py"' in src
     exp = (ROOT / "scripts" / "export_totnet.py").read_text(encoding="utf-8")

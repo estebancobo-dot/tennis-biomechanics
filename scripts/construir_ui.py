@@ -20,7 +20,9 @@ SOURCES = ("index.html", "package.json", "package-lock.json", "tsconfig.json", "
 
 def fingerprint(ui: Path = UI) -> str:
     h = hashlib.sha256()
-    files = [ui / f for f in SOURCES] + sorted(p for p in (ui / "src").rglob("*") if p.is_file())
+    # 21-11: by the posix name (Windows sorts paths without case: the PC saw another fingerprint of the same sources)
+    files = [ui / f for f in SOURCES] + sorted((p for p in (ui / "src").rglob("*") if p.is_file()),
+                                               key=lambda p: p.relative_to(ui).as_posix())
     for f in files:
         h.update(f.relative_to(ui).as_posix().encode() + b"\0" + f.read_bytes().replace(b"\r\n", b"\n") + b"\0")
     return h.hexdigest()

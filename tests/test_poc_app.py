@@ -68,7 +68,7 @@ def test_kaggle_brings_the_results_and_chrome_then_probes():
     sys.path.insert(0, str(ROOT / "cloud"))
     import correr
     j = correr.parse_job('{"accion": "medir", "prueba": "app"}')
-    assert correr.poc_args(j, Path("/d/models/models"), None) == ["--raiz", "/d/models/app"]
+    assert correr.poc_args(j, Path("/d/models/models"), None) == ["--raiz", str(Path("/d/models/app"))]
     src = (ROOT / "cloud" / "kaggle" / "correr.py").read_text(encoding="utf-8")
     assert '"install", "--with-deps", "chrome"' in src and 'bring_results(vol, models.parent / "app" / "nube")' in src
     assert "from tennisbio.app import p0_nube" in src

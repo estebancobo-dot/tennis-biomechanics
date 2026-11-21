@@ -59,7 +59,7 @@ def test_the_kaggle_job_measures_on_the_reference_tests_outputs(monkeypatch):
     import correr
     j = correr.parse_job('{"accion": "medir", "prueba": "sapiens2", "partido": "g", "base": "prueba_gauff_v26"}')
     args = correr.poc_args(j, Path("/d/models"), None)
-    assert args[args.index("--previa") + 1] == "/d/previa" and args[args.index("--dispositivo") + 1] == "cuda"
+    assert args[args.index("--previa") + 1] == str(Path("/d/previa")) and args[args.index("--dispositivo") + 1] == "cuda"
     with pytest.raises(ValueError):
         correr.parse_job('{"accion": "medir", "prueba": "sapiens2"}')            # needs its match
     src = (ROOT / "cloud" / "kaggle" / "correr.py").read_text(encoding="utf-8")

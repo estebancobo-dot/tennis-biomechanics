@@ -35,8 +35,8 @@ def test_kaggle_brings_her_clips_and_the_reference_and_streams_the_log():
     import correr
     j = correr.parse_job('{"accion": "medir", "prueba": "f3set"}')
     args = correr.poc_args(j, Path("/d/models/models"), None)
-    assert args == ["--raiz", "/d/models/datasets", "--referencia", f"/d/models/referencia/{correr.F3SET_REFERENCE}",
-                    "--tag", "kaggle_f3"]
+    assert args == ["--raiz", str(Path("/d/models/datasets")), "--referencia",
+                    str(Path("/d/models/referencia") / correr.F3SET_REFERENCE), "--tag", "kaggle_f3"]
     src = (ROOT / "cloud" / "kaggle" / "correr.py").read_text(encoding="utf-8")
     assert 'modal_get("/datasets/f3set/recall/videos"' in src and "f3set" in correr.STREAMED
     assert cola.estimate_h({"id": "x", "accion": "medir", "prueba": "f3set", "horas": 5}) == 5.0

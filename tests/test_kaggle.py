@@ -257,6 +257,7 @@ def test_coach_videos_job_on_the_cpu():
     assert '"--transcribir"' in src and '"faster-whisper"' in src
 
 
+@pytest.mark.skipif(sys.platform == "win32", reason="the cloud's Linux session (Windows symlinks need rights)")
 def test_the_report_on_a_kaggle_cpu_session(monkeypatch, tmp_path):
     """21-11 (P0.5e, #301; Modal out of credit): the report and the Base audit on a Kaggle CPU session, as Modal's: only
     the analysed matches (never a 10-minute test), their folders back on the volume for the PC's application, and the

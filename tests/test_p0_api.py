@@ -114,7 +114,7 @@ def test_the_windows_api_has_every_name_the_interface_calls(tmp_path):
     side would be a button that does nothing."""
     import re as _re
     ts = (ROOT / "ui" / "src" / "api.ts").read_text(encoding="utf-8")
-    block = ts[ts.index("export interface ApiPC"):ts.index("}", ts.index("export interface ApiPC"))]
+    block = ts[ts.index("export interface ApiPC"):ts.index("\n}", ts.index("export interface ApiPC"))]   # its own end
     names = set(_re.findall(r"^\s+(\w+)\(", block, _re.M))
     have = {n for n in dir(p0_api.ApiVentana) if not n.startswith("_")}
     assert names and names == have, (names ^ have)
@@ -204,3 +204,26 @@ def test_the_window_reads_the_clouds_matches_as_the_queue_does(tmp_path):
     (tmp_path / "v" / "output" / "a" / "manifest.json").write_text(json.dumps({"fine": {}}), encoding="utf-8")
     assert p0_ventana.cloud_matches(store) == [{"id": "a", "rival": "R", "analizado": True},
                                                {"id": "b", "rival": "S", "analizado": False}]
+
+
+def test_the_window_checks_itself_and_leaves_it_in_the_cloud(tmp_path, capsys):
+    """21-11 (#310, the user: «ni siquiera sé si la app de Windows funciona bien»): the window tries a few strokes'
+    videos and series by itself (ui/src/autocomprobacion.ts) and its numbers reach the volume, where Claude reads them
+    with a «leer» job; without the cloud the window opens all the same."""
+    store, g = make(tmp_path)
+    api = p0_api.ApiVentana(g, "Elena Rybakina")
+    r = {"origen": "el informe de la nube", "probados": 3, "videos_ok": 3, "series_ok": 2, "filas": []}
+    assert api.autocomprobacion(r) == {"ok": True}
+    kept = store.read_json("/app/autocomprobacion.json")
+    assert kept["videos_ok"] == 3 and kept["series_ok"] == 2 and kept["cuando"]
+    assert "3 de 3 vídeos se abren, 2 series" in capsys.readouterr().out
+
+    class Broken:
+        def _put_json(self, *a):
+            raise OSError("sin conexión")
+    assert p0_api.ApiVentana(Broken(), "X").autocomprobacion(r) == {"ok": True}
+    assert "no se pudo dejar en la nube" in capsys.readouterr().out
+    ts = (ROOT / "ui" / "src" / "main.tsx").read_text(encoding="utf-8")
+    assert "pywebviewready" in ts and "autocomprobar(d)" in ts
+    check = (ROOT / "ui" / "src" / "autocomprobacion.ts").read_text(encoding="utf-8")
+    assert "d.ejemplo" in check and "videoWidth" in check     # never on the example data; a video that really decodes

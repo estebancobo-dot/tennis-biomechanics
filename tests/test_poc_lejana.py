@@ -40,7 +40,7 @@ def test_kaggle_runs_it_and_keeps_the_exported_model():
     import correr
     j = correr.parse_job('{"accion": "medir", "prueba": "lejana"}')
     args = correr.poc_args(j, Path("/d/models/models"), None)
-    assert args == ["--datos", "/d/models/datasets", "--dispositivo", "cuda"]
+    assert args == ["--datos", str(Path("/d/models/datasets")), "--dispositivo", "cuda"]
     assert correr.RFDETR_ONNX == pl.bench().EXPORTS["rfdetr"][0].name
     src = (ROOT / "cloud" / "kaggle" / "correr.py").read_text(encoding="utf-8")
     assert 'modal_put(vol, [models / RFDETR_ONNX], models, "/" + models.relative_to(data).as_posix())' in src

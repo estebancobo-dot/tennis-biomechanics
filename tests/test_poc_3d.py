@@ -64,7 +64,8 @@ def test_kaggle_installs_tensorflow_and_measures(tmp_path, monkeypatch):
     sys.path.insert(0, str(ROOT / "cloud"))
     import correr
     j = correr.parse_job('{"accion": "medir", "prueba": "3d"}')
-    assert correr.poc_args(j, Path("/d/models/models"), None) == ["--datos", "/d/models/datasets", "--dispositivo", "cuda"]
+    assert correr.poc_args(j, Path("/d/models/models"), None) == ["--datos", str(Path("/d/models/datasets")),
+                                                                   "--dispositivo", "cuda"]
     assert "3d" in correr.STREAMED and any(x.startswith("tensorflow-hub") for x in correr.METRABS_TF)
     assert any(x.startswith("setuptools") for x in correr.METRABS_TF)        # tensorflow_hub imports pkg_resources
     src = (ROOT / "scripts" / "bench_candidates.py").read_text(encoding="utf-8")

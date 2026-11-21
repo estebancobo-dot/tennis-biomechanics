@@ -183,6 +183,19 @@ class ApiVentana:
     def __init__(self, gestion: Gestion, jugadora: str, choose=lambda: None, traer=None):
         self._g, self._jugadora, self._choose, self._traer = gestion, jugadora, choose, traer
 
+    def autocomprobacion(self, r: dict) -> dict:
+        """21-11 (#310): the window's own check of its videos and series on this PC (ui/src/autocomprobacion.ts), said in
+        its log and kept on the cloud's volume (/app/autocomprobacion.json), where Claude reads it."""
+        import time as _t
+        r = {**(r or {}), "cuando": _t.strftime("%Y-%m-%d %H:%M:%S")}
+        print(f"{_t.strftime('%H:%M:%S')} autocomprobación: {r.get('videos_ok')} de {r.get('probados')} vídeos se abren, "
+              f"{r.get('series_ok')} series ({r.get('origen')})", flush=True)
+        try:
+            self._g._put_json("/app/autocomprobacion.json", r)
+        except Exception as e:  # esperado: no connection: the log keeps it
+            print(f"autocomprobación: no se pudo dejar en la nube ({type(e).__name__}: {e})", flush=True)
+        return {"ok": True}
+
     def traer_resultados(self) -> dict:
         """21-11 (P0.5e): the cloud's latest results to the PC (tennisbio.app.p0_nube.pull) and the page made again with
         them; {"recargar": True} tells the page to load itself again."""
@@ -251,4 +264,4 @@ class SinNube:
     elegir_video = staticmethod(lambda: None)
     proponer = staticmethod(lambda ruta: {})
     fotos = staticmethod(lambda partido: [])
-    alta = clic = aprobar = pausar = reanudar = cancelar = borrar_video = traer_resultados = _no
+    alta = clic = aprobar = pausar = reanudar = cancelar = borrar_video = traer_resultados = autocomprobacion = _no

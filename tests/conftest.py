@@ -31,3 +31,11 @@ def _court_by_its_lines(monkeypatch):
     (on the PC its model exists and the tests found its courts instead)."""
     from tennisbio import court
     monkeypatch.setitem(court._TCD, "m", None)
+
+
+@pytest.fixture(autouse=True)
+def _far_player_by_yolo(monkeypatch):
+    """21-11: RF-DETR finds the far player by default (fine_pass.far_detector) where its model file is (the PC has it,
+    the cloud's tests not): the tests of the far search measure YOLO's path unless a test sets the detector itself."""
+    from tennisbio.pose import yolo
+    monkeypatch.setattr(yolo, "_far_name", lambda: "yolo")

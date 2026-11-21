@@ -393,6 +393,7 @@ def test_the_10_minute_test_archives_its_earlier_run_and_reports_the_cleaning():
     assert "nube.clean_copy(" in body and '"limpieza"' in body
 
 
+@pytest.mark.skipif(sys.platform == "win32", reason="the cloud's Linux container (/proc)")
 def test_a_match_run_samples_what_the_container_uses():
     """13-11: GPU, CPU and memory every minute of a match, to size the container by what was measured (cost)."""
     nube.sample_resources()                                         # the CPU % is between two samples
