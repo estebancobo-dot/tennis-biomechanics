@@ -1727,7 +1727,7 @@
   "ruta": "/runs/kaggle_medir_f3set_hoy/estado.json",
   "cuaderno": "tennisbio-medir-f3set-hoy-2",
   "nota": "en cola de Kaggle más de 180 min sin arrancar",
-  "kaggle": "queued (13:51)"
+  "kaggle": "queued (13:56)"
  },
  "medir_3d_metrabs": {
   "estado": "error",
@@ -1796,7 +1796,7 @@
   "inicio": "2026-11-21 13:29",
   "ruta": "/runs/kaggle_medir_3d_metrabs_c/estado.json",
   "cuaderno": "tennisbio-medir-3d-metrabs-c",
-  "kaggle": "running (13:51)",
+  "kaggle": "running (13:56)",
   "arranco": "2026-11-21 13:30",
   "espera_min": 2
  }
