@@ -287,7 +287,11 @@ def test_the_report_on_a_kaggle_cpu_session(monkeypatch, tmp_path):
         out = data / "output"
         if cmd[3] == "report":
             (out / "informe_derecha" / "videos").mkdir(parents=True)
-            (out / "informe_derecha" / "index.html").write_text("<html></html>")
+            (out / "m1" / "windows").mkdir(parents=True)
+            (out / "m1" / "windows" / "w1.mp4").write_bytes(b"ww")                # a stroke's window, linked
+            (out / "informe_derecha" / "index.html").write_text(
+                '<script>const D = {"strokes": [{"id": "a", "video": "../m1/windows/w1.mp4"}, '
+                '{"id": "b", "video": "../m1/windows/falta.mp4"}, {"id": "c", "video": "../../fuera.mp4"}]}</script>')
             (out / "informe_derecha" / "videos" / "g1.mp4").write_bytes(b"v")
         else:
             (out / "auditoria").mkdir(parents=True)
@@ -304,6 +308,8 @@ def test_the_report_on_a_kaggle_cpu_session(monkeypatch, tmp_path):
     assert put[1] == (["resultados_app.json"], "/output")                  # the application's list, last
     man = _json.loads((data / "output" / "resultados_app.json").read_text(encoding="utf-8"))
     assert man["partidos"] == ["m1"] and man["ficheros"]["informe_derecha/videos/g1.mp4"] == 1
+    assert man["ficheros"]["m1/windows/w1.mp4"] == 2 and est["videos_enlazados"] == 1     # not uploaded again
+    assert not any("falta" in k or "fuera" in k for k in man["ficheros"])
     assert put[2][1] == "/runs/informe" and "auditoria.json" in put[2][0] and "informe.html" in put[2][0]
     assert "m1" in (repo / "config" / "matches.yaml").read_text(encoding="utf-8")
     assert "_prueba" not in (repo / "config" / "matches.yaml").read_text(encoding="utf-8")

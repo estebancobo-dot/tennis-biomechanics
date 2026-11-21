@@ -275,4 +275,7 @@ trabajos:
   # crédito hasta el 1-12): los partidos ya analizados, la página con sus vídeos y la auditoría en el volumen, y la lista
   # de ficheros que la aplicación del PC baja (/output/resultados_app.json). Comprueba que todo llega entero
   - {id: informe_beta2, accion: informe, donde: kaggle}
+  # 21-11 08:00: la lista de la v2 no lleva los vídeos de los golpes (la página los enlaza en la carpeta de ventanas de
+  # cada partido): arreglado (correr.linked_videos); otra vez, después de la v2 (las dos escriben el mismo informe)
+  - {id: informe_beta3, accion: informe, donde: kaggle, tras: informe_beta2}
   - {id: informe_6, accion: informe, tras: actualizar_zheng}

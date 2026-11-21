@@ -300,6 +300,21 @@ def report_files(out: Path) -> list[Path]:
     return [f for d in dirs for f in sorted(d.rglob("*")) if f.is_file()]
 
 
+def linked_videos(out: Path) -> list[Path]:
+    """The strokes' videos each report page links (tennisbio.report: «video» relative to the page, in each match's
+    windows folder, ../<match>/windows/<clip>): already on the volume, so not uploaded again, but in the application's
+    list, so the PC brings them beside the page and its links still work there."""
+    import re
+
+    found: set[Path] = set()
+    for page in sorted(out.glob("informe*/index.html")):
+        for rel in re.findall(r'"video":\s*"([^"]+)"', page.read_text(encoding="utf-8", errors="replace")):
+            f = (page.parent / rel).resolve()
+            if f.is_file() and f.is_relative_to(out.resolve()):
+                found.add(f)
+    return sorted(found)
+
+
 def report(job: dict, py: Path, data: Path, run: Path, vol, est: dict, registry: list[dict]) -> int:
     """21-11 (P0.5e, #301; the user: «sí»): the report of the player's forehand and the Base audit on a Kaggle CPU
     session, as cloud/modal_app.informe does on Modal (out of credit until the month turns): the analysed matches'
@@ -335,10 +350,13 @@ def report(job: dict, py: Path, data: Path, run: Path, vol, est: dict, registry:
     modal_put(vol, files, data / "output", "/output")
     if files and not any(rc.values()):           # the list last: the application sees it only with every file up
         man = data / "output" / APP_MANIFEST
+        out = (data / "output").resolve()
+        listed = [f.resolve() for f in files] + linked_videos(data / "output")
         man.write_text(json.dumps({"generado": time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime()), "partidos":
-                                   est["partidos"], "ficheros": {f.relative_to(data / "output").as_posix(): f.stat().st_size
-                                                                 for f in files}}, ensure_ascii=False, indent=1),
+                                   est["partidos"], "ficheros": {f.relative_to(out).as_posix(): f.stat().st_size
+                                                                 for f in listed}}, ensure_ascii=False, indent=1),
                        encoding="utf-8")
+        est["videos_enlazados"] = len(listed) - len(files)
         modal_put(vol, [man], data / "output", "/output")
     aud = data / "output" / "auditoria"
     for f in ("auditoria.md", "auditoria.json"):
