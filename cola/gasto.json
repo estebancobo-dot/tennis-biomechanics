@@ -207,7 +207,8 @@
      "horas": 0.0
     },
     "prueba_gauff_v38_b2": {
-     "estimado_h": 1.0
+     "estimado_h": 1.0,
+     "horas": 0.41
     },
     "prueba_sinner_b": {
      "estimado_h": 1.0
@@ -216,9 +217,9 @@
   }
  },
  "kaggle_real": {
-  "usadas_h": 8.05,
+  "usadas_h": 8.18,
   "total_h": 30.0,
   "renueva": "2026-11-28 00:00:00",
-  "ts": 1795300834.2817593
+  "ts": 1795301144.7733014
  }
 }
