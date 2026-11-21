@@ -203,6 +203,10 @@
      "horas": 3.91
     },
     "prueba_gauff_v38_b": {
+     "estimado_h": 1.0,
+     "horas": 0.0
+    },
+    "prueba_gauff_v38_b2": {
      "estimado_h": 1.0
     }
    }
@@ -212,7 +216,7 @@
   "usadas_h": 7.35,
   "total_h": 30.0,
   "renueva": "2026-11-28 00:00:00",
-  "ts": 1795293747.4761748
+  "ts": 1795293965.6974635
  },
  "aviso_ocioso_ts": 1795288855.899218
 }

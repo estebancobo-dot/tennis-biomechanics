@@ -1,6 +1,6 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-21 20:42 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 19.6 h de GPU esta semana (tope 28 h; Kaggle dice 7.35 h usadas de 30.0, se renueva 2026-11-28 00:00)
+Última vuelta: 2026-11-21 20:46 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 19.6 h de GPU esta semana (tope 28 h; Kaggle dice 7.35 h usadas de 30.0, se renueva 2026-11-28 00:00)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
@@ -116,7 +116,8 @@
 | medir_f3set_hoy_b | medir |  | hecho | kaggle |  |
 | medir_f3set_hoy_c | medir |  | pendiente |  | espera a prueba_gauff_v38_c (pendiente) |
 | prueba_gauff_v38_a | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
-| prueba_gauff_v38_b | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: queued (20:42), intento 2; en cola de Kaggle más de 180 min sin arrancar |
-| prueba_gauff_v38_c | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | pendiente |  | espera a prueba_gauff_v38_b (en_marcha) |
+| prueba_gauff_v38_b | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | error | kaggle | cancelado: 21-11 20:45: sus 2 cuadernos, en cola de Kaggle desde las 15:36 sin arrancar (desde las 19:20 sin nada más en marcha): otra vez como prueba_gauff_v38_b2 |
+| prueba_gauff_v38_b2 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle |  |
+| prueba_gauff_v38_c | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | pendiente |  | espera a prueba_gauff_v38_b2 (pendiente) |
 | comparar_gauff_v36_v38 | comparar |  | pendiente |  | espera a prueba_gauff_v38_c |
 | informe_6 | informe |  | pendiente |  | espera a actualizar_zheng (pendiente) |
