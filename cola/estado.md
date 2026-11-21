@@ -1,6 +1,6 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-21 03:59 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 26.2 h de GPU esta semana (tope 28 h; Kaggle dice 1.79 h usadas de 30.0, se renueva 2026-11-28 00:00)
+Última vuelta: 2026-11-21 04:01 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 26.2 h de GPU esta semana (tope 28 h; Kaggle dice 1.79 h usadas de 30.0, se renueva 2026-11-28 00:00)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
@@ -54,6 +54,7 @@
 | leer_v34 | leer |  | hecho | github | leídos: runs__kaggle_prueba_gauff_v34_sapiens2__log.txt |
 | prueba_gauff_v35_sapiens2 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
 | comparar_gauff_v26_v35 | comparar |  | revisar | github | distinta; 12 etapas iguales; distintas: fine, fine_doubtful, slowmo_fine, view_clips; strokes.json: 27 de 28/28 golpes emparejados, 2 distintos, medidas fuera de tolerancia: technique.pose.acceleration, technique.phases.acceleration.wrist_non_height, technique.pose.ready, racket_track; strokes.json: temblor de b frente a a ×1.00 (mediana de 4930 medidas; b tiembla menos en el 50 %); strokes_opponent.json: 0 de 0/0 golpes emparejados; strokes_doubtful.json: 1 de 1/1 golpes emparejados, medidas fuera de tolerancia: technique.phases.acceleration.shoulder_abd_non, technique.footwork.steps, techniq |
+| leer_v26_v35 | leer |  | hecho | github | leídos: kaggle_pruebas__prueba_gauff_v26__output___prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5__strokes.json (cortado a 512 KB), kaggle_pruebas__prueba_gauff_v35_sapiens2__output___prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5__strokes.json (cortado a 512 KB) |
 | medir_bola_totnet_gpu | medir |  | hecho | kaggle |  |
 | prueba_gauff_v30_a | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
 | prueba_gauff_v30_b | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
