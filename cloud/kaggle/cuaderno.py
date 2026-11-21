@@ -80,23 +80,29 @@ def slug_for(job_id: str) -> str:
     return "tennisbio-" + (re.sub(r"[^a-z0-9]+", "-", str(job_id).lower()).strip("-") or "trabajo")
 
 
-def metadata(user: str, key: bool = True, slug: str = SLUG, gpu: bool = True) -> dict:
+# 21-11: Kaggle's free GPUs; the T4s were queued for hours (busy): a job may ask for the P100 (the same week's hours)
+MACHINES = {"t4": "NvidiaTeslaT4", "p100": "NvidiaTeslaP100"}
+
+
+def metadata(user: str, key: bool = True, slug: str = SLUG, gpu: bool = True, machine: str = "t4") -> dict:
     """kernel-metadata.json: the user's private notebook, on two T4s, with internet (the Kaggle API's documented fields);
     `key`: with the private key dataset (14-11: without it, a diagnosis of a session left queued); `gpu` False: a CPU
     session (15-11, #304: the coaches' videos), which uses none of the week's GPU hours."""
     meta = {"id": f"{user}/{slug}", "title": slug, "code_file": f"{slug}.ipynb", "language": "python",
             "kernel_type": "notebook", "is_private": True, "enable_gpu": gpu, "enable_internet": True,
-            "machine_shape": "NvidiaTeslaT4", "dataset_sources": [f"{user}/{KEY_SLUG}"] if key else [],
+            "machine_shape": MACHINES[machine], "dataset_sources": [f"{user}/{KEY_SLUG}"] if key else [],
             "competition_sources": [], "kernel_sources": []}
     if not gpu:
         meta.pop("machine_shape")
     return meta
 
 
-def write(folder: Path, user: str, job: dict, key: bool = True, slug: str = SLUG, gpu: bool = True) -> Path:
+def write(folder: Path, user: str, job: dict, key: bool = True, slug: str = SLUG, gpu: bool = True,
+          machine: str = "t4") -> Path:
     folder.mkdir(parents=True, exist_ok=True)
     (folder / f"{slug}.ipynb").write_text(json.dumps(notebook(job), ensure_ascii=False, indent=1), encoding="utf-8")
-    (folder / "kernel-metadata.json").write_text(json.dumps(metadata(user, key, slug, gpu), indent=1), encoding="utf-8")
+    (folder / "kernel-metadata.json").write_text(json.dumps(metadata(user, key, slug, gpu, machine), indent=1),
+                                                 encoding="utf-8")
     return folder
 
 
@@ -145,6 +151,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--urls", default="", help="medir youtube / investigar: los vídeos (15-11, #304)")
     ap.add_argument("--cada", type=float, default=0, help="investigar: un fotograma cada tantos segundos (15-11, #306)")
     ap.add_argument("--cpu", action="store_true", help="una sesión sin GPU (investigar: no gasta horas de GPU)")
+    ap.add_argument("--maquina", choices=tuple(MACHINES), default="t4", help="la GPU de Kaggle (t4: las 2 T4; p100)")
     ap.add_argument("--etapas", default="", help="T24: solo estas etapas (una parte de una prueba o de un partido)")
     ap.add_argument("--previa", action="store_true", help="T24: una prueba que sigue lo que dejó su parte anterior")
     ap.add_argument("--base", default="", help="#307: la prueba de referencia sobre cuyas salidas mide (medir)")
@@ -231,7 +238,8 @@ def main(argv: list[str] | None = None) -> int:
             job["sobre_lo_hecho"] = True
         if a.base:
             job["base"] = a.base
-        folder = write(Path("kaggle-push"), _user(), job, key=not a.sin_clave, slug=a.slug, gpu=not a.cpu)
+        folder = write(Path("kaggle-push"), _user(), job, key=not a.sin_clave, slug=a.slug, gpu=not a.cpu,
+                       machine=a.maquina)
         r = _kaggle("kernels", "push", "-p", str(folder))
         print(r.stdout, r.stderr)
         # 14-11: the CLI prints «Kernel push error: …» and still exits 0

@@ -721,3 +721,20 @@ def test_a_research_job_may_ask_for_dense_frames(monkeypatch):
     assert '["--cada", str(job["cada"])]' in src
     yr = (ROOT / "scripts" / "youtube_research.py").read_text(encoding="utf-8")
     assert "EVERY_S or max(3.0" in yr and '"--cada"' in yr
+
+
+def test_a_job_can_ask_for_kaggles_p100(monkeypatch):
+    """21-11: the T4s were queued for hours; a job may ask for the P100 (the same week's GPU hours)."""
+    sys.path.insert(0, str(ROOT / "cloud" / "kaggle"))
+    import cuaderno
+    assert cuaderno.metadata("u", machine="p100")["machine_shape"] == "NvidiaTeslaP100"
+    assert cuaderno.metadata("u")["machine_shape"] == "NvidiaTeslaT4"
+    calls = []
+
+    class R:
+        returncode, stdout, stderr = 0, "", ""
+    monkeypatch.setattr(cola, "_kaggle", lambda a: calls.append(a) or R())
+    assert cola.kaggle_launch({"id": "m", "accion": "medir", "prueba": "raqueta", "donde": "kaggle", "maquina": "p100"})
+    assert calls[-1][calls[-1].index("--maquina") + 1] == "p100"
+    assert cola.kaggle_launch({"id": "m2", "accion": "medir", "prueba": "raqueta", "donde": "kaggle"})
+    assert "--maquina" not in calls[-1]

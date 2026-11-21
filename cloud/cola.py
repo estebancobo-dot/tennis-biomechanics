@@ -603,6 +603,8 @@ def kaggle_launch(job: dict, slug: str | None = None) -> bool:
             extra += ["--sobre-lo-hecho"]
     if job.get("cpu") is True:
         extra += ["--cpu"]
+    elif job.get("maquina"):                               # 21-11: the P100 when the T4s are queued for hours
+        extra += ["--maquina", str(job["maquina"])]
     for args in (["clave"], ["lanzar", "--accion", job["accion"], "--partido", job.get("partido", ""),
                              "--commit", os.environ.get("GITHUB_SHA", ""), "--slug", slug or notebook_slug(job["id"]), *extra]):
         r = _kaggle(args)

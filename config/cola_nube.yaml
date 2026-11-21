@@ -47,6 +47,7 @@ cancelar:
   prueba_gauff_v31_c: "T24 (15-11 22:35): la parte c (CPU) repetía players en la CPU: la huella de players y de la pasada fina lleva fp16 solo en GPU (uses_fp16), así que en CPU no coincidía con lo de la parte b. Se cancela antes de que suba un players de CPU; se arregla (una parte usa lo que hizo la anterior) y se repite solo la parte c"
   comparar_gauff_v26_v31: "sin la v31_c (ver arriba); se compara con la parte c repetida"
   comparar_gauff_v26_v34: "sin la v34: se paró a los 5 min sin modelos (el ONNX de Sapiens2 se subió junto a /models/models/ y tapó los demás; arreglado); se compara con la v35"
+  medir_3d_metrabs_b: "21-11 13:10: 2 h en cola de Kaggle sin GPU libre (no empezó): su plaza, para comprobar la P100 (medir_raqueta_p100); se lanza otra vez en la GPU que sirva"
   medir_bola_totnet: "T15 (15-11 23:20): en CPU no cabe en las 12 h de una sesión de Kaggle: cada clip de RacketVision tiene 600 fotogramas a 60 fps (300 ventanas de TOTNet) y cada ventana tarda unos 6 s en la CPU, unas 20 h para los 40 clips (calculé mal 3-5 h); se cortaría sin resultado. Se repite en GPU (medir_bola_totnet_gpu), con la misma regla"
 # #291 (14-11): el PR buzón (nunca se fusiona): la cola comenta en él solo cuando algo necesita a Claude, y su
 # actividad despierta la sesión al momento (sin sondeos ni tokens mientras no pasa nada)
@@ -295,4 +296,8 @@ trabajos:
   - {id: medir_3d_metrabs, accion: medir, prueba: 3d, donde: kaggle, horas: 2}
   # 21-11 11:15: la de arriba se paró al cargar tensorflow_hub (le falta pkg_resources, de setuptools); arreglado
   - {id: medir_3d_metrabs_b, accion: medir, prueba: 3d, donde: kaggle, horas: 2}
+  # 21-11 13:10: las T4 de Kaggle llevan horas en cola (las 2 de arriba esperan GPU libre). ¿Sirve la P100 (la misma
+  # cuota)? Las librerías nuevas pueden no soportarla (calcularía en la CPU sin decirlo): la medida de inferencia de la
+  # raqueta en la P100 dice si ONNX Runtime usa CUDA de verdad (T6: 10,5 ms por imagen en una T4; en la CPU, ~40)
+  - {id: medir_raqueta_p100, accion: medir, prueba: raqueta, donde: kaggle, maquina: p100}
   - {id: informe_6, accion: informe, tras: actualizar_zheng}
