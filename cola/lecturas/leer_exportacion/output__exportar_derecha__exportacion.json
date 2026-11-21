@@ -1,0 +1,22 @@
+{
+ "stroke": "forehand",
+ "ended": "2026-11-21 21:58:44",
+ "seconds": 441.4,
+ "strokes": 49,
+ "encoded": 49,
+ "videos": 49,
+ "failed": [],
+ "reels": 10,
+ "titles": {
+  "00_su_golpe_tipico.mp4": "Su golpe típico",
+  "01_apoyo_mas_frecuente_semiabierto_35_de_379_golpes.mp4": "Apoyo más frecuente: semiabierto (35 % de 379 golpes; abierto 35 %).",
+  "02_las_cuerdas_apuntan_en_el_armado_hacia_valla_izq.mp4": "Las cuerdas apuntan en el armado hacia valla izquierda en 41 % de los golpes, cara cerrada 5° (mediana).",
+  "03_las_cuerdas_apuntan_en_el_impacto_hacia_red_en_1.mp4": "Las cuerdas apuntan en el impacto hacia red en 100 % de los golpes.",
+  "04_las_cuerdas_apuntan_en_la_terminacion_hacia_vall.mp4": "Las cuerdas apuntan en la terminación hacia valla izquierda en 23 % de los golpes, cara abierta 1° (mediana).",
+  "05_direccion_de_su_golpe_27_cruzada_38_paralela_35_.mp4": "Dirección de su golpe: 27 % cruzada, 38 % paralela, 35 % al centro; 12 % fuera; bota a 3,4 m del fondo rival (mediana).",
+  "06_resultado_conocido_en_382_de_387_golpes_1_que_la.mp4": "Resultado conocido en 382 de 387 golpes: 1 que la rival no devolvió (ganadores o errores forzados), 20 errores fuera, 6 a la red; el resto sigue el punto.",
+  "07_cadena_cinetica_en_orden_pelvis_tronco_brazo_ant.mp4": "Cadena cinética en orden (pelvis → tronco → brazo → antebrazo) en 68 % de 372 golpes.",
+  "08_desplazamiento_con_bola_rapida.mp4": "Desplazamiento con bola rápida: −0,8 m — se desplaza menos para llegar (2,1 → 1,3; bola rápida frente a lenta · ajustado por la bola recibida y el partido, n=332/265).",
+  "09_errores.mp4": "Errores"
+ }
+}
