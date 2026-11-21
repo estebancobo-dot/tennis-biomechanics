@@ -171,6 +171,8 @@ trabajos:
   # se desborda, ese recorte en precisión completa. La misma prueba otra vez, con la misma regla escrita
   - {id: prueba_gauff_v34_sapiens2, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, config: {fine_pass: {refine: sapiens2}}}
   - {id: comparar_gauff_v26_v34, accion: comparar, a: prueba_gauff_v26, b: prueba_gauff_v34_sapiens2}
+  # 21-11 04:20: la v34 se paró a los 5 min sin modelos en la sesión (faltaban TransNet y la pista; 3 en CPU): su registro
+  - {id: leer_v34, accion: leer, rutas: [/runs/kaggle_prueba_gauff_v34_sapiens2/log.txt]}
   # 15-11 23:20: la misma medida en GPU (en CPU serían ~20 h, más que las 12 h de una sesión); ~0,3-0,5 h de GPU
   - {id: medir_bola_totnet_gpu, accion: medir, prueba: bola, donde: kaggle}
   # 15-11 20:10 (R55): la v29 no valió (cada parte repetía las etapas con modelos: la huella de un modelo llevaba la fecha
