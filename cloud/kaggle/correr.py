@@ -133,6 +133,30 @@ def modal_put(vol, files: list[Path], local_root: Path, remote_root: str):
     almacen.ModalStorage(vol, VOLUME).put_files(files, local_root, remote_root)
 
 
+SAPIENS2_ONNX = "sapiens2_pose_0.4b_512x384.onnx"
+
+
+def ensure_sapiens2(py: Path, data: Path, models: Path, vol, est: dict) -> str:
+    """#307: when this run's settings ask for Sapiens2 as the fine pass's refiner (fine_pass.refine: sapiens2) and the
+    volume has no ONNX of it yet, export it here with this session's PyTorch (scripts/export_sapiens2.py) and keep it on
+    the volume (/models) for the next sessions. Returns what was done ('' when Sapiens2 is not asked for)."""
+    r = subprocess.run([str(py), "-c", "from tennisbio.config import load_config; "
+                        "print((load_config().get('fine_pass') or {}).get('refine', ''))"],
+                       cwd=REPO, env=env_for(data), capture_output=True, text=True)
+    if r.stdout.strip().lower() != "sapiens2":
+        return ""
+    dst = REPO / "models" / SAPIENS2_ONNX
+    if dst.exists():
+        return "ya estaba en el volumen"
+    t = time.time()
+    _run([sys.executable, "-m", "pip", "install", "-q", SAPIENS_TRANSFORMERS, "safetensors", "onnx", "onnxscript"])
+    _run([sys.executable, str(REPO / "scripts" / "export_sapiens2.py"), "--salida", str(dst)],
+         env={**os.environ, "HF_HOME": str(data / "hf")})
+    modal_put(vol, [dst], dst.parent, "/models")
+    est["sapiens2"] = f"exportado y subido al volumen en {time.time() - t:.0f} s"
+    return est["sapiens2"]
+
+
 def setup_env(repo: Path, venv: Path, gpu: bool = True) -> Path:
     """Python 3.11 with the repository's locked dependencies, ONNX Runtime for CUDA and the GPU hook, as Modal's image
     (cloud/modal_app.py). Returns the venv's python. `gpu` False (T24, a CPU part): the locked ONNX Runtime for the CPU
@@ -386,6 +410,7 @@ def main(argv: list[str]) -> int:
                        descubrimiento=disc.stdout.strip()[-3000:] or disc.stderr[-500:])   # #289: what Kaggle has
             return 0
         matches = {m["id"]: m for m in prepare(REPO, data, registry, job.get("config"))}
+        ensure_sapiens2(py, data, models, vol, est)        # #307: only when the settings ask for it
         src = matches.get(job["partido"])
         if src is None:
             est.update(estado="error", nota=f"{job['partido']} no está en la lista de partidos del PC")

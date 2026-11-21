@@ -119,7 +119,7 @@ def _rtmpose(url: str, input_size: tuple, device: str, fp16: bool = False):
     return est
 
 
-REFINERS = ("rtmpose-x", "rtmw-x")
+REFINERS = ("rtmpose-x", "rtmw-x", "sapiens2")
 RTMW_ONNX = Path(__file__).resolve().parents[3] / "models" / "rtmw-x_384x288.onnx"
 
 
@@ -140,6 +140,11 @@ def refiner(cfg: dict | None) -> str:
     if m == "rtmw-x" and not RTMW_ONNX.exists():
         print(f"AVISO: falta {RTMW_ONNX.name} (scripts/export_rtmw.py); la pose fina usa RTMPose-x")
         return "rtmpose-x"
+    if m == "sapiens2":                    # #307 (21-11): Sapiens2 0.4B at 512x384 (tennisbio.pose.sapiens2)
+        from .sapiens2 import ONNX as SAPIENS_ONNX
+        if not SAPIENS_ONNX.exists():
+            print(f"AVISO: falta {SAPIENS_ONNX.name} (scripts/export_sapiens2.py); la pose fina usa RTMPose-x")
+            return "rtmpose-x"
     return m
 
 
@@ -151,12 +156,20 @@ def _rtmw(device: str):
 
 
 @lru_cache(maxsize=4)
+def _sapiens2(device: str):
+    from .sapiens2 import Sapiens2Pose
+
+    return Sapiens2Pose(device=device)
+
+
+@lru_cache(maxsize=4)
 def _cached(yolo_name: str, imgsz: int, device: str, url: str, input_size: tuple, min_rel: float,
             refine: str = "rtmpose-x", half: bool = False) -> HybridPose:
     from .backend import pose_model
 
     yolo = pose_model(yolo_name, imgsz, device)
-    rtm = _rtmw(device) if refine == "rtmw-x" else _rtmpose(url, input_size, device, half)
+    rtm = (_rtmw(device) if refine == "rtmw-x" else _sapiens2(device) if refine == "sapiens2"
+           else _rtmpose(url, input_size, device, half))
     return HybridPose(yolo, rtm, min_rel)
 
 
@@ -193,7 +206,8 @@ def pose_cache_tag(cfg: dict) -> list:
     if fine_pose_model(cfg) == "yolo":
         return []
     # the refining model is part of the window caches: RTMW-x does not reuse RTMPose-x's (03-11)
-    return (["hybrid"] + (["rtmw-x"] if refiner(cfg) == "rtmw-x" else [])
+    r = refiner(cfg)
+    return (["hybrid"] + ([r] if r in ("rtmw-x", "sapiens2") else [])
             + (["refine-fp16"] if refine_fp16(cfg) and refiner(cfg) == "rtmpose-x" else []))
 
 

@@ -159,6 +159,12 @@ trabajos:
   # T4 (un partido, unas 13 h de GPU más). El 0.4B otra vez a 768x576 y 512x384. Regla escrita antes: se queda el tamaño más
   # pequeño que siga temblando al menos un 10 % menos en el cuerpo, no más en los pies y vea los pies igual; su tiempo decide
   - {id: medir_sapiens2_rapido, accion: medir, prueba: sapiens2_rapido, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, base: prueba_gauff_v26, donde: kaggle}
+  # 21-11 (#307, el usuario: «sí, hazlo»): Sapiens2 0.4B a 512x384 dentro de la pasada fina, en lugar de RTMPose-x (en ONNX,
+  # exportado en la sesión la primera vez y guardado en el volumen). La prueba de 10 min entera, frente a la v26. Regla
+  # escrita antes: se adopta si empareja los mismos golpes (28 de 28, ninguno de un solo lado) y sus medidas tiemblan
+  # menos (cociente mediano de temblor ≤ 0,9); las horas de GPU de la prueba se apuntan para el coste por partido
+  - {id: prueba_gauff_v33_sapiens2, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, config: {fine_pass: {refine: sapiens2}}}
+  - {id: comparar_gauff_v26_v33, accion: comparar, a: prueba_gauff_v26, b: prueba_gauff_v33_sapiens2}
   # 15-11 23:20: la misma medida en GPU (en CPU serían ~20 h, más que las 12 h de una sesión); ~0,3-0,5 h de GPU
   - {id: medir_bola_totnet_gpu, accion: medir, prueba: bola, donde: kaggle}
   # 15-11 20:10 (R55): la v29 no valió (cada parte repetía las etapas con modelos: la huella de un modelo llevaba la fecha
