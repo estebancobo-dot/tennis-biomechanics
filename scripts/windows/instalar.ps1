@@ -51,7 +51,10 @@ try {
     Ejecutar uv @("run", "python", "scripts/check_env.py")
     # las pruebas no bloquean la instalacion: su resultado se guarda y llega a Claude
     $ErrorActionPreference = "Continue"
-    $salida = uv run pytest -q -p no:cacheprovider 2>&1 | ForEach-Object { "$_" }
+    # 21-11: the user saw this step silent for minutes and thought it had hung: say what it does and how long
+    Write-Host "Pasando las pruebas automaticas (unas 1.400, en paralelo: 5-10 min; no se ve nada hasta el final)."
+    Write-Host "El codigo ya esta al dia: se puede abrir 6_aplicacion_nueva.bat sin esperar."
+    $salida = uv run pytest -q -n 4 -p no:cacheprovider 2>&1 | ForEach-Object { "$_" }
     $code = $LASTEXITCODE
     $salida | Out-Host
     $salida | Out-File -FilePath "$Base\output\pruebas.log" -Encoding utf8      # Tee-Object escribe UTF-16
