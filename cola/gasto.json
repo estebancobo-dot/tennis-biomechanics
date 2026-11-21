@@ -157,6 +157,9 @@
     "prueba_gauff_v33_sapiens2": {
      "estimado_h": 1.0,
      "horas": 0.53
+    },
+    "prueba_gauff_v34_sapiens2": {
+     "estimado_h": 1.0
     }
    }
   }
@@ -165,6 +168,6 @@
   "usadas_h": 1.15,
   "total_h": 30.0,
   "renueva": "2026-11-28 00:00:00",
-  "ts": 1795228791.2705731
+  "ts": 1795230187.8454897
  }
 }
