@@ -90,6 +90,9 @@ ERROR) y lo sube a `pc-logs`. No pedir al usuario que lance 2c/2d tras cada camb
   (`tennisbio jobs`, peticiones `trabajo`/`control`); la aplicación y el chat usan el mismo código y los mismos datos.
 - **Pruebas antes de cada subida:** `uv run pytest -q -n 4` (todas, en paralelo, ~5,5 min); se sube solo con 0 fallos.
   Excepción: una subida que solo contiene una parada (`config/parar_pc.txt`) no espera a las pruebas.
+- **Sin pronósticos** (21-11, #311): no dar horas ni fechas de lo que hará la nube («arrancará», «estará a las…»); decir solo lo
+  que ya ha pasado y dónde lo comprueba el usuario (kaggle.com/work, la cuota de su cuenta, `nube-logs:cola/estado.md`).
+  Ninguna cuenta ni web nueva sin haberla medido antes.
 - **Comprobar, no suponer:** nunca decir «hecho» o «en marcha» sin verlo en pc-logs o en la salida real (09-11: se
   dijo que un análisis había arrancado y no era así).
 - **Conceptos (uno por nivel; no inventar otros):** **Plan** = horizonte (corto: cerrar la Base B1-B8 y después rehacer la aplicación, P0; medio:

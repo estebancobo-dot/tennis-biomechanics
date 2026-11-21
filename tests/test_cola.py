@@ -749,3 +749,30 @@ def test_a_notebook_stuck_in_kaggles_queue_is_relaunched_when_a_newer_one_starte
     assert act == "relanzar" and "atascado" in why
     assert cola.kaggle_step({"lanzado_ts": NOV - 20 * 60}, "queued", None, NOV, True) == ("nada", "")
     assert cola.kaggle_step({"lanzado_ts": NOV - 4 * 3600}, "queued", None, NOV)[0] == "relanzar"
+
+
+def test_a_part_also_waits_for_another_job_without_running_on_it():
+    """21-11 (#311, the user: «sí»): Sinner's CPU part runs while Kaggle gives no GPU for its 10-min test; its GPU part
+    waits for both (its earlier part, whose outputs it uses, and the test), so no GPU work of the match goes before its
+    test."""
+    on = {"kaggle": {"ok": True, "motivo": "", "libres": 2}, "kaggle_cpu": {"ok": True}, "pc": {"ok": False}}
+    jobs = [{"id": "prueba_s", "accion": "prueba", "partido": "s", "donde": "kaggle"},
+            {"id": "s_a", "accion": "partido", "partido": "s", "aprobado": True, "cpu": True, "donde": "kaggle",
+             "etapas": ["probe", "scenes"]},
+            {"id": "s_b", "accion": "partido", "partido": "s", "tras": "s_a", "espera_tambien": ["prueba_s"],
+             "aprobado": True, "donde": "kaggle", "etapas": ["players", "fine"]}]
+    assert not cola.check_queue(jobs)
+    d = {i: (src, why) for i, src, why in cola.plan(jobs, {"s_a": {"estado": "hecho"}}, {}, on, DEC)}
+    assert d["s_b"][0] == "" and "prueba_s (pendiente)" in d["s_b"][1] and "s_a" not in d["s_b"][1]
+    d = {i: (src, why) for i, src, why in cola.plan(jobs, {"prueba_s": {"estado": "hecho"}}, {}, on, DEC)}
+    assert d["s_b"][0] == "" and "s_a (pendiente)" in d["s_b"][1]
+    d = {i: (src, why) for i, src, why in cola.plan(jobs, {"prueba_s": {"estado": "hecho"}, "s_a": {"estado": "hecho"}},
+                                                    {}, on, DEC)}
+    assert d["s_b"][0] == "kaggle"
+    d = {i: (src, why) for i, src, why in cola.plan(jobs, {}, {}, on, DEC, "en espera")}
+    assert d["prueba_s"][1] == "en espera"                                  # still the match's test
+    assert "«espera_tambien»" in cola.check_queue([*jobs[:2], {**jobs[2], "espera_tambien": ["nada"]}])[0]
+    assert "«espera_tambien»" in cola.check_queue([*jobs[:2], {**jobs[2], "espera_tambien": "prueba_s"}])[0]
+    q = yaml.safe_load((ROOT / "config" / "cola_nube.yaml").read_text(encoding="utf-8"))
+    by = {j["id"]: j for j in q["trabajos"]}
+    assert not by["sinner_a"].get("tras") and by["sinner_b"]["espera_tambien"] == ["prueba_sinner_b"]

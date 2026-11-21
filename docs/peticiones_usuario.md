@@ -54,11 +54,11 @@ la auditoría las marcará «sin comprobación automática asignada».
 | Estado | Nº |
 |---|---|
 | HECHO | 124 |
-| PARCIAL | 150 |
+| PARCIAL | 151 |
 | FALTA | 23 |
 | NO MEDIBLE | 3 |
 | NO APLICA | 10 |
-| **Total** | **310** |
+| **Total** | **311** |
 
 **27-10:** filas 220-245 nuevas: todo lo pedido en el chat del 19-10 al 27-10 (releídos los mensajes) y lo que
 salió en la prueba de valor; ninguna fila borrada.
@@ -397,6 +397,7 @@ lateral (entreno)» · ≥12 = solo se muestra con 12 golpes o más (`model.MIN_
 | 308 | «¿Porqué has estado parado y no has encolado trabajos?» (Chat, 21-11, tras ver las 2 sesiones de Kaggle libres con 26 h de la semana) | PARCIAL | `cloud/cola.py` (`idle_notice`) | — | `tests/test_cola.py` (sesión de Kaggle libre) | **Causa (21-11):** Claude cerró Sapiens2 y se paró en vez de encolar la tarea siguiente, y durante esas pruebas solo usó una de las 2 sesiones de Kaggle (1 h 40 min sin ninguna en uso). **Arreglo:** la cola avisa en el buzón cuando una sesión de GPU de Kaggle está libre y quedan ≥ 1 h esta semana, y otra vez cada 2 h mientras siga así. Encolados ya `medir_lejana_rfdetr` (RF-DETR en la T4) y la prueba de referencia `prueba_gauff_v36` (T18). Se cierra cuando el aviso despierte a Claude en la práctica y las 2 sesiones sigan ocupadas mientras haya tareas del plan. |
 | 309 | «Sí, haz eso» (Chat, 21-11, tras «¿por qué crees que la nube nativa ya está y no merece la pena seguir midiendo?»): medir el 3D antes de los partidos, repartir la pasada fina (T19) y lo pendiente de la aplicación del PC | PARCIAL | `docs/registro_decisiones.md` (Cuerpo 3D), `docs/p0_plan.md` P0.5e | — | — | **Corregido el 21-11:** la nube nativa no estaba terminada; lo medido cubre la pose 2D, la bola, los golpes, la raqueta, el marcador y la jugadora lejana, pero falta el **3D de las rotaciones** (fiabilidad media; se mide con CalTennis: SAM 3D Body sin registro; GVHMR/WHAM si el usuario se registra en SMPL), **T19** (la pasada fina repartida entre las 2 sesiones) y en la aplicación: miniaturas de la galería, vídeo con capas en cada fase de la lección, fotogramas de «La bola y ella», tira de contactos, estroboscópica de los golpes sin trayectoria, exportación y disco. Los partidos, después del 3D (#295: cada partido una sola vez). 21-11: la ventana se abre al momento y los resultados de la nube llegan por detrás. |
 | 310 | «Nunca se acaba el análisis de la nube» y «Sí. Y avanza en paralelo. Ni siquiera sé si la app de Windows funciona bien» (Chat, 21-11) | PARCIAL | `config/cola_nube.yaml` (`partidos_en_espera` vacío) | — | — | **Aprobación de los partidos (#262):** Sinner (prueba corta y partido por partes) y poner al día Osaka, Pegula y Zheng, y el informe de los 6, sin esperar al 3D ni a F3Set: si MeTRAbs gana, solo se recalcula el giro 3D desde la pose guardada; si F3Set señala una causa, se arregla antes de los siguientes. En paralelo: la prueba de MeTRAbs, F3Set golpe a golpe y comprobar que la aplicación de Windows funciona (sin pedir nada al usuario). |
+| 311 | «Sí, pero es lo de siempre. Haces pronóstico que no se cumple y es todo inventado» y «Llevo 2 webs y me pides otra» (Chat, 21-11) | PARCIAL | `config/cola_nube.yaml` (`sinner_a` sin esperar a la prueba corta; `sinner_b` con `espera_tambien`), `cloud/cola.py` (`espera_tambien`), CLAUDE.md («Sin pronósticos») | `tests/test_cola.py::test_a_part_also_waits_for_another_job_without_running_on_it` | — | **(1)** La parte de CPU de Sinner (cortes, pista, audio; 0 €) va ya en la CPU de Kaggle, sin esperar a la prueba corta, que Kaggle no arranca por falta de GPU; la parte de GPU sigue esperando a la prueba corta. **(2)** Sin pronósticos: Claude no da horas ni fechas de lo que hará la nube; solo lo que ya ha pasado y dónde lo ve el usuario (kaggle.com/work, `nube-logs`). **(3)** Ninguna cuenta ni web nueva (Lightning AI retirado: no medido). |
 | 269 | Estado y progreso: cuánto falta para lanzar los 6 partidos, qué hay en marcha y pendiente en la nube y en el PC (en serie o en paralelo), qué queda para cerrar la Base, por qué seguimos así y qué falló por la noche (Chat, 13-11) | HECHO | respuesta en el chat; `docs/estado_proyecto.md`, «Resumen de la noche (12-11 → 13-11)» y la tabla de tareas | — | — | Como #266, el estado vive en la tabla de tareas. |
 
 ## Lo más grave que falta (por impacto en «copiar su derecha»)

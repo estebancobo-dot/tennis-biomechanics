@@ -259,8 +259,11 @@ trabajos:
   - {id: prueba_sinner_b, accion: prueba, partido: zverev-alexander-sinner-jannik-indian-wells-2026-semi-final, tras: final}
   # 15-11 23:20 (T24 adoptado): cada partido por partes, el principio y el final en CPU (no gastan horas de GPU) y el medio
   # en GPU; la última parte lleva el id de siempre, así las cadenas y el informe siguen igual (la misma aprobación: el mismo análisis)
-  - {id: sinner_a, accion: partido, partido: zverev-alexander-sinner-jannik-indian-wells-2026-semi-final, tras: prueba_sinner_b, aprobado: true, cpu: true, etapas: [probe, scenes, court, audio]}
-  - {id: sinner_b, accion: partido, partido: zverev-alexander-sinner-jannik-indian-wells-2026-semi-final, tras: sinner_a, aprobado: true, etapas: [players, score, identity, spotting, candidates, fine, fine_opponent, fine_doubtful]}
+  # 21-11 22:00 (#311, el usuario: «sí»): Kaggle no da GPU para la prueba corta desde las 21:01; la parte de CPU de Sinner
+  # (no gasta GPU, 0 €) va ya, sin esperarla; la de GPU sigue esperando a la prueba corta (espera_tambien). Si la prueba
+  # encuentra un fallo, la parte de CPU se repite
+  - {id: sinner_a, accion: partido, partido: zverev-alexander-sinner-jannik-indian-wells-2026-semi-final, aprobado: true, cpu: true, etapas: [probe, scenes, court, audio]}
+  - {id: sinner_b, accion: partido, partido: zverev-alexander-sinner-jannik-indian-wells-2026-semi-final, tras: sinner_a, espera_tambien: [prueba_sinner_b], aprobado: true, etapas: [players, score, identity, spotting, candidates, fine, fine_opponent, fine_doubtful]}
   - {id: sinner, accion: partido, partido: zverev-alexander-sinner-jannik-indian-wells-2026-semi-final, tras: sinner_b, aprobado: true, cpu: true, etapas: [views, views_link, view_clips, slowmo_fine]}
   # paso 10: Osaka, Pegula y Zheng al día con el código final (marcador v16, R36, R37): solo lo que cambió, desde lo
   # guardado en Modal (las ventanas no se repiten); aprobado en el plan (paso 10 de docs/estado_proyecto.md)

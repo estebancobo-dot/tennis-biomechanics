@@ -274,6 +274,9 @@ def check_queue(jobs: list[dict]) -> list[str]:
     for j in jobs:
         if j.get("tras") and j["tras"] not in ids:
             bad.append(f"{j.get('id')}: «tras» {j['tras']} no está en la cola")
+        more = j.get("espera_tambien")
+        if more is not None and (not isinstance(more, list) or any(m not in ids for m in more)):
+            bad.append(f"{j.get('id')}: «espera_tambien» es una lista de trabajos de la cola")
     return bad
 
 
@@ -347,16 +350,19 @@ def plan(jobs: list[dict], state: dict, spend: dict, sources: dict, now: float,
     kaggle = dict(sources.get("kaggle", {}))
     # 15-11: a match's 10-min test checks the code that match will run with, so it waits with its match (a test run
     # now would be repeated after the change it waits for); tests of no match (experiments) are not held
-    match_tests = {j["tras"] for j in jobs if j["accion"] == "partido" and j.get("tras")}
+    match_tests = {t for j in jobs if j["accion"] == "partido" for t in [j.get("tras"), *(j.get("espera_tambien") or [])] if t}
     for j in jobs:
         st = state.get(j["id"], {})
         if st.get("estado") in ("en_marcha", "revisar", *FINAL):
             continue
-        if j.get("tras"):
-            dep = state.get(j["tras"], {})
-            if dep.get("estado") != "hecho":
-                out.append((j["id"], "", f"espera a {j['tras']} ({dep.get('estado', 'pendiente')})"))
-                continue
+        # 21-11 (#311): «espera_tambien», more jobs it waits for without running on their outputs (a match's GPU part
+        # waits for its 10-min test while its CPU part runs before it); «tras» stays the part whose outputs it uses
+        deps = [d for d in [j.get("tras"), *(j.get("espera_tambien") or [])] if d]
+        waiting = [d for d in deps if state.get(d, {}).get("estado") != "hecho"]
+        if waiting:
+            out.append((j["id"], "", "espera a " + ", ".join(f"{d} ({state.get(d, {}).get('estado', 'pendiente')})"
+                                                             for d in waiting)))
+            continue
         if j["accion"] == "leer":                      # R52: no GPU, no Modal credit: this pass reads the files
             out.append((j["id"], "github", "se lee en esta vuelta"))
             continue
