@@ -1693,5 +1693,18 @@
    },
    "horas_kaggle": 0.15
   }
+ },
+ "medir_app": {
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1795248640.242102,
+  "accion": "medir",
+  "partido": "",
+  "inicio": "2026-11-21 08:10",
+  "ruta": "/runs/kaggle_medir_app/estado.json",
+  "cpu": true,
+  "cuaderno": "tennisbio-medir-app"
  }
 }

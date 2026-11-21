@@ -107,4 +107,5 @@
 | informe_beta | informe |  | hecho | modal |  |
 | informe_beta2 | informe |  | hecho | kaggle |  |
 | informe_beta3 | informe |  | hecho | kaggle |  |
+| medir_app | medir |  | en_marcha | kaggle |  |
 | informe_6 | informe |  | pendiente |  | espera a actualizar_zheng (pendiente) |
