@@ -1,5 +1,6 @@
-fecha: 2026-11-15T16:01:07
+fecha: 2026-11-21T12:57:37
      265.6 MB  \output\analisis
+       0.3 MB  \output\aplicacion_nueva
        4.2 MB  \output\auditoria
        5.7 MB  \output\benchmark
        2.4 MB  \output\capturas_app
@@ -23,6 +24,7 @@ fecha: 2026-11-15T16:01:07
        3.3 MB  \output\investigacion_25
       36.1 MB  \output\investigacion_295
      145.5 MB  \output\movil_prueba
+    1170.9 MB  \output\nube
        6.4 MB  \output\recursos
     7650.8 MB  \output\tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5
     5546.1 MB  \output\tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5

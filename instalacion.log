@@ -596,3 +596,435 @@ Empezado 2026-10-13 08:24:22 - terminado 2026-10-13 08:24:31 - duracion total 9 
 Windows PowerShell transcript end
 End time: 20261013082431
 **********************
+**********************
+Windows PowerShell transcript start
+Start time: 20261121124715
+Username: esteban\esteb
+RunAs User: esteban\esteb
+Configuration Name: 
+Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\instalar.ps1
+Process ID: 10024
+PSVersion: 5.1.26100.9818
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9818
+BuildVersion: 10.0.26100.9818
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+
+==> [2026-11-21 12:47:15] 1/7 Actualizar el codigo
+se actualiza con 1_instalar.bat (con Git si el proyecto esta clonado; si no, zip de GitHub)
+    (paso terminado en 0 s)
+
+==> [2026-11-21 12:47:15] 2/7 ffmpeg (lectura de video y audio)
+ya estaba
+    (paso terminado en 0 s)
+
+==> [2026-11-21 12:47:15] 3/7 uv (gestor de Python)
+ya estaba
+    (paso terminado en 0 s)
+
+==> [2026-11-21 12:47:15] 4/7 Codigo del proyecto
+proyecto en C:\tenis\tennis-biomech
+    (paso terminado en 0 s)
+
+==> [2026-11-21 12:47:15] 5/7 Python 3.11 y librerias (10-15 min la primera vez)
+Python 3.11 is already installed
+Resolved 126 packages in 12ms
+Checked 91 packages in 21ms
+    (paso terminado en 0 s)
+
+==> [2026-11-21 12:47:15] 6/7 Configuracion y modelos (~1 GB la primera vez)
+balltrack.onnx     OK 45 MB
+racketpose.onnx    OK 53 MB
+transnetv2.onnx    OK 31 MB
+rtmw3d-x.onnx      OK 369 MB
+rtmw-x_384x288.onnx OK 229 MB
+court_tcd.onnx     OK 42 MB
+motionagformer_xs.onnx OK 9 MB
+yolo11m-pose_640.onnx OK 84 MB
+yolo11m-pose_960.onnx OK 84 MB
+yolo11m-pose_1280.onnx OK 85 MB
+yolo11m-pose_1920.onnx OK 86 MB
+Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (hecho)
+    (paso terminado en 4 s)
+
+==> [2026-11-21 12:47:20] 7/7 Comprobacion
+Python   3.11.17  (Windows-10-10.0.26200-SP0)
+CPUs     16
+ffmpeg   C:\Users\esteb\AppData\Local\Microsoft\WinGet\Packages\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\ffmpeg-9.0.2-full_build\bin\ffmpeg.EXE
+ffprobe  C:\Users\esteb\AppData\Local\Microsoft\WinGet\Packages\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\ffmpeg-9.0.2-full_build\bin\ffprobe.EXE
+git      C:\Program Files\Git\cmd\git.EXE
+uv       C:\Users\esteb\.local\bin\uv.EXE
+numpy        2.4.6
+pandas       3.0.6
+cv2          5.0.0
+librosa      0.11.0
+onnxruntime  1.24.4
+ultralytics  8.4.175
+rapidocr_onnxruntime ?
+ORT providers: ['DmlExecutionProvider', 'CPUExecutionProvider']
+balltrack.onnx     OK
+racketpose.onnx    OK
+transnetv2.onnx    OK
+rtmw3d-x.onnx      OK
+yolo11m-pose_960.onnx OK
+yolo11m-pose_1280.onnx OK
+...........................................................s.......ss..s [  4%]
+ss...................................................................... [  9%]
+........................................................................ [ 14%]
+........................................................................ [ 19%]
+........................................................................ [ 24%]
+......................................................F.F............... [ 29%]
+........................................................................ [ 34%]
+........................................................................ [ 39%]
+.......F................................................................ [ 44%]
+.....................................................s.................. [ 49%]
+.........F.......ssss.sss..sssss.ss..................................... [ 54%]
+...............................................sss..........s........F.. [ 59%]
+..................................................F..................... [ 64%]
+........................................................................ [ 69%]
+.........F...F...F.F...F....F........................................... [ 74%]
+........................................................................ [ 79%]
+........................................................................ [ 84%]
+........................................................................ [ 89%]
+........ssssss.......................................................... [ 94%]
+........................................s............................... [ 99%]
+...........                                                              [100%]
+================================== FAILURES ===================================
+________ test_lost_far_player_is_found_again_by_searching_the_far_half ________
+
+tmp_path = WindowsPath('C:/Users/esteb/AppData/Local/Temp/pytest-of-esteb/pytest-155/test_lost_far_player_is_found_0')
+far_frames = namespace(searched=[])
+
+    def test_lost_far_player_is_found_again_by_searching_the_far_half(tmp_path, far_frames):
+        from tennisbio.pose import yolo
+
+        # as before (no court): lost from the first frame, the crop grows until she is too small to be seen again
+        st_old = {}
+        z = np.load(yolo.extract_follow("v.mp4", tmp_path / "old.npz", WRONG, stats=st_old), allow_pickle=True)
+        assert not any(_near_her(z, t) for t in range(40))
+        assert st_old["frames_960"] >= 37 and not far_frames.searched
+        # with the court: searched again after FOLLOW_RESEARCH_AFTER frames without her, then followed in a small crop
+        st = {}
+        z = np.load(yolo.extract_follow("v.mp4", tmp_path / "new.npz", WRONG, stats=st, far_H=np.eye(3)), allow_pickle=True)
+        first = yolo.FOLLOW_RESEARCH_AFTER
+>       assert all(_near_her(z, t) for t in range(first, 40))
+E       assert False
+E        +  where False = all(<generator object test_lost_far_player_is_found_again_by_searching_the_far_half.<locals>.<genexpr> at 0x000001B31A2B0040>)
+
+tests\test_far_follow.py:81: AssertionError
+___________________ test_find_far_player_at_gives_the_frame ___________________
+
+tmp_path = WindowsPath('C:/Users/esteb/AppData/Local/Temp/pytest-of-esteb/pytest-155/test_find_far_player_at_gives_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001B31A35DE10>
+
+    def test_find_far_player_at_gives_the_frame(tmp_path, monkeypatch):
+        import cv2
+
+        from tennisbio.pose import yolo
+        import tennisbio.court_metrics as cm
+
+        p = tmp_path / "v.avi"
+        w = cv2.VideoWriter(str(p), cv2.VideoWriter_fourcc(*"MJPG"), 25, (64, 48))
+        for i in range(100):
+            w.write(np.full((48, 64, 3), i * 2, np.uint8))
+        w.release()
+        monkeypatch.setattr(yolo, "detect_people", lambda fr, roi=None, **k: (np.array([[1, 2, 3, 4]], float)
+                                                                             if fr.mean() >= 35 else np.zeros((0, 4))))
+        monkeypatch.setattr(cm, "far_roi", lambda Hm, shape: None)
+        monkeypatch.setattr(cm, "pick_far_player", lambda boxes, Hm: boxes[0] if len(boxes) else None)
+>       f, box = yolo.find_far_player_at(p, np.eye(3), search_s=2.0, step=5)
+        ^^^^^^
+E       TypeError: cannot unpack non-iterable NoneType object
+
+tests\test_far_follow.py:123: TypeError
+________________ test_find_far_players_one_reading_many_starts ________________
+
+tmp_path = WindowsPath('C:/Users/esteb/AppData/Local/Temp/pytest-of-esteb/pytest-155/test_find_far_players_one_read0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001B31E8C0590>
+
+    def test_find_far_players_one_reading_many_starts(tmp_path, monkeypatch):
+        from tennisbio.pose import yolo
+        import tennisbio.court_metrics as cm
+
+        p = tmp_path / "v.avi"
+        w = cv2.VideoWriter(str(p), cv2.VideoWriter_fourcc(*"MJPG"), 25, (64, 48))
+        for i in range(200):
+            w.write(np.full((48, 64, 3), i % 250, np.uint8))
+        w.release()
+        seen = []
+
+        def fake_detect(frame, roi=None, **k):
+            v = float(frame.mean())                       # the frame number (± the JPEG rounding)
+            seen.append(v)
+            t = next((t for t in (10, 70, 75, 160) if abs(v - t) <= 1.5), None)
+            return np.array([[t, 0, t + 1, 1]], float) if t is not None else np.zeros((0, 4))
+        monkeypatch.setattr(yolo, "detect_people", fake_detect)
+        monkeypatch.setattr(cm, "far_roi", lambda H, shape: None)
+        monkeypatch.setattr(cm, "pick_far_player", lambda boxes, H: boxes[0] if len(boxes) else None)
+        got = yolo.find_far_players(p, np.eye(3), [0, 60, 120], search_s=2.0, step=5)
+>       assert got[0][0] == 10 and got[60][0] == 70 and got[120][0] == 160
+               ^^^^^^^^^
+E       TypeError: 'NoneType' object is not subscriptable
+
+tests\test_fine_ranges.py:256: TypeError
+___________________ test_the_report_on_a_kaggle_cpu_session ___________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001B31E9B8F50>
+tmp_path = WindowsPath('C:/Users/esteb/AppData/Local/Temp/pytest-of-esteb/pytest-155/test_the_report_on_a_kaggle_cp0')
+
+    def test_the_report_on_a_kaggle_cpu_session(monkeypatch, tmp_path):
+        """21-11 (P0.5e, #301; Modal out of credit): the report and the Base audit on a Kaggle CPU session, as Modal's: only
+        the analysed matches (never a 10-minute test), their folders back on the volume for the PC's application, and the
+        audit in the run's folder for nube-logs."""
+        import json as _json
+        import subprocess as sp
+        j = correr.parse_job('{"accion": "informe"}')
+        assert j["salida"] == "/runs/informe"
+        data, run, repo = tmp_path / "data", tmp_path / "run", tmp_path / "repo"
+        run.mkdir()
+        (repo / "config").mkdir(parents=True)
+        for mid, man in (("m1", {"fine": {}}), ("m2", {"scenes": {}}), ("_prueba_m1", {"fine": {}})):
+            (data / "output" / mid).mkdir(parents=True)
+            (data / "output" / mid / "manifest.json").write_text(_json.dumps(man), encoding="utf-8")
+        monkeypatch.setattr(correr, "REPO", repo)
+        monkeypatch.setattr(correr.nube, "cloud_catalog",
+                            lambda reg, lib: {"matches": [{"id": "m1"}, {"id": "m2"}, {"id": "_prueba_m1"}]})
+        got, put, ran = [], [], []
+        monkeypatch.setattr(correr, "modal_get", lambda remote, local: got.append(remote))
+        monkeypatch.setattr(correr, "modal_put", lambda vol, files, root, remote: put.append((sorted(
+            str(f.relative_to(root)) for f in files), remote)))
+
+        class R:
+            returncode, stdout, stderr = 0, "ok", ""
+
+        def fake_run(cmd, **kw):
+            ran.append(cmd[3])
+            out = data / "output"
+            if cmd[3] == "report":
+                (out / "informe_derecha" / "videos").mkdir(parents=True)
+                (out / "m1" / "windows").mkdir(parents=True)
+                (out / "m1" / "windows" / "w1.mp4").write_bytes(b"ww")                # a stroke's window, linked
+                (out / "informe_derecha" / "index.html").write_text(
+                    '<script>const D = {"strokes": [{"id": "a", "video": "../m1/windows/w1.mp4"}, '
+                    '{"id": "b", "video": "../m1/windows/falta.mp4"}, {"id": "c", "video": "../../fuera.mp4"}]}</script>')
+                (out / "informe_derecha" / "videos" / "g1.mp4").write_bytes(b"v")
+            else:
+                (out / "auditoria").mkdir(parents=True)
+                (out / "auditoria" / "auditoria.json").write_text("{}")
+                (out / "auditoria" / "auditoria.md").write_text("# a")
+            return R()
+        monkeypatch.setattr(sp, "run", fake_run)
+        est = {}
+>       assert correr.report(j, Path("py"), data, run, None, est, []) == 0
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_kaggle.py:303:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+cloud\kaggle\correr.py:386: in report
+    (root / m["id"]).symlink_to(data / "output" / m["id"], target_is_directory=True)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/esteb/AppData/Local/Temp/pytest-of-esteb/pytest-155/test_the_report_on_a_kaggle_cp0/data/partidos/m1')
+target = WindowsPath('C:/Users/esteb/AppData/Local/Temp/pytest-of-esteb/pytest-155/test_the_report_on_a_kaggle_cp0/data/output/m1')
+target_is_directory = True
+
+    def symlink_to(self, target, target_is_directory=False):
+        """
+        Make this path a symlink pointing to the target path.
+        Note the order of arguments (link, target) is the reverse of os.symlink.
+        """
+        if not hasattr(os, "symlink"):
+            raise NotImplementedError("os.symlink() not available on this system")
+>       os.symlink(target, self, target_is_directory)
+E       OSError: [WinError 1314] A required privilege is not held by the client: 'C:\\Users\\esteb\\AppData\\Local\\Temp\\pytest-of-esteb\\pytest-155\\test_the_report_on_a_kaggle_cp0\\data\\output\\m1' -> 'C:\\Users\\esteb\\AppData\\Local\\Temp\\pytest-of-esteb\\pytest-155\\test_the_report_on_a_kaggle_cp0\\data\\partidos\\m1'
+
+C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\pathlib.py:1198: OSError
+______________ test_a_match_run_samples_what_the_container_uses _______________
+
+    def test_a_match_run_samples_what_the_container_uses():
+        """13-11: GPU, CPU and memory every minute of a match, to size the container by what was measured (cost)."""
+        nube.sample_resources()                                         # the CPU % is between two samples
+        s = nube.sample_resources()
+>       assert {"t", "cpu_pct", "cores", "ram_gb"} <= set(s) and s["ram_gb"] > 0
+E       AssertionError: assert ({'cores', 'cp...'ram_gb', 't'} <= {'cores', 't'}
+E
+E         Extra items in the left set:
+E         'ram_gb'
+E         'cpu_pct')
+
+tests\test_nube.py:400: AssertionError
+________________ test_the_built_page_is_the_one_of_its_sources ________________
+
+    def test_the_built_page_is_the_one_of_its_sources():
+        """The interface is built in Claude's cloud (the PC has no Node) and the build goes to the repository: it must be
+        the build of the sources that are there (scripts/construir_ui.py writes their fingerprint)."""
+        build = _load("construir_ui", ROOT / "scripts" / "construir_ui.py")
+        stamp = (ROOT / "src" / "tennisbio" / "app" / "p0" / "huella.txt").read_text(encoding="utf-8").strip()
+>       assert stamp == build.fingerprint(), "ui/ cambió sin volver a construir: python scripts/construir_ui.py"
+E       AssertionError: ui/ cambió sin volver a construir: python scripts/construir_ui.py
+E       assert 'd75cd40b4c8a...2750ec63a920a' == '012fefc5cca8...a28019b501e71'
+E
+E         - 012fefc5cca80b804bf6f2f05414ba8dbc2cfc71fc91181b557a28019b501e71
+E         + d75cd40b4c8ac77da4fe0cc84bb7d6e256498a5ac2553a6fc5f2750ec63a920a
+
+tests\test_p0_app.py:28: AssertionError
+________________ test_kaggle_installs_tensorflow_and_measures _________________
+
+tmp_path = WindowsPath('C:/Users/esteb/AppData/Local/Temp/pytest-of-esteb/pytest-155/test_kaggle_installs_tensorflo0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001B31EB01390>
+
+    def test_kaggle_installs_tensorflow_and_measures(tmp_path, monkeypatch):
+        sys.path.insert(0, str(ROOT / "cloud" / "kaggle"))
+        sys.path.insert(0, str(ROOT / "cloud"))
+        import correr
+        j = correr.parse_job('{"accion": "medir", "prueba": "3d"}')
+>       assert correr.poc_args(j, Path("/d/models/models"), None) == ["--datos", "/d/models/datasets", "--dispositivo", "cuda"]
+E       AssertionError: assert ['--datos', '...tivo', 'cuda'] == ['--datos', '...tivo', 'cuda']
+E
+E         At index 1 diff: '\\d\\models\\datasets' != '/d/models/datasets'
+E         Use -v to get more diff
+
+tests\test_poc_3d.py:67: AssertionError
+____________ test_kaggle_brings_the_results_and_chrome_then_probes ____________
+
+    def test_kaggle_brings_the_results_and_chrome_then_probes():
+        sys.path.insert(0, str(ROOT / "cloud" / "kaggle"))
+        sys.path.insert(0, str(ROOT / "cloud"))
+        import correr
+        j = correr.parse_job('{"accion": "medir", "prueba": "app"}')
+>       assert correr.poc_args(j, Path("/d/models/models"), None) == ["--raiz", "/d/models/app"]
+E       AssertionError: assert ['--raiz', '\\d\\models\\app'] == ['--raiz', '/d/models/app']
+E
+E         At index 1 diff: '\\d\\models\\app' != '/d/models/app'
+E         Use -v to get more diff
+
+tests\test_poc_app.py:71: AssertionError
+___________________ test_the_ball_job_runs_on_a_cpu_session ___________________
+
+    def test_the_ball_job_runs_on_a_cpu_session():
+        sys.path.insert(0, str(ROOT / "cloud"))
+        sys.path.insert(0, str(ROOT / "cloud" / "kaggle"))
+        import cola
+        import correr
+        j = {"id": "medir_bola", "accion": "medir", "prueba": "bola", "donde": "kaggle", "cpu": True}
+        assert not cola.check_queue([j]) and cola.cpu_job(j) and cola.estimate_h(j) == 0.0
+        args = correr.poc_args(correr.parse_job(json.dumps({"accion": "medir", "prueba": "bola", "cpu": True})),
+                               Path("/d/models"), None)
+>       assert args[args.index("--totnet") + 1] == "/d/models/totnet_tennis.onnx" and args[-1] == "cpu"
+E       AssertionError: assert ('\\d\\models\...t_tennis.onnx' == '/d/models/totnet_tennis.onnx'
+E
+E         - /d/models/totnet_tennis.onnx
+E         ? ^ ^      ^
+E         + \d\models\totnet_tennis.onnx
+E         ? ^ ^      ^)
+
+tests\test_poc_bola.py:63: AssertionError
+_____ test_kaggle_brings_her_clips_and_the_reference_and_streams_the_log ______
+
+    def test_kaggle_brings_her_clips_and_the_reference_and_streams_the_log():
+        sys.path.insert(0, str(ROOT / "cloud" / "kaggle"))
+        sys.path.insert(0, str(ROOT / "cloud"))
+        import cola
+        import correr
+        j = correr.parse_job('{"accion": "medir", "prueba": "f3set"}')
+        args = correr.poc_args(j, Path("/d/models/models"), None)
+>       assert args == ["--raiz", "/d/models/datasets", "--referencia", f"/d/models/referencia/{correr.F3SET_REFERENCE}",
+                        "--tag", "kaggle_f3"]
+E       AssertionError: assert ['--raiz', '\..., 'kaggle_f3'] == ['--raiz', '/..., 'kaggle_f3']
+E
+E         At index 1 diff: '\\d\\models\\datasets' != '/d/models/datasets'
+E         Use -v to get more diff
+
+tests\test_poc_f3set.py:38: AssertionError
+______________ test_kaggle_runs_it_and_keeps_the_exported_model _______________
+
+    def test_kaggle_runs_it_and_keeps_the_exported_model():
+        sys.path.insert(0, str(ROOT / "cloud" / "kaggle"))
+        sys.path.insert(0, str(ROOT / "cloud"))
+        import correr
+        j = correr.parse_job('{"accion": "medir", "prueba": "lejana"}')
+        args = correr.poc_args(j, Path("/d/models/models"), None)
+>       assert args == ["--datos", "/d/models/datasets", "--dispositivo", "cuda"]
+E       AssertionError: assert ['--datos', '...tivo', 'cuda'] == ['--datos', '...tivo', 'cuda']
+E
+E         At index 1 diff: '\\d\\models\\datasets' != '/d/models/datasets'
+E         Use -v to get more diff
+
+tests\test_poc_lejana.py:43: AssertionError
+_________ test_the_kaggle_job_measures_on_the_reference_tests_outputs _________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001B320A4DD10>
+
+    def test_the_kaggle_job_measures_on_the_reference_tests_outputs(monkeypatch):
+        sys.path.insert(0, str(ROOT / "cloud" / "kaggle"))
+        sys.path.insert(0, str(ROOT / "cloud"))
+        import cola
+        import correr
+        j = correr.parse_job('{"accion": "medir", "prueba": "sapiens2", "partido": "g", "base": "prueba_gauff_v26"}')
+        args = correr.poc_args(j, Path("/d/models"), None)
+>       assert args[args.index("--previa") + 1] == "/d/previa" and args[args.index("--dispositivo") + 1] == "cuda"
+E       AssertionError: assert ('\\d\\previa' == '/d/previa'
+E
+E         - /d/previa
+E         ? ^ ^
+E         + \d\previa
+E         ? ^ ^)
+
+tests\test_poc_sapiens.py:62: AssertionError
+============================== warnings summary ===============================
+tests/test_audit_base.py: 1 warning
+tests/test_cloud_checks.py: 1 warning
+tests/test_comparison_doc.py: 1 warning
+tests/test_faults.py: 3 warnings
+tests/test_no_hardcoded_player.py: 1 warning
+tests/test_no_unbounded_calls.py: 2 warnings
+tests/test_worker_hidden.py: 1 warning
+  <unknown>:20: DeprecationWarning: invalid escape sequence '\d'
+
+tests/test_body_scale.py::test_court_scale_without_any_face_seen
+tests/test_fine_ranges.py::test_pose_ranges_fall_back_to_the_whole_window_when_her_height_is_not_seen
+  C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+    return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+
+tests/test_far_measure.py: 17 warnings
+  C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+    feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+
+tests/test_fine_ranges.py::test_pose_ranges_start_from_the_person_the_ball_leaves
+  C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:85: RuntimeWarning: invalid value encountered in divide
+    rel = (kp - hip_center(kp, sk)[:, None, :]) / (h[:, None, None] if h.ndim == 1 else h)
+
+tests/test_no_unbounded_calls.py::test_every_module_compiles
+  C:\tenis\tennis-biomech\src\tennisbio\screens.py:20: DeprecationWarning: invalid escape sequence '\d'
+    _JS_SCREEN = """(tab) => {
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_far_follow.py::test_lost_far_player_is_found_again_by_searching_the_far_half
+FAILED tests/test_far_follow.py::test_find_far_player_at_gives_the_frame - Ty...
+FAILED tests/test_fine_ranges.py::test_find_far_players_one_reading_many_starts
+FAILED tests/test_kaggle.py::test_the_report_on_a_kaggle_cpu_session - OSErro...
+FAILED tests/test_nube.py::test_a_match_run_samples_what_the_container_uses
+FAILED tests/test_p0_app.py::test_the_built_page_is_the_one_of_its_sources - ...
+FAILED tests/test_poc_3d.py::test_kaggle_installs_tensorflow_and_measures - A...
+FAILED tests/test_poc_app.py::test_kaggle_brings_the_results_and_chrome_then_probes
+FAILED tests/test_poc_bola.py::test_the_ball_job_runs_on_a_cpu_session - Asse...
+FAILED tests/test_poc_f3set.py::test_kaggle_brings_her_clips_and_the_reference_and_streams_the_log
+FAILED tests/test_poc_lejana.py::test_kaggle_runs_it_and_keeps_the_exported_model
+FAILED tests/test_poc_sapiens.py::test_the_kaggle_job_measures_on_the_reference_tests_outputs
+12 failed, 1407 passed, 32 skipped, 31 warnings in 594.20s (0:09:54)
+Alguna prueba automatica fallo (detalle en pruebas.log, ya enviado a Claude). Se puede seguir.
+
+TODO LISTO.
+Abre Tennisbio con el acceso directo del escritorio y anade los partidos desde la ventana.
+    (paso terminado en 10 min 12 s)
+Empezado 2026-11-21 12:47:15 - terminado 2026-11-21 12:57:32 - duracion total 10 min 17 s
+**********************
+Windows PowerShell transcript end
+End time: 20261121125732
+**********************
