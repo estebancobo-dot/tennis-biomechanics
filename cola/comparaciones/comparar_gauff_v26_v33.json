@@ -1,0 +1,2252 @@
+{
+ "a": "/kaggle_pruebas/prueba_gauff_v26/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+ "b": "/kaggle_pruebas/prueba_gauff_v33_sapiens2/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+ "veredicto": "distinta",
+ "etapas_iguales": [
+  "audio",
+  "candidates",
+  "court",
+  "fine_opponent",
+  "identity",
+  "players",
+  "probe",
+  "scenes",
+  "score",
+  "spotting",
+  "views",
+  "views_link"
+ ],
+ "etapas_distintas": [
+  "fine",
+  "fine_doubtful",
+  "slowmo_fine",
+  "view_clips"
+ ],
+ "etapas_sin_comparar": [],
+ "golpes": {
+  "strokes.json": {
+   "a": 28,
+   "b": 28,
+   "pares": 26,
+   "solo_a": [
+    439.79,
+    593.33
+   ],
+   "solo_b": [
+    439.71,
+    593.41
+   ],
+   "tipo_distinto": [],
+   "medidas_distintas": {
+    "technique.phases.finish.hands_apart": 20,
+    "technique.phases.recovery.base_width": 20,
+    "technique.phases.extension.elbow_dom_lateral": 20,
+    "technique.phases.loaded.elbow_dom_vs_shoulder": 20,
+    "technique.phases.extension.wrist_non_lateral": 20,
+    "technique.footwork.step_kinds": 20,
+    "technique.jitter.finish.trunk_tilt": 20,
+    "technique.jitter.impact.wrist_dom_vs_hip": 20,
+    "technique.phases.extension.hands_apart": 20,
+    "technique.phases.extension.body_height": 20,
+    "technique.phases.impact.elbow_dom_lateral": 20,
+    "technique.phases.impact.body_height": 20,
+    "metrics.hip_turn_loaded_deg": 20,
+    "technique.jitter.finish.hip_turn": 20,
+    "technique.jitter.extension.trunk_tilt": 20,
+    "technique.phases.recovery.trunk_tilt": 20,
+    "technique.phases.recovery.hands_apart": 20,
+    "technique.jitter.ready.hip_height": 20,
+    "technique.phases.recovery.head_vs_hips": 20,
+    "technique.phases.ready.body_height": 20
+   },
+   "saltos": [
+    {
+     "t": 400.16,
+     "medida": "technique.jitter.extension.trunk_tilt",
+     "a": 1.8,
+     "b": 174.6,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 400.16,
+     "medida": "face.loaded.yaw_deg",
+     "a": 4.8,
+     "b": 99.2,
+     "ambigua_a": false,
+     "ambigua_b": true,
+     "mano_a": false,
+     "mano_b": true
+    },
+    {
+     "t": 400.16,
+     "medida": "metrics.non_arm_extension_loaded_deg",
+     "a": 173.4,
+     "b": 21.2,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 400.16,
+     "medida": "technique.jitter.ready.face_yaw",
+     "a": 94.6,
+     "b": 0.2,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 400.16,
+     "medida": "technique.phases.acceleration.trunk_tilt",
+     "a": -21.9,
+     "b": 156.3,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 400.16,
+     "medida": "technique.phases.extension.trunk_tilt",
+     "a": -33.6,
+     "b": -175.0,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 400.16,
+     "medida": "technique.phases.impact.trunk_tilt",
+     "a": -32.1,
+     "b": -170.7,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 400.16,
+     "medida": "technique.jitter.acceleration.trunk_tilt",
+     "a": 8.4,
+     "b": 140.8,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 402.2,
+     "medida": "face.recovery.yaw_deg",
+     "a": -110.1,
+     "b": 101.9,
+     "ambigua_a": false,
+     "ambigua_b": false,
+     "mano_a": false,
+     "mano_b": false
+    },
+    {
+     "t": 402.2,
+     "medida": "technique.phases.recovery.trunk_tilt",
+     "a": -10.0,
+     "b": -159.9,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 402.2,
+     "medida": "technique.phases.loaded.stance_angle",
+     "a": 74.2,
+     "b": -82.9,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 402.2,
+     "medida": "technique.phases.acceleration.trunk_tilt",
+     "a": -20.8,
+     "b": 159.6,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 402.2,
+     "medida": "technique.phases.ready.shoulder_turn",
+     "a": -1.0,
+     "b": 105.9,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 402.2,
+     "medida": "technique.phases.extension.trunk_tilt",
+     "a": -13.1,
+     "b": 143.9,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 402.2,
+     "medida": "technique.jitter.acceleration.trunk_tilt",
+     "a": 1.9,
+     "b": 178.8,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 404.52,
+     "medida": "technique.jitter.finish.trunk_tilt",
+     "a": 0.6,
+     "b": 138.5,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 404.52,
+     "medida": "technique.phases.recovery.trunk_tilt",
+     "a": -5.1,
+     "b": -138.3,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 404.52,
+     "medida": "technique.phases.acceleration.trunk_tilt",
+     "a": 26.1,
+     "b": 122.4,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 404.52,
+     "medida": "face.finish.yaw_deg",
+     "a": 121.2,
+     "b": -94.4,
+     "ambigua_a": false,
+     "ambigua_b": false,
+     "mano_a": true,
+     "mano_b": false
+    },
+    {
+     "t": 404.52,
+     "medida": "technique.phases.ready.shoulder_turn",
+     "a": 9.6,
+     "b": 117.6,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 404.52,
+     "medida": "technique.phases.recovery.shoulder_tilt",
+     "a": -25.3,
+     "b": 72.5,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 404.52,
+     "medida": "technique.phases.extension.trunk_tilt",
+     "a": 15.1,
+     "b": -164.6,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 404.52,
+     "medida": "technique.phases.ready.trunk_tilt",
+     "a": 11.2,
+     "b": -155.6,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 404.52,
+     "medida": "technique.jitter.acceleration.trunk_tilt",
+     "a": 0.3,
+     "b": 101.5,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 404.52,
+     "medida": "technique.phases.finish.face_yaw",
+     "a": 121.2,
+     "b": -94.4,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 406.88,
+     "medida": "technique.phases.recovery.trunk_tilt",
+     "a": -14.9,
+     "b": 176.5,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 406.88,
+     "medida": "technique.phases.extension.shoulder_turn",
+     "a": 30.5,
+     "b": 129.8,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 406.88,
+     "medida": "technique.phases.extension.trunk_tilt",
+     "a": 10.5,
+     "b": -135.6,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 406.88,
+     "medida": "technique.phases.impact.shoulder_turn",
+     "a": 40.4,
+     "b": 134.9,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 409.56,
+     "medida": "technique.phases.recovery.trunk_tilt",
+     "a": -14.6,
+     "b": 154.1,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 409.56,
+     "medida": "metrics.non_arm_extension_loaded_deg",
+     "a": 111.7,
+     "b": 3.5,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 409.56,
+     "medida": "technique.phases.acceleration.trunk_tilt",
+     "a": 9.7,
+     "b": -179.7,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 409.56,
+     "medida": "technique.phases.ball_bounce.trunk_tilt",
+     "a": 14.1,
+     "b": -158.2,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 409.56,
+     "medida": "technique.phases.ready.shoulder_turn",
+     "a": 6.5,
+     "b": 111.0,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 409.56,
+     "medida": "technique.phases.acceleration.hip_tilt",
+     "a": 6.3,
+     "b": -89.5,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 409.56,
+     "medida": "technique.phases.extension.trunk_tilt",
+     "a": 3.8,
+     "b": -162.0,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 409.56,
+     "medida": "technique.phases.ball_bounce.face_yaw",
+     "a": -72.7,
+     "b": 82.9,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 409.56,
+     "medida": "technique.phases.ready.trunk_tilt",
+     "a": 7.8,
+     "b": -159.2,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 409.56,
+     "medida": "technique.phases.takeback.trunk_tilt",
+     "a": 21.2,
+     "b": -147.5,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 409.56,
+     "medida": "technique.phases.ready.hip_turn",
+     "a": 1.2,
+     "b": 95.1,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 409.56,
+     "medida": "technique.phases.impact.trunk_tilt",
+     "a": 6.1,
+     "b": -163.1,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 411.9,
+     "medida": "technique.phases.recovery.trunk_tilt",
+     "a": -13.3,
+     "b": 172.8,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 411.9,
+     "medida": "technique.phases.ball_net.shoulder_turn",
+     "a": 3.9,
+     "b": 132.0,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 411.9,
+     "medida": "metrics.non_arm_extension_loaded_deg",
+     "a": 161.0,
+     "b": 5.2,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 411.9,
+     "medida": "technique.phases.acceleration.trunk_tilt",
+     "a": 24.2,
+     "b": -126.4,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 411.9,
+     "medida": "technique.jitter.recovery.trunk_tilt",
+     "a": 0.5,
+     "b": 167.9,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 411.9,
+     "medida": "technique.phases.extension.trunk_tilt",
+     "a": 16.7,
+     "b": -110.5,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 411.9,
+     "medida": "technique.phases.finish.hip_tilt",
+     "a": -4.8,
+     "b": 87.1,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 411.9,
+     "medida": "technique.phases.ready.trunk_tilt",
+     "a": -4.3,
+     "b": -158.1,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 411.9,
+     "medida": "technique.phases.loaded.trunk_tilt",
+     "a": 24.0,
+     "b": -141.5,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 411.9,
+     "medida": "technique.jitter.takeback.trunk_tilt",
+     "a": 2.2,
+     "b": 205.3,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 411.9,
+     "medida": "technique.phases.takeback.trunk_tilt",
+     "a": 9.9,
+     "b": 155.7,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 411.9,
+     "medida": "technique.phases.takeback.shoulder_turn",
+     "a": 11.4,
+     "b": 102.9,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 433.61,
+     "medida": "technique.jitter.extension.trunk_tilt",
+     "a": 0.9,
+     "b": 93.7,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 433.61,
+     "medida": "technique.phases.recovery.trunk_tilt",
+     "a": -18.6,
+     "b": -129.4,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 433.61,
+     "medida": "face.ready.yaw_deg",
+     "a": -95.1,
+     "b": 96.7,
+     "ambigua_a": true,
+     "ambigua_b": false,
+     "mano_a": true,
+     "mano_b": false
+    },
+    {
+     "t": 433.61,
+     "medida": "technique.phases.finish.shoulder_tilt",
+     "a": -41.3,
+     "b": 75.1,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 433.61,
+     "medida": "technique.phases.ready.face_yaw",
+     "a": -95.1,
+     "b": 96.7,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 433.61,
+     "medida": "metrics.elbow_impact_deg",
+     "a": 154.7,
+     "b": 56.2,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 433.61,
+     "medida": "technique.phases.finish.trunk_tilt",
+     "a": -27.8,
+     "b": -141.4,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 433.61,
+     "medida": "technique.phases.extension.trunk_tilt",
+     "a": -21.4,
+     "b": 167.8,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 433.61,
+     "medida": "technique.phases.finish.hip_tilt",
+     "a": -21.6,
+     "b": 87.2,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 433.61,
+     "medida": "technique.phases.loaded.trunk_tilt",
+     "a": -5.7,
+     "b": -112.0,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 435.57,
+     "medida": "technique.jitter.extension.trunk_tilt",
+     "a": 1.6,
+     "b": 219.6,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 435.57,
+     "medida": "technique.phases.acceleration.trunk_tilt",
+     "a": 33.1,
+     "b": -173.9,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 435.57,
+     "medida": "technique.phases.acceleration.x_factor",
+     "a": -23.9,
+     "b": 108.2,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 435.57,
+     "medida": "technique.phases.acceleration.hip_turn",
+     "a": 115.3,
+     "b": -6.3,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 435.57,
+     "medida": "technique.phases.extension.trunk_tilt",
+     "a": 30.8,
+     "b": -177.2,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 435.57,
+     "medida": "technique.jitter.impact.trunk_tilt",
+     "a": 0.7,
+     "b": 242.1,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 435.57,
+     "medida": "technique.phases.takeback.trunk_tilt",
+     "a": 24.0,
+     "b": -121.4,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 435.57,
+     "medida": "technique.phases.impact.trunk_tilt",
+     "a": 32.0,
+     "b": 171.3,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 435.57,
+     "medida": "technique.jitter.acceleration.trunk_tilt",
+     "a": 0.9,
+     "b": 126.1,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 438.33,
+     "medida": "technique.phases.recovery.trunk_tilt",
+     "a": -0.2,
+     "b": 134.2,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 438.33,
+     "medida": "stance_angle_deg",
+     "a": 85.9,
+     "b": -81.6,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 438.33,
+     "medida": "metrics.shoulder_turn_3d_deg",
+     "a": 32.7,
+     "b": 128.9,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 438.33,
+     "medida": "face.finish.yaw_deg",
+     "a": 97.2,
+     "b": -37.4,
+     "ambigua_a": true,
+     "ambigua_b": false,
+     "mano_a": false,
+     "mano_b": false
+    },
+    {
+     "t": 438.33,
+     "medida": "technique.phases.impact.stance_angle",
+     "a": 85.9,
+     "b": -81.6,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 462.47,
+     "medida": "technique.phases.recovery.trunk_tilt",
+     "a": -46.3,
+     "b": -144.9,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 462.47,
+     "medida": "face.loaded.yaw_deg",
+     "a": 43.6,
+     "b": -177.9,
+     "ambigua_a": false,
+     "ambigua_b": false,
+     "mano_a": false,
+     "mano_b": false
+    },
+    {
+     "t": 462.47,
+     "medida": "technique.phases.loaded.face_tilt",
+     "a": -65.7,
+     "b": 69.4,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 462.47,
+     "medida": "technique.phases.loaded.stance_angle",
+     "a": 61.5,
+     "b": -97.2,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 462.47,
+     "medida": "face.ready.yaw_deg",
+     "a": 99.9,
+     "b": -70.5,
+     "ambigua_a": true,
+     "ambigua_b": true,
+     "mano_a": true,
+     "mano_b": true
+    },
+    {
+     "t": 462.47,
+     "medida": "technique.jitter.loaded.face_yaw",
+     "a": 27.4,
+     "b": 274.7,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 462.47,
+     "medida": "metrics.non_arm_extension_loaded_deg",
+     "a": 170.7,
+     "b": 3.8,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 462.47,
+     "medida": "technique.jitter.loaded.racket_angle",
+     "a": 37.1,
+     "b": 129.7,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 462.47,
+     "medida": "technique.phases.finish.shoulder_tilt",
+     "a": -58.1,
+     "b": 39.3,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 462.47,
+     "medida": "technique.phases.ready.face_yaw",
+     "a": 99.9,
+     "b": -70.5,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 462.47,
+     "medida": "metrics.elbow_impact_deg",
+     "a": 159.6,
+     "b": 51.4,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 462.47,
+     "medida": "technique.phases.loaded.racket_angle",
+     "a": 46.8,
+     "b": -67.3,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 462.47,
+     "medida": "technique.phases.extension.shoulder_tilt",
+     "a": -55.6,
+     "b": 69.0,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 462.47,
+     "medida": "technique.jitter.recovery.trunk_tilt",
+     "a": 1.7,
+     "b": 157.9,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 462.47,
+     "medida": "technique.phases.extension.trunk_tilt",
+     "a": -41.2,
+     "b": 171.4,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 462.47,
+     "medida": "technique.jitter.impact.trunk_tilt",
+     "a": 0.8,
+     "b": 160.9,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 462.47,
+     "medida": "technique.phases.impact.trunk_tilt",
+     "a": -38.3,
+     "b": 177.0,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 462.47,
+     "medida": "technique.phases.loaded.face_yaw",
+     "a": 43.6,
+     "b": -177.9,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 462.47,
+     "medida": "face.loaded.tilt_deg",
+     "a": -65.7,
+     "b": 69.4,
+     "ambigua_a": false,
+     "ambigua_b": false,
+     "mano_a": false,
+     "mano_b": false
+    },
+    {
+     "t": 484.06,
+     "medida": "face.loaded.yaw_deg",
+     "a": -84.1,
+     "b": 101.1,
+     "ambigua_a": false,
+     "ambigua_b": true,
+     "mano_a": false,
+     "mano_b": false
+    },
+    {
+     "t": 484.06,
+     "medida": "face.takeback.yaw_deg",
+     "a": -24.0,
+     "b": 107.4,
+     "ambigua_a": true,
+     "ambigua_b": true,
+     "mano_a": true,
+     "mano_b": true
+    },
+    {
+     "t": 484.06,
+     "medida": "face.ready.yaw_deg",
+     "a": -24.0,
+     "b": 86.1,
+     "ambigua_a": true,
+     "ambigua_b": false,
+     "mano_a": true,
+     "mano_b": true
+    },
+    {
+     "t": 484.06,
+     "medida": "metrics.non_arm_extension_loaded_deg",
+     "a": 165.8,
+     "b": 4.4,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 484.06,
+     "medida": "technique.jitter.loaded.trunk_tilt",
+     "a": 1.5,
+     "b": 193.7,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 484.06,
+     "medida": "technique.phases.acceleration.trunk_tilt",
+     "a": -21.2,
+     "b": 177.0,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 484.06,
+     "medida": "technique.phases.ready.face_yaw",
+     "a": -24.0,
+     "b": 86.1,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 484.06,
+     "medida": "technique.phases.impact.shoulder_tilt",
+     "a": -38.4,
+     "b": 76.8,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 484.06,
+     "medida": "technique.phases.recovery.shoulder_tilt",
+     "a": -6.8,
+     "b": 88.6,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 484.06,
+     "medida": "technique.phases.extension.shoulder_tilt",
+     "a": -37.8,
+     "b": 77.8,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 484.06,
+     "medida": "technique.phases.extension.trunk_tilt",
+     "a": -15.4,
+     "b": 177.5,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 484.06,
+     "medida": "technique.phases.ready.racket_angle",
+     "a": 16.3,
+     "b": -83.4,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 484.06,
+     "medida": "technique.phases.ready.trunk_tilt",
+     "a": -5.2,
+     "b": 97.6,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 484.06,
+     "medida": "technique.phases.loaded.trunk_tilt",
+     "a": -15.1,
+     "b": 178.1,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 484.06,
+     "medida": "technique.phases.takeback.trunk_tilt",
+     "a": -5.2,
+     "b": 117.0,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 484.06,
+     "medida": "technique.phases.takeback.face_yaw",
+     "a": -24.0,
+     "b": 107.4,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 484.06,
+     "medida": "technique.phases.impact.trunk_tilt",
+     "a": -16.3,
+     "b": 176.4,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 484.06,
+     "medida": "technique.phases.loaded.face_yaw",
+     "a": -84.1,
+     "b": 101.1,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 496.84,
+     "medida": "metrics.hip_turn_loaded_deg",
+     "a": 0.0,
+     "b": 132.0,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 496.84,
+     "medida": "technique.phases.recovery.trunk_tilt",
+     "a": -44.5,
+     "b": -168.0,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 496.84,
+     "medida": "metrics.non_arm_extension_loaded_deg",
+     "a": 176.8,
+     "b": 45.2,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 496.84,
+     "medida": "technique.phases.acceleration.racket_angle",
+     "a": -90.0,
+     "b": 50.9,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 496.84,
+     "medida": "technique.phases.acceleration.trunk_tilt",
+     "a": -59.3,
+     "b": 174.3,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 496.84,
+     "medida": "technique.phases.extension.trunk_tilt",
+     "a": -21.9,
+     "b": 173.8,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 496.84,
+     "medida": "technique.phases.ready.trunk_tilt",
+     "a": 5.1,
+     "b": 171.7,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 496.84,
+     "medida": "technique.phases.loaded.trunk_tilt",
+     "a": 5.1,
+     "b": 172.1,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 496.84,
+     "medida": "technique.jitter.impact.trunk_tilt",
+     "a": 1.1,
+     "b": 174.9,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 496.84,
+     "medida": "technique.phases.takeback.trunk_tilt",
+     "a": 5.1,
+     "b": 171.7,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 496.84,
+     "medida": "technique.phases.impact.trunk_tilt",
+     "a": -21.4,
+     "b": 174.6,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 496.84,
+     "medida": "technique.jitter.acceleration.trunk_tilt",
+     "a": 52.9,
+     "b": 169.6,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 498.76,
+     "medida": "technique.jitter.extension.trunk_tilt",
+     "a": 0.9,
+     "b": 194.4,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 498.76,
+     "medida": "technique.phases.recovery.trunk_tilt",
+     "a": 11.3,
+     "b": -165.3,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 498.76,
+     "medida": "technique.phases.loaded.stance_angle",
+     "a": 16.3,
+     "b": -74.2,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 498.76,
+     "medida": "metrics.non_arm_extension_loaded_deg",
+     "a": 138.3,
+     "b": 41.5,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 498.76,
+     "medida": "technique.phases.acceleration.trunk_tilt",
+     "a": 28.9,
+     "b": -97.7,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 498.76,
+     "medida": "technique.phases.ball_net.trunk_tilt",
+     "a": 33.4,
+     "b": -152.5,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 498.76,
+     "medida": "technique.phases.extension.trunk_tilt",
+     "a": 37.4,
+     "b": -139.2,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 498.76,
+     "medida": "technique.phases.ready.trunk_tilt",
+     "a": 10.8,
+     "b": -156.6,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 498.76,
+     "medida": "technique.phases.takeback.trunk_tilt",
+     "a": 17.6,
+     "b": -121.5,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 498.76,
+     "medida": "technique.jitter.acceleration.trunk_tilt",
+     "a": 1.1,
+     "b": 126.5,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 501.56,
+     "medida": "technique.phases.loaded.stance_angle",
+     "a": 39.7,
+     "b": -51.5,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 501.56,
+     "medida": "technique.phases.acceleration.trunk_tilt",
+     "a": -1.0,
+     "b": -175.2,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 501.56,
+     "medida": "technique.phases.ball_net.trunk_tilt",
+     "a": -25.1,
+     "b": -162.9,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 501.56,
+     "medida": "technique.phases.ball_bounce.trunk_tilt",
+     "a": -15.4,
+     "b": 170.9,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 501.56,
+     "medida": "technique.phases.extension.trunk_tilt",
+     "a": 13.3,
+     "b": 144.8,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 501.56,
+     "medida": "technique.phases.ready.trunk_tilt",
+     "a": 3.8,
+     "b": -139.9,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 501.56,
+     "medida": "technique.phases.takeback.trunk_tilt",
+     "a": -24.2,
+     "b": 171.9,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 501.56,
+     "medida": "technique.jitter.acceleration.trunk_tilt",
+     "a": 1.8,
+     "b": 183.0,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 531.21,
+     "medida": "technique.jitter.extension.trunk_tilt",
+     "a": 2.0,
+     "b": 99.8,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 531.21,
+     "medida": "technique.phases.recovery.trunk_tilt",
+     "a": -51.6,
+     "b": 160.1,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 531.21,
+     "medida": "face.acceleration.yaw_deg",
+     "a": 2.8,
+     "b": -92.2,
+     "ambigua_a": false,
+     "ambigua_b": false,
+     "mano_a": false,
+     "mano_b": false
+    },
+    {
+     "t": 531.21,
+     "medida": "technique.phases.loaded.stance_angle",
+     "a": 125.6,
+     "b": -83.0,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 531.21,
+     "medida": "stance_angle_deg",
+     "a": 81.9,
+     "b": -22.3,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 531.21,
+     "medida": "metrics.non_arm_extension_loaded_deg",
+     "a": 171.9,
+     "b": 9.2,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 531.21,
+     "medida": "technique.phases.acceleration.trunk_tilt",
+     "a": -4.3,
+     "b": 102.6,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 531.21,
+     "medida": "metrics.elbow_impact_deg",
+     "a": 164.6,
+     "b": 53.2,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 531.21,
+     "medida": "technique.phases.impact.shoulder_tilt",
+     "a": -50.3,
+     "b": 70.4,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 531.21,
+     "medida": "technique.phases.extension.shoulder_tilt",
+     "a": -52.7,
+     "b": 68.2,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 531.21,
+     "medida": "technique.jitter.recovery.trunk_tilt",
+     "a": 0.1,
+     "b": 257.6,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 531.21,
+     "medida": "technique.phases.extension.trunk_tilt",
+     "a": -39.1,
+     "b": 171.8,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 531.21,
+     "medida": "technique.phases.impact.stance_angle",
+     "a": 81.9,
+     "b": -22.3,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 531.21,
+     "medida": "technique.phases.loaded.trunk_tilt",
+     "a": -4.3,
+     "b": 170.1,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 531.21,
+     "medida": "technique.phases.impact.trunk_tilt",
+     "a": -37.3,
+     "b": 176.2,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 531.21,
+     "medida": "technique.phases.extension.hip_turn",
+     "a": 18.3,
+     "b": 119.7,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 542.96,
+     "medida": "technique.jitter.extension.trunk_tilt",
+     "a": 2.6,
+     "b": 106.9,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 542.96,
+     "medida": "technique.phases.recovery.trunk_tilt",
+     "a": -54.8,
+     "b": 177.1,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 542.96,
+     "medida": "metrics.non_arm_extension_loaded_deg",
+     "a": 172.4,
+     "b": 12.3,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 542.96,
+     "medida": "technique.jitter.loaded.trunk_tilt",
+     "a": 0.3,
+     "b": 94.2,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 542.96,
+     "medida": "technique.phases.extension.trunk_tilt",
+     "a": -41.7,
+     "b": 171.7,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 542.96,
+     "medida": "technique.phases.loaded.trunk_tilt",
+     "a": -5.6,
+     "b": -167.9,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 545.32,
+     "medida": "technique.phases.recovery.trunk_tilt",
+     "a": 6.6,
+     "b": -150.4,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 545.32,
+     "medida": "face.acceleration.yaw_deg",
+     "a": -115.1,
+     "b": 79.5,
+     "ambigua_a": false,
+     "ambigua_b": true,
+     "mano_a": false,
+     "mano_b": false
+    },
+    {
+     "t": 545.32,
+     "medida": "technique.phases.acceleration.face_yaw",
+     "a": -115.1,
+     "b": 79.5,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 545.32,
+     "medida": "technique.phases.acceleration.racket_angle",
+     "a": -50.5,
+     "b": 63.4,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 545.32,
+     "medida": "technique.jitter.acceleration.face_yaw",
+     "a": 157.6,
+     "b": 0.4,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 545.32,
+     "medida": "technique.jitter.loaded.trunk_tilt",
+     "a": 0.8,
+     "b": 103.8,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 545.32,
+     "medida": "technique.phases.acceleration.trunk_tilt",
+     "a": -2.8,
+     "b": 169.0,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 545.32,
+     "medida": "technique.phases.ball_net.trunk_tilt",
+     "a": -25.9,
+     "b": 167.6,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 545.32,
+     "medida": "technique.phases.loaded.racket_angle",
+     "a": -70.3,
+     "b": 51.6,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 545.32,
+     "medida": "technique.phases.finish.trunk_tilt",
+     "a": 6.4,
+     "b": -155.4,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 545.32,
+     "medida": "technique.phases.extension.trunk_tilt",
+     "a": 8.2,
+     "b": 156.1,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 545.32,
+     "medida": "technique.phases.loaded.trunk_tilt",
+     "a": -4.1,
+     "b": 176.1,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 545.32,
+     "medida": "technique.phases.impact.trunk_tilt",
+     "a": 5.8,
+     "b": 180.0,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 547.76,
+     "medida": "face.acceleration.tilt_deg",
+     "a": 71.5,
+     "b": -25.1,
+     "ambigua_a": true,
+     "ambigua_b": false,
+     "mano_a": false,
+     "mano_b": false
+    },
+    {
+     "t": 547.76,
+     "medida": "face.acceleration.yaw_deg",
+     "a": 166.1,
+     "b": 42.7,
+     "ambigua_a": true,
+     "ambigua_b": false,
+     "mano_a": false,
+     "mano_b": false
+    },
+    {
+     "t": 547.76,
+     "medida": "technique.phases.finish.racket_angle",
+     "a": 54.5,
+     "b": -88.1,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 547.76,
+     "medida": "technique.phases.acceleration.trunk_tilt",
+     "a": -20.6,
+     "b": 121.5,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 547.76,
+     "medida": "technique.phases.ball_bounce.trunk_tilt",
+     "a": -20.3,
+     "b": -177.4,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 547.76,
+     "medida": "metrics.non_elbow_impact_deg",
+     "a": 138.2,
+     "b": 38.2,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 547.76,
+     "medida": "technique.phases.ready.trunk_tilt",
+     "a": 16.4,
+     "b": -154.0,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 547.76,
+     "medida": "technique.jitter.acceleration.trunk_tilt",
+     "a": 2.2,
+     "b": 140.6,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 587.6,
+     "medida": "technique.jitter.extension.trunk_tilt",
+     "a": 1.1,
+     "b": 130.1,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 587.6,
+     "medida": "technique.footwork.first_step_dir_deg",
+     "a": 107.0,
+     "b": -87.0,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 587.6,
+     "medida": "face.ready.yaw_deg",
+     "a": -90.8,
+     "b": 132.4,
+     "ambigua_a": true,
+     "ambigua_b": false,
+     "mano_a": true,
+     "mano_b": true
+    },
+    {
+     "t": 587.6,
+     "medida": "technique.jitter.loaded.trunk_tilt",
+     "a": 1.0,
+     "b": 180.3,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 587.6,
+     "medida": "technique.phases.acceleration.trunk_tilt",
+     "a": -25.6,
+     "b": -176.9,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 587.6,
+     "medida": "technique.phases.ready.face_yaw",
+     "a": -90.8,
+     "b": 132.4,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 587.6,
+     "medida": "metrics.elbow_impact_deg",
+     "a": 157.0,
+     "b": 66.3,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 587.6,
+     "medida": "technique.phases.recovery.shoulder_tilt",
+     "a": -27.9,
+     "b": 80.2,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 587.6,
+     "medida": "technique.phases.extension.shoulder_tilt",
+     "a": -48.8,
+     "b": 75.7,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 587.6,
+     "medida": "technique.phases.extension.trunk_tilt",
+     "a": -18.8,
+     "b": 162.7,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 587.6,
+     "medida": "technique.phases.finish.hip_tilt",
+     "a": -28.1,
+     "b": 85.5,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 587.6,
+     "medida": "technique.phases.ready.racket_angle",
+     "a": 79.4,
+     "b": -13.5,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 587.6,
+     "medida": "technique.phases.loaded.trunk_tilt",
+     "a": -6.6,
+     "b": -179.0,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 587.6,
+     "medida": "technique.jitter.impact.trunk_tilt",
+     "a": 1.2,
+     "b": 161.2,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 587.6,
+     "medida": "technique.phases.takeback.trunk_tilt",
+     "a": -8.8,
+     "b": 115.4,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 587.6,
+     "medida": "racket.ready.elevation_deg",
+     "a": 82.1,
+     "b": -71.8,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 587.6,
+     "medida": "technique.jitter.acceleration.trunk_tilt",
+     "a": 3.0,
+     "b": 254.8,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 589.36,
+     "medida": "metrics.non_arm_extension_loaded_deg",
+     "a": 118.4,
+     "b": 21.2,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 589.36,
+     "medida": "technique.phases.acceleration.trunk_tilt",
+     "a": -43.1,
+     "b": 110.5,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 589.36,
+     "medida": "technique.phases.loaded.hip_turn",
+     "a": 27.8,
+     "b": 120.0,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 589.36,
+     "medida": "metrics.non_elbow_impact_deg",
+     "a": 163.0,
+     "b": 70.4,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 589.36,
+     "medida": "technique.phases.ready.trunk_tilt",
+     "a": 8.6,
+     "b": -140.6,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 589.36,
+     "medida": "technique.phases.ready.hip_turn",
+     "a": 22.3,
+     "b": 132.1,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 589.36,
+     "medida": "technique.phases.takeback.hip_turn",
+     "a": 23.1,
+     "b": 120.6,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    },
+    {
+     "t": 589.36,
+     "medida": "technique.phases.finish.hip_turn",
+     "a": 42.2,
+     "b": 140.8,
+     "ambigua_a": null,
+     "ambigua_b": null,
+     "mano_a": null,
+     "mano_b": null
+    }
+   ],
+   "golpes_con_saltos": 20,
+   "mayor_diferencia": {
+    "height_scale.px": 553.9,
+    "technique.phases.loaded.hands_apart": 494.3,
+    "technique.phases.ready.hands_apart": 451.2,
+    "technique.phases.takeback.hands_apart": 451.2,
+    "technique.stroke.takeback_path": 300.4,
+    "technique.phases.loaded.racket_tip_vs_head": 284.5,
+    "technique.phases.loaded.racket_head_lateral": 246.2,
+    "technique.phases.loaded.elbow_dom_vs_shoulder": 238.1,
+    "technique.phases.loaded.trunk_tilt": 179.8,
+    "technique.phases.extension.trunk_tilt": 179.7,
+    "technique.phases.acceleration.trunk_tilt": 179.6,
+    "technique.jitter.loaded.trunk_tilt": 179.35,
+    "technique.jitter.acceleration.trunk_tilt": 178.8,
+    "technique.phases.recovery.trunk_tilt": 176.6,
+    "face.loaded.yaw_deg": 174.8,
+    "technique.phases.loaded.face_yaw": 174.8,
+    "technique.phases.impact.trunk_tilt": 174.2,
+    "technique.phases.ball_net.trunk_tilt": 174.1,
+    "technique.jitter.impact.trunk_tilt": 173.85,
+    "technique.phases.ball_bounce.trunk_tilt": 173.7
+   },
+   "temblor": {
+    "n": 3861,
+    "cociente_mediano_b_a": 2.09,
+    "b_tiembla_menos": 0.29,
+    "b_tiembla_mas": 0.65
+   }
+  },
+  "strokes_opponent.json": {
+   "a": 0,
+   "b": 0,
+   "pares": 0,
+   "solo_a": [],
+   "solo_b": [],
+   "tipo_distinto": [],
+   "medidas_distintas": {},
+   "saltos": [],
+   "golpes_con_saltos": 0,
+   "mayor_diferencia": {},
+   "temblor": {
+    "n": 0
+   }
+  },
+  "strokes_doubtful.json": {
+   "a": 1,
+   "b": 1,
+   "pares": 0,
+   "solo_a": [
+    549.98
+   ],
+   "solo_b": [
+    550.06
+   ],
+   "tipo_distinto": [],
+   "medidas_distintas": {},
+   "saltos": [],
+   "golpes_con_saltos": 0,
+   "mayor_diferencia": {},
+   "temblor": {
+    "n": 0
+   }
+  }
+ },
+ "ficheros_de_un_solo_lado": [],
+ "no_leidos": {},
+ "experimento": false
+}

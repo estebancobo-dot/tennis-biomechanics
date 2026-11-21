@@ -1314,7 +1314,7 @@
   }
  },
  "prueba_gauff_v33_sapiens2": {
-  "estado": "en_marcha",
+  "estado": "hecho",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 1,
@@ -1325,9 +1325,28 @@
   "ruta": "/runs/kaggle_prueba_gauff_v33_sapiens2/estado.json",
   "salida": "/kaggle_pruebas/prueba_gauff_v33_sapiens2/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cuaderno": "tennisbio-prueba-gauff-v33-sapiens2",
-  "progreso": "fine:  96 % (27/28 golpes candidatos · 27 confirmados · 0 ventanas descartadas sin pose) · 11 min · quedan ≈ 25 s (02:34:17; GPU 0 %·0 %, CPU 80 %, 16.4 GB)",
-  "kaggle": "running (02:34)",
+  "progreso": "fine_doubtful terminada a las 02:39:03 en 56 s (02:38:57)",
+  "kaggle": "complete (02:39)",
   "arranco": "2026-11-21 02:17",
-  "espera_min": 11
+  "espera_min": 11,
+  "fin": "2026-11-21 02:39",
+  "resultado": {
+   "estado": "hecho",
+   "coste_usd": 0.0,
+   "segundos": 1668,
+   "horas_kaggle": 0.53
+  }
+ },
+ "comparar_gauff_v26_v33": {
+  "estado": "revisar",
+  "accion": "comparar",
+  "donde": "github",
+  "fin": "2026-11-21 02:39",
+  "resultado": {
+   "estado": "revisar",
+   "veredicto": "distinta",
+   "nota": "distinta; 12 etapas iguales; distintas: fine, fine_doubtful, slowmo_fine, view_clips; strokes.json: 26 de 28/28 golpes emparejados, 4 distintos, medidas fuera de tolerancia: technique.phases.finish.hands_apart, technique.phases.recovery.base_width, technique.phases.extension.elbow_dom_lateral, technique.phases.loaded.elbow_dom_vs_shoulder; strokes.json: temblor de b frente a a ×2.09 (mediana de 3861 medidas; b tiembla menos en el 29 %); strokes_opponent.json: 0 de 0/0 golpes emparejados; strokes_doubtful.json: 0 de 1/1 golpes emparejados, 2 distintos"
+  },
+  "partido": ""
  }
 }
