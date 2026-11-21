@@ -184,6 +184,9 @@
     "medir_3d_metrabs": {
      "estimado_h": 2.0,
      "horas": 0.04
+    },
+    "medir_3d_metrabs_b": {
+     "estimado_h": 2.0
     }
    }
   }
@@ -192,7 +195,6 @@
   "usadas_h": 2.62,
   "total_h": 30.0,
   "renueva": "2026-11-28 00:00:00",
-  "ts": 1795259270.3068213
- },
- "aviso_ocioso_ts": 1795259270.3068213
+  "ts": 1795259518.0534346
+ }
 }
