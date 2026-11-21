@@ -153,6 +153,9 @@
     "medir_sapiens2_rapido": {
      "estimado_h": 0.5,
      "horas": 0.6
+    },
+    "prueba_gauff_v33_sapiens2": {
+     "estimado_h": 1.0
     }
    }
   }
@@ -161,6 +164,6 @@
   "usadas_h": 0.61,
   "total_h": 30.0,
   "renueva": "2026-11-28 00:00:00",
-  "ts": 1795226081.9097633
+  "ts": 1795226793.6310272
  }
 }
