@@ -288,7 +288,7 @@ trabajos:
   # antes (tennisbio.infra.poc_app): al menos el 95 % abre su vídeo y el 95 % de esos dibuja el cuerpo en sus puntos, sin
   # errores de la página. Solo números salen de la sesión
   - {id: medir_app, accion: medir, prueba: app, donde: kaggle, cpu: true, tras: informe_beta3}
-  # 21-11 21:50 (P0.5e, lo que quedaba de la estroboscópica): la imagen estroboscópica de cada golpe con vídeo, dibujada
+  # 21-11 21:30 (P0.5e, lo que quedaba de la estroboscópica): la imagen estroboscópica de cada golpe con vídeo, dibujada
   # con su serie (4 siluetas, el camino de la mano y la punta de la raqueta por tramos). La misma prueba en Chrome con los
   # resultados reales, con su regla escrita antes (tennisbio.infra.poc_app): además, ≥ 95 % de los golpes con vídeo la dibujan
   # 21-11 (P0.5e, la exportación): el informe de los 5 partidos ya analizados otra vez, ahora con la exportación (PDF corto
