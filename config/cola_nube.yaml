@@ -46,6 +46,7 @@ cancelar:
   comparar_gauff_v26_v30: "sin la v30_c (ver arriba)"
   prueba_gauff_v31_c: "T24 (15-11 22:35): la parte c (CPU) repetía players en la CPU: la huella de players y de la pasada fina lleva fp16 solo en GPU (uses_fp16), así que en CPU no coincidía con lo de la parte b. Se cancela antes de que suba un players de CPU; se arregla (una parte usa lo que hizo la anterior) y se repite solo la parte c"
   comparar_gauff_v26_v31: "sin la v31_c (ver arriba); se compara con la parte c repetida"
+  comparar_gauff_v26_v34: "sin la v34: se paró a los 5 min sin modelos (el ONNX de Sapiens2 se subió junto a /models/models/ y tapó los demás; arreglado); se compara con la v35"
   medir_bola_totnet: "T15 (15-11 23:20): en CPU no cabe en las 12 h de una sesión de Kaggle: cada clip de RacketVision tiene 600 fotogramas a 60 fps (300 ventanas de TOTNet) y cada ventana tarda unos 6 s en la CPU, unas 20 h para los 40 clips (calculé mal 3-5 h); se cortaría sin resultado. Se repite en GPU (medir_bola_totnet_gpu), con la misma regla"
 # #291 (14-11): el PR buzón (nunca se fusiona): la cola comenta en él solo cuando algo necesita a Claude, y su
 # actividad despierta la sesión al momento (sin sondeos ni tokens mientras no pasa nada)
@@ -173,6 +174,12 @@ trabajos:
   - {id: comparar_gauff_v26_v34, accion: comparar, a: prueba_gauff_v26, b: prueba_gauff_v34_sapiens2}
   # 21-11 04:20: la v34 se paró a los 5 min sin modelos en la sesión (faltaban TransNet y la pista; 3 en CPU): su registro
   - {id: leer_v34, accion: leer, rutas: [/runs/kaggle_prueba_gauff_v34_sapiens2/log.txt]}
+  # 21-11 04:35: causa (leer_v34): la v33 subió el ONNX de Sapiens2 a /models/, junto a la carpeta /models/models/ con los
+  # demás, y con un fichero suelto la sesión tomó la carpeta de arriba por la de los modelos (no vio ninguno más).
+  # Arreglado (nube.unnested elige la carpeta con más modelos y enlaza en ella los sueltos; la exportación sube a la de
+  # los modelos). La misma prueba que la v34 (con las normalizaciones reescaladas) y la misma regla escrita
+  - {id: prueba_gauff_v35_sapiens2, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, config: {fine_pass: {refine: sapiens2}}}
+  - {id: comparar_gauff_v26_v35, accion: comparar, a: prueba_gauff_v26, b: prueba_gauff_v35_sapiens2}
   # 15-11 23:20: la misma medida en GPU (en CPU serían ~20 h, más que las 12 h de una sesión); ~0,3-0,5 h de GPU
   - {id: medir_bola_totnet_gpu, accion: medir, prueba: bola, donde: kaggle}
   # 15-11 20:10 (R55): la v29 no valió (cada parte repetía las etapas con modelos: la huella de un modelo llevaba la fecha

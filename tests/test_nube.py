@@ -93,6 +93,26 @@ def test_the_models_are_found_when_modal_nested_the_folder(tmp_path):
     assert nube.unnested(data / "models") == data / "models" / "models"
 
 
+@pytest.mark.skipif(sys.platform == "win32", reason="only in the cloud's Linux container (Windows symlinks need rights)")
+def test_a_model_put_beside_the_nested_folder_does_not_hide_the_others(tmp_path):
+    """21-11 (prueba_gauff_v34): Sapiens2's ONNX, exported in a session, went to /models/ beside /models/models/: the
+    folder above was taken for the models and the next test ran with none of the others (no TransNet, no YOLO). The
+    nested folder is still the models' and the file beside it is seen there; and the next export goes into it."""
+    repo, data = tmp_path / "repo", tmp_path / "data"
+    (repo / "models").mkdir(parents=True)
+    inner = data / "models" / "models"
+    inner.mkdir(parents=True)
+    for f in ("transnetv2.onnx", "yolo11m-pose_960.onnx", "court_tcd.onnx"):
+        (inner / f).write_text("pc")
+    (data / "models" / "sapiens2_pose_0.4b_512x384.onnx").write_text("s2")
+    assert nube.unnested(data / "models") == inner
+    assert nube.use_volume_models(repo, data)
+    assert (repo / "models" / "transnetv2.onnx").read_text() == "pc"
+    assert (repo / "models" / "sapiens2_pose_0.4b_512x384.onnx").read_text() == "s2"
+    assert nube.use_volume_models(repo, data)                      # again: the link is there already
+    assert ("/" + nube.unnested(data / "models").relative_to(data).as_posix()) == "/models/models"
+
+
 def test_write_local_yaml_reads_the_pcs_file(tmp_path):
     repo, data = tmp_path / "repo", tmp_path / "data"
     (repo / "config").mkdir(parents=True)

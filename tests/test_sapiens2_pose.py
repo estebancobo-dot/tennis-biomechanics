@@ -77,7 +77,8 @@ def test_kaggle_exports_it_once_when_the_settings_ask_for_it():
     sys.path.insert(0, str(ROOT / "cloud"))
     import correr
     src = (ROOT / "cloud" / "kaggle" / "correr.py").read_text(encoding="utf-8")
-    assert "ensure_sapiens2(py, data, models, vol, est)" in src and 'modal_put(vol, [dst], dst.parent, "/models")' in src
+    assert "ensure_sapiens2(py, data, models, vol, est)" in src
+    assert 'modal_put(vol, [dst], dst.parent, "/" + models.relative_to(data).as_posix())' in src   # beside the others
     assert correr.SAPIENS2_ONNX == sp.ONNX.name
     exp = (ROOT / "scripts" / "export_sapiens2.py").read_text(encoding="utf-8")
     assert 'SIZE = (512, 384)' in exp and "dynamo=True" in exp and 'attn_implementation="eager"' in exp

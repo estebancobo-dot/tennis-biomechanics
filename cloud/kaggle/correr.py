@@ -152,7 +152,8 @@ def ensure_sapiens2(py: Path, data: Path, models: Path, vol, est: dict) -> str:
     _run([sys.executable, "-m", "pip", "install", "-q", SAPIENS_TRANSFORMERS, "safetensors", "onnx", "onnxscript"])
     _run([sys.executable, str(REPO / "scripts" / "export_sapiens2.py"), "--salida", str(dst)],
          env={**os.environ, "HF_HOME": str(data / "hf")})
-    modal_put(vol, [dst], dst.parent, "/models")
+    # into the folder that holds the other models (/models/models: nube.unnested), not beside it (21-11, v34)
+    modal_put(vol, [dst], dst.parent, "/" + models.relative_to(data).as_posix())
     est["sapiens2"] = f"exportado y subido al volumen en {time.time() - t:.0f} s"
     return est["sapiens2"]
 

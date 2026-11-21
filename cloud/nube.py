@@ -338,12 +338,17 @@ def write_local_yaml(repo: Path, data: Path, overrides: dict | None = None) -> d
 
 def unnested(d: Path) -> Path:
     """The folder that holds a directory uploaded as «put <dir> /<name>/»: Modal puts it one level down
-    (/models/models/…; 13-11, the 10-minute test found no model at all), so its files are in d/<name> when d holds
-    nothing else."""
+    (/models/models/…; 13-11, the 10-minute test found no model at all), so its files are in d/<name> when that holds
+    more files than d itself (21-11: one model put at the top, /models/sapiens2…onnx, hid all the others from
+    prueba_gauff_v34)."""
     inner = d / d.name
-    if inner.is_dir() and not any(p.is_file() for p in d.iterdir()):
+    if inner.is_dir() and _files(inner) > _files(d):
         return inner
     return d
+
+
+def _files(d: Path) -> int:
+    return sum(1 for p in d.iterdir() if p.is_file())
 
 
 def use_volume_models(repo: Path, data: Path) -> bool:
@@ -351,6 +356,10 @@ def use_volume_models(repo: Path, data: Path) -> bool:
     src, dst = unnested(data / "models") if (data / "models").is_dir() else data / "models", repo / "models"
     if not src.is_dir():
         return False
+    if src != data / "models":                    # files put beside the nested folder: seen in it too (21-11)
+        for f in (data / "models").iterdir():
+            if f.is_file() and not (src / f.name).exists():
+                (src / f.name).symlink_to(f)
     if dst.is_symlink():
         if Path(os.readlink(dst)) == src:
             return True
