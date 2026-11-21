@@ -1,0 +1,23 @@
+{
+ "estado": "error",
+ "poc": {
+  "error": "  raise SystemExit(main())\n                     ^^^^^^\n  File \"/tmp/repo/src/tennisbio/infra/poc_3d.py\", line 58, in main\n    extra={CANDIDATE: b.metrabs_model()}, lifter_names=(\"mag3d\",))\n                      ^^^^^^^^^^^^^^^^^\n  File \"/tmp/repo/scripts/bench_candidates.py\", line 884, in metrabs_model\n    return Metrabs()\n           ^^^^^^^^^\n  File \"/tmp/repo/src/tennisbio/candidates/metrabs3d.py\", line 21, in __init__\n    import tensorflow_hub as hub\n  File \"/kaggle/temp/venv/lib/python3.11/site-packages/tensorflow_hub/__init__.py\", line 85, in <module>\n    _ensure_tf_install()\n  File \"/kaggle/temp/venv/lib/python3.11/site-packages/tensorflow_hub/__init__.py\", line 61, in _ensure_tf_install\n    from pkg_resources import parse_version\nModuleNotFoundError: No module named 'pkg_resources'\n"
+ },
+ "kaggle": {
+  "python": "3.13.16",
+  "nucleos": 4,
+  "memoria_gib": {
+   "MemTotal": 31.3,
+   "MemAvailable": 30.0
+  },
+  "disco_libre_gib": {
+   "/tmp": 2514.5,
+   "/kaggle/working": 19.5
+  },
+  "gpu": "Tesla T4, 15360 MiB\nTesla T4, 15360 MiB",
+  "ffmpeg": "/usr/bin/ffmpeg",
+  "clave_modal": true
+ },
+ "horas_kaggle": 0.04,
+ "nota": null
+}
