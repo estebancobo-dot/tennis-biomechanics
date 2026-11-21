@@ -1,6 +1,6 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-21 22:30 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 19.8 h de GPU esta semana (tope 28 h; Kaggle dice 7.71 h usadas de 30.0, se renueva 2026-11-28 00:00)
+Última vuelta: 2026-11-21 22:35 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 19.8 h de GPU esta semana (tope 28 h; Kaggle dice 7.89 h usadas de 30.0, se renueva 2026-11-28 00:00)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
@@ -91,8 +91,8 @@
 | prueba_final | prueba | tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 | hecho | modal |  |
 | final | partido | tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 | hecho | kaggle |  |
 | prueba_sinner | prueba | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | error | kaggle | cancelado: #295: la prueba corta de un partido espera con su partido a la nube nativa (comprueba el código con el que se analizará); se repite entonces como prueba_sinner_b |
-| prueba_sinner_b | prueba | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | en_marcha | kaggle | Kaggle: running (22:30), intento 2; en cola de Kaggle más de 45 min mientras otro trabajo lanzado después ya arrancó (cuaderno atascado) · score: 100 % (43/43 muestras · 42 lecturas · 35 OCR) · 38 s · quedan ≈ 0 s (22:28:01; GPU 53 %·0 %, CPU 96 %, 3.3 GB) |
-| sinner_a | partido | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | en_marcha | kaggle | Kaggle: running (22:30), intento 1 · scenes:  31 % (32826/106507 fotogramas) · 19 min · quedan ≈ 44 min (22:29:16; CPU 63 %, 10.6 GB) |
+| prueba_sinner_b | prueba | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | en_marcha | kaggle | Kaggle: running (22:35), intento 2; en cola de Kaggle más de 45 min mientras otro trabajo lanzado después ya arrancó (cuaderno atascado) · fine:   7 % (1/15 golpes candidatos · 1 confirmados · 0 ventanas descartadas sin pose) · 0 s · quedan ≈ 0 s (22:35:32; GPU 47 %·50 %, CPU 88 %, 6.8 GB) |
+| sinner_a | partido | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | en_marcha | kaggle | Kaggle: running (22:35), intento 1 · scenes:  37 % (39826/106507 fotogramas) · 24 min · quedan ≈ 40 min (22:33:38; CPU 63 %, 2.5 GB) |
 | sinner_b | partido | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | pendiente |  | espera a sinner_a (en_marcha), prueba_sinner_b (en_marcha) |
 | sinner | partido | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | pendiente |  | espera a sinner_b (pendiente) |
 | actualizar_osaka_a | partido | us-open-2026-r4-naomi-osaka-elena-rybakina | pendiente |  | espera a sinner (pendiente) |
@@ -120,7 +120,7 @@
 | medir_f3set_hoy_c | medir |  | pendiente |  | espera a prueba_gauff_v38_c (pendiente) |
 | prueba_gauff_v38_a | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
 | prueba_gauff_v38_b | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | error | kaggle | cancelado: 21-11 20:45: sus 2 cuadernos, en cola de Kaggle desde las 15:36 sin arrancar (desde las 19:20 sin nada más en marcha): otra vez como prueba_gauff_v38_b2 |
-| prueba_gauff_v38_b2 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: running (22:30), intento 2; en cola de Kaggle más de 45 min mientras otro trabajo lanzado después ya arrancó (cuaderno atascado) · fine:  14 % (4/28 golpes candidatos · 4 confirmados · 0 ventanas descartadas sin pose) · 38 s · quedan ≈ 4 min (22:30:14; GPU 0 %·0 %, CPU 80 %, 7.8 GB) |
+| prueba_gauff_v38_b2 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: running (22:35), intento 2; en cola de Kaggle más de 45 min mientras otro trabajo lanzado después ya arrancó (cuaderno atascado) · fine:  25 % (7/28 golpes candidatos · 7 confirmados · 0 ventanas descartadas sin pose) · 4 min · quedan ≈ 12 min (22:34:55; GPU 20 %·38 %, CPU 73 %, 25.0 GB) |
 | prueba_gauff_v38_c | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | pendiente |  | espera a prueba_gauff_v38_b2 (en_marcha) |
 | comparar_gauff_v36_v38 | comparar |  | pendiente |  | espera a prueba_gauff_v38_c |
 | informe_6 | informe |  | pendiente |  | espera a actualizar_zheng (pendiente) |
