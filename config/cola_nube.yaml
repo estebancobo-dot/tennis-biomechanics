@@ -49,6 +49,7 @@ cancelar:
   comparar_gauff_v26_v34: "sin la v34: se paró a los 5 min sin modelos (el ONNX de Sapiens2 se subió junto a /models/models/ y tapó los demás; arreglado); se compara con la v35"
   medir_3d_metrabs_b: "21-11 13:10: 2 h en cola de Kaggle sin GPU libre (no empezó): su plaza, para comprobar la P100 (medir_raqueta_p100); se lanza otra vez en la GPU que sirva"
   medir_f3set_hoy: "21-11 14:25: sus 3 cuadernos se quedaron «en cola» en Kaggle (desde las 10:16) mientras trabajos lanzados después arrancaban al momento; el mismo trabajo con otro nombre (medir_f3set_hoy_b) dice si es el cuaderno o el trabajo"
+  prueba_gauff_v38_b: "21-11 20:45: sus 2 cuadernos, en cola de Kaggle desde las 15:36 sin arrancar (desde las 19:20 sin nada más en marcha): otra vez como prueba_gauff_v38_b2"
   medir_bola_totnet: "T15 (15-11 23:20): en CPU no cabe en las 12 h de una sesión de Kaggle: cada clip de RacketVision tiene 600 fotogramas a 60 fps (300 ventanas de TOTNet) y cada ventana tarda unos 6 s en la CPU, unas 20 h para los 40 clips (calculé mal 3-5 h); se cortaría sin resultado. Se repite en GPU (medir_bola_totnet_gpu), con la misma regla"
 # #291 (14-11): el PR buzón (nunca se fusiona): la cola comenta en él solo cuando algo necesita a Claude, y su
 # actividad despierta la sesión al momento (sin sondeos ni tokens mientras no pasa nada)
@@ -316,6 +317,8 @@ trabajos:
   # dispersión entre golpes (MAD) no es mayor (con los mismos golpes, menos dispersión = menos ruido); se apunta su GPU
   - {id: prueba_gauff_v38_a, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, cpu: true, etapas: [probe, scenes, court, audio], config: {trunk3d: {model: metrabs}}}
   - {id: prueba_gauff_v38_b, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, tras: prueba_gauff_v38_a, junto_a: prueba_gauff_v38_a, etapas: [players, score, identity, spotting, candidates, fine, fine_opponent, fine_doubtful], config: {trunk3d: {model: metrabs}}}
-  - {id: prueba_gauff_v38_c, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, cpu: true, tras: prueba_gauff_v38_b, junto_a: prueba_gauff_v38_a, etapas: [views, views_link, view_clips, slowmo_fine], config: {trunk3d: {model: metrabs}}}
+  # 21-11 20:45: la b, atascada en la cola de Kaggle (sus 2 cuadernos): otra vez con otro nombre
+  - {id: prueba_gauff_v38_b2, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, tras: prueba_gauff_v38_a, junto_a: prueba_gauff_v38_a, etapas: [players, score, identity, spotting, candidates, fine, fine_opponent, fine_doubtful], config: {trunk3d: {model: metrabs}}}
+  - {id: prueba_gauff_v38_c, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, cpu: true, tras: prueba_gauff_v38_b2, junto_a: prueba_gauff_v38_a, etapas: [views, views_link, view_clips, slowmo_fine], config: {trunk3d: {model: metrabs}}}
   - {id: comparar_gauff_v36_v38, accion: comparar, a: prueba_gauff_v36_c, b: prueba_gauff_v38_c, experimento: true}
   - {id: informe_6, accion: informe, tras: actualizar_zheng}
