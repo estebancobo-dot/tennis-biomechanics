@@ -1579,10 +1579,10 @@
   "salida": "/kaggle_pruebas/prueba_gauff_v36_a/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cpu": true,
   "cuaderno": "tennisbio-prueba-gauff-v36-c",
-  "kaggle": "running (07:40)",
+  "kaggle": "running (07:43)",
   "arranco": "2026-11-21 07:33",
   "espera_min": 1,
-  "progreso": "views:  83 % (122/147 fotogramas de otras tomas) · 4 min · quedan ≈ 52 s (07:38:37; CPU 50 %, 3.6 GB)"
+  "progreso": "view_clips:  49 % (22/45 recortes de repeticiones y otras cámaras) · 2 min · quedan ≈ 2 min (07:40:54; CPU 85 %, 2.9 GB)"
  },
  "prueba_gauff_v37_c": {
   "estado": "en_marcha",
@@ -1597,9 +1597,10 @@
   "salida": "/kaggle_pruebas/prueba_gauff_v37_a/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cpu": true,
   "cuaderno": "tennisbio-prueba-gauff-v37-c",
-  "kaggle": "running (07:40)",
+  "kaggle": "running (07:43)",
   "arranco": "2026-11-21 07:40",
-  "espera_min": 2
+  "espera_min": 2,
+  "progreso": "views:  27 % (39/147 fotogramas de otras tomas) · 2 min · quedan ≈ 6 min (07:42:15; CPU 83 %, 3.5 GB)"
  },
  "informe_beta2": {
   "estado": "en_marcha",
@@ -1612,6 +1613,9 @@
   "inicio": "2026-11-21 07:40",
   "ruta": "/runs/informe_beta2/estado.json",
   "cpu": true,
-  "cuaderno": "tennisbio-informe-beta2"
+  "cuaderno": "tennisbio-informe-beta2",
+  "kaggle": "running (07:43)",
+  "arranco": "2026-11-21 07:43",
+  "espera_min": 3
  }
 }
