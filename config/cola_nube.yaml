@@ -165,6 +165,12 @@ trabajos:
   # menos (cociente mediano de temblor ≤ 0,9); las horas de GPU de la prueba se apuntan para el coste por partido
   - {id: prueba_gauff_v33_sapiens2, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, config: {fine_pass: {refine: sapiens2}}}
   - {id: comparar_gauff_v26_v33, accion: comparar, a: prueba_gauff_v26, b: prueba_gauff_v33_sapiens2}
+  # 21-11 (v33 no valió: 26 de 28 golpes, temblor ×2,09): en media precisión en la GPU se desbordaban sus normalizaciones
+  # (el cuadrado de valores de ~600 pasa del máximo de fp16, 65504). Arreglado: cada una reescalada por 16 antes del
+  # cuadrado (la misma aritmética: idéntica bit a bit en fp32; tennisbio.pose.sapiens2.scale_rms) y, si aun así un recorte
+  # se desborda, ese recorte en precisión completa. La misma prueba otra vez, con la misma regla escrita
+  - {id: prueba_gauff_v34_sapiens2, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, config: {fine_pass: {refine: sapiens2}}}
+  - {id: comparar_gauff_v26_v34, accion: comparar, a: prueba_gauff_v26, b: prueba_gauff_v34_sapiens2}
   # 15-11 23:20: la misma medida en GPU (en CPU serían ~20 h, más que las 12 h de una sesión); ~0,3-0,5 h de GPU
   - {id: medir_bola_totnet_gpu, accion: medir, prueba: bola, donde: kaggle}
   # 15-11 20:10 (R55): la v29 no valió (cada parte repetía las etapas con modelos: la huella de un modelo llevaba la fecha

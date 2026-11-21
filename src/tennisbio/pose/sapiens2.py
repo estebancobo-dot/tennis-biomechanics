@@ -5,7 +5,7 @@ Chosen by measure (docs/registro_decisiones.md, Sapiens2): the 0.4B at 512x384 i
 on the body and 7 % less on the feet, and sees the feet in every frame (96.6 % before), at 136 ms per crop on a T4.
 
 The network runs from ONNX (scripts/export_sapiens2.py, the same heatmaps as PyTorch within 1e-6) through the project's
-own session factory (CUDA, DirectML or the CPU, half precision on a GPU); its crop and its heatmap decoding are the
+own session factory (CUDA, DirectML or the CPU; on a GPU in half precision with its norms rescaled, scale_rms); its crop and its heatmap decoding are the
 transformers processor's (Sapiens2ImageProcessor: an affine crop with 1.25 padding to 4:3, bicubic when it enlarges,
 ImageNet normalisation; argmax refined by the Hessian of the blurred log-heatmap, «DARK»), ported to numpy and checked
 against it. Its 308 points (goliath order, keypoints308.py) are taken to Halpe26 by name: COCO17 body, neck, the
@@ -24,6 +24,13 @@ PADDING = 1.25
 MEAN = np.array([0.485, 0.456, 0.406], np.float32) * 255.0
 STD = np.array([0.229, 0.224, 0.225], np.float32) * 255.0
 BLUR = 11                                      # the processor's DARK kernel (sigma 2.0, cv2's rule)
+# 21-11 (prueba_gauff_v33): in plain half precision its RMS norms overflow: the square of each value (up to ~600 in the
+# residual stream, squared 357 180, past fp16's 65504; nothing else in the network passes 8 192 on a real crop). PyTorch
+# computes them in fp32; here each norm's input is divided by RMS_SCALE before squaring (max ~1 400) and the root
+# multiplied back: x / sqrt(mean(x²) + eps) = x / (s · sqrt(mean((x/s)²) + eps/s²)), the same arithmetic
+RMS_CHAIN = ["Pow", "ReduceMean", "Add", "Sqrt", "Reciprocal"]
+RMS_SCALE = 16.0
+FP16_NAME = "_fp16_normas.onnx"
 # Sapiens2's 308 points → Halpe26 (−1: none)
 TO_HALPE26 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 62, 41, 9, 10, 11, 12, 13, 14,      # COCO17 body
               -1, 69, -1,                                                    # head (none), neck, hip (hips' middle)
@@ -96,6 +103,60 @@ def to_halpe26(pts: np.ndarray, scores: np.ndarray, idx: list[int]) -> tuple[np.
     return kp, sc
 
 
+def rms_chains(model) -> list[list]:
+    """Every RMS norm's chain x² → mean → + eps → √ → 1/· (its five nodes) in an ONNX graph, as torch.export writes
+    transformers' Sapiens2 RMS norm."""
+    after: dict[str, list] = {}
+    for n in model.graph.node:
+        for i in n.input:
+            after.setdefault(i, []).append(n)
+    chains = []
+    for n in model.graph.node:
+        if n.op_type != RMS_CHAIN[0]:
+            continue
+        chain = [n]
+        for op in RMS_CHAIN[1:]:
+            nxt = after.get(chain[-1].output[0], [])
+            if len(nxt) != 1 or nxt[0].op_type != op:
+                break
+            chain.append(nxt[0])
+        if len(chain) == len(RMS_CHAIN):
+            chains.append(chain)
+    return chains
+
+
+def scale_rms(model, s: float = RMS_SCALE) -> int:
+    """Rescales every RMS norm of a float32 ONNX graph in place so that half precision does not overflow (RMS_SCALE):
+    x/s before squaring, eps/s² in the sum, s times the root. Returns how many norms."""
+    from onnx import helper, numpy_helper
+
+    init = {i.name: i for i in model.graph.initializer}
+    chains = rms_chains(model)
+    if not chains:
+        return 0
+    inv, mul = "rms_escala_inv", "rms_escala"
+    model.graph.initializer.extend([numpy_helper.from_array(np.array(1.0 / s, np.float32), inv),
+                                    numpy_helper.from_array(np.array(s, np.float32), mul)])
+    before = {}
+    for k, (pw, mean, add, root, rec) in enumerate(chains):
+        before[pw.name] = helper.make_node("Mul", [pw.input[0], inv], [f"rms{k}_x_s"], name=f"rms{k}_x_s")
+        pw.input[0] = f"rms{k}_x_s"
+        j = 1 - list(add.input).index(mean.output[0])
+        eps = float(numpy_helper.to_array(init[add.input[j]]))
+        model.graph.initializer.append(numpy_helper.from_array(np.array(eps / s ** 2, np.float32), f"rms{k}_eps_s"))
+        add.input[j] = f"rms{k}_eps_s"
+        before[rec.name] = helper.make_node("Mul", [root.output[0], mul], [f"rms{k}_raiz"], name=f"rms{k}_raiz")
+        rec.input[0] = f"rms{k}_raiz"
+    nodes = []
+    for n in model.graph.node:                          # each new node just before the one that reads it (graph order)
+        if n.name in before:
+            nodes.append(before[n.name])
+        nodes.append(n)
+    del model.graph.node[:]
+    model.graph.node.extend(nodes)
+    return len(chains)
+
+
 class Sapiens2Pose:
     """callable (img, boxes (M, 4) xyxy) → Halpe26 keypoints (M, 26, 2) and scores (M, 26), as RTMPose-x's
     PoseEstimator for the hybrid."""
@@ -106,17 +167,30 @@ class Sapiens2Pose:
         from .estimator import _ort_session, is_gpu
         from .variants import to_fp16
 
-        path = to_fp16(onnx_path) if is_gpu(device) else Path(onnx_path)
+        src = Path(onnx_path)
+        self.src, self.device, self.full, self.fallbacks = src, device, None, 0
+        path = to_fp16(src, src.with_name(src.stem + FP16_NAME), scale_rms) if is_gpu(device) else src
+        self.half = path != src
         self.session = _ort_session(str(path), device)
         self.input = self.session.get_inputs()[0].name
         self.idx = sorted({k for k in TO_HALPE26 if k >= 0})
+
+    def _heatmaps(self, x: np.ndarray) -> np.ndarray:
+        hm = self.session.run(None, {self.input: x})[0][0]
+        if self.half and not np.isfinite(hm).all():      # half precision overflowed anyway: this crop in full (the PoC's)
+            if self.full is None:
+                from .estimator import _ort_session
+                print("Sapiens2: la media precisión se desbordó en un recorte; esos recortes, en precisión completa")
+                self.full = _ort_session(str(self.src), self.device)
+            self.fallbacks += 1
+            hm = self.full.run(None, {self.input: x})[0][0]
+        return hm
 
     def __call__(self, img: np.ndarray, boxes) -> tuple[np.ndarray, np.ndarray]:
         boxes = np.asarray(boxes, float).reshape(-1, 4)
         kps, scs = np.zeros((len(boxes), 26, 2), np.float32), np.zeros((len(boxes), 26), np.float32)
         for i, b in enumerate(boxes):                       # the model's batch is one crop (scripts/export_sapiens2.py)
             x, c, s = crop(img, b)
-            hm = self.session.run(None, {self.input: x})[0][0]
-            pts, sc = decode(hm, c, s, self.idx)
+            pts, sc = decode(self._heatmaps(x), c, s, self.idx)
             kps[i], scs[i] = to_halpe26(pts, sc, self.idx)
         return kps, scs

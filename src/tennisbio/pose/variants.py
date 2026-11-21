@@ -31,8 +31,9 @@ VARIANTS = ["yolo11m-pose@960", "rtmpose-x", "rtmpose-m", "yolo11m-pose@960-fp16
 BASELINE = "yolo11m-pose@960"
 
 
-def to_fp16(src: str | Path, dst: str | Path | None = None) -> Path:
-    """Half-precision copy of an ONNX model (inputs and outputs stay float32), cached next to it."""
+def to_fp16(src: str | Path, dst: str | Path | None = None, rewrite=None) -> Path:
+    """Half-precision copy of an ONNX model (inputs and outputs stay float32), cached next to it. rewrite: a function
+    that changes the float32 graph first (#307: Sapiens2's RMS norms rescaled to fit half precision)."""
     src = Path(src)
     dst = Path(dst) if dst else src.with_name(src.stem + "_fp16.onnx")
     if dst.exists():
@@ -42,7 +43,10 @@ def to_fp16(src: str | Path, dst: str | Path | None = None) -> Path:
 
     import os
 
-    m = convert_float_to_float16(onnx.load(str(src)), keep_io_types=True)
+    m = onnx.load(str(src))
+    if rewrite is not None:
+        rewrite(m)
+    m = convert_float_to_float16(m, keep_io_types=True)
     tmp = dst.with_suffix(f".{os.getpid()}.part")      # one per process: two fine processes may make it at once
     onnx.save(m, str(tmp))
     try:

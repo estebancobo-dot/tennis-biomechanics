@@ -81,3 +81,83 @@ def test_kaggle_exports_it_once_when_the_settings_ask_for_it():
     assert correr.SAPIENS2_ONNX == sp.ONNX.name
     exp = (ROOT / "scripts" / "export_sapiens2.py").read_text(encoding="utf-8")
     assert 'SIZE = (512, 384)' in exp and "dynamo=True" in exp and 'attn_implementation="eager"' in exp
+
+
+def _rms_graph(dim: int = 64):
+    """A float32 ONNX graph with one RMS norm written as torch.export writes Sapiens2's (x² → mean → + eps → √ → 1/·,
+    times x, times its weight), its constants shared as the export shares them."""
+    import onnx
+    from onnx import TensorProto, helper, numpy_helper
+
+    nodes = [helper.make_node("Pow", ["x", "two"], ["sq"], name="p"),
+             helper.make_node("ReduceMean", ["sq", "axes"], ["ms"], name="m", keepdims=1),
+             helper.make_node("Add", ["ms", "eps"], ["mse"], name="a"),
+             helper.make_node("Sqrt", ["mse"], ["rt"], name="s"),
+             helper.make_node("Reciprocal", ["rt"], ["inv"], name="r"),
+             helper.make_node("Mul", ["x", "inv"], ["xn"], name="n"),
+             helper.make_node("Mul", ["w", "xn"], ["y"], name="o")]
+    init = [numpy_helper.from_array(np.array(2.0, np.float32), "two"),
+            numpy_helper.from_array(np.array([-1], np.int64), "axes"),
+            numpy_helper.from_array(np.array(1e-6, np.float32), "eps"),
+            numpy_helper.from_array(np.linspace(0.5, 1.5, dim).astype(np.float32), "w")]
+    g = helper.make_graph(nodes, "rms", [helper.make_tensor_value_info("x", TensorProto.FLOAT, [1, 8, dim])],
+                          [helper.make_tensor_value_info("y", TensorProto.FLOAT, [1, 8, dim])], init)
+    return helper.make_model(g, opset_imports=[helper.make_opsetid("", 18)], ir_version=8)
+
+
+def _run(model, x, outputs=None):
+    import onnxruntime as ort
+    s = ort.InferenceSession(model.SerializeToString(), providers=["CPUExecutionProvider"])
+    return s.run(outputs, {"x": x})
+
+
+def test_the_norms_are_rescaled_with_the_same_arithmetic_and_fit_half_precision(tmp_path):
+    """prueba_gauff_v33 (21-11): Sapiens2 in plain half precision on the GPU broke the fine pass (the body shook twice as
+    much): its residual stream reaches ~600, squared past fp16's 65504 inside every RMS norm. Rescaling by a power of
+    two changes no bit in float32 and keeps every value of the norm small."""
+    import onnx
+    from onnx import helper
+    from tennisbio.pose.variants import to_fp16
+
+    rng = np.random.default_rng(0)
+    x = rng.normal(0, 30, (1, 8, 64)).astype(np.float32)
+    x[0, :, 3] = 598.0                                                  # one massive channel, as the real network has
+    m = _rms_graph()
+    ref = _run(m, x)[0]
+    assert [n.name for n in sp.rms_chains(m)[0]] == ["p", "m", "a", "s", "r"]
+    assert sp.scale_rms(m) == 1 and len(m.graph.node) == 9
+    onnx.checker.check_model(m)
+    m.graph.output.extend([helper.make_empty_tensor_value_info(v) for v in ("sq", "rms0_raiz")])
+    got, sq, root = _run(m, x, ["y", "sq", "rms0_raiz"])
+    assert np.array_equal(got, ref)                                     # the same bits
+    assert (x ** 2).max() > 65504 and sq.max() < 65504 / 32            # the square fits, with room
+    onnx.save(_rms_graph(), str(tmp_path / "rms.onnx"))
+    h = to_fp16(tmp_path / "rms.onnx", tmp_path / "rms_h.onnx", sp.scale_rms)
+    half = _run(onnx.load(str(h)), x)[0]
+    assert np.isfinite(half).all() and np.abs(half - ref).max() < 2e-2 * np.abs(ref).max()
+    assert sp.scale_rms(onnx.ModelProto()) == 0                         # no norms: nothing to do
+
+
+def test_a_crop_that_overflows_anyway_is_redone_in_full_precision(monkeypatch, capsys):
+    from tennisbio.pose import estimator
+
+    class S:
+        def __init__(self, v):
+            self.v, self.calls = v, 0
+
+        def run(self, _, feed):
+            self.calls += 1
+            return [np.full((1, 308, 128, 96), self.v, np.float32)]
+
+    p = object.__new__(sp.Sapiens2Pose)
+    p.session, p.input, p.half, p.full, p.fallbacks, p.src, p.device = S(np.nan), "input", True, None, 0, "m", "cuda"
+    p.idx = sorted({k for k in sp.TO_HALPE26 if k >= 0})
+    full = S(0.5)
+    monkeypatch.setattr(estimator, "_ort_session", lambda path, dev: full)
+    img = np.zeros((300, 300, 3), np.uint8)
+    kp, sc = p(img, [[100, 50, 140, 210], [10, 10, 60, 120]])
+    assert p.fallbacks == 2 and full.calls == 2 and np.isfinite(kp).all() and sc[0, 0] == pytest.approx(0.5)
+    assert "precisión completa" in capsys.readouterr().out
+    p.half, p.session = False, S(np.nan)                               # in full precision nothing is redone
+    p(img, [[100, 50, 140, 210]])
+    assert p.fallbacks == 2
