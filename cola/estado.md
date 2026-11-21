@@ -1,6 +1,6 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-21 07:07 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 25.0 h de GPU esta semana (tope 28 h; Kaggle dice 1.98 h usadas de 30.0, se renueva 2026-11-28 00:00)
+Última vuelta: 2026-11-21 07:12 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 25.0 h de GPU esta semana (tope 28 h; Kaggle dice 1.98 h usadas de 30.0, se renueva 2026-11-28 00:00)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
@@ -58,10 +58,10 @@
 | leer_v26_v35 | leer |  | hecho | github | leídos: kaggle_pruebas__prueba_gauff_v26__output___prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5__strokes.json (cortado a 512 KB), kaggle_pruebas__prueba_gauff_v35_sapiens2__output___prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5__strokes.json (cortado a 512 KB) |
 | medir_lejana_rfdetr | medir |  | hecho | kaggle |  |
 | prueba_gauff_v36_a | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
-| prueba_gauff_v36_b | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: queued (07:07), intento 1 |
+| prueba_gauff_v36_b | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: queued (07:12), intento 1 |
 | prueba_gauff_v36_c | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | pendiente |  | espera a prueba_gauff_v36_b (en_marcha) |
 | comparar_gauff_v32_v36 | comparar |  | pendiente |  | espera a prueba_gauff_v36_c |
-| prueba_gauff_v37_a | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: running (07:07), intento 1 · scenes:  23 % (3426/15016 fotogramas) · 2 min · quedan ≈ 7 min (07:05:29; CPU 64 %, 2.6 GB) |
+| prueba_gauff_v37_a | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: running (07:12), intento 1 · scenes:  95 % (14226/15016 fotogramas) · 9 min · quedan ≈ 29 s (07:12:01; CPU 62 %, 2.6 GB) |
 | prueba_gauff_v37_b | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | pendiente |  | espera a prueba_gauff_v37_a (en_marcha) |
 | prueba_gauff_v37_c | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | pendiente |  | espera a prueba_gauff_v37_b (pendiente) |
 | comparar_gauff_v36_v37 | comparar |  | pendiente |  | espera a prueba_gauff_v36_c, prueba_gauff_v37_c |
