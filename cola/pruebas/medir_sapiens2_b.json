@@ -1,0 +1,68 @@
+{
+ "estado": "hecho",
+ "poc": {
+  "prueba": "sapiens2",
+  "dispositivo": "cuda",
+  "gpu": "Tesla T4",
+  "golpes": 23,
+  "hibrido": {
+   "body": 0.00481,
+   "wrists": 0.00667,
+   "feet": 0.00349,
+   "body_seen": 1.0,
+   "feet_seen": 0.96591
+  },
+  "modelos": {
+   "facebook/sapiens2-pose-0.4b": {
+    "body": 0.00289,
+    "wrists": 0.00477,
+    "feet": 0.00326,
+    "body_seen": 0.99527,
+    "feet_seen": 1.0,
+    "agree_body": 0.01089,
+    "agree_feet": 0.01347,
+    "ms_por_recorte_modelo": 584.6,
+    "ms_por_recorte_total": 687.7,
+    "recortes": 3693,
+    "lotes_en_precision_completa": 0,
+    "lote_final": 4,
+    "lotes_partidos_por_memoria": 0,
+    "sigue": true
+   },
+   "facebook/sapiens2-pose-1b": {
+    "body": 0.00287,
+    "wrists": 0.00463,
+    "feet": 0.00321,
+    "body_seen": 0.99811,
+    "feet_seen": 1.0,
+    "agree_body": 0.00999,
+    "agree_feet": 0.0127,
+    "ms_por_recorte_modelo": 2169.4,
+    "ms_por_recorte_total": 2273.0,
+    "recortes": 3693,
+    "lotes_en_precision_completa": 0,
+    "lote_final": 4,
+    "lotes_partidos_por_memoria": 0,
+    "sigue": true
+   }
+  },
+  "conclusion": "facebook/sapiens2-pose-0.4b, facebook/sapiens2-pose-1b pasa a la prueba integrada (la pasada fina con Sapiens2 frente a la v26)"
+ },
+ "kaggle": {
+  "python": "3.13.16",
+  "nucleos": 4,
+  "memoria_gib": {
+   "MemTotal": 31.3,
+   "MemAvailable": 30.1
+  },
+  "disco_libre_gib": {
+   "/tmp": 2514.5,
+   "/kaggle/working": 19.5
+  },
+  "gpu": "Tesla T4, 15360 MiB\nTesla T4, 15360 MiB",
+  "ffmpeg": "/usr/bin/ffmpeg",
+  "clave_modal": true
+ },
+ "horas_kaggle": 3.1,
+ "nota": null
+}
