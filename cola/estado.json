@@ -1726,7 +1726,7 @@
   "inicio": "2026-11-21 10:16",
   "ruta": "/runs/kaggle_medir_f3set_hoy/estado.json",
   "cuaderno": "tennisbio-medir-f3set-hoy",
-  "kaggle": "queued (13:10)"
+  "kaggle": "queued (13:12)"
  },
  "medir_3d_metrabs": {
   "estado": "error",
@@ -1749,7 +1749,7 @@
   }
  },
  "medir_3d_metrabs_b": {
-  "estado": "en_marcha",
+  "estado": "error",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 1,
@@ -1759,6 +1759,21 @@
   "inicio": "2026-11-21 11:11",
   "ruta": "/runs/kaggle_medir_3d_metrabs_b/estado.json",
   "cuaderno": "tennisbio-medir-3d-metrabs-b",
-  "kaggle": "queued (13:10)"
+  "kaggle": "queued (13:10)",
+  "resultado": {
+   "nota": "cancelado: 21-11 13:10: 2 h en cola de Kaggle sin GPU libre (no empezó): su plaza, para comprobar la P100 (medir_raqueta_p100); se lanza otra vez en la GPU que sirva"
+  }
+ },
+ "medir_raqueta_p100": {
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1795266732.3481917,
+  "accion": "medir",
+  "partido": "",
+  "inicio": "2026-11-21 13:12",
+  "ruta": "/runs/kaggle_medir_raqueta_p100/estado.json",
+  "cuaderno": "tennisbio-medir-raqueta-p100"
  }
 }
