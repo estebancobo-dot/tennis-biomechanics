@@ -149,6 +149,9 @@
     "medir_sapiens2_b": {
      "estimado_h": 0.5,
      "horas": 3.1
+    },
+    "medir_sapiens2_rapido": {
+     "estimado_h": 0.5
     }
    }
   }
@@ -157,6 +160,6 @@
   "usadas_h": 0.0,
   "total_h": 30.0,
   "renueva": "2026-11-28 00:00:00",
-  "ts": 1795221720.6389475
+  "ts": 1795222182.9933584
  }
 }
