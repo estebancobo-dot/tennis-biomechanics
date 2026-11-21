@@ -155,6 +155,10 @@ trabajos:
   - {id: medir_sapiens2, accion: medir, prueba: sapiens2, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, base: prueba_gauff_v26, donde: kaggle}
   # 20-11: la de arriba se quedó sin memoria en la T4 (16 recortes a la vez pedían 9 GB); otra vez en lotes de 4 que se parten si no caben
   - {id: medir_sapiens2_b, accion: medir, prueba: sapiens2, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, base: prueba_gauff_v26, donde: kaggle}
+  # 21-11: Sapiens2 pasó su regla (el cuerpo tiembla un 40 % menos, ve siempre los pies) pero tarda 0,69 s por recorte en la
+  # T4 (un partido, unas 13 h de GPU más). El 0.4B otra vez a 768x576 y 512x384. Regla escrita antes: se queda el tamaño más
+  # pequeño que siga temblando al menos un 10 % menos en el cuerpo, no más en los pies y vea los pies igual; su tiempo decide
+  - {id: medir_sapiens2_rapido, accion: medir, prueba: sapiens2_rapido, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, base: prueba_gauff_v26, donde: kaggle}
   # 15-11 23:20: la misma medida en GPU (en CPU serían ~20 h, más que las 12 h de una sesión); ~0,3-0,5 h de GPU
   - {id: medir_bola_totnet_gpu, accion: medir, prueba: bola, donde: kaggle}
   # 15-11 20:10 (R55): la v29 no valió (cada parte repetía las etapas con modelos: la huella de un modelo llevaba la fecha

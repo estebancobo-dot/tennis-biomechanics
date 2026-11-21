@@ -38,9 +38,10 @@ TEST_PREFIX = nube.TEST_PREFIX
 POCS = {"raqueta": "tennisbio.infra.poc_raqueta", "video": "tennisbio.infra.poc_video",
         "youtube": "tennisbio.infra.poc_youtube",       # 15-11 (#304): can the cloud download from YouTube?
         "bola": "tennisbio.infra.poc_bola",             # 15-11 (T15): TOTNet against TrackNetV3 on RacketVision
-        "sapiens2": "tennisbio.infra.poc_sapiens"}      # 15-11 (#307): Sapiens2 against the fine pass's pose
+        "sapiens2": "tennisbio.infra.poc_sapiens",      # 15-11 (#307): Sapiens2 against the fine pass's pose
+        "sapiens2_rapido": "tennisbio.infra.poc_sapiens"}  # 21-11: the 0.4B with smaller inputs (its speed)
 NEEDS_MATCH = ("video",)                 # proofs of concept measured on a match's broadcast (its video from Modal)
-NEEDS_RUN = ("sapiens2",)                # proofs of concept on a reference test's outputs (`base`, of `partido`)
+NEEDS_RUN = ("sapiens2", "sapiens2_rapido")   # proofs of concept on a reference test's outputs (`base`, of `partido`)
 SAPIENS_TRANSFORMERS = "transformers==5.23.0"   # the first with Sapiens2ForPoseEstimation that was checked (15-11)
 
 
@@ -184,8 +185,10 @@ def poc_args(job: dict, models: Path, video: Path | None) -> list[str]:
         return ["--modelo", str(models / "racketpose.onnx")]
     if job["prueba"] == "youtube":
         return ["--urls", str(job.get("urls") or "")]
-    if job["prueba"] == "sapiens2":
-        return ["--previa", str(models.parent / "previa"), "--dispositivo", "cpu" if job.get("cpu") else "cuda"]
+    if job["prueba"] in ("sapiens2", "sapiens2_rapido"):
+        fast = ["--modelos", "facebook/sapiens2-pose-0.4b", "--tamanos", "768x576,512x384"] \
+            if job["prueba"] == "sapiens2_rapido" else []
+        return ["--previa", str(models.parent / "previa"), "--dispositivo", "cpu" if job.get("cpu") else "cuda", *fast]
     if job["prueba"] == "bola":
         return ["--modelo", str(models / "balltrack.onnx"), "--totnet", str(models / "totnet_tennis.onnx"),
                 "--datos", str(models.parent / "datasets"), "--dispositivo", "cpu" if job.get("cpu") else "cuda"]
@@ -208,7 +211,7 @@ def measure(job: dict, py: Path, models: Path, data: Path, run: Path, vol, est: 
     if job["prueba"] == "youtube":                 # the newest yt-dlp, as the PC's fallback uses
         subprocess.run(["uv", "pip", "install", "-q", "--python", str(py), "-U", "yt-dlp[default]"])
     runner = str(py)
-    if job["prueba"] == "sapiens2":                # #307: Kaggle's own Python (PyTorch with CUDA), transformers pinned
+    if job["prueba"] in ("sapiens2", "sapiens2_rapido"):    # #307: Kaggle's own Python (PyTorch with CUDA), pinned
         _run([sys.executable, "-m", "pip", "install", "-q", SAPIENS_TRANSFORMERS, "safetensors"])
         base = f"/kaggle_pruebas/{job.get('base') or 'prueba_gauff_v26'}/output/{TEST_PREFIX}{job['partido']}"
         modal_get(base, models.parent / "previa")          # its windows, series and strokes, as that test left them

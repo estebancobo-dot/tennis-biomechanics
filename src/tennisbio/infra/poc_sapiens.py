@@ -122,12 +122,14 @@ class Sapiens2:
     medir_sapiens2 (15-11) ran out of the T4's memory with 16 crops at once (attention over 3072 tokens per crop asked
     for 9 GB): batches of 4, and a batch that still does not fit is halved and tried again (down to one crop)."""
 
-    def __init__(self, name: str, device: str = "cuda", batch: int = 4):
+    def __init__(self, name: str, device: str = "cuda", batch: int = 4, size: tuple[int, int] | None = None):
         import torch
         from transformers import AutoImageProcessor, Sapiens2ForPoseEstimation
         self.torch, self.batch = torch, batch
         self.dev = "cuda" if device == "cuda" and torch.cuda.is_available() else "cpu"
         self.proc = AutoImageProcessor.from_pretrained(name)
+        if size:                                   # 21-11: a smaller input (same 4:3); the model places its patches itself
+            self.proc.size = {"height": int(size[0]), "width": int(size[1])}
         self.model = Sapiens2ForPoseEstimation.from_pretrained(name).eval().to(self.dev)
         if self.dev == "cuda":
             self.model = self.model.half()
@@ -245,6 +247,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--previa", type=Path, required=True, help="la carpeta de salida de la prueba de referencia (v26)")
     ap.add_argument("--modelos", default="facebook/sapiens2-pose-0.4b,facebook/sapiens2-pose-1b")
     ap.add_argument("--dispositivo", default="cuda")
+    ap.add_argument("--tamanos", default="", help="21-11: tamaños de entrada (alto x ancho, 4:3), p. ej. 768x576,512x384")
     ap.add_argument("--max-golpes", type=int, default=0)
     ap.add_argument("--salida", type=Path, required=True)
     a = ap.parse_args(argv)
@@ -257,10 +260,13 @@ def main(argv: list[str] | None = None) -> int:
     out = {"prueba": "sapiens2", "dispositivo": a.dispositivo,
            "gpu": torch.cuda.get_device_name(0) if torch.cuda.is_available() else None}
     models = {}
+    sizes = [tuple(int(v) for v in s.split("x")) for s in a.tamanos.split(",") if s] or [None]
     for name in [m for m in a.modelos.split(",") if m]:
-        t = time.time()
-        models[name] = Sapiens2(name, a.dispositivo)
-        print(f"{name}: cargado en {time.time() - t:.0f} s", flush=True)
+        for size in sizes:
+            t = time.time()
+            key = name if size is None else f"{name}@{size[0]}x{size[1]}"
+            models[key] = Sapiens2(name, a.dispositivo, batch=4 if size is None or size[0] >= 1024 else 8, size=size)
+            print(f"{key}: cargado en {time.time() - t:.0f} s", flush=True)
     out.update(compare(sdir, wdir, models, a.max_golpes, log=lambda s: print(s, flush=True)))
     best = [n for n, r in out["modelos"].items() if r["sigue"]]
     out["conclusion"] = (f"{', '.join(best)} pasa a la prueba integrada (la pasada fina con Sapiens2 frente a la v26)" if best

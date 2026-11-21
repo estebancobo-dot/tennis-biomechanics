@@ -107,3 +107,16 @@ def test_a_batch_that_does_not_fit_the_gpu_is_halved_and_tried_again():
     m._batch = lambda fr, bx: (_ for _ in ()).throw(ValueError("other"))
     with pytest.raises(ValueError):
         m.pose([np.zeros((4, 4, 3))], [[0, 0, 1, 1]])
+
+
+def test_the_speed_measure_asks_for_the_small_model_at_smaller_inputs():
+    """21-11: Sapiens2 passed its rule but takes 0.69 s per crop on a T4 (a match ~13 h more): the 0.4B again at 768x576
+    and 512x384 (on a CPU, 0.3 and 0.6 px from 1024x768 on a 164 px player)."""
+    sys.path.insert(0, str(ROOT / "cloud" / "kaggle"))
+    sys.path.insert(0, str(ROOT / "cloud"))
+    import correr
+    j = correr.parse_job('{"accion": "medir", "prueba": "sapiens2_rapido", "partido": "g"}')
+    args = correr.poc_args(j, Path("/d/models"), None)
+    assert args[args.index("--modelos") + 1] == "facebook/sapiens2-pose-0.4b"
+    assert args[args.index("--tamanos") + 1] == "768x576,512x384"
+    assert correr.POCS["sapiens2_rapido"] == correr.POCS["sapiens2"]
