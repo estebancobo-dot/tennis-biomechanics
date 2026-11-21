@@ -298,6 +298,8 @@ trabajos:
   # y un montaje por conclusión, `tennisbio export`), por primera vez en la nube; la aplicación la trae con los resultados
   - {id: informe_beta4, accion: informe, donde: kaggle}
   - {id: medir_app_b, accion: medir, prueba: app, donde: kaggle, cpu: true, tras: informe_beta4}
+  # 21-11 22:10: comprobar que la exportación de informe_beta4 dejó ficheros (la lista que trae la aplicación y su registro)
+  - {id: leer_exportacion, accion: leer, rutas: [/output/exportar_derecha/exportacion.json, /runs/informe/log.txt]}
   # 21-11 10:10 (#295, cierre de la nube nativa; sirve con cualquier decisión pendiente del usuario): F3Set con el código de
   # hoy y todo lo adoptado (bola en un hilo, marcador con CUDA, jugadora lejana con RF-DETR…) frente a la nube2 (Modal,
   # 14-11: 469 de 517, precisión 0,94), con el mismo script. Regla escrita antes (tennisbio.infra.poc_f3set): no peor en
