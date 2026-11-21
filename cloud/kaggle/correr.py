@@ -160,6 +160,24 @@ def ensure_sapiens2(py: Path, data: Path, models: Path, vol, est: dict) -> str:
     return est["sapiens2"]
 
 
+def wants_rfdetr(job: dict) -> bool:
+    """21-11 (T25): a test or match whose settings find the far player with RF-DETR (fine_pass.far_detector)."""
+    return str(((job.get("config") or {}).get("fine_pass") or {}).get("far_detector") or "").lower() == "rfdetr"
+
+
+def ensure_rfdetr(data: Path, models: Path, vol, est: dict) -> str:
+    """RF-DETR Medium's ONNX (scripts/export_rfdetr.py, its own pinned rfdetr) when the volume has none yet; kept in the
+    volume's models folder, beside the others (nube.unnested), for the next sessions."""
+    if (models / RFDETR_ONNX).exists():
+        return "ya estaba en el volumen"
+    t = time.time()
+    _run(["uv", "run", "--with", "rfdetr==1.11.2", "python", str(REPO / "scripts" / "export_rfdetr.py"),
+          "--out", str(models / RFDETR_ONNX), "--ckpt", str(models.parent / "rf-detr-medium.pth")], cwd=REPO)
+    modal_put(vol, [models / RFDETR_ONNX], models, "/" + models.relative_to(data).as_posix())
+    est["rfdetr"] = f"exportado y subido al volumen en {time.time() - t:.0f} s"
+    return est["rfdetr"]
+
+
 def setup_env(repo: Path, venv: Path, gpu: bool = True) -> Path:
     """Python 3.11 with the repository's locked dependencies, ONNX Runtime for CUDA and the GPU hook, as Modal's image
     (cloud/modal_app.py). Returns the venv's python. `gpu` False (T24, a CPU part): the locked ONNX Runtime for the CPU
@@ -237,10 +255,8 @@ def measure(job: dict, py: Path, models: Path, data: Path, run: Path, vol, est: 
         _run([sys.executable, "-m", "pip", "install", "-q", "einops", "onnx", "onnxruntime"])
         _run([sys.executable, str(REPO / "scripts" / "export_totnet.py"), "--salida", str(models / "totnet_tennis.onnx"),
               "--repo", str(models.parent / "totnet")])
-    if job["prueba"] == "lejana" and not (models / RFDETR_ONNX).exists():   # exported once, kept on the volume
-        _run(["uv", "run", "--with", "rfdetr==1.11.2", "python", str(REPO / "scripts" / "export_rfdetr.py"),
-              "--out", str(models / RFDETR_ONNX), "--ckpt", str(models.parent / "rf-detr-medium.pth")], cwd=REPO)
-        modal_put(vol, [models / RFDETR_ONNX], models, "/" + models.relative_to(data).as_posix())
+    if job["prueba"] == "lejana":
+        ensure_rfdetr(data, models, vol, est)
     if job["prueba"] == "youtube":                 # the newest yt-dlp, as the PC's fallback uses
         subprocess.run(["uv", "pip", "install", "-q", "--python", str(py), "-U", "yt-dlp[default]"])
     runner = str(py)
@@ -420,6 +436,8 @@ def main(argv: list[str]) -> int:
             return 0
         matches = {m["id"]: m for m in prepare(REPO, data, registry, job.get("config"))}
         ensure_sapiens2(py, data, models, vol, est)        # #307: only when the settings ask for it
+        if wants_rfdetr(job):                              # T25: the far player by RF-DETR
+            ensure_rfdetr(data, models, vol, est)
         src = matches.get(job["partido"])
         if src is None:
             est.update(estado="error", nota=f"{job['partido']} no está en la lista de partidos del PC")

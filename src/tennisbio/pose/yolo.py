@@ -4,6 +4,7 @@ Optional backend (`uv sync --extra yolo`). Everything detected is cached, so tra
 detection and racket analysis can be re-run without inference. Rackets are segmented only in
 the frames around each stroke (same idea as the two-pass pipeline).
 """
+from functools import lru_cache
 from pathlib import Path
 
 import cv2
@@ -386,7 +387,7 @@ def extract_follow(video: str | Path, out: str | Path, init_box, pose_model="yol
     YOLO does not see the far player, so once lost she was never found again (PC 08-11: in 132 of 2186 far
     windows the whole window was posed «a 960 px por perderla» with no keypoint of hers, and her strokes there
     were kept by the ball or the detector without pose). With it, after FOLLOW_RESEARCH_AFTER frames without
-    her the far half is searched again as far_start does (detect_people on far_roi, pick_far_player), every
+    her the far half is searched again as far_start does (far_people, pick_far_player), every
     FOLLOW_RESEARCH_EVERY frames while she is lost, and the crop grows at most FOLLOW_MAX_GROWTH steps."""
     from concurrent.futures import ThreadPoolExecutor
     from time import perf_counter
@@ -412,9 +413,9 @@ def extract_follow(video: str | Path, out: str | Path, init_box, pose_model="yol
                 last, misses = np.asarray(inits[i], float), 0
             if far_H is not None and misses >= FOLLOW_RESEARCH_AFTER \
                     and (misses - FOLLOW_RESEARCH_AFTER) % FOLLOW_RESEARCH_EVERY == 0:
-                from ..court_metrics import far_roi, pick_far_player
+                from ..court_metrics import pick_far_player
                 n_search += 1
-                again = pick_far_player(detect_people(frame, far_roi(far_H, frame.shape)), far_H)
+                again = pick_far_player(far_people(frame, far_H), far_H)
                 if again is not None:              # found again where far_start looks for her
                     last, misses = np.asarray(again, float), 0
                     n_found += 1
@@ -483,6 +484,52 @@ def detect_people(frame: np.ndarray, roi=None, pose_model="yolo11m-pose.pt", img
     return b + [x0, y0, x0, y0] if len(b) else np.zeros((0, 4))
 
 
+# 21-11 (T25): who finds the far player at the start of a far window and when the follow has lost her: YOLO11m-pose on
+# the far half of the court (default) or RF-DETR Medium on the whole frame (fine_pass.far_detector: rfdetr; measured on
+# a T4, medir_lejana_rfdetr: found in 100 % of 300 RacketVision test frames against 90.3 %, 3.3 against 1.1 frames/s)
+FAR_DETECTORS = ("yolo", "rfdetr")
+RFDETR_ONNX = "rfdetr_medium_1152.onnx"
+
+
+def far_detector(cfg: dict | None = None) -> str:
+    """The configured far-player detector; RF-DETR without its model file falls back to YOLO, said once."""
+    if cfg is None:
+        from ..config import load_config
+        cfg = load_config()
+    name = str((cfg.get("fine_pass") or {}).get("far_detector") or "yolo").lower()
+    if name not in FAR_DETECTORS:
+        raise ValueError(f"fine_pass.far_detector: {name!r} (vale {', '.join(FAR_DETECTORS)})")
+    if name == "rfdetr":
+        from .yolo_onnx import MODELS_DIR
+        if not (MODELS_DIR / RFDETR_ONNX).exists():
+            print(f"AVISO: falta models/{RFDETR_ONNX} (scripts/export_rfdetr.py): la jugadora lejana, con YOLO")
+            return "yolo"
+    return name
+
+
+@lru_cache(maxsize=1)
+def _far_name() -> str:
+    return far_detector()
+
+
+@lru_cache(maxsize=2)
+def _rfdetr(device: str):
+    from .rfdetr import RfDetrPeople
+    from .yolo_onnx import MODELS_DIR
+    return RfDetrPeople(MODELS_DIR / RFDETR_ONNX, device)
+
+
+def far_people(frame: np.ndarray, H: np.ndarray) -> np.ndarray:
+    """The people who may be the far player (N, 4), in full-frame coordinates, by the configured detector; the far one
+    among them is chosen by the court (court_metrics.pick_far_player), the same for both."""
+    from ..court_metrics import far_roi
+
+    if _far_name() == "rfdetr":
+        from . import backend
+        return _rfdetr(backend.DEFAULT_DEVICE).people([frame])[0][:, :4]
+    return detect_people(frame, far_roi(H, frame.shape))
+
+
 def find_far_player(video: str | Path, H: np.ndarray, search_s=2.0, step=5):
     """First box of the far player within the first `search_s` of a video (every `step` frames);
     the box is returned for the first frame of the video (the follow crop starts there and
@@ -504,7 +551,7 @@ def find_far_players(video: str | Path, H: np.ndarray, starts, search_s=2.0, ste
 
 def _find_far(video: str | Path, H: np.ndarray, starts, search_s=2.0, step=5) -> dict:
     """{start: (frame where she was found, box) or None}, in one reading of the video."""
-    from ..court_metrics import far_roi, pick_far_player
+    from ..court_metrics import pick_far_player
 
     starts = sorted({int(s) for s in starts})
     found = {s: None for s in starts}
@@ -524,7 +571,7 @@ def _find_far(video: str | Path, H: np.ndarray, starts, search_s=2.0, step=5) ->
             if not ok:
                 break
             if todo:
-                box = pick_far_player(detect_people(frame, far_roi(H, frame.shape)), H)
+                box = pick_far_player(far_people(frame, H), H)
                 if box is not None:
                     for s in todo:
                         found[s] = (i, box)

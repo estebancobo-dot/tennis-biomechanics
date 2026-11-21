@@ -196,6 +196,15 @@ trabajos:
   - {id: prueba_gauff_v36_b, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, tras: prueba_gauff_v36_a, junto_a: prueba_gauff_v36_a, etapas: [players, score, identity, spotting, candidates, fine, fine_opponent, fine_doubtful]}
   - {id: prueba_gauff_v36_c, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, cpu: true, tras: prueba_gauff_v36_b, junto_a: prueba_gauff_v36_a, etapas: [views, views_link, view_clips, slowmo_fine]}
   - {id: comparar_gauff_v32_v36, accion: comparar, a: prueba_gauff_v32_c, b: prueba_gauff_v36_c}
+  # 21-11 07:00 (T25): medir_lejana_rfdetr pasó su regla en la T4 (jugadora lejana hallada 1,0 frente a 0,903, 360 raquetas;
+  # 3,3 frente a 1,1 fotogramas/s). La prueba integrada: la v36 con la jugadora lejana buscada por RF-DETR
+  # (fine_pass.far_detector: rfdetr), por partes. Regla escrita antes: se adopta si empareja los mismos golpes que la v36
+  # (todos, ninguno de un solo lado) y sus horas de GPU no suben más del 10 %; la mejor detección ya está medida con datos
+  # anotados. Se apunta qué cambia en los golpes del lado lejano
+  - {id: prueba_gauff_v37_a, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, cpu: true, etapas: [probe, scenes, court, audio], config: {fine_pass: {far_detector: rfdetr}}}
+  - {id: prueba_gauff_v37_b, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, tras: prueba_gauff_v37_a, junto_a: prueba_gauff_v37_a, etapas: [players, score, identity, spotting, candidates, fine, fine_opponent, fine_doubtful], config: {fine_pass: {far_detector: rfdetr}}}
+  - {id: prueba_gauff_v37_c, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, cpu: true, tras: prueba_gauff_v37_b, junto_a: prueba_gauff_v37_a, etapas: [views, views_link, view_clips, slowmo_fine], config: {fine_pass: {far_detector: rfdetr}}}
+  - {id: comparar_gauff_v36_v37, accion: comparar, a: prueba_gauff_v36_c, b: prueba_gauff_v37_c, experimento: true}
   # 15-11 23:20: la misma medida en GPU (en CPU serían ~20 h, más que las 12 h de una sesión); ~0,3-0,5 h de GPU
   - {id: medir_bola_totnet_gpu, accion: medir, prueba: bola, donde: kaggle}
   # 15-11 20:10 (R55): la v29 no valió (cada parte repetía las etapas con modelos: la huella de un modelo llevaba la fecha

@@ -1801,7 +1801,15 @@ def window_cache_key(cfg: dict) -> str:
     return hashlib.sha1(json.dumps([cfg.get("yolo_pose", "yolo11m-pose.pt"), cfg.get("fine_imgsz", 960),
                                     model_state(bcfg.get("onnx")), "v2"]
                                    + (["fp16"] if _fp16_setting(cfg) else [])
-                                   + pose_cache_tag(cfg) + [code_fingerprint(WINDOW_CODE)]).encode()).hexdigest()[:8]
+                                   + pose_cache_tag(cfg) + _far_tag(cfg)
+                                   + [code_fingerprint(WINDOW_CODE)]).encode()).hexdigest()[:8]
+
+
+def _far_tag(cfg: dict) -> list:
+    """21-11 (T25): the far player found by RF-DETR is another window pose (nothing with the default: the windows made
+    with YOLO stay valid)."""
+    from .pose.yolo import far_detector
+    return ["far-rfdetr"] if far_detector(cfg) == "rfdetr" else []
 
 
 def ball_track_key(cfg: dict) -> str:

@@ -29,7 +29,7 @@
  },
  "players": {
   "version": "7",
-  "hash": "315de3be6167072a",
+  "hash": "28fba316c3973f18",
   "modules": [
    "infra.devices",
    "io.video",
