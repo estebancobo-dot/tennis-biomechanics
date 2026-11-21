@@ -1726,6 +1726,18 @@
   "inicio": "2026-11-21 10:16",
   "ruta": "/runs/kaggle_medir_f3set_hoy/estado.json",
   "cuaderno": "tennisbio-medir-f3set-hoy",
-  "kaggle": "queued (10:57)"
+  "kaggle": "queued (11:02)"
+ },
+ "medir_3d_metrabs": {
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1795258937.6654532,
+  "accion": "medir",
+  "partido": "",
+  "inicio": "2026-11-21 11:02",
+  "ruta": "/runs/kaggle_medir_3d_metrabs/estado.json",
+  "cuaderno": "tennisbio-medir-3d-metrabs"
  }
 }

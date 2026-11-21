@@ -1,6 +1,6 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-21 10:57 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 20.4 h de GPU esta semana (tope 28 h; Kaggle dice 2.58 h usadas de 30.0, se renueva 2026-11-28 00:00)
+Última vuelta: 2026-11-21 11:02 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 18.4 h de GPU esta semana (tope 28 h; Kaggle dice 2.58 h usadas de 30.0, se renueva 2026-11-28 00:00)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
@@ -108,5 +108,6 @@
 | informe_beta2 | informe |  | hecho | kaggle |  |
 | informe_beta3 | informe |  | hecho | kaggle |  |
 | medir_app | medir |  | hecho | kaggle |  |
-| medir_f3set_hoy | medir |  | en_marcha | kaggle | Kaggle: queued (10:57), intento 1 |
+| medir_f3set_hoy | medir |  | en_marcha | kaggle | Kaggle: queued (11:02), intento 1 |
+| medir_3d_metrabs | medir |  | en_marcha | kaggle |  |
 | informe_6 | informe |  | pendiente |  | espera a actualizar_zheng (pendiente) |

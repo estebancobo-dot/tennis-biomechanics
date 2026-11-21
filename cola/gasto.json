@@ -180,6 +180,9 @@
     },
     "medir_f3set_hoy": {
      "estimado_h": 5.0
+    },
+    "medir_3d_metrabs": {
+     "estimado_h": 2.0
     }
    }
   }
@@ -188,7 +191,6 @@
   "usadas_h": 2.58,
   "total_h": 30.0,
   "renueva": "2026-11-28 00:00:00",
-  "ts": 1795258627.6019773
- },
- "aviso_ocioso_ts": 1795254880.975781
+  "ts": 1795258937.6654532
+ }
 }
