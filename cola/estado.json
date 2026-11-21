@@ -1726,7 +1726,7 @@
   "inicio": "2026-11-21 10:16",
   "ruta": "/runs/kaggle_medir_f3set_hoy/estado.json",
   "cuaderno": "tennisbio-medir-f3set-hoy",
-  "kaggle": "queued (13:12)"
+  "kaggle": "queued (13:15)"
  },
  "medir_3d_metrabs": {
   "estado": "error",
@@ -1774,6 +1774,9 @@
   "partido": "",
   "inicio": "2026-11-21 13:12",
   "ruta": "/runs/kaggle_medir_raqueta_p100/estado.json",
-  "cuaderno": "tennisbio-medir-raqueta-p100"
+  "cuaderno": "tennisbio-medir-raqueta-p100",
+  "kaggle": "running (13:15)",
+  "arranco": "2026-11-21 13:15",
+  "espera_min": 3
  }
 }
