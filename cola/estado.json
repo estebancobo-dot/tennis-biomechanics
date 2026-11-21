@@ -1668,7 +1668,7 @@
   "partido": ""
  },
  "informe_beta3": {
-  "estado": "en_marcha",
+  "estado": "hecho",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 1,
@@ -1679,8 +1679,19 @@
   "ruta": "/runs/informe_beta3/estado.json",
   "cpu": true,
   "cuaderno": "tennisbio-informe-beta3",
-  "kaggle": "running (08:04)",
+  "kaggle": "complete (08:10)",
   "arranco": "2026-11-21 08:04",
-  "espera_min": 6
+  "espera_min": 6,
+  "fin": "2026-11-21 08:10",
+  "resultado": {
+   "estado": "hecho",
+   "coste_usd": 0.0,
+   "segundos": 275,
+   "codigos": {
+    "informe": 0,
+    "auditoria": 0
+   },
+   "horas_kaggle": 0.15
+  }
  }
 }
