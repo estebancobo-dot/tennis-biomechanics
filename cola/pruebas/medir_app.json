@@ -1,0 +1,232 @@
+{
+ "estado": "hecho",
+ "poc": {
+  "prueba": "app",
+  "origen": "el informe de la nube (hecho el 2026-11-21 08:08 UTC)",
+  "golpes_con_video": 387,
+  "golpes": 387,
+  "medios": "../nube/informe_derecha/",
+  "probados": 24,
+  "con_video": 24,
+  "cuerpo_en_sus_puntos": 24,
+  "parte_con_video": 1.0,
+  "parte_dibujada": 1.0,
+  "errores_pagina": 0,
+  "regla": {
+   "pasa": true,
+   "motivo": "vídeo 100% y cuerpo en sus puntos 100% (mínimo 95% cada uno), 0 errores de la página"
+  },
+  "filas": [
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "error": null,
+    "s": 1.0
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "error": null,
+    "s": 0.9
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "error": null,
+    "s": 0.9
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "error": null,
+    "s": 1.0
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "error": null,
+    "s": 1.0
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "error": null,
+    "s": 1.0
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "error": null,
+    "s": 0.9
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "error": null,
+    "s": 1.2
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "error": null,
+    "s": 1.0
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "error": null,
+    "s": 0.9
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "error": null,
+    "s": 0.9
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "error": null,
+    "s": 1.0
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "error": null,
+    "s": 0.9
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "error": null,
+    "s": 1.0
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "error": null,
+    "s": 1.0
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "error": null,
+    "s": 0.9
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "error": null,
+    "s": 0.9
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "error": null,
+    "s": 1.1
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "error": null,
+    "s": 0.9
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "error": null,
+    "s": 0.8
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "error": null,
+    "s": 0.8
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "error": null,
+    "s": 0.8
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "error": null,
+    "s": 0.8
+   },
+   {
+    "estado": "listo",
+    "ancho": 1920,
+    "puntos": 3,
+    "dibujados": 3,
+    "error": null,
+    "s": 0.8
+   }
+  ],
+  "errores": []
+ },
+ "kaggle": {
+  "python": "3.13.18",
+  "nucleos": 4,
+  "memoria_gib": {
+   "MemTotal": 31.3,
+   "MemAvailable": 30.2
+  },
+  "disco_libre_gib": {
+   "/tmp": 2514.5,
+   "/kaggle/working": 19.5
+  },
+  "gpu": "",
+  "ffmpeg": "/usr/bin/ffmpeg",
+  "clave_modal": true
+ },
+ "horas_kaggle": 0.44,
+ "nota": null
+}

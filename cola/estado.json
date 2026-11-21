@@ -1695,7 +1695,7 @@
   }
  },
  "medir_app": {
-  "estado": "en_marcha",
+  "estado": "hecho",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 1,
@@ -1706,8 +1706,13 @@
   "ruta": "/runs/kaggle_medir_app/estado.json",
   "cpu": true,
   "cuaderno": "tennisbio-medir-app",
-  "kaggle": "running (08:32)",
+  "kaggle": "running (08:38)",
   "arranco": "2026-11-21 08:21",
-  "espera_min": 11
+  "espera_min": 11,
+  "fin": "2026-11-21 08:38",
+  "resultado": {
+   "estado": "hecho",
+   "horas_kaggle": 0.44
+  }
  }
 }
