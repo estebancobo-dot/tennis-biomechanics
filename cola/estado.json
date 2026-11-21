@@ -1726,7 +1726,7 @@
   "inicio": "2026-11-21 10:16",
   "ruta": "/runs/kaggle_medir_f3set_hoy/estado.json",
   "cuaderno": "tennisbio-medir-f3set-hoy",
-  "kaggle": "queued (12:04)"
+  "kaggle": "queued (12:09)"
  },
  "medir_3d_metrabs": {
   "estado": "error",
@@ -1759,6 +1759,6 @@
   "inicio": "2026-11-21 11:11",
   "ruta": "/runs/kaggle_medir_3d_metrabs_b/estado.json",
   "cuaderno": "tennisbio-medir-3d-metrabs-b",
-  "kaggle": "queued (12:04)"
+  "kaggle": "queued (12:09)"
  }
 }
