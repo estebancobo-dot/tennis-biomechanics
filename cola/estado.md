@@ -1,6 +1,6 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-21 03:42 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 25.7 h de GPU esta semana (tope 28 h; Kaggle dice 1.59 h usadas de 30.0, se renueva 2026-11-28 00:00)
+Última vuelta: 2026-11-21 03:48 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 25.7 h de GPU esta semana (tope 28 h; Kaggle dice 1.69 h usadas de 30.0, se renueva 2026-11-28 00:00)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
@@ -52,7 +52,7 @@
 | prueba_gauff_v34_sapiens2 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | error | kaggle |  |
 | comparar_gauff_v26_v34 | comparar |  | error |  | cancelado: sin la v34: se paró a los 5 min sin modelos (el ONNX de Sapiens2 se subió junto a /models/models/ y tapó los demás; arreglado); se compara con la v35 |
 | leer_v34 | leer |  | hecho | github | leídos: runs__kaggle_prueba_gauff_v34_sapiens2__log.txt |
-| prueba_gauff_v35_sapiens2 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: running (03:42), intento 1 · fine:   4 % (1/28 golpes candidatos · 1 confirmados · 0 ventanas descartadas sin pose) · 0 s · quedan ≈ 0 s (03:39:55; GPU 0 %·0 %, CPU 95 %, 6.5 GB) |
+| prueba_gauff_v35_sapiens2 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | en_marcha | kaggle | Kaggle: running (03:48), intento 1 · fine:  61 % (17/28 golpes candidatos · 17 confirmados · 0 ventanas descartadas sin pose) · 6 min · quedan ≈ 4 min (03:46:49; GPU 81 %·88 %, CPU 80 %, 16.3 GB) |
 | comparar_gauff_v26_v35 | comparar |  | pendiente |  | espera a prueba_gauff_v35_sapiens2 |
 | medir_bola_totnet_gpu | medir |  | hecho | kaggle |  |
 | prueba_gauff_v30_a | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
