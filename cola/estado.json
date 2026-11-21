@@ -1886,11 +1886,11 @@
   "salida": "/kaggle_pruebas/prueba_gauff_v38_a/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "cuaderno": "tennisbio-prueba-gauff-v38-b2-2",
   "nota": "en cola de Kaggle más de 45 min mientras otro trabajo lanzado después ya arrancó (cuaderno atascado)",
-  "kaggle": "running (22:35)",
+  "kaggle": "running (22:40)",
   "kaggle_detalle": "queued | estebancoboc/tennisbio-prueba-gauff-v38-b2-2 has status \"KernelWorkerStatus.QUEUED\"",
   "arranco": "2026-11-21 22:20",
   "espera_min": 41,
-  "progreso": "fine:  25 % (7/28 golpes candidatos · 7 confirmados · 0 ventanas descartadas sin pose) · 4 min · quedan ≈ 12 min (22:34:55; GPU 20 %·38 %, CPU 73 %, 25.0 GB)"
+  "progreso": "fine:  89 % (25/28 golpes candidatos · 25 confirmados · 0 ventanas descartadas sin pose) · 10 min · quedan ≈ 71 s (22:39:27; GPU 0 %·48 %, CPU 69 %, 25.7 GB)"
  },
  "prueba_sinner_b": {
   "estado": "en_marcha",
@@ -1905,11 +1905,11 @@
   "salida": "/kaggle_pruebas/prueba_sinner_b/output/_prueba_zverev-alexander-sinner-jannik-indian-wells-2026-semi-final",
   "cuaderno": "tennisbio-prueba-sinner-b-2",
   "nota": "en cola de Kaggle más de 45 min mientras otro trabajo lanzado después ya arrancó (cuaderno atascado)",
-  "kaggle": "running (22:35)",
+  "kaggle": "running (22:40)",
   "kaggle_detalle": "queued | estebancoboc/tennisbio-prueba-sinner-b-2 has status \"KernelWorkerStatus.QUEUED\"",
   "arranco": "2026-11-21 22:25",
   "espera_min": 36,
-  "progreso": "fine:   7 % (1/15 golpes candidatos · 1 confirmados · 0 ventanas descartadas sin pose) · 0 s · quedan ≈ 0 s (22:35:32; GPU 47 %·50 %, CPU 88 %, 6.8 GB)"
+  "progreso": "view_clips:  65 % (11/17 recortes de repeticiones y otras cámaras) · 61 s · quedan ≈ 33 s (22:39:36; GPU 0 %·0 %, CPU 54 %, 3.8 GB)"
  },
  "medir_app_b": {
   "estado": "hecho",
@@ -1973,10 +1973,10 @@
   "salida": "/output/zverev-alexander-sinner-jannik-indian-wells-2026-semi-final",
   "cpu": true,
   "cuaderno": "tennisbio-sinner-a",
-  "kaggle": "running (22:35)",
+  "kaggle": "running (22:40)",
   "arranco": "2026-11-21 22:07",
   "espera_min": 1,
-  "progreso": "scenes:  37 % (39826/106507 fotogramas) · 24 min · quedan ≈ 40 min (22:33:38; CPU 63 %, 2.5 GB)"
+  "progreso": "scenes:  47 % (50226/106507 fotogramas) · 30 min · quedan ≈ 34 min (22:39:56; CPU 62 %, 2.5 GB)"
  },
  "leer_exportacion": {
   "estado": "error",
