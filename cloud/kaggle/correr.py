@@ -327,7 +327,8 @@ def measure(job: dict, py: Path, models: Path, data: Path, run: Path, vol, est: 
     est["poc"] = json.loads(out.read_text(encoding="utf-8")) if out.exists() else {"error": p.stderr[-800:]}
     est["estado"] = "hecho" if p.returncode == 0 and out.exists() else "error"
     if out.exists():
-        modal_put(vol, [out], run, job["salida"])
+        extra = sorted(run.glob("recall_validation_detector*.json")) if job["prueba"] == "f3set" else []
+        modal_put(vol, [out, *extra], run, job["salida"])        # F3Set: its whole report too (21-11)
     return p.returncode
 
 

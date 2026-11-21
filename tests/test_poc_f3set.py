@@ -48,3 +48,19 @@ def test_the_validation_writes_the_tagged_report_it_reads():
     assert 'name = "recall_validation_detector" if args.spotter else "recall_validation"' in src
     assert 'name += f"_{args.tag}"' in src
     json.dumps({})
+
+
+def test_the_strokes_lost_and_won_are_said_with_the_step_where_they_stayed():
+    ref = {"strokes": [{"match": "m", "point": 1, "label": "fh", "t_clip": 1.0, "side": "far", "step": "encontrado"},
+                       {"match": "m", "point": 2, "label": "fh", "t_clip": 2.0, "side": "near", "step": "encontrado"},
+                       {"match": "m", "point": 3, "label": "bh", "t_clip": 3.0, "side": "near", "step": "no_candidato"}]}
+    new = {"strokes": [{"match": "m", "point": 1, "label": "fh", "t_clip": 1.0, "side": "far", "step": "lejana_no_encontrada"},
+                       {"match": "m", "point": 2, "label": "fh", "t_clip": 2.0, "side": "near", "step": "encontrado"},
+                       {"match": "m", "point": 3, "label": "bh", "t_clip": 3.0, "side": "near", "step": "encontrado"}]}
+    d = pf.stroke_diff(ref, new)
+    assert d["perdidos"] == 1 and d["ganados"] == 1 and d["perdidos_por_paso"] == {"lejana_no_encontrada": 1}
+    assert d["perdidos_detalle"][0]["lado"] == "far" and d["perdidos_detalle"][0]["paso_hoy"] == "lejana_no_encontrada"
+    from tennisbio.validation.recall_eval import FOUND
+    assert pf.FOUND == FOUND
+    src = (ROOT / "cloud" / "kaggle" / "correr.py").read_text(encoding="utf-8")
+    assert 'run.glob("recall_validation_detector*.json")' in src

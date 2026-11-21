@@ -23,6 +23,7 @@ ROOT = Path(__file__).resolve().parents[3]
 MAX_FOUND_DIFF = 2            # cloud/nube.py (tests/test_poc_f3set.py keeps them equal)
 MAX_PRECISION_DIFF = 0.005
 TIMEOUT_S = 10 * 3600
+FOUND = ("encontrado", "encontrado_dudoso")   # tennisbio.validation.recall_eval.FOUND (tests keep them equal)
 
 
 def totals(rep: dict) -> dict:
@@ -46,6 +47,28 @@ def decide(ref: dict, new: dict) -> dict:
             f"{b['precision']} frente a {a['precision']} ({dp:+.4f})", "referencia": a, "hoy": b}
 
 
+def _key(s: dict) -> tuple:
+    return (s.get("match"), s.get("point"), s.get("label"), s.get("t_clip"))
+
+
+def stroke_diff(ref: dict, new: dict, limit: int = 80) -> dict:
+    """21-11 (F3Set 467 against 471 and no way to say which): the annotated strokes found in one run and not in the
+    other, each with its match, side and the step of the pipeline where it stayed in each (validate_recall's «step»)."""
+    a = {_key(s): s for s in ref.get("strokes", [])}
+    b = {_key(s): s for s in new.get("strokes", [])}
+    found = lambda s: s is not None and s.get("step") in FOUND     # noqa: E731
+    lost = [k for k in a if found(a[k]) and not found(b.get(k))]
+    won = [k for k in b if found(b[k]) and not found(a.get(k))]
+    row = lambda k: {"partido": k[0], "punto": k[1], "golpe": k[2], "t": k[3], "lado": (a.get(k) or b.get(k) or {}).get("side"),  # noqa: E731
+                     "paso_ref": (a.get(k) or {}).get("step"), "paso_hoy": (b.get(k) or {}).get("step")}
+    steps: dict[str, int] = {}
+    for k in lost:
+        steps[str((b.get(k) or {}).get("step"))] = steps.get(str((b.get(k) or {}).get("step")), 0) + 1
+    return {"perdidos": len(lost), "ganados": len(won), "perdidos_por_paso": steps,
+            "perdidos_detalle": [row(k) for k in sorted(lost, key=str)][:limit],
+            "ganados_detalle": [row(k) for k in sorted(won, key=str)][:limit]}
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--raiz", type=Path, required=True, help="la carpeta de los datos anotados (con f3set/)")
@@ -64,8 +87,11 @@ def main(argv: list[str] | None = None) -> int:
     rep_f = tagged if tagged.exists() else rep_f
     out = {"prueba": "f3set", "codigo": rc, "horas": round((time.time() - t0) / 3600, 2), "informe": rep_f.name}
     if rc == 0 and rep_f.exists() and a.referencia.exists():
-        out["regla"] = decide(json.loads(a.referencia.read_text(encoding="utf-8")),
-                              json.loads(rep_f.read_text(encoding="utf-8")))
+        ref, new = json.loads(a.referencia.read_text(encoding="utf-8")), json.loads(rep_f.read_text(encoding="utf-8"))
+        out["regla"] = decide(ref, new)
+        out["diferencias"] = stroke_diff(ref, new)
+        # the whole report beside the result, so it reaches the volume with it (21-11: it stayed in the session)
+        (a.salida.parent / rep_f.name).write_text(rep_f.read_text(encoding="utf-8"), encoding="utf-8")
     else:
         out["regla"] = {"pasa": False, "motivo": f"la validación no terminó (código {rc}) o falta un informe"}
     a.salida.write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")

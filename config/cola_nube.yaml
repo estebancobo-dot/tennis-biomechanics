@@ -306,6 +306,10 @@ trabajos:
   - {id: medir_3d_metrabs_c, accion: medir, prueba: 3d, donde: kaggle, horas: 2}
   # 21-11 14:25: F3Set con el código de hoy otra vez, con otro nombre (sus 3 cuadernos se quedaron en la cola de Kaggle)
   - {id: medir_f3set_hoy_b, accion: medir, prueba: f3set, donde: kaggle, horas: 5}
+  # 21-11 19:40: la b no pasa por poco (467 frente a 471 de 648, precisión 0,863 frente a 0,869; regla: ±2 y ±0,005) y su
+  # informe se quedó en la sesión. Otra vez con la comparación golpe a golpe y el informe en el volumen, para saber qué
+  # golpes se pierden y en qué paso (¿la jugadora lejana, con RF-DETR?), después de la prueba de MeTRAbs
+  - {id: medir_f3set_hoy_c, accion: medir, prueba: f3set, donde: kaggle, horas: 5, tras: prueba_gauff_v38_c}
   # 21-11 15:00 (#309, el usuario: «sí, hazla»): MeTRAbs dentro de la pasada fina (trunk3d.model: metrabs; la focal de la
   # cámara, de la pista), la prueba de 10 min por partes frente a la v36. Regla escrita antes: se adopta si salen los mismos
   # 28 golpes (ninguno de un solo lado), el X-factor 3D está en al menos tantos golpes como con MotionAGFormer y su
