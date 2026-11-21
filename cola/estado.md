@@ -108,7 +108,7 @@
 | informe_beta2 | informe |  | hecho | kaggle |  |
 | informe_beta3 | informe |  | hecho | kaggle |  |
 | medir_app | medir |  | hecho | kaggle |  |
-| informe_beta4 | informe |  | en_marcha | kaggle |  |
+| informe_beta4 | informe |  | en_marcha | kaggle | Kaggle: running (21:42), intento 1 |
 | medir_app_b | medir |  | hecho | kaggle |  |
 | medir_f3set_hoy | medir |  | error | kaggle | cancelado: 21-11 14:25: sus 3 cuadernos se quedaron «en cola» en Kaggle (desde las 10:16) mientras trabajos lanzados después arrancaban al momento; el mismo trabajo con otro nombre (medir_f3set_hoy_b) dice si es el cuaderno o el trabajo |
 | medir_3d_metrabs | medir |  | error | kaggle |  |
