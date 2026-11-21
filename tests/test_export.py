@@ -138,3 +138,21 @@ def test_lazy_frames_are_the_frames_of_the_whole_series(tmp_path):
     order = [clip.f_at(0.0), clip.n - 1, 0, clip.n // 2]
     for f in order:
         assert np.array_equal(clip.frames[f], full[f]), f
+
+
+def test_no_conclusion_counts_where_the_strings_point_at_the_impact():
+    """21-11 («las cuerdas apuntan en el impacto hacia red en 100 % de los golpes», a montage title of the cloud's
+    export): at contact the face is anchored to where the ball went (racket_face.face_track), so counting it counted
+    the assumption, not a measure; the lesson and the report say it is assumed instead."""
+    from pathlib import Path as _P
+    from tennisbio import explain, findings
+    st = [{"id": f"s{i}", "stance": "abierto", "face": {"loaded": "valla izquierda", "impact": "red", "finish": "valla izquierda"},
+           "m": {}} for i in range(30)]
+    texts = [c.text for c in findings.conclusions({"strokes": st, "metrics": []}, {}, [])]
+    assert any("en el armado hacia valla izquierda" in t for t in texts)
+    assert not any("en el impacto" in t for t in texts)
+    lines = explain._extra_lines("impact", {"strings": {"impact": {"n": 30, "counts": {"red": 30}, "tilt": 8.0}}})
+    assert "se supone que las cuerdas miran hacia donde sale la bola" in lines[0]["text"] and "100" not in lines[0]["text"]
+    assert "cara cerrada 8" in lines[0]["text"]
+    tpl = (_P(findings.__file__).parent / "report_template.html").read_text(encoding="utf-8")
+    assert 'fk === "impact" ?' in tpl

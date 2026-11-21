@@ -2843,7 +2843,8 @@ function renderLesson(set) {
   // the strings in every phase (requirement 4): where they face in her strokes, honest where it is an estimate
   const fk = lPh === "feet" ? null : lPh, fv = fk ? set.map(s => (s.face || {})[fk]).filter(Boolean) : [];
   const relS = { ready: 3, takeback: 3, loaded: 3, acceleration: 1, impact: 1, extension: 1, finish: 3, recovery: 2 }[fk];
-  document.getElementById("a-l-strings").innerHTML = !fk ? "" : fv.length ? `<div class="lstr"><b>Cuerdas:</b> ${Object.entries(fv.reduce((a, v) => (a[v] = (a[v] || 0) + 1, a), {})).sort((a, b) => b[1] - a[1]).slice(0, 2).map(([v, n]) => `hacia ${v} (${Math.round(100 * n / fv.length)} %)`).join(" · ")} <span class="dim3">· ${fv.length} golpes${relS === 1 ? " · estimación: en esta fase la raqueta sale borrosa" : ""}</span></div>`
+  // 21-11: at the impact the face is anchored to where the ball went (racket_face.face_track): no count of that assumption
+  document.getElementById("a-l-strings").innerHTML = !fk ? "" : fk === "impact" ? `<div class="lstr dim3"><b>Cuerdas:</b> en el impacto la raqueta sale borrosa: se supone que miran hacia donde sale la bola (no es una medida).</div>` : fv.length ? `<div class="lstr"><b>Cuerdas:</b> ${Object.entries(fv.reduce((a, v) => (a[v] = (a[v] || 0) + 1, a), {})).sort((a, b) => b[1] - a[1]).slice(0, 2).map(([v, n]) => `hacia ${v} (${Math.round(100 * n / fv.length)} %)`).join(" · ")} <span class="dim3">· ${fv.length} golpes${relS === 1 ? " · estimación: en esta fase la raqueta sale borrosa" : ""}</span></div>`
     : `<div class="lstr dim3"><b>Cuerdas:</b> la raqueta no se ve bien en esta fase en estos golpes.</div>`;
   // one drill to practise, with its success criterion and «Conseguido» (kept only in this browser)
   const pk = keys[0], done = lDone();

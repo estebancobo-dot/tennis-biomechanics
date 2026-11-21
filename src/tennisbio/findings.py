@@ -291,17 +291,19 @@ def conclusions(data: dict, dist: dict, finds: list[Finding]) -> list[Conclusion
         out.append(Conclusion(f"Apoyo más frecuente: {counts[0][0]} ({fmt(100 * counts[0][1] / nst)} % de {nst} golpes{extra}).",
                               "fiable" if nst >= 20 else "orientativo", "good" if nst >= 20 else "warn",
                               best([s for s in st if s.get("stance") == counts[0][0]])))
-    for ph, txt, k in (("loaded", "en el armado", "rFaceArm"), ("impact", "en el impacto", "rFaceImp"), ("finish", "en la terminación", "rFaceFin")):
+    # 21-11: not at the impact. There the racket is blurred, its outline is dropped (±80 ms) and the face is anchored to
+    # where the ball went (racket_face.face_track: shot_dir, else straight to the net, ±35°): counting where the strings
+    # point there counted that assumption («hacia red en 100 % de los golpes»), not a measure (requirement 3)
+    for ph, txt, k in (("loaded", "en el armado", "rFaceArm"), ("finish", "en la terminación", "rFaceFin")):
         labs = [s["face"].get(ph) for s in st if (s.get("face") or {}).get(ph)]
         if not labs:
             continue
         lab = max(set(labs), key=labs.count)
         md = (dist.get(k) or {}).get("p50") if k in MK else None
-        # at contact the racket is blurred: the face is an estimate, given without degrees
-        face = "" if ph == "impact" or md is None else f", cara {'cerrada' if md >= 0 else 'abierta'} {fmt(abs(md))}° (mediana)"
+        face = "" if md is None else f", cara {'cerrada' if md >= 0 else 'abierta'} {fmt(abs(md))}° (mediana)"
         out.append(Conclusion(f"Las cuerdas apuntan {txt} hacia {lab} en {fmt(100 * labs.count(lab) / len(labs))} % de los golpes{face}.",
-                              "estimada (desenfoque)" if ph == "impact" else "media" if len(labs) >= 20 else "orientativo",
-                              "crit" if ph == "impact" else "warn", best([s for s in st if (s.get("face") or {}).get(ph) == lab])))
+                              "media" if len(labs) >= 20 else "orientativo", "warn",
+                              best([s for s in st if (s.get("face") or {}).get(ph) == lab])))
     dr = [s for s in st if s.get("shotDir")]
     if dr:
         c = lambda k: fmt(pct(dr, lambda s: s["shotDir"] == k))

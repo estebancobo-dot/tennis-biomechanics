@@ -568,7 +568,16 @@ def _extra_lines(p: str, src: dict) -> list[dict]:
     chain, the first step and the back leg. src: the model or one of its variants."""
     out = []
     st = (src.get("strings") or {}).get(p)
-    if st and st.get("n", 0) >= MIN_N:
+    if p == "impact" and st and st.get("n", 0) >= MIN_N:
+        # 21-11: at contact the face is anchored to where the ball went (racket_face.face_track): its direction is
+        # that assumption, never counted as hers; only the face's tilt, estimated between what is seen around it
+        tilt = st.get("tilt")
+        face = "" if tilt is None else (f" Inclinación estimada: cara cerrada {fmt(tilt)}°." if tilt > 5 else
+                                        f" Inclinación estimada: cara abierta {fmt(-tilt)}°." if tilt < -5 else
+                                        " Inclinación estimada: cara vertical.")
+        out.append({"key": "strings", "text": "En el impacto la raqueta sale borrosa: se supone que las cuerdas miran hacia "
+                    f"donde sale la bola (no es una medida).{face}", "rel": STRINGS_REL[p], "n": st["n"], "change": None})
+    elif st and st.get("n", 0) >= MIN_N:
         (to, k), = list(st["counts"].items())[:1]
         tilt = st.get("tilt")
         face = "" if tilt is None else (f", cara cerrada {fmt(tilt)}° (hacia el suelo)" if tilt > 5 else
