@@ -1,0 +1,74 @@
+[_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] probe… (2026-11-21 03:07:43, etapa 1 de 16)
+[_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] probe terminada a las 03:07:44 en 1 s
+[_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] scenes… (2026-11-21 03:07:44, etapa 2 de 16)
+  scenes:   0 % (1/6006 fotogramas) · 0 s · quedan ≈ 0 s
+  scenes:  28 % (1655/6006 fotogramas) · 30 s · quedan ≈ 79 s
+  scenes:  59 % (3517/6006 fotogramas) · 60 s · quedan ≈ 42 s
+  scenes:  89 % (5329/6006 fotogramas) · 2 min · quedan ≈ 11 s
+  scenes: 100 % (6006/6006 fotogramas) · 2 min · quedan ≈ 0 s
+  AVISO: cortes de plano solo con histogramas de color: falta models/transnetv2.onnx
+  FALLO C1 modelo.transnet: falta models/transnetv2.onnx
+[_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] scenes terminada a las 03:09:25 en 1.7 min
+[_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] scenes: fallos C1 modelo.transnet ×1
+[_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] court… (2026-11-21 03:09:25, etapa 3 de 16)
+  court:  31 % (64/206 fotogramas) · 0 s · quedan ≈ 0 s
+  court:  93 % (192/206 fotogramas) · 45 s · quedan ≈ 3 s
+  court: 100 % (206/206 fotogramas) · 50 s · quedan ≈ 0 s
+  FALLO C1 modelo.pista_tcd: falta court_tcd.onnx: pista solo por las líneas
+  FALLO C1 entrada.cobertura_baja: pista en el 37% de la cámara principal (mínimo 50%)
+[_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] court terminada a las 03:11:33 en 2.1 min
+[_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] court: fallos C1 entrada.cobertura_baja ×1, C1 modelo.pista_tcd ×1
+[_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] players… (2026-11-21 03:11:33, etapa 4 de 16)
+[_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] score… (2026-11-21 03:11:33, etapa 5 de 16, a la vez que players)
+  [players] juego con pista: 2.5 min de 6.5 min de cámara principal
+  [players] FALLO C4 modelo.yolo_onnx: yolo11m-pose: no se pudo exportar (ModuleNotFoundError: No module named 'ultralytics')
+[_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] players falló: ModuleNotFoundError: No module named 'ultralytics'
+[1;31m2026-11-21 03:11:33.502594725 [E:onnxruntime:Default, provider_bridge_ort.cc:2359 TryGetProviderInfo_CUDA] /onnxruntime_src/onnxruntime/core/session/provider_bridge_ort.cc:1952 onnxruntime::Provider& onnxruntime::ProviderLibrary::Get() [ONNXRuntimeError] : 1 : FAIL : Failed to load library /kaggle/temp/venv/lib/python3.11/site-packages/onnxruntime/capi/libonnxruntime_providers_cuda.so with error: libcublasLt.so.12: cannot open shared object file: No such file or directory
+[m
+[0;93m2026-11-21 03:11:33.502617555 [W:onnxruntime:Default, onnxruntime_pybind_state.cc:992 CreateExecutionProviderFactoryInstance] Failed to create CUDAExecutionProvider. Require cuDNN 9.* and CUDA 12.*. Please install all dependencies as mentioned in the GPU requirements page (https://onnxruntime.ai/docs/execution-providers/CUDA-ExecutionProvider.html#requirements), make sure they're in the PATH, and that your GPU is supported.[m
+2026-11-21 03:11:33,597 - OrtInferSession - WARNING: CUDAExecutionProvider is not avaiable for current env, the inference part is automatically shifted to be executed under CPUExecutionProvider.
+[1;31m2026-11-21 03:11:33.602937221 [E:onnxruntime:Default, provider_bridge_ort.cc:2359 TryGetProviderInfo_CUDA] /onnxruntime_src/onnxruntime/core/session/provider_bridge_ort.cc:1952 onnxruntime::Provider& onnxruntime::ProviderLibrary::Get() [ONNXRuntimeError] : 1 : FAIL : Failed to load library /kaggle/temp/venv/lib/python3.11/site-packages/onnxruntime/capi/libonnxruntime_providers_cuda.so with error: libcublasLt.so.12: cannot open shared object file: No such file or directory
+[m
+[0;93m2026-11-21 03:11:33.602968731 [W:onnxruntime:Default, onnxruntime_pybind_state.cc:992 CreateExecutionProviderFactoryInstance] Failed to create CUDAExecutionProvider. Require cuDNN 9.* and CUDA 12.*. Please install all dependencies as mentioned in the GPU requirements page (https://onnxruntime.ai/docs/execution-providers/CUDA-ExecutionProvider.html#requirements), make sure they're in the PATH, and that your GPU is supported.[m
+2026-11-21 03:11:33,644 - OrtInferSession - WARNING: CUDAExecutionProvider is not avaiable for current env, the inference part is automatically shifted to be executed under CPUExecutionProvider.
+[1;31m2026-11-21 03:11:33.656490931 [E:onnxruntime:Default, provider_bridge_ort.cc:2359 TryGetProviderInfo_CUDA] /onnxruntime_src/onnxruntime/core/session/provider_bridge_ort.cc:1952 onnxruntime::Provider& onnxruntime::ProviderLibrary::Get() [ONNXRuntimeError] : 1 : FAIL : Failed to load library /kaggle/temp/venv/lib/python3.11/site-packages/onnxruntime/capi/libonnxruntime_providers_cuda.so with error: libcublasLt.so.12: cannot open shared object file: No such file or directory
+[m
+[0;93m2026-11-21 03:11:33.656524481 [W:onnxruntime:Default, onnxruntime_pybind_state.cc:992 CreateExecutionProviderFactoryInstance] Failed to create CUDAExecutionProvider. Require cuDNN 9.* and CUDA 12.*. Please install all dependencies as mentioned in the GPU requirements page (https://onnxruntime.ai/docs/execution-providers/CUDA-ExecutionProvider.html#requirements), make sure they're in the PATH, and that your GPU is supported.[m
+2026-11-21 03:11:33,772 - OrtInferSession - WARNING: CUDAExecutionProvider is not avaiable for current env, the inference part is automatically shifted to be executed under CPUExecutionProvider.
+  [score] rival en el marcador: «Gauff» (en el catálogo: «Gauff»; se busca «Gauff»)
+  [score] score:   3 % (1/35 muestras · 0 lecturas · 0 OCR) · 0 s · quedan ≈ 0 s
+  [score] score:  60 % (21/35 muestras · 8 lecturas · 20 OCR) · 30 s · quedan ≈ 20 s
+  [score] score: 100 % (35/35 muestras · 16 lecturas · 33 OCR) · 48 s · quedan ≈ 0 s
+  [score] marcador: 35 muestras en juego, 34 OCR (17 lecturas)
+  [score] saque en el marcador: 17 de 17 lecturas (marker + alternancia; marca de color 16, sigue la alternancia en 100% de 16; aprendida no); por la alternancia de cada juego: 0 corregidas y 1 completadas (primer saque claro en el 100% de 2 juegos)
+[_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] score terminada a las 03:12:38 en 1.1 min
+Traceback (most recent call last):
+  File "/tmp/repo/src/tennisbio/cli.py", line 331, in _main
+    done = pipeline.run(ctx, args.stages, force=args.force, upstream=not args.no_upstream)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/repo/src/tennisbio/pipeline.py", line 687, in run
+    raise errors[0]
+  File "/tmp/repo/src/tennisbio/pipeline.py", line 623, in worker
+    (res, fl), err = run_stage(n, sub), None
+                     ^^^^^^^^^^^^^^^^^
+  File "/tmp/repo/src/tennisbio/pipeline.py", line 701, in run_stage
+    summary = _profiled(n, c) if n in (c.cfg.get("perfil") or []) else (STAGES[n].run(c) or {})
+                                                                        ^^^^^^^^^^^^^^^^
+  File "/tmp/repo/src/tennisbio/stages.py", line 306, in st_players
+    model = _pose_detector(ctx.cfg)
+            ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/repo/src/tennisbio/stages.py", line 216, in _pose_detector
+    return pose_model(cfg.get("yolo_pose", "yolo11m-pose.pt"), cfg["cheap_pass"].get("imgsz", 960))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/repo/src/tennisbio/pose/backend.py", line 98, in pose_model
+    return _cached(Path(str(name)).stem, int(imgsz), device, DEFAULT_FP16 and is_gpu(device))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/repo/src/tennisbio/pose/backend.py", line 92, in _cached
+    return PoseModel(name, imgsz, device, fp16)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/repo/src/tennisbio/pose/backend.py", line 52, in __init__
+    from ultralytics import YOLO
+ModuleNotFoundError: No module named 'ultralytics'
+
+_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5: ERROR (No module named 'ultralytics'); se sigue con los demás. Detalle en /kaggle/temp/data/output/_prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5/registro.log
+Partidos con error: _prueba_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5

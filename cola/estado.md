@@ -1,6 +1,6 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-21 03:16 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 26.7 h de GPU esta semana (tope 28 h; Kaggle dice 1.31 h usadas de 30.0, se renueva 2026-11-28 00:00)
+Última vuelta: 2026-11-21 03:17 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 26.7 h de GPU esta semana (tope 28 h; Kaggle dice 1.31 h usadas de 30.0, se renueva 2026-11-28 00:00)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
@@ -51,6 +51,7 @@
 | comparar_gauff_v26_v33 | comparar |  | revisar | github | distinta; 12 etapas iguales; distintas: fine, fine_doubtful, slowmo_fine, view_clips; strokes.json: 26 de 28/28 golpes emparejados, 4 distintos, medidas fuera de tolerancia: technique.phases.finish.hands_apart, technique.phases.recovery.base_width, technique.phases.extension.elbow_dom_lateral, technique.phases.loaded.elbow_dom_vs_shoulder; strokes.json: temblor de b frente a a ×2.09 (mediana de 3861 medidas; b tiembla menos en el 29 %); strokes_opponent.json: 0 de 0/0 golpes emparejados; strokes_doubtful.json: 0 de 1/1 golpes emparejados, 2 distintos |
 | prueba_gauff_v34_sapiens2 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | error | kaggle |  |
 | comparar_gauff_v26_v34 | comparar |  | pendiente |  | espera a prueba_gauff_v34_sapiens2 |
+| leer_v34 | leer |  | hecho | github | leídos: runs__kaggle_prueba_gauff_v34_sapiens2__log.txt |
 | medir_bola_totnet_gpu | medir |  | hecho | kaggle |  |
 | prueba_gauff_v30_a | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
 | prueba_gauff_v30_b | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
