@@ -1,6 +1,6 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-21 14:16 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 19.6 h de GPU esta semana (tope 28 h; Kaggle dice 3.44 h usadas de 30.0, se renueva 2026-11-28 00:00)
+Última vuelta: 2026-11-21 14:20 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 19.6 h de GPU esta semana (tope 28 h; Kaggle dice 3.44 h usadas de 30.0, se renueva 2026-11-28 00:00)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
@@ -108,9 +108,10 @@
 | informe_beta2 | informe |  | hecho | kaggle |  |
 | informe_beta3 | informe |  | hecho | kaggle |  |
 | medir_app | medir |  | hecho | kaggle |  |
-| medir_f3set_hoy | medir |  | en_marcha | kaggle | Kaggle: queued (14:16), intento 3; en cola de Kaggle más de 45 min mientras otro trabajo lanzado después ya arrancó (cuaderno atascado) |
+| medir_f3set_hoy | medir |  | error | kaggle | cancelado: 21-11 14:25: sus 3 cuadernos se quedaron «en cola» en Kaggle (desde las 10:16) mientras trabajos lanzados después arrancaban al momento; el mismo trabajo con otro nombre (medir_f3set_hoy_b) dice si es el cuaderno o el trabajo |
 | medir_3d_metrabs | medir |  | error | kaggle |  |
 | medir_3d_metrabs_b | medir |  | error | kaggle | cancelado: 21-11 13:10: 2 h en cola de Kaggle sin GPU libre (no empezó): su plaza, para comprobar la P100 (medir_raqueta_p100); se lanza otra vez en la GPU que sirva |
 | medir_raqueta_p100 | medir |  | hecho | kaggle |  |
 | medir_3d_metrabs_c | medir |  | hecho | kaggle |  |
+| medir_f3set_hoy_b | medir |  | en_marcha | kaggle |  |
 | informe_6 | informe |  | pendiente |  | espera a actualizar_zheng (pendiente) |

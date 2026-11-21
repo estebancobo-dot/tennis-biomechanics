@@ -1716,7 +1716,7 @@
   }
  },
  "medir_f3set_hoy": {
-  "estado": "en_marcha",
+  "estado": "error",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 3,
@@ -1727,7 +1727,10 @@
   "ruta": "/runs/kaggle_medir_f3set_hoy/estado.json",
   "cuaderno": "tennisbio-medir-f3set-hoy-3",
   "nota": "en cola de Kaggle más de 45 min mientras otro trabajo lanzado después ya arrancó (cuaderno atascado)",
-  "kaggle": "queued (14:16)"
+  "kaggle": "queued (14:16)",
+  "resultado": {
+   "nota": "cancelado: 21-11 14:25: sus 3 cuadernos se quedaron «en cola» en Kaggle (desde las 10:16) mientras trabajos lanzados después arrancaban al momento; el mismo trabajo con otro nombre (medir_f3set_hoy_b) dice si es el cuaderno o el trabajo"
+  }
  },
  "medir_3d_metrabs": {
   "estado": "error",
@@ -1804,5 +1807,17 @@
    "estado": "hecho",
    "horas_kaggle": 0.74
   }
+ },
+ "medir_f3set_hoy_b": {
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1795270812.3174405,
+  "accion": "medir",
+  "partido": "",
+  "inicio": "2026-11-21 14:20",
+  "ruta": "/runs/kaggle_medir_f3set_hoy_b/estado.json",
+  "cuaderno": "tennisbio-medir-f3set-hoy-b"
  }
 }

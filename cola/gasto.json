@@ -179,7 +179,8 @@
      "horas": 0.31
     },
     "medir_f3set_hoy": {
-     "estimado_h": 5.0
+     "estimado_h": 5.0,
+     "horas": 0.0
     },
     "medir_3d_metrabs": {
      "estimado_h": 2.0,
@@ -196,6 +197,9 @@
     "medir_3d_metrabs_c": {
      "estimado_h": 2.0,
      "horas": 0.74
+    },
+    "medir_f3set_hoy_b": {
+     "estimado_h": 5.0
     }
    }
   }
@@ -204,7 +208,7 @@
   "usadas_h": 3.44,
   "total_h": 30.0,
   "renueva": "2026-11-28 00:00:00",
-  "ts": 1795270607.247826
+  "ts": 1795270812.3174405
  },
  "aviso_ocioso_ts": 1795270607.247826
 }
