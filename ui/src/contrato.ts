@@ -85,6 +85,8 @@ export interface Golpe {
   fast?: boolean; wide?: boolean; short?: boolean;
   m: Record<string, number | null>;
   lv?: Record<string, number | boolean | string | null>;   // change 1: the lesson's checkpoints, stroke by stroke
+  // P0.5e (21-11): the report's own video and frame series of the stroke (relative to the report page, Datos.medios)
+  video?: string | null; series?: string | null; vImpact?: number | null; thumb?: string | null;
   [extra: string]: unknown;
 }
 
@@ -113,6 +115,7 @@ export interface Datos {
   run_info?: Record<string, unknown>;
   ejemplo?: boolean; // made-up data (tests and the repository's preview), said on screen
   origen?: string; // P0.5e (21-11): where the data come from (the cloud's results brought to the PC, or the PC's report)
+  medios?: string | null; // P0.5e: the report page's folder from the application's page (its videos and series)
   grip?: string | null; // what the TV allows to say of her grip (tennisbio.explain.grip_compatible)
   [k: string]: unknown;
 }

@@ -8,6 +8,7 @@ import { Panel, useApp } from "../App";
 import type { Datos, Golpe } from "../contrato";
 import { esN, fmt } from "../datos";
 import { SITUACION } from "../situaciones";
+import { Reproductor } from "./Reproductor";
 import { TrayectoriaSwing, type Trayectoria } from "./Trayectoria";
 
 type AnyRec = Record<string, any>; // eslint-disable-line @typescript-eslint/no-explicit-any
@@ -94,14 +95,7 @@ export function FichaGolpe({ s }: { s: Golpe }) {
     <Panel titulo={tituloGolpe(s)} sub={[...s.bits, s.stance && "apoyo " + s.stance, s.movement, s.finish && "terminación " + s.finish].filter(Boolean).join(" · ")}>
       {dd.length ? <div className="card"><span className="pill warn">golpe con dudas</span><p className="sub" style={{ marginTop: 6 }}>{dd.join(" · ")}</p>
         <p className="mock" style={{ marginTop: 6 }}>Marcado, nunca pedido: nadie tiene que revisarlo (requisito 5).</p></div> : null}
-      <div>
-        <div className="frame"><span className="tag">Vídeo real del golpe con capas · captura {fmt(100 * (s.quality ?? 0))} %</span></div>
-        <div className="controls">
-          {["Velocidad real", "½", "¼", "⅛", "Fotograma a fotograma", "Pantalla completa"].map((t, i) => <button className="chip" type="button" key={t} aria-pressed={i === 0}>{t}</button>)}
-          <span className="sub" style={{ marginLeft: 8 }}>Capas:</span>
-          {["Cuerpo", "Raqueta", "Bola", "Medidas"].map((t, i) => <button className="chip" type="button" key={t} aria-pressed={i === 0}>{t}</button>)}
-        </div>
-      </div>
+      <Reproductor s={s} medios={d.medios} zurda={d.player.hand === "left"} />
       <div className="card"><h3>Sus 8 fases</h3>
         <div className="chips" style={{ marginTop: 8 }}>
           {FASES.map((k) => <span className="chip" key={k}>{d.phases.find((p) => p.id === k)?.title || k}{esN(ph[k]) ? <span className="c num"> {ph[k] === 0 ? "impacto" : sgn(ph[k], 2) + " s"}</span> : null}</span>)}

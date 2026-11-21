@@ -35,7 +35,8 @@ def cloud_matches(store) -> list[dict]:
     return out
 
 
-def build_data(out_root: Path, store, work: Path, cloud_dir: Path | None = None) -> tuple[dict, str]:
+def build_data(out_root: Path, store, work: Path, cloud_dir: Path | None = None,
+               page_dir: Path | None = None) -> tuple[dict, str]:
     """The page's data and where they come from: the cloud's results brought to the PC (cloud_dir, P0.5e: the analysis
     lives in the cloud, #301), else the PC's latest report and audit, else the made-up example (said on screen)."""
     from . import p0_app, p0_nube
@@ -60,6 +61,10 @@ def build_data(out_root: Path, store, work: Path, cloud_dir: Path | None = None)
     else:
         d, src = p0_app.ejemplo(), "ejemplo (no hay informe ni auditoría, ni de la nube ni del PC)"
     d["origen"] = src
+    # P0.5e: the report's videos and series are relative to its page: from the application's page (main's page_dir)
+    if report.exists() and not d.get("ejemplo"):
+        import os
+        d["medios"] = Path(os.path.relpath(report.parent, page_dir or out_root / "aplicacion_nueva")).as_posix() + "/"
     if store:
         d.setdefault("queue", {})["app"] = store.read_json("/cola/app.json")
     return d, src
@@ -83,7 +88,7 @@ def main(store=None, why: str = "sin la nube", out_root: Path | None = None) -> 
     log(f"nube: {'conectada' if store else why}")
 
     def make_page() -> dict:
-        d, src = build_data(out_root, store, work / "datos", cloud_dir)
+        d, src = build_data(out_root, store, work / "datos", cloud_dir, page.parent)
         log(f"datos: {src}")
         page.parent.mkdir(parents=True, exist_ok=True)
         page.write_text(p0_app.pagina(d), encoding="utf-8")

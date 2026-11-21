@@ -40,7 +40,8 @@ POCS = {"raqueta": "tennisbio.infra.poc_raqueta", "video": "tennisbio.infra.poc_
         "bola": "tennisbio.infra.poc_bola",             # 15-11 (T15): TOTNet against TrackNetV3 on RacketVision
         "sapiens2": "tennisbio.infra.poc_sapiens",      # 15-11 (#307): Sapiens2 against the fine pass's pose
         "sapiens2_rapido": "tennisbio.infra.poc_sapiens",  # 21-11: the 0.4B with smaller inputs (its speed)
-        "lejana": "tennisbio.infra.poc_lejana"}         # 21-11 (T25): RF-DETR for the far player, on the GPU
+        "lejana": "tennisbio.infra.poc_lejana",         # 21-11 (T25): RF-DETR for the far player, on the GPU
+        "app": "tennisbio.infra.poc_app"}               # 21-11 (P0.5e-D): the PC's application with the real results
 NEEDS_MATCH = ("video",)                 # proofs of concept measured on a match's broadcast (its video from Modal)
 NEEDS_RUN = ("sapiens2", "sapiens2_rapido")   # proofs of concept on a reference test's outputs (`base`, of `partido`)
 SAPIENS_TRANSFORMERS = "transformers==5.23.0"   # the first with Sapiens2ForPoseEstimation that was checked (15-11)
@@ -161,6 +162,18 @@ def ensure_sapiens2(py: Path, data: Path, models: Path, vol, est: dict) -> str:
     return est["sapiens2"]
 
 
+def bring_results(vol, dest: Path) -> dict:
+    """The cloud's results for the application, brought with the application's own code (tennisbio.app.p0_nube: only
+    json and paths, importable from this Python) through the volume's adapter, as the PC brings them."""
+    sys.path.insert(0, str(REPO / "src"))
+    from tennisbio.app import p0_nube
+
+    t = time.time()
+    r = p0_nube.pull(almacen.ModalStorage(vol, VOLUME), dest, lambda m: print(m, flush=True))
+    r["s"] = round(time.time() - t)
+    return r
+
+
 def wants_rfdetr(job: dict) -> bool:
     """21-11 (T25): a test or match whose settings find the far player with RF-DETR (fine_pass.far_detector)."""
     return str(((job.get("config") or {}).get("fine_pass") or {}).get("far_detector") or "").lower() == "rfdetr"
@@ -237,6 +250,8 @@ def poc_args(job: dict, models: Path, video: Path | None) -> list[str]:
         return ["--previa", str(models.parent / "previa"), "--dispositivo", "cpu" if job.get("cpu") else "cuda", *fast]
     if job["prueba"] == "lejana":
         return ["--datos", str(models.parent / "datasets"), "--dispositivo", "cpu" if job.get("cpu") else "cuda"]
+    if job["prueba"] == "app":
+        return ["--raiz", str(models.parent / "app")]
     if job["prueba"] == "bola":
         return ["--modelo", str(models / "balltrack.onnx"), "--totnet", str(models / "totnet_tennis.onnx"),
                 "--datos", str(models.parent / "datasets"), "--dispositivo", "cpu" if job.get("cpu") else "cuda"]
@@ -258,6 +273,10 @@ def measure(job: dict, py: Path, models: Path, data: Path, run: Path, vol, est: 
               "--repo", str(models.parent / "totnet")])
     if job["prueba"] == "lejana":
         ensure_rfdetr(data, models, vol, est)
+    if job["prueba"] == "app":                     # P0.5e-D: the results brought as the PC brings them, and Chrome
+        _run(["uv", "pip", "install", "-q", "--python", str(py), "playwright>=1.48,<2"])
+        _run([str(py), "-m", "playwright", "install", "--with-deps", "chrome"])
+        est["descarga_app"] = bring_results(vol, models.parent / "app" / "nube")
     if job["prueba"] == "youtube":                 # the newest yt-dlp, as the PC's fallback uses
         subprocess.run(["uv", "pip", "install", "-q", "--python", str(py), "-U", "yt-dlp[default]"])
     runner = str(py)

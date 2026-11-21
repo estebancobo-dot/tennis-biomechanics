@@ -160,6 +160,8 @@ def build(data: dict, audit: dict, estado_md: str, match_list: list) -> dict:
                 "feet": s.get("feet"), "ball": s.get("ballMoments"), "review": s.get("review") or [],
                 "m": {k: (s.get("m") or {}).get(k) for k in metrics},
                 "lv": s.get("lv") or {},          # change 1 (§10): the checkpoints, stroke by stroke
+                # P0.5e (21-11): the report's video and frame series of the stroke (relative to the report page)
+                "video": s.get("video"), "series": s.get("series"), "vImpact": s.get("vImpact"), "thumb": s.get("thumb"),
                 # change 2 (§10): her place in the point (her hits in the main-camera shot, stages._rally_position) and
                 # the moment in the video, to put a point's strokes together and in order
                 "shotInPoint": s.get("shotInPoint"), "shotsInPoint": s.get("shotsInPoint"), "vt": s.get("vt"),

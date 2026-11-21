@@ -70,6 +70,7 @@ def test_the_window_shows_the_clouds_results_first_and_says_so(tmp_path, monkeyp
     assert p0_nube.pull(store, out / "nube", log=lambda m: None)["ok"]
     d, src = p0_ventana.build_data(out, None, tmp_path / "trabajo", out / "nube")
     assert src == "el informe de la nube (hecho el 2026-11-21 08:00 UTC)" and d["origen"] == src
+    assert d["medios"] == "../nube/informe_derecha/"            # its videos and series, from the application's page
     assert seen[-1] == out / "nube" / "informe_derecha" / "index.html"
 
 

@@ -96,6 +96,61 @@ def test_the_swing_path_is_drawn_on_a_canvas():
     assert drawn > 200, drawn
 
 
+def test_the_strokes_real_video_plays_with_its_layers(tmp_path):
+    """P0.5e (21-11, part D): the stroke's panel plays its real video (the report's, beside the page as the cloud's
+    results come to the PC) with the layers drawn from its frame series over it: the body where her points are, the
+    ball; each layer can be switched off; without the video it says where the videos come from."""
+    pytest.importorskip("playwright")
+    import shutil
+    import subprocess
+    from playwright.sync_api import sync_playwright
+    if not shutil.which("ffmpeg"):
+        pytest.skip("sin ffmpeg")
+    media = tmp_path / "nube" / "informe_derecha"
+    (media / "series").mkdir(parents=True)
+    subprocess.run(["ffmpeg", "-loglevel", "error", "-f", "lavfi", "-i", "color=c=black:s=320x240:r=25:d=3",
+                    "-c:v", "libvpx", "-b:v", "200k", str(media / "clip.webm")], check=True)
+    pts = [160, 40, 155, 35, 165, 35, 150, 38, 170, 38, 140, 70, 180, 70, 130, 100, 190, 100, 125, 130, 195, 130,
+           145, 140, 175, 140, 140, 180, 180, 180, 138, 220, 182, 220]          # a standing body, 17 points
+    ser = {"fps": 25, "first": 0, "impact": 25, "n": 75, "kp": [pts] * 75, "ball": [[60, 60]] * 75,
+           "ang": {"Codo": [150] * 75}}
+    (media / "series" / "s1.js").write_text(f'window.SERIES["s1"]={json.dumps(ser)};', encoding="utf-8")
+    d = p0_app.ejemplo()
+    d["medios"] = "nube/informe_derecha/"
+    d["strokes"][0].update(id="s1", video="clip.webm", series="series/s1.js", vImpact=1.0)
+    d["strokes"][1].update(video=None, series=None)
+    page = tmp_path / "app.html"
+    page.write_text('<!doctype html><html><head><meta charset="utf-8"></head><body>' + p0_app.pagina(d) + "</body></html>",
+                    encoding="utf-8")
+    probe = """([x, y]) => { const c = document.querySelector('canvas[data-capas]'); if (!c || !c.width) return null;
+        const v = c.getContext('2d').getImageData(x, y, 1, 1).data; return v[3]; }"""
+    with sync_playwright() as pw:
+        b = pw.chromium.launch()
+        p = b.new_page(viewport={"width": 1280, "height": 800})
+        p.goto(page.as_uri() + "#visor")
+        p.wait_for_timeout(300)
+        p.click('[data-tab="golpes"]')
+        p.wait_for_timeout(150)
+        p.click('[data-stroke="s1"]')
+        p.wait_for_function("() => document.querySelector('[data-reproductor=\"listo\"]') && "
+                            "document.querySelector('canvas[data-capas]').width === 320", timeout=8000)
+        p.click("[data-impacto]")
+        p.wait_for_timeout(300)
+        body, ball, empty = p.evaluate(probe, [160, 70]), p.evaluate(probe, [60, 60]), p.evaluate(probe, [300, 20])
+        p.click('[data-capa="cuerpo"]')
+        p.wait_for_timeout(200)
+        body_off = p.evaluate(probe, [160, 70])
+        p.keyboard.press("Escape")
+        p.wait_for_timeout(150)
+        ids = [s["id"] for s in d["strokes"]]
+        p.click(f'[data-stroke="{ids[1]}"]')
+        p.wait_for_timeout(200)
+        none = p.inner_text('[data-reproductor="sin-video"]')
+        b.close()
+    assert body and ball and not empty and not body_off, (body, ball, empty, body_off)  # the shoulders' line, the ball
+    assert "no tiene vídeo" in none
+
+
 FAKE_PC = """() => { window.__calls = [];
   const answers = {elegir_video: "C:/tenis/videos/partido.mp4", proponer: {rival: "Rival de ejemplo", torneo: "Torneo"},
                    fotos: [{src: "data:image/gif;base64,R0lGODlhAQABAAAAACw=", t: 12.5, by: "clothes"}]};

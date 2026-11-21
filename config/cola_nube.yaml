@@ -278,4 +278,9 @@ trabajos:
   # 21-11 08:00: la lista de la v2 no lleva los vídeos de los golpes (la página los enlaza en la carpeta de ventanas de
   # cada partido): arreglado (correr.linked_videos); otra vez, después de la v2 (las dos escriben el mismo informe)
   - {id: informe_beta3, accion: informe, donde: kaggle, tras: informe_beta2}
+  # 21-11 08:40 (P0.5e-D): la aplicación del PC con los resultados reales, sin el PC: se traen como los trae el PC, la
+  # página se hace como la ventana y Chrome (H.264, como WebView2) abre golpe a golpe su vídeo con capas. Regla escrita
+  # antes (tennisbio.infra.poc_app): al menos el 95 % abre su vídeo y el 95 % de esos dibuja el cuerpo en sus puntos, sin
+  # errores de la página. Solo números salen de la sesión
+  - {id: medir_app, accion: medir, prueba: app, donde: kaggle, cpu: true, tras: informe_beta3}
   - {id: informe_6, accion: informe, tras: actualizar_zheng}
