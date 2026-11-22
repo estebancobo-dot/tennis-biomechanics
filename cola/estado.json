@@ -2184,7 +2184,7 @@
   "inicio": "2026-11-22 03:25",
   "ruta": "/runs/kaggle_medir_f3set_hoy_d/estado.json",
   "cuaderno": "tennisbio-medir-f3set-hoy-d",
-  "kaggle": "running (06:53)",
+  "kaggle": "running (06:58)",
   "arranco": "2026-11-22 03:31",
   "espera_min": 6
  },
@@ -2281,10 +2281,10 @@
   "ruta": "/runs/kaggle_actualizar_osaka_b/estado.json",
   "salida": "/output/us-open-2026-r4-naomi-osaka-elena-rybakina",
   "cuaderno": "tennisbio-actualizar-osaka-b",
-  "kaggle": "running (06:53)",
+  "kaggle": "running (06:58)",
   "kaggle_detalle": "queued | estebancoboc/tennisbio-actualizar-osaka-b has status \"KernelWorkerStatus.QUEUED\"",
   "arranco": "2026-11-22 06:42",
   "espera_min": 31,
-  "progreso": "players:  58 % (5900/10184 fotogramas con jugadoras) · 5 min · quedan ≈ 3 min (06:51:33; GPU 85 %·0 %, CPU 81 %, 3.0 GB)"
+  "progreso": "identity:  42 % (352/832 fotogramas (ropa)) · 3 min · quedan ≈ 4 min (06:56:20; GPU 0 %·0 %, CPU 85 %, 3.0 GB)"
  }
 }
