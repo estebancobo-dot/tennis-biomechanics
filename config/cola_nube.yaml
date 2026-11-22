@@ -297,6 +297,10 @@ trabajos:
   - {id: actualizar_zheng_a, accion: partido, partido: zheng-qinwen-elena-rybakina, tras: actualizar_pegula, aprobado: true, cpu: true, etapas: [probe, scenes, court, audio], minutos_video: 117}
   - {id: actualizar_zheng_b, accion: partido, partido: zheng-qinwen-elena-rybakina, tras: actualizar_zheng_a, aprobado: true, etapas: [players, score, identity, spotting, candidates, fine, fine_opponent, fine_doubtful], minutos_video: 117}
   - {id: actualizar_zheng, accion: partido, partido: zheng-qinwen-elena-rybakina, tras: actualizar_zheng_b, aprobado: true, cpu: true, etapas: [views, views_link, view_clips, slowmo_fine], minutos_video: 117}
+  # 22-11 20:45: actualizar_zheng_b sin avance desde las 19:01:08 (81 %), con las GPU trabajando hasta ~19:30 y la
+  # máquina parada (CPU 1 %, 1,6 GB) desde ~19:40: ¿acabó el análisis y es el ejecutor el que no sigue? Lo que dejó
+  # en Modal (el subidor sigue cada 10 min): su registro, su manifiesto y el estado de la ejecución
+  - {id: leer_zheng_b_atasco, accion: leer, rutas: [/output/zheng-qinwen-elena-rybakina/registro.log, /output/zheng-qinwen-elena-rybakina/manifest.json, /runs/kaggle_actualizar_zheng_b/estado.json], filtro: "^2026-11-22 (1[89]|2[0-3]):"}
   # 15-11 (#297): la Base en beta con los 5 partidos ya analizados (Osaka, Pegula, Zheng, Gauff, la final): el informe y
   # la auditoría en Modal (CPU, ~0,15 $), con sus diferencias conocidas en la primera pantalla
   - {id: informe_beta, accion: informe, tras: final}
