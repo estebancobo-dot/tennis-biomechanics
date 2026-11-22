@@ -2,31 +2,37 @@
  {
   "id": "us-open-2026-r4-naomi-osaka-elena-rybakina",
   "rival": "Naomi Osaka",
-  "analizado": true
+  "analizado": true,
+  "video": "C:\\tenis\\videos\\US Open 2026.R4.Naomi Osaka - Elena Rybakina.ts"
  },
  {
   "id": "zheng-qinwen-elena-rybakina",
   "rival": "Zheng Qinwen",
-  "analizado": true
+  "analizado": true,
+  "video": "C:\\tenis\\videos\\Zheng Qinwen - Elena Rybakina.mkv"
  },
  {
   "id": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
   "rival": "Gauff",
-  "analizado": true
+  "analizado": true,
+  "video": "C:\\tenis\\videos\\Теннис.ЮСИПОПЕН.Полуфинал.Гауфф—Рыбакина.10.09.2026.1080р.50fps.Мосгортранс.mkv"
  },
  {
   "id": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
   "rival": "Sobolenko",
-  "analizado": true
+  "analizado": true,
+  "video": "C:\\tenis\\videos\\Теннис.ЮСИПОПЕН.Финал.Соболенко—Рыбакина.12.09.2026.1080р.50fps.Мосгортранс.mkv"
  },
  {
   "id": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "rival": "Jessica Pegula",
-  "analizado": true
+  "analizado": true,
+  "video": "C:\\tenis\\videos\\Elena Rybakina - Jessica Pegula - Miami - 2026 - Quarter final.mkv"
  },
  {
   "id": "zverev-alexander-sinner-jannik-indian-wells-2026-semi-final",
   "rival": "Zverev Alexander",
-  "analizado": true
+  "analizado": true,
+  "video": "C:\\tenis\\videos\\Zverev Alexander - Sinner Jannik - Indian Wells - 2026 - Semi final.mkv"
  }
 ]
