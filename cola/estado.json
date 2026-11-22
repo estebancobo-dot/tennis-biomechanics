@@ -2458,7 +2458,7 @@
   }
  },
  "actualizar_pegula": {
-  "estado": "en_marcha",
+  "estado": "hecho",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 1,
@@ -2470,9 +2470,30 @@
   "salida": "/output/elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "cpu": true,
   "cuaderno": "tennisbio-actualizar-pegula",
-  "kaggle": "running (14:58)",
+  "kaggle": "complete (15:03)",
   "arranco": "2026-11-22 14:07",
   "espera_min": 5,
-  "progreso": "views:  96 % (1547/1618 fotogramas de otras tomas) · 51 min · quedan ≈ 2 min (14:56:33; CPU 51 %, 12.6 GB)"
+  "progreso": "slowmo_fine terminada a las 15:01:02 en 4 s (15:00:47)",
+  "fin": "2026-11-22 15:03",
+  "resultado": {
+   "estado": "hecho",
+   "coste_usd": 0.0,
+   "segundos": 3344,
+   "horas_kaggle": 0.97
+  }
+ },
+ "actualizar_zheng_a": {
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1795359800.143701,
+  "accion": "partido",
+  "partido": "zheng-qinwen-elena-rybakina",
+  "inicio": "2026-11-22 15:03",
+  "ruta": "/runs/kaggle_actualizar_zheng_a/estado.json",
+  "salida": "/output/zheng-qinwen-elena-rybakina",
+  "cpu": true,
+  "cuaderno": "tennisbio-actualizar-zheng-a"
  }
 }
