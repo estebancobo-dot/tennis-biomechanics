@@ -1,0 +1,332 @@
+[20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin] 84 puntos en 76 tramos (22 min)
+  ventana w000006800_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.24 s
+  ventana w000022552_8948 (far, 3 candidatos): pasa · golpe de bola en su lado a 2.2 s
+  ventana w000022552_8948: pose solo para medir (lejana, buscándola de nuevo) en 13 s; buscada 16 veces, encontrada 16
+  ventana w000041250_11250 (far, 4 candidatos): pasa · golpe de bola en su lado a 4.28 s
+  ventana w000041250_11250: pose solo para medir (lejana, buscándola de nuevo) en 12 s; buscada 17 veces, encontrada 17
+  ventana w000051700_6600 (far, 2 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000051700_6600: pose solo para medir (lejana, buscándola de nuevo) en 8 s; buscada 9 veces, encontrada 9
+  ventana w000068200_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000068200_3600: pose solo para medir (lejana, buscándola de nuevo) en 7 s; buscada 12 veces, encontrada 12
+  ventana w000111350_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.2 s
+  ventana w000125300_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 1.84 s
+  ventana w000125300_3600: pose solo para medir (lejana, buscándola de nuevo) en 7 s; buscada 16 veces, encontrada 16
+  ventana w000139650_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000139650_3600: pose solo para medir (lejana, buscándola de nuevo) en 8 s; buscada 15 veces, encontrada 15
+  ventana w000148800_5600 (far, 2 candidatos): pasa · golpe de bola en su lado a 4.6 s
+  ventana w000148800_5600: pose solo para medir (lejana, buscándola de nuevo) en 7 s; buscada 9 veces, encontrada 9
+  ventana w000220600_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.24 s
+  ventana w000220600_3600: pose solo para medir (lejana, buscándola de nuevo) en 6 s; buscada 9 veces, encontrada 9
+  ventana w000275797_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000290300_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.2 s
+  ventana w000306400_5500 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.48 s
+  ventana w000306400_5500: pose solo para medir (lejana, buscándola de nuevo) en 8 s; buscada 10 veces, encontrada 10
+  ventana w000252000_11000 (far, 4 candidatos): pasa · golpe de bola en su lado a 2.2 s
+  ventana w000252000_11000: pose solo para medir (lejana, buscándola de nuevo) en 19 s; buscada 35 veces, encontrada 35
+  ventana w000322750_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000322750_3600: pose solo para medir (lejana, buscándola de nuevo) en 9 s; buscada 16 veces, encontrada 14
+  ventana w000419700_5600 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.52 s
+  ventana w000419700_5600: pose solo para medir (lejana, buscándola de nuevo) en 12 s; buscada 24 veces, encontrada 22
+  ventana w000456600_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000456600_3600: pose solo para medir (lejana, buscándola de nuevo) en 7 s; buscada 13 veces, encontrada 10
+  ventana w000436200_11100 (far, 4 candidatos): pasa · golpe de bola en su lado a 4.48 s
+  ventana w000436200_11100: pose solo para medir (lejana, buscándola de nuevo) en 10 s; buscada 4 veces, encontrada 4
+  ventana w000482500_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.6 s
+  ventana w000482500_3600: pose solo para medir (lejana, buscándola de nuevo) en 9 s; buscada 15 veces, encontrada 15
+  ventana w000510200_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.28 s
+  ventana w000524600_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000471700_11550 (far, 4 candidatos): pasa · golpe de bola en su lado a 2.28 s
+  ventana w000471700_11550: pose solo para medir (lejana, buscándola de nuevo) en 24 s; buscada 46 veces, encontrada 46
+  ventana w000541750_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.28 s
+  ventana w000587350_5750 (far, 2 candidatos): pasa · golpe de bola en su lado a 4.4 s
+  ventana w000587350_5750: pose solo para medir (lejana, buscándola de nuevo) en 6 s; buscada 7 veces, encontrada 7
+  ventana w000603900_5450 (far, 2 candidatos): pasa · golpe de bola en su lado a 1.72 s
+  ventana w000603900_5450: pose solo para medir (lejana, buscándola de nuevo) en 9 s; buscada 13 veces, encontrada 13
+  ventana w000621200_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 1.76 s
+  ventana w000621200_3600: pose solo para medir (lejana, buscándola de nuevo) en 9 s; buscada 18 veces, encontrada 18
+  ventana w000629800_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000629800_3600: pose solo para medir (lejana, buscándola de nuevo) en 5 s; buscada 5 veces, encontrada 5
+  ventana w000644200_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000644200_3600: pose solo para medir (lejana, buscándola de nuevo) en 6 s; buscada 8 veces, encontrada 6
+  ventana w000657800_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.24 s
+  ventana w000657800_3600: pose solo para medir (lejana, buscándola de nuevo) en 6 s; buscada 9 veces, encontrada 9
+  ventana w000672700_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.28 s
+  ventana w000687900_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.2 s
+  ventana w000687900_3600: pose solo para medir (lejana, buscándola de nuevo) en 6 s; buscada 8 veces, encontrada 8
+  ventana w000700800_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.2 s
+  ventana w000700800_3600: pose solo para medir (lejana, buscándola de nuevo) en 6 s; buscada 10 veces, encontrada 9
+  ventana w000853402_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000853402_3600: pose solo para medir (lejana, buscándola de nuevo) en 3 s; buscada 3 veces, encontrada 3
+  ventana w000845500_5950 (far, 2 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000845500_5950: pose solo para medir (lejana, buscándola de nuevo) en 9 s; buscada 11 veces, encontrada 10
+  ventana w000860972_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000860972_3600: pose solo para medir (lejana, buscándola de nuevo) en 5 s; buscada 6 veces, encontrada 5
+  ventana w000874450_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000874450_3600: pose solo para medir (lejana, buscándola de nuevo) en 7 s; buscada 11 veces, encontrada 9
+  ventana w000986700_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w001016300_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.2 s
+  ventana w001016300_3600: pose solo para medir (lejana, buscándola de nuevo) en 6 s; buscada 9 veces, encontrada 9
+  ventana w001050600_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w001030500_8300 (far, 3 candidatos): pasa · golpe de bola en su lado a 2.24 s
+  ventana w001030500_8300: pose solo para medir (lejana, buscándola de nuevo) en 16 s; buscada 29 veces, encontrada 29
+  ventana w001065500_8400 (far, 3 candidatos): pasa · golpe de bola en su lado a 2.16 s
+  ventana w001065500_8400: pose solo para medir (lejana, buscándola de nuevo) en 13 s; buscada 19 veces, encontrada 19
+  ventana w001085750_5600 (far, 2 candidatos): pasa · golpe de bola en su lado a 1.76 s
+  ventana w001085750_5600: pose solo para medir (lejana, buscándola de nuevo) en 7 s; buscada 9 veces, encontrada 9
+  ventana w001100750_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.44 s
+  ventana w001100750_3600: pose solo para medir (lejana, buscándola de nuevo) en 7 s; buscada 11 veces, encontrada 11
+  ventana w001115450_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w001115450_3600: pose solo para medir (lejana, buscándola de nuevo) en 8 s; buscada 15 veces, encontrada 15
+  ventana w001124500_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w001124500_3600: pose solo para medir (lejana, buscándola de nuevo) en 7 s; buscada 10 veces, encontrada 7
+  ventana w001199850_8450 (far, 3 candidatos): pasa · golpe de bola en su lado a 4.68 s
+  ventana w001199850_8450: pose solo para medir (lejana, buscándola de nuevo) en 14 s; buscada 23 veces, encontrada 21
+  ventana w001220250_8450 (far, 3 candidatos): pasa · golpe de bola en su lado a 2.2 s
+  ventana w001220250_8450: pose solo para medir (lejana, buscándola de nuevo) en 13 s; buscada 19 veces, encontrada 19
+  ventana w001239950_5550 (far, 2 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w001239950_5550: pose solo para medir (lejana, buscándola de nuevo) en 12 s; buscada 24 veces, encontrada 24
+  ventana w001276700_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w001289900_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w001289900_3600: pose solo para medir (lejana, buscándola de nuevo) en 7 s; buscada 12 veces, encontrada 8
+  ventana w001255350_10400 (far, 4 candidatos): pasa · golpe de bola en su lado a 4.08 s
+  ventana w001255350_10400: pose solo para medir (lejana, buscándola de nuevo) en 21 s; buscada 31 veces, encontrada 30
+  ventana w001331800_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.44 s
+  ventana w001331800_3600: pose solo para medir (lejana, buscándola de nuevo) en 9 s; buscada 14 veces, encontrada 12
+[20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin] recall 132/141; pérdidas: jugadora cercana no seguida (sin tramo) 2, jugadora lejana no encontrada en la ventana 5, no confirmado (bola vista) 2
+[20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina] 85 puntos en 79 tramos (22 min)
+  ventana w000015704_5682 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.28 s
+  ventana w000028210_6290 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.24 s
+  ventana w000028210_6290: pose solo para medir (lejana, buscándola de nuevo) en 5 s; buscada 3 veces, encontrada 1
+  ventana w000043991_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000043991_3600: pose solo para medir (lejana, buscándola de nuevo) en 4 s; buscada 3 veces, encontrada 1
+  ventana w000057500_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.2 s
+  ventana w000057500_3600: pose solo para medir (lejana, buscándola de nuevo) en 3 s; buscada 2 veces, encontrada 0
+  ventana w000231102_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000231102_3600: pose solo para medir (lejana, buscándola de nuevo) en 4 s; buscada 5 veces, encontrada 3
+  ventana w000182021_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000182021_3600: pose solo para medir (lejana, buscándola de nuevo) en 6 s; buscada 7 veces, encontrada 1
+  ventana w000245508_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.24 s
+  ventana w000245508_3600: pose solo para medir (lejana, buscándola de nuevo) en 4 s; buscada 4 veces, encontrada 1
+  ventana w000260401_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.4 s
+  ventana w000260401_3600: pose solo para medir (lejana, buscándola de nuevo) en 3 s; buscada 1 veces, encontrada 0
+  ventana w000289161_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000289161_3600: pose solo para medir (lejana, buscándola de nuevo) en 4 s; buscada 5 veces, encontrada 3
+  ventana w000296001_8849 (far, 3 candidatos): pasa · golpe de bola en su lado a 2.32 s
+  ventana w000296001_8849: pose solo para medir (lejana, buscándola de nuevo) en 8 s; buscada 6 veces, encontrada 6
+  ventana w000493915_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000499850_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.08 s
+  ventana w000528400_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 1.72 s
+  ventana w000517900_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000517900_3600: pose solo para medir (lejana, buscándola de nuevo) en 5 s; buscada 6 veces, encontrada 1
+  ventana w000543411_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000565200_8289 (far, 3 candidatos): pasa · golpe de bola en su lado a 2.2 s
+  ventana w000594100_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.24 s
+  ventana w000789200_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000789200_3600: pose solo para medir (lejana, buscándola de nuevo) en 3 s; buscada 1 veces, encontrada 1
+  ventana w000780672_8526 (far, 3 candidatos): pasa · golpe de bola en su lado a 1.76 s
+  ventana w000848800_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000848800_3600: pose solo para medir (lejana, buscándola de nuevo) en 5 s; buscada 6 veces, encontrada 2
+  ventana w000865702_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000806480_13572 (far, 5 candidatos): pasa · golpe de bola en su lado a 4.48 s
+  ventana w000806480_13572: pose solo para medir (lejana, buscándola de nuevo) en 11 s; buscada 5 veces, encontrada 5
+  ventana w000897992_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000929550_5750 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.24 s
+  ventana w000913597_8350 (far, 3 candidatos): pasa · golpe de bola en su lado a 2.2 s
+  ventana w000913597_8350: pose solo para medir (lejana, buscándola de nuevo) en 7 s; buscada 3 veces, encontrada 2
+  ventana w001043412_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w001043412_3600: pose solo para medir (lejana, buscándola de nuevo) en 4 s; buscada 3 veces, encontrada 0
+  ventana w001076700_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w001052300_8910 (far, 3 candidatos): pasa · golpe de bola en su lado a 1.76 s
+  ventana w001052300_8910: pose solo para medir (lejana, buscándola de nuevo) en 6 s
+  ventana w001084512_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w001119500_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.2 s
+  ventana w000455592_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w001087499_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000755944_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000755944_3600: pose solo para medir (lejana, buscándola de nuevo) en 8 s; buscada 10 veces, encontrada 0
+[20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina] recall 3/131; pérdidas: fuera de la cámara principal 82, jugadora cercana no seguida (sin tramo) 5, descartado como repetición: el mismo recorrido, más lento 2, identidad equivocada 7, no es candidato 30, no confirmado (bola vista) 2
+[20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka] 78 puntos en 75 tramos (21 min)
+  ventana w000111400_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000111400_3600: pose solo para medir (lejana, buscándola de nuevo) en 3 s; buscada 1 veces, encontrada 1
+  ventana w000005100_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 1.8 s
+  ventana w000005100_3600: pose solo para medir (lejana, buscándola de nuevo) en 4 s; buscada 2 veces, encontrada 2
+  ventana w000117593_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.2 s
+  ventana w000122490_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.12 s
+  ventana w000151250_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000151250_3600: pose solo para medir (lejana, buscándola de nuevo) en 4 s; buscada 4 veces, encontrada 1
+  ventana w000166650_5750 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.2 s
+  ventana w000166650_5750: pose solo para medir (lejana, buscándola de nuevo) en 4 s; buscada 1 veces, encontrada 1
+  ventana w000210800_5800 (far, 2 candidatos): pasa · golpe de bola en su lado a 1.76 s
+  ventana w000210800_5800: pose solo para medir (lejana, buscándola de nuevo) en 6 s; buscada 4 veces, encontrada 0
+  ventana w000181600_8450 (far, 3 candidatos): pasa · golpe de bola en su lado a 4.44 s
+  ventana w000181600_8450: pose solo para medir (lejana, buscándola de nuevo) en 8 s; buscada 7 veces, encontrada 3
+  ventana w000224800_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000224800_3600: pose solo para medir (lejana, buscándola de nuevo) en 5 s; buscada 4 veces, encontrada 0
+  ventana w000237050_5650 (far, 2 candidatos): pasa · golpe de bola en su lado a 4.4 s
+  ventana w000237050_5650: pose solo para medir (lejana, buscándola de nuevo) en 6 s; buscada 6 veces, encontrada 2
+  ventana w000313500_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000294300_8700 (far, 3 candidatos): pasa · golpe de bola en su lado a 2.2 s
+  ventana w000294300_8700: pose solo para medir (lejana, buscándola de nuevo) en 7 s; buscada 4 veces, encontrada 4
+  ventana w000326350_8600 (far, 3 candidatos): pasa · golpe de bola en su lado a 2.2 s
+  ventana w000326350_8600: pose solo para medir (lejana, buscándola de nuevo) en 7 s; buscada 4 veces, encontrada 0
+  ventana w000356849_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.2 s
+  ventana w000345200_13000 (far, 5 candidatos): pasa · golpe de bola en su lado a 2.2 s
+  ventana w000345200_13000: pose solo para medir (lejana, buscándola de nuevo) en 8 s
+  ventana w000362600_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.24 s
+  ventana w000375300_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.24 s
+  ventana w000375300_3600: pose solo para medir (lejana, buscándola de nuevo) en 4 s; buscada 3 veces, encontrada 0
+  ventana w000388537_7912 (far, 3 candidatos): pasa · golpe de bola en su lado a 1.84 s
+  ventana w000388537_7912: pose solo para medir (lejana, buscándola de nuevo) en 9 s; buscada 9 veces, encontrada 5
+  ventana w000406938_5718 (far, 2 candidatos): pasa · golpe de bola en su lado a 4.28 s
+  ventana w000406938_5718: pose solo para medir (lejana, buscándola de nuevo) en 5 s; buscada 4 veces, encontrada 4
+  ventana w000615450_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.28 s
+  ventana w000586100_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.24 s
+  ventana w000586100_3600: pose solo para medir (lejana, buscándola de nuevo) en 6 s; buscada 9 veces, encontrada 9
+  ventana w000640400_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000655750_6850 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.32 s
+  ventana w000619300_11700 (far, 4 candidatos): pasa · golpe de bola en su lado a 4.88 s
+  ventana w000619300_11700: pose solo para medir (lejana, buscándola de nuevo) en 8 s; buscada 2 veces, encontrada 2
+  ventana w000675300_12500 (far, 4 candidatos): pasa · golpe de bola en su lado a 8.32 s
+  ventana w000696750_6050 (far, 2 candidatos): pasa · golpe de bola en su lado a 1.92 s
+  ventana w000696750_6050: pose solo para medir (lejana, buscándola de nuevo) en 5 s; buscada 2 veces, encontrada 2
+  ventana w000712100_8300 (far, 3 candidatos): pasa · golpe de bola en su lado a 4.36 s
+  ventana w000712100_8300: pose solo para medir (lejana, buscándola de nuevo) en 5 s
+  ventana w000804400_9000 (far, 3 candidatos): pasa · golpe de bola en su lado a 2.32 s
+  ventana w000804400_9000: pose solo para medir (lejana, buscándola de nuevo) en 6 s; buscada 2 veces, encontrada 2
+  ventana w000833800_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.08 s
+  ventana w000824600_9000 (far, 3 candidatos): pasa · golpe de bola en su lado a 7.64 s
+  ventana w000824600_9000: pose solo para medir (lejana, buscándola de nuevo) en 6 s; buscada 1 veces, encontrada 1
+  ventana w000936500_8000 (far, 3 candidatos): pasa · golpe de bola en su lado a 1.8 s
+  ventana w000936500_8000: pose solo para medir (lejana, buscándola de nuevo) en 6 s; buscada 3 veces, encontrada 3
+  ventana w000847400_11100 (far, 4 candidatos): pasa · golpe de bola en su lado a 2.28 s
+  ventana w000847400_11100: pose solo para medir (lejana, buscándola de nuevo) en 10 s; buscada 6 veces, encontrada 5
+  ventana w000967600_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.28 s
+  ventana w000954000_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000983250_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.16 s
+  ventana w001008300_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.24 s
+  ventana w001008300_3600: pose solo para medir (lejana, buscándola de nuevo) en 3 s; buscada 1 veces, encontrada 1
+  ventana w001021600_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w001021600_3600: pose solo para medir (lejana, buscándola de nuevo) en 5 s; buscada 5 veces, encontrada 1
+  ventana w001107809_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.24 s
+  ventana w001037750_6850 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.28 s
+  ventana w001037750_6850: pose solo para medir (lejana, buscándola de nuevo) en 5 s; buscada 1 veces, encontrada 0
+  ventana w001168500_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 1.84 s
+  ventana w001189500_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w001172250_8550 (far, 3 candidatos): pasa · golpe de bola en su lado a 1.96 s
+  ventana w001172250_8550: pose solo para medir (lejana, buscándola de nuevo) en 6 s; buscada 1 veces, encontrada 1
+  ventana w001193549_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 1.92 s
+  ventana w001207150_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w001210900_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 1.92 s
+  ventana w001224500_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w001240450_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.16 s
+  ventana w001256200_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.28 s
+  ventana w001256200_3600: pose solo para medir (lejana, buscándola de nuevo) en 4 s; buscada 3 veces, encontrada 0
+  ventana w001270700_9100 (far, 3 candidatos): pasa · golpe de bola en su lado a 2.24 s
+  ventana w001270700_9100: pose solo para medir (lejana, buscándola de nuevo) en 6 s; buscada 1 veces, encontrada 0
+  ventana w001135500_5600 (far, 2 candidatos): pasa · golpe de bola en su lado a 4.28 s
+  ventana w001135500_5600: pose solo para medir (lejana, buscándola de nuevo) en 4 s; buscada 1 veces, encontrada 1
+  ventana w000018800_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000018800_3600: pose solo para medir (lejana, buscándola de nuevo) en 5 s; buscada 5 veces, encontrada 0
+[20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka] recall 133/154; pérdidas: fuera de la cámara principal 3, identidad equivocada 8, no es candidato 1, no confirmado (bola vista) 6
+[20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina] 123 puntos en 117 tramos (34 min)
+  ventana w000235919_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000021800_6099 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.28 s
+  ventana w000271824_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000271824_3600: pose solo para medir (lejana, buscándola de nuevo) en 3 s; buscada 2 veces, encontrada 2
+  ventana w000253198_8801 (far, 3 candidatos): pasa · golpe de bola en su lado a 1.76 s
+  ventana w000253198_8801: pose solo para medir (lejana, buscándola de nuevo) en 7 s; buscada 4 veces, encontrada 4
+  ventana w000295760_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.2 s
+  ventana w000286300_8128 (far, 3 candidatos): pasa · golpe de bola en su lado a 1.84 s
+  ventana w000286300_8128: pose solo para medir (lejana, buscándola de nuevo) en 6 s; buscada 2 veces, encontrada 2
+  ventana w000308500_5400 (far, 2 candidatos): pasa · golpe de bola en su lado a 4.12 s
+  ventana w000308500_5400: pose solo para medir (lejana, buscándola de nuevo) en 4 s; buscada 1 veces, encontrada 1
+  ventana w000343150_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.28 s
+  ventana w000343150_3600: pose solo para medir (lejana, buscándola de nuevo) en 3 s; buscada 1 veces, encontrada 1
+  ventana w000357500_5900 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.16 s
+  ventana w000389615_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.24 s
+  ventana w000389615_3600: pose solo para medir (lejana, buscándola de nuevo) en 5 s; buscada 4 veces, encontrada 1
+  ventana w000518701_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000518701_3600: pose solo para medir (lejana, buscándola de nuevo) en 3 s; buscada 2 veces, encontrada 1
+  ventana w000545950_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.28 s
+  ventana w000530769_5723 (far, 2 candidatos): pasa · golpe de bola en su lado a 1.8 s
+  ventana w000530769_5723: pose solo para medir (lejana, buscándola de nuevo) en 7 s; buscada 7 veces, encontrada 4
+  ventana w000557149_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000571000_5600 (far, 2 candidatos): pasa · golpe de bola en su lado a 1.84 s
+  ventana w000571000_5600: pose solo para medir (lejana, buscándola de nuevo) en 4 s; buscada 1 veces, encontrada 1
+  ventana w000591300_6500 (far, 2 candidatos): pasa · golpe de bola en su lado a 5.08 s
+  ventana w000591300_6500: pose solo para medir (lejana, buscándola de nuevo) en 5 s; buscada 1 veces, encontrada 1
+  ventana w000626855_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.24 s
+  ventana w000609390_5663 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.12 s
+  ventana w000609390_5663: pose solo para medir (lejana, buscándola de nuevo) en 4 s
+  ventana w000655600_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.16 s
+  ventana w000669211_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 1.84 s
+  ventana w000669211_3600: pose solo para medir (lejana, buscándola de nuevo) en 3 s; buscada 1 veces, encontrada 1
+  ventana w000842500_11600 (far, 4 candidatos): pasa · golpe de bola en su lado a 4.6 s
+  ventana w000842500_11600: pose solo para medir (lejana, buscándola de nuevo) en 10 s; buscada 5 veces, encontrada 1
+  ventana w000860202_12709 (far, 5 candidatos): pasa · golpe de bola en su lado a 8.72 s
+  ventana w000860202_12709: pose solo para medir (lejana, buscándola de nuevo) en 13 s; buscada 11 veces, encontrada 10
+  ventana w000885500_5700 (far, 2 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000916897_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000928115_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 1.8 s
+  ventana w000911092_4708 (far, 2 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000911092_4708: pose solo para medir (lejana, buscándola de nuevo) en 8 s; buscada 10 veces, encontrada 5
+  ventana w000958704_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 1.84 s
+  ventana w000941900_5658 (far, 2 candidatos): pasa · golpe de bola en su lado a 4.12 s
+  ventana w000941900_5658: pose solo para medir (lejana, buscándola de nuevo) en 4 s; buscada 1 veces, encontrada 1
+  ventana w000972298_6902 (far, 3 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000972298_6902: pose solo para medir (lejana, buscándola de nuevo) en 7 s; buscada 4 veces, encontrada 1
+  ventana w000988765_8695 (far, 3 candidatos): pasa · golpe de bola en su lado a 2.16 s
+  ventana w001005400_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.2 s
+  ventana w001005400_3600: pose solo para medir (lejana, buscándola de nuevo) en 5 s; buscada 6 veces, encontrada 5
+  ventana w001019589_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.08 s
+  ventana w001019589_3600: pose solo para medir (lejana, buscándola de nuevo) en 3 s; buscada 2 veces, encontrada 1
+  ventana w001214001_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w001226000_6586 (far, 2 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w001226000_6586: pose solo para medir (lejana, buscándola de nuevo) en 8 s; buscada 9 veces, encontrada 5
+  ventana w001265700_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w001244850_10451 (far, 4 candidatos): pasa · golpe de bola en su lado a 4.2 s
+  ventana w001244850_10451: pose solo para medir (lejana, buscándola de nuevo) en 9 s; buscada 4 veces, encontrada 4
+  ventana w001294994_6806 (far, 2 candidatos): pasa · golpe de bola en su lado a 5.4 s
+  ventana w001294994_6806: pose solo para medir (lejana, buscándola de nuevo) en 5 s; buscada 1 veces, encontrada 1
+  ventana w001435499_6201 (far, 2 candidatos): pasa · golpe de bola en su lado a 1.72 s
+  ventana w001435499_6201: pose solo para medir (lejana, buscándola de nuevo) en 5 s; buscada 2 veces, encontrada 2
+  ventana w001451050_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w001451050_3600: pose solo para medir (lejana, buscándola de nuevo) en 4 s; buscada 3 veces, encontrada 3
+  ventana w001484295_8131 (far, 3 candidatos): pasa · golpe de bola en su lado a 4.2 s
+  ventana w001463826_8065 (far, 3 candidatos): pasa · golpe de bola en su lado a 2.24 s
+  ventana w001463826_8065: pose solo para medir (lejana, buscándola de nuevo) en 11 s; buscada 9 veces, encontrada 2
+  ventana w001667002_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.2 s
+  ventana w001649087_6813 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.28 s
+  ventana w001686505_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.32 s
+  ventana w001706658_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.28 s
+  ventana w001717858_5814 (far, 2 candidatos): pasa · golpe de bola en su lado a 4.4 s
+  ventana w001717858_5814: pose solo para medir (lejana, buscándola de nuevo) en 9 s; buscada 11 veces, encontrada 5
+  ventana w001695145_12050 (far, 5 candidatos): pasa · golpe de bola en su lado a 4.32 s
+  ventana w001695145_12050: pose solo para medir (lejana, buscándola de nuevo) en 11 s; buscada 6 veces, encontrada 4
+  ventana w001860451_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.16 s
+  ventana w001732029_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w001732029_3600: pose solo para medir (lejana, buscándola de nuevo) en 5 s; buscada 6 veces, encontrada 1
+  ventana w001875100_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.12 s
+  ventana w001904502_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.24 s
+  ventana w001888146_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.16 s
+  ventana w001888146_3600: pose solo para medir (lejana, buscándola de nuevo) en 5 s; buscada 4 veces, encontrada 0
+  ventana w001929759_6441 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.16 s
+  ventana w001929759_6441: pose solo para medir (lejana, buscándola de nuevo) en 5 s; buscada 2 veces, encontrada 2
+  ventana w001945300_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w001917600_13046 (far, 5 candidatos): pasa · golpe de bola en su lado a 1.8 s
+  ventana w001917600_13046: pose solo para medir (lejana, buscándola de nuevo) en 11 s; buscada 3 veces, encontrada 3
+  ventana w001960700_11001 (far, 4 candidatos): pasa · golpe de bola en su lado a 7.08 s
+  ventana w001960700_11001: pose solo para medir (lejana, buscándola de nuevo) en 8 s; buscada 2 veces, encontrada 2
+  ventana w001607420_4466 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.32 s
+  ventana w001607420_4466: pose solo para medir (lejana, buscándola de nuevo) en 6 s; buscada 6 veces, encontrada 1
+[20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina] recall 198/222; pérdidas: fuera de la cámara principal 1, jugadora cercana no seguida (sin tramo) 1, no es candidato 15, jugadora lejana no encontrada en la ventana 2, bola no vista y no confirmado 1, no confirmado (bola vista) 3
+**Sin 20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina** (anotaciones desfasadas con el vídeo: la mitad o más de sus golpes anotados caen fuera de la cámara principal, que sí se reconoce): **encontrados 463 de 517 (90 %)**; precisión 94 %. Cercana 92 %, lejana 88 %.
+| 20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin | 132/141 (94 %) | 98 % | jugadora lejana no encontrada en la ventana (5) |
+| 20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina (desfasado) | 3/131 (2 %) | 7 % | fuera de la cámara principal (82) |
+| 20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka | 133/154 (86 %) | 91 % | identidad equivocada (8) |
+| 20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina | 198/222 (89 %) | 93 % | no es candidato (15) |
+| lejana | 67/96 | 104/145 | 80/115 | 1/4 | **252/360** (70 %) |
+| Etapa | cercana | lejana | total |
+| jugadora lejana no encontrada en la ventana | 0 | 7 | **7** |
+> Nota: 20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina: 83 de 85 puntos descargados
+{"prueba": "f3set", "codigo": 0, "horas": 4.04, "informe": "recall_validation_detector_kaggle_f3.json", "regla": {"pasa": false, "resultado": "peor", "motivo": "encontrados 466 frente a 471 (-5), precisión 0.866 frente a 0.869 (-0.0030)", "referencia": {"found": 471, "gt": 648, "recall": 0.727, "precision": 0.869, "false": 71, "dt_median_s": 0.03, "minutes": 268.7}, "hoy": {"found": 466, "gt": 648, "recall": 0.719, "precision": 0.866, "false": 72, "dt_median_s": 0.03, "minutes": 242.4}}, "diferencias": {"perdidos": 10, "ganados": 5, "perdidos_por_paso": {"lejana_no_encontrada": 2, "fuera_de_camara": 2, "no_confirmado": 5, "bola_no_vista": 1}, "perdidos_detalle": [{"partido": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin", "punto": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin_192544_192679", "golpe": "far_ad_serve_-_-_T_-_in", "t": 1318.4, "lado": "far", "paso_ref": "encontrado", "paso_hoy": "lejana_no_encontrada"}, {"partido": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin", "punto": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin_192544_192679", "golpe": "far_deuce_stroke_fh_gs_CC_-_winner", "t": 1321.48, "lado": "far", "paso_ref": "encontrado", "paso_hoy": "lejana_no_encontrada"}, {"partido": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka", "punto": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka_100375_100613", "golpe": "far_deuce_serve_-_-_T_-_in", "t": 938.72, "lado": "far", "paso_ref": "encontrado", "paso_hoy": "no_confirmado"}, {"partido": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka", "punto": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka_32498_32600", "golpe": "near_deuce_serve_-_-_B_-_in", "t": 280.4, "lado": "near", "paso_ref": "encontrado", "paso_hoy": "fuera_de_camara"}, {"partido": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka", "punto": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka_45376_45531", "golpe": "far_ad_serve_-_-_B_-_in", "t": 4
