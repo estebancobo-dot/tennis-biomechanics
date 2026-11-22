@@ -415,7 +415,11 @@ def test_the_cloud_report_brings_what_its_audit_reads_of_the_cloud(tmp_path, mon
             self.path, self.type = path, types.SimpleNamespace(name=kind)
 
     class V:
-        def listdir(self, folder):
+        def listdir(self, folder, recursive=False):
+            if folder == "models":
+                assert recursive
+                return [E("models/models/balltrack.onnx", "FILE"), E("models/models", "DIRECTORY"),
+                        E("models/rfdetr_medium_1152.onnx", "FILE")]
             assert folder == "runs"
             return [E("runs/kaggle_sinner_b3", "DIRECTORY"), E("runs/informe", "DIRECTORY"), E("runs/x.txt", "FILE"),
                     E("runs/vacia", "DIRECTORY")]
@@ -425,6 +429,7 @@ def test_the_cloud_report_brings_what_its_audit_reads_of_the_cloud(tmp_path, mon
                 raise FileNotFoundError(path)
             return [b'{"estado": "hecho"}']
     ev = correr.cloud_evidence(V(), tmp_path)
-    assert got == ["/cola"] and ev == {"cola": "traída", "ejecuciones": "2 de 3"}
+    assert got == ["/cola"] and ev == {"cola": "traída", "ejecuciones": "2 de 3", "modelos": 2}
+    assert json.loads((tmp_path / "modelos_volumen.json").read_text()) == ["balltrack.onnx", "rfdetr_medium_1152.onnx"]
     assert (tmp_path / "runs" / "kaggle_sinner_b3" / "estado.json").read_text() == '{"estado": "hecho"}'
     assert not (tmp_path / "runs" / "vacia").exists()

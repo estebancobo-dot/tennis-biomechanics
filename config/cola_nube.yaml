@@ -318,6 +318,8 @@ trabajos:
   # 22-11 04:50 (#312, punto 1: las pruebas de cierre de B1, B5, B7 y B8 en la auditoría hecha en la nube): el informe
   # trae ahora el estado de la cola y de cada ejecución, exporta antes de auditar y tiene Chrome para las capturas
   - {id: informe_beta5, accion: informe, donde: kaggle}
+  # 22-11 06:00 (#312, puntos 2 y 5): la auditoría de la nube con los modelos medidos y en uso, y cada error con su motivo
+  - {id: informe_beta6, accion: informe, donde: kaggle, tras: informe_beta5}
   # 21-11 10:10 (#295, cierre de la nube nativa; sirve con cualquier decisión pendiente del usuario): F3Set con el código de
   # hoy y todo lo adoptado (bola en un hilo, marcador con CUDA, jugadora lejana con RF-DETR…) frente a la nube2 (Modal,
   # 14-11: 469 de 517, precisión 0,94), con el mismo script. Regla escrita antes (tennisbio.infra.poc_f3set): no peor en

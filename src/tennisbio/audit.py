@@ -1806,11 +1806,34 @@ def _find(out_root: Path, *rels: str) -> Path | None:
     return None
 
 
-def candidate_items(out_root: Path) -> list[dict]:
+MEASURES_DIR = Path(__file__).resolve().parents[2] / "config" / "medidas"    # 22-11: the measures kept in the repository
+
+
+def cloud_decisions(path: Path | None = None) -> dict:
+    """22-11 (#312 point 5): the model decisions measured in the cloud (config/medidas/decisiones_nube.yaml)."""
+    import yaml
+    f = path or MEASURES_DIR / "decisiones_nube.yaml"
+    try:
+        d = yaml.safe_load(f.read_text(encoding="utf-8")) if f.exists() else {}
+    except (OSError, ValueError) as e:  # esperado: a damaged file is a check not met, said by candidate_items
+        fault("auditoria.dato_ilegible", "cloud_decisions", exc=e)
+        return {}
+    return d if isinstance(d, dict) else {}
+
+
+def candidate_items(out_root: Path, measures_dir: Path | None = None) -> list[dict]:
     """B3: one item per state-of-the-art candidate, from the PC's measure (scripts/bench_candidates.py →
     bench_candidates.json): «ok» when it was measured against the current model (accuracy on annotated data and
-    speed on this PC) and decided; «falta» when its measure failed; «aviso» when not measured or too little data."""
+    speed on this PC) and decided; «falta» when its measure failed; «aviso» when not measured or too little data.
+    22-11 (#312 point 5): in the cloud, the PC's measure kept in the repository (config/medidas/bench_candidates_pc.json:
+    the quality on annotated data does not depend on the machine), and over it the decisions measured in the cloud
+    (config/medidas/decisiones_nube.yaml: speed with CUDA, integrated tests), which prevail; the cloud's own candidates
+    (MeTRAbs, TOTNet, Sapiens2) are items too."""
+    md = MEASURES_DIR if measures_dir is None else measures_dir
     f = _find(out_root, "bench_candidates.json", "datasets/reports/bench_candidates.json")
+    if f is None and (md / "bench_candidates_pc.json").exists():
+        f = md / "bench_candidates_pc.json"
+    cloud = cloud_decisions(md / "decisiones_nube.yaml")
     rep = None
     if f is not None:
         try:
@@ -1821,6 +1844,12 @@ def candidate_items(out_root: Path) -> list[dict]:
     out = []
     for name, (what, ours) in CANDIDATE_MODELS.items():
         iname = f"Modelo candidato medido: {name} ({what})"
+        c = cloud.get(name)
+        if isinstance(c, dict) and c.get("resultado"):            # measured again in the cloud: it prevails
+            out.append(_item(12, "Modelos", iname, "ok",
+                             f"en la nube ({c.get('fecha', '?')}, {c.get('prueba', '?')}): {c['resultado']}; "
+                             f"{'se adopta' if c.get('adopta') else 'no se adopta'}"))
+            continue
         if rep is None:
             out.append(_item(12, "Modelos", iname, "aviso",
                              "sin bench_candidates.json (se mide en el PC con scripts/bench_candidates.py)"))
@@ -1838,6 +1867,12 @@ def candidate_items(out_root: Path) -> list[dict]:
             det = (f"frente a {r.get('baseline') or ours}: precisión {r.get('accuracy', '?')}; velocidad {r.get('speed', '?')}; "
                    f"{'se adopta' if v.get('adopt') else 'no se adopta'} ({v.get('reason', '')[:160]})")
         out.append(_item(12, "Modelos", iname, st, det + f" [{rep.get('generated', '?')}, {rep.get('device', '?')}]"))
+    for name, c in cloud.items():                               # the cloud's own candidates
+        if name in CANDIDATE_MODELS or not isinstance(c, dict) or not c.get("resultado"):
+            continue
+        out.append(_item(12, "Modelos", f"Modelo candidato medido: {name} ({c.get('nombre', name)})", "ok",
+                         f"frente a {c.get('actual', '?')}, en la nube ({c.get('fecha', '?')}, {c.get('prueba', '?')}): "
+                         f"{c['resultado']}; {'se adopta' if c.get('adopta') else 'no se adopta'}"))
     return out
 
 
@@ -1853,10 +1888,19 @@ def models_in_use_items(cfg: dict | None = None) -> list[dict]:
         except Exception as e:  # esperado: a check that cannot run is a check not met (#265)
             return [_item(12, "Modelos", "Modelo en uso: configuración", "falta", f"no se pudo leer la configuración ({e})")]
     from . import court, trunk3d
+    from .pose import yolo, yolo_onnx
+
+    root = cloud_root(cfg)
+    on_volume = set()                  # 22-11: in the cloud the models are on the volume (correr.cloud_evidence lists them)
+    if root is not None and (root / "modelos_volumen.json").exists():
+        try:
+            on_volume = set(json.loads((root / "modelos_volumen.json").read_text(encoding="utf-8")))
+        except (OSError, ValueError) as e:  # esperado: unreadable: every model is looked for on disk, as on the PC
+            fault("auditoria.dato_ilegible", "models_in_use_items", exc=e)
 
     def has(p) -> bool:
         q = resolve_path(p)
-        return q is not None and Path(q).exists()
+        return (q is not None and Path(q).exists()) or (bool(p) and Path(str(p)).name in on_volume)
 
     fp = cfg.get("fine_pass") or {}
     sp = cfg.get("spotter") or {}
@@ -1867,8 +1911,14 @@ def models_in_use_items(cfg: dict | None = None) -> list[dict]:
          f"fine_pass.pose_model: {fp.get('pose_model')}, refine: {fp.get('refine')}"),
         ("pista de 14 puntos (TennisCourtDetector)", str((cfg.get("court") or {}).get("detector", "tcd14")).lower() == "tcd14",
          Path(court.TCD_ONNX).exists(), f"court.detector: {(cfg.get('court') or {}).get('detector', 'tcd14')}"),
-        ("giro 3D del tronco (MotionAGFormer)", ((cfg.get("trunk3d") or {}).get("model") or "motionagformer") == "motionagformer",
-         trunk3d.model_path(cfg) is not None, f"trunk3d.model: {(cfg.get('trunk3d') or {}).get('model', 'motionagformer')}"),
+        # 22-11: MeTRAbs adopted (decisiones_nube.yaml); it comes from TF Hub in each session (no model file)
+        (f"giro 3D del tronco ({'MeTRAbs' if trunk3d.model_name(cfg) == 'metrabs' else 'MotionAGFormer'})",
+         trunk3d.model_name(cfg) in ("metrabs", "motionagformer"),
+         trunk3d.model_name(cfg) == "metrabs" or trunk3d.model_path(cfg) is not None or has((cfg.get("trunk3d") or {}).get("onnx")),
+         f"trunk3d.model: {trunk3d.model_name(cfg)}"),
+        ("jugadora lejana (RF-DETR)", str(fp.get("far_detector") or "").lower() == "rfdetr",
+         (yolo_onnx.MODELS_DIR / yolo.RFDETR_ONNX).exists() or yolo.RFDETR_ONNX in on_volume,
+         f"fine_pass.far_detector: {fp.get('far_detector')}"),
         ("bola (TrackNetV3 de RacketVision)", bool((cfg.get("ball") or {}).get("onnx")), has((cfg.get("ball") or {}).get("onnx")),
          f"ball.onnx: {(cfg.get('ball') or {}).get('onnx')}"),
         ("raqueta (RTMPose de RacketVision)", bool((cfg.get("racket_face") or {}).get("pose_onnx")),
@@ -1879,7 +1929,7 @@ def models_in_use_items(cfg: dict | None = None) -> list[dict]:
     out = []
     for label, chosen, present, det in rows:
         st = "ok" if chosen and present else "aviso"
-        why = ("elegido y con su modelo en este PC" if st == "ok" else
+        why = (("elegido y con su modelo " + ("en el volumen de la nube" if on_volume else "en este PC")) if st == "ok" else
                "no elegido en la configuración" if not chosen else "elegido pero sin su fichero: se usa lo anterior")
         out.append(_item(12, "Modelos", f"Modelo en uso: {label}", st, f"{why} ({det})"))
     return out

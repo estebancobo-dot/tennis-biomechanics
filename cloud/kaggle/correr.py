@@ -436,7 +436,14 @@ def cloud_evidence(vol, data: Path, workers: int = 8) -> dict:
         return True
     with ThreadPoolExecutor(max_workers=workers) as pool:
         got = sum(pool.map(one, names))
-    return {"cola": cola, "ejecuciones": f"{got} de {len(names)}"}
+    try:                     # the models on the volume, by name (the audit's «Modelo en uso»: the report has no /models)
+        models = sorted({str(e.path).rstrip("/").split("/")[-1] for e in vol.listdir("models", recursive=True)
+                         if "FILE" in str(getattr(e.type, "name", e.type)).upper()})
+        (data / "modelos_volumen.json").write_text(json.dumps(models), encoding="utf-8")
+    except Exception as e:  # noqa: BLE001 — said in the run's state; the audit then looks on disk
+        models = []
+        print(f"modelos del volumen: no se pudieron listar ({type(e).__name__})", flush=True)
+    return {"cola": cola, "ejecuciones": f"{got} de {len(names)}", "modelos": len(models)}
 
 
 def report(job: dict, py: Path, data: Path, run: Path, vol, est: dict, registry: list[dict]) -> int:

@@ -19,7 +19,8 @@ def _manifest(d, **stages):
 def test_each_candidate_measured_or_said_why_not(tmp_path):
     out = tmp_path / "output"
     out.mkdir()
-    items = A.candidate_items(out)
+    none = tmp_path / "sin_medidas"                   # the PC's own case: no copy in the repository, no cloud decision
+    items = A.candidate_items(out, none)
     assert len(items) == len(A.CANDIDATE_MODELS) and {i["status"] for i in items} == {"aviso"}
     rep = {"version": 1, "device": "dml", "generated": "2026-11-03 10:00", "results": {
         "wasb": {"baseline": "ours (TrackNetV3, fp16)", "accuracy": "F1 0.863 / 0.906", "speed": "44.4 / 34.5 fps",
@@ -30,14 +31,14 @@ def test_each_candidate_measured_or_said_why_not(tmp_path):
     rd = tmp_path / "datasets" / "reports"            # where bench_candidates.py writes it, next to the output
     rd.mkdir(parents=True)
     (rd / "bench_candidates.json").write_text(json.dumps(rep), encoding="utf-8")
-    it = {i["name"].split(": ")[1].split(" ")[0]: i for i in A.candidate_items(out)}
+    it = {i["name"].split(": ")[1].split(" ")[0]: i for i in A.candidate_items(out, none)}
     assert it["wasb"]["status"] == "ok" and "no se adopta" in it["wasb"]["detail"] and "0.863" in it["wasb"]["detail"]
     assert it["mag3d"]["status"] == "ok" and "se adopta" in it["mag3d"]["detail"]
     assert it["ocr5"]["status"] == "falta" and "boom" in it["ocr5"]["detail"]
     assert it["rfdetr"]["status"] == "aviso" and it["bounce"]["status"] == "aviso"
     # the copy in the output folder wins over the one in datasets
     (out / "bench_candidates.json").write_text(json.dumps({"results": {}}), encoding="utf-8")
-    assert {i["status"] for i in A.candidate_items(out)} == {"aviso"}
+    assert {i["status"] for i in A.candidate_items(out, none)} == {"aviso"}
 
 
 def test_models_in_use_from_the_configuration_and_their_files(tmp_path, monkeypatch):
@@ -47,11 +48,15 @@ def test_models_in_use_from_the_configuration_and_their_files(tmp_path, monkeypa
     for p in f.values():
         p.write_bytes(b"x")
     monkeypatch.setattr(court, "TCD_ONNX", f["tcd"])
-    cfg = {"spotter": {"enabled": True, "onnx": str(f["spot"])}, "fine_pass": {"pose_model": "hybrid", "refine": "rtmpose-x"},
+    from tennisbio.pose import yolo, yolo_onnx
+    monkeypatch.setattr(yolo_onnx, "MODELS_DIR", tmp_path)
+    (tmp_path / yolo.RFDETR_ONNX).write_bytes(b"x")
+    cfg = {"spotter": {"enabled": True, "onnx": str(f["spot"])},
+           "fine_pass": {"pose_model": "hybrid", "refine": "rtmpose-x", "far_detector": "rfdetr"},
            "court": {"detector": "tcd14"}, "trunk3d": {"model": "motionagformer", "onnx": str(f["mag"])},
            "ball": {"onnx": str(f["ball"])}, "racket_face": {"pose_onnx": str(f["racket"])}, "scenes": {"onnx": str(f["scenes"])}}
     items = A.models_in_use_items(cfg)
-    assert len(items) == 7 and all(i["status"] == "ok" for i in items), items
+    assert len(items) == 8 and all(i["status"] == "ok" for i in items), items
     f["mag"].unlink()                                          # adopted but missing: the former reading is used
     cfg["court"]["detector"] = "lines"
     it = {i["name"]: i for i in A.models_in_use_items(cfg)}
@@ -311,3 +316,29 @@ def test_nothing_waits_for_the_user_in_the_cloud(tmp_path):
     f.write_text("{", encoding="utf-8")
     assert audit.manual_review_item([tmp_path])["status"] == "falta"
     assert audit.manual_review_item([tmp_path / "nada"])["status"] == "aviso"
+
+
+def test_the_cloud_audit_sees_every_candidate_measured_and_the_models_on_the_volume(tmp_path):
+    """22-11 (#312 point 5, B3 in the cloud): the PC's measure kept in the repository (quality on annotated data) and,
+    over it, the decisions measured in the cloud; the cloud's own candidates too; the models in use found on the
+    volume's list, MeTRAbs and RF-DETR as configured."""
+    import json as _json
+
+    from tennisbio import audit
+    items = {i["name"]: i for i in audit.candidate_items(tmp_path / "nada")}
+    assert all(i["status"] == "ok" for i in items.values()), [(n, i["detail"]) for n, i in items.items() if i["status"] != "ok"]
+    assert "no se adopta" in items["Modelo candidato medido: wasb (bola WASB)"]["detail"]
+    assert "F1 bola" in items["Modelo candidato medido: wasb (bola WASB)"]["detail"]          # the PC's own measure
+    rf = items["Modelo candidato medido: rfdetr (jugadora lejana RF-DETR)"]["detail"]
+    assert rf.startswith("en la nube (2026-11-21") and rf.endswith("se adopta")
+    assert items["Modelo candidato medido: metrabs (giro 3D MeTRAbs)"]["detail"].endswith("se adopta")
+    assert "Modelo candidato medido: totnet (bola TOTNet)" in items and "Modelo candidato medido: sapiens2 (pose Sapiens2 0.4B)" in items
+    (tmp_path / "modelos_volumen.json").write_text(_json.dumps(["balltrack.onnx", "rfdetr_medium_1152.onnx"]), encoding="utf-8")
+    from tennisbio.config import load_config
+    cfg = load_config()
+    cfg["paths"] = {**(cfg.get("paths") or {}), "cloud": str(tmp_path)}
+    use = {i["name"]: i for i in audit.models_in_use_items(cfg)}
+    assert use["Modelo en uso: bola (TrackNetV3 de RacketVision)"]["status"] == "ok"
+    assert "en el volumen de la nube" in use["Modelo en uso: bola (TrackNetV3 de RacketVision)"]["detail"]
+    assert use["Modelo en uso: giro 3D del tronco (MeTRAbs)"]["status"] == "ok"
+    assert use["Modelo en uso: jugadora lejana (RF-DETR)"]["status"] == "ok"
