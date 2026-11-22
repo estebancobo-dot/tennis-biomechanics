@@ -2172,5 +2172,18 @@
   "kaggle": "running (04:50)",
   "arranco": "2026-11-22 03:31",
   "espera_min": 6
+ },
+ "informe_beta5": {
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1795323058.3963976,
+  "accion": "informe",
+  "partido": "",
+  "inicio": "2026-11-22 04:50",
+  "ruta": "/runs/informe_beta5/estado.json",
+  "cpu": true,
+  "cuaderno": "tennisbio-informe-beta5"
  }
 }
