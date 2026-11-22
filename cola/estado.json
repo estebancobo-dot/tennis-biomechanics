@@ -2081,5 +2081,18 @@
    "nota": "distinta; 7 etapas iguales; distintas: candidates, fine, fine_doubtful, identity, players, spotting, view_clips, views; strokes.json: 28 de 28/28 golpes emparejados, medidas fuera de tolerancia: metrics.trunk3d_model, metrics.trunk3d_readings, metrics.shoulder_turn_3d_deg, metrics.hip_turn_3d_deg; strokes.json: temblor de b frente a a ×1.00 (mediana de 5327 medidas; b tiembla menos en el 12 %); strokes.json: temblor por familias: brazos ×1.00, muñecas ×1.00, otras ×1.00, piernas ×1.00, pies ×1.00, raqueta ×1.00, tronco ×1.00; strokes_opponent.json: 0 de 0/0 golpes emparejados; strokes_doubtful"
   },
   "partido": ""
+ },
+ "sinner_b2": {
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1795306327.2092586,
+  "accion": "partido",
+  "partido": "zverev-alexander-sinner-jannik-indian-wells-2026-semi-final",
+  "inicio": "2026-11-22 00:12",
+  "ruta": "/runs/kaggle_sinner_b2/estado.json",
+  "salida": "/output/zverev-alexander-sinner-jannik-indian-wells-2026-semi-final",
+  "cuaderno": "tennisbio-sinner-b2"
  }
 }
