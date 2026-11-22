@@ -2312,8 +2312,8 @@
   "salida": "/output/us-open-2026-r4-naomi-osaka-elena-rybakina",
   "cpu": true,
   "cuaderno": "tennisbio-actualizar-osaka",
-  "progreso": "views:  86 % (826/964 fotogramas de otras tomas) · 27 min · quedan ≈ 5 min (09:00:09; CPU 51 %, 8.5 GB)",
-  "kaggle": "running (09:00)",
+  "progreso": "view_clips:  33 % (100/304 recortes de repeticiones y otras cámaras) · 30 s · quedan ≈ 61 s (09:04:43; CPU 51 %, 8.5 GB)",
+  "kaggle": "running (09:06)",
   "arranco": "2026-11-22 08:35",
   "espera_min": 5
  }
