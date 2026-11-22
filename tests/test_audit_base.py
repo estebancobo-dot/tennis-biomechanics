@@ -292,3 +292,22 @@ def test_inputs_of_the_models_per_match():
     assert no_near["status"] == "aviso" and "jugadora cercana vista solo en el 10 %" in no_near["detail"]
     assert "anterior al 12-11" in bad(spotting={"summary": {"enabled": True}})["detail"]
     assert A.inputs_item("m", {"probe": {"summary": {"duration_min": 10}}}) is None      # no cheap pass yet
+
+
+def test_nothing_waits_for_the_user_in_the_cloud(tmp_path):
+    """22-11 (B7 in the cloud): without the PC's index, the queue's answer to the application (cola/app.json) says what
+    each match waits for; the identity click and her approval are the user's on purpose, anything else is a review."""
+    import json as _json
+
+    from tennisbio import audit
+    (tmp_path / "cola").mkdir()
+    f = tmp_path / "cola" / "app.json"
+    f.write_text(_json.dumps({"esperas": {"m1": "el clic de quién es ella", "m2": "tu aprobación del análisis entero"}}),
+                 encoding="utf-8")
+    it = audit.manual_review_item([tmp_path])
+    assert it["status"] == "ok" and "2 partidos" in it["detail"]
+    f.write_text(_json.dumps({"esperas": {"m1": "revisar los golpes dudosos"}}), encoding="utf-8")
+    assert audit.manual_review_item([tmp_path])["status"] == "aviso"
+    f.write_text("{", encoding="utf-8")
+    assert audit.manual_review_item([tmp_path])["status"] == "falta"
+    assert audit.manual_review_item([tmp_path / "nada"])["status"] == "aviso"

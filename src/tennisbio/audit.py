@@ -3237,7 +3237,25 @@ def manual_review_item(bases: list[Path]) -> dict:
                          f"{len(rows)} trabajos esperan a que el usuario los confirme: {ex}")
         return _item(5, "Automático", MANUAL_REVIEW_ITEM, "ok",
                      "ningún trabajo espera al usuario en la aplicación (el clic de quién es ella no cuenta)")
-    return _item(5, "Automático", MANUAL_REVIEW_ITEM, "aviso", "sin el índice de la aplicación (datos/tennisbio.db)")
+    for b in bases:                    # 22-11 (B7 in the cloud): the queue's answer to the application (cola/app.json)
+        f = b / "cola" / "app.json"
+        if not f.is_file():
+            continue
+        try:
+            ans = json.loads(f.read_text(encoding="utf-8"))
+        except (OSError, ValueError) as e:  # esperado: a check that cannot run is a check not met (#265)
+            return _item(5, "Automático", MANUAL_REVIEW_ITEM, "falta", f"no se pudo leer la respuesta de la cola ({e})")
+        waits = {m: str(w) for m, w in (ans.get("esperas") or {}).items()}
+        # the identity click (19-10) and her approval of a whole analysis (#262) are the user's on purpose: not a review
+        other = {m: w for m, w in waits.items() if not re.search(r"clic|aprob", w, re.I)}
+        if other:
+            ex = "; ".join(f"{m[:40]}: {w[:80]}" for m, w in list(other.items())[:3])
+            return _item(5, "Automático", MANUAL_REVIEW_ITEM, "aviso", f"{len(other)} partidos esperan algo del usuario: {ex}")
+        return _item(5, "Automático", MANUAL_REVIEW_ITEM, "ok",
+                     f"en la nube nada espera al usuario salvo el clic de quién es ella y su aprobación "
+                     f"({len(waits)} partidos con una de esas dos)")
+    return _item(5, "Automático", MANUAL_REVIEW_ITEM, "aviso",
+                 "sin el índice de la aplicación (datos/tennisbio.db) ni la respuesta de la cola (cola/app.json)")
 
 
 def side_checks(out_root: Path) -> list[dict]:

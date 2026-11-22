@@ -405,6 +405,40 @@ def linked_videos(out: Path) -> list[Path]:
     return sorted(found)
 
 
+CHROME = "/opt/google/chrome/chrome"           # `playwright install chrome` (Chrome plays the windows' H.264)
+
+
+def cloud_evidence(vol, data: Path, workers: int = 8) -> dict:
+    """22-11 (B1, B7, B8 in the cloud's own audit): what the audit reads to see the cloud (audit.cloud_queue_item,
+    cloud_use_item, progress_item, equivalence_item, poc_item, manual_review_item): the queue's state (/cola: its
+    passes, jobs, comparisons and the application's answer) and each run's estado.json (/runs/*/estado.json: the
+    resources per stage, progress, measures). Without them a report made on Kaggle said «falta» for all of them."""
+    from concurrent.futures import ThreadPoolExecutor
+    try:
+        modal_get("/cola", data)
+        cola = "traída"
+    except subprocess.CalledProcessError as e:
+        cola = f"no se pudo traer ({e.returncode})"
+    try:
+        names = sorted(str(e.path).rstrip("/").split("/")[-1] for e in vol.listdir("runs")
+                       if "DIR" in str(getattr(e.type, "name", e.type)).upper())
+    except Exception as e:  # noqa: BLE001 — Modal's NotFound or a network error: said in the run's state
+        return {"cola": cola, "ejecuciones": f"no se pudieron listar ({type(e).__name__})"}
+
+    def one(name: str) -> bool:
+        try:
+            data_b = b"".join(vol.read_file(f"runs/{name}/estado.json"))
+        except Exception:  # noqa: BLE001 — a run without its state yet
+            return False
+        f = data / "runs" / name / "estado.json"
+        f.parent.mkdir(parents=True, exist_ok=True)
+        f.write_bytes(data_b)
+        return True
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        got = sum(pool.map(one, names))
+    return {"cola": cola, "ejecuciones": f"{got} de {len(names)}"}
+
+
 def report(job: dict, py: Path, data: Path, run: Path, vol, est: dict, registry: list[dict]) -> int:
     """21-11 (P0.5e, #301; the user: «sí»): the report of the player's forehand and the Base audit on a Kaggle CPU
     session, as cloud/modal_app.informe does on Modal (out of credit until the month turns): the analysed matches'
@@ -429,13 +463,19 @@ def report(job: dict, py: Path, data: Path, run: Path, vol, est: dict, registry:
         (root / m["id"]).symlink_to(data / "output" / m["id"], target_is_directory=True)
     est["partidos"] = [m["id"] for m in done]
     t0, rc = time.time(), {}
+    est["evidencia_nube"] = cloud_evidence(vol, data) if vol is not None else "sin volumen"
+    # 22-11: the audit's screen checks need a browser that plays the windows' H.264 (the first screen, «Aprende»…)
+    _run(["uv", "pip", "install", "-q", "--python", str(py), "playwright>=1.48,<2"])
+    _run([str(py), "-m", "playwright", "install", "--with-deps", "chrome"])
+    env = {**env_for(data), "TENNISBIO_BROWSER": CHROME}
     with open(run / "log.txt", "a", encoding="utf-8") as lg:
         # 21-11 (P0.5e): the export (the short PDF and the conclusions' montages, `tennisbio export`) with the report, so
-        # the application brings it too; its failure is said but never holds the report back
+        # the application brings it too; its failure is said but never holds the report back. 22-11: before the audit,
+        # so the audit sees it (B5)
         for name, args in (("informe", ["report"]),
-                           ("auditoria", ["audit", "--root", str(root), "--out", str(data / "output" / "auditoria")]),
-                           ("exportar", ["export", "--solo-montajes"])):
-            p = subprocess.run([str(py), "-m", "tennisbio.cli", *args], cwd=REPO, env=env_for(data), capture_output=True,
+                           ("exportar", ["export", "--solo-montajes"]),
+                           ("auditoria", ["audit", "--root", str(root), "--out", str(data / "output" / "auditoria")])):
+            p = subprocess.run([str(py), "-m", "tennisbio.cli", *args], cwd=REPO, env=env, capture_output=True,
                                text=True, encoding="utf-8", errors="replace")
             lg.write(f"===== {name} (código {p.returncode})\n{p.stdout}\n{p.stderr[-4000:]}\n")
             rc[name] = p.returncode

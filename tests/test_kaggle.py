@@ -300,17 +300,23 @@ def test_the_report_on_a_kaggle_cpu_session(monkeypatch, tmp_path):
             (out / "exportar_derecha" / "montajes" / "01_x.mp4").write_bytes(b"mm")
             (out / "exportar_derecha" / "montajes" / "_tmp" / "card_01.mp4").write_bytes(b"c")
             (out / "exportar_derecha" / "pila.txt").write_text("x")
-            R.returncode = fail_export
+            r = R()
+            r.returncode = fail_export                 # this call's own code (the audit after it keeps 0)
+            return r
         else:
             (out / "auditoria").mkdir(parents=True)
             (out / "auditoria" / "auditoria.json").write_text("{}")
             (out / "auditoria" / "auditoria.md").write_text("# a")
         return R()
     monkeypatch.setattr(sp, "run", fake_run)
+    installs = []
+    monkeypatch.setattr(correr, "_run", lambda cmd, **kw: installs.append(cmd))
     fail_export = 0
     est = {}
     assert correr.report(j, Path("py"), data, run, None, est, []) == 0
-    assert ran == ["report", "audit", "export"] and est["partidos"] == ["m1"] and est["estado"] == "hecho"
+    # 22-11: the export before the audit (B5 seen by it), and a browser that plays H.264 for its screen checks
+    assert ran == ["report", "export", "audit"] and est["partidos"] == ["m1"] and est["estado"] == "hecho"
+    assert any("chrome" in c for c in installs) and est["evidencia_nube"] == "sin volumen"
     assert est["exportar"] == "hecha"
     assert "/output/m1" in got and "/output/_prueba_m1" in got                  # read, but only m1 is analysed
     assert put[0] == (["auditoria/auditoria.json", "auditoria/auditoria.md", "exportar_derecha/montajes/01_x.mp4",
@@ -395,3 +401,30 @@ def test_the_click_photos_are_made_where_identity_ran(monkeypatch, capsys):
     src = (ROOT / "cloud" / "kaggle" / "correr.py").read_text(encoding="utf-8")
     assert 'nube.CLICK_PHOTOS, str(out_dir), str(data / "videos" / src["video"])' in src
     assert '"identity" in (job.get("etapas") or [])' in src
+
+
+def test_the_cloud_report_brings_what_its_audit_reads_of_the_cloud(tmp_path, monkeypatch):
+    """22-11 (B1, B7, B8): a report made on Kaggle said «falta» for the queue, the resources per stage and the progress:
+    the queue's state (/cola) and every run's estado.json (/runs/*/estado.json) come down before the audit."""
+    import types
+    got = []
+    monkeypatch.setattr(correr, "modal_get", lambda remote, local: got.append(remote))
+
+    class E:
+        def __init__(self, path, kind):
+            self.path, self.type = path, types.SimpleNamespace(name=kind)
+
+    class V:
+        def listdir(self, folder):
+            assert folder == "runs"
+            return [E("runs/kaggle_sinner_b3", "DIRECTORY"), E("runs/informe", "DIRECTORY"), E("runs/x.txt", "FILE"),
+                    E("runs/vacia", "DIRECTORY")]
+
+        def read_file(self, path):
+            if "vacia" in path:
+                raise FileNotFoundError(path)
+            return [b'{"estado": "hecho"}']
+    ev = correr.cloud_evidence(V(), tmp_path)
+    assert got == ["/cola"] and ev == {"cola": "traída", "ejecuciones": "2 de 3"}
+    assert (tmp_path / "runs" / "kaggle_sinner_b3" / "estado.json").read_text() == '{"estado": "hecho"}'
+    assert not (tmp_path / "runs" / "vacia").exists()

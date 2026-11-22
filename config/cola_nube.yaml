@@ -311,6 +311,9 @@ trabajos:
   # 22-11 02:40: sinner_b2 acabó en «error» en fine_doubtful (47 %) sin motivo en su estado; la pasada fina sí terminó
   # (4.701 s) con la RAM hasta 26,9 de 31,3 GB: el final de su registro y su estado, antes de relanzar nada
   - {id: leer_sinner_b2, accion: leer, rutas: [/runs/kaggle_sinner_b2/log.txt, /runs/kaggle_sinner_b2/estado.json]}
+  # 22-11 04:50 (#312, punto 1: las pruebas de cierre de B1, B5, B7 y B8 en la auditoría hecha en la nube): el informe
+  # trae ahora el estado de la cola y de cada ejecución, exporta antes de auditar y tiene Chrome para las capturas
+  - {id: informe_beta5, accion: informe, donde: kaggle}
   # 21-11 10:10 (#295, cierre de la nube nativa; sirve con cualquier decisión pendiente del usuario): F3Set con el código de
   # hoy y todo lo adoptado (bola en un hilo, marcador con CUDA, jugadora lejana con RF-DETR…) frente a la nube2 (Modal,
   # 14-11: 469 de 517, precisión 0,94), con el mismo script. Regla escrita antes (tennisbio.infra.poc_f3set): no peor en

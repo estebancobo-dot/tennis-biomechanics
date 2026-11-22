@@ -54,11 +54,11 @@ la auditoría las marcará «sin comprobación automática asignada».
 | Estado | Nº |
 |---|---|
 | HECHO | 124 |
-| PARCIAL | 151 |
+| PARCIAL | 152 |
 | FALTA | 23 |
 | NO MEDIBLE | 3 |
 | NO APLICA | 10 |
-| **Total** | **311** |
+| **Total** | **312** |
 
 **27-10:** filas 220-245 nuevas: todo lo pedido en el chat del 19-10 al 27-10 (releídos los mensajes) y lo que
 salió en la prueba de valor; ninguna fila borrada.
@@ -398,6 +398,7 @@ lateral (entreno)» · ≥12 = solo se muestra con 12 golpes o más (`model.MIN_
 | 309 | «Sí, haz eso» (Chat, 21-11, tras «¿por qué crees que la nube nativa ya está y no merece la pena seguir midiendo?»): medir el 3D antes de los partidos, repartir la pasada fina (T19) y lo pendiente de la aplicación del PC | PARCIAL | `docs/registro_decisiones.md` (Cuerpo 3D), `docs/p0_plan.md` P0.5e | — | — | **Corregido el 21-11:** la nube nativa no estaba terminada; lo medido cubre la pose 2D, la bola, los golpes, la raqueta, el marcador y la jugadora lejana, pero falta el **3D de las rotaciones** (fiabilidad media; se mide con CalTennis: SAM 3D Body sin registro; GVHMR/WHAM si el usuario se registra en SMPL), **T19** (la pasada fina repartida entre las 2 sesiones) y en la aplicación: miniaturas de la galería, vídeo con capas en cada fase de la lección, fotogramas de «La bola y ella», tira de contactos, estroboscópica de los golpes sin trayectoria, exportación y disco. Los partidos, después del 3D (#295: cada partido una sola vez). 21-11: la ventana se abre al momento y los resultados de la nube llegan por detrás. |
 | 310 | «Nunca se acaba el análisis de la nube» y «Sí. Y avanza en paralelo. Ni siquiera sé si la app de Windows funciona bien» (Chat, 21-11) | PARCIAL | `config/cola_nube.yaml` (`partidos_en_espera` vacío) | — | — | **Aprobación de los partidos (#262):** Sinner (prueba corta y partido por partes) y poner al día Osaka, Pegula y Zheng, y el informe de los 6, sin esperar al 3D ni a F3Set: si MeTRAbs gana, solo se recalcula el giro 3D desde la pose guardada; si F3Set señala una causa, se arregla antes de los siguientes. En paralelo: la prueba de MeTRAbs, F3Set golpe a golpe y comprobar que la aplicación de Windows funciona (sin pedir nada al usuario). |
 | 311 | «Sí, pero es lo de siempre. Haces pronóstico que no se cumple y es todo inventado» y «Llevo 2 webs y me pides otra» (Chat, 21-11) | PARCIAL | `config/cola_nube.yaml` (`sinner_a` sin esperar a la prueba corta; `sinner_b` con `espera_tambien`), `cloud/cola.py` (`espera_tambien`), CLAUDE.md («Sin pronósticos») | `tests/test_cola.py::test_a_part_also_waits_for_another_job_without_running_on_it` | — | **(1)** La parte de CPU de Sinner (cortes, pista, audio; 0 €) va ya en la CPU de Kaggle, sin esperar a la prueba corta, que Kaggle no arranca por falta de GPU; la parte de GPU sigue esperando a la prueba corta. **(2)** Sin pronósticos: Claude no da horas ni fechas de lo que hará la nube; solo lo que ya ha pasado y dónde lo ve el usuario (kaggle.com/work, `nube-logs`). **(3)** Ninguna cuenta ni web nueva (Lightning AI retirado: no medido). |
+| 312 | «Sí» al orden propuesto de lo que se puede hacer en la nube de Claude (Chat, 22-11): 1 pruebas de cierre de B1, B7 y B8 en la nube → 2 niveles de error C0-C4 → 4 borrar el vídeo al aceptar → 5 preparar F3ED, WASB y la pista de 14 puntos → 7 propuesta de diseño visual → 6 puertos de vídeo y modelos; y 3 (F3Set golpe a golpe) cuando llegue | PARCIAL | `cloud/kaggle/correr.py` (`cloud_evidence`, exportar antes de auditar, Chrome), `tennisbio.audit.manual_review_item` (nube) | `tests/test_kaggle.py`, `tests/test_audit_base.py` | — | En curso por orden; cada punto con su prueba en la nube real (punto 1: `informe_beta5`). |
 | 269 | Estado y progreso: cuánto falta para lanzar los 6 partidos, qué hay en marcha y pendiente en la nube y en el PC (en serie o en paralelo), qué queda para cerrar la Base, por qué seguimos así y qué falló por la noche (Chat, 13-11) | HECHO | respuesta en el chat; `docs/estado_proyecto.md`, «Resumen de la noche (12-11 → 13-11)» y la tabla de tareas | — | — | Como #266, el estado vive en la tabla de tareas. |
 
 ## Lo más grave que falta (por impacto en «copiar su derecha»)
