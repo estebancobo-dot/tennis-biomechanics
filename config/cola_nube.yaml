@@ -333,6 +333,8 @@ trabajos:
   # llegaba a nube/; Chrome con la página como fichero sí: por eso medir_app pasaba). Arreglado; la misma prueba, ahora
   # a través del servidor de pywebview, con los resultados reales
   - {id: medir_app_c, accion: medir, prueba: app, donde: kaggle, cpu: true}
+  # 11:15: la c no llegó a abrir la página (el servidor de pywebview aún no escuchaba: «connection refused»); otra vez
+  - {id: medir_app_d, accion: medir, prueba: app, donde: kaggle, cpu: true}
   # 21-11 10:10 (#295, cierre de la nube nativa; sirve con cualquier decisión pendiente del usuario): F3Set con el código de
   # hoy y todo lo adoptado (bola en un hilo, marcador con CUDA, jugadora lejana con RF-DETR…) frente a la nube2 (Modal,
   # 14-11: 469 de 517, precisión 0,94), con el mismo script. Regla escrita antes (tennisbio.infra.poc_f3set): no peor en

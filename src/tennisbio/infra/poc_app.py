@@ -67,9 +67,20 @@ def make_page(root: Path) -> tuple[Path, dict]:
 def serve(page: Path) -> str:
     """22-11: the page as the PC's window loads it: through pywebview's own HTTP server (rooted at the page's folder).
     Opened as a file, Chrome reached «../nube/…» and the check passed 24 of 24 while the PC's window showed no video."""
+    import socket
+    import time as _t
+    from urllib.parse import urlparse
+
     from webview.http import BottleServer
     addr, _, _ = BottleServer.start_server([str(page)], None)
-    return addr.rstrip("/") + "/" + page.name
+    u = urlparse(addr)
+    for _ in range(100):               # 22-11 (medir_app_c): on Kaggle its thread was not listening yet (refused)
+        try:
+            with socket.create_connection((u.hostname, u.port), timeout=0.5):
+                return addr.rstrip("/") + "/" + page.name
+        except OSError:  # esperado: not listening yet; tried again for 10 s
+            _t.sleep(0.1)
+    raise RuntimeError(f"el servidor HTTP de pywebview no escucha en {addr} tras 10 s")
 
 
 def probe(page: Path, n: int, channel: str = "chrome") -> dict:
