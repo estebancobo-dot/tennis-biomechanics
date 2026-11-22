@@ -1,6 +1,6 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-22 02:37 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 15.5 h de GPU esta semana (tope 28 h; Kaggle dice 12.52 h usadas de 30.0, se renueva 2026-11-28 00:00)
+Última vuelta: 2026-11-22 02:41 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 15.5 h de GPU esta semana (tope 28 h; Kaggle dice 12.52 h usadas de 30.0, se renueva 2026-11-28 00:00)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
@@ -112,6 +112,7 @@
 | informe_beta4 | informe |  | hecho | kaggle |  |
 | medir_app_b | medir |  | hecho | kaggle |  |
 | leer_exportacion | leer |  | error | github | leídos: output__exportar_derecha__exportacion.json; faltan: /runs/informe/log.txt: FileNotFoundError: path "/runs/informe/log.txt" does not exist |
+| leer_sinner_b2 | leer |  | hecho | github | leídos: runs__kaggle_sinner_b2__log.txt, runs__kaggle_sinner_b2__estado.json |
 | medir_f3set_hoy | medir |  | error | kaggle | cancelado: 21-11 14:25: sus 3 cuadernos se quedaron «en cola» en Kaggle (desde las 10:16) mientras trabajos lanzados después arrancaban al momento; el mismo trabajo con otro nombre (medir_f3set_hoy_b) dice si es el cuaderno o el trabajo |
 | medir_3d_metrabs | medir |  | error | kaggle |  |
 | medir_3d_metrabs_b | medir |  | error | kaggle | cancelado: 21-11 13:10: 2 h en cola de Kaggle sin GPU libre (no empezó): su plaza, para comprobar la P100 (medir_raqueta_p100); se lanza otra vez en la GPU que sirva |

@@ -2105,5 +2105,15 @@
    "segundos": 7552,
    "horas_kaggle": 2.26
   }
+ },
+ "leer_sinner_b2": {
+  "estado": "hecho",
+  "accion": "leer",
+  "donde": "github",
+  "fin": "2026-11-22 02:41",
+  "resultado": {
+   "nota": "leídos: runs__kaggle_sinner_b2__log.txt, runs__kaggle_sinner_b2__estado.json"
+  },
+  "partido": ""
  }
 }
