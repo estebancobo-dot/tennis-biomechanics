@@ -1,6 +1,6 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-22 11:05 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 3.9 h de GPU esta semana (tope 28 h; Kaggle dice 19.73 h usadas de 30.0, se renueva 2026-11-28 00:00)
+Última vuelta: 2026-11-22 11:08 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 3.9 h de GPU esta semana (tope 28 h; Kaggle dice 19.77 h usadas de 30.0, se renueva 2026-11-28 00:00)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
@@ -104,7 +104,7 @@
 | medir_lejana_f3set | medir |  | hecho | kaggle |  |
 | leer_f3set_d_lejana | leer |  | hecho | github | leídos: runs__kaggle_medir_f3set_hoy_d__log.txt |
 | leer_f3set_d_dubai | leer |  | hecho | github | leídos: runs__kaggle_medir_f3set_hoy_d__log.txt |
-| actualizar_pegula_b | partido | elena-rybakina-jessica-pegula-miami-2026-quarter-final | en_marcha | kaggle | Kaggle: running (11:05), intento 1 · identity terminada a las 10:53:26 en 6.6 min (11:05:05; GPU 72 %·0 %, CPU 59 %, 3.3 GB) |
+| actualizar_pegula_b | partido | elena-rybakina-jessica-pegula-miami-2026-quarter-final | en_marcha | kaggle | Kaggle: running (11:08), intento 1 · identity terminada a las 10:53:26 en 6.6 min (11:08:11; GPU 40 %·0 %, CPU 66 %, 3.4 GB) |
 | actualizar_pegula | partido | elena-rybakina-jessica-pegula-miami-2026-quarter-final | pendiente |  | espera a actualizar_pegula_b (en_marcha) |
 | actualizar_zheng_a | partido | zheng-qinwen-elena-rybakina | pendiente |  | espera a actualizar_pegula (pendiente) |
 | actualizar_zheng_b | partido | zheng-qinwen-elena-rybakina | pendiente |  | espera a actualizar_zheng_a (pendiente) |
@@ -119,7 +119,7 @@
 | leer_sinner_b2 | leer |  | hecho | github | leídos: runs__kaggle_sinner_b2__log.txt, runs__kaggle_sinner_b2__estado.json |
 | informe_beta5 | informe |  | hecho | kaggle |  |
 | informe_beta6 | informe |  | hecho | kaggle |  |
-| medir_app_c | medir |  | en_marcha | kaggle |  |
+| medir_app_c | medir |  | en_marcha | kaggle | Kaggle: running (11:08), intento 1 |
 | medir_f3set_hoy | medir |  | error | kaggle | cancelado: 21-11 14:25: sus 3 cuadernos se quedaron «en cola» en Kaggle (desde las 10:16) mientras trabajos lanzados después arrancaban al momento; el mismo trabajo con otro nombre (medir_f3set_hoy_b) dice si es el cuaderno o el trabajo |
 | medir_3d_metrabs | medir |  | error | kaggle | (de su registro) ModuleNotFoundError: No module named 'pkg_resources' |
 | medir_3d_metrabs_b | medir |  | error | kaggle | cancelado: 21-11 13:10: 2 h en cola de Kaggle sin GPU libre (no empezó): su plaza, para comprobar la P100 (medir_raqueta_p100); se lanza otra vez en la GPU que sirva |
