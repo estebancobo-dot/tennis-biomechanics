@@ -2275,7 +2275,7 @@
   }
  },
  "actualizar_osaka_b": {
-  "estado": "en_marcha",
+  "estado": "hecho",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 1,
@@ -2286,10 +2286,31 @@
   "ruta": "/runs/kaggle_actualizar_osaka_b/estado.json",
   "salida": "/output/us-open-2026-r4-naomi-osaka-elena-rybakina",
   "cuaderno": "tennisbio-actualizar-osaka-b",
-  "kaggle": "running (08:25)",
+  "kaggle": "complete (08:30)",
   "kaggle_detalle": "queued | estebancoboc/tennisbio-actualizar-osaka-b has status \"KernelWorkerStatus.QUEUED\"",
   "arranco": "2026-11-22 06:42",
   "espera_min": 31,
-  "progreso": "fine:  97 % (224/232 golpes candidatos · 215 confirmados · 0 ventanas descartadas sin pose) · 58 min · quedan ≈ 2 min (08:23:03; GPU 25 %·9 %, CPU 82 %, 26.6 GB)"
+  "progreso": "fine_doubtful terminada a las 08:27:57 en 3.2 min (08:27:37)",
+  "fin": "2026-11-22 08:30",
+  "resultado": {
+   "estado": "hecho",
+   "coste_usd": 0.0,
+   "segundos": 6070,
+   "horas_kaggle": 1.82
+  }
+ },
+ "actualizar_osaka": {
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1795336212.9206018,
+  "accion": "partido",
+  "partido": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+  "inicio": "2026-11-22 08:30",
+  "ruta": "/runs/kaggle_actualizar_osaka/estado.json",
+  "salida": "/output/us-open-2026-r4-naomi-osaka-elena-rybakina",
+  "cpu": true,
+  "cuaderno": "tennisbio-actualizar-osaka"
  }
 }

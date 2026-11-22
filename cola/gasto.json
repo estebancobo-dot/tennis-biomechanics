@@ -235,16 +235,17 @@
      "horas": 4.13
     },
     "actualizar_osaka_b": {
-     "estimado_h": 3.15
+     "estimado_h": 3.15,
+     "horas": 1.82
     }
    }
   }
  },
  "kaggle_real": {
-  "usadas_h": 18.89,
+  "usadas_h": 18.94,
   "total_h": 30.0,
   "renueva": "2026-11-28 00:00:00",
-  "ts": 1795335916.7931814
+  "ts": 1795336212.9206018
  },
  "aviso_ocioso_ts": 1795333144.60136
 }
