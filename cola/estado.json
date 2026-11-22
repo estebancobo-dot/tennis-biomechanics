@@ -2038,19 +2038,18 @@
   "estado": "en_marcha",
   "donde": "kaggle",
   "llamada": "kaggle",
-  "intentos": 1,
-  "lanzado_ts": 1795301757.4485502,
+  "intentos": 2,
+  "lanzado_ts": 1795305866.925177,
   "accion": "partido",
   "partido": "zverev-alexander-sinner-jannik-indian-wells-2026-semi-final",
-  "inicio": "2026-11-21 22:55",
+  "inicio": "2026-11-22 00:04",
   "ruta": "/runs/kaggle_sinner_b/estado.json",
   "salida": "/output/zverev-alexander-sinner-jannik-indian-wells-2026-semi-final",
-  "cuaderno": "tennisbio-sinner-b",
-  "adoptado": "ya estaba en Kaggle («error»): una vuelta anterior lo lanzó sin guardar su estado",
-  "kaggle": "error (00:02)"
+  "cuaderno": "tennisbio-sinner-b-2",
+  "nota": "la sesión de Kaggle acabó con «error» sin escribir su estado"
  },
  "medir_f3set_hoy_c": {
-  "estado": "en_marcha",
+  "estado": "error",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 1,
@@ -2063,7 +2062,10 @@
   "adoptado": "ya estaba en Kaggle («running»): una vuelta anterior lo lanzó sin guardar su estado",
   "kaggle": "running (00:02)",
   "arranco": "2026-11-22 00:02",
-  "espera_min": 66
+  "espera_min": 66,
+  "resultado": {
+   "nota": "cancelado: 21-11 23:58: corre dos veces en Kaggle (cada vuelta caída de 23:01 a 23:31 lo volvió a lanzar: dos versiones, dos sesiones de GPU; Kaggle contó 1,78 h en una hora) y deja a sinner_b sin GPU. Se borra su cuaderno y va otra vez detrás de Sinner como medir_f3set_hoy_d"
+  }
  },
  "comparar_gauff_v36_v38": {
   "estado": "revisar",

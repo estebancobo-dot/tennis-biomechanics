@@ -1,0 +1,21 @@
+{
+ "estado": "en curso",
+ "poc": null,
+ "kaggle": {
+  "python": "3.13.16",
+  "nucleos": 4,
+  "memoria_gib": {
+   "MemTotal": 31.3,
+   "MemAvailable": 30.0
+  },
+  "disco_libre_gib": {
+   "/tmp": 2514.5,
+   "/kaggle/working": 19.5
+  },
+  "gpu": "Tesla T4, 15360 MiB\nTesla T4, 15360 MiB",
+  "ffmpeg": "/usr/bin/ffmpeg",
+  "clave_modal": true
+ },
+ "horas_kaggle": null,
+ "nota": null
+}

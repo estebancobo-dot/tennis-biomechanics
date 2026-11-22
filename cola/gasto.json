@@ -218,15 +218,16 @@
      "estimado_h": 9.45
     },
     "medir_f3set_hoy_c": {
-     "estimado_h": 5.0
+     "estimado_h": 5.0,
+     "horas": 1.14
     }
    }
   }
  },
  "kaggle_real": {
-  "usadas_h": 10.16,
+  "usadas_h": 10.24,
   "total_h": 30.0,
   "renueva": "2026-11-28 00:00:00",
-  "ts": 1795305725.1751566
+  "ts": 1795305866.925177
  }
 }

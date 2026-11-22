@@ -1,6 +1,6 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-22 00:02 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 4.5 h de GPU esta semana (tope 28 h; Kaggle dice 10.16 h usadas de 30.0, se renueva 2026-11-28 00:00)
+Última vuelta: 2026-11-22 00:04 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 8.3 h de GPU esta semana (tope 28 h; Kaggle dice 10.24 h usadas de 30.0, se renueva 2026-11-28 00:00)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
@@ -93,7 +93,7 @@
 | prueba_sinner | prueba | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | error | kaggle | cancelado: #295: la prueba corta de un partido espera con su partido a la nube nativa (comprueba el código con el que se analizará); se repite entonces como prueba_sinner_b |
 | prueba_sinner_b | prueba | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | hecho | kaggle |  |
 | sinner_a | partido | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | hecho | kaggle |  |
-| sinner_b | partido | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | en_marcha | kaggle | Kaggle: error (00:02), intento 1 |
+| sinner_b | partido | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | en_marcha | kaggle |  |
 | sinner | partido | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | pendiente |  | espera a sinner_b (en_marcha) |
 | actualizar_osaka_a | partido | us-open-2026-r4-naomi-osaka-elena-rybakina | pendiente |  | espera a sinner (pendiente) |
 | actualizar_osaka_b | partido | us-open-2026-r4-naomi-osaka-elena-rybakina | pendiente |  | espera a actualizar_osaka_a (pendiente) |
@@ -117,7 +117,8 @@
 | medir_raqueta_p100 | medir |  | hecho | kaggle |  |
 | medir_3d_metrabs_c | medir |  | hecho | kaggle |  |
 | medir_f3set_hoy_b | medir |  | hecho | kaggle |  |
-| medir_f3set_hoy_c | medir |  | en_marcha | kaggle | Kaggle: running (00:02), intento 1 |
+| medir_f3set_hoy_c | medir |  | error | kaggle | cancelado: 21-11 23:58: corre dos veces en Kaggle (cada vuelta caída de 23:01 a 23:31 lo volvió a lanzar: dos versiones, dos sesiones de GPU; Kaggle contó 1,78 h en una hora) y deja a sinner_b sin GPU. Se borra su cuaderno y va otra vez detrás de Sinner como medir_f3set_hoy_d |
+| medir_f3set_hoy_d | medir |  | pendiente |  | espera a sinner_b (en_marcha) |
 | prueba_gauff_v38_a | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
 | prueba_gauff_v38_b | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | error | kaggle | cancelado: 21-11 20:45: sus 2 cuadernos, en cola de Kaggle desde las 15:36 sin arrancar (desde las 19:20 sin nada más en marcha): otra vez como prueba_gauff_v38_b2 |
 | prueba_gauff_v38_b2 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
