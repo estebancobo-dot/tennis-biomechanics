@@ -1,6 +1,6 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-22 13:26 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 3.9 h de GPU esta semana (tope 28 h; Kaggle dice 22.07 h usadas de 30.0, se renueva 2026-11-28 00:00)
+Última vuelta: 2026-11-22 13:31 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 3.9 h de GPU esta semana (tope 28 h; Kaggle dice 22.15 h usadas de 30.0, se renueva 2026-11-28 00:00)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
@@ -104,7 +104,7 @@
 | medir_lejana_f3set | medir |  | hecho | kaggle |  |
 | leer_f3set_d_lejana | leer |  | hecho | github | leídos: runs__kaggle_medir_f3set_hoy_d__log.txt |
 | leer_f3set_d_dubai | leer |  | hecho | github | leídos: runs__kaggle_medir_f3set_hoy_d__log.txt |
-| actualizar_pegula_b | partido | elena-rybakina-jessica-pegula-miami-2026-quarter-final | en_marcha | kaggle | Kaggle: running (13:26), intento 1 · fine:  86 % (383/443 golpes candidatos · 364 confirmados · 0 ventanas descartadas sin pose) · 99 min · quedan ≈ 16 min (13:25:19; GPU 80 %·42 %, CPU 85 %, 26.2 GB) |
+| actualizar_pegula_b | partido | elena-rybakina-jessica-pegula-miami-2026-quarter-final | en_marcha | kaggle | Kaggle: running (13:31), intento 1 · fine:  90 % (397/443 golpes candidatos · 378 confirmados · 0 ventanas descartadas sin pose) · 105 min · quedan ≈ 12 min (13:29:58; GPU 80 %·48 %, CPU 84 %, 26.1 GB) |
 | actualizar_pegula | partido | elena-rybakina-jessica-pegula-miami-2026-quarter-final | pendiente |  | espera a actualizar_pegula_b (en_marcha) |
 | actualizar_zheng_a | partido | zheng-qinwen-elena-rybakina | pendiente |  | espera a actualizar_pegula (pendiente) |
 | actualizar_zheng_b | partido | zheng-qinwen-elena-rybakina | pendiente |  | espera a actualizar_zheng_a (pendiente) |
