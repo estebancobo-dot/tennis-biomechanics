@@ -289,6 +289,9 @@ trabajos:
   # 22-11 10:10: RF-DETR no es la causa (halla a la lejana en el 99,7 % frente al 91,5 % de YOLO); las líneas de las
   # ventanas del lado lejano del registro de F3Set, para ver por qué se pierden sus 8 golpes lejanos
   - {id: leer_f3set_d_lejana, accion: leer, rutas: [/runs/kaggle_medir_f3set_hoy_d/log.txt], filtro: "ventana w\\d+_\\d+ \\(far|lejana|Elena_Rybakina"}
+  # 22-11 10:20: los 2 golpes lejanos de Dubai (1318,4 y 1321,5 s) tenían candidato pero ninguna ventana: todo lo del registro
+  # alrededor de ese tramo (ventanas que empiezan entre 1300 y 1329 s) y lo que dice la pasada fina de ventanas omitidas
+  - {id: leer_f3set_d_dubai, accion: leer, rutas: [/runs/kaggle_medir_f3set_hoy_d/log.txt], filtro: "w0013[0-2]\\d|Dubai|omit|descart|sin ventana|presupuesto|límite"}
   - {id: actualizar_pegula_b, accion: partido, partido: elena-rybakina-jessica-pegula-miami-2026-quarter-final, tras: actualizar_pegula_a, espera_tambien: [medir_lejana_f3set], aprobado: true, etapas: [players, score, identity, spotting, candidates, fine, fine_opponent, fine_doubtful], minutos_video: 112}
   - {id: actualizar_pegula, accion: partido, partido: elena-rybakina-jessica-pegula-miami-2026-quarter-final, tras: actualizar_pegula_b, aprobado: true, cpu: true, etapas: [views, views_link, view_clips, slowmo_fine], minutos_video: 112}
   - {id: actualizar_zheng_a, accion: partido, partido: zheng-qinwen-elena-rybakina, tras: actualizar_pegula, aprobado: true, cpu: true, etapas: [probe, scenes, court, audio], minutos_video: 117}
