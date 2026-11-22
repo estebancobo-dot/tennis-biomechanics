@@ -231,7 +231,8 @@
      "horas": 0.45
     },
     "medir_f3set_hoy_d": {
-     "estimado_h": 5.0
+     "estimado_h": 5.0,
+     "horas": 4.13
     },
     "actualizar_osaka_b": {
      "estimado_h": 3.15
@@ -240,9 +241,10 @@
   }
  },
  "kaggle_real": {
-  "usadas_h": 18.03,
+  "usadas_h": 18.12,
   "total_h": 30.0,
   "renueva": "2026-11-28 00:00:00",
-  "ts": 1795332836.2186437
- }
+  "ts": 1795333144.60136
+ },
+ "aviso_ocioso_ts": 1795333144.60136
 }

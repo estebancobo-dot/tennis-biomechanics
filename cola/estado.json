@@ -2174,7 +2174,7 @@
   }
  },
  "medir_f3set_hoy_d": {
-  "estado": "en_marcha",
+  "estado": "hecho",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 1,
@@ -2184,9 +2184,14 @@
   "inicio": "2026-11-22 03:25",
   "ruta": "/runs/kaggle_medir_f3set_hoy_d/estado.json",
   "cuaderno": "tennisbio-medir-f3set-hoy-d",
-  "kaggle": "running (07:33)",
+  "kaggle": "complete (07:39)",
   "arranco": "2026-11-22 03:31",
-  "espera_min": 6
+  "espera_min": 6,
+  "fin": "2026-11-22 07:39",
+  "resultado": {
+   "estado": "hecho",
+   "horas_kaggle": 4.13
+  }
  },
  "informe_beta5": {
   "estado": "hecho",
@@ -2281,10 +2286,10 @@
   "ruta": "/runs/kaggle_actualizar_osaka_b/estado.json",
   "salida": "/output/us-open-2026-r4-naomi-osaka-elena-rybakina",
   "cuaderno": "tennisbio-actualizar-osaka-b",
-  "kaggle": "running (07:33)",
+  "kaggle": "running (07:39)",
   "kaggle_detalle": "queued | estebancoboc/tennisbio-actualizar-osaka-b has status \"KernelWorkerStatus.QUEUED\"",
   "arranco": "2026-11-22 06:42",
   "espera_min": 31,
-  "progreso": "fine:  32 % (74/232 golpes candidatos · 67 confirmados · 0 ventanas descartadas sin pose) · 9 min · quedan ≈ 20 min (07:33:06; GPU 65 %·49 %, CPU 78 %, 8.0 GB)"
+  "progreso": "fine:  44 % (103/232 golpes candidatos · 95 confirmados · 0 ventanas descartadas sin pose) · 13 min · quedan ≈ 17 min (07:37:17; GPU 0 %·55 %, CPU 81 %, 7.7 GB)"
  }
 }

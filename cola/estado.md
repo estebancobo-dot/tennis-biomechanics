@@ -1,6 +1,6 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-22 07:33 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 7.3 h de GPU esta semana (tope 28 h; Kaggle dice 18.03 h usadas de 30.0, se renueva 2026-11-28 00:00)
+Última vuelta: 2026-11-22 07:39 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 8.2 h de GPU esta semana (tope 28 h; Kaggle dice 18.12 h usadas de 30.0, se renueva 2026-11-28 00:00)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
@@ -98,7 +98,7 @@
 | sinner_b3 | partido | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | hecho | kaggle |  |
 | sinner | partido | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | hecho | kaggle |  |
 | actualizar_osaka_a | partido | us-open-2026-r4-naomi-osaka-elena-rybakina | hecho | kaggle |  |
-| actualizar_osaka_b | partido | us-open-2026-r4-naomi-osaka-elena-rybakina | en_marcha | kaggle | Kaggle: running (07:33), intento 1 · fine:  32 % (74/232 golpes candidatos · 67 confirmados · 0 ventanas descartadas sin pose) · 9 min · quedan ≈ 20 min (07:33:06; GPU 65 %·49 %, CPU 78 %, 8.0 GB) |
+| actualizar_osaka_b | partido | us-open-2026-r4-naomi-osaka-elena-rybakina | en_marcha | kaggle | Kaggle: running (07:39), intento 1 · fine:  44 % (103/232 golpes candidatos · 95 confirmados · 0 ventanas descartadas sin pose) · 13 min · quedan ≈ 17 min (07:37:17; GPU 0 %·55 %, CPU 81 %, 7.7 GB) |
 | actualizar_osaka | partido | us-open-2026-r4-naomi-osaka-elena-rybakina | pendiente |  | espera a actualizar_osaka_b (en_marcha) |
 | actualizar_pegula_a | partido | elena-rybakina-jessica-pegula-miami-2026-quarter-final | pendiente |  | espera a actualizar_osaka (pendiente) |
 | actualizar_pegula_b | partido | elena-rybakina-jessica-pegula-miami-2026-quarter-final | pendiente |  | espera a actualizar_pegula_a (pendiente) |
@@ -123,7 +123,7 @@
 | medir_3d_metrabs_c | medir |  | hecho | kaggle |  |
 | medir_f3set_hoy_b | medir |  | hecho | kaggle |  |
 | medir_f3set_hoy_c | medir |  | error | kaggle | cancelado: 21-11 23:58: corre dos veces en Kaggle (cada vuelta caída de 23:01 a 23:31 lo volvió a lanzar: dos versiones, dos sesiones de GPU; Kaggle contó 1,78 h en una hora) y deja a sinner_b sin GPU. Se borra su cuaderno y va otra vez detrás de Sinner como medir_f3set_hoy_d |
-| medir_f3set_hoy_d | medir |  | en_marcha | kaggle | Kaggle: running (07:33), intento 1 |
+| medir_f3set_hoy_d | medir |  | hecho | kaggle |  |
 | prueba_gauff_v38_a | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
 | prueba_gauff_v38_b | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | error | kaggle | cancelado: 21-11 20:45: sus 2 cuadernos, en cola de Kaggle desde las 15:36 sin arrancar (desde las 19:20 sin nada más en marcha): otra vez como prueba_gauff_v38_b2 |
 | prueba_gauff_v38_b2 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |

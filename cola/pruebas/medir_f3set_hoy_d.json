@@ -1,0 +1,198 @@
+{
+ "estado": "hecho",
+ "poc": {
+  "prueba": "f3set",
+  "codigo": 0,
+  "horas": 4.04,
+  "informe": "recall_validation_detector_kaggle_f3.json",
+  "regla": {
+   "pasa": false,
+   "resultado": "peor",
+   "motivo": "encontrados 466 frente a 471 (-5), precisión 0.866 frente a 0.869 (-0.0030)",
+   "referencia": {
+    "found": 471,
+    "gt": 648,
+    "recall": 0.727,
+    "precision": 0.869,
+    "false": 71,
+    "dt_median_s": 0.03,
+    "minutes": 268.7
+   },
+   "hoy": {
+    "found": 466,
+    "gt": 648,
+    "recall": 0.719,
+    "precision": 0.866,
+    "false": 72,
+    "dt_median_s": 0.03,
+    "minutes": 242.4
+   }
+  },
+  "diferencias": {
+   "perdidos": 10,
+   "ganados": 5,
+   "perdidos_por_paso": {
+    "lejana_no_encontrada": 2,
+    "fuera_de_camara": 2,
+    "no_confirmado": 5,
+    "bola_no_vista": 1
+   },
+   "perdidos_detalle": [
+    {
+     "partido": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
+     "punto": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin_192544_192679",
+     "golpe": "far_ad_serve_-_-_T_-_in",
+     "t": 1318.4,
+     "lado": "far",
+     "paso_ref": "encontrado",
+     "paso_hoy": "lejana_no_encontrada"
+    },
+    {
+     "partido": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
+     "punto": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin_192544_192679",
+     "golpe": "far_deuce_stroke_fh_gs_CC_-_winner",
+     "t": 1321.48,
+     "lado": "far",
+     "paso_ref": "encontrado",
+     "paso_hoy": "lejana_no_encontrada"
+    },
+    {
+     "partido": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
+     "punto": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka_100375_100613",
+     "golpe": "far_deuce_serve_-_-_T_-_in",
+     "t": 938.72,
+     "lado": "far",
+     "paso_ref": "encontrado",
+     "paso_hoy": "no_confirmado"
+    },
+    {
+     "partido": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
+     "punto": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka_32498_32600",
+     "golpe": "near_deuce_serve_-_-_B_-_in",
+     "t": 280.4,
+     "lado": "near",
+     "paso_ref": "encontrado",
+     "paso_hoy": "fuera_de_camara"
+    },
+    {
+     "partido": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
+     "punto": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka_45376_45531",
+     "golpe": "far_ad_serve_-_-_B_-_in",
+     "t": 409.2,
+     "lado": "far",
+     "paso_ref": "encontrado",
+     "paso_hoy": "no_confirmado"
+    },
+    {
+     "partido": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
+     "punto": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka_63600_63672",
+     "golpe": "near_ad_serve_-_-_W_-_in",
+     "t": 587.44,
+     "lado": "near",
+     "paso_ref": "encontrado",
+     "paso_hoy": "fuera_de_camara"
+    },
+    {
+     "partido": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
+     "punto": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka_68252_68518",
+     "golpe": "far_deuce_stroke_fh_drop_DL_-_in",
+     "t": 661.2,
+     "lado": "far",
+     "paso_ref": "encontrado",
+     "paso_hoy": "no_confirmado"
+    },
+    {
+     "partido": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
+     "punto": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina_168789_169281",
+     "golpe": "far_ad_serve_-_-_W_-_in",
+     "t": 1919.76,
+     "lado": "far",
+     "paso_ref": "encontrado",
+     "paso_hoy": "no_confirmado"
+    },
+    {
+     "partido": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
+     "punto": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina_33739_33982",
+     "golpe": "far_deuce_return_fh_gs_CC_-_in",
+     "t": 593.44,
+     "lado": "far",
+     "paso_ref": "encontrado",
+     "paso_hoy": "bola_no_vista"
+    },
+    {
+     "partido": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
+     "punto": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina_50505_50870",
+     "golpe": "far_ad_stroke_bh_gs_DM_-_in",
+     "t": 846.8,
+     "lado": "far",
+     "paso_ref": "encontrado",
+     "paso_hoy": "no_confirmado"
+    }
+   ],
+   "ganados_detalle": [
+    {
+     "partido": "20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina",
+     "punto": "20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina_30890_31109",
+     "golpe": "near_middle_stroke_fh_volley_CC_-_winner",
+     "t": 434.32,
+     "lado": "near",
+     "paso_ref": "no_candidato",
+     "paso_hoy": "encontrado"
+    },
+    {
+     "partido": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
+     "punto": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka_72815_72972",
+     "golpe": "far_ad_serve_-_-_W_-_in",
+     "t": 699.04,
+     "lado": "far",
+     "paso_ref": "no_confirmado",
+     "paso_hoy": "encontrado"
+    },
+    {
+     "partido": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
+     "punto": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka_92689_92824",
+     "golpe": "near_middle_stroke_bh_gs_IO_-_forced-err",
+     "t": 912.92,
+     "lado": "near",
+     "paso_ref": "no_confirmado",
+     "paso_hoy": "encontrado"
+    },
+    {
+     "partido": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
+     "punto": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina_168789_169281",
+     "golpe": "far_deuce_stroke_fh_gs_CC_-_unforced-err",
+     "t": 1934.68,
+     "lado": "far",
+     "paso_ref": "no_confirmado",
+     "paso_hoy": "encontrado"
+    },
+    {
+     "partido": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
+     "punto": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina_57535_57603",
+     "golpe": "far_ad_serve_-_-_W_-_winner",
+     "t": 960.92,
+     "lado": "far",
+     "paso_ref": "no_confirmado",
+     "paso_hoy": "encontrado"
+    }
+   ]
+  }
+ },
+ "kaggle": {
+  "python": "3.13.16",
+  "nucleos": 4,
+  "memoria_gib": {
+   "MemTotal": 31.3,
+   "MemAvailable": 30.0
+  },
+  "disco_libre_gib": {
+   "/tmp": 2514.5,
+   "/kaggle/working": 19.5
+  },
+  "gpu": "Tesla T4, 15360 MiB\nTesla T4, 15360 MiB",
+  "ffmpeg": "/usr/bin/ffmpeg",
+  "clave_modal": true
+ },
+ "horas_kaggle": 4.13,
+ "nota": null
+}
