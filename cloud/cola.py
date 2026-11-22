@@ -589,8 +589,42 @@ def matches_on_volume(vol) -> list[dict]:
             done = "fine" in json.loads(_read(vol, f"output/{m['id']}/manifest.json").decode("utf-8"))
         except Exception:
             done = False
-        out.append({"id": str(m["id"]), "rival": str(m.get("rival") or ""), "analizado": done})
+        out.append({"id": str(m["id"]), "rival": str(m.get("rival") or ""), "analizado": done,
+                    "video": str(m.get("video") or "")})
     return out
+
+
+AUDIT_ON_VOLUME = "/output/auditoria/auditoria.json"     # cloud/kaggle/correr.report (and modal_app.informe)
+
+
+def accepted_matches(audit: dict, ids: list[str]) -> list[str]:
+    """T22 (#312, point 4): the matches the latest cloud audit accepts: their stage outputs and their faults by level
+    both «ok», and no unmet check («falta») that names them (e.g. «Etapas con errores: zheng…: fine»)."""
+    items = [i for i in (audit.get("items") or []) if isinstance(i, dict)]
+    out = []
+    for m in ids:
+        own = [i for i in items if i.get("name") in (f"Partido {m}: salida de cada etapa", f"Fallos por niveles: {m}")]
+        bad = [i for i in items if i.get("status") == "falta" and m in f"{i.get('name', '')} {i.get('detail', '')}"]
+        if len(own) == 2 and all(i.get("status") == "ok" for i in own) and not bad:
+            out.append(m)
+    return out
+
+
+def delete_accepted_videos(store, catalog: list[dict], gone: set) -> list[str]:
+    """T22 (CLAUDE.md req. 10: the user only uploads the videos, which are deleted when done; the broadcasts' rights):
+    the video of each analysed match the latest cloud audit accepts is deleted from the volume, once (its results stay:
+    they are in /output). Switched on by `borrar_videos_aceptados: true` in config/cola_nube.yaml, after the 6 matches
+    (until then they may still be analysed again)."""
+    audit = store.read_json(AUDIT_ON_VOLUME)
+    if not isinstance(audit, dict):
+        return []
+    video = {c["id"]: c.get("video") for c in catalog if c.get("analizado")}
+    done = []
+    for m in accepted_matches(audit, sorted(video)):
+        if m not in gone and video[m] and store.delete(f"/videos/{video[m]}"):
+            gone.add(m)
+            done.append(m)
+    return done
 
 
 def _load(path: Path, default):
@@ -787,6 +821,11 @@ def main(argv: list[str] | None = None) -> int:
                 store.put_files([f], f.parent, "/app")
         catalog = matches_on_volume(vol)                 # the matches the cloud knows, and which are analysed
         (d / "partidos.json").write_text(json.dumps(catalog, ensure_ascii=False, indent=1), encoding="utf-8")
+        if queue.get("borrar_videos_aceptados") and app is not None and store is not None:     # T22, when switched on
+            gone = set(app.get("borrados") or [])
+            for m in delete_accepted_videos(store, catalog, gone):
+                print(f"cola: vídeo de {m} borrado del volumen (partido aceptado en la auditoría)")
+            app["borrados"] = sorted(gone)
         known = {m["id"] for m in catalog}
         for j in jobs:                                   # a match the cloud does not know is never launched
             if j.get("partido") and known and j["partido"] not in known and state.get(j["id"], {}).get("estado") is None:

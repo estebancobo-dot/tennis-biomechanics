@@ -864,3 +864,28 @@ def test_a_job_in_error_without_a_reason_gets_it_from_its_log():
     assert state["y"]["resultado"]["nota"] == "(de su registro) sin registro en el volumen (FileNotFoundError)"
     assert state["x"]["resultado"]["nota"] == "cancelado: motivo" and reads == ["/runs/kaggle_sinner_b2/log.txt", "/runs/y/log.txt"]
     assert cola.explain_errors(state, read) == [] and len(reads) == 2           # once
+
+
+def test_the_video_of_an_accepted_match_is_deleted_only_when_switched_on(tmp_path):
+    """T22 (#312, point 4): the video of a match the latest cloud audit accepts goes from the volume (its results stay);
+    a match with an unmet check that names it keeps its video; off by default until the 6 matches are closed."""
+    from tennisbio.infra.storage import LocalStorage
+    vol = tmp_path / "vol"
+    (vol / "videos").mkdir(parents=True)
+    for v in ("a.mp4", "b.mp4", "c.mp4"):
+        (vol / "videos" / v).write_bytes(b"v")
+    (vol / "output" / "auditoria").mkdir(parents=True)
+    items = [{"name": f"Partido {m}: salida de cada etapa", "status": "ok"} for m in ("ma", "mb", "mc")]
+    items += [{"name": f"Fallos por niveles: {m}", "status": "ok"} for m in ("ma", "mb", "mc")]
+    items += [{"name": "Etapas con errores", "status": "falta", "detail": "mb: fine"}]
+    (vol / "output" / "auditoria" / "auditoria.json").write_text(json.dumps({"items": items}), encoding="utf-8")
+    store = LocalStorage(vol)
+    catalog = [{"id": "ma", "analizado": True, "video": "a.mp4"}, {"id": "mb", "analizado": True, "video": "b.mp4"},
+               {"id": "mc", "analizado": False, "video": "c.mp4"}]
+    assert cola.accepted_matches(json.loads((vol / "output" / "auditoria" / "auditoria.json").read_text()), ["ma", "mb", "mx"]) == ["ma"]
+    gone = set()
+    assert cola.delete_accepted_videos(store, catalog, gone) == ["ma"] and gone == {"ma"}
+    assert not (vol / "videos" / "a.mp4").exists() and (vol / "videos" / "b.mp4").exists() and (vol / "videos" / "c.mp4").exists()
+    assert cola.delete_accepted_videos(store, catalog, gone) == []                 # once
+    q = yaml.safe_load((ROOT / "config" / "cola_nube.yaml").read_text(encoding="utf-8"))
+    assert q["borrar_videos_aceptados"] is False                                   # until the 6 matches are closed

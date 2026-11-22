@@ -36,6 +36,10 @@ partidos_en_espera: ""
 reiniciar: ["final#1"]
 # trabajos cancelados (su sesión de Kaggle se libera; acaban en «error» con el motivo). 14-11 21:10: la fase A midió la
 # GPU ocupada el 9 % de la pasada fina, así que TensorRT apenas ahorraría hoy; su plaza, para la v19 (las 2 T4)
+# T22 (#312, punto 4; CLAUDE.md req. 10: los vídeos se borran al terminar): con true, la cola borra del volumen el vídeo de
+# cada partido que la última auditoría de la nube acepta (sus salidas y sus fallos «ok», nada «falta» que lo nombre); sus
+# resultados se quedan. Apagado hasta cerrar los 6 partidos (hasta entonces se pueden rehacer)
+borrar_videos_aceptados: false
 cancelar:
   sinner_b: "22-11 00:05: relanzado a las 00:04 con el giro 3D de antes; MeTRAbs acaba de pasar su regla (comparar_gauff_v36_v38: los mismos 28 golpes, X-factor 3D en 15 frente a 7, dispersión 5,2° frente a 5,6°) y Sinner se analiza una sola vez con lo elegido (#295): otra vez como sinner_b2 cuando MeTRAbs sea el de por defecto"
   medir_f3set_hoy_c: "21-11 23:58: corre dos veces en Kaggle (cada vuelta caída de 23:01 a 23:31 lo volvió a lanzar: dos versiones, dos sesiones de GPU; Kaggle contó 1,78 h en una hora) y deja a sinner_b sin GPU. Se borra su cuaderno y va otra vez detrás de Sinner como medir_f3set_hoy_d"
