@@ -1,6 +1,6 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-22 09:57 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 8.6 h de GPU esta semana (tope 28 h; Kaggle dice 19.02 h usadas de 30.0, se renueva 2026-11-28 00:00)
+Última vuelta: 2026-11-22 10:02 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 8.9 h de GPU esta semana (tope 28 h; Kaggle dice 19.09 h usadas de 30.0, se renueva 2026-11-28 00:00)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
@@ -100,9 +100,9 @@
 | actualizar_osaka_a | partido | us-open-2026-r4-naomi-osaka-elena-rybakina | hecho | kaggle |  |
 | actualizar_osaka_b | partido | us-open-2026-r4-naomi-osaka-elena-rybakina | hecho | kaggle |  |
 | actualizar_osaka | partido | us-open-2026-r4-naomi-osaka-elena-rybakina | hecho | kaggle |  |
-| actualizar_pegula_a | partido | elena-rybakina-jessica-pegula-miami-2026-quarter-final | en_marcha | kaggle | Kaggle: running (09:57), intento 1 · scenes:  57 % (95626/168278 fotogramas) · 37 min · quedan ≈ 28 min (09:55:38; CPU 64 %, 2.5 GB) |
-| medir_lejana_f3set | medir |  | en_marcha | kaggle | Kaggle: running (09:57), intento 1 |
-| actualizar_pegula_b | partido | elena-rybakina-jessica-pegula-miami-2026-quarter-final | pendiente |  | espera a actualizar_pegula_a (en_marcha), medir_lejana_f3set (en_marcha) |
+| actualizar_pegula_a | partido | elena-rybakina-jessica-pegula-miami-2026-quarter-final | en_marcha | kaggle | Kaggle: running (10:02), intento 1 · scenes:  67 % (112026/168278 fotogramas) · 43 min · quedan ≈ 22 min (10:01:54; CPU 64 %, 2.5 GB) |
+| medir_lejana_f3set | medir |  | hecho | kaggle |  |
+| actualizar_pegula_b | partido | elena-rybakina-jessica-pegula-miami-2026-quarter-final | pendiente |  | espera a actualizar_pegula_a (en_marcha) |
 | actualizar_pegula | partido | elena-rybakina-jessica-pegula-miami-2026-quarter-final | pendiente |  | espera a actualizar_pegula_b (pendiente) |
 | actualizar_zheng_a | partido | zheng-qinwen-elena-rybakina | pendiente |  | espera a actualizar_pegula (pendiente) |
 | actualizar_zheng_b | partido | zheng-qinwen-elena-rybakina | pendiente |  | espera a actualizar_zheng_a (pendiente) |

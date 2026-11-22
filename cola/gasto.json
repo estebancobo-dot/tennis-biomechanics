@@ -239,16 +239,17 @@
      "horas": 1.82
     },
     "medir_lejana_f3set": {
-     "estimado_h": 0.5
+     "estimado_h": 0.5,
+     "horas": 0.14
     }
    }
   }
  },
  "kaggle_real": {
-  "usadas_h": 19.02,
+  "usadas_h": 19.09,
   "total_h": 30.0,
   "renueva": "2026-11-28 00:00:00",
-  "ts": 1795341421.1579673
+  "ts": 1795341732.7066145
  },
  "aviso_ocioso_ts": 1795340500.566843
 }

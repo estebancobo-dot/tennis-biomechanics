@@ -1,0 +1,56 @@
+{
+ "estado": "hecho",
+ "poc": {
+  "prueba": "lejana_f3set",
+  "strokes": 240,
+  "frames": 375,
+  "per_model": {
+   "yolo": {
+    "share": 0.915,
+    "frames": 375,
+    "s_per_frame": 0.346
+   },
+   "rfdetr": {
+    "share": 0.997,
+    "frames": 375,
+    "s_per_frame": 0.315
+   }
+  },
+  "per_match": {
+   "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin": {
+    "yolo": 0.825,
+    "rfdetr": 1.0
+   },
+   "20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina": {
+    "yolo": 0.976,
+    "rfdetr": 0.976
+   },
+   "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka": {
+    "yolo": 1.0,
+    "rfdetr": 1.0
+   }
+  },
+  "regla": {
+   "pasa": true,
+   "resultado": "se queda RF-DETR",
+   "motivo": "jugadora lejana hallada: RF-DETR 0.997 frente a YOLO 0.915 (regla: RF-DETR ≥ 0.895)"
+  }
+ },
+ "kaggle": {
+  "python": "3.13.16",
+  "nucleos": 4,
+  "memoria_gib": {
+   "MemTotal": 31.3,
+   "MemAvailable": 29.9
+  },
+  "disco_libre_gib": {
+   "/tmp": 2514.5,
+   "/kaggle/working": 19.5
+  },
+  "gpu": "Tesla T4, 15360 MiB\nTesla T4, 15360 MiB",
+  "ffmpeg": "/usr/bin/ffmpeg",
+  "clave_modal": true
+ },
+ "horas_kaggle": 0.14,
+ "nota": null
+}
