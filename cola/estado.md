@@ -1,6 +1,6 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-22 10:17 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 8.9 h de GPU esta semana (tope 28 h; Kaggle dice 19.09 h usadas de 30.0, se renueva 2026-11-28 00:00)
+Última vuelta: 2026-11-22 10:22 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 8.9 h de GPU esta semana (tope 28 h; Kaggle dice 19.09 h usadas de 30.0, se renueva 2026-11-28 00:00)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
@@ -100,7 +100,7 @@
 | actualizar_osaka_a | partido | us-open-2026-r4-naomi-osaka-elena-rybakina | hecho | kaggle |  |
 | actualizar_osaka_b | partido | us-open-2026-r4-naomi-osaka-elena-rybakina | hecho | kaggle |  |
 | actualizar_osaka | partido | us-open-2026-r4-naomi-osaka-elena-rybakina | hecho | kaggle |  |
-| actualizar_pegula_a | partido | elena-rybakina-jessica-pegula-miami-2026-quarter-final | en_marcha | kaggle | Kaggle: running (10:17), intento 1 · scenes:  89 % (149226/168278 fotogramas) · 58 min · quedan ≈ 7 min (10:16:28; CPU 64 %, 2.6 GB) |
+| actualizar_pegula_a | partido | elena-rybakina-jessica-pegula-miami-2026-quarter-final | en_marcha | kaggle | Kaggle: running (10:22), intento 1 · scenes:  95 % (160396/168278 fotogramas) · 62 min · quedan ≈ 3 min (10:20:39; CPU 64 %, 2.6 GB) |
 | medir_lejana_f3set | medir |  | hecho | kaggle |  |
 | leer_f3set_d_lejana | leer |  | hecho | github | leídos: runs__kaggle_medir_f3set_hoy_d__log.txt |
 | leer_f3set_d_dubai | leer |  | hecho | github | leídos: runs__kaggle_medir_f3set_hoy_d__log.txt |
