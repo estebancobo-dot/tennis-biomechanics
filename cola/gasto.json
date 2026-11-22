@@ -245,6 +245,9 @@
     "actualizar_pegula_b": {
      "estimado_h": 5.04,
      "horas": 3.54
+    },
+    "actualizar_zheng_b": {
+     "estimado_h": 5.26
     }
    }
   }
@@ -253,7 +256,7 @@
   "usadas_h": 22.65,
   "total_h": 30.0,
   "renueva": "2026-11-28 00:00:00",
-  "ts": 1795365541.2325304
+  "ts": 1795365878.6714087
  },
  "aviso_ocioso_ts": 1795362564.1702485
 }
