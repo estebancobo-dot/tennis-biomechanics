@@ -470,7 +470,6 @@ def report(job: dict, py: Path, data: Path, run: Path, vol, est: dict, registry:
         (root / m["id"]).symlink_to(data / "output" / m["id"], target_is_directory=True)
     est["partidos"] = [m["id"] for m in done]
     t0, rc = time.time(), {}
-    est["evidencia_nube"] = cloud_evidence(vol, data) if vol is not None else "sin volumen"
     # 22-11: the audit's screen checks need a browser that plays the windows' H.264 (the first screen, «Aprende»…)
     _run(["uv", "pip", "install", "-q", "--python", str(py), "playwright>=1.48,<2"])
     _run([str(py), "-m", "playwright", "install", "--with-deps", "chrome"])
@@ -482,6 +481,8 @@ def report(job: dict, py: Path, data: Path, run: Path, vol, est: dict, registry:
         for name, args in (("informe", ["report"]),
                            ("exportar", ["export", "--solo-montajes"]),
                            ("auditoria", ["audit", "--root", str(root), "--out", str(data / "output" / "auditoria")])):
+            if name == "auditoria":     # the queue's state right before the audit (22-11: fetched first, it was 28 min old)
+                est["evidencia_nube"] = cloud_evidence(vol, data) if vol is not None else "sin volumen"
             p = subprocess.run([str(py), "-m", "tennisbio.cli", *args], cwd=REPO, env=env, capture_output=True,
                                text=True, encoding="utf-8", errors="replace")
             lg.write(f"===== {name} (código {p.returncode})\n{p.stdout}\n{p.stderr[-4000:]}\n")
