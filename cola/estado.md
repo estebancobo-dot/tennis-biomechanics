@@ -1,6 +1,6 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-22 17:31 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 0.1 h de GPU esta semana (tope 28 h; Kaggle dice 23.43 h usadas de 30.0, se renueva 2026-11-28 00:00)
+Última vuelta: 2026-11-22 17:36 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 0.1 h de GPU esta semana (tope 28 h; Kaggle dice 23.51 h usadas de 30.0, se renueva 2026-11-28 00:00)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
@@ -107,7 +107,7 @@
 | actualizar_pegula_b | partido | elena-rybakina-jessica-pegula-miami-2026-quarter-final | hecho | kaggle |  |
 | actualizar_pegula | partido | elena-rybakina-jessica-pegula-miami-2026-quarter-final | hecho | kaggle |  |
 | actualizar_zheng_a | partido | zheng-qinwen-elena-rybakina | hecho | kaggle |  |
-| actualizar_zheng_b | partido | zheng-qinwen-elena-rybakina | en_marcha | kaggle | Kaggle: running (17:31), intento 1 · identity terminada a las 17:07:09 en 5.3 min (17:31:00; GPU 39 %·0 %, CPU 51 %, 3.0 GB) |
+| actualizar_zheng_b | partido | zheng-qinwen-elena-rybakina | en_marcha | kaggle | Kaggle: running (17:36), intento 1 · identity terminada a las 17:07:09 en 5.3 min (17:34:14; GPU 79 %·0 %, CPU 52 %, 3.0 GB) |
 | actualizar_zheng | partido | zheng-qinwen-elena-rybakina | pendiente |  | espera a actualizar_zheng_b (en_marcha) |
 | informe_beta | informe |  | hecho | modal |  |
 | informe_beta2 | informe |  | hecho | kaggle |  |
