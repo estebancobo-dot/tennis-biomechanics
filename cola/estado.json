@@ -2184,12 +2184,12 @@
   "inicio": "2026-11-22 03:25",
   "ruta": "/runs/kaggle_medir_f3set_hoy_d/estado.json",
   "cuaderno": "tennisbio-medir-f3set-hoy-d",
-  "kaggle": "running (05:21)",
+  "kaggle": "running (05:26)",
   "arranco": "2026-11-22 03:31",
   "espera_min": 6
  },
  "informe_beta5": {
-  "estado": "en_marcha",
+  "estado": "hecho",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 1,
@@ -2200,9 +2200,21 @@
   "ruta": "/runs/informe_beta5/estado.json",
   "cpu": true,
   "cuaderno": "tennisbio-informe-beta5",
-  "kaggle": "running (05:21)",
+  "kaggle": "complete (05:26)",
   "arranco": "2026-11-22 04:55",
-  "espera_min": 5
+  "espera_min": 5,
+  "fin": "2026-11-22 05:26",
+  "resultado": {
+   "estado": "hecho",
+   "coste_usd": 0.0,
+   "segundos": 1598,
+   "codigos": {
+    "informe": 0,
+    "exportar": 0,
+    "auditoria": 0
+   },
+   "horas_kaggle": 0.53
+  }
  },
  "actualizar_osaka_a": {
   "estado": "en_marcha",
@@ -2217,9 +2229,22 @@
   "salida": "/output/us-open-2026-r4-naomi-osaka-elena-rybakina",
   "cpu": true,
   "cuaderno": "tennisbio-actualizar-osaka-a",
-  "progreso": "scenes:  38 % (40488/107055 fotogramas) · 22 min · quedan ≈ 36 min (05:20:01; CPU 61 %, 2.6 GB)",
-  "kaggle": "running (05:21)",
+  "progreso": "scenes:  45 % (48426/107055 fotogramas) · 26 min · quedan ≈ 32 min (05:24:22; CPU 60 %, 2.5 GB)",
+  "kaggle": "running (05:26)",
   "arranco": "2026-11-22 05:00",
   "espera_min": 5
+ },
+ "informe_beta6": {
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1795325167.1653278,
+  "accion": "informe",
+  "partido": "",
+  "inicio": "2026-11-22 05:26",
+  "ruta": "/runs/informe_beta6/estado.json",
+  "cpu": true,
+  "cuaderno": "tennisbio-informe-beta6"
  }
 }
