@@ -56,7 +56,7 @@ STEPS = {
     "no_candidato": "no es candidato",
     "error": "error al procesar la ventana",
     "lejana_no_encontrada": "jugadora lejana no encontrada en la ventana",
-    "sin_ventana": "sin ventana registrada",
+    "sin_ventana": "sin ventana de la pasada fina (p. ej. su candidato fue a la de los dudosos)",
     "criba_sin_golpe": "criba «sin golpe» (sin pose)",
     "bola_no_vista": "bola no vista y no confirmado",
     "no_confirmado": "no confirmado (bola vista)",
@@ -243,7 +243,11 @@ def attribute(events: list[dict], out: Outputs, tol: float = 0.2, cand_tol: floa
                 if any(abs(x - c["t"]) < 1e-3 for x in out.errors):
                     step = "error"
                 elif w is None:
-                    step = "lejana_no_encontrada" if side == "far" else "sin_ventana"
+                    # 22-11: no window of the fine pass holds the candidate (on either side: e.g. its candidate went to
+                    # the doubtful pass, whose windows this log does not have). It was called «far player not found»
+                    # on the far side, which pointed at the far player's detector when it was not that (two Dubai 2020
+                    # strokes, medir_lejana_f3set: RF-DETR finds her in 99.7 % of F3Set's far frames)
+                    step = "sin_ventana"
                 elif not w["passed"]:
                     step = "criba_sin_golpe"
                 elif w.get("far_not_found"):

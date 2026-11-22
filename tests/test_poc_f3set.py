@@ -64,3 +64,12 @@ def test_the_strokes_lost_and_won_are_said_with_the_step_where_they_stayed():
     assert pf.FOUND == FOUND
     src = (ROOT / "cloud" / "kaggle" / "correr.py").read_text(encoding="utf-8")
     assert 'run.glob("recall_validation_detector*.json")' in src
+
+
+
+def test_a_stroke_without_a_fine_window_is_not_called_far_player_not_found():
+    """22-11: two far strokes of Dubai 2020 had their candidate but no window of the fine pass (it went to the doubtful
+    pass); the evaluation said «far player not found», which pointed at RF-DETR when it was not that."""
+    src = (ROOT / "src" / "tennisbio" / "validation" / "recall_eval.py").read_text(encoding="utf-8")
+    block = src[src.index("elif w is None:"):src.index("elif not w[\"passed\"]:")]
+    assert 'step = "sin_ventana"' in block and "lejana_no_encontrada" not in block.split("step =", 1)[1]
