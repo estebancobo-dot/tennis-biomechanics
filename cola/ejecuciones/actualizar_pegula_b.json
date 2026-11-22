@@ -1,0 +1,265 @@
+{
+ "estado": "hecho",
+ "segundos": 12350,
+ "horas_kaggle": 3.54,
+ "coste_usd": 0.0,
+ "gpu": null,
+ "etapas": {
+  "probe": 5.3,
+  "scenes": 3911.7,
+  "court": 311.2,
+  "score": 695.1,
+  "players": 1092.5,
+  "audio": 39.9,
+  "identity": 395.2,
+  "spotting": 3009.4,
+  "candidates": 10.8,
+  "views": 173.4,
+  "fine": 7425.3,
+  "views_link": 1.0,
+  "view_clips": 786.6,
+  "slowmo_fine": 33.3,
+  "fine_opponent": 0.0,
+  "fine_doubtful": 783.5
+ },
+ "recursos": {
+  "muestras": 205,
+  "gpu_pct": {
+   "media": 39.7,
+   "max": 100.0
+  },
+  "gpu_mem_gb": {
+   "media": 2.1,
+   "max": 5.6
+  },
+  "cpu_pct": {
+   "media": 73.3,
+   "max": 99.7
+  },
+  "ram_gb": {
+   "media": 14.4,
+   "max": 26.8
+  },
+  "gpu1_mem_gb": {
+   "media": 1.8,
+   "max": 5.5
+  },
+  "gpu1_pct": {
+   "media": 24.6,
+   "max": 100.0
+  }
+ },
+ "recursos_por_etapa": {
+  "probe": {
+   "s": 5,
+   "muestras": 0
+  },
+  "scenes": {
+   "s": 3912,
+   "muestras": 0
+  },
+  "court": {
+   "s": 311,
+   "muestras": 0
+  },
+  "score": {
+   "s": 695,
+   "muestras": 11,
+   "gpu_pct": {
+    "media": 0.0,
+    "max": 0.0
+   },
+   "gpu_mem_gb": {
+    "media": 0.0,
+    "max": 0.0
+   },
+   "cpu_pct": {
+    "media": 79.0,
+    "max": 82.0
+   },
+   "ram_gb": {
+    "media": 2.3,
+    "max": 2.4
+   },
+   "gpu1_mem_gb": {
+    "media": 0.0,
+    "max": 0.0
+   },
+   "gpu1_pct": {
+    "media": 0.0,
+    "max": 0.0
+   }
+  },
+  "players": {
+   "s": 1092,
+   "muestras": 0
+  },
+  "audio": {
+   "s": 40,
+   "muestras": 0
+  },
+  "identity": {
+   "s": 395,
+   "muestras": 7,
+   "gpu_pct": {
+    "media": 0.0,
+    "max": 0.0
+   },
+   "gpu_mem_gb": {
+    "media": 0.0,
+    "max": 0.0
+   },
+   "cpu_pct": {
+    "media": 94.9,
+    "max": 99.7
+   },
+   "ram_gb": {
+    "media": 2.2,
+    "max": 2.3
+   },
+   "gpu1_mem_gb": {
+    "media": 0.0,
+    "max": 0.0
+   },
+   "gpu1_pct": {
+    "media": 0.0,
+    "max": 0.0
+   }
+  },
+  "spotting": {
+   "s": 3009,
+   "muestras": 50,
+   "gpu_pct": {
+    "media": 52.2,
+    "max": 99.0
+   },
+   "gpu_mem_gb": {
+    "media": 0.9,
+    "max": 2.4
+   },
+   "cpu_pct": {
+    "media": 54.6,
+    "max": 66.2
+   },
+   "ram_gb": {
+    "media": 3.2,
+    "max": 3.4
+   },
+   "gpu1_mem_gb": {
+    "media": 0.0,
+    "max": 0.0
+   },
+   "gpu1_pct": {
+    "media": 0.0,
+    "max": 0.0
+   }
+  },
+  "candidates": {
+   "s": 11,
+   "muestras": 0
+  },
+  "views": {
+   "s": 173,
+   "muestras": 0
+  },
+  "fine": {
+   "s": 7425,
+   "muestras": 124,
+   "gpu_pct": {
+    "media": 39.9,
+    "max": 100.0
+   },
+   "gpu_mem_gb": {
+    "media": 2.8,
+    "max": 5.6
+   },
+   "cpu_pct": {
+    "media": 79.2,
+    "max": 87.6
+   },
+   "ram_gb": {
+    "media": 20.2,
+    "max": 26.8
+   },
+   "gpu1_mem_gb": {
+    "media": 2.8,
+    "max": 5.5
+   },
+   "gpu1_pct": {
+    "media": 37.2,
+    "max": 100.0
+   }
+  },
+  "views_link": {
+   "s": 1,
+   "muestras": 0
+  },
+  "view_clips": {
+   "s": 787,
+   "muestras": 0
+  },
+  "slowmo_fine": {
+   "s": 33,
+   "muestras": 0
+  },
+  "fine_opponent": {
+   "s": 0,
+   "muestras": 0
+  },
+  "fine_doubtful": {
+   "s": 784,
+   "muestras": 13,
+   "gpu_pct": {
+    "media": 44.5,
+    "max": 99.0
+   },
+   "gpu_mem_gb": {
+    "media": 2.7,
+    "max": 3.8
+   },
+   "cpu_pct": {
+    "media": 73.4,
+    "max": 85.8
+   },
+   "ram_gb": {
+    "media": 19.2,
+    "max": 25.8
+   },
+   "gpu1_mem_gb": {
+    "media": 2.2,
+    "max": 3.6
+   },
+   "gpu1_pct": {
+    "media": 33.1,
+    "max": 90.0
+   }
+  }
+ },
+ "modelos_en_cpu": 3,
+ "fallos": {},
+ "sin_subir": [],
+ "config": {},
+ "config_local": {
+  "registry": {
+   "source": "yaml"
+  },
+  "device": "auto"
+ },
+ "kaggle": {
+  "python": "3.13.16",
+  "nucleos": 4,
+  "memoria_gib": {
+   "MemTotal": 31.3,
+   "MemAvailable": 30.0
+  },
+  "disco_libre_gib": {
+   "/tmp": 2514.5,
+   "/kaggle/working": 19.5
+  },
+  "gpu": "Tesla T4, 15360 MiB\nTesla T4, 15360 MiB",
+  "ffmpeg": "/usr/bin/ffmpeg",
+  "clave_modal": true
+ },
+ "nota": null,
+ "modelos_en_cpu_registro": 3
+}

@@ -243,16 +243,17 @@
      "horas": 0.14
     },
     "actualizar_pegula_b": {
-     "estimado_h": 5.04
+     "estimado_h": 5.04,
+     "horas": 3.54
     }
    }
   }
  },
  "kaggle_real": {
-  "usadas_h": 22.58,
+  "usadas_h": 22.65,
   "total_h": 30.0,
   "renueva": "2026-11-28 00:00:00",
-  "ts": 1795355822.9341362
+  "ts": 1795356130.864988
  },
  "aviso_ocioso_ts": 1795355211.9530692
 }
