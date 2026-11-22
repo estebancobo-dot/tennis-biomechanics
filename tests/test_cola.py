@@ -794,9 +794,11 @@ def test_a_notebook_already_in_kaggle_is_adopted_not_pushed_again(monkeypatch):
         assert kst in st["adoptado"] and not pushed
         res = {"estado": "hecho", "inicio": time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(NOV - 1500))}
         assert cola.fresh(res, st)                                   # its own results are taken
-    monkeypatch.setattr(cola, "kaggle_status", lambda jid, slug=None: "desconocido")
-    state = {}
-    assert cola.kaggle_start(job, state, {}, NOV, NOV - 1800) == "lanzado" and pushed == ["sinner_b"]
+    for kst in ("desconocido", "error"):           # «error»: the notebook a refused push leaves, no run of the job
+        monkeypatch.setattr(cola, "kaggle_status", lambda jid, slug=None, k=kst: k)
+        pushed.clear()
+        state = {}
+        assert cola.kaggle_start(job, state, {}, NOV, NOV - 1800) == "lanzado" and pushed == ["sinner_b"]
     assert state["sinner_b"]["lanzado_ts"] == NOV
     monkeypatch.setattr(cola, "kaggle_launch", lambda j, slug=None: False)
     cola.LAST_REFUSAL["text"] = "Maximum batch GPU session count of 2 reached."

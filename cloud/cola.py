@@ -638,7 +638,9 @@ def kaggle_launch(job: dict, slug: str | None = None) -> bool:
     return True
 
 
-ADOPT = ("running", "queued", "complete", "error")
+# a notebook Kaggle runs, waits to run or ran for this job; not «error»: a push Kaggle refused («Maximum batch GPU session
+# count») leaves its notebook in «error» (sinner_b, 21-11 23:31) and that is no run of the job
+ADOPT = ("running", "queued", "complete")
 
 
 def kaggle_start(job: dict, state: dict, spend: dict, now: float, since: float) -> str:
