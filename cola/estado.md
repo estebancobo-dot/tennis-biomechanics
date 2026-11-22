@@ -1,6 +1,6 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-22 07:54 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 8.2 h de GPU esta semana (tope 28 h; Kaggle dice 18.38 h usadas de 30.0, se renueva 2026-11-28 00:00)
+Última vuelta: 2026-11-22 07:59 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 8.2 h de GPU esta semana (tope 28 h; Kaggle dice 18.46 h usadas de 30.0, se renueva 2026-11-28 00:00)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
@@ -98,7 +98,7 @@
 | sinner_b3 | partido | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | hecho | kaggle |  |
 | sinner | partido | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | hecho | kaggle |  |
 | actualizar_osaka_a | partido | us-open-2026-r4-naomi-osaka-elena-rybakina | hecho | kaggle |  |
-| actualizar_osaka_b | partido | us-open-2026-r4-naomi-osaka-elena-rybakina | en_marcha | kaggle | Kaggle: running (07:54), intento 1 · fine:  62 % (145/232 golpes candidatos · 136 confirmados · 0 ventanas descartadas sin pose) · 29 min · quedan ≈ 17 min (07:54:15; GPU 39 %·0 %, CPU 87 %, 26.9 GB) |
+| actualizar_osaka_b | partido | us-open-2026-r4-naomi-osaka-elena-rybakina | en_marcha | kaggle | Kaggle: running (07:59), intento 1 · fine:  67 % (156/232 golpes candidatos · 147 confirmados · 0 ventanas descartadas sin pose) · 34 min · quedan ≈ 16 min (07:57:29; GPU 18 %·80 %, CPU 86 %, 26.6 GB) |
 | actualizar_osaka | partido | us-open-2026-r4-naomi-osaka-elena-rybakina | pendiente |  | espera a actualizar_osaka_b (en_marcha) |
 | actualizar_pegula_a | partido | elena-rybakina-jessica-pegula-miami-2026-quarter-final | pendiente |  | espera a actualizar_osaka (pendiente) |
 | actualizar_pegula_b | partido | elena-rybakina-jessica-pegula-miami-2026-quarter-final | pendiente |  | espera a actualizar_pegula_a (pendiente) |
