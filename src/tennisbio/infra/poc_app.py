@@ -55,13 +55,21 @@ def make_page(root: Path) -> tuple[Path, dict]:
     """The application's page with the results brought under root/nube, as the PC's window makes it."""
     from ..app import p0_app, p0_ventana
 
-    page_dir = root / "aplicacion_nueva"
-    d, src = p0_ventana.build_data(root, None, page_dir / "datos", root / "nube", page_dir)
-    page = page_dir / "index.html"
+    page_dir = root                     # 22-11: where the PC's window puts it (p0_ventana.PAGE_NAME, beside nube/)
+    d, src = p0_ventana.build_data(root, None, root / "aplicacion_nueva" / "datos", root / "nube", page_dir)
+    page = page_dir / p0_ventana.PAGE_NAME
     page.parent.mkdir(parents=True, exist_ok=True)
     page.write_text(p0_app.pagina(d), encoding="utf-8")
     return page, {"origen": src, "golpes_con_video": sum(1 for s in d.get("strokes") or [] if s.get("video")),
                   "golpes": len(d.get("strokes") or []), "medios": d.get("medios")}
+
+
+def serve(page: Path) -> str:
+    """22-11: the page as the PC's window loads it: through pywebview's own HTTP server (rooted at the page's folder).
+    Opened as a file, Chrome reached «../nube/…» and the check passed 24 of 24 while the PC's window showed no video."""
+    from webview.http import BottleServer
+    addr, _, _ = BottleServer.start_server([str(page)], None)
+    return addr.rstrip("/") + "/" + page.name
 
 
 def probe(page: Path, n: int, channel: str = "chrome") -> dict:
@@ -72,7 +80,7 @@ def probe(page: Path, n: int, channel: str = "chrome") -> dict:
         b = pw.chromium.launch(channel=channel) if channel else pw.chromium.launch()
         p = b.new_page(viewport={"width": 1440, "height": 900})
         p.on("pageerror", lambda e: errors.append(str(e)[:200]))
-        p.goto(page.as_uri() + "#visor")
+        p.goto(serve(page) + "#visor")
         p.wait_for_timeout(800)
         p.click('[data-tab="golpes"]')
         p.wait_for_timeout(300)

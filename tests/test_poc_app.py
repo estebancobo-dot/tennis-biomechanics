@@ -70,7 +70,7 @@ def test_the_page_is_made_as_the_window_makes_it(tmp_path, monkeypatch):
         return {**p0_app.ejemplo(), "medios": "../nube/informe_derecha/"}, "el informe de la nube (hecho el x)"
     monkeypatch.setattr(p0_ventana, "build_data", fake)
     page, info = poc_app.make_page(tmp_path)
-    assert page.exists() and seen["cloud_dir"] == tmp_path / "nube" and seen["page_dir"] == tmp_path / "aplicacion_nueva"
+    assert page.exists() and seen["cloud_dir"] == tmp_path / "nube" and seen["page_dir"] == tmp_path   # beside nube/ (22-11)
     assert info["origen"].startswith("el informe de la nube") and info["medios"] == "../nube/informe_derecha/"
 
 
@@ -83,3 +83,35 @@ def test_kaggle_brings_the_results_and_chrome_then_probes():
     src = (ROOT / "cloud" / "kaggle" / "correr.py").read_text(encoding="utf-8")
     assert '"install", "--with-deps", "chrome"' in src and 'bring_results(vol, models.parent / "app" / "nube")' in src
     assert "from tennisbio.app import p0_nube" in src
+
+
+
+def test_the_pcs_window_serves_the_page_from_its_folder_so_it_sits_beside_the_results(tmp_path):
+    """22-11, the window's self-check on the PC: «0 de 3 vídeos se abren» (código 4). pywebview 6 serves a local page with
+    its own HTTP server rooted at the page's folder: from aplicacion_nueva/ «../nube/…» is out of reach (as on the PC);
+    beside nube/ it plays. The cloud's check now loads the page through that same server (poc_app.serve)."""
+    pytest.importorskip("playwright")
+    pytest.importorskip("webview")
+    if not shutil.which("ffmpeg"):
+        pytest.skip("sin ffmpeg")
+    (tmp_path / "nube" / "m1" / "windows").mkdir(parents=True)
+    subprocess.run(["ffmpeg", "-loglevel", "error", "-f", "lavfi", "-i", "color=c=black:s=320x240:r=25:d=1",
+                    "-c:v", "libvpx", str(tmp_path / "nube" / "m1" / "windows" / "clip.webm")], check=True)
+    from playwright.sync_api import sync_playwright
+    out = {}
+    for name, page in (("antes", tmp_path / "aplicacion_nueva" / "index.html"), ("ahora", tmp_path / "aplicacion.html")):
+        page.parent.mkdir(parents=True, exist_ok=True)
+        rel = ("../" if page.parent.name == "aplicacion_nueva" else "") + "nube/m1/windows/clip.webm"
+        page.write_text(f"<!doctype html><video src='{rel}' muted></video>", encoding="utf-8")
+        with sync_playwright() as pw:
+            b = pw.chromium.launch()
+            p = b.new_page()
+            p.goto(poc_app.serve(page))
+            p.wait_for_timeout(1500)
+            out[name] = p.evaluate("() => { const v = document.querySelector('video'); return v.error ? 'error ' + v.error.code : v.videoWidth; }")
+            b.close()
+    assert out == {"antes": "error 4", "ahora": 320}, out
+    from tennisbio.app import p0_ventana
+    assert p0_ventana.PAGE_NAME == "aplicacion.html"
+    src = (ROOT / "src" / "tennisbio" / "app" / "p0_ventana.py").read_text(encoding="utf-8")
+    assert "page = (out_root / PAGE_NAME).resolve()" in src

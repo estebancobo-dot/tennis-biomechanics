@@ -329,6 +329,10 @@ trabajos:
   - {id: informe_beta5, accion: informe, donde: kaggle}
   # 22-11 06:00 (#312, puntos 2 y 5): la auditoría de la nube con los modelos medidos y en uso, y cada error con su motivo
   - {id: informe_beta6, accion: informe, donde: kaggle, tras: informe_beta5}
+  # 22-11 11:00: la autocomprobación del PC dijo «0 de 3 vídeos» (pywebview sirve la página desde su carpeta y no
+  # llegaba a nube/; Chrome con la página como fichero sí: por eso medir_app pasaba). Arreglado; la misma prueba, ahora
+  # a través del servidor de pywebview, con los resultados reales
+  - {id: medir_app_c, accion: medir, prueba: app, donde: kaggle, cpu: true}
   # 21-11 10:10 (#295, cierre de la nube nativa; sirve con cualquier decisión pendiente del usuario): F3Set con el código de
   # hoy y todo lo adoptado (bola en un hilo, marcador con CUDA, jugadora lejana con RF-DETR…) frente a la nube2 (Modal,
   # 14-11: 469 de 517, precisión 0,94), con el mismo script. Regla escrita antes (tennisbio.infra.poc_f3set): no peor en

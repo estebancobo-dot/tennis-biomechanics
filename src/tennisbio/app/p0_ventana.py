@@ -18,6 +18,9 @@ import time
 from pathlib import Path
 
 
+PAGE_NAME = "aplicacion.html"       # in the outputs' folder: pywebview's server reaches nube/ from there (tennisbio.infra.poc_app)
+
+
 def log(msg: str) -> None:
     print(f"{time.strftime('%H:%M:%S')} {msg}", flush=True)
 
@@ -64,7 +67,7 @@ def build_data(out_root: Path, store, work: Path, cloud_dir: Path | None = None,
     # P0.5e: the report's videos and series are relative to its page: from the application's page (main's page_dir)
     if report.exists() and not d.get("ejemplo"):
         import os
-        d["medios"] = Path(os.path.relpath(report.parent, page_dir or out_root / "aplicacion_nueva")).as_posix() + "/"
+        d["medios"] = Path(os.path.relpath(report.parent, page_dir or out_root)).as_posix() + "/"
     if cloud and cloud_dir:              # 21-11 (P0.5e): what the cloud exported with the report, brought to the PC
         d["exportados"] = p0_nube.exports(cloud_dir)
     try:
@@ -90,7 +93,10 @@ def main(store=None, why: str = "sin la nube", out_root: Path | None = None) -> 
 
     out_root = out_root or output_root()
     work, cloud_dir = out_root / "aplicacion_nueva", out_root / "nube"
-    page = (work / "index.html").resolve()
+    # 22-11 (the window's self-check on the PC: «0 de 3 vídeos se abren», código 4): pywebview 6 serves a local page with
+    # its own HTTP server rooted at the page's folder, so «../nube/…» was out of its reach; the page sits in the outputs'
+    # folder, which holds the results it shows (nube/, or the PC's informe/)
+    page = (out_root / PAGE_NAME).resolve()
     log(f"nube: {'conectada' if store else why}")
 
     def make_page() -> dict:

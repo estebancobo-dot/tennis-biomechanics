@@ -330,7 +330,8 @@ def measure(job: dict, py: Path, models: Path, data: Path, run: Path, vol, est: 
         modal_get("/datasets/f3set/recall/videos", models.parent / "datasets" / "f3set" / "recall")
         modal_get(f"/datasets/reports/{F3SET_REFERENCE}", models.parent / "referencia")
     if job["prueba"] == "app":                     # P0.5e-D: the results brought as the PC brings them, and Chrome
-        _run(["uv", "pip", "install", "-q", "--python", str(py), "playwright>=1.48,<2"])
+        # 22-11: and pywebview, whose own HTTP server serves the page as on the PC (poc_app.serve)
+        _run(["uv", "pip", "install", "-q", "--python", str(py), "playwright>=1.48,<2", "pywebview==6.2.1"])
         _run([str(py), "-m", "playwright", "install", "--with-deps", "chrome"])
         est["descarga_app"] = bring_results(vol, models.parent / "app" / "nube")
     if job["prueba"] == "youtube":                 # the newest yt-dlp, as the PC's fallback uses

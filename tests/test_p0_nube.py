@@ -70,7 +70,7 @@ def test_the_window_shows_the_clouds_results_first_and_says_so(tmp_path, monkeyp
     assert p0_nube.pull(store, out / "nube", log=lambda m: None)["ok"]
     d, src = p0_ventana.build_data(out, None, tmp_path / "trabajo", out / "nube")
     assert src == "el informe de la nube (hecho el 2026-11-21 08:00 UTC)" and d["origen"] == src
-    assert d["medios"] == "../nube/informe_derecha/"            # its videos and series, from the application's page
+    assert d["medios"] == "nube/informe_derecha/"               # from the application's page, beside nube/ (22-11)
     assert seen[-1] == out / "nube" / "informe_derecha" / "index.html"
 
 
@@ -112,7 +112,8 @@ def test_the_window_opens_at_once_and_brings_the_results_behind_it(tmp_path, mon
     real_pull = p0_nube.pull
     monkeypatch.setattr(p0_nube, "pull", lambda *a, **k: events.append(("trae",)) or real_pull(*a, **k))
     assert p0_ventana.main(store, out_root=out) == 0
-    assert events == [("ventana", "index.html"), ("arranca", True), ("trae",), ("recarga", "index.html")], events
+    assert events == [("ventana", "aplicacion.html"), ("arranca", True), ("trae",), ("recarga", "index.html")], events
+    assert Path(next(e for e in events if e[0] == "ventana")[1]).name == p0_ventana.PAGE_NAME
     assert (out / "nube" / "informe_derecha" / "index.html").exists()
 
 
