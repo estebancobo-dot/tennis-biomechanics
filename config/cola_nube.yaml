@@ -41,6 +41,7 @@ reiniciar: ["final#1"]
 # resultados se quedan. Apagado hasta cerrar los 6 partidos (hasta entonces se pueden rehacer)
 borrar_videos_aceptados: false
 cancelar:
+  actualizar_zheng_b: "22-11 20:50: su análisis acabó (manifiesto en Modal: fine 19:23:58, fine_opponent 19:23:59, fine_doubtful 19:32:46; leer_zheng_b_atasco), pero el ejecutor de Kaggle dejó de leer su salida a las 19:01 y la sesión siguió abierta sin hacer nada (CPU 1 %, GPU 0 %, 1,6 GB desde las 19:44) gastando cuota de GPU. Se borra su cuaderno; actualizar_zheng_b2 lo comprueba (todo al día, sin rehacer nada) con el ejecutor arreglado"
   sinner_b: "22-11 00:05: relanzado a las 00:04 con el giro 3D de antes; MeTRAbs acaba de pasar su regla (comparar_gauff_v36_v38: los mismos 28 golpes, X-factor 3D en 15 frente a 7, dispersión 5,2° frente a 5,6°) y Sinner se analiza una sola vez con lo elegido (#295): otra vez como sinner_b2 cuando MeTRAbs sea el de por defecto"
   medir_f3set_hoy_c: "21-11 23:58: corre dos veces en Kaggle (cada vuelta caída de 23:01 a 23:31 lo volvió a lanzar: dos versiones, dos sesiones de GPU; Kaggle contó 1,78 h en una hora) y deja a sinner_b sin GPU. Se borra su cuaderno y va otra vez detrás de Sinner como medir_f3set_hoy_d"
   medir_raqueta_trt: "la GPU está ocupada solo el 9 % de la pasada fina (fase A, v17): TensorRT casi no ahorra hoy; su plaza de Kaggle, para la v19 (las 2 T4). Se repite si la GPU pasa a ser el cuello de botella"
