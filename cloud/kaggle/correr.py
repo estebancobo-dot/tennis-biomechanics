@@ -180,9 +180,27 @@ def bring_results(vol, dest: Path) -> dict:
     return r
 
 
-def wants_metrabs(job: dict) -> bool:
-    """21-11 (#309): a test or match whose settings read the trunk's 3D with MeTRAbs (trunk3d.model: metrabs)."""
-    return str(((job.get("config") or {}).get("trunk3d") or {}).get("model") or "").lower() == "metrabs"
+FINE_STAGES = ("fine", "fine_opponent", "fine_doubtful")      # the stages that read the trunk's 3D
+PIPELINE_POCS = ("f3set",)       # measures that run the whole analysis (scripts/validate_recall.py: fine included)
+
+
+def default_trunk3d(repo: Path | None = None) -> str:
+    """The repository's own `trunk3d.model` (config/default.yaml)."""
+    import yaml
+    cfg = yaml.safe_load(((repo or REPO) / "config" / "default.yaml").read_text(encoding="utf-8")) or {}
+    return str((cfg.get("trunk3d") or {}).get("model") or "motionagformer").lower()
+
+
+def wants_metrabs(job: dict, repo: Path | None = None) -> bool:
+    """21-11 (#309): a test or match that reads the trunk's 3D with MeTRAbs: its own settings say so, or (22-11, MeTRAbs
+    adopted) it says nothing and the repository's default is MeTRAbs, and it runs a fine stage (a CPU part does not)."""
+    own = str(((job.get("config") or {}).get("trunk3d") or {}).get("model") or "").lower()
+    if own:
+        return own == "metrabs"
+    stages = job.get("etapas")
+    runs_fine = (job.get("accion") in ("prueba", "partido") and (not stages or any(e in FINE_STAGES for e in stages))) \
+        or (job.get("accion") == "medir" and job.get("prueba") in PIPELINE_POCS)
+    return runs_fine and default_trunk3d(repo) == "metrabs"
 
 
 def wants_rfdetr(job: dict) -> bool:
@@ -274,9 +292,20 @@ def poc_args(job: dict, models: Path, video: Path | None) -> list[str]:
     return ["--video", str(video)]
 
 
+def ensure_metrabs(py: Path, data: Path) -> None:
+    """#309: TensorFlow in the analysis's Python, and MeTRAbs' 708 MB fetched once (TFHUB_CACHE_DIR, in this process'
+    environment so every child sees it) before the fine pass's 2 processes would fetch it at the same time."""
+    _run(["uv", "pip", "install", "-q", "--python", str(py), *METRABS_TF])
+    os.environ["TFHUB_CACHE_DIR"] = str(data / "tfhub")
+    _run([str(py), "-c", "import tensorflow_hub as h; from tennisbio.pose.metrabs3d import URL; h.load(URL)"],
+         env=env_for(data), cwd=REPO)
+
+
 def measure(job: dict, py: Path, models: Path, data: Path, run: Path, vol, est: dict, video: Path | None = None) -> int:
     """A proof of concept (#288): the measuring module (TensorRT for ONNX Runtime from its pip wheels when it times a
     model), whose result goes into the job's state on Modal."""
+    if wants_metrabs(job):                         # 22-11: F3Set runs the whole analysis, MeTRAbs by default included
+        ensure_metrabs(py, data)
     env = env_for(data)
     if job["prueba"] == "raqueta":
         _run(["uv", "pip", "install", "-q", "--python", str(py), "tensorrt-cu12"])
@@ -591,11 +620,7 @@ def main(argv: list[str]) -> int:
         if wants_rfdetr(job):                              # T25: the far player by RF-DETR
             ensure_rfdetr(data, models, vol, est)
         if wants_metrabs(job):                             # #309: MeTRAbs runs on TensorFlow, in the analysis's Python
-            _run(["uv", "pip", "install", "-q", "--python", str(py), *METRABS_TF])
-            # its 708 MB once, before the fine pass's 2 processes would fetch it at the same time
-            os.environ["TFHUB_CACHE_DIR"] = str(data / "tfhub")
-            _run([str(py), "-c", "import tensorflow_hub as h; from tennisbio.pose.metrabs3d import URL; h.load(URL)"],
-                 env=env_for(data), cwd=REPO)
+            ensure_metrabs(py, data)
         src = matches.get(job["partido"])
         if src is None:
             est.update(estado="error", nota=f"{job['partido']} no está en la lista de partidos del PC")

@@ -266,7 +266,9 @@ trabajos:
   # encuentra un fallo, la parte de CPU se repite
   - {id: sinner_a, accion: partido, partido: zverev-alexander-sinner-jannik-indian-wells-2026-semi-final, aprobado: true, cpu: true, etapas: [probe, scenes, court, audio]}
   - {id: sinner_b, accion: partido, partido: zverev-alexander-sinner-jannik-indian-wells-2026-semi-final, tras: sinner_a, espera_tambien: [prueba_sinner_b], aprobado: true, etapas: [players, score, identity, spotting, candidates, fine, fine_opponent, fine_doubtful]}
-  - {id: sinner, accion: partido, partido: zverev-alexander-sinner-jannik-indian-wells-2026-semi-final, tras: sinner_b, aprobado: true, cpu: true, etapas: [views, views_link, view_clips, slowmo_fine]}
+  # 22-11 00:10: la parte de GPU otra vez, ya con MeTRAbs por defecto (sinner_b, cancelado, salió con el giro 3D de antes)
+  - {id: sinner_b2, accion: partido, partido: zverev-alexander-sinner-jannik-indian-wells-2026-semi-final, tras: sinner_a, espera_tambien: [prueba_sinner_b], aprobado: true, etapas: [players, score, identity, spotting, candidates, fine, fine_opponent, fine_doubtful]}
+  - {id: sinner, accion: partido, partido: zverev-alexander-sinner-jannik-indian-wells-2026-semi-final, tras: sinner_b2, aprobado: true, cpu: true, etapas: [views, views_link, view_clips, slowmo_fine]}
   # paso 10: Osaka, Pegula y Zheng al día con el código final (marcador v16, R36, R37): solo lo que cambió, desde lo
   # guardado en Modal (las ventanas no se repiten); aprobado en el plan (paso 10 de docs/estado_proyecto.md)
   - {id: actualizar_osaka_a, accion: partido, partido: us-open-2026-r4-naomi-osaka-elena-rybakina, tras: sinner, aprobado: true, cpu: true, etapas: [probe, scenes, court, audio], minutos_video: 70}
@@ -328,7 +330,7 @@ trabajos:
   # golpes se pierden y en qué paso (¿la jugadora lejana, con RF-DETR?), después de la prueba de MeTRAbs
   - {id: medir_f3set_hoy_c, accion: medir, prueba: f3set, donde: kaggle, horas: 5, tras: prueba_gauff_v38_c}
   # 21-11 23:58: el de arriba, cancelado (corría duplicado); los partidos primero (el usuario, #310), F3Set detrás de Sinner
-  - {id: medir_f3set_hoy_d, accion: medir, prueba: f3set, donde: kaggle, horas: 5, tras: sinner_b}
+  - {id: medir_f3set_hoy_d, accion: medir, prueba: f3set, donde: kaggle, horas: 5, tras: sinner_b2}
   # 21-11 15:00 (#309, el usuario: «sí, hazla»): MeTRAbs dentro de la pasada fina (trunk3d.model: metrabs; la focal de la
   # cámara, de la pista), la prueba de 10 min por partes frente a la v36. Regla escrita antes: se adopta si salen los mismos
   # 28 golpes (ninguno de un solo lado), el X-factor 3D está en al menos tantos golpes como con MotionAGFormer y su

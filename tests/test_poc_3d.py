@@ -131,6 +131,15 @@ def test_kaggle_installs_tensorflow_for_a_test_that_asks_for_metrabs():
     sys.path.insert(0, str(ROOT / "cloud"))
     import correr
     assert correr.wants_metrabs({"config": {"trunk3d": {"model": "metrabs"}}})
-    assert not correr.wants_metrabs({"config": {"fine_pass": {"refine": "sapiens2"}}}) and not correr.wants_metrabs({})
+    assert not correr.wants_metrabs({"config": {"trunk3d": {"model": "motionagformer"}}}) and not correr.wants_metrabs({})
+    # 22-11: MeTRAbs adopted: a match or test that says nothing reads it from config/default.yaml, only where it runs a
+    # fine stage (its CPU parts install no TensorFlow)
+    from tennisbio.config import load_config
+    assert load_config()["trunk3d"]["model"] == "metrabs" and correr.default_trunk3d() == "metrabs"
+    assert correr.wants_metrabs({"accion": "partido", "etapas": ["players", "fine", "fine_doubtful"]})
+    assert correr.wants_metrabs({"accion": "prueba"}) and correr.wants_metrabs({"accion": "partido"})
+    assert not correr.wants_metrabs({"accion": "partido", "etapas": ["probe", "scenes", "court", "audio"]})
+    assert correr.wants_metrabs({"accion": "medir", "prueba": "f3set"})        # F3Set runs the whole analysis
+    assert not correr.wants_metrabs({"accion": "medir", "prueba": "app"})
     src = (ROOT / "cloud" / "kaggle" / "correr.py").read_text(encoding="utf-8")
-    assert "if wants_metrabs(job):" in src and 'os.environ["TFHUB_CACHE_DIR"]' in src
+    assert src.count("if wants_metrabs(job):") == 2 and 'os.environ["TFHUB_CACHE_DIR"]' in src   # a match or test, and F3Set

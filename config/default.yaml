@@ -214,7 +214,10 @@ export:
 # fotogramas a ≤15° de la referencia de dos cámaras de CalTennis frente al 13 % de RTMW3D; usa la pose 2D, en la CPU)
 # o rtmw3d (la lectura anterior). Si falta el fichero, se usa la anterior.
 trunk3d:
-  model: motionagformer
+  # 22-11 (#309, adoptado por su regla escrita antes): MeTRAbs en la pasada fina (comparar_gauff_v36_v38: los mismos 28
+  # golpes, X-factor 3D en 15 golpes frente a 7 y dispersión 5,2° frente a 5,6°; en CalTennis, 77,8 % a ≤ 15° frente al
+  # 36,8 %). Necesita TensorFlow (la nube lo instala: cloud/kaggle/correr.wants_metrabs). MotionAGFormer queda como opción
+  model: metrabs
   onnx: models/motionagformer_xs.onnx
 
 # Presupuesto de tiempo por etapa (tennisbio.budget, 03-11): segundos por unidad de su progreso. Si una etapa va más de
