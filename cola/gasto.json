@@ -215,7 +215,8 @@
      "horas": 0.44
     },
     "sinner_b": {
-     "estimado_h": 9.45
+     "estimado_h": 9.45,
+     "horas": 0.0
     },
     "medir_f3set_hoy_c": {
      "estimado_h": 5.0,
@@ -225,9 +226,10 @@
   }
  },
  "kaggle_real": {
-  "usadas_h": 10.24,
+  "usadas_h": 10.26,
   "total_h": 30.0,
   "renueva": "2026-11-28 00:00:00",
-  "ts": 1795305866.925177
- }
+  "ts": 1795305940.4944286
+ },
+ "aviso_ocioso_ts": 1795305940.4944286
 }

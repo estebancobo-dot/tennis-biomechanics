@@ -2035,7 +2035,7 @@
   }
  },
  "sinner_b": {
-  "estado": "en_marcha",
+  "estado": "error",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 2,
@@ -2046,7 +2046,10 @@
   "ruta": "/runs/kaggle_sinner_b/estado.json",
   "salida": "/output/zverev-alexander-sinner-jannik-indian-wells-2026-semi-final",
   "cuaderno": "tennisbio-sinner-b-2",
-  "nota": "la sesión de Kaggle acabó con «error» sin escribir su estado"
+  "nota": "la sesión de Kaggle acabó con «error» sin escribir su estado",
+  "resultado": {
+   "nota": "cancelado: 22-11 00:05: relanzado a las 00:04 con el giro 3D de antes; MeTRAbs acaba de pasar su regla (comparar_gauff_v36_v38: los mismos 28 golpes, X-factor 3D en 15 frente a 7, dispersión 5,2° frente a 5,6°) y Sinner se analiza una sola vez con lo elegido (#295): otra vez como sinner_b2 cuando MeTRAbs sea el de por defecto"
+  }
  },
  "medir_f3set_hoy_c": {
   "estado": "error",
