@@ -252,6 +252,11 @@ def check_queue(jobs: list[dict]) -> list[str]:
             if (not isinstance(rutas, list) or not rutas or not all(
                     isinstance(r, str) and r.startswith("/") and ".." not in r and r.endswith(READ_EXT) for r in rutas)):
                 bad.append(f"{jid}: leer necesita «rutas»: ficheros del volumen ({', '.join(READ_EXT)}), rutas absolutas")
+            if j.get("filtro") is not None:
+                try:
+                    re.compile(str(j["filtro"]))
+                except re.error as e:
+                    bad.append(f"{jid}: «filtro» no es una expresión regular ({e})")
         if j.get("accion") == "investigar" and (not str(j.get("urls") or "").strip()
                                                 or j.get("donde", "cualquiera") not in ("cualquiera", "kaggle")):
             bad.append(f"{jid}: investigar necesita «urls» (los vídeos) y va en Kaggle")
@@ -1138,6 +1143,10 @@ def read_job(vol, job: dict, state: dict, logs: Path, now: float) -> dict:
             continue
         dest.mkdir(parents=True, exist_ok=True)
         name = path.strip("/").replace("/", "__")
+        if job.get("filtro") and path.endswith((".log", ".txt")):   # 22-11: only the lines that matter of a long log
+            import re as _re
+            rx = _re.compile(str(job["filtro"]))
+            data = "\n".join(ln for ln in data.decode("utf-8", errors="replace").splitlines() if rx.search(ln)).encode()
         # 22-11: of a long log, its end (where a run fails: sinner_b2 ended in «error» with no reason in its state)
         tail = len(data) > READ_MAX_BYTES and path.endswith((".log", ".txt"))
         (dest / name).write_bytes(data[-READ_MAX_BYTES:] if tail else data[:READ_MAX_BYTES])

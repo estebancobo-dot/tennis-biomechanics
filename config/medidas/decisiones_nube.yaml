@@ -10,7 +10,7 @@ rtmw:
 rfdetr:
   fecha: "2026-11-21"
   prueba: medir_lejana_rfdetr, comparar_gauff_v36_v37
-  resultado: "en la T4: halla a la lejana en el 100 % frente al 90,3 % de YOLO y a 3,3 frente a 1,1 fotogramas/s; prueba integrada: los mismos 28 golpes, temblor ×1,00, la parte de GPU +9,2 %"
+  resultado: "en la T4: halla a la lejana en el 100 % frente al 90,3 % de YOLO y a 3,3 frente a 1,1 fotogramas/s; prueba integrada: los mismos 28 golpes, temblor ×1,00, la parte de GPU +9,2 %; en las retransmisiones de F3Set (22-11, medir_lejana_f3set), el 99,7 % frente al 91,5 %"
   adopta: true
 mag3d:
   fecha: "2026-11-22"

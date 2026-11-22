@@ -889,3 +889,21 @@ def test_the_video_of_an_accepted_match_is_deleted_only_when_switched_on(tmp_pat
     assert cola.delete_accepted_videos(store, catalog, gone) == []                 # once
     q = yaml.safe_load((ROOT / "config" / "cola_nube.yaml").read_text(encoding="utf-8"))
     assert q["borrar_videos_aceptados"] is False                                   # until the 6 matches are closed
+
+
+def test_a_read_keeps_only_the_lines_of_a_log_that_match(tmp_path, monkeypatch):
+    """22-11: F3Set's run logs hours of windows; to see why two far strokes were lost, only the far windows' lines."""
+    import types
+    data = {"/runs/f/log.txt": b"ventana w1_10 (near, 1 candidatos): pasa\nventana w2_10 (far, 1 candidatos): jugadora lejana no encontrada\notra\n"}
+
+    class S:
+        def __init__(self, *a):
+            pass
+
+        def read_bytes(self, path):
+            return data.get(path)
+    monkeypatch.setitem(sys.modules, "almacen", types.SimpleNamespace(ModalStorage=S))
+    st = cola.read_job(None, {"id": "leer_f", "rutas": ["/runs/f/log.txt"], "filtro": r"\(far"}, {}, tmp_path, NOV)
+    assert st["estado"] == "hecho"
+    assert (tmp_path / "lecturas" / "leer_f" / "runs__f__log.txt").read_text() == "ventana w2_10 (far, 1 candidatos): jugadora lejana no encontrada"
+    assert "«filtro»" in cola.check_queue([{"id": "x", "accion": "leer", "rutas": ["/a.txt"], "filtro": "("}])[0]
