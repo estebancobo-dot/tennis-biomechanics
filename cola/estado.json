@@ -2286,10 +2286,10 @@
   "ruta": "/runs/kaggle_actualizar_osaka_b/estado.json",
   "salida": "/output/us-open-2026-r4-naomi-osaka-elena-rybakina",
   "cuaderno": "tennisbio-actualizar-osaka-b",
-  "kaggle": "running (07:59)",
+  "kaggle": "running (08:04)",
   "kaggle_detalle": "queued | estebancoboc/tennisbio-actualizar-osaka-b has status \"KernelWorkerStatus.QUEUED\"",
   "arranco": "2026-11-22 06:42",
   "espera_min": 31,
-  "progreso": "fine:  67 % (156/232 golpes candidatos · 147 confirmados · 0 ventanas descartadas sin pose) · 34 min · quedan ≈ 16 min (07:57:29; GPU 18 %·80 %, CPU 86 %, 26.6 GB)"
+  "progreso": "fine:  72 % (166/232 golpes candidatos · 157 confirmados · 0 ventanas descartadas sin pose) · 38 min · quedan ≈ 15 min (08:02:20; GPU 39 %·74 %, CPU 83 %, 26.6 GB)"
  }
 }
