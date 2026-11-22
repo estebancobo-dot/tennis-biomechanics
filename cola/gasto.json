@@ -237,6 +237,9 @@
     "actualizar_osaka_b": {
      "estimado_h": 3.15,
      "horas": 1.82
+    },
+    "medir_lejana_f3set": {
+     "estimado_h": 0.5
     }
    }
   }
@@ -245,7 +248,7 @@
   "usadas_h": 18.94,
   "total_h": 30.0,
   "renueva": "2026-11-28 00:00:00",
-  "ts": 1795341115.6862354
+  "ts": 1795341144.4132788
  },
  "aviso_ocioso_ts": 1795340500.566843
 }

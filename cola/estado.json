@@ -2338,8 +2338,20 @@
   "cpu": true,
   "cuaderno": "tennisbio-actualizar-pegula-a",
   "progreso": "scenes:  50 % (84626/168278 fotogramas) · 33 min · quedan ≈ 32 min (09:51:25; CPU 65 %, 2.5 GB)",
-  "kaggle": "running (09:51)",
+  "kaggle": "running (09:52)",
   "arranco": "2026-11-22 09:21",
   "espera_min": 5
+ },
+ "medir_lejana_f3set": {
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1795341144.4132788,
+  "accion": "medir",
+  "partido": "",
+  "inicio": "2026-11-22 09:52",
+  "ruta": "/runs/kaggle_medir_lejana_f3set/estado.json",
+  "cuaderno": "tennisbio-medir-lejana-f3set"
  }
 }
