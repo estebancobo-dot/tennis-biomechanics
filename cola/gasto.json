@@ -241,6 +241,9 @@
     "medir_lejana_f3set": {
      "estimado_h": 0.5,
      "horas": 0.14
+    },
+    "actualizar_pegula_b": {
+     "estimado_h": 5.04
     }
    }
   }
@@ -249,7 +252,7 @@
   "usadas_h": 19.09,
   "total_h": 30.0,
   "renueva": "2026-11-28 00:00:00",
-  "ts": 1795342957.1827672
+  "ts": 1795343264.5006104
  },
  "aviso_ocioso_ts": 1795340500.566843
 }
