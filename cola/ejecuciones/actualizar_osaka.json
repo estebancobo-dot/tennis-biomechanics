@@ -1,0 +1,153 @@
+{
+ "estado": "hecho",
+ "segundos": 2472,
+ "horas_kaggle": 0.72,
+ "coste_usd": 0.0,
+ "gpu": null,
+ "etapas": {
+  "probe": 6.6,
+  "scenes": 3521.9,
+  "court": 610.2,
+  "score": 201.8,
+  "players": 432.9,
+  "audio": 88.7,
+  "identity": 383.6,
+  "spotting": 1300.1,
+  "candidates": 9.5,
+  "views": 1879.2,
+  "fine": 3737.1,
+  "views_link": 0.7,
+  "view_clips": 104.3,
+  "slowmo_fine": 477.7,
+  "fine_opponent": 0.0,
+  "fine_doubtful": 192.2
+ },
+ "recursos": {
+  "muestras": 41,
+  "cpu_pct": {
+   "media": 57.3,
+   "max": 99.8
+  },
+  "ram_gb": {
+   "media": 7.8,
+   "max": 18.3
+  }
+ },
+ "recursos_por_etapa": {
+  "probe": {
+   "s": 7,
+   "muestras": 0
+  },
+  "scenes": {
+   "s": 3522,
+   "muestras": 0
+  },
+  "court": {
+   "s": 610,
+   "muestras": 0
+  },
+  "score": {
+   "s": 202,
+   "muestras": 0
+  },
+  "players": {
+   "s": 433,
+   "muestras": 0
+  },
+  "audio": {
+   "s": 89,
+   "muestras": 0
+  },
+  "identity": {
+   "s": 384,
+   "muestras": 0
+  },
+  "spotting": {
+   "s": 1300,
+   "muestras": 0
+  },
+  "candidates": {
+   "s": 10,
+   "muestras": 0
+  },
+  "views": {
+   "s": 1879,
+   "muestras": 31,
+   "cpu_pct": {
+    "media": 57.5,
+    "max": 99.8
+   },
+   "ram_gb": {
+    "media": 8.1,
+    "max": 8.5
+   }
+  },
+  "fine": {
+   "s": 3737,
+   "muestras": 0
+  },
+  "views_link": {
+   "s": 1,
+   "muestras": 0
+  },
+  "view_clips": {
+   "s": 104,
+   "muestras": 2,
+   "cpu_pct": {
+    "media": 61.3,
+    "max": 67.1
+   },
+   "ram_gb": {
+    "media": 5.4,
+    "max": 5.5
+   }
+  },
+  "slowmo_fine": {
+   "s": 478,
+   "muestras": 8,
+   "cpu_pct": {
+    "media": 55.5,
+    "max": 57.5
+   },
+   "ram_gb": {
+    "media": 7.4,
+    "max": 18.3
+   }
+  },
+  "fine_opponent": {
+   "s": 0,
+   "muestras": 0
+  },
+  "fine_doubtful": {
+   "s": 192,
+   "muestras": 0
+  }
+ },
+ "modelos_en_cpu": 0,
+ "fallos": {},
+ "sin_subir": [],
+ "config": {},
+ "config_local": {
+  "registry": {
+   "source": "yaml"
+  },
+  "device": "auto"
+ },
+ "kaggle": {
+  "python": "3.13.18",
+  "nucleos": 4,
+  "memoria_gib": {
+   "MemTotal": 31.3,
+   "MemAvailable": 30.2
+  },
+  "disco_libre_gib": {
+   "/tmp": 2514.5,
+   "/kaggle/working": 19.5
+  },
+  "gpu": "",
+  "ffmpeg": "/usr/bin/ffmpeg",
+  "clave_modal": true
+ },
+ "nota": null,
+ "modelos_en_cpu_registro": 0
+}

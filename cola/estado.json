@@ -2300,7 +2300,7 @@
   }
  },
  "actualizar_osaka": {
-  "estado": "en_marcha",
+  "estado": "hecho",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 1,
@@ -2312,9 +2312,30 @@
   "salida": "/output/us-open-2026-r4-naomi-osaka-elena-rybakina",
   "cpu": true,
   "cuaderno": "tennisbio-actualizar-osaka",
-  "progreso": "slowmo_fine: 100 % (5/5 golpes en la repetición a cámara lenta) · 4 min · quedan ≈ 0 s (09:10:08; CPU 58 %, 5.8 GB)",
-  "kaggle": "running (09:11)",
+  "progreso": "slowmo_fine terminada a las 09:13:55 en 8.0 min (09:13:55)",
+  "kaggle": "complete (09:16)",
   "arranco": "2026-11-22 08:35",
-  "espera_min": 5
+  "espera_min": 5,
+  "fin": "2026-11-22 09:16",
+  "resultado": {
+   "estado": "hecho",
+   "coste_usd": 0.0,
+   "segundos": 2472,
+   "horas_kaggle": 0.72
+  }
+ },
+ "actualizar_pegula_a": {
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1795338972.8760834,
+  "accion": "partido",
+  "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
+  "inicio": "2026-11-22 09:16",
+  "ruta": "/runs/kaggle_actualizar_pegula_a/estado.json",
+  "salida": "/output/elena-rybakina-jessica-pegula-miami-2026-quarter-final",
+  "cpu": true,
+  "cuaderno": "tennisbio-actualizar-pegula-a"
  }
 }
