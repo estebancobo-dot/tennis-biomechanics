@@ -7,7 +7,7 @@ import type { Datos, PuntoDeControl } from "../contrato";
 import { esN, fmt } from "../datos";
 import { SITUACION } from "../situaciones";
 import { tituloGolpe } from "./Golpe";
-import { Reproductor } from "./Reproductor";
+import { Fotograma, Reproductor } from "./Reproductor";
 
 type AnyRec = Record<string, any>; // eslint-disable-line @typescript-eslint/no-explicit-any
 
@@ -108,7 +108,11 @@ export function Leccion({ d, sit }: { d: Datos; sit: string }) {
       <div className="strip" role="tablist">
         {fases.map((x, i) => (
           <button className="ph" type="button" key={x.id} data-ph={i} aria-current={i === ph ? "page" : undefined} onClick={() => setPh(i)}>
-            <div className="mini" style={{ position: "relative" }}><Dibujo fase={x.id} /></div>
+            {/* 22-11 (#312 punto 7): con sus resultados, el fotograma real de su golpe en el momento de cada fase (como los
+                8 fotogramas del informe); el dibujo, solo sin vídeo */}
+            <div className="mini" style={{ position: "relative" }}>{real && esN(((real.phases as AnyRec) || {})[x.id])
+              ? <Fotograma s={real} medios={d.medios} t={((real.phases as AnyRec) || {})[x.id] as number} zurda={d.player.hand === "left"} />
+              : <Dibujo fase={x.id} />}</div>
             <div className="nm">{i + 1} · {x.title}</div>
             {x.checks.some((c) => plan.has(c.key)) ? <span className="start">empieza aquí</span> : null}
             {hechas[x.id] ? <span className="start" style={{ left: 6, right: "auto", background: "var(--good)", color: "#fff" }}>✓</span> : null}
