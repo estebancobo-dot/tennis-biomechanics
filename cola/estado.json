@@ -2336,6 +2336,10 @@
   "ruta": "/runs/kaggle_actualizar_pegula_a/estado.json",
   "salida": "/output/elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "cpu": true,
-  "cuaderno": "tennisbio-actualizar-pegula-a"
+  "cuaderno": "tennisbio-actualizar-pegula-a",
+  "progreso": "scenes:   3 % (5240/168278 fotogramas) · 2 min · quedan ≈ 63 min (09:20:51; CPU 65 %, 2.6 GB)",
+  "kaggle": "running (09:21)",
+  "arranco": "2026-11-22 09:21",
+  "espera_min": 5
  }
 }
