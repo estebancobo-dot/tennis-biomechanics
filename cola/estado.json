@@ -2401,10 +2401,10 @@
   "ruta": "/runs/kaggle_actualizar_pegula_b/estado.json",
   "salida": "/output/elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "cuaderno": "tennisbio-actualizar-pegula-b",
-  "kaggle": "running (13:52)",
+  "kaggle": "running (13:57)",
   "arranco": "2026-11-22 10:32",
   "espera_min": 5,
-  "progreso": "fine_doubtful:  59 % (29/49 golpes candidatos · 6 confirmados · 0 ventanas descartadas sin pose) · 3 min · quedan ≈ 2 min (13:51:53; GPU 0 %·90 %, CPU 72 %, 11.8 GB)"
+  "progreso": "fine_doubtful:  78 % (38/49 golpes candidatos · 12 confirmados · 0 ventanas descartadas sin pose) · 9 min · quedan ≈ 3 min (13:56:26; GPU 22 %·76 %, CPU 83 %, 25.5 GB)"
  },
  "medir_app_c": {
   "estado": "error",
