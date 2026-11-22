@@ -2094,9 +2094,9 @@
   "ruta": "/runs/kaggle_sinner_b2/estado.json",
   "salida": "/output/zverev-alexander-sinner-jannik-indian-wells-2026-semi-final",
   "cuaderno": "tennisbio-sinner-b2",
-  "kaggle": "running (01:56)",
+  "kaggle": "running (02:01)",
   "arranco": "2026-11-22 00:17",
   "espera_min": 6,
-  "progreso": "fine:  69 % (170/245 golpes candidatos · 165 confirmados · 0 ventanas descartadas sin pose) · 47 min · quedan ≈ 21 min (01:56:32; GPU 41 %·70 %, CPU 87 %, 26.3 GB)"
+  "progreso": "fine:  75 % (184/245 golpes candidatos · 179 confirmados · 0 ventanas descartadas sin pose) · 53 min · quedan ≈ 18 min (02:01:32; GPU 6 %·32 %, CPU 82 %, 26.8 GB)"
  }
 }
