@@ -103,6 +103,7 @@
 | actualizar_pegula_a | partido | elena-rybakina-jessica-pegula-miami-2026-quarter-final | en_marcha | kaggle | Kaggle: running (10:12), intento 1 · scenes:  82 % (138626/168278 fotogramas) · 53 min · quedan ≈ 11 min (10:12:16; CPU 64 %, 2.6 GB) |
 | medir_lejana_f3set | medir |  | hecho | kaggle |  |
 | leer_f3set_d_lejana | leer |  | hecho | github | leídos: runs__kaggle_medir_f3set_hoy_d__log.txt |
+| leer_f3set_d_dubai | leer |  | hecho | github | leídos: runs__kaggle_medir_f3set_hoy_d__log.txt |
 | actualizar_pegula_b | partido | elena-rybakina-jessica-pegula-miami-2026-quarter-final | pendiente |  | espera a actualizar_pegula_a (en_marcha) |
 | actualizar_pegula | partido | elena-rybakina-jessica-pegula-miami-2026-quarter-final | pendiente |  | espera a actualizar_pegula_b (pendiente) |
 | actualizar_zheng_a | partido | zheng-qinwen-elena-rybakina | pendiente |  | espera a actualizar_pegula (pendiente) |

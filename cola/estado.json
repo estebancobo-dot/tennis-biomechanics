@@ -2371,5 +2371,15 @@
    "nota": "leídos: runs__kaggle_medir_f3set_hoy_d__log.txt"
   },
   "partido": ""
+ },
+ "leer_f3set_d_dubai": {
+  "estado": "hecho",
+  "accion": "leer",
+  "donde": "github",
+  "fin": "2026-11-22 10:12",
+  "resultado": {
+   "nota": "leídos: runs__kaggle_medir_f3set_hoy_d__log.txt"
+  },
+  "partido": ""
  }
 }
