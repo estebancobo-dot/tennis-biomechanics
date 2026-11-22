@@ -268,7 +268,11 @@ trabajos:
   - {id: sinner_b, accion: partido, partido: zverev-alexander-sinner-jannik-indian-wells-2026-semi-final, tras: sinner_a, espera_tambien: [prueba_sinner_b], aprobado: true, etapas: [players, score, identity, spotting, candidates, fine, fine_opponent, fine_doubtful]}
   # 22-11 00:10: la parte de GPU otra vez, ya con MeTRAbs por defecto (sinner_b, cancelado, salió con el giro 3D de antes)
   - {id: sinner_b2, accion: partido, partido: zverev-alexander-sinner-jannik-indian-wells-2026-semi-final, tras: sinner_a, espera_tambien: [prueba_sinner_b], aprobado: true, etapas: [players, score, identity, spotting, candidates, fine, fine_opponent, fine_doubtful]}
-  - {id: sinner, accion: partido, partido: zverev-alexander-sinner-jannik-indian-wells-2026-semi-final, tras: sinner_b2, aprobado: true, cpu: true, etapas: [views, views_link, view_clips, slowmo_fine]}
+  # 22-11 02:55: sinner_b2 murió en fine_doubtful (fallo de segmentación del peak_pick de librosa, compilado con numba, en
+  # los procesos con TensorFlow de MeTRAbs; leer_sinner_b2). Arreglado (impacts.peak_pick, los mismos picos sin numba); el
+  # cambio entra en la huella de la pasada fina: se rehace la pasada fina (lo de antes, jugadoras, marcador…, no se repite)
+  - {id: sinner_b3, accion: partido, partido: zverev-alexander-sinner-jannik-indian-wells-2026-semi-final, tras: sinner_a, espera_tambien: [prueba_sinner_b], aprobado: true, etapas: [players, score, identity, spotting, candidates, fine, fine_opponent, fine_doubtful]}
+  - {id: sinner, accion: partido, partido: zverev-alexander-sinner-jannik-indian-wells-2026-semi-final, tras: sinner_b3, aprobado: true, cpu: true, etapas: [views, views_link, view_clips, slowmo_fine]}
   # paso 10: Osaka, Pegula y Zheng al día con el código final (marcador v16, R36, R37): solo lo que cambió, desde lo
   # guardado en Modal (las ventanas no se repiten); aprobado en el plan (paso 10 de docs/estado_proyecto.md)
   - {id: actualizar_osaka_a, accion: partido, partido: us-open-2026-r4-naomi-osaka-elena-rybakina, tras: sinner, aprobado: true, cpu: true, etapas: [probe, scenes, court, audio], minutos_video: 70}
@@ -333,7 +337,7 @@ trabajos:
   # golpes se pierden y en qué paso (¿la jugadora lejana, con RF-DETR?), después de la prueba de MeTRAbs
   - {id: medir_f3set_hoy_c, accion: medir, prueba: f3set, donde: kaggle, horas: 5, tras: prueba_gauff_v38_c}
   # 21-11 23:58: el de arriba, cancelado (corría duplicado); los partidos primero (el usuario, #310), F3Set detrás de Sinner
-  - {id: medir_f3set_hoy_d, accion: medir, prueba: f3set, donde: kaggle, horas: 5, tras: sinner_b2}
+  - {id: medir_f3set_hoy_d, accion: medir, prueba: f3set, donde: kaggle, horas: 5, tras: sinner_b3}
   # 21-11 15:00 (#309, el usuario: «sí, hazla»): MeTRAbs dentro de la pasada fina (trunk3d.model: metrabs; la focal de la
   # cámara, de la pista), la prueba de 10 min por partes frente a la v36. Regla escrita antes: se adopta si salen los mismos
   # 28 golpes (ninguno de un solo lado), el X-factor 3D está en al menos tantos golpes como con MotionAGFormer y su

@@ -20,7 +20,7 @@
  },
  "audio": {
   "version": "2",
-  "hash": "f58a61534c36dd2f",
+  "hash": "a97f3a6f51d1e9e3",
   "modules": [
    "impacts",
    "io.video",
@@ -55,7 +55,7 @@
  },
  "spotting": {
   "version": "2",
-  "hash": "4ec61ed5174e92d7",
+  "hash": "0ce76fc521e8bdb0",
   "modules": [
    "ball",
    "ball_features",
@@ -73,7 +73,7 @@
  },
  "candidates": {
   "version": "16",
-  "hash": "2c547eb9f9833f5e",
+  "hash": "dcbf544e48108d10",
   "modules": [
    "court_metrics",
    "identity",

@@ -19,8 +19,46 @@ def audio_onsets(y: np.ndarray, sr: int, band=(1000, 6000), delta=0.35, hop=128)
     flux = np.maximum(0, np.diff(np.log1p(S[(f > band[0]) & (f < band[1])] * 50), axis=1)).sum(0)
     flux = (flux - np.median(flux)) / (np.percentile(flux, 99) - np.median(flux) + 1e-9)
     w = int(0.15 * sr / hop)
-    pk = librosa.util.peak_pick(flux, pre_max=w, post_max=w, pre_avg=3 * w, post_avg=3 * w, delta=delta, wait=3 * w)
+    pk = peak_pick(flux, pre_max=w, post_max=w, pre_avg=3 * w, post_avg=3 * w, delta=delta, wait=3 * w)
     return librosa.frames_to_time(pk + 1, sr=sr, hop_length=hop), flux[pk]
+
+
+def peak_pick(x: np.ndarray, *, pre_max: int, post_max: int, pre_avg: int, post_avg: int, delta: float,
+              wait: int) -> np.ndarray:
+    """librosa.util.peak_pick (0.11) without numba, the same picks bit for bit (tests/test_impacts.py compares them).
+    22-11: Sinner's fine pass died of a segmentation fault in librosa's numba-compiled peak picker in the processes
+    that had loaded TensorFlow for MeTRAbs (each brings its own LLVM); this one needs neither. As librosa's compiled
+    signature: `delta` as float32, and each mean accumulated one value after another in the array's own float type
+    (numba's np.mean), not numpy's pairwise sum."""
+    x = np.asarray(x)
+    if x.ndim != 1:
+        raise ValueError("peak_pick: una sola dimensión")
+    pre_max, post_max, pre_avg, post_avg, wait = (int(np.ceil(v)) for v in (pre_max, post_max, pre_avg, post_avg, wait))
+    acc = np.float32 if x.dtype == np.float32 else np.float64
+    d = acc(np.float32(delta))
+    n_x = x.shape[0]
+    peaks = np.zeros(n_x, dtype=bool)
+    if n_x == 0:
+        return np.flatnonzero(peaks)
+
+    def mean(seg: np.ndarray):
+        s = acc(0)
+        for v in seg:
+            s = acc(s + v)
+        return acc(s / acc(len(seg)))
+
+    peaks[0] = x[0] >= np.max(x[:min(post_max, n_x)]) and x[0] >= acc(mean(x[:min(post_avg, n_x)]) + d)
+    n = wait + 1 if peaks[0] else 1
+    while n < n_x:
+        if x[n] != np.max(x[max(0, n - pre_max):min(n + post_max, n_x)]):
+            n += 1
+            continue
+        if not x[n] >= acc(mean(x[max(0, n - pre_avg):min(n + post_avg, n_x)]) + d):
+            n += 1
+            continue
+        peaks[n] = True
+        n += wait + 1
+    return np.flatnonzero(peaks)
 
 
 def swing_peaks(wrist_speed: np.ndarray, fps: float, min_gap=0.6, height=2.0, prominence=1.2) -> np.ndarray:
