@@ -533,6 +533,33 @@ def app_round(store, state: dict, jobs: list[dict], now: float, before: dict | N
     return out
 
 
+def explain_errors(state: dict, read, limit: int = 6) -> list[str]:
+    """22-11 (#312, B7/B8: every job in error says why; the audit's queue check fails on a silent one): a job in error
+    with no reason gets one, read once from the end of its run's log (nube.failure_reason); sinner_b2 died of a
+    segmentation fault and its state said nothing. At most `limit` reads a pass; a job whose log cannot be read is
+    marked so and not read again."""
+    import nube
+
+    done = []
+    for jid, st in state.items():
+        if len(done) >= limit:
+            break
+        res = st.get("resultado") if isinstance(st, dict) else None
+        if not isinstance(st, dict) or st.get("estado") != "error" or not st.get("ruta") or st.get("motivo_leido") \
+                or (isinstance(res, dict) and res.get("nota")):
+            continue
+        st["motivo_leido"] = True
+        try:
+            text = read(st["ruta"].rsplit("/", 1)[0] + "/log.txt").decode("utf-8", errors="replace")
+        except Exception as e:  # noqa: BLE001 — no log on the volume: said as the reason (never silent)
+            text, why = "", f"sin registro en el volumen ({type(e).__name__})"
+        else:
+            why = nube.failure_reason(text[-200_000:], (res or {}).get("codigo") if isinstance(res, dict) else None)
+        st["resultado"] = {**(res if isinstance(res, dict) else {}), "nota": f"(de su registro) {why}"}
+        done.append(jid)
+    return done
+
+
 def _read(vol, path: str) -> bytes:
     return b"".join(vol.read_file(path.lstrip("/")))
 
@@ -808,6 +835,7 @@ def main(argv: list[str] | None = None) -> int:
                 print(f"{jid}: {res.get('estado')} ({res.get('coste_usd')} $, {res.get('horas_kaggle')} h de Kaggle)")
     mark_experiments(d, queue.get("experimentos") or [])
     if not a.en_seco:
+        explain_errors(state, lambda path: _read(vol, path))
         copy_poc_results(vol, state, d)
         copy_research(vol, state, d)
         refresh_estimates(state, spend, by_id)          # R49: reservations with today's measured rate

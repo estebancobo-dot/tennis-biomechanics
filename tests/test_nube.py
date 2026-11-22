@@ -548,3 +548,24 @@ def test_quiet_cpu_fallbacks_are_counted():
                      "EP Error x when using ['CUDAExecutionProvider']", "Falling back to ['CPUExecutionProvider'] and retrying.",
                      "fine: 50 %"])
     assert nube.gpu_fallbacks(log) == 3 and nube.gpu_fallbacks("todo bien") == 0
+
+
+def test_a_failed_analysis_says_why():
+    """22-11 (#312, B7/B8: every job in error says why): sinner_b2 ended «error» with no reason; the reason was at the
+    end of its log (a segmentation fault in librosa's numba peak picker)."""
+    log = ("ventana w1: pasa\nFatal Python error: Segmentation fault\n\nCurrent thread 0x1 (most recent call first):\n"
+           '  File "/venv/site-packages/numba/np/ufunc/gufunc.py", line 263 in __call__\n'
+           '  File "/venv/site-packages/librosa/util/utils.py", line 1352 in peak_pick\n'
+           '  File "/tmp/repo/src/tennisbio/impacts.py", line 22 in audio_onsets\n'
+           '  File "/tmp/repo/src/tennisbio/clip_pipeline.py", line 422 in run_clip\n\nExtension modules: yaml\n')
+    r = nube.failure_reason(log, -11)
+    assert r.startswith("el intérprete cayó (Segmentation fault) en gufunc.py:263 __call__; impacts.py:22 audio_onsets")
+    assert r.endswith("murió por la señal 11 (fallo de segmentación)")
+    tb = "Traceback (most recent call last):\n  File \"x.py\", line 1, in <module>\nValueError: Non-positive determinant\n"
+    assert nube.failure_reason("a\n" + tb + "fin\n", 1) == "ValueError: Non-positive determinant"
+    assert nube.failure_reason("FALLO C0 modelo.falta: balltrack.onnx\n", 1).startswith("FALLO C0 modelo.falta")
+    assert nube.failure_reason("todo bien hasta aquí\n", -9) == "murió por la señal 9 (matado (sin memoria o por la sesión))"
+    assert nube.failure_reason("nada\n", 2) == "terminó con el código 2"
+    assert nube.failure_reason("", None) == "sin motivo en su registro"
+    src = (ROOT / "cloud" / "kaggle" / "correr.py").read_text(encoding="utf-8")
+    assert 'est["nota"] = nube.failure_reason(' in src

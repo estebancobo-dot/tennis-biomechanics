@@ -220,6 +220,37 @@ def gpu_fallbacks(log: str) -> int:
     return sum(1 for ln in log.splitlines() if GPU_FALLBACK in ln or any(k in ln for k in ORT_FALLBACK))
 
 
+SIGNALS = {11: "fallo de segmentación", 9: "matado (sin memoria o por la sesión)", 6: "abortado", 15: "terminado desde fuera",
+           7: "error de bus"}
+_FRAME = re.compile(r'File "([^"]+)", line (\d+) in (\S+)')
+
+
+def failure_reason(log: str, code: int | None = None) -> str:
+    """22-11 (#312, B7/B8: every job in error says why): why an analysis ended in error, from the end of its log, in one
+    line: a crash of the interpreter («Fatal Python error», with the deepest frame and the first of the project's
+    code), else the last exception («…Error: …») or the last fault of level C0, else the exit code or the signal that
+    killed it. sinner_b2 (21-11) ended «error» with no reason; it was a segmentation fault in librosa's peak picker."""
+    lines = [ln.rstrip() for ln in log.splitlines()[-4000:]]
+    sig = f"murió por la señal {-code} ({SIGNALS.get(-code, 'señal')})" if code is not None and code < 0 else ""
+    for i in range(len(lines) - 1, -1, -1):
+        if lines[i].startswith("Fatal Python error:"):
+            what = lines[i].split(":", 1)[1].strip()
+            frames = [_FRAME.search(ln) for ln in lines[i + 1:i + 60]]
+            frames = [m for m in frames if m]
+            deep = frames[0] if frames else None
+            own = next((m for m in frames if "/tennisbio/" in m.group(1)), None)
+            where = "; ".join(f"{Path(m.group(1)).name}:{m.group(2)} {m.group(3)}" for m in (deep, own) if m is not None
+                              and (m is deep or own is not deep))
+            return f"el intérprete cayó ({what})" + (f" en {where}" if where else "") + (f"; {sig}" if sig else "")
+    for ln in reversed(lines):
+        s = ln.strip()
+        if re.match(r"^[A-Za-z_][\w.]*(Error|Exception|Interrupt)\b(:|$)", s) or s.startswith("FALLO C0"):
+            return s[:300] + (f"; {sig}" if sig else "")
+    if sig:
+        return sig
+    return f"terminó con el código {code}" if code not in (None, 0) else "sin motivo en su registro"
+
+
 def summarize_resources(rows: list[dict]) -> dict:
     """Mean and peak of each measure over a run's samples."""
     out: dict = {"muestras": len(rows)}

@@ -749,6 +749,8 @@ def main(argv: list[str]) -> int:
         est["sin_subir"] = [f.relative_to(out_dir).as_posix() for f in changed(out_dir, seen, mark=False)][:20]
         man_f = out_dir / "manifest.json"
         man = json.loads(man_f.read_text(encoding="utf-8")) if man_f.exists() else {}
+        if rc != 0:                                     # 22-11 (#312): every job in error says why (sinner_b2 did not)
+            est["nota"] = nube.failure_reason((run / "log.txt").read_text(encoding="utf-8", errors="replace"), rc)
         est.update(estado="hecho" if rc == 0 else "error", codigo=rc, segundos=round(time.time() - t1), coste_usd=0.0,
                    etapas={k: v.get("seconds") for k, v in man.items() if isinstance(v, dict) and "seconds" in v},
                    fallos={k: v.get("faults") for k, v in man.items() if isinstance(v, dict) and v.get("faults")},

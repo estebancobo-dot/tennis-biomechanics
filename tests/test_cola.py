@@ -841,3 +841,26 @@ def test_a_long_log_is_read_by_its_end(tmp_path, monkeypatch):
     assert (out / "runs__x__log.txt").read_bytes().endswith(b"MemoryError")
     assert (out / "runs__x__estado.json").read_bytes().startswith(b"{")
     assert st["estado"] == "hecho" and "sus últimos" in st["resultado"]["nota"] and "cortado" in st["resultado"]["nota"]
+
+
+def test_a_job_in_error_without_a_reason_gets_it_from_its_log():
+    """22-11 (#312): sinner_b2 ended «error» with no reason (the audit's queue check fails on a silent error); the
+    queue reads the end of its log once and says why; a job with its reason, or without a log, is not read again."""
+    log = (b"ventana: pasa\nFatal Python error: Segmentation fault\n\nCurrent thread (most recent call first):\n"
+           b'  File "/v/numba/np/ufunc/gufunc.py", line 263 in __call__\n  File "/r/src/tennisbio/impacts.py", line 22 in audio_onsets\n')
+    state = {"sinner_b2": {"estado": "error", "ruta": "/runs/kaggle_sinner_b2/estado.json", "resultado": {"estado": "error"}},
+             "x": {"estado": "error", "ruta": "/runs/x/estado.json", "resultado": {"nota": "cancelado: motivo"}},
+             "y": {"estado": "error", "ruta": "/runs/y/estado.json"}, "z": {"estado": "hecho", "ruta": "/runs/z/estado.json"}}
+    reads = []
+
+    def read(path):
+        reads.append(path)
+        if path == "/runs/kaggle_sinner_b2/log.txt":
+            return log
+        raise FileNotFoundError(path)
+    assert cola.explain_errors(state, read) == ["sinner_b2", "y"]
+    assert state["sinner_b2"]["resultado"]["nota"].startswith("(de su registro) el intérprete cayó (Segmentation fault)")
+    assert "impacts.py:22" in state["sinner_b2"]["resultado"]["nota"]
+    assert state["y"]["resultado"]["nota"] == "(de su registro) sin registro en el volumen (FileNotFoundError)"
+    assert state["x"]["resultado"]["nota"] == "cancelado: motivo" and reads == ["/runs/kaggle_sinner_b2/log.txt", "/runs/y/log.txt"]
+    assert cola.explain_errors(state, read) == [] and len(reads) == 2           # once
