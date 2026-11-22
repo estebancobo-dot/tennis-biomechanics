@@ -2401,13 +2401,13 @@
   "ruta": "/runs/kaggle_actualizar_pegula_b/estado.json",
   "salida": "/output/elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "cuaderno": "tennisbio-actualizar-pegula-b",
-  "kaggle": "running (11:08)",
+  "kaggle": "running (11:13)",
   "arranco": "2026-11-22 10:32",
   "espera_min": 5,
-  "progreso": "identity terminada a las 10:53:26 en 6.6 min (11:08:11; GPU 40 %·0 %, CPU 66 %, 3.4 GB)"
+  "progreso": "identity terminada a las 10:53:26 en 6.6 min (11:11:46; GPU 42 %·0 %, CPU 66 %, 3.2 GB)"
  },
  "medir_app_c": {
-  "estado": "en_marcha",
+  "estado": "error",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 1,
@@ -2418,8 +2418,15 @@
   "ruta": "/runs/kaggle_medir_app_c/estado.json",
   "cpu": true,
   "cuaderno": "tennisbio-medir-app-c",
-  "kaggle": "running (11:08)",
+  "kaggle": "error (11:13)",
   "arranco": "2026-11-22 11:08",
-  "espera_min": 3
+  "espera_min": 3,
+  "fin": "2026-11-22 11:13",
+  "resultado": {
+   "estado": "error",
+   "horas_kaggle": 0.06,
+   "nota": "(de su registro) sin registro en el volumen (FileNotFoundError)"
+  },
+  "motivo_leido": true
  }
 }
