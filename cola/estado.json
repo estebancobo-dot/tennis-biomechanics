@@ -2495,8 +2495,8 @@
   "salida": "/output/zheng-qinwen-elena-rybakina",
   "cpu": true,
   "cuaderno": "tennisbio-actualizar-zheng-a",
-  "progreso": "scenes:  11 % (19026/175039 fotogramas) · 10 min · quedan ≈ 86 min (15:16:43; CPU 66 %, 2.5 GB)",
-  "kaggle": "running (15:18)",
+  "progreso": "scenes:  17 % (30426/175039 fotogramas) · 17 min · quedan ≈ 79 min (15:22:57; CPU 68 %, 2.5 GB)",
+  "kaggle": "running (15:23)",
   "arranco": "2026-11-22 15:08",
   "espera_min": 5
  }
