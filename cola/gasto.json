@@ -247,16 +247,17 @@
      "horas": 3.54
     },
     "actualizar_zheng_b": {
-     "estimado_h": 5.26
+     "estimado_h": 5.26,
+     "horas": 3.96
     }
    }
   }
  },
  "kaggle_real": {
-  "usadas_h": 26.57,
+  "usadas_h": 26.6,
   "total_h": 30.0,
   "renueva": "2026-11-28 00:00:00",
-  "ts": 1795380031.0226645
+  "ts": 1795380127.0511115
  },
- "aviso_ocioso_ts": 1795362564.1702485
+ "aviso_ocioso_ts": 1795380127.0511115
 }
