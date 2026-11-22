@@ -1,6 +1,6 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-22 02:01 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 8.3 h de GPU esta semana (tope 28 h; Kaggle dice 12.08 h usadas de 30.0, se renueva 2026-11-28 00:00)
+Última vuelta: 2026-11-22 02:06 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 8.3 h de GPU esta semana (tope 28 h; Kaggle dice 12.17 h usadas de 30.0, se renueva 2026-11-28 00:00)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
@@ -94,7 +94,7 @@
 | prueba_sinner_b | prueba | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | hecho | kaggle |  |
 | sinner_a | partido | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | hecho | kaggle |  |
 | sinner_b | partido | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | error | kaggle | cancelado: 22-11 00:05: relanzado a las 00:04 con el giro 3D de antes; MeTRAbs acaba de pasar su regla (comparar_gauff_v36_v38: los mismos 28 golpes, X-factor 3D en 15 frente a 7, dispersión 5,2° frente a 5,6°) y Sinner se analiza una sola vez con lo elegido (#295): otra vez como sinner_b2 cuando MeTRAbs sea el de por defecto |
-| sinner_b2 | partido | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | en_marcha | kaggle | Kaggle: running (02:01), intento 1 · fine:  75 % (184/245 golpes candidatos · 179 confirmados · 0 ventanas descartadas sin pose) · 53 min · quedan ≈ 18 min (02:01:32; GPU 6 %·32 %, CPU 82 %, 26.8 GB) |
+| sinner_b2 | partido | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | en_marcha | kaggle | Kaggle: running (02:06), intento 1 · fine:  78 % (191/245 golpes candidatos · 186 confirmados · 0 ventanas descartadas sin pose) · 55 min · quedan ≈ 16 min (02:05:02; GPU 76 %·5 %, CPU 80 %, 26.4 GB) |
 | sinner | partido | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | pendiente |  | espera a sinner_b2 (en_marcha) |
 | actualizar_osaka_a | partido | us-open-2026-r4-naomi-osaka-elena-rybakina | pendiente |  | espera a sinner (pendiente) |
 | actualizar_osaka_b | partido | us-open-2026-r4-naomi-osaka-elena-rybakina | pendiente |  | espera a actualizar_osaka_a (pendiente) |
