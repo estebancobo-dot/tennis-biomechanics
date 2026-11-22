@@ -1231,8 +1231,10 @@
   "fin": "2026-11-15 22:44",
   "resultado": {
    "estado": "error",
-   "horas_kaggle": 0.06
-  }
+   "horas_kaggle": 0.06,
+   "nota": "(de su registro) sin registro en el volumen (FileNotFoundError)"
+  },
+  "motivo_leido": true
  },
  "prueba_gauff_v32_c": {
   "estado": "hecho",
@@ -1370,8 +1372,10 @@
    "estado": "error",
    "coste_usd": 0.0,
    "segundos": 299,
-   "horas_kaggle": 0.15
-  }
+   "horas_kaggle": 0.15,
+   "nota": "(de su registro) ModuleNotFoundError: No module named 'ultralytics'"
+  },
+  "motivo_leido": true
  },
  "leer_v34": {
   "estado": "hecho",
@@ -1749,8 +1753,10 @@
   "fin": "2026-11-21 11:07",
   "resultado": {
    "estado": "error",
-   "horas_kaggle": 0.04
-  }
+   "horas_kaggle": 0.04,
+   "nota": "(de su registro) ModuleNotFoundError: No module named 'pkg_resources'"
+  },
+  "motivo_leido": true
  },
  "medir_3d_metrabs_b": {
   "estado": "error",
@@ -2103,8 +2109,10 @@
    "estado": "error",
    "coste_usd": 0.0,
    "segundos": 7552,
-   "horas_kaggle": 2.26
-  }
+   "horas_kaggle": 2.26,
+   "nota": "(de su registro) el intérprete cayó (Segmentation fault) en gufunc.py:263 __call__; impacts.py:22 audio_onsets"
+  },
+  "motivo_leido": true
  },
  "leer_sinner_b2": {
   "estado": "hecho",
@@ -2176,7 +2184,7 @@
   "inicio": "2026-11-22 03:25",
   "ruta": "/runs/kaggle_medir_f3set_hoy_d/estado.json",
   "cuaderno": "tennisbio-medir-f3set-hoy-d",
-  "kaggle": "running (04:55)",
+  "kaggle": "running (05:00)",
   "arranco": "2026-11-22 03:31",
   "espera_min": 6
  },
@@ -2192,7 +2200,7 @@
   "ruta": "/runs/informe_beta5/estado.json",
   "cpu": true,
   "cuaderno": "tennisbio-informe-beta5",
-  "kaggle": "running (04:55)",
+  "kaggle": "running (05:00)",
   "arranco": "2026-11-22 04:55",
   "espera_min": 5
  },
@@ -2208,6 +2216,10 @@
   "ruta": "/runs/kaggle_actualizar_osaka_a/estado.json",
   "salida": "/output/us-open-2026-r4-naomi-osaka-elena-rybakina",
   "cpu": true,
-  "cuaderno": "tennisbio-actualizar-osaka-a"
+  "cuaderno": "tennisbio-actualizar-osaka-a",
+  "progreso": "scenes:   4 % (4026/107055 fotogramas) · 2 min · quedan ≈ 58 min (05:00:26; CPU 61 %, 2.6 GB)",
+  "kaggle": "running (05:00)",
+  "arranco": "2026-11-22 05:00",
+  "espera_min": 5
  }
 }

@@ -1,6 +1,6 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-22 04:55 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 10.0 h de GPU esta semana (tope 28 h; Kaggle dice 14.47 h usadas de 30.0, se renueva 2026-11-28 00:00)
+Última vuelta: 2026-11-22 05:00 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 10.0 h de GPU esta semana (tope 28 h; Kaggle dice 14.56 h usadas de 30.0, se renueva 2026-11-28 00:00)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
@@ -44,12 +44,12 @@
 | prueba_gauff_v29_c | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | error | kaggle | cancelado: T24 (15-11 20:00): las partes no reutilizan lo de la anterior: la huella de un modelo lleva la fecha de su fichero y cada sesión lo baja de Modal con fecha nueva (v29_b repitió los cortes; v29_c los repetía otra vez y seguiría con lo de GPU en la CPU). Se arregla la huella (por contenido) y la prueba se repite como v30 |
 | comparar_gauff_v26_v29 | comparar |  | error |  | cancelado: sin la v29_c (ver arriba) |
 | medir_bola_totnet | medir |  | error | kaggle | cancelado: T15 (15-11 23:20): en CPU no cabe en las 12 h de una sesión de Kaggle: cada clip de RacketVision tiene 600 fotogramas a 60 fps (300 ventanas de TOTNet) y cada ventana tarda unos 6 s en la CPU, unas 20 h para los 40 clips (calculé mal 3-5 h); se cortaría sin resultado. Se repite en GPU (medir_bola_totnet_gpu), con la misma regla |
-| medir_sapiens2 | medir | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | error | kaggle |  |
+| medir_sapiens2 | medir | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | error | kaggle | (de su registro) sin registro en el volumen (FileNotFoundError) |
 | medir_sapiens2_b | medir | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
 | medir_sapiens2_rapido | medir | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
 | prueba_gauff_v33_sapiens2 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
 | comparar_gauff_v26_v33 | comparar |  | revisar | github | distinta; 12 etapas iguales; distintas: fine, fine_doubtful, slowmo_fine, view_clips; strokes.json: 26 de 28/28 golpes emparejados, 4 distintos, medidas fuera de tolerancia: technique.phases.finish.hands_apart, technique.phases.recovery.base_width, technique.phases.extension.elbow_dom_lateral, technique.phases.loaded.elbow_dom_vs_shoulder; strokes.json: temblor de b frente a a ×2.09 (mediana de 3861 medidas; b tiembla menos en el 29 %); strokes_opponent.json: 0 de 0/0 golpes emparejados; strokes_doubtful.json: 0 de 1/1 golpes emparejados, 2 distintos |
-| prueba_gauff_v34_sapiens2 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | error | kaggle |  |
+| prueba_gauff_v34_sapiens2 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | error | kaggle | (de su registro) ModuleNotFoundError: No module named 'ultralytics' |
 | comparar_gauff_v26_v34 | comparar |  | error |  | cancelado: sin la v34: se paró a los 5 min sin modelos (el ONNX de Sapiens2 se subió junto a /models/models/ y tapó los demás; arreglado); se compara con la v35 |
 | leer_v34 | leer |  | hecho | github | leídos: runs__kaggle_prueba_gauff_v34_sapiens2__log.txt |
 | prueba_gauff_v35_sapiens2 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
@@ -94,11 +94,11 @@
 | prueba_sinner_b | prueba | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | hecho | kaggle |  |
 | sinner_a | partido | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | hecho | kaggle |  |
 | sinner_b | partido | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | error | kaggle | cancelado: 22-11 00:05: relanzado a las 00:04 con el giro 3D de antes; MeTRAbs acaba de pasar su regla (comparar_gauff_v36_v38: los mismos 28 golpes, X-factor 3D en 15 frente a 7, dispersión 5,2° frente a 5,6°) y Sinner se analiza una sola vez con lo elegido (#295): otra vez como sinner_b2 cuando MeTRAbs sea el de por defecto |
-| sinner_b2 | partido | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | error | kaggle |  |
+| sinner_b2 | partido | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | error | kaggle | (de su registro) el intérprete cayó (Segmentation fault) en gufunc.py:263 __call__; impacts.py:22 audio_onsets |
 | sinner_b3 | partido | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | hecho | kaggle |  |
 | sinner | partido | zverev-alexander-sinner-jannik-indian-wells-2026-semi-final | hecho | kaggle |  |
-| actualizar_osaka_a | partido | us-open-2026-r4-naomi-osaka-elena-rybakina | en_marcha | kaggle |  |
-| actualizar_osaka_b | partido | us-open-2026-r4-naomi-osaka-elena-rybakina | pendiente |  | espera a actualizar_osaka_a (pendiente) |
+| actualizar_osaka_a | partido | us-open-2026-r4-naomi-osaka-elena-rybakina | en_marcha | kaggle | Kaggle: running (05:00), intento 1 · scenes:   4 % (4026/107055 fotogramas) · 2 min · quedan ≈ 58 min (05:00:26; CPU 61 %, 2.6 GB) |
+| actualizar_osaka_b | partido | us-open-2026-r4-naomi-osaka-elena-rybakina | pendiente |  | espera a actualizar_osaka_a (en_marcha) |
 | actualizar_osaka | partido | us-open-2026-r4-naomi-osaka-elena-rybakina | pendiente |  | espera a actualizar_osaka_b (pendiente) |
 | actualizar_pegula_a | partido | elena-rybakina-jessica-pegula-miami-2026-quarter-final | pendiente |  | espera a actualizar_osaka (pendiente) |
 | actualizar_pegula_b | partido | elena-rybakina-jessica-pegula-miami-2026-quarter-final | pendiente |  | espera a actualizar_pegula_a (pendiente) |
@@ -114,15 +114,15 @@
 | medir_app_b | medir |  | hecho | kaggle |  |
 | leer_exportacion | leer |  | error | github | leídos: output__exportar_derecha__exportacion.json; faltan: /runs/informe/log.txt: FileNotFoundError: path "/runs/informe/log.txt" does not exist |
 | leer_sinner_b2 | leer |  | hecho | github | leídos: runs__kaggle_sinner_b2__log.txt, runs__kaggle_sinner_b2__estado.json |
-| informe_beta5 | informe |  | en_marcha | kaggle | Kaggle: running (04:55), intento 1 |
+| informe_beta5 | informe |  | en_marcha | kaggle | Kaggle: running (05:00), intento 1 |
 | medir_f3set_hoy | medir |  | error | kaggle | cancelado: 21-11 14:25: sus 3 cuadernos se quedaron «en cola» en Kaggle (desde las 10:16) mientras trabajos lanzados después arrancaban al momento; el mismo trabajo con otro nombre (medir_f3set_hoy_b) dice si es el cuaderno o el trabajo |
-| medir_3d_metrabs | medir |  | error | kaggle |  |
+| medir_3d_metrabs | medir |  | error | kaggle | (de su registro) ModuleNotFoundError: No module named 'pkg_resources' |
 | medir_3d_metrabs_b | medir |  | error | kaggle | cancelado: 21-11 13:10: 2 h en cola de Kaggle sin GPU libre (no empezó): su plaza, para comprobar la P100 (medir_raqueta_p100); se lanza otra vez en la GPU que sirva |
 | medir_raqueta_p100 | medir |  | hecho | kaggle |  |
 | medir_3d_metrabs_c | medir |  | hecho | kaggle |  |
 | medir_f3set_hoy_b | medir |  | hecho | kaggle |  |
 | medir_f3set_hoy_c | medir |  | error | kaggle | cancelado: 21-11 23:58: corre dos veces en Kaggle (cada vuelta caída de 23:01 a 23:31 lo volvió a lanzar: dos versiones, dos sesiones de GPU; Kaggle contó 1,78 h en una hora) y deja a sinner_b sin GPU. Se borra su cuaderno y va otra vez detrás de Sinner como medir_f3set_hoy_d |
-| medir_f3set_hoy_d | medir |  | en_marcha | kaggle | Kaggle: running (04:55), intento 1 |
+| medir_f3set_hoy_d | medir |  | en_marcha | kaggle | Kaggle: running (05:00), intento 1 |
 | prueba_gauff_v38_a | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
 | prueba_gauff_v38_b | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | error | kaggle | cancelado: 21-11 20:45: sus 2 cuadernos, en cola de Kaggle desde las 15:36 sin arrancar (desde las 19:20 sin nada más en marcha): otra vez como prueba_gauff_v38_b2 |
 | prueba_gauff_v38_b2 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
