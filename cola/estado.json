@@ -2141,7 +2141,7 @@
   }
  },
  "sinner": {
-  "estado": "en_marcha",
+  "estado": "hecho",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 1,
@@ -2153,10 +2153,17 @@
   "salida": "/output/zverev-alexander-sinner-jannik-indian-wells-2026-semi-final",
   "cpu": true,
   "cuaderno": "tennisbio-sinner",
-  "progreso": "slowmo_fine: 100 % (6/6 golpes en la repetición a cámara lenta) · 13 min · quedan ≈ 0 s (04:48:38; CPU 55 %, 5.7 GB)",
-  "kaggle": "running (04:50)",
+  "progreso": "slowmo_fine terminada a las 04:51:07 en 15.7 min (04:51:07)",
+  "kaggle": "complete (04:55)",
   "arranco": "2026-11-22 03:31",
-  "espera_min": 6
+  "espera_min": 6,
+  "fin": "2026-11-22 04:55",
+  "resultado": {
+   "estado": "hecho",
+   "coste_usd": 0.0,
+   "segundos": 4963,
+   "horas_kaggle": 1.41
+  }
  },
  "medir_f3set_hoy_d": {
   "estado": "en_marcha",
@@ -2169,7 +2176,7 @@
   "inicio": "2026-11-22 03:25",
   "ruta": "/runs/kaggle_medir_f3set_hoy_d/estado.json",
   "cuaderno": "tennisbio-medir-f3set-hoy-d",
-  "kaggle": "running (04:50)",
+  "kaggle": "running (04:55)",
   "arranco": "2026-11-22 03:31",
   "espera_min": 6
  },
@@ -2184,6 +2191,23 @@
   "inicio": "2026-11-22 04:50",
   "ruta": "/runs/informe_beta5/estado.json",
   "cpu": true,
-  "cuaderno": "tennisbio-informe-beta5"
+  "cuaderno": "tennisbio-informe-beta5",
+  "kaggle": "running (04:55)",
+  "arranco": "2026-11-22 04:55",
+  "espera_min": 5
+ },
+ "actualizar_osaka_a": {
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1795323335.2629585,
+  "accion": "partido",
+  "partido": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+  "inicio": "2026-11-22 04:55",
+  "ruta": "/runs/kaggle_actualizar_osaka_a/estado.json",
+  "salida": "/output/us-open-2026-r4-naomi-osaka-elena-rybakina",
+  "cpu": true,
+  "cuaderno": "tennisbio-actualizar-osaka-a"
  }
 }
