@@ -1,0 +1,159 @@
+{
+ "estado": "hecho",
+ "segundos": 4141,
+ "horas_kaggle": 1.18,
+ "coste_usd": 0.0,
+ "gpu": null,
+ "etapas": {
+  "probe": 6.6,
+  "scenes": 3521.9,
+  "court": 610.2,
+  "score": 230.7,
+  "players": 422.7,
+  "audio": 88.7,
+  "identity": 143.9,
+  "spotting": 1363.4,
+  "candidates": 8.2,
+  "views": 107.8,
+  "fine": 6186.3,
+  "views_link": 0.6,
+  "view_clips": 268.4,
+  "slowmo_fine": 13.4,
+  "fine_opponent": 0.0,
+  "fine_doubtful": 281.4
+ },
+ "recursos": {
+  "muestras": 68,
+  "cpu_pct": {
+   "media": 61.6,
+   "max": 78.5
+  },
+  "ram_gb": {
+   "media": 2.9,
+   "max": 23.0
+  }
+ },
+ "recursos_por_etapa": {
+  "probe": {
+   "s": 7,
+   "muestras": 0
+  },
+  "scenes": {
+   "s": 3522,
+   "muestras": 58,
+   "cpu_pct": {
+    "media": 60.6,
+    "max": 63.5
+   },
+   "ram_gb": {
+    "media": 3.0,
+    "max": 23.0
+   }
+  },
+  "court": {
+   "s": 610,
+   "muestras": 10,
+   "cpu_pct": {
+    "media": 67.4,
+    "max": 78.5
+   },
+   "ram_gb": {
+    "media": 2.4,
+    "max": 2.6
+   }
+  },
+  "score": {
+   "s": 231,
+   "muestras": 0
+  },
+  "players": {
+   "s": 423,
+   "muestras": 0
+  },
+  "audio": {
+   "s": 89,
+   "muestras": 0
+  },
+  "identity": {
+   "s": 144,
+   "muestras": 0
+  },
+  "spotting": {
+   "s": 1363,
+   "muestras": 0
+  },
+  "candidates": {
+   "s": 8,
+   "muestras": 0
+  },
+  "views": {
+   "s": 108,
+   "muestras": 0
+  },
+  "fine": {
+   "s": 6186,
+   "muestras": 0
+  },
+  "views_link": {
+   "s": 1,
+   "muestras": 0
+  },
+  "view_clips": {
+   "s": 268,
+   "muestras": 0
+  },
+  "slowmo_fine": {
+   "s": 13,
+   "muestras": 0
+  },
+  "fine_opponent": {
+   "s": 0,
+   "muestras": 0
+  },
+  "fine_doubtful": {
+   "s": 281,
+   "muestras": 0
+  }
+ },
+ "modelos_en_cpu": 0,
+ "fallos": {
+  "view_clips": {
+   "toma.sin_recorte": {
+    "nivel": "C2",
+    "n": 7,
+    "ejemplos": [
+     "v001147098_01116.mp4 (RuntimeError: no se pudo recortar la toma de 1.1 s en 1147.1 s (equested intra mode\n[h264 @ 0x55b9bc6d6540] error while decoding MB 3 0, bytestream 50671\n[h264 @ 0x55b9bc2aae80] Reference 2 >= 2\n[h264 @ 0x55b9bc2aa)",
+     "v001242800_00400.mp4 (RuntimeError: no se pudo recortar la toma de 0.4 s en 1242.8 s (ce picture, default is 65626\n[vist#0:0/h264 @ 0x559d5d5e8280] [dec:h264 @ 0x559d5d311f00] Error submitting packet to decoder: Invalid data found when )",
+     "v001544728_00792.mp4 (RuntimeError: no se pudo recortar la toma de 0.8 s en 1544.7 s (acket to decoder: Invalid data found when processing input\n[h264 @ 0x55682e7db000] top block unavailable for requested intra mode\n[h264 @ 0x55682e7db0)",
+     "v001604700_00700.mp4 (RuntimeError: no se pudo recortar la toma de 0.7 s en 1604.7 s (0] mmco: unref short failure\n[vist#0:0/h264 @ 0x55ddc4dcc280] [dec:h264 @ 0x55ddc4af5f00] Error submitting packet to decoder: Invalid data found when )",
+     "v001709800_00700.mp4 (RuntimeError: no se pudo recortar la toma de 0.7 s en 1709.8 s (ce picture, default is 65644\n[vist#0:0/h264 @ 0x55c0675dd280] [dec:h264 @ 0x55c0673237c0] Error submitting packet to decoder: Invalid data found when )"
+    ]
+   }
+  }
+ },
+ "sin_subir": [],
+ "config": {},
+ "config_local": {
+  "registry": {
+   "source": "yaml"
+  },
+  "device": "auto"
+ },
+ "kaggle": {
+  "python": "3.13.18",
+  "nucleos": 4,
+  "memoria_gib": {
+   "MemTotal": 31.3,
+   "MemAvailable": 30.2
+  },
+  "disco_libre_gib": {
+   "/tmp": 2514.5,
+   "/kaggle/working": 19.5
+  },
+  "gpu": "",
+  "ffmpeg": "/usr/bin/ffmpeg",
+  "clave_modal": true
+ },
+ "nota": null,
+ "modelos_en_cpu_registro": 0
+}

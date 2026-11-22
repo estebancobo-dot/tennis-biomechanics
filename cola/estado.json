@@ -2184,7 +2184,7 @@
   "inicio": "2026-11-22 03:25",
   "ruta": "/runs/kaggle_medir_f3set_hoy_d/estado.json",
   "cuaderno": "tennisbio-medir-f3set-hoy-d",
-  "kaggle": "running (06:07)",
+  "kaggle": "running (06:12)",
   "arranco": "2026-11-22 03:31",
   "espera_min": 6
  },
@@ -2217,7 +2217,7 @@
   }
  },
  "actualizar_osaka_a": {
-  "estado": "en_marcha",
+  "estado": "hecho",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 1,
@@ -2229,10 +2229,17 @@
   "salida": "/output/us-open-2026-r4-naomi-osaka-elena-rybakina",
   "cpu": true,
   "cuaderno": "tennisbio-actualizar-osaka-a",
-  "progreso": "court terminada a las 06:07:02 en 10.2 min (06:07:02; CPU 78 %, 2.6 GB)",
-  "kaggle": "running (06:07)",
+  "progreso": "court terminada a las 06:07:02 en 10.2 min (06:07:02)",
+  "kaggle": "complete (06:12)",
   "arranco": "2026-11-22 05:00",
-  "espera_min": 5
+  "espera_min": 5,
+  "fin": "2026-11-22 06:12",
+  "resultado": {
+   "estado": "hecho",
+   "coste_usd": 0.0,
+   "segundos": 4141,
+   "horas_kaggle": 1.18
+  }
  },
  "informe_beta6": {
   "estado": "hecho",
@@ -2261,5 +2268,18 @@
    },
    "horas_kaggle": 0.52
   }
+ },
+ "actualizar_osaka_b": {
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1795327930.9539616,
+  "accion": "partido",
+  "partido": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+  "inicio": "2026-11-22 06:12",
+  "ruta": "/runs/kaggle_actualizar_osaka_b/estado.json",
+  "salida": "/output/us-open-2026-r4-naomi-osaka-elena-rybakina",
+  "cuaderno": "tennisbio-actualizar-osaka-b"
  }
 }

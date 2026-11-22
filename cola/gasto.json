@@ -232,15 +232,17 @@
     },
     "medir_f3set_hoy_d": {
      "estimado_h": 5.0
+    },
+    "actualizar_osaka_b": {
+     "estimado_h": 3.15
     }
    }
   }
  },
  "kaggle_real": {
-  "usadas_h": 15.66,
+  "usadas_h": 15.75,
   "total_h": 30.0,
   "renueva": "2026-11-28 00:00:00",
-  "ts": 1795327620.493381
- },
- "aviso_ocioso_ts": 1795322001.5513299
+  "ts": 1795327930.9539616
+ }
 }
