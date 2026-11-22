@@ -2519,9 +2519,9 @@
   "ruta": "/runs/kaggle_actualizar_zheng_b/estado.json",
   "salida": "/output/zheng-qinwen-elena-rybakina",
   "cuaderno": "tennisbio-actualizar-zheng-b",
-  "kaggle": "running (18:22)",
+  "kaggle": "running (18:27)",
   "arranco": "2026-11-22 16:50",
   "espera_min": 6,
-  "progreso": "fine:  46 % (158/345 golpes candidatos · 146 confirmados · 0 ventanas descartadas sin pose) · 27 min · quedan ≈ 33 min (18:20:29; GPU 46 %·0 %, CPU 84 %, 25.9 GB)"
+  "progreso": "fine:  50 % (171/345 golpes candidatos · 158 confirmados · 0 ventanas descartadas sin pose) · 31 min · quedan ≈ 32 min (18:26:14; GPU 23 %·44 %, CPU 84 %, 25.7 GB)"
  }
 }
