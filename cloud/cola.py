@@ -1071,8 +1071,11 @@ def read_job(vol, job: dict, state: dict, logs: Path, now: float) -> dict:
             continue
         dest.mkdir(parents=True, exist_ok=True)
         name = path.strip("/").replace("/", "__")
-        (dest / name).write_bytes(data[:READ_MAX_BYTES])
-        got.append(name + (f" (cortado a {READ_MAX_BYTES // 1024} KB)" if len(data) > READ_MAX_BYTES else ""))
+        # 22-11: of a long log, its end (where a run fails: sinner_b2 ended in «error» with no reason in its state)
+        tail = len(data) > READ_MAX_BYTES and path.endswith((".log", ".txt"))
+        (dest / name).write_bytes(data[-READ_MAX_BYTES:] if tail else data[:READ_MAX_BYTES])
+        got.append(name + ((f" (sus últimos {READ_MAX_BYTES // 1024} KB)" if tail else f" (cortado a {READ_MAX_BYTES // 1024} KB)")
+                           if len(data) > READ_MAX_BYTES else ""))
     st = {"estado": "hecho" if got and not missing else "error", "accion": "leer", "donde": "github",
           "fin": time.strftime("%Y-%m-%d %H:%M", time.gmtime(now)),
           "resultado": {"nota": "; ".join(([f"leídos: {', '.join(got)}"] if got else []) + ([f"faltan: {'; '.join(missing)}"] if missing else []))}}

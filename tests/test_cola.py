@@ -820,3 +820,24 @@ def test_a_failing_comparison_does_not_lose_the_pass(tmp_path, monkeypatch):
     r = sp.run([_sys.executable, "-c", code], cwd=ROOT, capture_output=True, text=True)
     assert r.returncode == 0, r.stderr[-500:]
     assert "'golpes': 2" in r.stdout and "'mad': 2.0" in r.stdout
+
+
+def test_a_long_log_is_read_by_its_end(tmp_path, monkeypatch):
+    """22-11: sinner_b2 ended in «error» with no reason in its state; the reason is at the end of its log, which the
+    reading cut away (it kept the first 512 KB). A long log keeps its end; a JSON, its start."""
+    import types
+    data = {"/runs/x/log.txt": b"a" * cola.READ_MAX_BYTES + b"Traceback: MemoryError", "/runs/x/estado.json": b"{" + b" " * cola.READ_MAX_BYTES}
+
+    class S:
+        def __init__(self, *a):
+            pass
+
+        def read_bytes(self, path):
+            return data.get(path)
+    monkeypatch.setitem(sys.modules, "almacen", types.SimpleNamespace(ModalStorage=S))
+    state = {}
+    st = cola.read_job(None, {"id": "leer_x", "rutas": list(data)}, state, tmp_path, NOV)
+    out = tmp_path / "lecturas" / "leer_x"
+    assert (out / "runs__x__log.txt").read_bytes().endswith(b"MemoryError")
+    assert (out / "runs__x__estado.json").read_bytes().startswith(b"{")
+    assert st["estado"] == "hecho" and "sus últimos" in st["resultado"]["nota"] and "cortado" in st["resultado"]["nota"]
