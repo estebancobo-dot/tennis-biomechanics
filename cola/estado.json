@@ -2046,7 +2046,8 @@
   "ruta": "/runs/kaggle_sinner_b/estado.json",
   "salida": "/output/zverev-alexander-sinner-jannik-indian-wells-2026-semi-final",
   "cuaderno": "tennisbio-sinner-b",
-  "adoptado": "ya estaba en Kaggle («error»): una vuelta anterior lo lanzó sin guardar su estado"
+  "adoptado": "ya estaba en Kaggle («error»): una vuelta anterior lo lanzó sin guardar su estado",
+  "kaggle": "error (00:02)"
  },
  "medir_f3set_hoy_c": {
   "estado": "en_marcha",
@@ -2059,7 +2060,10 @@
   "inicio": "2026-11-21 22:55",
   "ruta": "/runs/kaggle_medir_f3set_hoy_c/estado.json",
   "cuaderno": "tennisbio-medir-f3set-hoy-c",
-  "adoptado": "ya estaba en Kaggle («running»): una vuelta anterior lo lanzó sin guardar su estado"
+  "adoptado": "ya estaba en Kaggle («running»): una vuelta anterior lo lanzó sin guardar su estado",
+  "kaggle": "running (00:02)",
+  "arranco": "2026-11-22 00:02",
+  "espera_min": 66
  },
  "comparar_gauff_v36_v38": {
   "estado": "revisar",
