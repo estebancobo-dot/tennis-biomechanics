@@ -1910,7 +1910,8 @@ def models_in_use_items(cfg: dict | None = None) -> list[dict]:
         ("esqueleto híbrido (YOLO11 + RTMPose)", fp.get("pose_model") == "hybrid", True,
          f"fine_pass.pose_model: {fp.get('pose_model')}, refine: {fp.get('refine')}"),
         ("pista de 14 puntos (TennisCourtDetector)", str((cfg.get("court") or {}).get("detector", "tcd14")).lower() == "tcd14",
-         Path(court.TCD_ONNX).exists(), f"court.detector: {(cfg.get('court') or {}).get('detector', 'tcd14')}"),
+         Path(court.TCD_ONNX).exists() or Path(court.TCD_ONNX).name in on_volume,
+         f"court.detector: {(cfg.get('court') or {}).get('detector', 'tcd14')}"),
         # 22-11: MeTRAbs adopted (decisiones_nube.yaml); it comes from TF Hub in each session (no model file)
         (f"giro 3D del tronco ({'MeTRAbs' if trunk3d.model_name(cfg) == 'metrabs' else 'MotionAGFormer'})",
          trunk3d.model_name(cfg) in ("metrabs", "motionagformer"),

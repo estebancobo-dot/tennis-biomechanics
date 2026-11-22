@@ -333,7 +333,9 @@ def test_the_cloud_audit_sees_every_candidate_measured_and_the_models_on_the_vol
     assert rf.startswith("en la nube (2026-11-21") and rf.endswith("se adopta")
     assert items["Modelo candidato medido: metrabs (giro 3D MeTRAbs)"]["detail"].endswith("se adopta")
     assert "Modelo candidato medido: totnet (bola TOTNet)" in items and "Modelo candidato medido: sapiens2 (pose Sapiens2 0.4B)" in items
-    (tmp_path / "modelos_volumen.json").write_text(_json.dumps(["balltrack.onnx", "rfdetr_medium_1152.onnx"]), encoding="utf-8")
+    from tennisbio import court
+    (tmp_path / "modelos_volumen.json").write_text(_json.dumps(["balltrack.onnx", "rfdetr_medium_1152.onnx",
+                                                                 court.TCD_ONNX.name]), encoding="utf-8")
     from tennisbio.config import load_config
     cfg = load_config()
     cfg["paths"] = {**(cfg.get("paths") or {}), "cloud": str(tmp_path)}
@@ -342,3 +344,4 @@ def test_the_cloud_audit_sees_every_candidate_measured_and_the_models_on_the_vol
     assert "en el volumen de la nube" in use["Modelo en uso: bola (TrackNetV3 de RacketVision)"]["detail"]
     assert use["Modelo en uso: giro 3D del tronco (MeTRAbs)"]["status"] == "ok"
     assert use["Modelo en uso: jugadora lejana (RF-DETR)"]["status"] == "ok"
+    assert use["Modelo en uso: pista de 14 puntos (TennisCourtDetector)"]["status"] == "ok"
