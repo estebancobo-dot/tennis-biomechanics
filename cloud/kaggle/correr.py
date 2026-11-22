@@ -41,6 +41,7 @@ POCS = {"raqueta": "tennisbio.infra.poc_raqueta", "video": "tennisbio.infra.poc_
         "sapiens2": "tennisbio.infra.poc_sapiens",      # 15-11 (#307): Sapiens2 against the fine pass's pose
         "sapiens2_rapido": "tennisbio.infra.poc_sapiens",  # 21-11: the 0.4B with smaller inputs (its speed)
         "lejana": "tennisbio.infra.poc_lejana",         # 21-11 (T25): RF-DETR for the far player, on the GPU
+        "lejana_f3set": "tennisbio.infra.poc_lejana_f3set",   # 22-11 (#312): RF-DETR on F3Set's broadcasts
         "app": "tennisbio.infra.poc_app",               # 21-11 (P0.5e-D): the PC's application with the real results
         "f3set": "tennisbio.infra.poc_f3set",           # 21-11 (#295): F3Set with today's code against nube2
         "3d": "tennisbio.infra.poc_3d"}                 # 21-11 (#309): MeTRAbs against MotionAGFormer on CalTennis
@@ -279,6 +280,9 @@ def poc_args(job: dict, models: Path, video: Path | None) -> list[str]:
         return ["--previa", str(models.parent / "previa"), "--dispositivo", "cpu" if job.get("cpu") else "cuda", *fast]
     if job["prueba"] == "lejana":
         return ["--datos", str(models.parent / "datasets"), "--dispositivo", "cpu" if job.get("cpu") else "cuda"]
+    if job["prueba"] == "lejana_f3set":
+        return ["--raiz", str(models.parent / "datasets"), "--referencia", str(models.parent / "referencia" / F3SET_REFERENCE),
+                "--dispositivo", "cpu" if job.get("cpu") else "cuda"]
     if job["prueba"] == "app":
         return ["--raiz", str(models.parent / "app")]
     if job["prueba"] == "3d":
@@ -316,11 +320,13 @@ def measure(job: dict, py: Path, models: Path, data: Path, run: Path, vol, est: 
         _run([sys.executable, "-m", "pip", "install", "-q", "einops", "onnx", "onnxruntime"])
         _run([sys.executable, str(REPO / "scripts" / "export_totnet.py"), "--salida", str(models / "totnet_tennis.onnx"),
               "--repo", str(models.parent / "totnet")])
-    if job["prueba"] == "lejana":
+    if job["prueba"] == "lejana_f3set":            # the fine pass's own far search: the volume's models in the repo
+        nube.use_volume_models(REPO, data)
+    if job["prueba"] in ("lejana", "lejana_f3set"):
         ensure_rfdetr(data, models, vol, est)
     if job["prueba"] == "3d":                      # #309: MeTRAbs runs on TensorFlow, in the analysis's own Python
         _run(["uv", "pip", "install", "-q", "--python", str(py), *METRABS_TF])
-    if job["prueba"] == "f3set":                   # the clips of her matches and the reference report, from the volume
+    if job["prueba"] in ("f3set", "lejana_f3set"):  # the clips of her matches and the reference report, from the volume
         modal_get("/datasets/f3set/recall/videos", models.parent / "datasets" / "f3set" / "recall")
         modal_get(f"/datasets/reports/{F3SET_REFERENCE}", models.parent / "referencia")
     if job["prueba"] == "app":                     # P0.5e-D: the results brought as the PC brings them, and Chrome

@@ -283,7 +283,10 @@ trabajos:
   - {id: actualizar_osaka_b, accion: partido, partido: us-open-2026-r4-naomi-osaka-elena-rybakina, tras: actualizar_osaka_a, aprobado: true, etapas: [players, score, identity, spotting, candidates, fine, fine_opponent, fine_doubtful], minutos_video: 70}
   - {id: actualizar_osaka, accion: partido, partido: us-open-2026-r4-naomi-osaka-elena-rybakina, tras: actualizar_osaka_b, aprobado: true, cpu: true, etapas: [views, views_link, view_clips, slowmo_fine], minutos_video: 70}
   - {id: actualizar_pegula_a, accion: partido, partido: elena-rybakina-jessica-pegula-miami-2026-quarter-final, tras: actualizar_osaka, aprobado: true, cpu: true, etapas: [probe, scenes, court, audio], minutos_video: 112}
-  - {id: actualizar_pegula_b, accion: partido, partido: elena-rybakina-jessica-pegula-miami-2026-quarter-final, tras: actualizar_pegula_a, aprobado: true, etapas: [players, score, identity, spotting, candidates, fine, fine_opponent, fine_doubtful], minutos_video: 112}
+  # 22-11 09:55 (#312 punto 3): F3Set de hoy pierde 5 golpes, todos del lado lejano; la parte de GPU de Pegula espera a
+  # saber si la jugadora lejana sigue con RF-DETR o vuelve a YOLO (medir_lejana_f3set), para no analizarla dos veces
+  - {id: medir_lejana_f3set, accion: medir, prueba: lejana_f3set, donde: kaggle, horas: 0.5}
+  - {id: actualizar_pegula_b, accion: partido, partido: elena-rybakina-jessica-pegula-miami-2026-quarter-final, tras: actualizar_pegula_a, espera_tambien: [medir_lejana_f3set], aprobado: true, etapas: [players, score, identity, spotting, candidates, fine, fine_opponent, fine_doubtful], minutos_video: 112}
   - {id: actualizar_pegula, accion: partido, partido: elena-rybakina-jessica-pegula-miami-2026-quarter-final, tras: actualizar_pegula_b, aprobado: true, cpu: true, etapas: [views, views_link, view_clips, slowmo_fine], minutos_video: 112}
   - {id: actualizar_zheng_a, accion: partido, partido: zheng-qinwen-elena-rybakina, tras: actualizar_pegula, aprobado: true, cpu: true, etapas: [probe, scenes, court, audio], minutos_video: 117}
   - {id: actualizar_zheng_b, accion: partido, partido: zheng-qinwen-elena-rybakina, tras: actualizar_zheng_a, aprobado: true, etapas: [players, score, identity, spotting, candidates, fine, fine_opponent, fine_doubtful], minutos_video: 117}
