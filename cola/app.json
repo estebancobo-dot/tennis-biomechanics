@@ -6,14 +6,14 @@
  "errores": [],
  "esperas": {},
  "borrados": [],
- "hora": "2026-11-24 10:05 UTC",
+ "hora": "2026-11-24 10:31 UTC",
  "autocomprobacion": {
   "origen": "el informe de la nube (hecho el 2026-11-22 05:57 UTC)",
   "golpes_con_video": 387,
   "probados": 3,
   "videos_ok": 3,
   "series_ok": 3,
-  "ms": 260,
+  "ms": 367,
   "filas": [
    {
     "id": "us-open-2026-r4-naomi-osaka-elena-rybakina-0065672",
@@ -34,7 +34,7 @@
     "serie": true
    }
   ],
-  "navegador": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36 Edg/157.0.0.0",
-  "cuando": "2026-11-23 10:51:30"
+  "navegador": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/158.0.0.0 Safari/537.36 Edg/158.0.0.0",
+  "cuando": "2026-11-24 11:22:13"
  }
 }
