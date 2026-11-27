@@ -433,3 +433,42 @@ def test_the_cloud_report_brings_what_its_audit_reads_of_the_cloud(tmp_path, mon
     assert json.loads((tmp_path / "modelos_volumen.json").read_text()) == ["balltrack.onnx", "rfdetr_medium_1152.onnx"]
     assert (tmp_path / "runs" / "kaggle_sinner_b3" / "estado.json").read_text() == '{"estado": "hecho"}'
     assert not (tmp_path / "runs" / "vacia").exists()
+
+
+def test_the_loop_that_reads_the_analysis_never_waits(monkeypatch):
+    """22-11 (actualizar_zheng_b): the runner stopped reading the analysis at 19:01 (a save to Modal or a print that
+    never came back); the analysis ended at 19:32 and the session stayed open, idle, using GPU quota. An upload that
+    hangs raises TimeoutError; the notebook's output is written from a thread of its own and never holds up the loop;
+    the progress is saved by the sampler, not by the loop."""
+    import threading
+    monkeypatch.setattr(correr, "UPLOAD_MIN_S", 0.3)
+    hang = threading.Event()
+
+    class Hung:
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *a):
+            return False
+
+        def put_file(self, src, dst):
+            hang.wait(30)
+
+    class Vol:
+        def batch_upload(self, force=False):
+            return Hung()
+    t = time.time()
+    with pytest.raises(TimeoutError, match="no acabó"):
+        correr.modal_put(Vol(), [Path(__file__)], Path(__file__).parent, "/r")
+    assert time.time() - t < 5
+    hang.set()
+    correr.modal_put(Vol(), [], Path("."), "/r")                                  # nothing to send: nothing done
+    e = correr.Echo(size=2)                                                       # its thread not started: stuck output
+    t = time.time()
+    for i in range(5):
+        e.put(f"l{i}\n")
+    assert e.dropped == 3 and time.time() - t < 1
+    src = (ROOT / "cloud" / "kaggle" / "correr.py").read_text(encoding="utf-8")
+    loop = src[src.rindex("for line in p.stdout:"):src.rindex("rc = p.wait()")]          # the match run's loop
+    assert "echo.put(line)" in loop and "save(" not in loop and "print(" not in loop
+    assert "nube.idle_since(" in src and "with save_lock:" in src

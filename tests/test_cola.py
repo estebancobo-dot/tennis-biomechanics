@@ -170,6 +170,24 @@ def test_a_stuck_or_cut_kaggle_session_is_launched_again_then_given_up():
     assert act == "error" and f"({cola.KAGGLE_TRIES} intentos)" in why
 
 
+def test_a_running_session_whose_machine_does_nothing_is_ended_once():
+    """22-11 (actualizar_zheng_b): its analysis ended at 19:32, its runner stopped reading at 19:01 and the session
+    stayed «running» with the machine idle (CPU 1 %, GPU 0 %) until cancelled by hand at 20:42. Idle for longer than
+    KAGGLE_IDLE_MAX_S (its runner's «inactiva_desde»): its notebook is deleted and it is launched again, once."""
+    st = {"lanzado_ts": NOV, "intentos": 1}
+    idle = {"estado": "en curso", "inactiva_desde": NOV + 3600}
+    assert cola.kaggle_step(st, "running", idle, NOV + 3600 + cola.KAGGLE_IDLE_MAX_S - 60) == ("nada", "")
+    assert cola.kaggle_step(st, "running", {"estado": "en curso"}, NOV + 40000) == ("nada", "")   # working: goes on
+    act, why = cola.kaggle_step(st, "running", idle, NOV + 3600 + cola.KAGGLE_IDLE_MAX_S + 60)
+    assert act == "relanzar" and why.startswith(cola.IDLE_TAG) and "46 min" in why
+    act, why = cola.kaggle_step({**st, "parada": True}, "running", idle, NOV + 3600 + cola.KAGGLE_IDLE_MAX_S + 60)
+    assert act == "error" and "otra vez" in why
+    assert cola.kaggle_step(st, "running", {**idle, "estado": "hecho"}, NOV + 90000) == ("recoger", "")
+    src = (ROOT / "cloud" / "cola.py").read_text(encoding="utf-8")
+    assert 'if kst in ("queued", "running"):' in src           # the idle session is deleted, not left to its 12 h
+    assert 'state[jid]["parada"] = True' in src
+
+
 def test_kaggle_source_needs_its_keys_its_switch_and_a_free_notebook(monkeypatch):
     monkeypatch.delenv("KAGGLE_API_TOKEN", raising=False)
     assert "sin sus claves" in cola._sources(ROOT)["kaggle"]["motivo"]

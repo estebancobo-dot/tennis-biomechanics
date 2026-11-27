@@ -204,6 +204,25 @@ def resources_now(s: dict) -> str:
     return ", ".join(parts)
 
 
+IDLE_CPU_PCT, IDLE_GPU_PCT = 5.0, 2.0     # 22-11: a machine doing nothing (actualizar_zheng_b: CPU 1 %, GPU 0 %·0 %)
+
+
+def idle(s: dict) -> bool:
+    """One sample of a machine that does nothing: its CPU under IDLE_CPU_PCT and every GPU under IDLE_GPU_PCT (a CPU
+    session has no GPU fields: its CPU alone)."""
+    if s.get("cpu_pct") is None or float(s["cpu_pct"]) >= IDLE_CPU_PCT:
+        return False
+    return all(float(v) < IDLE_GPU_PCT for k, v in s.items() if re.fullmatch(r"gpu\d*_pct", k) and v is not None)
+
+
+def idle_since(s: dict, since: float | None) -> float | None:
+    """Since when (epoch seconds) the machine has done nothing: `since` while it goes on idle, the sample's time when
+    it starts; None while it works. The queue ends a session idle for long (cloud/cola.py KAGGLE_IDLE_MAX_S)."""
+    if not idle(s):
+        return None
+    return float(since) if since is not None else float(s.get("t") or 0.0)
+
+
 GPU_FALLBACK = "falló al cargar"          # tennisbio.pose.estimator._new_session: a model the GPU could not take
 PAGE_MAX_BYTES = 80 * 1024 * 1024       # the report page copied to runs/<tag> (informe): its data inside, no videos
 

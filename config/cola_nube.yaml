@@ -41,7 +41,7 @@ reiniciar: ["final#1"]
 # resultados se quedan. Apagado hasta cerrar los 6 partidos (hasta entonces se pueden rehacer)
 borrar_videos_aceptados: false
 cancelar:
-  actualizar_zheng_b: "22-11 20:50: su análisis acabó (manifiesto en Modal: fine 19:23:58, fine_opponent 19:23:59, fine_doubtful 19:32:46; leer_zheng_b_atasco), pero el ejecutor de Kaggle dejó de leer su salida a las 19:01 y la sesión siguió abierta sin hacer nada (CPU 1 %, GPU 0 %, 1,6 GB desde las 19:44) gastando cuota de GPU. Se borra su cuaderno; actualizar_zheng_b2 lo comprueba (todo al día, sin rehacer nada) con el ejecutor arreglado"
+  actualizar_zheng_b: "22-11 20:42: su análisis acabó (manifiesto en Modal: fine 19:23:58, fine_opponent 19:23:59, fine_doubtful 19:32:46; leer_zheng_b_atasco), pero el ejecutor de Kaggle dejó de leer su salida a las 19:01 y la sesión siguió abierta sin hacer nada (CPU 1 %, GPU 0 %, 1,6 GB desde las 19:44) gastando cuota de GPU. Se borra su cuaderno; actualizar_zheng_b2 lo comprueba (todo al día, sin rehacer nada) con el ejecutor arreglado"
   sinner_b: "22-11 00:05: relanzado a las 00:04 con el giro 3D de antes; MeTRAbs acaba de pasar su regla (comparar_gauff_v36_v38: los mismos 28 golpes, X-factor 3D en 15 frente a 7, dispersión 5,2° frente a 5,6°) y Sinner se analiza una sola vez con lo elegido (#295): otra vez como sinner_b2 cuando MeTRAbs sea el de por defecto"
   medir_f3set_hoy_c: "21-11 23:58: corre dos veces en Kaggle (cada vuelta caída de 23:01 a 23:31 lo volvió a lanzar: dos versiones, dos sesiones de GPU; Kaggle contó 1,78 h en una hora) y deja a sinner_b sin GPU. Se borra su cuaderno y va otra vez detrás de Sinner como medir_f3set_hoy_d"
   medir_raqueta_trt: "la GPU está ocupada solo el 9 % de la pasada fina (fase A, v17): TensorRT casi no ahorra hoy; su plaza de Kaggle, para la v19 (las 2 T4). Se repite si la GPU pasa a ser el cuello de botella"
@@ -297,11 +297,16 @@ trabajos:
   - {id: actualizar_pegula, accion: partido, partido: elena-rybakina-jessica-pegula-miami-2026-quarter-final, tras: actualizar_pegula_b, aprobado: true, cpu: true, etapas: [views, views_link, view_clips, slowmo_fine], minutos_video: 112}
   - {id: actualizar_zheng_a, accion: partido, partido: zheng-qinwen-elena-rybakina, tras: actualizar_pegula, aprobado: true, cpu: true, etapas: [probe, scenes, court, audio], minutos_video: 117}
   - {id: actualizar_zheng_b, accion: partido, partido: zheng-qinwen-elena-rybakina, tras: actualizar_zheng_a, aprobado: true, etapas: [players, score, identity, spotting, candidates, fine, fine_opponent, fine_doubtful], minutos_video: 117}
-  - {id: actualizar_zheng, accion: partido, partido: zheng-qinwen-elena-rybakina, tras: actualizar_zheng_b, aprobado: true, cpu: true, etapas: [views, views_link, view_clips, slowmo_fine], minutos_video: 117}
+  - {id: actualizar_zheng, accion: partido, partido: zheng-qinwen-elena-rybakina, tras: actualizar_zheng_b2, aprobado: true, cpu: true, etapas: [views, views_link, view_clips, slowmo_fine], minutos_video: 117}
   # 22-11 20:45: actualizar_zheng_b sin avance desde las 19:01:08 (81 %), con las GPU trabajando hasta ~19:30 y la
   # máquina parada (CPU 1 %, 1,6 GB) desde ~19:40: ¿acabó el análisis y es el ejecutor el que no sigue? Lo que dejó
   # en Modal (el subidor sigue cada 10 min): su registro, su manifiesto y el estado de la ejecución
   - {id: leer_zheng_b_atasco, accion: leer, rutas: [/output/zheng-qinwen-elena-rybakina/registro.log, /output/zheng-qinwen-elena-rybakina/manifest.json, /runs/kaggle_actualizar_zheng_b/estado.json], filtro: "^2026-11-22 (1[89]|2[0-3]):"}
+  # 22-11 20:55: leído: su análisis acabó (fine 19:23:58, fine_doubtful 19:32:46, todo subido a Modal a las 20:32:43); el
+  # ejecutor se quedó parado. Cancelado a las 20:42; la misma parte con el ejecutor arreglado (su bucle ya no espera a
+  # Modal ni a la salida del cuaderno) solo comprueba que todo está al día (ningún código del análisis cambió desde
+  # las 16:44) y deja su estado «hecho»: 0,5 h de reserva, no las 5,3 de un partido entero
+  - {id: actualizar_zheng_b2, accion: partido, partido: zheng-qinwen-elena-rybakina, tras: actualizar_zheng_a, aprobado: true, horas: 0.5, etapas: [players, score, identity, spotting, candidates, fine, fine_opponent, fine_doubtful], minutos_video: 117}
   # 15-11 (#297): la Base en beta con los 5 partidos ya analizados (Osaka, Pegula, Zheng, Gauff, la final): el informe y
   # la auditoría en Modal (CPU, ~0,15 $), con sus diferencias conocidas en la primera pantalla
   - {id: informe_beta, accion: informe, tras: final}

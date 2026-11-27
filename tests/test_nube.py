@@ -569,3 +569,15 @@ def test_a_failed_analysis_says_why():
     assert nube.failure_reason("", None) == "sin motivo en su registro"
     src = (ROOT / "cloud" / "kaggle" / "correr.py").read_text(encoding="utf-8")
     assert 'est["nota"] = nube.failure_reason(' in src
+
+
+def test_an_idle_machine_is_told_from_a_working_one():
+    """22-11 (actualizar_zheng_b): CPU 1 %, GPU 0 %·0 % for 50 min after its analysis had ended."""
+    assert nube.idle({"cpu_pct": 1.0, "gpu_pct": 0.0, "gpu1_pct": 0.0})
+    assert not nube.idle({"cpu_pct": 1.0, "gpu_pct": 0.0, "gpu1_pct": 45.0})      # one GPU at work
+    assert not nube.idle({"cpu_pct": 26.0, "gpu_pct": 0.0})                       # one core at work
+    assert nube.idle({"cpu_pct": 2.0})                                            # a CPU session
+    assert not nube.idle({})                                                      # no sample: never idle
+    assert nube.idle_since({"t": 100, "cpu_pct": 1.0}, None) == 100.0
+    assert nube.idle_since({"t": 160, "cpu_pct": 1.0}, 100.0) == 100.0           # goes on idle: since the first
+    assert nube.idle_since({"t": 220, "cpu_pct": 60.0}, 100.0) is None           # works again

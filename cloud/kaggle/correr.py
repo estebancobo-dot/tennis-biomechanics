@@ -33,6 +33,10 @@ ORT_GPU = "1.24.4"                       # the same as cloud/modal_app.py (= the
 WORK = Path("/kaggle/working")           # what Kaggle keeps after the session: small files only (≤ 500 files)
 SCRATCH = ("/kaggle/temp", "/kaggle/tmp", "/tmp")
 SYNC_S = 600                             # results to Modal every 10 minutes
+# 22-11 (actualizar_zheng_b): the job's loop stopped reading the analysis's output at 19:01 (a save to Modal or a print
+# that never came back) and the session stayed open 1.5 h after the analysis had ended, using GPU quota. An upload has a
+# time limit (300 s + 1 s per 5 MB), and the loop that reads the analysis does nothing that can wait on the network
+UPLOAD_MIN_S, UPLOAD_MB_PER_S = 300.0, 5.0
 TEST_PREFIX = nube.TEST_PREFIX
 # proofs of concept (#288, docs/nube_nativa.md): name → the module that measures it (in the analysis's own Python)
 POCS = {"raqueta": "tennisbio.infra.poc_raqueta", "video": "tennisbio.infra.poc_video",
@@ -139,8 +143,37 @@ def modal_get(remote: str, local_dir: Path):
     almacen.ModalStorage(None, VOLUME).get(remote, local_dir)
 
 
+def upload_timeout(files: list[Path]) -> float:
+    """The seconds an upload of `files` may take (UPLOAD_MIN_S + their size at UPLOAD_MB_PER_S)."""
+    size = 0
+    for f in files:
+        try:
+            size += Path(f).stat().st_size
+        except OSError:
+            pass
+    return UPLOAD_MIN_S + size / (UPLOAD_MB_PER_S * 1e6)
+
+
 def modal_put(vol, files: list[Path], local_root: Path, remote_root: str):
-    almacen.ModalStorage(vol, VOLUME).put_files(files, local_root, remote_root)
+    """The files to the volume, in a thread with a time limit (upload_timeout): an upload that never comes back raises
+    TimeoutError (the caller retries or says it) instead of stopping the job for good (22-11, actualizar_zheng_b)."""
+    if not files:
+        return
+    err: list[BaseException] = []
+
+    def put():
+        try:
+            almacen.ModalStorage(vol, VOLUME).put_files(files, local_root, remote_root)
+        except BaseException as e:  # noqa: BLE001 — raised again in the caller's thread
+            err.append(e)
+    t = threading.Thread(target=put, daemon=True)
+    t.start()
+    limit = upload_timeout(files)
+    t.join(limit)
+    if t.is_alive():
+        raise TimeoutError(f"la subida a Modal de {len(files)} ficheros no acabó en {limit:.0f} s")
+    if err:
+        raise err[0]
 
 
 SAPIENS2_ONNX = "sapiens2_pose_0.4b_512x384.onnx"
@@ -601,6 +634,44 @@ def info() -> dict:
             "gpu": smi, "ffmpeg": shutil.which("ffmpeg") or "", "clave_modal": bool(os.environ.get("MODAL_TOKEN_ID"))}
 
 
+class Echo:
+    """The analysis's lines to the notebook's output from a thread of their own (22-11, actualizar_zheng_b: the loop
+    that reads the analysis must never wait on that output); when the output does not keep up, lines are dropped
+    there (they are all in log.txt) and counted."""
+
+    def __init__(self, size: int = 10000):
+        import queue as _queue
+
+        self.q, self.dropped, self._full = _queue.Queue(size), 0, _queue.Full
+        self.t = threading.Thread(target=self._run, daemon=True)
+
+    def start(self) -> "Echo":
+        self.t.start()
+        return self
+
+    def put(self, line: str) -> None:
+        try:
+            self.q.put_nowait(line)
+        except self._full:
+            self.dropped += 1
+
+    def _run(self) -> None:
+        while True:
+            line = self.q.get()
+            if line is None:
+                return
+            print(line, end="", flush=True)
+
+    def close(self, wait: float = 30.0) -> None:
+        try:
+            self.q.put(None, timeout=wait)
+        except self._full:                         # the output is stuck: the thread is left (a daemon)
+            return
+        self.t.join(wait)
+        if self.dropped:
+            print(f"AVISO: {self.dropped} líneas no se mostraron aquí (están en log.txt)", flush=True)
+
+
 def main(argv: list[str]) -> int:
     job = parse_job(argv[1])
     WORK.mkdir(parents=True, exist_ok=True)
@@ -615,14 +686,18 @@ def main(argv: list[str]) -> int:
     run.mkdir(parents=True, exist_ok=True)
     t0 = time.time()
 
+    save_lock = threading.Lock()
+
     def save(final=False):
-        # a copy: the sampler and the uploader threads change est while the job's own loop saves it
-        (run / "estado.json").write_text(json.dumps(est.copy(), ensure_ascii=False, indent=1), encoding="utf-8")
-        shutil.copy(run / "estado.json", WORK / "estado.json")
-        try:
-            modal_put(vol, [run / "estado.json"], run, job["salida"])
-        except Exception as e:  # noqa: BLE001 — the next save tries again
-            print(f"AVISO: estado a Modal ({e})", flush=True)
+        # a copy: the sampler and the uploader threads change est while the job's own loop saves it; one save at a time
+        # (22-11: the sampler and the uploader both save, and two writes of the same file at once could mix)
+        with save_lock:
+            (run / "estado.json").write_text(json.dumps(est.copy(), ensure_ascii=False, indent=1), encoding="utf-8")
+            shutil.copy(run / "estado.json", WORK / "estado.json")
+            try:
+                modal_put(vol, [run / "estado.json"], run, job["salida"])
+            except Exception as e:  # noqa: BLE001 — the next save tries again
+                print(f"AVISO: estado a Modal ({e})", flush=True)
 
     save()
     try:
@@ -718,33 +793,42 @@ def main(argv: list[str]) -> int:
         samples: list[dict] = []
 
         def sampler():                            # T2 (14-11): what Kaggle's machine uses, every minute, as on Modal
+            last_save = time.time()
             while not stop.wait(60):
                 try:
                     samples.append(nube.sample_resources())
                     with open(run / "recursos.jsonl", "a", encoding="utf-8") as f:
                         f.write(json.dumps(samples[-1]) + "\n")
                     est["recursos_ahora"] = nube.resources_now(samples[-1])
+                    # 22-11: since when the machine does nothing (the queue ends a session stopped for long)
+                    since = nube.idle_since(samples[-1], est.get("inactiva_desde"))
+                    if since is None:
+                        est.pop("inactiva_desde", None)
+                    else:
+                        est["inactiva_desde"] = since
                 except Exception as e:  # noqa: BLE001 — a missed sample, never the match
                     print(f"AVISO: muestra de recursos ({e})", flush=True)
+                if time.time() - last_save >= nube.PROGRESS_S:   # 22-11: the progress saved here, not in the loop
+                    save()                                       # that reads the analysis (actualizar_zheng_b)
+                    last_save = time.time()
         uploader = threading.Thread(target=syncer, daemon=True)
         uploader.start()
         threading.Thread(target=sampler, daemon=True).start()
-        t1, last_save = time.time(), time.time()
+        t1 = time.time()
+        echo = Echo().start()                    # 22-11: the notebook's output never holds up this loop
         with open(run / "log.txt", "a", encoding="utf-8") as lg:
             p = subprocess.Popen([str(py), "-m", "tennisbio.cli", "run", "--match", job["run_id"], *run_stages(job)], cwd=REPO,
                                  env=env_for(data), stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
             for line in p.stdout:
                 lg.write(line)
                 lg.flush()
-                print(line, end="", flush=True)
+                echo.put(line)
                 prog = nube.progress_of(line)
-                if prog:
-                    est["progreso"] = prog
-                if time.time() - last_save > nube.PROGRESS_S:     # 14-11: progress while it runs, for the queue's summary
+                if prog:                         # 14-11: progress while it runs, for the queue's summary (the sampler
+                    est["progreso"] = prog       # saves it every PROGRESS_S; this loop only reads)
                     est["actualizado"] = time.strftime("%H:%M:%S")
-                    save()
-                    last_save = time.time()
             rc = p.wait()
+            echo.close()
             if rc == 0 and job["accion"] == "partido" and "identity" in (job.get("etapas") or []):
                 ph = subprocess.run([str(py), "-c", nube.CLICK_PHOTOS, str(out_dir), str(data / "videos" / src["video"])],
                                     cwd=REPO, env=env_for(data), capture_output=True, text=True, timeout=1800)

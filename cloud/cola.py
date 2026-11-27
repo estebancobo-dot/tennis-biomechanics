@@ -169,6 +169,11 @@ def fresh(result: dict | None, st: dict) -> bool:
 # 21-11: a notebook left «queued» for hours while a job launched after it started at once (medir_raqueta_p100, 13:11):
 # Kaggle had free GPUs and that notebook was stuck (R45); it is launched again in a new one without waiting 3 h
 STUCK_QUEUE_S = 45 * 60
+# 22-11 (actualizar_zheng_b): a «running» session whose machine has done nothing this long (its runner's sampler:
+# «inactiva_desde», CPU < 5 % and every GPU < 2 %) is stuck: its analysis had ended at 19:32 and the session went
+# on until it was deleted at 20:42, using GPU quota. Deleted and launched again once; a second time, an error
+KAGGLE_IDLE_MAX_S = 45 * 60
+IDLE_TAG = "sesión parada"
 
 
 def kaggle_step(st: dict, kstatus: str, result: dict | None, now: float, newer_started: bool = False) -> tuple[str, str]:
@@ -189,6 +194,12 @@ def kaggle_step(st: dict, kstatus: str, result: dict | None, now: float, newer_s
         why = f"la sesión de Kaggle acabó con «{kstatus}» sin escribir su estado"
     elif kstatus == "complete":
         why = "la sesión de Kaggle acabó sin terminar el trabajo (dura 12 h como mucho): sigue desde lo guardado"
+    elif kstatus == "running" and result and result.get("inactiva_desde") \
+            and now - float(result["inactiva_desde"]) > KAGGLE_IDLE_MAX_S:
+        why = (f"{IDLE_TAG}: {(now - float(result['inactiva_desde'])) / 60:.0f} min con la máquina sin hacer nada "
+               "(CPU < 5 %, GPU < 2 %) y sin acabar: se borra su cuaderno y sigue desde lo guardado")
+        if st.get("parada"):
+            return "error", f"{why} (otra vez tras relanzarla: se mira antes de gastar más cuota)"
     else:
         return "nada", ""
     tries = int(st.get("intentos", 1))
@@ -848,6 +859,8 @@ def main(argv: list[str] | None = None) -> int:
                 res = None
             if res and res.get("progreso"):                 # 14-11: where it is now (stage and %), for the summary
                 now_used = f"; {res['recursos_ahora']}" if res.get("recursos_ahora") else ""
+                if res.get("inactiva_desde"):               # 22-11: since when its machine does nothing
+                    now_used += f"; máquina parada desde las {time.strftime('%H:%M', time.gmtime(float(res['inactiva_desde'])))}"
                 st["progreso"] = f"{res['progreso']} ({res.get('actualizado', '')}{now_used})"
             if st["donde"] == "kaggle" and jid in by_id:
                 kst = kaggle_status(jid, st.get("cuaderno"))
@@ -862,7 +875,9 @@ def main(argv: list[str] | None = None) -> int:
                 act, why = kaggle_step(st, kst, res, now, newer)
                 if act == "relanzar":
                     print(f"{jid}: {why}: se lanza otra vez")
-                    if kst == "queued":                  # #290: its stuck notebook is deleted first (frees its session)
+                    # #290: its stuck notebook is deleted first (frees its session); 22-11: a running one too (an idle
+                    # session uses GPU quota until Kaggle's 12 h)
+                    if kst in ("queued", "running"):
                         r = _kaggle(["borrar", "--slug", st.get("cuaderno") or notebook_slug(jid)])
                         print(f"{jid}: cuaderno atascado borrado ({r.returncode}) {r.stdout[-300:]} {r.stderr[-300:]}")
                     new_slug = notebook_slug(jid, int(st.get("intentos", 1)) + 1)       # R45: a new notebook
@@ -870,6 +885,8 @@ def main(argv: list[str] | None = None) -> int:
                         record_launch(state, spend, by_id[jid], "kaggle", "kaggle", now)
                         state[jid]["cuaderno"] = new_slug
                         state[jid]["nota"] = why
+                        if why.startswith(IDLE_TAG):     # once: a second idle session is an error (kaggle_step)
+                            state[jid]["parada"] = True
                     continue
                 if act == "error":
                     record_result(state, spend, jid, {"estado": "error", "nota": why}, now)
