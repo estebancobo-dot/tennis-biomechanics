@@ -2536,5 +2536,18 @@
    "nota": "leídos: output__zheng-qinwen-elena-rybakina__registro.log, output__zheng-qinwen-elena-rybakina__manifest.json, runs__kaggle_actualizar_zheng_b__estado.json"
   },
   "partido": ""
+ },
+ "actualizar_zheng_b2": {
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1795815340.9726555,
+  "accion": "partido",
+  "partido": "zheng-qinwen-elena-rybakina",
+  "inicio": "2026-11-27 21:35",
+  "ruta": "/runs/kaggle_actualizar_zheng_b2/estado.json",
+  "salida": "/output/zheng-qinwen-elena-rybakina",
+  "cuaderno": "tennisbio-actualizar-zheng-b2"
  }
 }
