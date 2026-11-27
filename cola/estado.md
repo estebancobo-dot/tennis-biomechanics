@@ -1,6 +1,6 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-27 23:41 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 0.9 h de GPU esta semana (tope 28 h; Kaggle dice 26.6 h usadas de 30.0, se renueva 2026-11-28 00:00)
+Última vuelta: 2026-11-27 23:46 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 0.9 h de GPU esta semana (tope 28 h; Kaggle dice 26.6 h usadas de 30.0, se renueva 2026-11-28 00:00)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
@@ -110,7 +110,7 @@
 | actualizar_zheng_b | partido | zheng-qinwen-elena-rybakina | error | kaggle | cancelado: 22-11 20:50: su análisis acabó (manifiesto en Modal: fine 19:23:58, fine_opponent 19:23:59, fine_doubtful 19:32:46; leer_zheng_b_atasco), pero el ejecutor de Kaggle dejó de leer su salida a las 19:01 y la sesión siguió abierta sin hacer nada (CPU 1 %, GPU 0 %, 1,6 GB desde las 19:44) gastando cuota de GPU. Se borra su cuaderno; actualizar_zheng_b2 lo comprueba (todo al día, sin rehacer nada) con el ejecutor arreglado |
 | actualizar_zheng | partido | zheng-qinwen-elena-rybakina | pendiente |  | espera a actualizar_zheng_b2 (en_marcha) |
 | leer_zheng_b_atasco | leer |  | hecho | github | leídos: output__zheng-qinwen-elena-rybakina__registro.log, output__zheng-qinwen-elena-rybakina__manifest.json, runs__kaggle_actualizar_zheng_b__estado.json |
-| actualizar_zheng_b2 | partido | zheng-qinwen-elena-rybakina | en_marcha | kaggle | Kaggle: queued (23:41), intento 1 |
+| actualizar_zheng_b2 | partido | zheng-qinwen-elena-rybakina | en_marcha | kaggle | Kaggle: queued (23:46), intento 1 |
 | informe_beta | informe |  | hecho | modal |  |
 | informe_beta2 | informe |  | hecho | kaggle |  |
 | informe_beta3 | informe |  | hecho | kaggle |  |
