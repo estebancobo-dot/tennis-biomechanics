@@ -2630,7 +2630,7 @@
   "inicio": "2026-11-28 03:58",
   "ruta": "/runs/kaggle_medir_f3set_dubai/estado.json",
   "cuaderno": "tennisbio-medir-f3set-dubai",
-  "kaggle": "queued (05:55)",
+  "kaggle": "queued (06:01)",
   "kaggle_detalle": "queued | estebancoboc/tennisbio-medir-f3set-dubai has status \"KernelWorkerStatus.QUEUED\""
  }
 }
