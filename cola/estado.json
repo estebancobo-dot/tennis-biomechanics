@@ -2631,7 +2631,7 @@
   "ruta": "/runs/kaggle_medir_f3set_dubai/estado.json",
   "cuaderno": "tennisbio-medir-f3set-dubai-2",
   "nota": "en cola de Kaggle más de 180 min sin arrancar",
-  "kaggle": "queued (07:57)",
+  "kaggle": "queued (08:03)",
   "kaggle_detalle": "queued | estebancoboc/tennisbio-medir-f3set-dubai-2 has status \"KernelWorkerStatus.QUEUED\""
  }
 }
