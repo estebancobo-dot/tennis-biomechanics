@@ -1,6 +1,6 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-28 02:09 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 28.0 h de GPU esta semana (tope 28 h; Kaggle dice 0.0 h usadas de 30.0, se renueva 2026-12-05 00:00)
+Última vuelta: 2026-11-28 02:10 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 28.0 h de GPU esta semana (tope 28 h; Kaggle dice 0.0 h usadas de 30.0, se renueva 2026-12-05 00:00)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
@@ -108,7 +108,7 @@
 | actualizar_pegula | partido | elena-rybakina-jessica-pegula-miami-2026-quarter-final | hecho | kaggle |  |
 | actualizar_zheng_a | partido | zheng-qinwen-elena-rybakina | hecho | kaggle |  |
 | actualizar_zheng_b | partido | zheng-qinwen-elena-rybakina | error | kaggle | cancelado: 22-11 20:50: su análisis acabó (manifiesto en Modal: fine 19:23:58, fine_opponent 19:23:59, fine_doubtful 19:32:46; leer_zheng_b_atasco), pero el ejecutor de Kaggle dejó de leer su salida a las 19:01 y la sesión siguió abierta sin hacer nada (CPU 1 %, GPU 0 %, 1,6 GB desde las 19:44) gastando cuota de GPU. Se borra su cuaderno; actualizar_zheng_b2 lo comprueba (todo al día, sin rehacer nada) con el ejecutor arreglado |
-| actualizar_zheng | partido | zheng-qinwen-elena-rybakina | en_marcha | kaggle |  |
+| actualizar_zheng | partido | zheng-qinwen-elena-rybakina | en_marcha | kaggle | Kaggle: running (02:10), intento 1 |
 | leer_zheng_b_atasco | leer |  | hecho | github | leídos: output__zheng-qinwen-elena-rybakina__registro.log, output__zheng-qinwen-elena-rybakina__manifest.json, runs__kaggle_actualizar_zheng_b__estado.json |
 | actualizar_zheng_b2 | partido | zheng-qinwen-elena-rybakina | error | kaggle | cancelado: 28-11 02:15: 4,5 h en la cola de Kaggle sin arrancar (sus 2 cuadernos; la cuota, recién renovada, a 0 h). Solo iba a comprobar lo que el manifiesto de Modal ya dice (fine, fine_opponent y fine_doubtful hechos el 22-11, sin fallos ni errores; ningún código del análisis cambió): la parte de CPU de Zheng va directamente sobre lo hecho |
 | informe_beta | informe |  | hecho | modal |  |
@@ -136,4 +136,4 @@
 | prueba_gauff_v38_b2 | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
 | prueba_gauff_v38_c | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
 | comparar_gauff_v36_v38 | comparar |  | revisar | github | distinta; 7 etapas iguales; distintas: candidates, fine, fine_doubtful, identity, players, spotting, view_clips, views; strokes.json: 28 de 28/28 golpes emparejados, medidas fuera de tolerancia: metrics.trunk3d_model, metrics.trunk3d_readings, metrics.shoulder_turn_3d_deg, metrics.hip_turn_3d_deg; strokes.json: temblor de b frente a a ×1.00 (mediana de 5327 medidas; b tiembla menos en el 12 %); strokes.json: temblor por familias: brazos ×1.00, muñecas ×1.00, otras ×1.00, piernas ×1.00, pies ×1.00, raqueta ×1.00, tronco ×1.00; strokes_opponent.json: 0 de 0/0 golpes emparejados; strokes_doubtful |
-| informe_6 | informe |  | pendiente |  | espera a actualizar_zheng (pendiente) |
+| informe_6 | informe |  | pendiente |  | espera a actualizar_zheng (en_marcha) |

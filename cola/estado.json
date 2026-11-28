@@ -2568,6 +2568,9 @@
   "ruta": "/runs/kaggle_actualizar_zheng/estado.json",
   "salida": "/output/zheng-qinwen-elena-rybakina",
   "cpu": true,
-  "cuaderno": "tennisbio-actualizar-zheng"
+  "cuaderno": "tennisbio-actualizar-zheng",
+  "kaggle": "running (02:10)",
+  "arranco": "2026-11-28 02:10",
+  "espera_min": 1
  }
 }
