@@ -2641,14 +2641,13 @@
   "estado": "en_marcha",
   "donde": "kaggle",
   "llamada": "kaggle",
-  "intentos": 1,
-  "lanzado_ts": 1795853797.6537073,
+  "intentos": 2,
+  "lanzado_ts": 1795864879.7539005,
   "accion": "medir",
   "partido": "",
-  "inicio": "2026-11-28 08:16",
+  "inicio": "2026-11-28 11:21",
   "ruta": "/runs/kaggle_medir_f3set_dubai_p100/estado.json",
-  "cuaderno": "tennisbio-medir-f3set-dubai-p100",
-  "kaggle": "queued (11:15)",
-  "kaggle_detalle": "queued | estebancoboc/tennisbio-medir-f3set-dubai-p100 has status \"KernelWorkerStatus.QUEUED\""
+  "cuaderno": "tennisbio-medir-f3set-dubai-p100-2",
+  "nota": "en cola de Kaggle más de 180 min sin arrancar"
  }
 }
