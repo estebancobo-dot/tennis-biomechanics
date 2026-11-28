@@ -69,17 +69,29 @@ def stroke_diff(ref: dict, new: dict, limit: int = 80) -> dict:
             "ganados_detalle": [row(k) for k in sorted(won, key=str)][:limit]}
 
 
+def subset(rep: dict, text: str) -> dict:
+    """28-11 (B4): the report's annotated strokes of the compilations whose name contains `text` only (no case), and
+    how many of them were found; the totals of a part are not the whole report's."""
+    t = text.lower()
+    rows = [s for s in rep.get("strokes", []) if t in str(s.get("match", "")).lower()]
+    return {"strokes": rows, "encontrados": sum(s.get("step") in FOUND for s in rows), "anotados": len(rows)}
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--raiz", type=Path, required=True, help="la carpeta de los datos anotados (con f3set/)")
     ap.add_argument("--referencia", type=Path, required=True, help="el informe de referencia (nube2)")
     ap.add_argument("--tag", default="kaggle_f3")
     ap.add_argument("--salida", type=Path, required=True)
+    ap.add_argument("--partidos", default="",
+                    help="28-11 (B4): solo las compilaciones cuyo nombre contenga esto, golpe a golpe frente a las mismas "
+                         "de la referencia (sin la regla del total)")
     a = ap.parse_args(argv)
     t0 = time.time()
     try:                                         # under a Kaggle session's 12 h, with the upload after it
         rc = subprocess.run([sys.executable, str(ROOT / "scripts" / "validate_recall.py"), "--root", str(a.raiz),
-                             "--spotter", "--tag", a.tag], cwd=ROOT, timeout=TIMEOUT_S).returncode
+                             "--spotter", "--tag", a.tag, *(["--matches", a.partidos] if a.partidos else [])],
+                            cwd=ROOT, timeout=TIMEOUT_S).returncode
     except subprocess.TimeoutExpired:  # esperado: said in the result, as a validation that did not end
         rc = -1
     rep_f = a.raiz / "reports" / "recall_validation_detector.json"
@@ -88,8 +100,14 @@ def main(argv: list[str] | None = None) -> int:
     out = {"prueba": "f3set", "codigo": rc, "horas": round((time.time() - t0) / 3600, 2), "informe": rep_f.name}
     if rc == 0 and rep_f.exists() and a.referencia.exists():
         ref, new = json.loads(a.referencia.read_text(encoding="utf-8")), json.loads(rep_f.read_text(encoding="utf-8"))
-        out["regla"] = decide(ref, new)
-        out["diferencias"] = stroke_diff(ref, new)
+        if a.partidos:                           # a part: stroke by stroke against the same compilations
+            sr, sn = subset(ref, a.partidos), subset(new, a.partidos)
+            out["regla"] = {"pasa": None, "motivo": f"solo «{a.partidos}»: {sn['encontrados']} de {sn['anotados']} "
+                            f"frente a {sr['encontrados']} de {sr['anotados']} en la referencia (la regla es la del total)"}
+            out["diferencias"] = stroke_diff(sr, sn)
+        else:
+            out["regla"] = decide(ref, new)
+            out["diferencias"] = stroke_diff(ref, new)
         # the whole report beside the result, so it reaches the volume with it (21-11: it stayed in the session)
         (a.salida.parent / rep_f.name).write_text(rep_f.read_text(encoding="utf-8"), encoding="utf-8")
     else:

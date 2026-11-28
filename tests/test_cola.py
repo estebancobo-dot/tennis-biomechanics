@@ -925,3 +925,17 @@ def test_a_read_keeps_only_the_lines_of_a_log_that_match(tmp_path, monkeypatch):
     assert st["estado"] == "hecho"
     assert (tmp_path / "lecturas" / "leer_f" / "runs__f__log.txt").read_text() == "ventana w2_10 (far, 1 candidatos): jugadora lejana no encontrada"
     assert "«filtro»" in cola.check_queue([{"id": "x", "accion": "leer", "rutas": ["/a.txt"], "filtro": "("}])[0]
+
+
+def test_a_measure_of_some_f3set_compilations_says_which(monkeypatch):
+    """28-11 (B4): «compilaciones» reaches the notebook (cloud/kaggle/cuaderno.py --compilaciones)."""
+    calls = []
+
+    class R:
+        returncode, stdout, stderr = 0, "ok", ""
+    monkeypatch.setattr(cola, "_kaggle", lambda args: calls.append(args) or R())
+    assert cola.kaggle_launch({"id": "medir_f3set_dubai", "accion": "medir", "prueba": "f3set", "compilaciones": "Dubai"})
+    launch = calls[-1]
+    assert launch[launch.index("--compilaciones") + 1] == "Dubai"
+    assert cola.kaggle_launch({"id": "medir_f3set", "accion": "medir", "prueba": "f3set"})
+    assert "--compilaciones" not in calls[-1]

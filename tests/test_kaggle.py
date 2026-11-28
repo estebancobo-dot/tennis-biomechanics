@@ -472,3 +472,22 @@ def test_the_loop_that_reads_the_analysis_never_waits(monkeypatch):
     loop = src[src.rindex("for line in p.stdout:"):src.rindex("rc = p.wait()")]          # the match run's loop
     assert "echo.put(line)" in loop and "save(" not in loop and "print(" not in loop
     assert "nube.idle_since(" in src and "with save_lock:" in src
+
+
+def test_one_f3set_compilation_with_its_outputs(tmp_path):
+    """28-11 (B4): a measure of some F3Set compilations only («compilaciones»), and the small files of their folders
+    (not windows/ or series/) sent beside it, to compare them stage by stage with the reference's."""
+    j = correr.parse_job('{"accion": "medir", "prueba": "f3set", "compilaciones": "Dubai"}')
+    args = correr.poc_args(j, tmp_path / "models", None)
+    assert args[-2:] == ["--partidos", "Dubai"] and args[args.index("--tag") + 1] == "kaggle_f3"
+    whole = correr.parse_job('{"accion": "medir", "prueba": "f3set"}')
+    assert "--partidos" not in correr.poc_args(whole, tmp_path / "models", None)
+    d = tmp_path / "datasets" / "f3set" / "recall" / "salidas_kaggle_f3" / "recall_20200218_w_dubai"
+    (d / "windows").mkdir(parents=True)
+    for f in ("manifest.json", "candidates.json", "identity.json"):
+        (d / f).write_text("{}", encoding="utf-8")
+    (d / "windows" / "w1.npz").write_bytes(b"x")
+    names = [f.name for f in correr.f3set_outputs(tmp_path / "datasets", j)]
+    assert names == ["candidates.json", "identity.json", "manifest.json"]
+    src = (ROOT / "cloud" / "kaggle" / "cuaderno.py").read_text(encoding="utf-8")
+    assert 'job["compilaciones"] = a.compilaciones' in src

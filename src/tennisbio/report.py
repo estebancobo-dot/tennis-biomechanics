@@ -456,8 +456,10 @@ def collect(matches: list[Match], out_root: Path, stroke="forehand", player_id: 
         dur = json.loads((_mf.at(d, "probe.json")).read_text(encoding="utf-8")).get("duration", 0) if (_mf.at(d, "probe.json")).exists() else 0
         rows = [s for s in json.loads(f.read_text(encoding="utf-8")) if s.get("stroke") == stroke]
         from .face_evidence import hide_unreliable_faces   # R50: no face without the 3D hand (analyses before the fix)
+        from .read_limits import hide_impossible           # 28-11: a base wider than any person (a misplaced foot)
         for s in rows:
             hide_unreliable_faces(s)
+            hide_impossible(s)
         from .situations import apply as _situations
         for s in rows:                    # strokes analysed before the situations existed: added, never overwritten
             _situations(s, overwrite=False)

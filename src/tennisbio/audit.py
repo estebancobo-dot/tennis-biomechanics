@@ -53,13 +53,14 @@ KEY_MOMENTS = {"ready": "espera / split step", "takeback": "inicio de preparaci�
 from . import match_files as _mf
 from .faults import fault
 from .limits import BALL_APEX_M, BALL_INCOMING_KMH, METRIC_LIMITS
+from .read_limits import READ_LIMITS, hide_impossible
 from .pipeline import total_seconds
 
 LIMITS = {
     **{f"metrics.{k}": v for k, v in METRIC_LIMITS.items()},
     "ball_flight.incoming_speed_kmh": BALL_INCOMING_KMH, "ball_flight.apex_height_m": BALL_APEX_M,
     "ball_flight.contact_height_m": (0.05, 3.0), "footwork.peak_speed_mps": (0, 9.5), "footwork.path_m": (0, 20),
-    "footwork.approach_speed_mps": (0, 9.5), "displacement_m": (0, 20), "stance_width_m": (0.1, 2.5),
+    "footwork.approach_speed_mps": (0, 9.5), "displacement_m": (0, 20), **READ_LIMITS,
 }
 CURVE_LIMITS = {"head": (60, 120), "hip": (30, 70), "hand": (15, 135), "racket": (15, 150)}
 BROWSER_CODECS = {"h264", "vp8", "vp9", "av1"}
@@ -238,6 +239,10 @@ def audit(match_dirs: list[Path], report_dir: Path | None, stroke: str = "foreha
     from .situations import apply as _situations
     for s in strokes:                 # outputs written before the situations existed: added, never overwritten
         _situations(s, overwrite=False)
+    hidden: dict[str, int] = {}       # 28-11: what the report does not show either (read_limits), counted
+    for s in strokes:
+        for k in hide_impossible(s):
+            hidden[k] = hidden.get(k, 0) + 1
     near = [s for s in strokes if s.get("side") != "far"]
     vals = [stroke_values(s) for s in near]
     all_keys = sorted({k for v in vals for k in v})
@@ -398,8 +403,11 @@ def audit(match_dirs: list[Path], report_dir: Path | None, stroke: str = "foreha
         out = [x for x in xs if not lo - 1e-6 <= x <= hi + 1e-6]
         if out:
             bad.append(f"curva {k}: {len(out)} de {len(xs)} puntos fuera de {lo}–{hi} %")
+    gone = (f" (quitados al leer, no se enseñan: {', '.join(f'{k} {n}' for k, n in sorted(hidden.items()))})"
+            if hidden else "")
     items.append(_item(3, "Valores posibles", "Valores dentro de límites físicos", "falta" if bad else "ok",
-                       "; ".join(bad) if bad else f"{len(LIMITS) + len(CURVE_LIMITS)} medidas comprobadas en {len(near)} golpes"))
+                       ("; ".join(bad) if bad else f"{len(LIMITS) + len(CURVE_LIMITS)} medidas comprobadas en {len(near)} golpes")
+                       + gone))
     from .learn import content
     from .reliability import assess, summary
     units = {c["key"]: c.get("unit") for ph in content()["phases"] for c in ph["checkpoints"] if not c["key"].startswith("practice.")}
@@ -2609,10 +2617,14 @@ def equivalence_item(root: Path | None) -> dict:
         rows.append((f.stem, d.get("veredicto")))
     if not rows:
         return _item(9, PORTABILITY_AREA, EQUIV_ITEM, "aviso", "ninguna comparación todavía (acción «comparar» de la cola)")
-    bad = [r for r in rows if r[1] not in ("idéntica", "equivalente")]
+    # 28-11: «incompleta» (a strokes file read on one side only) is a comparison that measured nothing, not a
+    # difference: said, as an aviso; only «distinta» is a fault (v16b_v17b, R44, was repeated as v19: idéntica)
+    bad = [r for r in rows if r[1] not in ("idéntica", "equivalente", "incompleta")]
+    void = [k for k, v in rows if v == "incompleta"]
     det = "; ".join(f"{k}: {v}" for k, v in rows[-6:])
-    return _item(9, PORTABILITY_AREA, EQUIV_ITEM, "falta" if bad else "ok",
-                 f"{len(rows)} comparaciones, {len(bad)} distintas ({det})")
+    return _item(9, PORTABILITY_AREA, EQUIV_ITEM, "falta" if bad else "aviso" if void else "ok",
+                 f"{len(rows)} comparaciones, {len(bad)} distintas ({det})"
+                 + (f"; sin valor (incompletas, un lado sin leer): {', '.join(void)}" if void else ""))
 
 
 def poc_item(root: Path | None) -> dict:

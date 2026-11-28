@@ -322,11 +322,23 @@ def poc_args(job: dict, models: Path, video: Path | None) -> list[str]:
         return ["--datos", str(models.parent / "datasets"), "--dispositivo", "cpu" if job.get("cpu") else "cuda"]
     if job["prueba"] == "f3set":
         return ["--raiz", str(models.parent / "datasets"), "--referencia", str(models.parent / "referencia" / F3SET_REFERENCE),
-                "--tag", str(job.get("tag") or "kaggle_f3")]
+                "--tag", f3set_tag(job), *(["--partidos", str(job["compilaciones"])] if job.get("compilaciones") else [])]
     if job["prueba"] == "bola":
         return ["--modelo", str(models / "balltrack.onnx"), "--totnet", str(models / "totnet_tennis.onnx"),
                 "--datos", str(models.parent / "datasets"), "--dispositivo", "cpu" if job.get("cpu") else "cuda"]
     return ["--video", str(video)]
+
+
+def f3set_tag(job: dict) -> str:
+    """The F3Set run's tag (validate_recall: its outputs in datasets/f3set/recall/salidas_<tag>)."""
+    return str(job.get("tag") or "kaggle_f3")
+
+
+def f3set_outputs(datasets: Path, job: dict) -> list[Path]:
+    """28-11 (B4): the small files of each compilation's folder (manifest, stage outputs, strokes; not windows/ or
+    series/), to compare one compilation stage by stage with the reference's (salidas_nube2 on the volume)."""
+    base = datasets / "f3set" / "recall" / f"salidas_{f3set_tag(job)}"
+    return [f for d in sorted(base.glob("recall_*")) if d.is_dir() for f in sorted(d.iterdir()) if f.is_file()]
 
 
 def ensure_metrabs(py: Path, data: Path) -> None:
@@ -398,6 +410,12 @@ def measure(job: dict, py: Path, models: Path, data: Path, run: Path, vol, est: 
     if out.exists():
         extra = sorted(run.glob("recall_validation_detector*.json")) if job["prueba"] == "f3set" else []
         modal_put(vol, [out, *extra], run, job["salida"])        # F3Set: its whole report too (21-11)
+    if job["prueba"] == "f3set" and job.get("compilaciones"):    # 28-11 (B4): its compilations' outputs, beside it
+        files = f3set_outputs(models.parent / "datasets", job)
+        if files:
+            modal_put(vol, files, models.parent / "datasets" / "f3set" / "recall" / f"salidas_{f3set_tag(job)}",
+                      f"{job['salida']}/salidas")
+        est["salidas_subidas"] = len(files)
     return p.returncode
 
 

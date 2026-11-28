@@ -92,6 +92,10 @@ def test_equivalence_and_proof_of_concept_items(tmp_path):
     assert equivalence_item(tmp_path)["status"] == "aviso"
     _w(tmp_path / "cola" / "comparaciones" / "c1.json", {"veredicto": "idéntica", "ficheros_de_un_solo_lado": []})
     assert equivalence_item(tmp_path)["status"] == "ok"
+    # 28-11: one side unread measured nothing: said (aviso), not a difference
+    _w(tmp_path / "cola" / "comparaciones" / "c15.json", {"veredicto": "incompleta", "ficheros_de_un_solo_lado": []})
+    it = equivalence_item(tmp_path)
+    assert it["status"] == "aviso" and "sin valor (incompletas, un lado sin leer): c15" in it["detail"]
     _w(tmp_path / "cola" / "comparaciones" / "c2.json", {"veredicto": "distinta", "ficheros_de_un_solo_lado": []})
     it = equivalence_item(tmp_path)
     assert it["status"] == "falta" and "1 distintas" in it["detail"]

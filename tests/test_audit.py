@@ -84,3 +84,24 @@ def test_failed_strokes_camera_shots_and_time_can_fail(tmp_path):
     by = {i["name"].split(":")[0]: i for i in audit([good], None)["items"]}
     assert by["Golpes que fallaron al procesarse"]["status"] == "ok"
     assert by["Tomas de cámara"]["status"] == "ok" and by["Tiempo"]["status"] == "ok"
+
+
+def test_an_impossible_base_width_is_not_shown_nor_counted(tmp_path):
+    """28-11 (informe_6): one forehand of 426 had a base wider than 2.5 m (a foot misplaced by the homography). It is
+    dropped when read, with the stance made from the same feet (read_limits; strokes.json stays as it is), and the
+    audit says how many it hid instead of failing for a value nobody sees."""
+    from tennisbio.read_limits import hide_impossible
+    s = {"stance_width_m": 3.4, "stance": "abierto", "stance_angle_deg": 80.0, "court_pos_m": [1.0, 2.0]}
+    assert hide_impossible(s) == ["stance_width_m"]
+    assert s["stance_width_m"] is None and s["stance"] is None and s["stance_angle_deg"] is None
+    assert s["court_pos_m"] == [1.0, 2.0]                                  # the position is another measure
+    ok = {"stance_width_m": 0.9, "stance": "cerrado"}
+    assert hide_impossible(ok) == [] and ok["stance"] == "cerrado"
+    d = tmp_path / "m1"
+    d.mkdir()
+    rows = [{"stroke": "forehand", "side": "near", "stance_width_m": w, "stance": "abierto"} for w in (0.8, 3.1)]
+    (d / "strokes.json").write_text(json.dumps(rows), encoding="utf-8")
+    by = {i["name"]: i for i in audit([d], None)["items"]}
+    it = by["Valores dentro de límites físicos"]
+    assert it["status"] == "ok" and "quitados al leer, no se enseñan: stance_width_m 1" in it["detail"]
+    assert json.loads((d / "strokes.json").read_text(encoding="utf-8"))[1]["stance_width_m"] == 3.1   # never rewritten

@@ -73,3 +73,30 @@ def test_a_stroke_without_a_fine_window_is_not_called_far_player_not_found():
     src = (ROOT / "src" / "tennisbio" / "validation" / "recall_eval.py").read_text(encoding="utf-8")
     block = src[src.index("elif w is None:"):src.index("elif not w[\"passed\"]:")]
     assert 'step = "sin_ventana"' in block and "lejana_no_encontrada" not in block.split("step =", 1)[1]
+
+
+def test_one_compilation_is_compared_stroke_by_stroke_with_the_same_part_of_the_reference(tmp_path, monkeypatch):
+    """28-11 (B4): the far-side loss is looked at in the Dubai 2020 compilation alone: the run is limited to it
+    (validate_recall --matches), its strokes against the same compilation of the reference (not the whole report's
+    total, which would count every other compilation as lost)."""
+    st = lambda m, step: {"match": m, "point": "p", "label": f"{m}-{step}", "t_clip": 1.0, "step": step, "side": "far"}  # noqa: E731
+    ref = {"strokes": [st("20200218-W-Dubai-R32-X", "encontrado"), st("2023-AO-SF", "encontrado")]}
+    part = pf.subset(ref, "dubai")
+    assert part["anotados"] == 1 and part["encontrados"] == 1 and part["strokes"][0]["match"].startswith("20200218")
+    calls = []
+
+    class R:
+        returncode = 0
+    monkeypatch.setattr(pf.subprocess, "run", lambda cmd, **k: calls.append(cmd) or R())
+    rep = tmp_path / "datos" / "reports"
+    rep.mkdir(parents=True)
+    new = {"strokes": [{**st("20200218-W-Dubai-R32-X", "encontrado"), "label": "20200218-W-Dubai-R32-X-encontrado"}]}
+    (rep / "recall_validation_detector_t.json").write_text(json.dumps(new), encoding="utf-8")
+    (tmp_path / "ref.json").write_text(json.dumps(ref), encoding="utf-8")
+    out = tmp_path / "poc.json"
+    assert pf.main(["--raiz", str(tmp_path / "datos"), "--referencia", str(tmp_path / "ref.json"), "--tag", "t",
+                    "--partidos", "Dubai", "--salida", str(out)]) == 0
+    assert calls[0][-2:] == ["--matches", "Dubai"]
+    res = json.loads(out.read_text(encoding="utf-8"))
+    assert res["regla"]["pasa"] is None and "1 de 1 frente a 1 de 1" in res["regla"]["motivo"]
+    assert res["diferencias"]["perdidos"] == 0                       # the AO compilation is not counted as lost

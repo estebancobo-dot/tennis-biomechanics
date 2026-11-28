@@ -156,6 +156,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--etapas", default="", help="T24: solo estas etapas (una parte de una prueba o de un partido)")
     ap.add_argument("--previa", action="store_true", help="T24: una prueba que sigue lo que dejó su parte anterior")
     ap.add_argument("--base", default="", help="#307: la prueba de referencia sobre cuyas salidas mide (medir)")
+    ap.add_argument("--compilaciones", default="",
+                    help="28-11 (B4): medir f3set: solo las compilaciones cuyo nombre contenga esto, con sus salidas")
     ap.add_argument("--sobre-lo-hecho", action="store_true",
                     help="T24: una parte que sigue a otra: sus etapas sobre lo que hizo la anterior, sin repetirlo")
     ap.add_argument("--minutos", type=float, default=50)
@@ -239,6 +241,8 @@ def main(argv: list[str] | None = None) -> int:
             job["sobre_lo_hecho"] = True
         if a.base:
             job["base"] = a.base
+        if a.compilaciones:
+            job["compilaciones"] = a.compilaciones
         folder = write(Path("kaggle-push"), _user(), job, key=not a.sin_clave, slug=a.slug, gpu=not a.cpu,
                        machine=a.maquina)
         r = _kaggle("kernels", "push", "-p", str(folder))

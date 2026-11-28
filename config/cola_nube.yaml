@@ -393,3 +393,10 @@ trabajos:
   # la compilación de Dubai 2020 (sus 2 golpes lejanos fueron a los dudosos). ¿Siguen en el volumen las salidas de la
   # nube2 (14-11, Modal, salidas_nube2)? Antes de gastar GPU en rehacerla
   - {id: leer_f3set_nube2_dubai, accion: leer, rutas: [/datasets/f3set/recall/salidas_nube2/recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin/manifest.json, /datasets/f3set/recall/salidas_nube2/recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin/candidates.json]}
+  # 28-11 04:00: están (nube2: los 2 golpes lejanos perdidos, t 1318,4 y 1321,5, eran candidatos con su identidad decidida
+  # y fueron a la pasada fina; hoy fueron a los dudosos: identidad sin decidir en ese plano). Dubai sola con el código de
+  # hoy, sus salidas guardadas, comparada etapa a etapa con la nube2 (experimento: el código es otro a propósito) y sus
+  # identity.json y candidates.json de los dos lados. Datos públicos de F3Set, no un partido
+  - {id: medir_f3set_dubai, accion: medir, prueba: f3set, donde: kaggle, compilaciones: Dubai, horas: 1.0, tras: leer_f3set_nube2_dubai}
+  - {id: comparar_f3set_dubai, accion: comparar, a: /datasets/f3set/recall/salidas_nube2/recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin, b: /runs/kaggle_medir_f3set_dubai/salidas/recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin, tras: medir_f3set_dubai, experimento: true}
+  - {id: leer_f3set_dubai_identidad, accion: leer, tras: medir_f3set_dubai, rutas: [/datasets/f3set/recall/salidas_nube2/recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin/identity.json, /runs/kaggle_medir_f3set_dubai/salidas/recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin/identity.json, /runs/kaggle_medir_f3set_dubai/salidas/recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin/candidates.json, /runs/kaggle_medir_f3set_dubai/salidas/recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin/manifest.json]}
