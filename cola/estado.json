@@ -2620,7 +2620,7 @@
   "partido": ""
  },
  "medir_f3set_dubai": {
-  "estado": "en_marcha",
+  "estado": "error",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 2,
@@ -2632,6 +2632,21 @@
   "cuaderno": "tennisbio-medir-f3set-dubai-2",
   "nota": "en cola de Kaggle más de 180 min sin arrancar",
   "kaggle": "queued (08:14)",
-  "kaggle_detalle": "queued | estebancoboc/tennisbio-medir-f3set-dubai-2 has status \"KernelWorkerStatus.QUEUED\""
+  "kaggle_detalle": "queued | estebancoboc/tennisbio-medir-f3set-dubai-2 has status \"KernelWorkerStatus.QUEUED\"",
+  "resultado": {
+   "nota": "cancelado: 28-11 08:20: 4 h en la cola de Kaggle sin arrancar (2 cuadernos), como toda sesión de GPU desde el 27-11 21:35 (la cuota a 0 h; las de CPU arrancan en 1 min). La misma en la P100 (medir_f3set_dubai_p100) dice si lo atascado son las T4"
+  }
+ },
+ "medir_f3set_dubai_p100": {
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1795853797.6537073,
+  "accion": "medir",
+  "partido": "",
+  "inicio": "2026-11-28 08:16",
+  "ruta": "/runs/kaggle_medir_f3set_dubai_p100/estado.json",
+  "cuaderno": "tennisbio-medir-f3set-dubai-p100"
  }
 }

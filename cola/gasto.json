@@ -259,6 +259,10 @@
      "horas": 0.0
     },
     "medir_f3set_dubai": {
+     "estimado_h": 1.0,
+     "horas": 0.0
+    },
+    "medir_f3set_dubai_p100": {
      "estimado_h": 1.0
     }
    }
@@ -268,7 +272,7 @@
   "usadas_h": 0.0,
   "total_h": 30.0,
   "renueva": "2026-12-05 00:00:00",
-  "ts": 1795853665.3127248
+  "ts": 1795853797.6537073
  },
  "aviso_ocioso_ts": 1795853665.3127248
 }
