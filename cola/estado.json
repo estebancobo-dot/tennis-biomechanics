@@ -2549,6 +2549,8 @@
   "ruta": "/runs/kaggle_actualizar_zheng_b2/estado.json",
   "salida": "/output/zheng-qinwen-elena-rybakina",
   "cuaderno": "tennisbio-actualizar-zheng-b2-2",
-  "nota": "en cola de Kaggle más de 180 min sin arrancar"
+  "nota": "en cola de Kaggle más de 180 min sin arrancar",
+  "kaggle": "queued (00:42)",
+  "kaggle_detalle": "queued | estebancoboc/tennisbio-actualizar-zheng-b2-2 has status \"KernelWorkerStatus.QUEUED\""
  }
 }
