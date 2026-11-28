@@ -2608,5 +2608,15 @@
    },
    "horas_kaggle": 0.53
   }
+ },
+ "leer_f3set_nube2_dubai": {
+  "estado": "hecho",
+  "accion": "leer",
+  "donde": "github",
+  "fin": "2026-11-28 03:50",
+  "resultado": {
+   "nota": "leídos: datasets__f3set__recall__salidas_nube2__recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin__manifest.json, datasets__f3set__recall__salidas_nube2__recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin__candidates.json"
+  },
+  "partido": ""
  }
 }

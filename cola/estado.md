@@ -1,6 +1,6 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-28 03:47 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 28.0 h de GPU esta semana (tope 28 h; Kaggle dice 0.0 h usadas de 30.0, se renueva 2026-12-05 00:00)
+Última vuelta: 2026-11-28 03:50 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 28.0 h de GPU esta semana (tope 28 h; Kaggle dice 0.0 h usadas de 30.0, se renueva 2026-12-05 00:00)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
@@ -137,3 +137,4 @@
 | prueba_gauff_v38_c | prueba | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | hecho | kaggle |  |
 | comparar_gauff_v36_v38 | comparar |  | revisar | github | distinta; 7 etapas iguales; distintas: candidates, fine, fine_doubtful, identity, players, spotting, view_clips, views; strokes.json: 28 de 28/28 golpes emparejados, medidas fuera de tolerancia: metrics.trunk3d_model, metrics.trunk3d_readings, metrics.shoulder_turn_3d_deg, metrics.hip_turn_3d_deg; strokes.json: temblor de b frente a a ×1.00 (mediana de 5327 medidas; b tiembla menos en el 12 %); strokes.json: temblor por familias: brazos ×1.00, muñecas ×1.00, otras ×1.00, piernas ×1.00, pies ×1.00, raqueta ×1.00, tronco ×1.00; strokes_opponent.json: 0 de 0/0 golpes emparejados; strokes_doubtful |
 | informe_6 | informe |  | hecho | kaggle |  |
+| leer_f3set_nube2_dubai | leer |  | hecho | github | leídos: datasets__f3set__recall__salidas_nube2__recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin__manifest.json, datasets__f3set__recall__salidas_nube2__recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin__candidates.json |
