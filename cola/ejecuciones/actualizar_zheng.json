@@ -1,0 +1,145 @@
+{
+ "estado": "hecho",
+ "segundos": 2971,
+ "horas_kaggle": 0.88,
+ "coste_usd": 0.0,
+ "gpu": null,
+ "etapas": {
+  "probe": 7.3,
+  "scenes": 5885.7,
+  "court": 281.6,
+  "score": 649.7,
+  "players": 859.9,
+  "audio": 49.9,
+  "identity": 318.7,
+  "spotting": 2744.6,
+  "candidates": 9.1,
+  "views": 2827.3,
+  "fine": 5454.4,
+  "views_link": 1.1,
+  "view_clips": 123.4,
+  "slowmo_fine": 5.8,
+  "fine_opponent": 0.0,
+  "fine_doubtful": 526.1
+ },
+ "recursos": {
+  "muestras": 48,
+  "cpu_pct": {
+   "media": 55.2,
+   "max": 99.9
+  },
+  "ram_gb": {
+   "media": 12.3,
+   "max": 18.9
+  }
+ },
+ "recursos_por_etapa": {
+  "probe": {
+   "s": 7,
+   "muestras": 0
+  },
+  "scenes": {
+   "s": 5886,
+   "muestras": 0
+  },
+  "court": {
+   "s": 282,
+   "muestras": 0
+  },
+  "score": {
+   "s": 650,
+   "muestras": 0
+  },
+  "players": {
+   "s": 860,
+   "muestras": 0
+  },
+  "audio": {
+   "s": 50,
+   "muestras": 0
+  },
+  "identity": {
+   "s": 319,
+   "muestras": 0
+  },
+  "spotting": {
+   "s": 2745,
+   "muestras": 0
+  },
+  "candidates": {
+   "s": 9,
+   "muestras": 0
+  },
+  "views": {
+   "s": 2827,
+   "muestras": 46,
+   "cpu_pct": {
+    "media": 55.3,
+    "max": 99.9
+   },
+   "ram_gb": {
+    "media": 12.3,
+    "max": 13.1
+   }
+  },
+  "fine": {
+   "s": 5454,
+   "muestras": 0
+  },
+  "views_link": {
+   "s": 1,
+   "muestras": 0
+  },
+  "view_clips": {
+   "s": 123,
+   "muestras": 2,
+   "cpu_pct": {
+    "media": 52.8,
+    "max": 57.7
+   },
+   "ram_gb": {
+    "media": 13.5,
+    "max": 18.9
+   }
+  },
+  "slowmo_fine": {
+   "s": 6,
+   "muestras": 0
+  },
+  "fine_opponent": {
+   "s": 0,
+   "muestras": 0
+  },
+  "fine_doubtful": {
+   "s": 526,
+   "muestras": 0
+  }
+ },
+ "modelos_en_cpu": 0,
+ "fallos": {},
+ "sin_subir": [],
+ "config": {},
+ "config_local": {
+  "registry": {
+   "source": "yaml"
+  },
+  "device": "auto"
+ },
+ "kaggle": {
+  "python": "3.13.18",
+  "nucleos": 4,
+  "memoria_gib": {
+   "MemTotal": 31.3,
+   "MemAvailable": 30.2
+  },
+  "disco_libre_gib": {
+   "/tmp": 2513.0,
+   "/kaggle/working": 19.5
+  },
+  "gpu": "",
+  "ffmpeg": "/usr/bin/ffmpeg",
+  "clave_modal": true
+ },
+ "nota": null,
+ "modelos_en_cpu_registro": 0
+}

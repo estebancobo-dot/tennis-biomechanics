@@ -2557,7 +2557,7 @@
   }
  },
  "actualizar_zheng": {
-  "estado": "en_marcha",
+  "estado": "hecho",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 1,
@@ -2569,9 +2569,29 @@
   "salida": "/output/zheng-qinwen-elena-rybakina",
   "cpu": true,
   "cuaderno": "tennisbio-actualizar-zheng",
-  "kaggle": "running (03:01)",
+  "kaggle": "complete (03:06)",
   "arranco": "2026-11-28 02:10",
   "espera_min": 1,
-  "progreso": "view_clips:  53 % (318/596 recortes de repeticiones y otras cámaras) · 66 s · quedan ≈ 58 s (03:01:20; CPU 58 %, 8.1 GB)"
+  "progreso": "slowmo_fine terminada a las 03:02:25 en 6 s (03:02:25)",
+  "fin": "2026-11-28 03:06",
+  "resultado": {
+   "estado": "hecho",
+   "coste_usd": 0.0,
+   "segundos": 2971,
+   "horas_kaggle": 0.88
+  }
+ },
+ "informe_6": {
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1795835215.3917062,
+  "accion": "informe",
+  "partido": "",
+  "inicio": "2026-11-28 03:06",
+  "ruta": "/runs/informe_6/estado.json",
+  "cpu": true,
+  "cuaderno": "tennisbio-informe-6"
  }
 }
