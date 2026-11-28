@@ -1,6 +1,6 @@
 # Cola de la nube
 
-Última vuelta: 2026-11-28 08:25 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 27.0 h de GPU esta semana (tope 28 h; Kaggle dice 0.0 h usadas de 30.0, se renueva 2026-12-05 00:00)
+Última vuelta: 2026-11-28 08:30 UTC · Modal: quedan 0.44 $ de 30 $ este mes (tope de la cola 29.5 $) · Kaggle: quedan 27.0 h de GPU esta semana (tope 28 h; Kaggle dice 0.0 h usadas de 30.0, se renueva 2026-12-05 00:00)
 
 | Trabajo | Acción | Partido | Estado | Dónde | Nota |
 |---|---|---|---|---|---|
@@ -139,6 +139,6 @@
 | informe_6 | informe |  | hecho | kaggle |  |
 | leer_f3set_nube2_dubai | leer |  | hecho | github | leídos: datasets__f3set__recall__salidas_nube2__recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin__manifest.json, datasets__f3set__recall__salidas_nube2__recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin__candidates.json |
 | medir_f3set_dubai | medir |  | error | kaggle | cancelado: 28-11 08:20: 4 h en la cola de Kaggle sin arrancar (2 cuadernos), como toda sesión de GPU desde el 27-11 21:35 (la cuota a 0 h; las de CPU arrancan en 1 min). La misma en la P100 (medir_f3set_dubai_p100) dice si lo atascado son las T4 |
-| medir_f3set_dubai_p100 | medir |  | en_marcha | kaggle | Kaggle: queued (08:25), intento 1 |
+| medir_f3set_dubai_p100 | medir |  | en_marcha | kaggle | Kaggle: queued (08:30), intento 1 |
 | comparar_f3set_dubai | comparar |  | pendiente |  | espera a medir_f3set_dubai_p100 (en_marcha) |
 | leer_f3set_dubai_identidad | leer |  | pendiente |  | espera a medir_f3set_dubai_p100 (en_marcha) |
