@@ -255,7 +255,8 @@
   "2026-W48": {
    "trabajos": {
     "actualizar_zheng_b2": {
-     "estimado_h": 0.5
+     "estimado_h": 0.5,
+     "horas": 0.0
     }
    }
   }
@@ -264,7 +265,7 @@
   "usadas_h": 0.0,
   "total_h": 30.0,
   "renueva": "2026-12-05 00:00:00",
-  "ts": 1795831523.3332384
+  "ts": 1795831760.2029614
  },
  "aviso_ocioso_ts": 1795831523.3332384
 }

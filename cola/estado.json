@@ -2538,7 +2538,7 @@
   "partido": ""
  },
  "actualizar_zheng_b2": {
-  "estado": "en_marcha",
+  "estado": "error",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 2,
@@ -2551,6 +2551,23 @@
   "cuaderno": "tennisbio-actualizar-zheng-b2-2",
   "nota": "en cola de Kaggle más de 180 min sin arrancar",
   "kaggle": "queued (02:05)",
-  "kaggle_detalle": "queued | estebancoboc/tennisbio-actualizar-zheng-b2-2 has status \"KernelWorkerStatus.QUEUED\""
+  "kaggle_detalle": "queued | estebancoboc/tennisbio-actualizar-zheng-b2-2 has status \"KernelWorkerStatus.QUEUED\"",
+  "resultado": {
+   "nota": "cancelado: 28-11 02:15: 4,5 h en la cola de Kaggle sin arrancar (sus 2 cuadernos; la cuota, recién renovada, a 0 h). Solo iba a comprobar lo que el manifiesto de Modal ya dice (fine, fine_opponent y fine_doubtful hechos el 22-11, sin fallos ni errores; ningún código del análisis cambió): la parte de CPU de Zheng va directamente sobre lo hecho"
+  }
+ },
+ "actualizar_zheng": {
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1795831760.2029614,
+  "accion": "partido",
+  "partido": "zheng-qinwen-elena-rybakina",
+  "inicio": "2026-11-28 02:09",
+  "ruta": "/runs/kaggle_actualizar_zheng/estado.json",
+  "salida": "/output/zheng-qinwen-elena-rybakina",
+  "cpu": true,
+  "cuaderno": "tennisbio-actualizar-zheng"
  }
 }
