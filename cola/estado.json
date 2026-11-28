@@ -2582,7 +2582,7 @@
   }
  },
  "informe_6": {
-  "estado": "en_marcha",
+  "estado": "hecho",
   "donde": "kaggle",
   "llamada": "kaggle",
   "intentos": 1,
@@ -2593,8 +2593,20 @@
   "ruta": "/runs/informe_6/estado.json",
   "cpu": true,
   "cuaderno": "tennisbio-informe-6",
-  "kaggle": "running (03:37)",
+  "kaggle": "complete (03:42)",
   "arranco": "2026-11-28 03:11",
-  "espera_min": 5
+  "espera_min": 5,
+  "fin": "2026-11-28 03:42",
+  "resultado": {
+   "estado": "hecho",
+   "coste_usd": 0.0,
+   "segundos": 1559,
+   "codigos": {
+    "informe": 0,
+    "exportar": 0,
+    "auditoria": 0
+   },
+   "horas_kaggle": 0.53
+  }
  }
 }
