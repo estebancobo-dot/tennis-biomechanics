@@ -2618,5 +2618,17 @@
    "nota": "leídos: datasets__f3set__recall__salidas_nube2__recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin__manifest.json, datasets__f3set__recall__salidas_nube2__recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin__candidates.json"
   },
   "partido": ""
+ },
+ "medir_f3set_dubai": {
+  "estado": "en_marcha",
+  "donde": "kaggle",
+  "llamada": "kaggle",
+  "intentos": 1,
+  "lanzado_ts": 1795838332.9391615,
+  "accion": "medir",
+  "partido": "",
+  "inicio": "2026-11-28 03:58",
+  "ruta": "/runs/kaggle_medir_f3set_dubai/estado.json",
+  "cuaderno": "tennisbio-medir-f3set-dubai"
  }
 }
