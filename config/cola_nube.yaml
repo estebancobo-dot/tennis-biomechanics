@@ -65,7 +65,9 @@ cancelar:
 # actividad despierta la sesión al momento (sin sondeos ni tokens mientras no pasa nada)
 avisos_pr: 1
 # R51 (15-11): comparaciones de ajustes o modelos distintos a propósito (calidad, modelos): no son de equivalencia
-experimentos: [comparar_gauff_v20_v21, comparar_gauff_v20_v21b, comparar_gauff_v20_v21c, comparar_gauff_v20_v21d, comparar_gauff_v22_v23, comparar_gauff_v22_rtmw]
+# 28-11 (informe_6: «Equivalencia entre infraestructuras» en falta): las de Sapiens2 (#307) cambiaban de modelo a
+# propósito para decidir si se adoptaba (no se adoptó): experimentos, no equivalencia
+experimentos: [comparar_gauff_v20_v21, comparar_gauff_v20_v21b, comparar_gauff_v20_v21c, comparar_gauff_v20_v21d, comparar_gauff_v22_v23, comparar_gauff_v22_rtmw, comparar_gauff_v26_v33, comparar_gauff_v26_v35, comparar_gauff_v26_v35b]
 gasto_modal_base:
   "2026-11": 28.08
 trabajos:
@@ -387,3 +389,7 @@ trabajos:
   - {id: prueba_gauff_v38_c, accion: prueba, partido: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, donde: kaggle, cpu: true, tras: prueba_gauff_v38_b2, junto_a: prueba_gauff_v38_a, etapas: [views, views_link, view_clips, slowmo_fine], config: {trunk3d: {model: metrabs}}}
   - {id: comparar_gauff_v36_v38, accion: comparar, a: prueba_gauff_v36_c, b: prueba_gauff_v38_c, experimento: true}
   - {id: informe_6, accion: informe, tras: actualizar_zheng}
+  # 28-11 (B4, #312 punto 3): los 6 partidos hechos; la pérdida de F3Set (−5, lado lejano) se compara etapa a etapa en
+  # la compilación de Dubai 2020 (sus 2 golpes lejanos fueron a los dudosos). ¿Siguen en el volumen las salidas de la
+  # nube2 (14-11, Modal, salidas_nube2)? Antes de gastar GPU en rehacerla
+  - {id: leer_f3set_nube2_dubai, accion: leer, rutas: [/datasets/f3set/recall/salidas_nube2/recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin/manifest.json, /datasets/f3set/recall/salidas_nube2/recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin/candidates.json]}
