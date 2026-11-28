@@ -41,6 +41,7 @@ reiniciar: ["final#1"]
 # resultados se quedan. Apagado hasta cerrar los 6 partidos (hasta entonces se pueden rehacer)
 borrar_videos_aceptados: false
 cancelar:
+  actualizar_zheng_b2: "28-11 02:15: 4,5 h en la cola de Kaggle sin arrancar (sus 2 cuadernos; la cuota, recién renovada, a 0 h). Solo iba a comprobar lo que el manifiesto de Modal ya dice (fine, fine_opponent y fine_doubtful hechos el 22-11, sin fallos ni errores; ningún código del análisis cambió): la parte de CPU de Zheng va directamente sobre lo hecho"
   actualizar_zheng_b: "22-11 20:42: su análisis acabó (manifiesto en Modal: fine 19:23:58, fine_opponent 19:23:59, fine_doubtful 19:32:46; leer_zheng_b_atasco), pero el ejecutor de Kaggle dejó de leer su salida a las 19:01 y la sesión siguió abierta sin hacer nada (CPU 1 %, GPU 0 %, 1,6 GB desde las 19:44) gastando cuota de GPU. Se borra su cuaderno; actualizar_zheng_b2 lo comprueba (todo al día, sin rehacer nada) con el ejecutor arreglado"
   sinner_b: "22-11 00:05: relanzado a las 00:04 con el giro 3D de antes; MeTRAbs acaba de pasar su regla (comparar_gauff_v36_v38: los mismos 28 golpes, X-factor 3D en 15 frente a 7, dispersión 5,2° frente a 5,6°) y Sinner se analiza una sola vez con lo elegido (#295): otra vez como sinner_b2 cuando MeTRAbs sea el de por defecto"
   medir_f3set_hoy_c: "21-11 23:58: corre dos veces en Kaggle (cada vuelta caída de 23:01 a 23:31 lo volvió a lanzar: dos versiones, dos sesiones de GPU; Kaggle contó 1,78 h en una hora) y deja a sinner_b sin GPU. Se borra su cuaderno y va otra vez detrás de Sinner como medir_f3set_hoy_d"
@@ -297,7 +298,10 @@ trabajos:
   - {id: actualizar_pegula, accion: partido, partido: elena-rybakina-jessica-pegula-miami-2026-quarter-final, tras: actualizar_pegula_b, aprobado: true, cpu: true, etapas: [views, views_link, view_clips, slowmo_fine], minutos_video: 112}
   - {id: actualizar_zheng_a, accion: partido, partido: zheng-qinwen-elena-rybakina, tras: actualizar_pegula, aprobado: true, cpu: true, etapas: [probe, scenes, court, audio], minutos_video: 117}
   - {id: actualizar_zheng_b, accion: partido, partido: zheng-qinwen-elena-rybakina, tras: actualizar_zheng_a, aprobado: true, etapas: [players, score, identity, spotting, candidates, fine, fine_opponent, fine_doubtful], minutos_video: 117}
-  - {id: actualizar_zheng, accion: partido, partido: zheng-qinwen-elena-rybakina, tras: actualizar_zheng_b2, aprobado: true, cpu: true, etapas: [views, views_link, view_clips, slowmo_fine], minutos_video: 117}
+  # 28-11 02:15: actualizar_zheng_b2 (solo comprobar, necesita GPU por la huella fp16) lleva 4,5 h en la cola de Kaggle sin
+  # arrancar (dos cuadernos). Lo que iba a comprobar ya se vio en el manifiesto de Modal (sin fallos; fine 332 de 345,
+  # 0 errores; dudosos 14 de 29): la parte de CPU va sobre lo hecho (--sobre-lo-hecho), detrás de la parte a
+  - {id: actualizar_zheng, accion: partido, partido: zheng-qinwen-elena-rybakina, tras: actualizar_zheng_a, aprobado: true, cpu: true, etapas: [views, views_link, view_clips, slowmo_fine], minutos_video: 117}
   # 22-11 20:45: actualizar_zheng_b sin avance desde las 19:01:08 (81 %), con las GPU trabajando hasta ~19:30 y la
   # máquina parada (CPU 1 %, 1,6 GB) desde ~19:40: ¿acabó el análisis y es el ejecutor el que no sigue? Lo que dejó
   # en Modal (el subidor sigue cada 10 min): su registro, su manifiesto y el estado de la ejecución
