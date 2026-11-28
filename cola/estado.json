@@ -2592,6 +2592,9 @@
   "inicio": "2026-11-28 03:06",
   "ruta": "/runs/informe_6/estado.json",
   "cpu": true,
-  "cuaderno": "tennisbio-informe-6"
+  "cuaderno": "tennisbio-informe-6",
+  "kaggle": "running (03:11)",
+  "arranco": "2026-11-28 03:11",
+  "espera_min": 5
  }
 }
